@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/remove_background"
+                android:id="@+id/remove_relativelayout" >
+
+    <ImageView android:layout_width="64dp"
+               android:layout_height="64dp"
+               android:padding="16dp"
+               android:id="@+id/remove_img"
+               android:src="@drawable/ic_close_white_48dp" />
+
+</RelativeLayout>

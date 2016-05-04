@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:background="@color/color_3"
+              android:padding="4dp"
+              android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/description_back_button"
+        android:padding="12dp"
+        android:src="@drawable/ic_arrow_back_white_48dp"
+        android:tint="@color/white_text"/>
+
+    <TextView
+        android:id="@+id/action_bar_title"
+        android:layout_width="0dp"
+        android:textSize="21sp"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/white_text"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <ImageView
+        android:id="@+id/bubble_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/description_bubble_button"
+        android:padding="12dp"
+        android:src="@drawable/ic_fiber_smart_record_white_48dp"
+        android:tag="@string/description_bubble_button"
+        android:tint="@color/white_text"/>
+
+</LinearLayout>

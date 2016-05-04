@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="separator">#0F000000</color>
+
+    <color name="primary_text">#DE000000</color>
+    <color name="secondary_text">#DA000000</color>
+    <color name="tertiary_text">#AA000000</color>
+    <color name="hint_text">#65000000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="white_text">#DEFFFFFF</color>
+    <color name="white_hint">#DAFFFFFF</color>
+
+    <color name="add_note_action_bar">#EFEFEF</color>
+
+    <color name="colorPrimary">#2C7873</color>
+    <color name="colorPrimaryDark">#004445</color>
+    <color name="colorAccent">#6FB98F</color>
+
+    <color name="color_1">#021C1E</color>
+    <color name="color_2">#004445</color>
+    <color name="color_3">#2C7873</color>
+    <color name="color_4">#6FB98F</color>
+
+    <color name="timestamp_text">#76000000</color>
+</resources>
