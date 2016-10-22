@@ -7,13 +7,20 @@
     android:orientation="vertical"
     tools:context="com.bijoysingh.quicknote.NoteActivity">
 
-    <include
-        layout="@layout/add_note_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+  <include
+      layout="@layout/add_note_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:background="@color/white">
 
     <include
         layout="@layout/add_note"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
+  </ScrollView>
 </LinearLayout>

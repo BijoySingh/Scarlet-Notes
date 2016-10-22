@@ -20,8 +20,8 @@
             android:ellipsize="end"
             android:hint="@string/un_titled"
             android:maxLines="2"
-            android:textColor="@color/primary_text"
-            android:textSize="21sp"/>
+            android:textColor="@color/home_title"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/timestamp"
@@ -30,8 +30,8 @@
             android:layout_marginBottom="4dp"
             android:fontFamily="sans-serif-light"
             android:hint="@string/timestamp"
-            android:textColor="@color/hint_text"
-            android:textSize="14sp"/>
+            android:textColor="@color/home_timestamp"
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/description"
@@ -42,8 +42,8 @@
             android:gravity="top"
             android:hint="@string/no_description"
             android:maxLines="5"
-            android:textColor="@color/tertiary_text"
-            android:textSize="16sp"/>
+            android:textColor="@color/home_text"
+            android:textSize="14sp"/>
     </LinearLayout>
 
     <View

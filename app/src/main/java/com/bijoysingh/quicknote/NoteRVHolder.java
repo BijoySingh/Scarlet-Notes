@@ -36,6 +36,12 @@ public class NoteRVHolder extends RVHolder<NoteItem> {
         title.setText(data.title);
         description.setText(data.description);
 
+        if (data.title.isEmpty()) {
+            title.setVisibility(View.GONE);
+        } else {
+            title.setVisibility(View.VISIBLE);
+        }
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

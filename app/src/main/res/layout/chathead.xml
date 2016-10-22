@@ -10,5 +10,5 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:padding="16dp"
-        android:src="@drawable/note_icon"/>
+        android:src="@drawable/app_icon"/>
 </RelativeLayout>

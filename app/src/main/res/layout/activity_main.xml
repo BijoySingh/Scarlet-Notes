@@ -55,17 +55,17 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="8dp"
             fab:fab_size="normal"
-            fab:menu_colorNormal="@color/colorPrimaryDark"
-            fab:menu_colorPressed="@color/colorPrimaryDark"
-            fab:menu_colorRipple="@color/colorPrimary">
+            fab:menu_colorNormal="@color/colorAccent"
+            fab:menu_colorPressed="@color/colorAccent"
+            fab:menu_colorRipple="@color/colorAccent">
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/menu_add_bubble"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_fiber_smart_record_white_24dp"
-                fab:fab_colorNormal="@color/colorPrimary"
-                fab:fab_colorPressed="@color/colorPrimaryDark"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/colorAccent"
                 fab:fab_colorRipple="@color/colorAccent"
                 fab:fab_label="@string/description_bubble_button"
                 fab:fab_size="normal"/>
@@ -75,8 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_border_color_white_24dp"
-                fab:fab_colorNormal="@color/colorPrimary"
-                fab:fab_colorPressed="@color/colorPrimaryDark"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/colorAccent"
                 fab:fab_colorRipple="@color/colorAccent"
                 fab:fab_label="@string/description_add_button"
                 fab:fab_size="normal"/>

@@ -1,7 +1,11 @@
 package com.bijoysingh.quicknote;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,12 +29,13 @@ public class NoteActivity extends AppCompatActivity {
     public Boolean openedFromService;
 
     public NoteDatabase db;
-
+    public Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
         instance = this;
+        context = this;
 
         if (getIntent().hasExtra(EXISTING_NOTE)) {
             note = (NoteItem) getIntent().getSerializableExtra(EXISTING_NOTE);
@@ -79,6 +84,33 @@ public class NoteActivity extends AppCompatActivity {
             }
         });
 
+        ImageView shareButton = (ImageView) findViewById(R.id.share_button);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, noteViewHolder
+                    .title.getText().toString());
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, noteViewHolder
+                    .description.getText().toString());
+                context.startActivity(
+                    Intent.createChooser(sharingIntent, "Share using..."));
+            }
+        });
+        ImageView copyButton = (ImageView) findViewById(R.id.copy_button);
+        copyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final ClipboardManager clipboard = (ClipboardManager)
+                    context.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("simple text", noteViewHolder.description
+                    .getText().toString());
+                clipboard.setPrimaryClip(clip);
+            }
+        });
+
+
         if(openedFromService) {
             openBubble.setVisibility(View.INVISIBLE);
             backButton.setVisibility(View.INVISIBLE);
@@ -112,6 +144,20 @@ public class NoteActivity extends AppCompatActivity {
         super.onResume();
         active = true;
         updateNote();
+        startHandler();
+    }
+
+    public void startHandler() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               if (active) {
+                   updateNote();
+                   handler.postDelayed(this, 1000);
+               }
+            }
+        }, 1000);
     }
 
     @Override

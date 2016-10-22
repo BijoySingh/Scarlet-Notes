@@ -29,7 +29,6 @@ public class NoteViewHolder {
     public NoteItem getNote(NoteItem item) {
         item.title = title.getText().toString();
         item.description = description.getText().toString();
-
         return item;
     }
 }

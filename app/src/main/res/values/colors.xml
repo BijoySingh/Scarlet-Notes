@@ -14,9 +14,9 @@
 
     <color name="add_note_action_bar">#EFEFEF</color>
 
-    <color name="colorPrimary">#2C7873</color>
-    <color name="colorPrimaryDark">#004445</color>
-    <color name="colorAccent">#6FB98F</color>
+    <color name="colorPrimary">#07575B</color>
+    <color name="colorPrimaryDark">#003B46</color>
+    <color name="colorAccent">#F52549</color>
 
     <color name="color_1">#021C1E</color>
     <color name="color_2">#004445</color>
@@ -24,4 +24,8 @@
     <color name="color_4">#6FB98F</color>
 
     <color name="timestamp_text">#76000000</color>
+
+    <color name="home_title">#66A5AD</color>
+    <color name="home_text">#505160</color>
+    <color name="home_timestamp">@color/hint_text</color>
 </resources>

@@ -33,6 +33,7 @@
         android:gravity="top"
         android:hint="@string/description"
         android:padding="16dp"
+        android:minLines="12"
         android:textColor="@color/tertiary_text"
         android:textSize="18sp"/>
 
