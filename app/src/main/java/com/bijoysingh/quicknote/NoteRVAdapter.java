@@ -12,17 +12,16 @@ import java.util.List;
  */
 public class NoteRVAdapter extends RVAdapter<NoteItem, NoteRVHolder> {
 
-    public NoteRVAdapter(Context context, List<NoteItem> notes) {
-        super(context, R.layout.note_item, NoteRVHolder.class);
-        contents = notes;
-    }
+  public NoteRVAdapter(Context context, List<NoteItem> notes) {
+    super(context, R.layout.item_note, NoteRVHolder.class);
+    contents = notes;
+  }
 
-    public void setValues(List<NoteItem> notes) {
-        contents = notes;
-    }
+  public List<NoteItem> getValues() {
+    return contents;
+  }
 
-    @Override
-    public List<NoteItem> getValues() {
-        return contents;
-    }
+  public void setValues(List<NoteItem> notes) {
+    contents = notes;
+  }
 }

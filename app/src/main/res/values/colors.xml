@@ -2,16 +2,6 @@
 <resources>
 
     <color name="separator">#0F000000</color>
-
-    <color name="primary_text">#DE000000</color>
-    <color name="secondary_text">#DA000000</color>
-    <color name="tertiary_text">#AA000000</color>
-    <color name="hint_text">#65000000</color>
-
-    <color name="white">#FFFFFF</color>
-    <color name="white_text">#DEFFFFFF</color>
-    <color name="white_hint">#DAFFFFFF</color>
-
     <color name="add_note_action_bar">#EFEFEF</color>
 
     <color name="colorPrimary">#07575B</color>
@@ -25,7 +15,7 @@
 
     <color name="timestamp_text">#76000000</color>
 
-    <color name="home_title">#66A5AD</color>
+    <color name="home_title">@color/material_blue_grey_700</color>
     <color name="home_text">#505160</color>
-    <color name="home_timestamp">@color/hint_text</color>
+    <color name="home_timestamp">@color/dark_hint_text</color>
 </resources>
