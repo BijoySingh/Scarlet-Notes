@@ -78,6 +78,7 @@ public class FloatingNoteService extends FloatingBubbleService {
       @Override
       public void onClick(View view) {
         TextUtils.copyToClipboard(getContext(), noteItem.description);
+        setState(false);
       }
     });
     setNote();

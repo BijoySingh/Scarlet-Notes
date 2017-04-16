@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.bijoysingh.quicknote.NoteActivity">
 
@@ -13,81 +13,57 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
 
-  <LinearLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0.3dp"
+      android:background="@color/dark_hint_text"/>
+
+  <EditText
+      android:id="@+id/title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@android:color/transparent"
+      android:hint="@string/title"
+      android:padding="12dp"
+      android:textColor="@color/dark_secondary_text"
+      android:textColorHint="@color/dark_hint_text"
+      android:textSize="24sp"
+      android:textStyle="bold"/>
+
+  <EditText
+      android:id="@+id/description"
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="1"
-      android:background="@color/white"
-      android:orientation="vertical">
+      android:background="@android:color/transparent"
+      android:gravity="top"
+      android:hint="@string/description"
+      android:minLines="16"
+      android:padding="12dp"
+      android:textColor="@color/dark_secondary_text"
+      android:textColorHint="@color/dark_hint_text"
+      android:textSize="18sp"/>
 
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:gravity="top"
-        android:hint="@string/description"
-        android:minLines="16"
-        android:padding="16dp"
-        android:textColor="@color/dark_secondary_text"
-        android:textSize="16sp"/>
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0.5dp"
+      android:background="@color/dark_hint_text"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/dark_hint_text"/>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:padding="12dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/timestamp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-      <TextView
-          android:id="@+id/timestamp"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:fontFamily="sans-serif-light"
-          android:gravity="start"
-          android:hint="@string/timestamp"
-          android:padding="16dp"
-          android:textColor="@color/dark_tertiary_text"
-          android:textSize="12sp"/>
-
-      <ImageView
-          android:id="@+id/copy_button"
-          android:layout_width="42dp"
-          android:layout_height="48dp"
-          android:background="?attr/selectableItemBackgroundBorderless"
-          android:contentDescription="@string/description_bubble_button"
-          android:padding="10dp"
-          android:src="@drawable/ic_content_copy_white_48dp"
-          android:tag="@string/description_bubble_button"
-          android:tint="@color/material_blue_grey_700"/>
-
-      <ImageView
-          android:id="@+id/share_button"
-          android:layout_width="42dp"
-          android:layout_height="48dp"
-          android:background="?attr/selectableItemBackgroundBorderless"
-          android:contentDescription="@string/description_bubble_button"
-          android:padding="8dp"
-          android:src="@drawable/ic_share_white_48dp"
-          android:tag="@string/description_bubble_button"
-          android:tint="@color/material_blue_grey_700"/>
-
-      <ImageView
-          android:id="@+id/bubble_button"
-          android:layout_width="42dp"
-          android:layout_height="48dp"
-          android:background="?attr/selectableItemBackgroundBorderless"
-          android:contentDescription="@string/description_bubble_button"
-          android:padding="8dp"
-          android:src="@drawable/ic_fiber_smart_record_white_48dp"
-          android:tag="@string/description_bubble_button"
-          android:tint="@color/material_blue_grey_700"/>
-    </LinearLayout>
+        android:layout_weight="1"
+        android:gravity="center"
+        android:hint="@string/timestamp"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="12sp"/>
   </LinearLayout>
 </LinearLayout>

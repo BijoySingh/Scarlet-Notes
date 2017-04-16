@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bsk.floatingbubblelib.FloatingBubblePermissions;
 import com.github.bijoysingh.starter.recyclerview.RVHolder;
+import com.github.bijoysingh.starter.util.TextUtils;
 
 /**
  * Note item view holder
@@ -20,6 +22,7 @@ public class NoteRVHolder extends RVHolder<NoteItem> {
   TextView timestamp;
   TextView title;
   TextView description;
+  ImageView share;
   MainActivity activity;
 
   public NoteRVHolder(Context context, View view) {
@@ -28,6 +31,7 @@ public class NoteRVHolder extends RVHolder<NoteItem> {
     timestamp = (TextView) view.findViewById(R.id.timestamp);
     title = (TextView) view.findViewById(R.id.title);
     description = (TextView) view.findViewById(R.id.description);
+    share = (ImageView) view.findViewById(R.id.share_button);
     activity = (MainActivity) context;
   }
 
@@ -49,6 +53,16 @@ public class NoteRVHolder extends RVHolder<NoteItem> {
         Intent intent = new Intent(context, NoteActivity.class);
         intent.putExtra(NoteActivity.EXISTING_NOTE, data);
         context.startActivity(intent);
+      }
+    });
+
+    share.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        new TextUtils.ShareBuilder(view.getContext())
+            .setSubject(data.title)
+            .setText(data.description)
+            .share();
       }
     });
 

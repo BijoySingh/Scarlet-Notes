@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/colorPrimary"
-              android:gravity="center_vertical"
-              android:orientation="horizontal"
-              android:padding="4dp">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="4dp">
 
   <ImageView
       android:id="@+id/back_button"
@@ -14,19 +14,43 @@
       android:contentDescription="@string/description_back_button"
       android:padding="12dp"
       android:src="@drawable/ic_arrow_back_white_48dp"
-      android:tint="@color/light_primary_text"/>
+      android:tint="@color/dark_tertiary_text"/>
 
-  <EditText
-      android:id="@+id/title"
+  <View
       android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:background="@android:color/transparent"
-      android:hint="@string/title"
-      android:padding="8dp"
-      android:textColor="@color/light_primary_text"
-      android:textColorHint="@color/light_hint_text"
-      android:textSize="24sp"/>
+      android:layout_height="1dp"
+      android:layout_weight="1"/>
 
+  <ImageView
+      android:id="@+id/copy_button"
+      android:layout_width="42dp"
+      android:layout_height="32dp"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/description_bubble_button"
+      android:padding="4dp"
+      android:src="@drawable/ic_content_copy_white_48dp"
+      android:tag="@string/description_bubble_button"
+      android:tint="@color/dark_tertiary_text"/>
 
+  <ImageView
+      android:id="@+id/share_button"
+      android:layout_width="42dp"
+      android:layout_height="32dp"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/description_bubble_button"
+      android:padding="4dp"
+      android:src="@drawable/ic_share_white_48dp"
+      android:tag="@string/description_bubble_button"
+      android:tint="@color/dark_tertiary_text"/>
+
+  <ImageView
+      android:id="@+id/bubble_button"
+      android:layout_width="42dp"
+      android:layout_height="32dp"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/description_bubble_button"
+      android:padding="4dp"
+      android:src="@drawable/ic_fiber_smart_record_white_48dp"
+      android:tag="@string/description_bubble_button"
+      android:tint="@color/dark_tertiary_text"/>
 </LinearLayout>

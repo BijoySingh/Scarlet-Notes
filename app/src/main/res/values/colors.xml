@@ -16,6 +16,6 @@
     <color name="timestamp_text">#76000000</color>
 
     <color name="home_title">@color/material_blue_grey_700</color>
-    <color name="home_text">#505160</color>
+    <color name="home_text">@color/material_blue_grey_500</color>
     <color name="home_timestamp">@color/dark_hint_text</color>
 </resources>
