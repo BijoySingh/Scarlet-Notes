@@ -8,19 +8,19 @@
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
         <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>
-        <item name="android:fontFamily" tools:targetApi="16">sans-serif</item>
+        <item name="android:fontFamily" tools:targetApi="16">monospace</item>
     </style>
 
     <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
-        <item name="android:fontFamily" tools:targetApi="16">sans-serif</item>
+        <item name="android:fontFamily" tools:targetApi="16">monospace</item>
     </style>
 
     <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
-        <item name="android:fontFamily" tools:targetApi="16">sans-serif</item>
+        <item name="android:fontFamily" tools:targetApi="16">monospace</item>
     </style>
 
     <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
-        <item name="android:fontFamily" tools:targetApi="16">sans-serif</item>
+        <item name="android:fontFamily" tools:targetApi="16">monospace</item>
     </style>
 
 </resources>

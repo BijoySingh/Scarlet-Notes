@@ -23,6 +23,7 @@ public class NoteRVHolder extends RVHolder<NoteItem> {
   TextView title;
   TextView description;
   ImageView share;
+  ImageView delete;
   MainActivity activity;
 
   public NoteRVHolder(Context context, View view) {
@@ -32,6 +33,7 @@ public class NoteRVHolder extends RVHolder<NoteItem> {
     title = (TextView) view.findViewById(R.id.title);
     description = (TextView) view.findViewById(R.id.description);
     share = (ImageView) view.findViewById(R.id.share_button);
+    delete = (ImageView) view.findViewById(R.id.delete_button);
     activity = (MainActivity) context;
   }
 
@@ -63,6 +65,13 @@ public class NoteRVHolder extends RVHolder<NoteItem> {
             .setSubject(data.title)
             .setText(data.description)
             .share();
+      }
+    });
+
+    delete.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        activity.deleteNote(data);
       }
     });
 

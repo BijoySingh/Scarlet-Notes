@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.bsk.floatingbubblelib.FloatingBubblePermissions;
 import com.github.clans.fab.FloatingActionButton;
 
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
   public void setupData() {
     NoteDatabase noteDatabase = new NoteDatabase(this);
     List<NoteItem> notes = noteDatabase.get(NoteItem.class);
+    Collections.sort(notes);
     if (adapter == null) {
       adapter = new NoteRVAdapter(this, notes);
     } else {

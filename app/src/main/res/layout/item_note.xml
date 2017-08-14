@@ -4,79 +4,96 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@android:color/white"
-    app:cardCornerRadius="0dp"
+    android:layout_margin="2dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="4dp"
     app:cardUseCompatPadding="true">
 
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:background="?android:attr/selectableItemBackground"
-      android:orientation="vertical"
-      android:paddingTop="8dp">
+      android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/transparent"
-        android:ellipsize="end"
-        android:hint="@string/un_titled"
-        android:maxLines="2"
-        android:textColor="@color/home_title"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:orientation="vertical"
+        android:padding="8dp">
 
-    <TextView
-        android:id="@+id/description"
+      <TextView
+          android:id="@+id/title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/transparent"
+          android:ellipsize="end"
+          android:hint="@string/un_titled"
+          android:maxLines="2"
+          android:padding="8dp"
+          android:textColor="@color/dark_secondary_text"
+          android:textColorHint="@color/light_tertiary_text"
+          android:textSize="18sp"
+          android:textStyle="bold"/>
+
+      <TextView
+          android:id="@+id/description"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/transparent"
+          android:ellipsize="end"
+          android:gravity="top"
+          android:hint="@string/no_description"
+          android:lineSpacingExtra="4dp"
+          android:maxLines="5"
+          android:padding="8dp"
+          android:textColor="@color/dark_secondary_text"
+          android:textColorHint="@color/light_tertiary_text"
+          android:textSize="16sp"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/transparent"
-        android:ellipsize="end"
-        android:gravity="center_vertical"
-        android:hint="@string/no_description"
-        android:maxLines="5"
-        android:minLines="3"
-        android:textColor="@color/home_text"
-        android:textSize="18sp"/>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:background="@color/material_teal_700"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="12dp">
+        android:padding="8dp">
 
       <TextView
           android:id="@+id/timestamp"
-          android:layout_width="wrap_content"
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
+          android:layout_marginStart="8dp"
+          android:layout_weight="1"
           android:fontFamily="sans-serif-light"
           android:gravity="start"
           android:hint="@string/timestamp"
-          android:textColor="@color/dark_tertiary_text"
-          android:textSize="12sp"/>
+          android:textColor="@color/light_tertiary_text"
+          android:textSize="14sp"/>
 
+      <ImageView
+          android:id="@+id/delete_button"
+          android:layout_width="36dp"
+          android:layout_height="36dp"
+          android:layout_gravity="center_vertical|end"
+          android:background="?attr/selectableItemBackgroundBorderless"
+          android:padding="8dp"
+          android:src="@drawable/ic_delete_white_48dp"
+          android:tag="@string/description_bubble_button"
+          android:tint="@color/light_hint_text"/>
 
       <ImageView
           android:id="@+id/share_button"
           android:layout_width="36dp"
-          android:layout_height="24dp"
+          android:layout_height="36dp"
           android:layout_gravity="center_vertical|end"
           android:background="?attr/selectableItemBackgroundBorderless"
           android:contentDescription="@string/description_bubble_button"
+          android:padding="8dp"
           android:src="@drawable/ic_share_white_48dp"
           android:tag="@string/description_bubble_button"
-          android:tint="@color/material_blue_grey_700"/>
-
-    </FrameLayout>
+          android:tint="@color/light_hint_text"/>
+    </LinearLayout>
   </LinearLayout>
 </android.support.v7.widget.CardView>

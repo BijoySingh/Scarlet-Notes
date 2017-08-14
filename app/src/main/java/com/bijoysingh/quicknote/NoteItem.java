@@ -1,5 +1,7 @@
 package com.bijoysingh.quicknote;
 
+import android.support.annotation.NonNull;
+
 import com.github.bijoysingh.starter.database.DBColumn;
 import com.github.bijoysingh.starter.database.DatabaseModel;
 
@@ -9,7 +11,8 @@ import java.io.Serializable;
  * The note item
  * Created by bijoy on 5/4/16.
  */
-public class NoteItem extends DatabaseModel implements Serializable {
+public class NoteItem extends DatabaseModel
+    implements Serializable, Comparable<NoteItem> {
   @DBColumn(primaryKey = true, autoIncrement = true)
   public Integer id;
 
@@ -37,5 +40,10 @@ public class NoteItem extends DatabaseModel implements Serializable {
     this.title = title;
     this.description = description;
     this.timestamp = timestamp;
+  }
+
+  @Override
+  public int compareTo(@NonNull NoteItem o) {
+    return o.id.compareTo(id);
   }
 }

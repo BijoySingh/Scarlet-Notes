@@ -13,36 +13,46 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
 
-  <View
-      android:layout_width="match_parent"
-      android:layout_height="0.3dp"
-      android:background="@color/dark_hint_text"/>
-
-  <EditText
-      android:id="@+id/title"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@android:color/transparent"
-      android:hint="@string/title"
-      android:padding="12dp"
-      android:textColor="@color/dark_secondary_text"
-      android:textColorHint="@color/dark_hint_text"
-      android:textSize="24sp"
-      android:textStyle="bold"/>
-
-  <EditText
-      android:id="@+id/description"
+  <ScrollView
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="1"
-      android:background="@android:color/transparent"
-      android:gravity="top"
-      android:hint="@string/description"
-      android:minLines="16"
-      android:padding="12dp"
-      android:textColor="@color/dark_secondary_text"
-      android:textColorHint="@color/dark_hint_text"
-      android:textSize="18sp"/>
+      android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+      <EditText
+          android:id="@+id/title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/transparent"
+          android:fontFamily="monospace"
+          android:hint="@string/title"
+          android:padding="12dp"
+          android:textColor="@color/material_teal_700"
+          android:textColorHint="@color/material_teal_500"
+          android:textSize="21sp"
+          android:textStyle="bold"/>
+
+      <EditText
+          android:id="@+id/description"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/transparent"
+          android:fontFamily="monospace"
+          android:gravity="top"
+          android:hint="@string/description"
+          android:lineSpacingExtra="6dp"
+          android:minLines="16"
+          android:padding="12dp"
+          android:textColor="@color/dark_secondary_text"
+          android:textColorHint="@color/dark_hint_text"
+          android:textSize="18sp"/>
+    </LinearLayout>
+  </ScrollView>
 
   <View
       android:layout_width="match_parent"
@@ -64,6 +74,6 @@
         android:gravity="center"
         android:hint="@string/timestamp"
         android:textColor="@color/dark_tertiary_text"
-        android:textSize="12sp"/>
+        android:textSize="14sp"/>
   </LinearLayout>
 </LinearLayout>
