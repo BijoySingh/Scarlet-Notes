@@ -4,14 +4,8 @@
     <string name="description">Content</string>
     <string name="timestamp">dd month yyyy, hh:mm aa</string>
 
-    <string name="description_back_button">Go Back</string>
-    <string name="description_bubble_button">Open In Bubble</string>
-    <string name="description_add_button">Add New Note</string>
-    <string name="description_copy_button">Copy Text</string>
+    <string name="main_no_notes">No Notes</string>
+    <string name="main_no_notes_hint">Click to add a note.</string>
 
-    <string name="un_titled">[Untitled]</string>
-    <string name="no_description">[No Description]</string>
-    <string name="no_notes">No Notes Available</string>
-    <string name="setup">Get Started</string>
-    <string name="get_started">Get started with quick note! Thank you for installing!</string>
+    <string name="main_add_a_note">Add a note&#8230;</string>
 </resources>

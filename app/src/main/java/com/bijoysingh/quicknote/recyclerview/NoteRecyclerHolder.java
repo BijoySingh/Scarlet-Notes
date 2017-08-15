@@ -1,63 +1,80 @@
-package com.bijoysingh.quicknote;
+package com.bijoysingh.quicknote.recyclerview;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bsk.floatingbubblelib.FloatingBubblePermissions;
-import com.github.bijoysingh.starter.recyclerview.RVHolder;
+import com.bijoysingh.quicknote.FloatingNoteService;
+import com.bijoysingh.quicknote.activities.MainActivity;
+import com.bijoysingh.quicknote.activities.NoteActivity;
+import com.bijoysingh.quicknote.R;
+import com.bijoysingh.quicknote.database.Note;
+import com.bijoysingh.quicknote.items.NoteRecyclerItem;
+import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
 import com.github.bijoysingh.starter.util.TextUtils;
 
-/**
- * Note item view holder
- * Created by bijoy on 5/4/16.
- */
-public class NoteRVHolder extends RVHolder<NoteItem> {
-  View view;
-  TextView timestamp;
-  TextView title;
-  TextView description;
-  ImageView share;
-  ImageView delete;
-  MainActivity activity;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
-  public NoteRVHolder(Context context, View view) {
+public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
+
+  private CardView view;
+  private TextView timestamp;
+  private TextView title;
+  private TextView description;
+  private ImageView share;
+  private ImageView delete;
+  private ImageView copy;
+  private MainActivity activity;
+
+  /**
+   * Constructor for the recycler view holder
+   *
+   * @param context the application/activity context
+   * @param view    the view of the current item
+   */
+  public NoteRecyclerHolder(Context context, View view) {
     super(context, view);
-    this.view = view;
+    this.view = (CardView) view;
     timestamp = (TextView) view.findViewById(R.id.timestamp);
     title = (TextView) view.findViewById(R.id.title);
     description = (TextView) view.findViewById(R.id.description);
     share = (ImageView) view.findViewById(R.id.share_button);
     delete = (ImageView) view.findViewById(R.id.delete_button);
     activity = (MainActivity) context;
+    copy = (ImageView) view.findViewById(R.id.copy_button);
   }
 
   @Override
-  public void populate(final NoteItem data, Bundle bundle) {
-    timestamp.setText(data.timestamp);
+  public void populate(NoteRecyclerItem item, Bundle extra) {
+    final Note data = item.note;
     title.setText(data.title);
-    description.setText(data.description);
+    title.setVisibility(data.title.isEmpty() ? GONE : VISIBLE);
 
-    if (data.title.isEmpty()) {
-      title.setVisibility(View.GONE);
-    } else {
-      title.setVisibility(View.VISIBLE);
-    }
+    description.setText(data.description);
+    timestamp.setText(data.displayTimestamp);
 
     view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(context, NoteActivity.class);
-        intent.putExtra(NoteActivity.EXISTING_NOTE, data);
+        intent.putExtra(NoteActivity.NOTE_ID, data.uid);
         context.startActivity(intent);
       }
     });
-
+    view.setCardBackgroundColor(data.color);
+    delete.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Note.db(context).delete(data);
+      }
+    });
     share.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -67,11 +84,10 @@ public class NoteRVHolder extends RVHolder<NoteItem> {
             .share();
       }
     });
-
-    delete.setOnClickListener(new View.OnClickListener() {
+    copy.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        activity.deleteNote(data);
+        TextUtils.copyToClipboard(context, data.description);
       }
     });
 
@@ -90,7 +106,7 @@ public class NoteRVHolder extends RVHolder<NoteItem> {
                 FloatingNoteService.openNote(activity, data, true);
                 break;
               case 1:
-                activity.deleteNote(data);
+                Note.db(context).delete(data);
                 break;
             }
           }

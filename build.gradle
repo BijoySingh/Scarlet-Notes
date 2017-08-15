@@ -18,9 +18,16 @@ allprojects {
         maven {
             url  "http://dl.bintray.com/bijoysingh693/maven"
         }
+        maven { url 'https://maven.google.com' }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    buildToolsVersion = "25.0.2"
+    supportLibVersion = "25.3.1"
+    archRoomVersion = "1.0.0-alpha3"
 }

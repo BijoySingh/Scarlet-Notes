@@ -8,7 +8,7 @@
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="4dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/material_blue_grey_700"
     app:cardCornerRadius="4dp"
     app:cardUseCompatPadding="true">
 
@@ -34,6 +34,7 @@
           android:ellipsize="end"
           android:maxLines="2"
           android:padding="8dp"
+          android:text="@string/main_no_notes"
           android:textColor="@color/light_primary_text"
           android:textColorHint="@color/light_tertiary_text"
           android:textSize="18sp"
@@ -49,60 +50,10 @@
           android:lineSpacingExtra="4dp"
           android:maxLines="5"
           android:padding="8dp"
+          android:text="@string/main_no_notes_hint"
           android:textColor="@color/light_primary_text"
           android:textColorHint="@color/light_tertiary_text"
           android:textSize="18sp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="6dp">
-
-      <TextView
-          android:id="@+id/timestamp"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_marginStart="8dp"
-          android:layout_weight="1"
-          android:fontFamily="monospace"
-          android:gravity="start"
-          android:hint="@string/timestamp"
-          android:textColor="@color/light_tertiary_text"
-          android:textSize="14sp"/>
-
-      <ImageView
-          android:id="@+id/delete_button"
-          android:layout_width="40dp"
-          android:layout_height="40dp"
-          android:layout_gravity="center_vertical|end"
-          android:background="?attr/selectableItemBackgroundBorderless"
-          android:padding="8dp"
-          android:src="@drawable/ic_delete_white_48dp"
-          android:tint="@color/light_hint_text"/>
-
-      <ImageView
-          android:id="@+id/copy_button"
-          android:layout_width="40dp"
-          android:layout_height="40dp"
-          android:layout_gravity="center_vertical|end"
-          android:background="?attr/selectableItemBackgroundBorderless"
-          android:padding="9dp"
-          android:src="@drawable/ic_content_copy_white_48dp"
-          android:tint="@color/light_hint_text"/>
-
-      <ImageView
-          android:id="@+id/share_button"
-          android:layout_width="40dp"
-          android:layout_height="40dp"
-          android:layout_gravity="center_vertical|end"
-          android:background="?attr/selectableItemBackgroundBorderless"
-          android:padding="8dp"
-          android:src="@drawable/ic_share_white_48dp"
-          android:tint="@color/light_hint_text"/>
     </LinearLayout>
   </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -1,64 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.bijoysingh.quicknote.MainActivity">
+    tools:context="com.bijoysingh.quicknote.activities.MainActivity">
 
   <include
       layout="@layout/toolbar_main"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
 
-  <FrameLayout
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/recycler_view"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="1">
+      android:layout_weight="1"/>
 
-    <LinearLayout
-        android:id="@+id/no_notes_available"
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1.2dp"
+      android:alpha="0.5"
+      android:background="@color/dark_hint_text"/>
+
+  <LinearLayout
+      android:id="@+id/menu_add_post"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:padding="16dp">
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:alpha="0.7"
+        android:src="@drawable/ic_add_white_24dp"
+        android:tint="@color/material_blue_grey_700"/>
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-      <ImageView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/ic_note_white_48dp"
-          android:tint="@color/dark_tertiary_text"
-          />
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/no_notes"
-          android:textAllCaps="true"
-          android:textColor="@color/dark_tertiary_text"/>
-    </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="4dp"/>
-
-    <com.github.clans.fab.FloatingActionButton
-        android:id="@+id/menu_add_post"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="8dp"
-        android:src="@drawable/ic_border_color_white_24dp"
-        fab:fab_colorNormal="@color/colorAccent"
-        fab:fab_colorPressed="@color/colorAccent"
-        fab:fab_colorRipple="@color/colorAccent"
-        fab:fab_label="@string/description_add_button"
-        fab:fab_size="normal"/>
-  </FrameLayout>
+        android:text="Add a note..."
+        android:textColor="@color/material_blue_grey_700"
+        android:textSize="16sp"/>
+
+  </LinearLayout>
 </LinearLayout>

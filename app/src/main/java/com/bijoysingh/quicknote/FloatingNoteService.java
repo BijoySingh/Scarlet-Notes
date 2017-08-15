@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bijoysingh.quicknote.activities.NoteActivity;
+import com.bijoysingh.quicknote.database.Note;
 import com.bsk.floatingbubblelib.FloatingBubbleConfig;
 import com.bsk.floatingbubblelib.FloatingBubblePermissions;
 import com.bsk.floatingbubblelib.FloatingBubbleService;
-import com.github.bijoysingh.starter.util.DateFormatter;
 import com.github.bijoysingh.starter.util.TextUtils;
+
+import static com.bijoysingh.quicknote.activities.NoteActivity.NOTE_ID;
 
 /**
  * The floating not service
@@ -22,12 +25,11 @@ import com.github.bijoysingh.starter.util.TextUtils;
 
 public class FloatingNoteService extends FloatingBubbleService {
 
-  NoteItem noteItem;
-  TextView title;
-  TextView description;
-  TextView timestamp;
-  ImageView editButton;
-  ImageView copyButton;
+  private Note note;
+  private TextView title;
+  private TextView description;
+  private TextView timestamp;
+  private View panel;
 
   @Override
   protected FloatingBubbleConfig getConfig() {
@@ -51,19 +53,21 @@ public class FloatingNoteService extends FloatingBubbleService {
 
   @Override
   protected boolean onGetIntent(@NonNull Intent intent) {
-    noteItem = null;
-    if (intent.hasExtra(NoteActivity.EXISTING_NOTE)) {
-      noteItem = (NoteItem) intent.getSerializableExtra(NoteActivity.EXISTING_NOTE);
+    note = null;
+    if (intent.hasExtra(NOTE_ID)) {
+      note = Note.db(getContext()).getByID(intent.getIntExtra(NOTE_ID, 0));
     }
     return true;
   }
 
   private View loadView() {
     View rootView = getInflater().inflate(R.layout.layout_add_note_overlay, null);
+
     title = (TextView) rootView.findViewById(R.id.title);
     description = (TextView) rootView.findViewById(R.id.description);
     timestamp = (TextView) rootView.findViewById(R.id.timestamp);
-    editButton = (ImageView) rootView.findViewById(R.id.save_button);
+
+    ImageView editButton = (ImageView) rootView.findViewById(R.id.panel_edit_button);
     editButton.setImageResource(R.drawable.ic_edit_white_48dp);
     editButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -72,51 +76,53 @@ public class FloatingNoteService extends FloatingBubbleService {
         stopSelf();
       }
     });
-    copyButton = (ImageView) rootView.findViewById(R.id.panel_copy_button);
+
+    ImageView copyButton = (ImageView) rootView.findViewById(R.id.panel_copy_button);
     copyButton.setVisibility(View.VISIBLE);
     copyButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        TextUtils.copyToClipboard(getContext(), noteItem.description);
+        TextUtils.copyToClipboard(getContext(), note.description);
         setState(false);
       }
     });
+
+    panel = rootView.findViewById(R.id.panel_layout);
+    panel.setBackgroundColor(note.color);
+
     setNote();
     return rootView;
   }
 
   private void openNote() {
     Intent intent = new Intent(getApplicationContext(), NoteActivity.class);
-    intent.putExtra(NoteActivity.EXISTING_NOTE, noteItem);
+    intent.putExtra(NoteActivity.NOTE_ID, note.uid);
     startActivity(intent);
   }
 
   public void setNote() {
-    if (noteItem == null) {
-      noteItem = new NoteItem(DateFormatter.getToday());
+    if (note == null) {
+      note = Note.gen();
     }
 
-    title.setText(noteItem.title);
-    description.setText(noteItem.description);
-    timestamp.setText(noteItem.timestamp);
+    title.setText(note.title);
+    description.setText(note.description);
+    timestamp.setText(note.displayTimestamp);
 
-    title.setVisibility(TextUtils.isNullOrEmpty(noteItem.title) ? View.GONE : View.VISIBLE);
-    description.setVisibility(
-        TextUtils.isNullOrEmpty(noteItem.description) ? View.GONE : View.VISIBLE);
+    title.setVisibility(TextUtils.isNullOrEmpty(note.title) ? View.GONE : View.VISIBLE);
+    description.setVisibility(TextUtils.isNullOrEmpty(note.description) ? View.GONE : View.VISIBLE);
   }
 
-  public static void openNote(Activity activity, NoteItem note, boolean finishOnOpen) {
+  public static void openNote(Activity activity, Note note, boolean finishOnOpen) {
     if (FloatingBubblePermissions.requiresPermission(activity)) {
       FloatingBubblePermissions.startPermissionRequest(activity);
     } else {
       Intent intent = new Intent(activity, FloatingNoteService.class);
       if (note != null) {
-        intent.putExtra(NoteActivity.EXISTING_NOTE, note);
+        intent.putExtra(NOTE_ID, note.uid);
       }
       activity.startService(intent);
-      if (finishOnOpen) {
-        activity.finish();
-      }
+      if (finishOnOpen) activity.finish();
     }
   }
 }

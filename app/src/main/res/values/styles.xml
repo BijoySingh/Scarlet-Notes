@@ -1,26 +1,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/material_grey_500</item>
+    <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
-        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
-        <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>
-        <item name="android:fontFamily" tools:targetApi="16">monospace</item>
-    </style>
+    <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+    <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+    <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>
+    <item name="android:fontFamily" tools:targetApi="16">monospace</item>
+  </style>
 
-    <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
-        <item name="android:fontFamily" tools:targetApi="16">monospace</item>
-    </style>
+  <style name="NoteTheme" parent="AppTheme">
+    <item name="colorPrimaryDark">@color/material_grey_500</item>
+  </style>
 
-    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
-        <item name="android:fontFamily" tools:targetApi="16">monospace</item>
-    </style>
+  <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
+    <item name="android:fontFamily" tools:targetApi="16">monospace</item>
+  </style>
 
-    <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
-        <item name="android:fontFamily" tools:targetApi="16">monospace</item>
-    </style>
+  <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+    <item name="android:fontFamily" tools:targetApi="16">monospace</item>
+  </style>
+
+  <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
+    <item name="android:fontFamily" tools:targetApi="16">monospace</item>
+  </style>
 
 </resources>

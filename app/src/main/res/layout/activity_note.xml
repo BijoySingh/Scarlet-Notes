@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.bijoysingh.quicknote.NoteActivity">
+    tools:context="com.bijoysingh.quicknote.activities.NoteActivity">
 
   <include
-      layout="@layout/toolbar_add_note"
+      layout="@layout/toolbar_note"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
+
+  <com.google.android.flexbox.FlexboxLayout
+      android:id="@+id/flexbox_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="24dp"
+      android:visibility="gone"
+      app:alignContent="stretch"
+      app:alignItems="stretch"
+      app:flexWrap="wrap"
+      app:justifyContent="center">
+  </com.google.android.flexbox.FlexboxLayout>
 
   <ScrollView
       android:layout_width="match_parent"
@@ -33,7 +46,7 @@
           android:hint="@string/title"
           android:padding="12dp"
           android:textColor="@color/material_teal_700"
-          android:textColorHint="@color/material_teal_500"
+          android:textColorHint="@color/dark_hint_text"
           android:textSize="21sp"
           android:textStyle="bold"/>
 
@@ -51,29 +64,31 @@
           android:textColor="@color/dark_secondary_text"
           android:textColorHint="@color/dark_hint_text"
           android:textSize="18sp"/>
+
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="0.5dp"
+          android:layout_marginTop="16dp"
+          android:background="@color/dark_hint_text"/>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:orientation="horizontal"
+          android:padding="12dp">
+
+        <TextView
+            android:id="@+id/timestamp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="@string/timestamp"
+            android:textColor="@color/dark_tertiary_text"
+            android:textSize="14sp"/>
+      </LinearLayout>
     </LinearLayout>
   </ScrollView>
 
-  <View
-      android:layout_width="match_parent"
-      android:layout_height="0.5dp"
-      android:background="@color/dark_hint_text"/>
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:gravity="center"
-      android:orientation="horizontal"
-      android:padding="12dp">
-
-    <TextView
-        android:id="@+id/timestamp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:hint="@string/timestamp"
-        android:textColor="@color/dark_tertiary_text"
-        android:textSize="14sp"/>
-  </LinearLayout>
 </LinearLayout>

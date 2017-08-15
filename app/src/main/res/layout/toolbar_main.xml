@@ -3,7 +3,8 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="center_vertical"
-              android:orientation="horizontal">
+              android:orientation="horizontal"
+              android:padding="4dp">
 
   <ImageView
       android:id="@+id/back_button"
@@ -11,9 +12,9 @@
       android:layout_height="48dp"
       android:layout_marginEnd="4dp"
       android:layout_marginStart="4dp"
-      android:contentDescription="@string/description_back_button"
-      android:padding="12dp"
-      android:src="@drawable/app_icon"/>
+      android:padding="8dp"
+      android:src="@drawable/blank_icon"
+      android:tint="@color/colorPrimaryDark"/>
 
   <TextView
       android:id="@+id/action_bar_title"
@@ -21,17 +22,15 @@
       android:layout_height="wrap_content"
       android:layout_weight="1"
       android:text="@string/app_name"
-      android:textColor="@color/light_primary_text"
+      android:textColor="@color/dark_tertiary_text"
       android:textSize="18sp"/>
 
   <ImageView
       android:id="@+id/bubble_button"
       android:layout_width="48dp"
       android:layout_height="48dp"
-      android:contentDescription="@string/description_bubble_button"
       android:padding="12dp"
       android:src="@drawable/ic_fiber_smart_record_white_48dp"
-      android:tag="@string/description_bubble_button"
       android:tint="@color/light_primary_text"
       android:visibility="gone"/>
 
@@ -39,10 +38,8 @@
       android:id="@+id/new_note_button"
       android:layout_width="48dp"
       android:layout_height="48dp"
-      android:contentDescription="@string/description_add_button"
       android:padding="12dp"
       android:src="@drawable/ic_add_white_48dp"
-      android:tag="@string/description_bubble_button"
       android:tint="@color/light_primary_text"
       android:visibility="gone"/>
 
