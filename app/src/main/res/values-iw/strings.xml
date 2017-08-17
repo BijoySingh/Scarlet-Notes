@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">כותרת</string>
+  <string name="description">תוֹכֶן</string>
+  <string name="main_no_notes">אין הערות</string>
+  <string name="main_no_notes_hint">נראה שלא הוספת הערות. לחץ כדי להוסיף הערה.</string>
+  <string name="main_add_a_note">הוסף הערה...</string>
+  <string name="open_in_popup">פתח ב- Popup</string>
+  <string name="delete_note">מחק הערה</string>
+  <string name="send_note">שלח הערה</string>
+  <string name="choose_action">בחר פעולה...</string>
+</resources>

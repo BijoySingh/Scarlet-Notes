@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">খেতাব</string>
+  <string name="description">সন্তুষ্ট</string>
+  <string name="main_no_notes">কোন নোট নেই</string>
+  <string name="main_no_notes_hint">মনে হচ্ছে আপনি কোন নোট যোগ না করেছেন। একটি নোট যোগ করতে ক্লিক করুন</string>
+  <string name="main_add_a_note">একটি নোট যোগ করো...</string>
+  <string name="open_in_popup">পপআপ খুলুন</string>
+  <string name="delete_note">নোট মুছুন</string>
+  <string name="send_note">নোট পাঠান</string>
+  <string name="choose_action">নির্বাচন করুন...</string>
+</resources>

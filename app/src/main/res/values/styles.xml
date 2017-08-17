@@ -12,7 +12,6 @@
   </style>
 
   <style name="NoteTheme" parent="AppTheme">
-    <item name="colorPrimaryDark">@color/material_grey_500</item>
   </style>
 
   <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
@@ -27,4 +26,43 @@
     <item name="android:fontFamily" tools:targetApi="16">monospace</item>
   </style>
 
+  <style name="FormatActionButtons">
+    <item name="android:layout_width">36dp</item>
+    <item name="android:layout_height">36dp</item>
+    <item name="android:tint">@color/dark_hint_text</item>
+    <item name="android:padding">8dp</item>
+    <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+  </style>
+
+  <style name="FormatButtonIcon">
+    <item name="android:layout_width">48dp</item>
+    <item name="android:layout_height">48dp</item>
+    <item name="android:tint">@color/material_blue_grey_600</item>
+    <item name="android:padding">12dp</item>
+    <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+  </style>
+
+  <style name="FormatLabel">
+    <item name="android:layout_width">40dp</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:gravity">end</item>
+    <item name="android:textColor">@color/dark_tertiary_text</item>
+    <item name="android:textSize">12sp</item>
+    <item name="android:visibility">gone</item>
+    <item name="android:layout_marginEnd">8dp</item>
+  </style>
+
+  <style name="FormatText">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:gravity">top</item>
+    <item name="android:layout_gravity">center</item>
+    <item name="android:background">@color/transparent</item>
+    <item name="android:fontFamily">monospace</item>
+    <item name="android:lineSpacingExtra">@dimen/extra_text_line_spacing</item>
+    <item name="android:padding">8dp</item>
+    <item name="android:textColor">@color/dark_secondary_text</item>
+    <item name="android:textColorHint">@color/dark_hint_text</item>
+    <item name="android:textSize">16sp</item>
+  </style>
 </resources>

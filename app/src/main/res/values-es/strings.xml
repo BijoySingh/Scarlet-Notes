@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">Título</string>
+  <string name="description">Contenido</string>
+  <string name="main_no_notes">No Notas</string>
+  <string name="main_no_notes_hint">Parece que no has añadido ninguna nota. Haga clic para agregar una nota.</string>
+  <string name="main_add_a_note">Agrega una nota...</string>
+  <string name="open_in_popup">Abrir en Popup</string>
+  <string name="delete_note">Eliminar nota</string>
+  <string name="send_note">Enviar nota</string>
+  <string name="choose_action">Elige Acción...</string>
+</resources>

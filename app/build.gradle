@@ -8,8 +8,8 @@ android {
         applicationId "com.bijoysingh.quicknote"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 6
-        versionName "1.7"
+        versionCode 8
+        versionName "2.2"
     }
     buildTypes {
         release {
@@ -21,19 +21,20 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:' + rootProject.supportLibVersion;
     compile 'com.android.support:recyclerview-v7:' + rootProject.supportLibVersion;
     compile 'com.android.support:cardview-v7:' + rootProject.supportLibVersion;
     compile 'com.android.support:support-v4:' + rootProject.supportLibVersion;
 
+
+    compile 'android.arch.persistence.room:runtime:' + rootProject.archRoomVersion;
+    compile 'android.arch.persistence.room:testing:' + rootProject.archRoomVersion;
+    annotationProcessor 'android.arch.persistence.room:compiler:' + rootProject.archRoomVersion;
     compile 'com.github.bijoysingh:android-basics:1.1'
     compile 'com.github.bijoysingh:ui-basics:0.1'
     compile 'com.github.bijoysingh:floating-bubble:1.0.6'
     compile 'com.github.clans:fab:1.6.3'
     compile 'com.google.android:flexbox:0.3.0'
-
-    compile 'android.arch.persistence.room:runtime:' + rootProject.archRoomVersion;
-    compile 'android.arch.persistence.room:testing:' + rootProject.archRoomVersion;
-    annotationProcessor 'android.arch.persistence.room:compiler:' + rootProject.archRoomVersion;
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
 }

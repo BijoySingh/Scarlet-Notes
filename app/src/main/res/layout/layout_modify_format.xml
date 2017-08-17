@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/action_panel"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="end"
+    android:orientation="horizontal">
+
+  <ImageView
+      android:id="@+id/action_up"
+      style="@style/FormatActionButtons"
+      android:padding="5dp"
+      android:src="@drawable/ic_keyboard_arrow_up_white_48dp"
+      />
+
+  <ImageView
+      android:id="@+id/action_down"
+      style="@style/FormatActionButtons"
+      android:padding="5dp"
+      android:src="@drawable/ic_keyboard_arrow_down_white_48dp"
+      />
+
+  <View
+      android:layout_width="0dp"
+      android:layout_height="1dp"
+      android:layout_weight="1"/>
+
+  <ImageView
+      android:id="@+id/action_delete"
+      style="@style/FormatActionButtons"
+      android:src="@drawable/ic_delete_white_48dp"
+      />
+</LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">ਟਾਈਟਲ</string>
+  <string name="description">ਸਮੱਗਰੀ</string>
+  <string name="main_no_notes">ਕੋਈ ਨੋਟਸ ਨਹੀਂ</string>
+  <string name="main_no_notes_hint">ਇੰਜ ਜਾਪਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕੋਈ ਨੋਟ ਨਹੀਂ ਜੋੜਿਆ ਹੈ ਕੋਈ ਨੋਟ ਜੋੜਨ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
+  <string name="main_add_a_note">ਕੋਈ ਨੋਟ ਜੋੜੋ ...</string>
+  <string name="open_in_popup">ਪੋਪਅੱਪ ਵਿੱਚ ਖੋਲ੍ਹੋ</string>
+  <string name="delete_note">ਨੋਟ ਮਿਟਾਓ</string>
+  <string name="send_note">ਸੂਚਨਾ ਭੇਜੋ</string>
+  <string name="choose_action">ਕਾਰਵਾਈ ਚੁਣੋ ...</string>
+</resources>

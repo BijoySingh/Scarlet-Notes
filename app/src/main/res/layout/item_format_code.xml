@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+  <include layout="@layout/layout_modify_format"/>
+
+  <EditText
+      android:id="@+id/text"
+      style="@style/FormatText"
+      android:background="@color/material_grey_200"
+      android:hint="@string/format_hint_code"
+      android:padding="16dp"
+      android:textColor="@color/dark_tertiary_text"
+      android:textSize="@dimen/text_font_size"/>
+
+  <include layout="@layout/layout_dashed_dark"/>
+</LinearLayout>

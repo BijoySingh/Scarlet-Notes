@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="top"
+    android:orientation="vertical">
+
+  <include layout="@layout/layout_modify_format"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+
+    <View
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:background="@color/material_grey_400"
+        />
+
+    <EditText
+        android:id="@+id/text"
+        style="@style/FormatText"
+        android:hint="@string/format_hint_quote"
+        android:textColor="@color/dark_hint_text"
+        android:textSize="@dimen/text_font_size"
+        android:textStyle="italic"/>
+  </LinearLayout>
+
+  <include layout="@layout/layout_dashed_dark"/>
+</LinearLayout>

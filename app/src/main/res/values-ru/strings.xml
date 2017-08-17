@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">заглавие</string>
+  <string name="description">содержание</string>
+  <string name="main_no_notes">Нет примечаний</string>
+  <string name="main_no_notes_hint">Кажется, вы не добавили никаких заметок. Нажмите, чтобы добавить заметку.</string>
+  <string name="main_add_a_note">Добавить заметку...</string>
+  <string name="open_in_popup">Открыть всплывающее окно</string>
+  <string name="delete_note">Удалить примечание</string>
+  <string name="send_note">Отправить сообщение</string>
+  <string name="choose_action">Выбрать действие...</string>
+</resources>

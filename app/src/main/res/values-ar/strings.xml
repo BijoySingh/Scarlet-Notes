@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">عنوان</string>
+  <string name="description">يحتوى</string>
+  <string name="main_no_notes">لا ملاحظات</string>
+  <string name="main_no_notes_hint">يبدو أنك لم تضف أي ملاحظات. انقر لإضافة ملاحظة.</string>
+  <string name="main_add_a_note">إضافة ملاحظة ...</string>
+  <string name="open_in_popup">فتح في نافذة منبثقة</string>
+  <string name="delete_note">حذف ملاحظة</string>
+  <string name="send_note">إرسال ملاحظة</string>
+  <string name="choose_action">اختر الإجراء...</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">Başlık</string>
+  <string name="description">içerik</string>
+  <string name="main_no_notes">Not Yok</string>
+  <string name="main_no_notes_hint">Hiçbir not eklememişsiniz gibi görünüyor. Not eklemek için tıklayın.</string>
+  <string name="main_add_a_note">Bir not ekle...</string>
+  <string name="open_in_popup">Açılır Pencerede Aç</string>
+  <string name="delete_note">Not Sil</string>
+  <string name="send_note">Not gönder</string>
+  <string name="choose_action">Eylem seçin...</string>
+</resources>

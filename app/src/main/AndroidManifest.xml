@@ -14,10 +14,10 @@
     <activity android:name=".activities.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
+
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-
     <activity
         android:name=".activities.NoteActivity"
         android:theme="@style/NoteTheme"
@@ -25,6 +25,12 @@
     </activity>
 
     <service android:name=".FloatingNoteService"/>
+
+    <activity
+        android:name=".activities.AdvancedNoteActivity"
+        android:theme="@style/NoteTheme"
+        android:windowSoftInputMode="stateHidden">
+    </activity>
   </application>
 
 </manifest>

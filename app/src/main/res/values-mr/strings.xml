@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">शीर्षक</string>
+  <string name="description">सामग्री</string>
+  <string name="main_no_notes">कोणत्याही टिपा नाहीत</string>
+  <string name="main_no_notes_hint">आपण कोणत्याही नोट्स जोडले नाहीत असे दिसते एक टीप जोडण्यासाठी क्लिक करा</string>
+  <string name="main_add_a_note">एक टीप जोडा ...</string>
+  <string name="open_in_popup">पॉपअपमध्ये उघडा</string>
+  <string name="delete_note">टीप हटवा</string>
+  <string name="send_note">टीप पाठवा</string>
+  <string name="choose_action">क्रिया निवडा ...</string>
+</resources>

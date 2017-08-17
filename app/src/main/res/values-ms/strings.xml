@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">Tajuk</string>
+  <string name="description">Kandungan</string>
+  <string name="main_no_notes">Tiada Nota</string>
+  <string name="main_no_notes_hint">Nampaknya anda belum menambahkan sebarang nota. Klik untuk menambah nota.</string>
+  <string name="main_add_a_note">Tambah nota ...</string>
+  <string name="open_in_popup">Buka Dalam Popup</string>
+  <string name="delete_note">Padam Nota</string>
+  <string name="send_note">Hantar Nota</string>
+  <string name="choose_action">Pilih Tindakan ...</string>
+</resources>

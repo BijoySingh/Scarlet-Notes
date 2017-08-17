@@ -6,6 +6,12 @@ import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.database.Note;
+import com.bijoysingh.quicknote.formats.Format;
+import com.bijoysingh.quicknote.formats.FormatType;
+import com.bijoysingh.quicknote.formats.NoteType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The note view holder
@@ -24,13 +30,16 @@ public class NoteViewHolder {
 
   public void setNote(Note item) {
     timestamp.setText(item.displayTimestamp);
-    title.setText(item.title);
-    description.setText(item.description);
+    title.setText(item.getTitle());
+    description.setText(item.getText());
   }
 
   public Note getNote(Note item) {
-    item.title = title.getText().toString();
-    item.description = description.getText().toString();
+    List<Format> formats = new ArrayList<>();
+    formats.add(new Format(FormatType.HEADING, title.getText().toString()));
+    formats.add(new Format(FormatType.TEXT, description.getText().toString()));
+    item.title = NoteType.NOTE.name();
+    item.description = Format.getNote(formats);
     return item;
   }
 }

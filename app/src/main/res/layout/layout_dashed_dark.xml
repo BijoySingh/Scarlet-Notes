@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View
+    android:id="@+id/action_separator"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:layout_marginBottom="6dp"
+    android:layout_marginTop="6dp"
+    android:background="@drawable/dashed_drawable"
+    android:layerType="software"/>

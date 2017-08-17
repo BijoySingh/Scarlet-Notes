@@ -11,9 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bijoysingh.quicknote.FloatingNoteService;
+import com.bijoysingh.quicknote.R;
+import com.bijoysingh.quicknote.activities.AdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.MainActivity;
 import com.bijoysingh.quicknote.activities.NoteActivity;
-import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
@@ -54,16 +55,17 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
   @Override
   public void populate(NoteRecyclerItem item, Bundle extra) {
     final Note data = item.note;
-    title.setText(data.title);
-    title.setVisibility(data.title.isEmpty() ? GONE : VISIBLE);
+    String noteTitle = data.getTitle();
+    title.setText(noteTitle);
+    title.setVisibility(noteTitle.isEmpty() ? GONE : VISIBLE);
 
-    description.setText(data.description);
+    description.setText(data.getText());
     timestamp.setText(data.displayTimestamp);
 
     view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(context, NoteActivity.class);
+        Intent intent = new Intent(context, AdvancedNoteActivity.class);
         intent.putExtra(NoteActivity.NOTE_ID, data.uid);
         context.startActivity(intent);
       }
@@ -72,13 +74,13 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
     delete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Note.db(context).delete(data);
+        activity.deleteItem(data);
       }
     });
     share.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        new TextUtils.ShareBuilder(view.getContext())
+        new TextUtils.ShareBuilder(context)
             .setSubject(data.title)
             .setText(data.description)
             .share();
@@ -94,10 +96,14 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
     view.setOnLongClickListener(new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View view) {
-        CharSequence colors[] = new CharSequence[]{"Open In Popup", "Delete Note"};
+        CharSequence colors[] = new CharSequence[]{
+            context.getString(R.string.open_in_popup),
+            context.getString(R.string.delete_note),
+            context.getString(R.string.send_note),
+        };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Choose...");
+        builder.setTitle(R.string.choose_action);
         builder.setItems(colors, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
@@ -106,7 +112,13 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
                 FloatingNoteService.openNote(activity, data, true);
                 break;
               case 1:
-                Note.db(context).delete(data);
+                activity.deleteItem(data);
+                break;
+              case 2:
+                new TextUtils.ShareBuilder(context)
+                    .setSubject(data.title)
+                    .setText(data.description)
+                    .share();
                 break;
             }
           }

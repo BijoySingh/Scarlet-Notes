@@ -47,7 +47,7 @@
           android:padding="12dp"
           android:textColor="@color/material_teal_700"
           android:textColorHint="@color/dark_hint_text"
-          android:textSize="21sp"
+          android:textSize="@dimen/header_font_size"
           android:textStyle="bold"/>
 
       <EditText
@@ -58,25 +58,27 @@
           android:fontFamily="monospace"
           android:gravity="top"
           android:hint="@string/description"
-          android:lineSpacingExtra="6dp"
+          android:lineSpacingExtra="@dimen/extra_text_line_spacing"
           android:minLines="16"
           android:padding="12dp"
           android:textColor="@color/dark_secondary_text"
           android:textColorHint="@color/dark_hint_text"
-          android:textSize="18sp"/>
+          android:textSize="@dimen/text_font_size"/>
 
       <View
           android:layout_width="match_parent"
           android:layout_height="0.5dp"
           android:layout_marginTop="16dp"
-          android:background="@color/dark_hint_text"/>
+          android:background="@color/dark_hint_text"
+          android:visibility="gone"/>
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:gravity="center"
           android:orientation="horizontal"
-          android:padding="12dp">
+          android:padding="12dp"
+          android:visibility="gone">
 
         <TextView
             android:id="@+id/timestamp"
@@ -91,4 +93,18 @@
     </LinearLayout>
   </ScrollView>
 
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0.5dp"
+      android:layout_marginTop="16dp"
+      android:background="@color/dark_hint_text"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:padding="12dp">
+
+  </LinearLayout>
 </LinearLayout>

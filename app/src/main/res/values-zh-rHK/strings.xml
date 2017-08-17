@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">標題</string>
+  <string name="description">內容</string>
+  <string name="main_no_notes">沒有筆記</string>
+  <string name="main_no_notes_hint">看來你還沒有添加任何筆記。 點擊添加備註。</string>
+  <string name="main_add_a_note">添加備註...</string>
+  <string name="open_in_popup">在彈出窗口中打開</string>
+  <string name="delete_note">刪除註釋</string>
+  <string name="send_note">發送注意事項</string>
+  <string name="choose_action">選擇動作...</string>
+</resources>

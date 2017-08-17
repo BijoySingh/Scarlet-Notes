@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="header_font_size">21sp</dimen>
+  <dimen name="sub_header_font_size">18sp</dimen>
+  <dimen name="text_font_size">18sp</dimen>
+  <dimen name="extra_text_line_spacing">6dp</dimen>
+</resources>

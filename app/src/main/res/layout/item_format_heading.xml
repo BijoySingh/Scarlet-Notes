@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="top"
+    android:orientation="vertical">
+
+  <include layout="@layout/layout_modify_format"/>
+
+  <EditText
+      android:id="@+id/text"
+      style="@style/FormatText"
+      android:hint="@string/format_hint_heading"
+      android:paddingBottom="12dp"
+      android:paddingTop="12dp"
+      android:textSize="@dimen/header_font_size"
+      android:textStyle="bold"/>
+
+  <include layout="@layout/layout_dashed_dark"/>
+</LinearLayout>

@@ -15,9 +15,25 @@ public class TransitionUtils {
       transition1To2(context);
       manager.put(TRANSITION_ID.name(), 2);
     }
+    if (transitionId <= 2) {
+      transition2To3(context);
+      manager.put(TRANSITION_ID.name(), 3);
+    }
+    if (transitionId <= 3) {
+      transition3To4(context);
+      manager.put(TRANSITION_ID.name(), 4);
+    }
   }
 
   private static void transition1To2(Context context) {
-    Note.transition(context);
+    Note.transition1To2(context);
+  }
+
+  private static void transition2To3(Context context) {
+    Note.transition2To3(context);
+  }
+
+  private static void transition3To4(Context context) {
+    Note.transition3To4(context);
   }
 }

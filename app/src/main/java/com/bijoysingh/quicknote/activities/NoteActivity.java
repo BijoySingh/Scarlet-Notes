@@ -13,11 +13,8 @@ import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.bijoysingh.quicknote.views.ColorView;
 import com.bijoysingh.quicknote.views.NoteViewHolder;
-import com.github.bijoysingh.starter.util.DateFormatter;
 import com.github.bijoysingh.starter.util.TextUtils;
 import com.google.android.flexbox.FlexboxLayout;
-
-import java.util.Calendar;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -63,14 +60,6 @@ public class NoteActivity extends AppCompatActivity {
       }
     });
 
-    ImageView openBubble = (ImageView) findViewById(R.id.bubble_button);
-    openBubble.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        openFloatingService();
-      }
-    });
-
     ImageView backButton = (ImageView) findViewById(R.id.back_button);
     backButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -84,9 +73,9 @@ public class NoteActivity extends AppCompatActivity {
       @Override
       public void onClick(View view) {
         new TextUtils.ShareBuilder(context)
-            .setSubject(holder.title.getText().toString())
-            .setText(holder.description.getText().toString())
-            .setChooserText("Share using...")
+            .setSubject(note.getTitle())
+            .setText(note.getText())
+            .setChooserText(context.getString(R.string.share_using))
             .share();
       }
     });
@@ -100,11 +89,22 @@ public class NoteActivity extends AppCompatActivity {
     });
 
     colorButton = (ImageView) findViewById(R.id.color_button);
-    colorButton.setOnClickListener(new View.OnClickListener() {
+    View colorPicker = findViewById(R.id.color_button_clicker);
+    colorPicker.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         boolean isVisible = colorSelectorLayout.getVisibility() == VISIBLE;
         colorSelectorLayout.setVisibility(isVisible ? GONE : VISIBLE);
+      }
+    });
+
+
+    ImageView actionDone = (ImageView) findViewById(R.id.done_button);
+    actionDone.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        updateNote();
+        finish();
       }
     });
   }
@@ -114,28 +114,29 @@ public class NoteActivity extends AppCompatActivity {
     super.onDestroy();
     active = false;
     updateNote();
+    destroyIfNeeded();
   }
 
   public void updateNote() {
     note = holder.getNote(note);
-    note.displayTimestamp = DateFormatter.getToday();
-    note.timestamp = Calendar.getInstance().getTimeInMillis();
+    // note.displayTimestamp = DateFormatter.getToday();
+    // note.timestamp = Calendar.getInstance().getTimeInMillis();
     setNoteColor(note.color);
 
-    if (note.isUnsaved()
-        && note.title.isEmpty()
-        && note.description.isEmpty()) {
+    if (note.isUnsaved() && note.getFormats().isEmpty()) {
       return;
     }
+    note.save(context);
+  }
 
-    if (!note.isUnsaved()
-        && note.title.isEmpty()
-        && note.description.isEmpty()) {
-      Note.db(context).delete(note);
+
+  private void destroyIfNeeded() {
+    if (note.isUnsaved()) {
+      return;
     }
-
-    long id = Note.db(context).insertNote(note);
-    note.uid = note.isUnsaved() ? ((int) id) : note.uid;
+    if (note.getFormats().isEmpty()) {
+      note.delete(this);
+    }
   }
 
   @Override
