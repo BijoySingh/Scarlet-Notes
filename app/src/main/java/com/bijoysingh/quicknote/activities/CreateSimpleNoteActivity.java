@@ -19,7 +19,7 @@ import com.google.android.flexbox.FlexboxLayout;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-public class NoteActivity extends AppCompatActivity {
+public class CreateSimpleNoteActivity extends AppCompatActivity {
 
   public static final String NOTE_ID = "NOTE_ID";
   public static final int HANDLER_UPDATE_TIME = 1000;

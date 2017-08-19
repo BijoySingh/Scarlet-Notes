@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import com.bijoysingh.quicknote.FloatingNoteService;
 import com.bijoysingh.quicknote.R;
-import com.bijoysingh.quicknote.activities.AdvancedNoteActivity;
+import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.MainActivity;
-import com.bijoysingh.quicknote.activities.NoteActivity;
+import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
@@ -65,8 +65,8 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
     view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(context, AdvancedNoteActivity.class);
-        intent.putExtra(NoteActivity.NOTE_ID, data.uid);
+        Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
+        intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, data.uid);
         context.startActivity(intent);
       }
     });

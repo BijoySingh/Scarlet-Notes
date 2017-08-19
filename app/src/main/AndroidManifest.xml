@@ -19,7 +19,7 @@
       </intent-filter>
     </activity>
     <activity
-        android:name=".activities.NoteActivity"
+        android:name=".activities.CreateSimpleNoteActivity"
         android:theme="@style/NoteTheme"
         android:windowSoftInputMode="stateHidden">
     </activity>
@@ -27,7 +27,13 @@
     <service android:name=".FloatingNoteService"/>
 
     <activity
-        android:name=".activities.AdvancedNoteActivity"
+        android:name=".activities.ViewAdvancedNoteActivity"
+        android:theme="@style/NoteTheme"
+        android:windowSoftInputMode="stateHidden">
+    </activity>
+
+    <activity
+        android:name=".activities.CreateOrEditAdvancedNoteActivity"
         android:theme="@style/NoteTheme"
         android:windowSoftInputMode="stateHidden">
     </activity>

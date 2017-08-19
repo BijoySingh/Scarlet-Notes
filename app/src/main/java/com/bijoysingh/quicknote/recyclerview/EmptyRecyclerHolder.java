@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.bijoysingh.quicknote.activities.NoteActivity;
+import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
 import com.bijoysingh.quicknote.items.RecyclerItem;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
 
@@ -25,7 +25,7 @@ public class EmptyRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     itemView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(context, NoteActivity.class);
+        Intent intent = new Intent(context, CreateSimpleNoteActivity.class);
         context.startActivity(intent);
       }
     });

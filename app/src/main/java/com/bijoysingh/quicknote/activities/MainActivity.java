@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     return new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), NoteActivity.class);
+        Intent intent = new Intent(getApplicationContext(), CreateSimpleNoteActivity.class);
         startActivity(intent);
       }
     };
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     return new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), AdvancedNoteActivity.class);
+        Intent intent = new Intent(getApplicationContext(), CreateOrEditAdvancedNoteActivity.class);
         startActivity(intent);
       }
     };
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     return new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), AdvancedNoteActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ViewAdvancedNoteActivity.class);
         startActivity(intent);
       }
     };

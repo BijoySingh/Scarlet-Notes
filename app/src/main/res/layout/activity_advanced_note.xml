@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.bijoysingh.quicknote.activities.NoteActivity">
+    tools:context="com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity">
 
   <include
       layout="@layout/toolbar_advanced_note"
@@ -30,9 +30,8 @@
       android:id="@+id/advanced_note_recycler"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_marginEnd="16dp"
-      android:layout_marginStart="16dp"
-      android:layout_weight="1"/>
+      android:layout_weight="1"
+      android:background="@color/material_grey_300"/>
 
   <View
       android:layout_width="match_parent"

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
-import com.bijoysingh.quicknote.activities.AdvancedNoteActivity;
+import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
@@ -21,14 +21,12 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
 
   public static final String KEY_EDITABLE = "KEY_EDITABLE";
 
-  protected AdvancedNoteActivity activity;
+  protected ViewAdvancedNoteActivity activity;
   protected TextView text;
   private Format format;
-  private ImageView actionUp;
-  private ImageView actionDown;
+  private ImageView actionMove;
   private ImageView actionDelete;
   private View actionPanel;
-  private View actionSeparator;
 
   /**
    * Constructor for the recycler view holder
@@ -40,18 +38,15 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
     super(context, view);
     text = (TextView) view.findViewById(R.id.text);
     text.addTextChangedListener(this);
-    activity = (AdvancedNoteActivity) context;
+    activity = (ViewAdvancedNoteActivity) context;
     text.setOnFocusChangeListener(new View.OnFocusChangeListener() {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         activity.focusedFormat = format;
       }
     });
-    actionUp = (ImageView) view.findViewById(R.id.action_up);
-    actionDown = (ImageView) view.findViewById(R.id.action_down);
     actionDelete = (ImageView) view.findViewById(R.id.action_delete);
     actionPanel = view.findViewById(R.id.action_panel);
-    actionSeparator = view.findViewById(R.id.action_separator);
   }
 
   @Override
@@ -61,22 +56,9 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
                          && !extra.getBoolean(KEY_EDITABLE);
     actionPanel.setVisibility(uneditable ? GONE : VISIBLE);
     text.setEnabled(!uneditable);
-    actionSeparator.setVisibility(uneditable ? GONE : VISIBLE);
 
     text.setText(data.text);
     format = data;
-    actionUp.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        activity.moveUpFormat(data);
-      }
-    });
-    actionDown.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        activity.moveDownFormat(data);
-      }
-    });
     actionDelete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -85,9 +67,7 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
     });
 
     boolean isTop = data.formatType == FormatType.HEADING;
-    actionUp.setVisibility(isTop ? GONE : VISIBLE);
-    actionDown.setVisibility(isTop ? GONE : VISIBLE);
-    actionDelete.setVisibility(isTop ? GONE : VISIBLE);
+    actionDelete.setVisibility(isTop ? GONE : GONE);
   }
 
   @Override

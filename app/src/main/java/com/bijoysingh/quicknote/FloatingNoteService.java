@@ -9,14 +9,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bijoysingh.quicknote.activities.NoteActivity;
+import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
 import com.bijoysingh.quicknote.database.Note;
 import com.bsk.floatingbubblelib.FloatingBubbleConfig;
 import com.bsk.floatingbubblelib.FloatingBubblePermissions;
 import com.bsk.floatingbubblelib.FloatingBubbleService;
 import com.github.bijoysingh.starter.util.TextUtils;
 
-import static com.bijoysingh.quicknote.activities.NoteActivity.NOTE_ID;
+import static com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity.NOTE_ID;
 
 /**
  * The floating not service
@@ -95,8 +95,8 @@ public class FloatingNoteService extends FloatingBubbleService {
   }
 
   private void openNote() {
-    Intent intent = new Intent(getApplicationContext(), NoteActivity.class);
-    intent.putExtra(NoteActivity.NOTE_ID, note.uid);
+    Intent intent = new Intent(getApplicationContext(), CreateSimpleNoteActivity.class);
+    intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, note.uid);
     startActivity(intent);
   }
 
