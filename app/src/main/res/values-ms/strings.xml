@@ -2,11 +2,22 @@
 <resources>
   <string name="title">Tajuk</string>
   <string name="description">Kandungan</string>
+  <string name="save">Simpan</string>
+  <string name="share_using">Kongsi menggunakan &#8230;</string>
   <string name="main_no_notes">Tiada Nota</string>
   <string name="main_no_notes_hint">Nampaknya anda belum menambahkan sebarang nota. Klik untuk menambah nota.</string>
-  <string name="main_add_a_note">Tambah nota ...</string>
+  <string name="main_add_a_note">Tambah nota &#8230;</string>
+  <string name="main_add_a_quick_note">Tambah nota cepat &#8230;</string>
+  <string name="edit_note">Edit Nota</string>
   <string name="open_in_popup">Buka Dalam Popup</string>
   <string name="delete_note">Padam Nota</string>
+  <string name="copy_note">Salin Nota</string>
   <string name="send_note">Hantar Nota</string>
-  <string name="choose_action">Pilih Tindakan ...</string>
+  <string name="choose_action">Pilih Tindakan &#8230;</string>
+  <string name="format_hint_text">Tambah Kandungan &#8230;</string>
+  <string name="format_hint_heading">Tambah Tajuk &#8230;</string>
+  <string name="format_hint_sub_heading">Tambah Sub Tajuk &#8230;</string>
+  <string name="format_hint_quote">Tambahkan Teks Kutipan &#8230;</string>
+  <string name="format_hint_list">Tambah Item &#8230;</string>
+  <string name="format_hint_code">Tambah Kod &#8230;</string>
 </resources>

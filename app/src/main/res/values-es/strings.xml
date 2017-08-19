@@ -2,11 +2,22 @@
 <resources>
   <string name="title">Título</string>
   <string name="description">Contenido</string>
+  <string name="save">Salvar</string>
+  <string name="share_using">Compartir usando &#8230;</string>
   <string name="main_no_notes">No Notas</string>
   <string name="main_no_notes_hint">Parece que no has añadido ninguna nota. Haga clic para agregar una nota.</string>
-  <string name="main_add_a_note">Agrega una nota...</string>
+  <string name="main_add_a_note">Agrega una nota&#8230;</string>
+  <string name="main_add_a_quick_note">Añadir una nota rápida &#8230;</string>
+  <string name="edit_note">Editar nota</string>
   <string name="open_in_popup">Abrir en Popup</string>
   <string name="delete_note">Eliminar nota</string>
+  <string name="copy_note">Copiar nota</string>
   <string name="send_note">Enviar nota</string>
-  <string name="choose_action">Elige Acción...</string>
+  <string name="choose_action">Elige Acción&#8230;</string>
+  <string name="format_hint_text">Agregar contenido&#8230;</string>
+  <string name="format_hint_heading">Añadir encabezado &#8230;</string>
+  <string name="format_hint_sub_heading">Add Sub Heading &#8230;</string>
+  <string name="format_hint_quote">Añadir texto citado &#8230;</string>
+  <string name="format_hint_list">Añadir artículo&#8230;</string>
+  <string name="format_hint_code">Añadir código &#8230;</string>
 </resources>

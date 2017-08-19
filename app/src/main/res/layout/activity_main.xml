@@ -52,8 +52,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="12dp"
         android:src="@drawable/ic_list_white_48dp"
-        android:tint="@color/material_blue_grey_700"
-        android:visibility="gone"/>
+        android:tint="@color/material_blue_grey_700"/>
 
     <ImageView
         android:id="@+id/menu_add_rich_note"

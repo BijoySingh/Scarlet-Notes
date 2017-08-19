@@ -7,13 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bijoysingh.quicknote.FloatingNoteService;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.bijoysingh.quicknote.views.ColorView;
 import com.bijoysingh.quicknote.views.NoteViewHolder;
-import com.github.bijoysingh.starter.util.TextUtils;
 import com.google.android.flexbox.FlexboxLayout;
 
 import static android.view.View.GONE;
@@ -51,40 +49,11 @@ public class CreateSimpleNoteActivity extends AppCompatActivity {
   }
 
   public void setListeners() {
-    ImageView deleteButton = (ImageView) findViewById(R.id.delete_button);
-    deleteButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Note.db(context).delete(note);
-        finish();
-      }
-    });
-
     ImageView backButton = (ImageView) findViewById(R.id.back_button);
     backButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         onBackPressed();
-      }
-    });
-
-    ImageView shareButton = (ImageView) findViewById(R.id.share_button);
-    shareButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        new TextUtils.ShareBuilder(context)
-            .setSubject(note.getTitle())
-            .setText(note.getText())
-            .setChooserText(context.getString(R.string.share_using))
-            .share();
-      }
-    });
-
-    ImageView copyButton = (ImageView) findViewById(R.id.copy_button);
-    copyButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        TextUtils.copyToClipboard(context, holder.description.getText().toString());
       }
     });
 
@@ -97,7 +66,6 @@ public class CreateSimpleNoteActivity extends AppCompatActivity {
         colorSelectorLayout.setVisibility(isVisible ? GONE : VISIBLE);
       }
     });
-
 
     ImageView actionDone = (ImageView) findViewById(R.id.done_button);
     actionDone.setOnClickListener(new View.OnClickListener() {
@@ -167,10 +135,6 @@ public class CreateSimpleNoteActivity extends AppCompatActivity {
     }, HANDLER_UPDATE_TIME);
   }
 
-  private void openFloatingService() {
-    FloatingNoteService.openNote(this, note, true);
-  }
-
   private void setColorsList() {
     colorSelectorLayout.removeAllViews();
     int[] colors = getResources().getIntArray(R.array.bright_colors);
@@ -191,7 +155,6 @@ public class CreateSimpleNoteActivity extends AppCompatActivity {
 
   private void setNoteColor(int color) {
     note.color = color;
-    holder.title.setTextColor(note.color);
     colorButton.setBackground(new CircleDrawable(note.color));
   }
 }

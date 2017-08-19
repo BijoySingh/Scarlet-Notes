@@ -2,11 +2,22 @@
 <resources>
   <string name="title">Titel</string>
   <string name="description">Inhalt</string>
+  <string name="save">sparen</string>
+  <string name="share_using">Teilen mit &#8230;</string>
   <string name="main_no_notes">Keine Anmerkungen</string>
   <string name="main_no_notes_hint">Es scheint, dass Sie keine Notizen hinzugefügt haben. Klicken Sie, um eine Notiz hinzuzufügen.</string>
-  <string name="main_add_a_note">Füg ein Notiz hinzu...</string>
+  <string name="main_add_a_note">Füg ein Notiz hinzu&#8230;</string>
+  <string name="main_add_a_quick_note">Fügen Sie eine kurze Notiz &#8230;</string>
+  <string name="edit_note">Bearbeiten Hinweis</string>
   <string name="open_in_popup">Im Popup öffnen</string>
   <string name="delete_note">Notiz löschen</string>
+  <string name="copy_note">Kopie beachten</string>
   <string name="send_note">Senden Sie Anmerkung</string>
-  <string name="choose_action">Aktion wählen...</string>
+  <string name="choose_action">Aktion wählen&#8230;</string>
+  <string name="format_hint_text">Inhalt hinzufügen&#8230;</string>
+  <string name="format_hint_heading">Hinzufügen Überschrift &#8230;</string>
+  <string name="format_hint_sub_heading">Unterüberschrift hinzufügen &#8230;</string>
+  <string name="format_hint_quote">Zitierter Text hinzufügen &#8230;</string>
+  <string name="format_hint_list">Artikel hinzufügen&#8230;</string>
+  <string name="format_hint_code">Code hinzufügen &#8230;</string>
 </resources>

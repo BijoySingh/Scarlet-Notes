@@ -2,11 +2,22 @@
 <resources>
   <string name="title">заглавие</string>
   <string name="description">содержание</string>
+  <string name="save">Сохранить</string>
+  <string name="share_using">Поделиться с помощью &#8230;</string>
   <string name="main_no_notes">Нет примечаний</string>
   <string name="main_no_notes_hint">Кажется, вы не добавили никаких заметок. Нажмите, чтобы добавить заметку.</string>
-  <string name="main_add_a_note">Добавить заметку...</string>
+  <string name="main_add_a_note">Добавить заметку&#8230;</string>
+  <string name="main_add_a_quick_note">Добавьте краткую заметку &#8230;</string>
+  <string name="edit_note">Редактировать примечание</string>
   <string name="open_in_popup">Открыть всплывающее окно</string>
   <string name="delete_note">Удалить примечание</string>
+  <string name="copy_note">Копировать примечание</string>
   <string name="send_note">Отправить сообщение</string>
-  <string name="choose_action">Выбрать действие...</string>
+  <string name="choose_action">Выбрать действие&#8230;</string>
+  <string name="format_hint_text">Добавить контент&#8230;</string>
+  <string name="format_hint_heading">Добавить заголовок &#8230;</string>
+  <string name="format_hint_sub_heading">Добавить Sub Heading &#8230;</string>
+  <string name="format_hint_quote">Добавить котируемый текст &#8230;</string>
+  <string name="format_hint_list">Добавить элемент&#8230;</string>
+  <string name="format_hint_code">Добавить код &#8230;</string>
 </resources>

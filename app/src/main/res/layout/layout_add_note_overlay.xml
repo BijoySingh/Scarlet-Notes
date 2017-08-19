@@ -49,6 +49,7 @@
       android:id="@+id/panel_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:gravity="center"
       android:orientation="horizontal"
       android:padding="4dp">
 
@@ -66,19 +67,27 @@
 
     <ImageView
         android:id="@+id/panel_copy_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:padding="12dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
         android:src="@drawable/ic_content_copy_white_48dp"
-        android:tint="@color/light_hint_text"
-        android:visibility="gone"/>
+        android:tint="@color/light_hint_text"/>
+
+    <ImageView
+        android:id="@+id/panel_share_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_share_white_48dp"
+        android:tint="@color/light_hint_text"/>
 
     <ImageView
         android:id="@+id/panel_edit_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:padding="12dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
         android:src="@drawable/ic_done_white_48dp"
         android:tint="@color/light_hint_text"/>
+
   </LinearLayout>
 </LinearLayout>

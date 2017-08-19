@@ -2,11 +2,22 @@
 <resources>
   <string name="title">عنوان</string>
   <string name="description">يحتوى</string>
+  <string name="save">حفظ</string>
+  <string name="share_using">جار المشاركة باستخدام &#8230;</string>
   <string name="main_no_notes">لا ملاحظات</string>
   <string name="main_no_notes_hint">يبدو أنك لم تضف أي ملاحظات. انقر لإضافة ملاحظة.</string>
-  <string name="main_add_a_note">إضافة ملاحظة ...</string>
+  <string name="main_add_a_note">إضافة ملاحظة &#8230;</string>
+  <string name="main_add_a_quick_note">إضافة ملاحظة سريعة &#8230;</string>
+  <string name="edit_note">تحرير مذكرة</string>
   <string name="open_in_popup">فتح في نافذة منبثقة</string>
   <string name="delete_note">حذف ملاحظة</string>
+  <string name="copy_note">نسخ ملاحظة</string>
   <string name="send_note">إرسال ملاحظة</string>
-  <string name="choose_action">اختر الإجراء...</string>
+  <string name="choose_action">اختر الإجراء&#8230;</string>
+  <string name="format_hint_text">إضافة محتوى&#8230;</string>
+  <string name="format_hint_heading">إضافة العنوان &#8230;</string>
+  <string name="format_hint_sub_heading">إضافة عنوان فرعي &#8230;</string>
+  <string name="format_hint_quote">إضافة نص مقتبس &#8230;</string>
+  <string name="format_hint_list">اضافة عنصر&#8230;</string>
+  <string name="format_hint_code">إضافة شفرة &#8230;</string>
 </resources>

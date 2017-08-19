@@ -2,11 +2,23 @@
 <resources>
   <string name="title">शीर्षक</string>
   <string name="description">सामग्री</string>
+  <string name="save">बचाना</string>
+  <string name="share_using">का उपयोग साझा करें &#8230;</string>
   <string name="main_no_notes">नोट्स नहीं</string>
   <string name="main_no_notes_hint">ऐसा लगता है कि आपने कोई नोट नहीं जोड़ा है नोट जोड़ने के लिए क्लिक करें</string>
-  <string name="main_add_a_note">टिप्पणी जोड़ें...</string>
+  <string name="main_add_a_note">टिप्पणी जोड़ें&#8230;</string>
+  <string name="main_add_a_quick_note">त्वरित नोट जोड़ें &#8230;</string>
+  <string name="edit_note">नोट संपादित करें</string>
   <string name="open_in_popup">पॉपअप में खोलें</string>
   <string name="delete_note">नोट हटाएं</string>
+  <string name="copy_note">प्रतिलिपि नोट</string>
   <string name="send_note">नोट भेजें</string>
-  <string name="choose_action">विकल्प चुने...</string>
+  <string name="choose_action">विकल्प चुने&#8230;</string>
+  <string name="format_hint_text">सामग्री जोड़ें&#8230;</string>
+  <string name="format_hint_heading">शीर्षक जोड़ें &#8230;</string>
+  <string name="format_hint_sub_heading">उप शीर्षक जोड़ें &#8230;</string>
+  <string name="format_hint_quote">उद्धरित पाठ जोड़ें &#8230;</string>
+  <string name="format_hint_list">सामान जोडें&#8230;</string>
+  <string name="format_hint_code">कोड जोड़ें &#8230;</string>
+
 </resources>

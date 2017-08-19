@@ -1,26 +1,28 @@
 <resources>
-  <string name="app_name" translatable="false">Quick Note</string>
+  <string name="app_name" translatable="false">Material Notes</string>
   <string name="timestamp" translatable="false">dd month yyyy, hh:mm aa</string>
   <string name="title">Title</string>
   <string name="description">Content</string>
-  <string name="save" translatable="false">Save</string>
-  <string name="share_using" translatable="false">Share using&#8230;</string>
+  <string name="save">Save</string>
+  <string name="share_using">Share using&#8230;</string>
 
   <string name="main_no_notes">No Notes</string>
   <string name="main_no_notes_hint">It seems you have not added any notes. Click to add a note.</string>
 
   <string name="main_add_a_note">Add a note&#8230;</string>
-  <string name="main_add_a_quick_note" translatable="false">Add a quick note&#8230;</string>
+  <string name="main_add_a_quick_note">Add a quick note&#8230;</string>
 
+  <string name="edit_note">Edit Note</string>
   <string name="open_in_popup">Open In Popup</string>
   <string name="delete_note">Delete Note</string>
+  <string name="copy_note">Copy Note</string>
   <string name="send_note">Send Note</string>
   <string name="choose_action">Choose Action&#8230;</string>
 
-  <string name="format_hint_text" translatable="false">Add Content&#8230;</string>
-  <string name="format_hint_heading" translatable="false">Add Heading&#8230;</string>
-  <string name="format_hint_sub_heading" translatable="false">Add Sub Heading&#8230;</string>
-  <string name="format_hint_quote" translatable="false">Add Quoted Text&#8230;</string>
-  <string name="format_hint_list" translatable="false">Add Item&#8230;</string>
-  <string name="format_hint_code" translatable="false">Add Code&#8230;</string>
+  <string name="format_hint_text">Add Content&#8230;</string>
+  <string name="format_hint_heading">Add Heading&#8230;</string>
+  <string name="format_hint_sub_heading">Add Sub Heading&#8230;</string>
+  <string name="format_hint_quote">Add Quoted Text&#8230;</string>
+  <string name="format_hint_list">Add Item&#8230;</string>
+  <string name="format_hint_code">Add Code&#8230;</string>
 </resources>

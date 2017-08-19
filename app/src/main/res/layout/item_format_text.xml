@@ -5,8 +5,15 @@
 
   <include layout="@layout/layout_modify_format"/>
 
-  <EditText
+  <TextView
       android:id="@+id/text"
+      style="@style/FormatText"
+      android:hint="@string/format_hint_text"
+      android:textSize="@dimen/text_font_size"
+      android:minLines="3"/>
+
+  <EditText
+      android:id="@+id/edit"
       style="@style/FormatText"
       android:hint="@string/format_hint_text"
       android:textSize="@dimen/text_font_size"

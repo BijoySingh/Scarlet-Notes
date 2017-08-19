@@ -2,11 +2,22 @@
 <resources>
   <string name="title">כותרת</string>
   <string name="description">תוֹכֶן</string>
+  <string name="save">להציל</string>
+  <string name="share_using">שתף באמצעות &#8230;</string>
   <string name="main_no_notes">אין הערות</string>
   <string name="main_no_notes_hint">נראה שלא הוספת הערות. לחץ כדי להוסיף הערה.</string>
-  <string name="main_add_a_note">הוסף הערה...</string>
+  <string name="main_add_a_note">הוסף הערה&#8230;</string>
+  <string name="main_add_a_quick_note">הוסף הערה מהירה &#8230;</string>
+  <string name="edit_note">ערוך הערה</string>
   <string name="open_in_popup">פתח ב- Popup</string>
   <string name="delete_note">מחק הערה</string>
+  <string name="copy_note">העתק הערה</string>
   <string name="send_note">שלח הערה</string>
-  <string name="choose_action">בחר פעולה...</string>
+  <string name="choose_action">בחר פעולה&#8230;</string>
+  <string name="format_hint_text">הוסף תוכן &#8230;</string>
+  <string name="format_hint_heading">הוסף כותרת &#8230;</string>
+  <string name="format_hint_sub_heading">הוסף כותרת משנה &#8230;</string>
+  <string name="format_hint_quote">הוסף טקסט מצוטט &#8230;</string>
+  <string name="format_hint_list">הוסף פריט&#8230;</string>
+  <string name="format_hint_code">הוסף קוד &#8230;</string>
 </resources>

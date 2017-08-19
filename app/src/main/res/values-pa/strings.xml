@@ -2,11 +2,22 @@
 <resources>
   <string name="title">ਟਾਈਟਲ</string>
   <string name="description">ਸਮੱਗਰੀ</string>
+  <string name="save">ਸੇਵ ਕਰੋ</string>
+  <string name="share_using">ਵਰਤਦੇ ਹੋਏ ਸ਼ੇਅਰ ਕਰੋ &#8230;</string>
   <string name="main_no_notes">ਕੋਈ ਨੋਟਸ ਨਹੀਂ</string>
   <string name="main_no_notes_hint">ਇੰਜ ਜਾਪਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕੋਈ ਨੋਟ ਨਹੀਂ ਜੋੜਿਆ ਹੈ ਕੋਈ ਨੋਟ ਜੋੜਨ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
-  <string name="main_add_a_note">ਕੋਈ ਨੋਟ ਜੋੜੋ ...</string>
+  <string name="main_add_a_note">ਕੋਈ ਨੋਟ ਜੋੜੋ &#8230;</string>
+  <string name="main_add_a_quick_note">ਇੱਕ ਤੁਰੰਤ ਸੂਚਨਾ ਜੋੜੋ &#8230;</string>
+  <string name="edit_note">ਨੋਟ ਸੰਪਾਦਿਤ ਕਰੋ</string>
   <string name="open_in_popup">ਪੋਪਅੱਪ ਵਿੱਚ ਖੋਲ੍ਹੋ</string>
   <string name="delete_note">ਨੋਟ ਮਿਟਾਓ</string>
+  <string name="copy_note">ਨੋਟ ਕਾਪੀ ਕਰੋ</string>
   <string name="send_note">ਸੂਚਨਾ ਭੇਜੋ</string>
-  <string name="choose_action">ਕਾਰਵਾਈ ਚੁਣੋ ...</string>
+  <string name="choose_action">ਕਾਰਵਾਈ ਚੁਣੋ &#8230;</string>
+  <string name="format_hint_text">ਸਮੱਗਰੀ ਜੋੜੋ &#8230;</string>
+  <string name="format_hint_heading">ਸਿਰਲੇਖ ਸ਼ਾਮਲ ਕਰੋ &#8230;</string>
+  <string name="format_hint_sub_heading">ਸਬ ਸਿਰਲੇਖ ਸ਼ਾਮਲ ਕਰੋ &#8230;</string>
+  <string name="format_hint_quote">ਹਵਾਲੇ ਪਾਓ &#8230;</string>
+  <string name="format_hint_list">ਆਈਟਮ ਸ਼ਾਮਲ ਕਰੋ &#8230;</string>
+  <string name="format_hint_code">ਕੋਡ ਜੋੜੋ &#8230;</string>
 </resources>

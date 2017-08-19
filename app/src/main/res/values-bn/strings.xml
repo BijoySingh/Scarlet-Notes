@@ -2,11 +2,22 @@
 <resources>
   <string name="title">খেতাব</string>
   <string name="description">সন্তুষ্ট</string>
+  <string name="save">সংরক্ষণ করুন</string>
+  <string name="share_using">ব্যবহার করে ভাগ করুন &#8230;</string>
   <string name="main_no_notes">কোন নোট নেই</string>
   <string name="main_no_notes_hint">মনে হচ্ছে আপনি কোন নোট যোগ না করেছেন। একটি নোট যোগ করতে ক্লিক করুন</string>
-  <string name="main_add_a_note">একটি নোট যোগ করো...</string>
+  <string name="main_add_a_note">একটি নোট যোগ করো&#8230;</string>
+  <string name="main_add_a_quick_note">একটি দ্রুত নোট যোগ করুন &#8230;</string>
+  <string name="edit_note">নোট সম্পাদনা করুন</string>
   <string name="open_in_popup">পপআপ খুলুন</string>
   <string name="delete_note">নোট মুছুন</string>
+  <string name="copy_note">অনুলিপি নোট</string>
   <string name="send_note">নোট পাঠান</string>
-  <string name="choose_action">নির্বাচন করুন...</string>
+  <string name="choose_action">নির্বাচন করুন&#8230;</string>
+  <string name="format_hint_text">সামগ্রী যোগ করুন &#8230;</string>
+  <string name="format_hint_heading">শিরোলেখ জুড়ুন &#8230;</string>
+  <string name="format_hint_sub_heading">উপ শিরোনাম যোগ করুন &#8230;</string>
+  <string name="format_hint_quote">উদ্ধৃত পাঠ্য যোগ করুন &#8230;</string>
+  <string name="format_hint_list">আইটেম যোগ করুন&#8230;</string>
+  <string name="format_hint_code">কোড যুক্ত করুন &#8230;</string>
 </resources>

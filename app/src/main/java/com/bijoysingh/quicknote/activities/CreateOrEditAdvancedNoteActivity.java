@@ -1,15 +1,18 @@
 package com.bijoysingh.quicknote.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bijoysingh.quicknote.R;
+import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
+import com.bijoysingh.quicknote.formats.NoteType;
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.bijoysingh.quicknote.views.ColorView;
@@ -54,8 +57,12 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       addEmptyItem(0, FormatType.HEADING);
     }
     if (isEmpty) {
-      addEmptyItem(FormatType.TEXT);
+      addDefaultItem();
     }
+  }
+
+  protected void addDefaultItem() {
+    addEmptyItem(FormatType.TEXT);
   }
 
   @Override
@@ -70,6 +77,14 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 
     ImageView heading = (ImageView) findViewById(R.id.format_heading);
     heading.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        addEmptyItemAtFocused(FormatType.HEADING);
+      }
+    });
+
+    ImageView subHeading = (ImageView) findViewById(R.id.format_sub_heading);
+    subHeading.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         addEmptyItemAtFocused(FormatType.SUB_HEADING);
@@ -111,6 +126,14 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   }
 
   @Override
+  protected void setTopToolbar() {
+    actionDelete.setVisibility(GONE);
+    actionPopUp.setVisibility(GONE);
+    actionShare.setVisibility(GONE);
+    actionCopy.setVisibility(GONE);
+  }
+
+  @Override
   protected void onPause() {
     super.onPause();
     active = false;
@@ -119,6 +142,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 
   @Override
   public void onBackPressed() {
+    active = false;
     maybeUpdateNote();
     destroyIfNeeded();
     finish();
@@ -128,7 +152,6 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   protected void onResume() {
     super.onResume();
     active = true;
-    Log.d("onResume", "CreateOrEditAdvancedNoteActivity");
   }
 
   @Override
@@ -149,6 +172,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 
   @Override
   protected void maybeUpdateNote() {
+    note.title = NoteType.RICH_NOTE.name();
     updateNote();
   }
 
@@ -166,7 +190,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   }
 
 
-  private void addEmptyItem(FormatType type) {
+  protected void addEmptyItem(FormatType type) {
     addEmptyItem(formats.size(), type);
   }
 

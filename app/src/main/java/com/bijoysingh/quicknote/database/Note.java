@@ -1,18 +1,25 @@
 package com.bijoysingh.quicknote.database;
 
+import android.app.Activity;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
+import com.bijoysingh.quicknote.FloatingNoteService;
 import com.bijoysingh.quicknote.NoteDatabase;
 import com.bijoysingh.quicknote.NoteItem;
 import com.bijoysingh.quicknote.R;
+import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity;
+import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.formats.NoteType;
 import com.github.bijoysingh.starter.util.DateFormatter;
+import com.github.bijoysingh.starter.util.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -58,10 +65,8 @@ public class Note {
 
   public String getTitle() {
     List<Format> formats = Format.getFormats(description);
-    for (Format format : formats) {
-      if (format.formatType == FormatType.HEADING) {
-        return format.text == null ? "" : format.text.trim();
-      }
+    if (!formats.isEmpty() && formats.get(0).formatType == FormatType.HEADING){
+      return formats.get(0).text;
     }
     return "";
   }
@@ -76,6 +81,30 @@ public class Note {
       return;
     }
     Note.db(context).delete(this);
+    description = Format.getNote(new ArrayList<Format>());
+    uid = 0;
+  }
+
+  public void share(Context context) {
+    new TextUtils.ShareBuilder(context)
+        .setSubject(getTitle())
+        .setText(getText())
+        .setChooserText(context.getString(R.string.share_using))
+        .share();
+  }
+
+  public void copy(Context context) {
+    TextUtils.copyToClipboard(context, getText());
+  }
+
+  public void popup(Activity activity) {
+    FloatingNoteService.openNote(activity, this, true);
+  }
+
+  public void edit(Context context) {
+    Intent intent = new Intent(context, CreateOrEditAdvancedNoteActivity.class);
+    intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, uid);
+    context.startActivity(intent);
   }
 
   public List<Format> getFormats() {

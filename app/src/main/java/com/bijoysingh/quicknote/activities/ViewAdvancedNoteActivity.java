@@ -1,12 +1,10 @@
 package com.bijoysingh.quicknote.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -18,7 +16,6 @@ import com.bijoysingh.quicknote.recyclerview.FormatAdapter;
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
-import com.github.bijoysingh.starter.util.TextUtils;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.List;
@@ -39,6 +36,10 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
 
   protected View toolbar;
   protected RecyclerView formatsView;
+  protected ImageView actionPopUp;
+  protected ImageView actionCopy;
+  protected ImageView actionDelete;
+  protected ImageView actionShare;
   protected ImageView actionEdit;
   protected ImageView actionDone;
   protected FlexboxLayout colorSelectorLayout;
@@ -62,11 +63,14 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
   protected void onResume() {
     super.onResume();
     onResumeAction();
-    Log.d("onResume", "ViewAdvancedNoteActivity");
   }
 
   protected void onResumeAction() {
     note = Note.db(this).getByID(getIntent().getIntExtra(NOTE_ID, 0));
+    if (note == null) {
+      finish();
+      return;
+    }
     setNote();
   }
 
@@ -129,12 +133,28 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     colorSelectorLayout = (FlexboxLayout) findViewById(R.id.flexbox_layout);
     setButtonToolbar();
 
-    ImageView deleteButton = (ImageView) findViewById(R.id.delete_button);
-    deleteButton.setOnClickListener(new View.OnClickListener() {
+    actionDelete = (ImageView) findViewById(R.id.delete_button);
+    actionDelete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         note.delete(context);
         finish();
+      }
+    });
+
+    actionCopy = (ImageView) findViewById(R.id.copy_button);
+    actionCopy.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        note.copy(context);
+      }
+    });
+
+    actionPopUp = (ImageView) findViewById(R.id.popup_button);
+    actionPopUp.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        note.popup(ViewAdvancedNoteActivity.this);
       }
     });
 
@@ -146,16 +166,12 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
       }
     });
 
-    ImageView shareButton = (ImageView) findViewById(R.id.share_button);
-    shareButton.setOnClickListener(new View.OnClickListener() {
+    actionShare = (ImageView) findViewById(R.id.share_button);
+    actionShare.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         maybeUpdateNote();
-        new TextUtils.ShareBuilder(context)
-            .setSubject(note.getTitle())
-            .setText(note.getText())
-            .setChooserText(context.getString(R.string.share_using))
-            .share();
+        note.share(context);
       }
     });
 
@@ -163,9 +179,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     actionEdit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(context, CreateOrEditAdvancedNoteActivity.class);
-        intent.putExtra(NOTE_ID, note.uid);
-        startActivity(intent);
+        note.edit(context);
       }
     });
 
@@ -178,11 +192,16 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     });
 
     colorButton = (ImageView) findViewById(R.id.color_button);
+    setTopToolbar();
   }
 
   protected void setButtonToolbar() {
     // do nothing
     toolbar.setVisibility(GONE);
+  }
+
+  protected void setTopToolbar() {
+// do nothing
   }
 
   protected void updateNote() {

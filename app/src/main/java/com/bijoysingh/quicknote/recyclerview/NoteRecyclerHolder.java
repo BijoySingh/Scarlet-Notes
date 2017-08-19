@@ -10,15 +10,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bijoysingh.quicknote.FloatingNoteService;
 import com.bijoysingh.quicknote.R;
-import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
-import com.bijoysingh.quicknote.activities.MainActivity;
 import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
+import com.bijoysingh.quicknote.activities.MainActivity;
+import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
-import com.github.bijoysingh.starter.util.TextUtils;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -29,6 +27,8 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
   private TextView timestamp;
   private TextView title;
   private TextView description;
+  private ImageView popUp;
+  private ImageView edit;
   private ImageView share;
   private ImageView delete;
   private ImageView copy;
@@ -50,6 +50,8 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
     delete = (ImageView) view.findViewById(R.id.delete_button);
     activity = (MainActivity) context;
     copy = (ImageView) view.findViewById(R.id.copy_button);
+    popUp = (ImageView) view.findViewById(R.id.popup_button);
+    edit = (ImageView) view.findViewById(R.id.edit_button);
   }
 
   @Override
@@ -80,16 +82,25 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
     share.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        new TextUtils.ShareBuilder(context)
-            .setSubject(data.title)
-            .setText(data.description)
-            .share();
+        data.share(context);
       }
     });
     copy.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        TextUtils.copyToClipboard(context, data.description);
+        data.copy(context);
+      }
+    });
+    edit.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        data.edit(context);
+      }
+    });
+    popUp.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        data.popup(activity);
       }
     });
 
@@ -97,9 +108,11 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
       @Override
       public boolean onLongClick(View view) {
         CharSequence colors[] = new CharSequence[]{
-            context.getString(R.string.open_in_popup),
-            context.getString(R.string.delete_note),
+            context.getString(R.string.edit_note),
             context.getString(R.string.send_note),
+            context.getString(R.string.copy_note),
+            context.getString(R.string.delete_note),
+            context.getString(R.string.open_in_popup),
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -109,16 +122,19 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
           public void onClick(DialogInterface dialog, int which) {
             switch (which) {
               case 0:
-                FloatingNoteService.openNote(activity, data, true);
+                data.edit(context);
                 break;
               case 1:
-                activity.deleteItem(data);
+                data.share(context);
                 break;
               case 2:
-                new TextUtils.ShareBuilder(context)
-                    .setSubject(data.title)
-                    .setText(data.description)
-                    .share();
+                data.copy(context);
+                break;
+              case 3:
+                activity.deleteItem(data);
+                break;
+              case 4:
+                data.popup(activity);
                 break;
             }
           }

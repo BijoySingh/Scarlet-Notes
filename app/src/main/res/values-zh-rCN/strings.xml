@@ -2,11 +2,22 @@
 <resources>
   <string name="title">标题</string>
   <string name="description">内容</string>
+  <string name="save">保存</string>
+  <string name="share_using">分享使用&#8230;</string>
   <string name="main_no_notes">没有笔记</string>
   <string name="main_no_notes_hint">看来你还没有添加任何笔记。 点击添加备注。</string>
-  <string name="main_add_a_note">添加备注...</string>
+  <string name="main_add_a_note">添加备注&#8230;</string>
+  <string name="main_add_a_quick_note">添加快速笔记&#8230;</string>
+  <string name="edit_note">编辑注释</string>
   <string name="open_in_popup">在弹出窗口中打开</string>
   <string name="delete_note">删除注释</string>
+  <string name="copy_note">复制说明</string>
   <string name="send_note">发送注意事项</string>
-  <string name="choose_action">选择动作...</string>
+  <string name="choose_action">选择动作&#8230;</string>
+  <string name="format_hint_text">添加内容&#8230;</string>
+  <string name="format_hint_heading">添加标题&#8230;</string>
+  <string name="format_hint_sub_heading">添加子标题&#8230;</string>
+  <string name="format_hint_quote">添加引号文本&#8230;</string>
+  <string name="format_hint_list">新增项目&#8230;</string>
+  <string name="format_hint_code">添加代码&#8230;</string>
 </resources>

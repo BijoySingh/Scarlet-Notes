@@ -5,8 +5,17 @@
 
   <include layout="@layout/layout_modify_format"/>
 
-  <EditText
+  <TextView
       android:id="@+id/text"
+      style="@style/FormatText"
+      android:background="@color/material_grey_200"
+      android:hint="@string/format_hint_code"
+      android:padding="16dp"
+      android:textColor="@color/dark_tertiary_text"
+      android:textSize="@dimen/text_font_size"/>
+
+  <EditText
+      android:id="@+id/edit"
       style="@style/FormatText"
       android:background="@color/material_grey_200"
       android:hint="@string/format_hint_code"

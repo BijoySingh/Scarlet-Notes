@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/FormatLayout">
+    style="@style/FormatLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
   <include layout="@layout/layout_modify_format"/>
 
@@ -12,8 +12,17 @@
       android:background="@color/material_grey_400"
       />
 
-  <EditText
+
+  <TextView
       android:id="@+id/text"
+      style="@style/FormatText"
+      android:hint="@string/format_hint_quote"
+      android:textColor="@color/dark_hint_text"
+      android:textSize="@dimen/text_font_size"
+      android:textStyle="italic"/>
+
+  <EditText
+      android:id="@+id/edit"
       style="@style/FormatText"
       android:hint="@string/format_hint_quote"
       android:textColor="@color/dark_hint_text"

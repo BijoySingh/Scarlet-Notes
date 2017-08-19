@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     return new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), ViewAdvancedNoteActivity.class);
+        Intent intent = new Intent(getApplicationContext(), CreateAdvancedListActivity.class);
         startActivity(intent);
       }
     };

@@ -76,34 +76,31 @@
           android:textSize="12sp"/>
 
       <ImageView
+          android:id="@+id/popup_button"
+          style="@style/NoteItemActionIcon"
+          android:src="@drawable/ic_bubble_chart_white_48dp"/>
+
+      <ImageView
           android:id="@+id/delete_button"
-          android:layout_width="40dp"
-          android:layout_height="40dp"
-          android:layout_gravity="center_vertical|end"
-          android:background="?attr/selectableItemBackgroundBorderless"
-          android:padding="8dp"
-          android:src="@drawable/ic_delete_white_48dp"
-          android:tint="@color/light_hint_text"/>
+          style="@style/NoteItemActionIcon"
+          android:src="@drawable/ic_delete_white_48dp"/>
 
       <ImageView
           android:id="@+id/copy_button"
-          android:layout_width="40dp"
-          android:layout_height="40dp"
-          android:layout_gravity="center_vertical|end"
-          android:background="?attr/selectableItemBackgroundBorderless"
+          style="@style/NoteItemActionIcon"
           android:padding="9dp"
-          android:src="@drawable/ic_content_copy_white_48dp"
-          android:tint="@color/light_hint_text"/>
+          android:src="@drawable/ic_content_copy_white_48dp"/>
 
       <ImageView
           android:id="@+id/share_button"
-          android:layout_width="40dp"
-          android:layout_height="40dp"
-          android:layout_gravity="center_vertical|end"
-          android:background="?attr/selectableItemBackgroundBorderless"
-          android:padding="8dp"
-          android:src="@drawable/ic_share_white_48dp"
-          android:tint="@color/light_hint_text"/>
+          style="@style/NoteItemActionIcon"
+          android:src="@drawable/ic_share_white_48dp"/>
+
+      <ImageView
+          android:id="@+id/edit_button"
+          style="@style/NoteItemActionIcon"
+          android:src="@drawable/ic_edit_white_48dp"/>
+
     </LinearLayout>
   </LinearLayout>
 </android.support.v7.widget.CardView>

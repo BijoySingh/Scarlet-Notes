@@ -21,33 +21,6 @@
       android:layout_height="1dp"
       android:layout_weight="1"/>
 
-  <ImageView
-      android:id="@+id/delete_button"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
-      android:background="?attr/selectableItemBackgroundBorderless"
-      android:padding="8dp"
-      android:src="@drawable/ic_delete_white_48dp"
-      android:tint="@color/material_grey_600"/>
-
-  <ImageView
-      android:id="@+id/copy_button"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
-      android:background="?attr/selectableItemBackgroundBorderless"
-      android:padding="9dp"
-      android:src="@drawable/ic_content_copy_white_48dp"
-      android:tint="@color/material_grey_600"/>
-
-  <ImageView
-      android:id="@+id/share_button"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
-      android:background="?attr/selectableItemBackgroundBorderless"
-      android:padding="8dp"
-      android:src="@drawable/ic_share_white_48dp"
-      android:tint="@color/material_grey_600"/>
-
   <LinearLayout
       android:id="@+id/color_button_clicker"
       android:layout_width="40dp"

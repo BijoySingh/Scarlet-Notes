@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
+import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.database.Note;
 import com.bsk.floatingbubblelib.FloatingBubbleConfig;
 import com.bsk.floatingbubblelib.FloatingBubblePermissions;
@@ -67,12 +68,27 @@ public class FloatingNoteService extends FloatingBubbleService {
     description = (TextView) rootView.findViewById(R.id.description);
     timestamp = (TextView) rootView.findViewById(R.id.timestamp);
 
+
     ImageView editButton = (ImageView) rootView.findViewById(R.id.panel_edit_button);
     editButton.setImageResource(R.drawable.ic_edit_white_48dp);
     editButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        openNote();
+        try {
+          note.edit(getContext());
+        } catch (Exception exception) {
+          // Some issue
+        }
+        stopSelf();
+      }
+    });
+
+    ImageView shareButton = (ImageView) rootView.findViewById(R.id.panel_share_button);
+    shareButton.setImageResource(R.drawable.ic_share_white_48dp);
+    shareButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        note.share(getContext());
         stopSelf();
       }
     });
@@ -82,7 +98,7 @@ public class FloatingNoteService extends FloatingBubbleService {
     copyButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        TextUtils.copyToClipboard(getContext(), note.description);
+        note.copy(getContext());
         setState(false);
       }
     });
@@ -94,23 +110,19 @@ public class FloatingNoteService extends FloatingBubbleService {
     return rootView;
   }
 
-  private void openNote() {
-    Intent intent = new Intent(getApplicationContext(), CreateSimpleNoteActivity.class);
-    intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, note.uid);
-    startActivity(intent);
-  }
-
   public void setNote() {
     if (note == null) {
       note = Note.gen();
     }
 
-    title.setText(note.title);
-    description.setText(note.description);
+    String noteTitle = note.getTitle();
+    String noteDescription = note.getText();
+    title.setText(noteTitle);
+    description.setText(noteDescription);
     timestamp.setText(note.displayTimestamp);
 
-    title.setVisibility(TextUtils.isNullOrEmpty(note.title) ? View.GONE : View.VISIBLE);
-    description.setVisibility(TextUtils.isNullOrEmpty(note.description) ? View.GONE : View.VISIBLE);
+    title.setVisibility(TextUtils.isNullOrEmpty(noteTitle) ? View.GONE : View.VISIBLE);
+    description.setVisibility(TextUtils.isNullOrEmpty(noteDescription) ? View.GONE : View.VISIBLE);
   }
 
   public static void openNote(Activity activity, Note note, boolean finishOnOpen) {

@@ -28,10 +28,9 @@ public class FormatListViewHolder extends FormatTextViewHolder {
   @Override
   public void populate(final Format data, Bundle extra) {
     super.populate(data, extra);
-    final boolean editable =
-        extra != null
-        && extra.containsKey(KEY_EDITABLE)
-        && extra.getBoolean(KEY_EDITABLE);
+    final boolean editable = extra != null
+                             && extra.containsKey(KEY_EDITABLE)
+                             && extra.getBoolean(KEY_EDITABLE);
 
     if (data.formatType == FormatType.CHECKLIST_UNCHECKED) {
       icon.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp);

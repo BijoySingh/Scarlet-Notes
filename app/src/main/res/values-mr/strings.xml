@@ -2,11 +2,22 @@
 <resources>
   <string name="title">शीर्षक</string>
   <string name="description">सामग्री</string>
+  <string name="save">जतन करा</string>
+  <string name="share_using">वापरून सामायिक करा &#8230;</string>
   <string name="main_no_notes">कोणत्याही टिपा नाहीत</string>
   <string name="main_no_notes_hint">आपण कोणत्याही नोट्स जोडले नाहीत असे दिसते एक टीप जोडण्यासाठी क्लिक करा</string>
-  <string name="main_add_a_note">एक टीप जोडा ...</string>
+  <string name="main_add_a_note">एक टीप जोडा &#8230;</string>
+  <string name="main_add_a_quick_note">एक द्रुत टीप जोडा &#8230;</string>
+  <string name="edit_note">टीप संपादित करा</string>
   <string name="open_in_popup">पॉपअपमध्ये उघडा</string>
   <string name="delete_note">टीप हटवा</string>
+  <string name="copy_note">कॉपी टीप</string>
   <string name="send_note">टीप पाठवा</string>
-  <string name="choose_action">क्रिया निवडा ...</string>
+  <string name="choose_action">क्रिया निवडा &#8230;</string>
+  <string name="format_hint_text">सामग्री जोडा &#8230;</string>
+  <string name="format_hint_heading">मथळा जोडा &#8230;</string>
+  <string name="format_hint_sub_heading">उप शीर्षलेख जोडा &#8230;</string>
+  <string name="format_hint_quote">कोट केलेला मजकूर जोडा &#8230;</string>
+  <string name="format_hint_list">आयटम जोडा &#8230;</string>
+  <string name="format_hint_code">कोड जोडा &#8230;</string>
 </resources>

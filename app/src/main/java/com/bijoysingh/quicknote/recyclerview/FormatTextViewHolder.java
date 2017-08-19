@@ -5,14 +5,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.formats.Format;
-import com.bijoysingh.quicknote.formats.FormatType;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
+import com.github.bijoysingh.starter.util.TextUtils;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -23,9 +23,11 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
 
   protected ViewAdvancedNoteActivity activity;
   protected TextView text;
+  protected EditText edit;
   private Format format;
-  private ImageView actionMove;
-  private ImageView actionDelete;
+  private View actionMove;
+  private View actionDelete;
+  private View actionCopy;
   private View actionPanel;
 
   /**
@@ -37,37 +39,58 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
   public FormatTextViewHolder(Context context, View view) {
     super(context, view);
     text = (TextView) view.findViewById(R.id.text);
-    text.addTextChangedListener(this);
+    edit = (EditText) view.findViewById(R.id.edit);
     activity = (ViewAdvancedNoteActivity) context;
-    text.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    edit.addTextChangedListener(this);
+    edit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         activity.focusedFormat = format;
       }
     });
-    actionDelete = (ImageView) view.findViewById(R.id.action_delete);
     actionPanel = view.findViewById(R.id.action_panel);
+
+    actionDelete = view.findViewById(R.id.action_delete);
+    actionCopy = view.findViewById(R.id.action_copy);
+    actionMove = view.findViewById(R.id.action_move);
   }
 
   @Override
   public void populate(final Format data, Bundle extra) {
-    boolean uneditable = extra != null
+    format = null;
+    boolean editable = !(extra != null
                          && extra.containsKey(KEY_EDITABLE)
-                         && !extra.getBoolean(KEY_EDITABLE);
-    actionPanel.setVisibility(uneditable ? GONE : VISIBLE);
-    text.setEnabled(!uneditable);
+                         && !extra.getBoolean(KEY_EDITABLE));
+    actionPanel.setVisibility(editable ? VISIBLE : GONE);
 
+    text.setTextIsSelectable(true);
     text.setText(data.text);
+    text.setVisibility(editable ? GONE : VISIBLE);
+    edit.setText(data.text);
+    edit.setEnabled(editable);
+    edit.setVisibility(!editable ? GONE : VISIBLE);
     format = data;
+
+    actionMove.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        boolean areActionsVisible = actionCopy.getVisibility() == VISIBLE;
+        actionCopy.setVisibility(areActionsVisible ? GONE : VISIBLE);
+        actionDelete.setVisibility(areActionsVisible ? GONE : VISIBLE);
+      }
+    });
     actionDelete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        activity.deleteFormat(data);
+        activity.deleteFormat(format);
       }
     });
-
-    boolean isTop = data.formatType == FormatType.HEADING;
-    actionDelete.setVisibility(isTop ? GONE : GONE);
+    actionCopy.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        TextUtils.copyToClipboard(context, edit.getText().toString());
+      }
+    });
   }
 
   @Override
@@ -77,7 +100,7 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
 
   @Override
   public void onTextChanged(CharSequence s, int start, int before, int count) {
-    if (format == null || !text.isFocused() || (text.getY() + text.getHeight()) < 0) {
+    if (format == null || !edit.isFocused()) {
       return;
     }
     format.text = s.toString();
