@@ -114,6 +114,14 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
         addEmptyItemAtFocused(FormatType.CODE);
       }
     });
+  }
+
+  @Override
+  protected void setTopToolbar() {
+    actionDelete.setVisibility(GONE);
+    actionPopUp.setVisibility(GONE);
+    actionShare.setVisibility(GONE);
+    actionCopy.setVisibility(GONE);
 
     View colorButtonClicker = findViewById(R.id.color_button_clicker);
     colorButtonClicker.setOnClickListener(new View.OnClickListener() {
@@ -123,14 +131,6 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
         colorSelectorLayout.setVisibility(isVisible ? GONE : VISIBLE);
       }
     });
-  }
-
-  @Override
-  protected void setTopToolbar() {
-    actionDelete.setVisibility(GONE);
-    actionPopUp.setVisibility(GONE);
-    actionShare.setVisibility(GONE);
-    actionCopy.setVisibility(GONE);
   }
 
   @Override

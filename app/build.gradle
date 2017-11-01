@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.bijoysingh.quicknote"
         minSdkVersion 17
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 9
         versionName "2.5"
     }
@@ -30,9 +30,9 @@ dependencies {
     compile 'android.arch.persistence.room:runtime:' + rootProject.archRoomVersion;
     compile 'android.arch.persistence.room:testing:' + rootProject.archRoomVersion;
     annotationProcessor 'android.arch.persistence.room:compiler:' + rootProject.archRoomVersion;
-    compile 'com.github.bijoysingh:android-basics:1.1'
-    compile 'com.github.bijoysingh:ui-basics:0.1'
-    compile 'com.github.bijoysingh:floating-bubble:1.0.6'
+    compile 'com.github.bijoysingh:android-basics:1.4.0'
+    compile 'com.github.bijoysingh:ui-basics:0.2.0'
+    compile 'com.github.bijoysingh:floating-bubble:1.2.0'
     compile 'com.github.clans:fab:1.6.3'
     compile 'com.google.android:flexbox:0.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

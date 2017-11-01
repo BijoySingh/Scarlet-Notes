@@ -201,7 +201,8 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
   }
 
   protected void setTopToolbar() {
-// do nothing
+    View colorButtonClicker = findViewById(R.id.color_button_clicker);
+    colorButtonClicker.setVisibility(GONE);
   }
 
   protected void updateNote() {

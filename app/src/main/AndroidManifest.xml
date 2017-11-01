@@ -24,20 +24,21 @@
         android:windowSoftInputMode="stateHidden">
     </activity>
 
-    <service android:name=".FloatingNoteService"/>
+    <service
+        android:name=".FloatingNoteService"/>
 
     <activity
         android:name=".activities.ViewAdvancedNoteActivity"
         android:theme="@style/NoteTheme"
-        android:windowSoftInputMode="stateHidden" />
+        android:windowSoftInputMode="stateHidden"/>
     <activity
         android:name=".activities.CreateOrEditAdvancedNoteActivity"
         android:theme="@style/NoteTheme"
-        android:windowSoftInputMode="stateHidden" />
+        android:windowSoftInputMode="stateHidden"/>
     <activity
         android:name=".activities.CreateAdvancedListActivity"
         android:theme="@style/NoteTheme"
-        android:windowSoftInputMode="stateHidden" />
+        android:windowSoftInputMode="stateHidden"/>
   </application>
 
 </manifest>

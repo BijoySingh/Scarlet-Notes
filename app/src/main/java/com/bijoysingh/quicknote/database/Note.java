@@ -19,6 +19,7 @@ import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.formats.NoteType;
 import com.github.bijoysingh.starter.util.DateFormatter;
+import com.github.bijoysingh.starter.util.IntentUtils;
 import com.github.bijoysingh.starter.util.TextUtils;
 
 import java.util.ArrayList;
@@ -86,7 +87,7 @@ public class Note {
   }
 
   public void share(Context context) {
-    new TextUtils.ShareBuilder(context)
+    new IntentUtils.ShareBuilder(context)
         .setSubject(getTitle())
         .setText(getText())
         .setChooserText(context.getString(R.string.share_using))

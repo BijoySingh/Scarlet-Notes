@@ -16,12 +16,13 @@ import com.bijoysingh.quicknote.activities.MainActivity;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
+import com.bijoysingh.quicknote.items.RecyclerItem;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
+public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
 
   private CardView view;
   private TextView timestamp;
@@ -55,7 +56,8 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<NoteRecyclerItem> {
   }
 
   @Override
-  public void populate(NoteRecyclerItem item, Bundle extra) {
+  public void populate(RecyclerItem itemData, Bundle extra) {
+    NoteRecyclerItem item = (NoteRecyclerItem) itemData;
     final Note data = item.note;
     String noteTitle = data.getTitle();
     title.setText(noteTitle);
