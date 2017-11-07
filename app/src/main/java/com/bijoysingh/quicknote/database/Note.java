@@ -40,9 +40,9 @@ public class Note {
 
   public String displayTimestamp;
 
-  public long timestamp;
+  public Long timestamp;
 
-  public int color;
+  public Integer color;
 
   public boolean isUnsaved() {
     return uid == null || uid == 0;

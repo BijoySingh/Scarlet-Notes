@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.activities;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -26,6 +27,8 @@ import static com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity.NOTE_
 
 public class ViewAdvancedNoteActivity extends AppCompatActivity {
 
+  public static final String KEY_NIGHT_THEME = "KEY_NIGHT_THEME";
+
   protected Context context;
   protected Note note;
 
@@ -33,9 +36,12 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
   protected List<Format> formats;
 
   public Format focusedFormat;
+  private boolean isNightMode = false;
 
   protected View toolbar;
   protected RecyclerView formatsView;
+  protected ImageView backButton;
+  protected ImageView actionNightMode;
   protected ImageView actionPopUp;
   protected ImageView actionCopy;
   protected ImageView actionDelete;
@@ -82,6 +88,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
   protected void setEditMode(boolean mode) {
     Bundle bundle = new Bundle();
     bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, mode);
+    bundle.putBoolean(KEY_NIGHT_THEME, isNightMode);
     adapter.setExtra(bundle);
     setNote();
 
@@ -133,6 +140,14 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     colorSelectorLayout = (FlexboxLayout) findViewById(R.id.flexbox_layout);
     setButtonToolbar();
 
+    actionNightMode = findViewById(R.id.night_mode_button);
+    actionNightMode.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        toggleNightMode();
+      }
+    });
+
     actionDelete = (ImageView) findViewById(R.id.delete_button);
     actionDelete.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -158,7 +173,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
       }
     });
 
-    ImageView backButton = (ImageView) findViewById(R.id.back_button);
+    backButton = (ImageView) findViewById(R.id.back_button);
     backButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -193,6 +208,25 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
 
     colorButton = (ImageView) findViewById(R.id.color_button);
     setTopToolbar();
+    notifyToolbarColor();
+  }
+
+  private void toggleNightMode() {
+    isNightMode = !isNightMode;
+    notifyToolbarColor();
+  }
+
+  private void notifyToolbarColor() {
+    int toolbarIconColor = ContextCompat.getColor(
+        context, isNightMode ? R.color.white : R.color.material_blue_grey_700);
+    backButton.setColorFilter(toolbarIconColor);
+    actionNightMode.setColorFilter(toolbarIconColor);
+    actionPopUp.setColorFilter(toolbarIconColor);
+    actionCopy.setColorFilter(toolbarIconColor);
+    actionDelete.setColorFilter(toolbarIconColor);
+    actionShare.setColorFilter(toolbarIconColor);
+    actionEdit.setColorFilter(toolbarIconColor);
+    actionDone.setColorFilter(toolbarIconColor);
   }
 
   protected void setButtonToolbar() {
