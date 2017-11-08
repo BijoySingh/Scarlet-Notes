@@ -42,6 +42,10 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     setTouchListener();
     startHandler();
     setColorsList();
+
+    if (getIntent().getBooleanExtra(KEY_NIGHT_THEME, false)) {
+      setNightMode(true);
+    }
   }
 
   @Override

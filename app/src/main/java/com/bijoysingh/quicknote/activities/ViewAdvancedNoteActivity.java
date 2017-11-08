@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -205,7 +206,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     actionEdit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        note.edit(context);
+        note.edit(context, isNightMode);
       }
     });
 
@@ -223,7 +224,11 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
   }
 
   private void toggleNightMode() {
-    isNightMode = !isNightMode;
+    setNightMode(!isNightMode);
+  }
+
+  protected void setNightMode(boolean nightMode) {
+    isNightMode = nightMode;
     notifyToolbarColor();
   }
 
@@ -245,6 +250,17 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
 
     resetBundle();
     adapter.notifyDataSetChanged();
+
+    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      getWindow().setStatusBarColor(ContextCompat.getColor(context, backgroundColor));
+    }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      View view = getWindow().getDecorView();
+      int flags = view.getSystemUiVisibility();
+      if (isNightMode) flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+      else flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+      view.setSystemUiVisibility(flags);
+    }
   }
 
   protected void setButtonToolbar() {

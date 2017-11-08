@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.KEY_NIGHT_THEME;
+
 @Entity(
     tableName = "note",
     indices = {@Index("uid")}
@@ -102,9 +104,19 @@ public class Note {
     FloatingNoteService.openNote(activity, this, true);
   }
 
-  public void edit(Context context) {
+  public Intent editIntent(Context context) {
     Intent intent = new Intent(context, CreateOrEditAdvancedNoteActivity.class);
     intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, uid);
+    return intent;
+  }
+
+  public void edit(Context context) {
+    context.startActivity(editIntent(context));
+  }
+
+  public void edit(Context context, boolean nightMode) {
+    Intent intent = editIntent(context);
+    intent.putExtra(KEY_NIGHT_THEME, nightMode);
     context.startActivity(intent);
   }
 
