@@ -3,12 +3,15 @@ package com.bijoysingh.quicknote.recyclerview;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
+
+import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.KEY_NIGHT_THEME;
 
 public class FormatListViewHolder extends FormatTextViewHolder {
 
@@ -31,6 +34,11 @@ public class FormatListViewHolder extends FormatTextViewHolder {
     final boolean editable = extra != null
                              && extra.containsKey(KEY_EDITABLE)
                              && extra.getBoolean(KEY_EDITABLE);
+    boolean nightMode = extra != null
+                        && extra.containsKey(KEY_NIGHT_THEME)
+                        && extra.getBoolean(KEY_NIGHT_THEME);
+    icon.setColorFilter(ContextCompat.getColor(
+        context, nightMode ? R.color.white : R.color.material_blue_grey_600));
 
     if (data.formatType == FormatType.CHECKLIST_UNCHECKED) {
       icon.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp);

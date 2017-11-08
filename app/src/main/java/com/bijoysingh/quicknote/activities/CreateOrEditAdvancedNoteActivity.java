@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +29,12 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   private boolean active = false;
   private int maxUid = 0;
 
+  private ImageView text;
+  private ImageView heading;
+  private ImageView subHeading;
+  private ImageView checkList;
+  private ImageView quote;
+  private ImageView code;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +46,12 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 
   @Override
   protected void setEditMode() {
-    setEditMode(true);
+    setEditMode(getEditModeValue());
+  }
+
+  @Override
+  protected boolean getEditModeValue() {
+    return true;
   }
 
   private void setTouchListener() {
@@ -67,7 +79,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 
   @Override
   protected void setButtonToolbar() {
-    ImageView text = (ImageView) findViewById(R.id.format_text);
+    text = (ImageView) findViewById(R.id.format_text);
     text.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -75,7 +87,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       }
     });
 
-    ImageView heading = (ImageView) findViewById(R.id.format_heading);
+    heading = (ImageView) findViewById(R.id.format_heading);
     heading.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -83,7 +95,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       }
     });
 
-    ImageView subHeading = (ImageView) findViewById(R.id.format_sub_heading);
+    subHeading = (ImageView) findViewById(R.id.format_sub_heading);
     subHeading.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -91,7 +103,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       }
     });
 
-    ImageView checkList = (ImageView) findViewById(R.id.format_check_list);
+    checkList = (ImageView) findViewById(R.id.format_check_list);
     checkList.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -99,7 +111,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       }
     });
 
-    ImageView quote = (ImageView) findViewById(R.id.format_quote);
+    quote = (ImageView) findViewById(R.id.format_quote);
     quote.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -107,7 +119,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       }
     });
 
-    ImageView code = (ImageView) findViewById(R.id.format_code);
+    code = (ImageView) findViewById(R.id.format_code);
     code.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -131,6 +143,22 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
         colorSelectorLayout.setVisibility(isVisible ? GONE : VISIBLE);
       }
     });
+  }
+
+  @Override
+  protected void notifyToolbarColor() {
+    super.notifyToolbarColor();
+
+    int toolbarIconColor = ContextCompat.getColor(
+        context, isNightMode ? R.color.white : R.color.material_blue_grey_700);
+    text.setColorFilter(toolbarIconColor);
+    heading.setColorFilter(toolbarIconColor);
+    subHeading.setColorFilter(toolbarIconColor);
+    checkList.setColorFilter(toolbarIconColor);
+    quote.setColorFilter(toolbarIconColor);
+    code.setColorFilter(toolbarIconColor);
+
+    toolbar.setBackgroundResource(isNightMode ? R.color.material_grey_900 : R.color.white);
   }
 
   @Override

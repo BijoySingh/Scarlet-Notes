@@ -36,10 +36,12 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
   protected List<Format> formats;
 
   public Format focusedFormat;
-  private boolean isNightMode = false;
+  protected boolean isNightMode = false;
 
   protected View toolbar;
   protected RecyclerView formatsView;
+
+  protected View rootView;
   protected ImageView backButton;
   protected ImageView actionNightMode;
   protected ImageView actionPopUp;
@@ -60,6 +62,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     note = Note.db(this).getByID(getIntent().getIntExtra(NOTE_ID, 0));
     note = note == null ? Note.gen() : note;
 
+    rootView = findViewById(R.id.root_layout);
     setRecyclerView();
     setToolbars();
     setEditMode();
@@ -81,20 +84,28 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
   }
 
   protected void setEditMode() {
-    setEditMode(false);
-    formatsView.setBackgroundColor(Color.WHITE);
+    setEditMode(getEditModeValue());
+    formatsView.setBackgroundResource(isNightMode ? R.color.material_grey_800 : R.color.white);
+  }
+
+  protected boolean getEditModeValue() {
+    return false;
   }
 
   protected void setEditMode(boolean mode) {
-    Bundle bundle = new Bundle();
-    bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, mode);
-    bundle.putBoolean(KEY_NIGHT_THEME, isNightMode);
-    adapter.setExtra(bundle);
+    resetBundle();
     setNote();
 
     actionEdit.setVisibility(mode ? GONE : VISIBLE);
     actionDone.setVisibility(mode ? VISIBLE : GONE);
     toolbar.setVisibility(mode ? VISIBLE : GONE);
+  }
+
+  private void resetBundle() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, getEditModeValue());
+    bundle.putBoolean(KEY_NIGHT_THEME, isNightMode);
+    adapter.setExtra(bundle);
   }
 
   protected void setNote() {
@@ -216,7 +227,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     notifyToolbarColor();
   }
 
-  private void notifyToolbarColor() {
+  protected void notifyToolbarColor() {
     int toolbarIconColor = ContextCompat.getColor(
         context, isNightMode ? R.color.white : R.color.material_blue_grey_700);
     backButton.setColorFilter(toolbarIconColor);
@@ -227,6 +238,13 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     actionShare.setColorFilter(toolbarIconColor);
     actionEdit.setColorFilter(toolbarIconColor);
     actionDone.setColorFilter(toolbarIconColor);
+
+    int backgroundColor = isNightMode ? R.color.material_grey_800 : R.color.white;
+    rootView.setBackgroundResource(backgroundColor);
+    formatsView.setBackgroundResource(backgroundColor);
+
+    resetBundle();
+    adapter.notifyDataSetChanged();
   }
 
   protected void setButtonToolbar() {
