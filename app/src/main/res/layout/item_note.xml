@@ -46,13 +46,15 @@
           android:background="@android:color/transparent"
           android:ellipsize="end"
           android:gravity="top"
-          android:lineSpacingExtra="4dp"
+          android:lineSpacingExtra="2dp"
           android:maxLines="7"
           android:minLines="3"
-          android:padding="8dp"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          android:paddingBottom="8dp"
           android:textColor="@color/light_primary_text"
           android:textColorHint="@color/light_tertiary_text"
-          android:textSize="16sp"/>
+          android:textSize="14sp"/>
     </LinearLayout>
 
     <LinearLayout
