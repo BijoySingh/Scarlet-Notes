@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.bijoysingh.uibasics.views.UIContentView android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  xmlns:ui="http://schemas.android.com/apk/res-auto"
+  android:background="@color/white"
+  android:gravity="center_vertical"
+  android:padding="16dp"
+  ui:title="Hello"
+  ui:titleSize="14sp"
+  ui:titleColor="@color/dark_tertiary_text"
+  ui:subtitleSize="12sp"
+  ui:subtitle="@string/choose_action"
+  ui:subtitleColor="@color/dark_tertiary_text"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

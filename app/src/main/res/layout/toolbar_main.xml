@@ -42,5 +42,12 @@
       android:src="@drawable/ic_add_white_48dp"
       android:tint="@color/light_primary_text"
       android:visibility="gone"/>
+  <ImageView
+    android:id="@+id/home_option_button"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:padding="12dp"
+    android:src="@drawable/ic_more_horiz_white_48dp"
+    android:tint="@color/dark_tertiary_text" />
 
 </LinearLayout>

@@ -44,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
     View addRichNote = findViewById(R.id.menu_add_rich_note);
     addRichNote.setOnClickListener(openNewRichNoteActivity());
 
+    View homeOptions = findViewById(R.id.home_option_button);
+    homeOptions.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        HomeBottomSheet.Companion.openSheet(MainActivity.this);
+      }
+    });
+
     ImageView backButton = (ImageView) findViewById(R.id.back_button);
     backButton.setOnClickListener(new View.OnClickListener() {
       @Override

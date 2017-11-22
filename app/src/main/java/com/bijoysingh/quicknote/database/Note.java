@@ -6,12 +6,8 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import com.bijoysingh.quicknote.FloatingNoteService;
-import com.bijoysingh.quicknote.NoteDatabase;
-import com.bijoysingh.quicknote.NoteItem;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
@@ -134,20 +130,6 @@ public class Note {
     note.displayTimestamp = DateFormatter.getDate(Calendar.getInstance());
     note.color = 0xFF00796B;
     return note;
-  }
-
-  public static void transition1To2(Context context) {
-    NoteDatabase noteDatabase = new NoteDatabase(context);
-    List<NoteItem> notes = noteDatabase.get(NoteItem.class);
-    for (NoteItem note : notes) {
-      Note roomNote = Note.gen();
-      roomNote.title = note.title;
-      roomNote.description = note.description;
-      roomNote.displayTimestamp = note.timestamp;
-      roomNote.color = ContextCompat.getColor(context, R.color.material_teal_700);
-      Note.db(context).insertNote(roomNote);
-      noteDatabase.remove(note);
-    }
   }
 
   public static void transition2To3(Context context) {
