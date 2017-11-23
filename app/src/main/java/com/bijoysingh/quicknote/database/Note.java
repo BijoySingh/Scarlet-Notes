@@ -132,6 +132,18 @@ public class Note {
     return note;
   }
 
+  public static Note gen(String title, String description) {
+    Note note = Note.gen();
+    List<Format> formats = new ArrayList<>();
+    if (TextUtils.isNullOrEmpty(title)) {
+      formats.add(new Format(FormatType.HEADING, title));
+    }
+    formats.add(new Format(FormatType.TEXT, description));
+    note.title = NoteType.NOTE.name();
+    note.description = Format.getNote(formats);
+    return note;
+  }
+
   public static void transition2To3(Context context) {
     List<Note> notes = Note.db(context).getAll();
     for (Note note : notes) {

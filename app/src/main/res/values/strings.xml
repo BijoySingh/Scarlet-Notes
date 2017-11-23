@@ -31,4 +31,9 @@
   <string name="home_option_export_subtitle">Export notes to device storage to share</string>
   <string name="home_option_import">Import Notes</string>
   <string name="home_option_import_subtitle">Import notes from the device storage</string>
+
+  <string name="permission_layout_give_permission">Give Permissions</string>
+  <string name="permission_layout_give_permission_details">Import and export require storage permissions. Please give the permission when requested.</string>
+  <string name="permission_layout_give_permission_ok">Allow</string>
+
 </resources>

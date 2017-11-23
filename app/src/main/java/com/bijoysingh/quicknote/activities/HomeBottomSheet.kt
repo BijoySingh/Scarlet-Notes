@@ -4,8 +4,10 @@ import android.app.Dialog
 import android.view.View
 import android.widget.LinearLayout
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.external.ExportNotes
 import com.bijoysingh.quicknote.items.HomeOptionsItem
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
+import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.uibasics.views.UIContentView
 
 class HomeBottomSheet : SimpleBottomSheetFragment() {
@@ -30,7 +32,7 @@ class HomeBottomSheet : SimpleBottomSheetFragment() {
         title = R.string.home_option_export,
         subtitle = R.string.home_option_export_subtitle,
         listener = View.OnClickListener {
-
+          IntentUtils.startActivity(context, ExportNotes::class.java)
         }
     ))
     options.add(HomeOptionsItem(

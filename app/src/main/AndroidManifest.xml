@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.bijoysingh.quicknote"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.bijoysingh.quicknote">
 
-  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
   <application
-      android:allowBackup="true"
-      android:hardwareAccelerated="true"
-      android:icon="@mipmap/ic_launcher"
-      android:label="@string/app_name"
-      android:supportsRtl="true"
-      android:theme="@style/AppTheme">
+    android:allowBackup="true"
+    android:hardwareAccelerated="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
     <activity android:name=".activities.MainActivity">
       <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
+        <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER"/>
+        <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
     <activity
-        android:name=".activities.CreateSimpleNoteActivity"
-        android:theme="@style/NoteTheme"
-        android:windowSoftInputMode="stateHidden">
-    </activity>
+      android:name=".activities.CreateSimpleNoteActivity"
+      android:theme="@style/NoteTheme"
+      android:windowSoftInputMode="stateHidden"></activity>
 
-    <service
-        android:name=".FloatingNoteService"/>
+    <service android:name=".FloatingNoteService" />
 
     <activity
-        android:name=".activities.ViewAdvancedNoteActivity"
-        android:theme="@style/NoteTheme"
-        android:windowSoftInputMode="stateHidden"/>
+      android:name=".activities.ViewAdvancedNoteActivity"
+      android:theme="@style/NoteTheme"
+      android:windowSoftInputMode="stateHidden" />
     <activity
-        android:name=".activities.CreateOrEditAdvancedNoteActivity"
-        android:theme="@style/NoteTheme"
-        android:windowSoftInputMode="stateHidden"/>
+      android:name=".activities.CreateOrEditAdvancedNoteActivity"
+      android:theme="@style/NoteTheme"
+      android:windowSoftInputMode="stateHidden" />
     <activity
-        android:name=".activities.CreateAdvancedListActivity"
-        android:theme="@style/NoteTheme"
-        android:windowSoftInputMode="stateHidden"/>
+      android:name=".activities.CreateAdvancedListActivity"
+      android:theme="@style/NoteTheme"
+      android:windowSoftInputMode="stateHidden" />
+    <activity android:name=".activities.external.ExportNotes"></activity>
   </application>
 
 </manifest>
