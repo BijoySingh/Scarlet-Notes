@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bijoysingh.quicknote.R;
+import com.bijoysingh.quicknote.activities.sheets.HomeBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;

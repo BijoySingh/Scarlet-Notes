@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:padding="20dp">
+
+  <TextView
+    android:id="@+id/export_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:text="@string/import_export_layout_exporting"
+    android:textColor="@color/dark_tertiary_text"
+    android:textSize="18sp" />
+
+  <TextView
+    android:id="@+id/filename"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:text="@string/import_export_layout_filename"
+    android:textColor="@color/dark_hint_text"
+    android:textSize="14sp" />
+
+  <ProgressBar
+    android:id="@+id/progress_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+    android:indeterminate="true"/>
+
+  <LinearLayout
+    android:id="@+id/results_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:visibility="invisible"
+    android:gravity="end">
+
+    <TextView
+      android:id="@+id/export_share"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="end"
+      android:padding="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
+      android:text="@string/import_export_layout_exporting_share"
+      android:textAllCaps="true"
+      android:textColor="@color/dark_hint_text"
+      android:textSize="14sp" />
+
+    <TextView
+      android:id="@+id/export_done"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="end"
+      android:padding="8dp"
+      android:text="@string/import_export_layout_exporting_done"
+      android:textAllCaps="true"
+      android:textColor="@color/colorAccent"
+      android:textSize="14sp" />
+  </LinearLayout>
+</LinearLayout>
