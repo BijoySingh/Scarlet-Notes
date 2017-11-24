@@ -14,4 +14,12 @@
     <item name="android:statusBarColor">@color/white</item>
     <item name="android:windowLightStatusBar">true</item>
   </style>
+
+  <style name="BorderlessBackgroundView">
+    <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+  </style>
+
+  <style name="BorderedBackgroundView">
+    <item name="android:background">?android:attr/selectableItemBackground</item>
+  </style>
 </resources>

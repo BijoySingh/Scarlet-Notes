@@ -36,12 +36,11 @@ fun getStoragePermissionManager(activity: AppCompatActivity): PermissionManager 
 }
 
 fun saveFile(context: Context, text: String): Boolean {
-  val folder = createFolder()
-  if (folder == null) {
+  val file = getExportFile()
+  if (file == null) {
     return false
   }
 
-  val file = File(folder.path + "/" + ExportNotesBottomSheet.FILE_NAME + ".txt")
   var stream: FileOutputStream? = null
   var successful = false
   try {
@@ -61,6 +60,15 @@ fun saveFile(context: Context, text: String): Boolean {
     }
   }
   return successful
+}
+
+fun getExportFile(): File? {
+  val folder = createFolder()
+  if (folder == null) {
+    return null
+  }
+
+  return File(folder.path + "/" + ExportNotesBottomSheet.FILE_NAME + ".txt")
 }
 
 fun createFolder(): File? {

@@ -10,6 +10,12 @@ import com.bijoysingh.quicknote.activities.external.getNotesForExport
 import com.bijoysingh.quicknote.activities.external.saveFile
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
+import android.content.Intent
+import android.net.Uri
+import com.bijoysingh.quicknote.activities.external.getExportFile
+import com.bijoysingh.quicknote.utils.GenericFileProvider
+import java.io.File
+
 
 class ExportNotesBottomSheet : SimpleBottomSheetFragment() {
 
@@ -43,7 +49,19 @@ class ExportNotesBottomSheet : SimpleBottomSheetFragment() {
       dismiss()
     }
     exportShare.setOnClickListener {
+      val file = getExportFile()
+      if (file == null || !file.exists()) {
+        return@setOnClickListener
+      }
 
+      val uri = GenericFileProvider.getUriForFile(activity, GenericFileProvider.PROVIDER, file)
+
+      val intent = Intent(Intent.ACTION_SEND)
+      intent.type = "text/plain"
+      intent.putExtra(Intent.EXTRA_STREAM, uri)
+      startActivity(Intent.createChooser(intent, getString(R.string.share_using)))
+
+      dismiss()g
     }
   }
 
