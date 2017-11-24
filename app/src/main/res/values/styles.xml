@@ -14,6 +14,12 @@
   <style name="NoteTheme" parent="AppTheme">
   </style>
 
+  <style name="BorderlessBackgroundView">
+  </style>
+
+  <style name="BorderedBackgroundView">
+  </style>
+
   <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
     <item name="android:fontFamily" tools:targetApi="16">monospace</item>
   </style>

@@ -24,6 +24,7 @@ class HomeBottomSheet : SimpleBottomSheetFragment() {
       contentView.setTitle(option.title)
       contentView.setSubtitle(option.subtitle)
       contentView.setOnClickListener(option.listener)
+      contentView.setImageResource(option.icon)
       layout.addView(contentView)
     }
   }
@@ -34,6 +35,7 @@ class HomeBottomSheet : SimpleBottomSheetFragment() {
     options.add(HomeOptionsItem(
         title = R.string.home_option_export,
         subtitle = R.string.home_option_export_subtitle,
+        icon = R.drawable.ic_export,
         listener = View.OnClickListener {
           val manager = getStoragePermissionManager(activity)
           if (manager.hasAllPermissions()) {
@@ -47,6 +49,7 @@ class HomeBottomSheet : SimpleBottomSheetFragment() {
     options.add(HomeOptionsItem(
         title = R.string.home_option_import,
         subtitle = R.string.home_option_import_subtitle,
+        icon = R.drawable.ic_import,
         listener = View.OnClickListener {
           val manager = getStoragePermissionManager(activity)
           if (manager.hasAllPermissions()) {
@@ -55,6 +58,24 @@ class HomeBottomSheet : SimpleBottomSheetFragment() {
           } else {
             PermissionBottomSheet.openSheet(activity)
           }
+        }
+    ))
+    options.add(HomeOptionsItem(
+        title = R.string.home_option_about_page,
+        subtitle = R.string.home_option_about_page_subtitle,
+        icon = R.drawable.ic_info,
+        listener = View.OnClickListener {
+          AboutUsBottomSheet.openSheet(activity)
+          dismiss()
+        }
+    ))
+    options.add(HomeOptionsItem(
+        title = R.string.home_option_rate_and_review,
+        subtitle = R.string.home_option_rate_and_review_subtitle,
+        icon = R.drawable.ic_rating,
+        listener = View.OnClickListener {
+          IntentUtils.openAppPlayStore(activity)
+          dismiss()
         }
     ))
     return options

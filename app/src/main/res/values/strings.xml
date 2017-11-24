@@ -1,5 +1,6 @@
 <resources>
   <string name="app_name" translatable="false">Material Notes</string>
+  <string name="maubis_apps" translatable="false">Maubis Apps</string>
   <string name="timestamp" translatable="false">dd month yyyy, hh:mm aa</string>
   <string name="title">Title</string>
   <string name="description">Content</string>
@@ -31,6 +32,10 @@
   <string name="home_option_export_subtitle">Export notes to device storage to share</string>
   <string name="home_option_import">Import Notes</string>
   <string name="home_option_import_subtitle">Import notes from the device storage</string>
+  <string name="home_option_about_page">About Us</string>
+  <string name="home_option_about_page_subtitle">Know more about the app and the developers</string>
+  <string name="home_option_rate_and_review">Rate and Review</string>
+  <string name="home_option_rate_and_review_subtitle">Tell us know how much you liked the app</string>
 
   <string name="permission_layout_give_permission">Give Permissions</string>
   <string name="permission_layout_give_permission_details">Import and export require storage permissions. Please give the permission when requested.</string>
@@ -48,4 +53,20 @@
   <string name="file_size_kb" translatable="false">%s KB</string>
   <string name="file_size_mb" translatable="false">%s MB</string>
   <string name="file_size_gb" translatable="false">%s GB</string>
+
+  <string name="about_page_title">About Us and More</string>
+  <string name="about_page_description">
+    %s is a simple note taking app. It allows quick Rich Text input without making the experience very difficult to use. It makes multi-tasking a breeze.
+  </string>
+  <string name="about_page_rate">Rate on Play Store</string>
+
+  <string name="about_page_description_os">
+    %s is open source and anyone is open to contribute to making it better. It is currently built and maintained by %s.
+  </string>
+  <string name="about_page_contribute">Contribute</string>
+  <string name="about_page_app_version">App Version</string>
+  <string name="about_page_about_app">About App</string>
+  <string name="about_page_about_us_details">Hi, we are a pair of designer and programmer, who created %s .
+    We endeavour to build beautiful, carefully designed free, ad-free or minimal ads apps which
+serve great utility to everyone!</string>
 </resources>
