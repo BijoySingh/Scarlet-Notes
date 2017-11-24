@@ -3,9 +3,11 @@ package com.bijoysingh.quicknote.recyclerview
 import android.content.Context
 import android.os.Bundle
 import android.os.Environment
+import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
 import com.bijoysingh.quicknote.items.FileRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
@@ -27,6 +29,14 @@ class FileImportViewHolder(context: Context, root: View)
     filePath.text = getPath(item)
     fileDate.text = getSubtitleText(item.file)
     fileSize.text = getMetaText(item.file)
+
+    root.setOnClickListener {
+      (context as ImportNoteFromFileActivity).select(item)
+    }
+
+    root.setBackgroundColor(ContextCompat.getColor(
+        context,
+        if (item.selected) R.color.material_grey_100 else R.color.transparent))
   }
 
   private fun getPath(item: FileRecyclerItem): String {

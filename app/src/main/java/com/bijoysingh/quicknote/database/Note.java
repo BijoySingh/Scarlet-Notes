@@ -11,6 +11,7 @@ import com.bijoysingh.quicknote.FloatingNoteService;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
+import com.bijoysingh.quicknote.activities.external.ExportableNote;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.formats.NoteType;
@@ -129,6 +130,16 @@ public class Note {
     note.timestamp = Calendar.getInstance().getTimeInMillis();
     note.displayTimestamp = DateFormatter.getDate(Calendar.getInstance());
     note.color = 0xFF00796B;
+    return note;
+  }
+
+  public static Note gen(ExportableNote exportableNote) {
+    Note note = Note.gen();
+    note.title = exportableNote.getTitle();
+    note.color = exportableNote.getColor();
+    note.description = exportableNote.getDescription();
+    note.displayTimestamp = exportableNote.getDisplayTimestamp();
+    note.timestamp = exportableNote.getTimestamp();
     return note;
   }
 

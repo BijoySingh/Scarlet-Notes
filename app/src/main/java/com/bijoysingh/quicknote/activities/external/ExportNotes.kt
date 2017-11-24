@@ -45,7 +45,7 @@ fun saveFile(context: Context, text: String): Boolean {
   var stream: FileOutputStream? = null
   var successful = false
   try {
-    stream = FileOutputStream(file, true)
+    stream = FileOutputStream(file, false)
     stream.write(text.toByteArray())
     stream.flush()
     successful = true

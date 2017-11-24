@@ -7,6 +7,8 @@ class FileRecyclerItem(val name: String,
                        val path: String,
                        val file: File): RecyclerItem() {
 
+  var selected = false
+
   override fun getType(): Type {
     return Type.FILE
   }

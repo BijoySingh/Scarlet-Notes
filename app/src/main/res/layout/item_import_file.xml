@@ -4,12 +4,16 @@
   android:layout_height="wrap_content"
   android:gravity="center"
   android:orientation="horizontal"
-  android:padding="16dp">
+  android:paddingTop="16dp"
+  android:paddingBottom="16dp"
+  android:paddingStart="32dp"
+  android:paddingEnd="32dp">
 
   <ImageView
     android:layout_width="24dp"
     android:layout_height="24dp"
     android:layout_marginEnd="16dp"
+    android:visibility="gone"
     android:src="@drawable/ic_check_box_outline_blank_white_24dp"
     android:tint="@color/dark_tertiary_text" />
 
