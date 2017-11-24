@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.items;
 
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.recyclerview.EmptyRecyclerHolder;
+import com.bijoysingh.quicknote.recyclerview.FileImportViewHolder;
 import com.bijoysingh.quicknote.recyclerview.NoteRecyclerHolder;
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem;
 
@@ -12,6 +13,7 @@ public abstract class RecyclerItem {
   public enum Type {
     NOTE,
     EMPTY,
+    FILE,
   }
 
   abstract public Type getType();
@@ -19,15 +21,20 @@ public abstract class RecyclerItem {
   public static List<MultiRecyclerViewControllerItem<RecyclerItem>> getList() {
     List<MultiRecyclerViewControllerItem<RecyclerItem>> list = new ArrayList<>();
     list.add(new MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
-                 .viewType(Type.NOTE.ordinal())
-                 .layoutFile(R.layout.item_note)
-                 .holderClass(NoteRecyclerHolder.class)
-                 .build());
+        .viewType(Type.NOTE.ordinal())
+        .layoutFile(R.layout.item_note)
+        .holderClass(NoteRecyclerHolder.class)
+        .build());
     list.add(new MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
-                 .viewType(Type.EMPTY.ordinal())
-                 .layoutFile(R.layout.item_no_notes)
-                 .holderClass(EmptyRecyclerHolder.class)
-                 .build());
+        .viewType(Type.EMPTY.ordinal())
+        .layoutFile(R.layout.item_no_notes)
+        .holderClass(EmptyRecyclerHolder.class)
+        .build());
+    list.add(new MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
+        .viewType(Type.FILE.ordinal())
+        .layoutFile(R.layout.item_import_file)
+        .holderClass(FileImportViewHolder.class)
+        .build());
     return list;
   }
 }

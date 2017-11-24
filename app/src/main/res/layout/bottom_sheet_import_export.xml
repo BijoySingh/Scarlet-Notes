@@ -20,6 +20,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
+    style="@style/SanSerif"
     android:text="@string/import_export_layout_filename"
     android:textColor="@color/dark_hint_text"
     android:textSize="14sp" />

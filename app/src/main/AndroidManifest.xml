@@ -3,9 +3,8 @@
   package="com.bijoysingh.quicknote">
 
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
   <application
     android:allowBackup="true"
@@ -24,7 +23,7 @@
     <activity
       android:name=".activities.CreateSimpleNoteActivity"
       android:theme="@style/NoteTheme"
-      android:windowSoftInputMode="stateHidden"></activity>
+      android:windowSoftInputMode="stateHidden" />
 
     <service android:name=".FloatingNoteService" />
 
@@ -40,6 +39,7 @@
       android:name=".activities.CreateAdvancedListActivity"
       android:theme="@style/NoteTheme"
       android:windowSoftInputMode="stateHidden" />
+    <activity android:name=".activities.external.ImportNoteFromFileActivity"></activity>
   </application>
 
 </manifest>

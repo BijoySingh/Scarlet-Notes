@@ -5,9 +5,11 @@ import android.view.View
 import android.widget.LinearLayout
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.items.HomeOptionsItem
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
+import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.uibasics.views.UIContentView
 
 class HomeBottomSheet : SimpleBottomSheetFragment() {
@@ -46,7 +48,13 @@ class HomeBottomSheet : SimpleBottomSheetFragment() {
         title = R.string.home_option_import,
         subtitle = R.string.home_option_import_subtitle,
         listener = View.OnClickListener {
-
+          val manager = getStoragePermissionManager(activity)
+          if (manager.hasAllPermissions()) {
+            IntentUtils.startActivity(activity, ImportNoteFromFileActivity::class.java)
+            dismiss()
+          } else {
+            PermissionBottomSheet.openSheet(activity)
+          }
         }
     ))
     return options

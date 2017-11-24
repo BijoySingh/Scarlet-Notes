@@ -52,7 +52,7 @@ class ExportNotesBottomSheet : SimpleBottomSheetFragment() {
   companion object {
 
     val MATERIAL_NOTES_FOLDER = "MaterialNotes"
-    val FILE_NAME = "BACKUP.txt"
+    val FILE_NAME = "BACKUP"
 
     fun openSheet(activity: MainActivity) {
       val sheet = ExportNotesBottomSheet()

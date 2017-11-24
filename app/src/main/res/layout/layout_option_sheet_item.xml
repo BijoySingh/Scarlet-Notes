@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.github.bijoysingh.uibasics.views.UIContentView android:layout_width="match_parent"
-  android:layout_height="wrap_content"
+<com.github.bijoysingh.uibasics.views.UIContentView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:ui="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
   android:background="@color/white"
   android:gravity="center_vertical"
   android:padding="16dp"
-  ui:title="Hello"
-  ui:titleSize="14sp"
-  ui:titleColor="@color/dark_tertiary_text"
-  ui:subtitleSize="12sp"
   ui:subtitle="@string/choose_action"
   ui:subtitleColor="@color/dark_tertiary_text"
-  xmlns:android="http://schemas.android.com/apk/res/android" />
+  ui:subtitleSize="14sp"
+  ui:subtitleStyle="@style/SanSerif"
+  ui:title="Hello"
+  ui:titleColor="@color/dark_secondary_text"
+  ui:titleSize="16sp"
+  ui:titleStyle="@style/SanSerif" />

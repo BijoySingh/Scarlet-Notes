@@ -36,10 +36,16 @@
   <string name="permission_layout_give_permission_details">Import and export require storage permissions. Please give the permission when requested.</string>
   <string name="permission_layout_give_permission_ok">Allow</string>
 
+  <string name="import_export_import_file_title">Import Backup from File</string>
+  <string name="import_export_import_file">Import File</string>
   <string name="import_export_layout_exported">Exported to file</string>
   <string name="import_export_layout_export_failed">Export failed</string>
   <string name="import_export_layout_exporting">Exporting to file&#8230;</string>
   <string name="import_export_layout_exporting_done">Done</string>
   <string name="import_export_layout_exporting_share">Share</string>
   <string name="import_export_layout_filename" translatable="false">MaterialNotes/BACKUP.txt</string>
+
+  <string name="file_size_kb" translatable="false">%s KB</string>
+  <string name="file_size_mb" translatable="false">%s MB</string>
+  <string name="file_size_gb" translatable="false">%s GB</string>
 </resources>
