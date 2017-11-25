@@ -9,8 +9,8 @@ android {
         applicationId "com.bijoysingh.quicknote"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 13
-        versionName "2.10"
+        versionCode 14
+        versionName "v2.11.0"
     }
     buildTypes {
         release {
