@@ -15,6 +15,7 @@ import com.bijoysingh.quicknote.activities.external.ExportableNote;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.formats.NoteType;
+import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.util.DateFormatter;
 import com.github.bijoysingh.starter.util.IntentUtils;
 import com.github.bijoysingh.starter.util.TextUtils;
@@ -43,6 +44,8 @@ public class Note {
 
   public Integer color;
 
+  public String state;
+
   public boolean isUnsaved() {
     return uid == null || uid == 0;
   }
@@ -61,6 +64,14 @@ public class Note {
       text += format.text + "\n";
     }
     return text.trim();
+  }
+
+  public NoteState getNoteState() {
+    try {
+      return NoteState.valueOf(state);
+    } catch (Exception exception) {
+      return NoteState.DEFAULT;
+    }
   }
 
   public String getTitle() {
