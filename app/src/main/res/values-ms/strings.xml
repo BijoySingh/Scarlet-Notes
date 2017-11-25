@@ -20,4 +20,30 @@
   <string name="format_hint_quote">Tambahkan Teks Kutipan &#8230;</string>
   <string name="format_hint_list">Tambah Item &#8230;</string>
   <string name="format_hint_code">Tambah Kod &#8230;</string>
+
+  <string name="home_option_sheet_title">Pilihan dan Tetapan</string>
+  <string name="home_option_export">Nota Eksport</string>
+  <string name="home_option_export_subtitle">Nota eksport ke storan peranti untuk dikongsi</string>
+  <string name="home_option_import">Nota Import</string>
+  <string name="home_option_import_subtitle">Nota nota dari storan peranti</string>
+  <string name="home_option_about_page">Tentang kita</string>
+  <string name="home_option_about_page_subtitle">Ketahui lebih lanjut mengenai aplikasi dan pemaju</string>
+  <string name="home_option_rate_and_review">Kadar dan Kajian</string>
+  <string name="home_option_rate_and_review_subtitle">Beritahu kami tahu berapa banyak anda suka aplikasinya</string>
+  <string name="permission_layout_give_permission">Beri kebenaran</string>
+  <string name="permission_layout_give_permission_details">Import dan eksport memerlukan kebenaran storan. Sila berikan kebenaran apabila diminta.</string>
+  <string name="permission_layout_give_permission_ok">Benarkan</string>
+  <string name="import_export_import_file_title">Import Cadangan dari Fail</string>
+  <string name="import_export_import_file">Import Fail</string>
+  <string name="import_export_layout_exported">Dieksport ke fail</string>
+  <string name="import_export_layout_export_failed">Eksport gagal</string>
+  <string name="import_export_layout_exporting">Mengeksport ke failâ € |</string>
+  <string name="import_export_layout_exporting_done">Selesai</string>
+  <string name="import_export_layout_exporting_share">Kongsi</string>
+  <string name="about_page_title">Mengenai Kami dan Lebih Banyak</string>
+  <string name="about_page_rate">Rate pada Play Store</string>
+  <string name="about_page_contribute">Sumbang</string>
+  <string name="about_page_app_version">Versi App</string>
+  <string name="about_page_about_app">Mengenai App</string>
+
 </resources>

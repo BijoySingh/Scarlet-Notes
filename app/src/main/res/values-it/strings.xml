@@ -20,4 +20,29 @@
   <string name="format_hint_quote">Aggiungi testo citato &#8230;</string>
   <string name="format_hint_list">Aggiungi articolo&#8230;</string>
   <string name="format_hint_code">Aggiungi codice &#8230;</string>
+
+  <string name="home_option_sheet_title">Opzioni e impostazioni</string>
+  <string name="home_option_export">Note di esportazione</string>
+  <string name="home_option_export_subtitle">Esporta le note nella memoria del dispositivo da condividere</string>
+  <string name="home_option_import">Note di importazione</string>
+  <string name="home_option_import_subtitle">Importa note dalla memoria del dispositivo</string>
+  <string name="home_option_about_page">Riguardo a noi</string>
+  <string name="home_option_about_page_subtitle">Scopri di più sull\'app e sugli sviluppatori</string>
+  <string name="home_option_rate_and_review">Valuta e recensisci</string>
+  <string name="home_option_rate_and_review_subtitle">Facci sapere quanto ti è piaciuta l\'app</string>
+  <string name="permission_layout_give_permission">Dare permessi</string>
+  <string name="permission_layout_give_permission_details">L\'importazione e l\'esportazione richiedono autorizzazioni di archiviazione. Si prega di dare il permesso quando richiesto.</string>
+  <string name="permission_layout_give_permission_ok">permettere</string>
+  <string name="import_export_import_file_title">Importa backup da file</string>
+  <string name="import_export_import_file">Importare file</string>
+  <string name="import_export_layout_exported">Esportato nel file</string>
+  <string name="import_export_layout_export_failed">Esportazione fallita</string>
+  <string name="import_export_layout_exporting">Esportazione nel file &#8230;</string>
+  <string name="import_export_layout_exporting_done">Fatto</string>
+  <string name="import_export_layout_exporting_share">Condividere</string>
+  <string name="about_page_title">Chi siamo e altro</string>
+  <string name="about_page_rate">Vota su Play Store</string>
+  <string name="about_page_contribute">Contribuire</string>
+  <string name="about_page_app_version">Versione dell\'app</string>
+  <string name="about_page_about_app">Informazioni sull\'app</string>
 </resources>

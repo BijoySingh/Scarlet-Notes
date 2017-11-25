@@ -20,4 +20,30 @@
   <string name="format_hint_quote">Zitierter Text hinzufügen &#8230;</string>
   <string name="format_hint_list">Artikel hinzufügen&#8230;</string>
   <string name="format_hint_code">Code hinzufügen &#8230;</string>
+
+  <string name="home_option_sheet_title">Optionen und Einstellungen</string>
+  <string name="home_option_export">Hinweise exportieren</string>
+  <string name="home_option_export_subtitle">Exportieren von Notizen in den Gerätespeicher zum Freigeben</string>
+  <string name="home_option_import">Anmerkungen importieren</string>
+  <string name="home_option_import_subtitle">Notizen aus dem Gerätespeicher importieren</string>
+  <string name="home_option_about_page">Über uns</string>
+  <string name="home_option_about_page_subtitle">Erfahren Sie mehr über die App und die Entwickler</string>
+  <string name="home_option_rate_and_review">Bewerten und überprüfen</string>
+  <string name="home_option_rate_and_review_subtitle">Teilen Sie uns mit, wie sehr Ihnen die App gefallen hat</string>
+  <string name="permission_layout_give_permission">Berechtigungen erteilen</string>
+  <string name="permission_layout_give_permission_details">Für Import und Export sind Speicherberechtigungen erforderlich. Bitte geben Sie die Erlaubnis ein, wenn Sie dazu aufgefordert werden.</string>
+  <string name="permission_layout_give_permission_ok">ermöglichen</string>
+  <string name="import_export_import_file_title">Sicherung aus Datei importieren</string>
+  <string name="import_export_import_file">Datei importieren</string>
+  <string name="import_export_layout_exported">In Datei exportiert</string>
+  <string name="import_export_layout_export_failed">Export fehlgeschlagen</string>
+  <string name="import_export_layout_exporting">In Datei exportieren &#8230;</string>
+  <string name="import_export_layout_exporting_done">Erledigt</string>
+  <string name="import_export_layout_exporting_share">Aktie</string>
+  <string name="about_page_title">Über uns und mehr</string>
+  <string name="about_page_rate">Im Play Store bewerten</string>
+  <string name="about_page_contribute">Beitragen</string>
+  <string name="about_page_app_version">App Version</string>
+  <string name="about_page_about_app">Über App</string>
+
 </resources>

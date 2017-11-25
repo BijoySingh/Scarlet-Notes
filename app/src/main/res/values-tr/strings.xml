@@ -20,4 +20,30 @@
   <string name="format_hint_quote">Alıntı Metni Ekle &#8230;</string>
   <string name="format_hint_list">Öğe eklemek&#8230;</string>
   <string name="format_hint_code">Kod Ekle &#8230;</string>
+
+  <string name="home_option_sheet_title">Seçenekler ve Ayarlar</string>
+  <string name="home_option_export">Notları Dışa Aktar</string>
+  <string name="home_option_export_subtitle">Paylaşmak için notları cihazın cihazına aktarın</string>
+  <string name="home_option_import">Notları İçe Aktar</string>
+  <string name="home_option_import_subtitle">Cihaz saklama alanından notlar içe aktarma</string>
+  <string name="home_option_about_page">Hakkımızda</string>
+  <string name="home_option_about_page_subtitle">Uygulama ve geliştiriciler hakkında daha fazla bilgi sahibi olun</string>
+  <string name="home_option_rate_and_review">Değerlendir ve İnceleme</string>
+  <string name="home_option_rate_and_review_subtitle">Uygulamayı ne kadar sevdiğinizi bize bildirin</string>
+  <string name="permission_layout_give_permission">İzinleri Ver</string>
+  <string name="permission_layout_give_permission_details">Alma ve verme, depolama izinleri gerektirir. İstenildiğinde lütfen izin verin.</string>
+  <string name="permission_layout_give_permission_ok">İzin vermek</string>
+  <string name="import_export_import_file_title">Dosyadan Yedeklemeyi İçe Aktar</string>
+  <string name="import_export_import_file">Önemli dosya</string>
+  <string name="import_export_layout_exported">Dosyaya verildi</string>
+  <string name="import_export_layout_export_failed">Dışa aktarılamadı</string>
+  <string name="import_export_layout_exporting">Dosyaya dışa aktarma |</string>
+  <string name="import_export_layout_exporting_done">tamam</string>
+  <string name="import_export_layout_exporting_share">Pay</string>
+  <string name="about_page_title">Hakkımızda ve Daha Fazlası</string>
+  <string name="about_page_rate">Play Store\'da Ücretlendirme</string>
+  <string name="about_page_contribute">Katkıda bulunmak</string>
+  <string name="about_page_app_version">Uygulama sürümü</string>
+  <string name="about_page_about_app">App Hakkında</string>
+
 </resources>

@@ -104,6 +104,7 @@
 
     <TextView
       android:id="@+id/contribute"
+      style="@style/BorderedBackgroundView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="end"
@@ -116,6 +117,7 @@
 
     <TextView
       android:id="@+id/rate_us"
+      style="@style/BorderedBackgroundView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="end"

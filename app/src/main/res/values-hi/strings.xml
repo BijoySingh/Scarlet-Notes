@@ -21,4 +21,29 @@
   <string name="format_hint_list">सामान जोडें&#8230;</string>
   <string name="format_hint_code">कोड जोड़ें &#8230;</string>
 
+  <string name="home_option_sheet_title">विकल्प और सेटिंग्स</string>
+  <string name="home_option_export">निर्यात नोट्स</string>
+  <string name="home_option_export_subtitle">साझा करने के लिए डिवाइस संग्रहण में नोट निर्यात करें</string>
+  <string name="home_option_import">आयात नोट्स</string>
+  <string name="home_option_import_subtitle">डिवाइस संग्रहण से नोट आयात करें</string>
+  <string name="home_option_about_page">हमारे बारे में</string>
+  <string name="home_option_about_page_subtitle">ऐप और डेवलपर्स के बारे में अधिक जानें</string>
+  <string name="home_option_rate_and_review">दर नियत करें और समीक्षा करें</string>
+  <string name="home_option_rate_and_review_subtitle">हमें बताएं कि आपको एप पसंद आया कितना</string>
+  <string name="permission_layout_give_permission">अनुमतियाँ दें</string>
+  <string name="permission_layout_give_permission_details">आयात और निर्यात संग्रहण अनुमति की आवश्यकता है। कृपया अनुरोध करते समय अनुमति दें।</string>
+  <string name="permission_layout_give_permission_ok">अनुमति दें</string>
+  <string name="import_export_import_file_title">फ़ाइल से बैकअप आयात करें</string>
+  <string name="import_export_import_file">फ़ाइल आयात करें</string>
+  <string name="import_export_layout_exported">फ़ाइल को निर्यात किया गया</string>
+  <string name="import_export_layout_export_failed">निर्यात असफल रहा</string>
+  <string name="import_export_layout_exporting">फाइल करने के लिए निर्यात |</string>
+  <string name="import_export_layout_exporting_done">किया हुआ</string>
+  <string name="import_export_layout_exporting_share">शेयर</string>
+  <string name="about_page_title">हमारे बारे में और अधिक</string>
+  <string name="about_page_rate">प्ले स्टोर पर रेट करें</string>
+  <string name="about_page_contribute">योगदान</string>
+  <string name="about_page_app_version">एप्लिकेशन वेरीज़न</string>
+  <string name="about_page_about_app">ऐप के बारे में</string>
+
 </resources>

@@ -20,4 +20,29 @@
   <string name="format_hint_quote">উদ্ধৃত পাঠ্য যোগ করুন &#8230;</string>
   <string name="format_hint_list">আইটেম যোগ করুন&#8230;</string>
   <string name="format_hint_code">কোড যুক্ত করুন &#8230;</string>
+
+  <string name="home_option_sheet_title">বিকল্প এবং সেটিংস</string>
+  <string name="home_option_export">রপ্তানি নোট</string>
+  <string name="home_option_export_subtitle">ভাগ করার জন্য ডিভাইস সঞ্চয়স্থানে নোটগুলি রপ্তানি করুন</string>
+  <string name="home_option_import">আমদানি নোট</string>
+  <string name="home_option_import_subtitle">ডিভাইসের স্টোরেজ থেকে নোট আমদানি করুন</string>
+  <string name="home_option_about_page">আমাদের সম্পর্কে</string>
+  <string name="home_option_about_page_subtitle">অ্যাপ এবং ডেভেলপারদের সম্পর্কে আরও জানুন</string>
+  <string name="home_option_rate_and_review">গুণমান বিচার ও পর্যালোচনা</string>
+  <string name="home_option_rate_and_review_subtitle">আপনাকে অ্যাপ্লিকেশনটি কত পছন্দ করেছে তা আমাদের জানান</string>
+  <string name="permission_layout_give_permission">অনুমতি দিন</string>
+  <string name="permission_layout_give_permission_details">আমদানি এবং রপ্তানি স্টোরেজ অনুমতি প্রয়োজন। অনুরোধ জানালে দয়া করে অনুমতি দিন</string>
+  <string name="permission_layout_give_permission_ok">অনুমতি দিন</string>
+  <string name="import_export_import_file_title">ফাইল থেকে ব্যাকআপ আমদানি করুন</string>
+  <string name="import_export_import_file">ফাইল আমদানি</string>
+  <string name="import_export_layout_exported">ফাইলটি এক্সপোর্ট করা হয়েছে</string>
+  <string name="import_export_layout_export_failed">রপ্তানি ব্যর্থ</string>
+  <string name="import_export_layout_exporting">ফাইলের জন্য এক্সপোর্ট করা হচ্ছে |</string>
+  <string name="import_export_layout_exporting_done">সম্পন্ন</string>
+  <string name="import_export_layout_exporting_share">ভাগ</string>
+  <string name="about_page_title">আমাদের সম্পর্কে এবং আরও</string>
+  <string name="about_page_rate">প্লে স্টোরে রেট দিন</string>
+  <string name="about_page_contribute">অবদান</string>
+  <string name="about_page_app_version">অ্যাপ সংস্করণ</string>
+  <string name="about_page_about_app">অ্যাপ সম্পর্কে</string>
 </resources>

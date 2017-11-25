@@ -20,4 +20,30 @@
   <string name="format_hint_quote">ਹਵਾਲੇ ਪਾਓ &#8230;</string>
   <string name="format_hint_list">ਆਈਟਮ ਸ਼ਾਮਲ ਕਰੋ &#8230;</string>
   <string name="format_hint_code">ਕੋਡ ਜੋੜੋ &#8230;</string>
+
+  <string name="home_option_sheet_title">ਚੋਣਾਂ ਅਤੇ ਸੈਟਿੰਗਾਂ</string>
+  <string name="home_option_export">ਨੋਟ ਐਕਸਪੋਰਟ</string>
+  <string name="home_option_export_subtitle">ਸਾਂਝੇ ਕਰਨ ਲਈ ਡਿਵਾਈਸ ਸਟੋਰੇਜ ਨੂੰ ਨੋਟ ਐਕਸਪੋਰਟ ਕਰੋ</string>
+  <string name="home_option_import">ਇੰਪੋਰਟ ਨੋਟਿਸ</string>
+  <string name="home_option_import_subtitle">ਡਿਵਾਈਸ ਸਟੋਰੇਜ ਤੋਂ ਸੂਚਨਾਵਾਂ ਆਯਾਤ ਕਰੋ</string>
+  <string name="home_option_about_page">ਸਾਡੇ ਬਾਰੇ</string>
+  <string name="home_option_about_page_subtitle">ਐਪ ਅਤੇ ਡਿਵੈਲਪਰ ਬਾਰੇ ਹੋਰ ਜਾਣੋ</string>
+  <string name="home_option_rate_and_review">ਰੇਟ ਅਤੇ ਰਿਵਿਊ</string>
+  <string name="home_option_rate_and_review_subtitle">ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਐਪ ਨੂੰ ਕਿੰਨੀ ਪਸੰਦ ਕੀਤਾ</string>
+  <string name="permission_layout_give_permission">ਅਧਿਕਾਰ ਦਿਓ</string>
+  <string name="permission_layout_give_permission_details">ਆਯਾਤ ਅਤੇ ਨਿਰਯਾਤ ਲਈ ਸਟੋਰੇਜ਼ ਅਧਿਕਾਰਾਂ ਦੀ ਲੋੜ ਹੈ ਬੇਨਤੀ ਕਰਨ 'ਤੇ ਕਿਰਪਾ ਕਰਕੇ ਇਜਾਜ਼ਤ ਦਿਓ.</string>
+  <string name="permission_layout_give_permission_ok">ਦੀ ਇਜਾਜ਼ਤ</string>
+  <string name="import_export_import_file_title">ਫਾਇਲ ਤੋਂ ਬੈਕਅੱਪ ਆਯਾਤ ਕਰੋ</string>
+  <string name="import_export_import_file">ਫਾਇਲ ਆਯਾਤ ਕਰੋ</string>
+  <string name="import_export_layout_exported">ਫਾਈਲ ਵਿੱਚ ਨਿਰਯਾਤ ਕੀਤਾ</string>
+  <string name="import_export_layout_export_failed">ਨਿਰਯਾਤ ਅਸਫਲ</string>
+  <string name="import_export_layout_exporting">ਫਾਈਲ ਨੂੰ ਐਕਸਪੋਰਟ ਕਰ ਰਿਹਾ ਹੈ |</string>
+  <string name="import_export_layout_exporting_done">ਹੋ ਗਿਆ</string>
+  <string name="import_export_layout_exporting_share">ਸਾਂਝਾ ਕਰੋ</string>
+  <string name="about_page_title">ਸਾਡੇ ਬਾਰੇ ਅਤੇ ਹੋਰ</string>
+  <string name="about_page_rate">ਪਲੇ ਸਟੋਰ ਤੇ ਰੇਟ</string>
+  <string name="about_page_contribute">ਯੋਗਦਾਨ</string>
+  <string name="about_page_app_version">ਐਪ ਵਰਜ਼ਨ</string>
+  <string name="about_page_about_app">ਐਪ ਬਾਰੇ</string>
+
 </resources>

@@ -55,18 +55,17 @@
   <string name="file_size_gb" translatable="false">%s GB</string>
 
   <string name="about_page_title">About Us and More</string>
-  <string name="about_page_description">
-    %s is a simple note taking app. It allows quick Rich Text input without making the experience very difficult to use. It makes multi-tasking a breeze.
-  </string>
   <string name="about_page_rate">Rate on Play Store</string>
-
-  <string name="about_page_description_os">
-    %s is open source and anyone is open to contribute to making it better. It is currently built and maintained by %s.
-  </string>
   <string name="about_page_contribute">Contribute</string>
   <string name="about_page_app_version">App Version</string>
   <string name="about_page_about_app">About App</string>
-  <string name="about_page_about_us_details">Hi, we are a pair of designer and programmer, who created %s .
-    We endeavour to build beautiful, carefully designed free, ad-free or minimal ads apps which
-serve great utility to everyone!</string>
+
+  <string name="about_page_description_os" translatable="false">
+    %s is open source and anyone is open to contribute to making it better. It is currently built and maintained by %s.
+  </string>
+  <string name="about_page_description" translatable="false">
+    %s is a simple note taking app. It allows quick Rich Text input without making the experience very difficult to use. It makes multi-tasking a breeze.
+  </string>
+  <string name="about_page_about_us_details" translatable="false">Hi, we are a pair of designer and programmer, who created %s .
+    We endeavour to build beautiful, carefully designed free, ad-free or minimal ads apps which serve great utility to everyone!</string>
 </resources>

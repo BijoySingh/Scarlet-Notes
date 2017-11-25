@@ -61,7 +61,7 @@ class ExportNotesBottomSheet : SimpleBottomSheetFragment() {
       intent.putExtra(Intent.EXTRA_STREAM, uri)
       startActivity(Intent.createChooser(intent, getString(R.string.share_using)))
 
-      dismiss()g
+      dismiss()
     }
   }
 

@@ -20,4 +20,29 @@
   <string name="format_hint_quote">הוסף טקסט מצוטט &#8230;</string>
   <string name="format_hint_list">הוסף פריט&#8230;</string>
   <string name="format_hint_code">הוסף קוד &#8230;</string>
+
+  <string name="home_option_sheet_title">אפשרויות והגדרות</string>
+  <string name="home_option_export">הערות ייצוא</string>
+  <string name="home_option_export_subtitle">ייצא הערות לאחסון המכשיר כדי לשתף</string>
+  <string name="home_option_import">ייבוא הערות</string>
+  <string name="home_option_import_subtitle">ייבא הערות מאחסון המכשיר</string>
+  <string name="home_option_about_page">עלינו</string>
+  <string name="home_option_about_page_subtitle">למידע נוסף על האפליקציה ועל היזמים</string>
+  <string name="home_option_rate_and_review">דרג סקירה</string>
+  <string name="home_option_rate_and_review_subtitle">ספר לנו כמה אתה אוהב את האפליקציה</string>
+  <string name="permission_layout_give_permission">תן הרשאות</string>
+  <string name="permission_layout_give_permission_details">ייבוא וייצוא מחייבים הרשאות אחסון. תן את ההרשאה כנדרש.</string>
+  <string name="permission_layout_give_permission_ok">להתיר</string>
+  <string name="import_export_import_file_title">ייבא גיבוי מקובץ</string>
+  <string name="import_export_import_file">ייבוא קובץ</string>
+  <string name="import_export_layout_exported">מיוצא לקובץ</string>
+  <string name="import_export_layout_export_failed">הייצוא נכשל</string>
+  <string name="import_export_layout_exporting">ייצוא ל- fileâ €</string>
+  <string name="import_export_layout_exporting_done">בוצע</string>
+  <string name="import_export_layout_exporting_share">לַחֲלוֹק</string>
+  <string name="about_page_title">אודותינו ועוד</string>
+  <string name="about_page_rate">שיעור על חנות Play</string>
+  <string name="about_page_contribute">לתרום</string>
+  <string name="about_page_app_version">גרסת האפליקציה</string>
+  <string name="about_page_about_app">על האפליקציה</string>
 </resources>

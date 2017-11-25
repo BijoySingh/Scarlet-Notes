@@ -20,4 +20,30 @@
   <string name="format_hint_quote">कोट केलेला मजकूर जोडा &#8230;</string>
   <string name="format_hint_list">आयटम जोडा &#8230;</string>
   <string name="format_hint_code">कोड जोडा &#8230;</string>
+  <string name="home_option_sheet_title">पर्याय आणि सेटिंग्ज</string>
+  <string name="home_option_export">निर्यात नोट्स</string>
+  <string name="home_option_export_subtitle">शेअर करण्यासाठी डिव्हाइस संचयन वर नोट्स निर्यात करा</string>
+  <string name="home_option_import">नोट्स आयात करा</string>
+  <string name="home_option_import_subtitle">डिव्हाइस संचयन मधून आयात नोट्स आयात करा</string>
+  <string name="home_option_about_page">आमच्या विषयी</string>
+  <string name="home_option_about_page_subtitle">अॅप आणि विकासकांबद्दल अधिक जाणून घ्या</string>
+  <string name="home_option_rate_and_review">रेट आणि पुनरावलोकन</string>
+  <string name="home_option_rate_and_review_subtitle">आपल्याला अॅप आवडला हे आम्हाला सांगा</string>
+  <string name="permission_layout_give_permission">परवानगी द्या</string>
+  <string name="permission_layout_give_permission_details">आयात आणि निर्यात संचयन परवान्यांसाठी आवश्यक आहे. विनंती केल्यावर परवानगी द्या.</string>
+  <string name="permission_layout_give_permission_ok">परवानगी द्या</string>
+  <string name="import_export_import_file_title">फाइलमधून बॅकअप आयात करा</string>
+  <string name="import_export_import_file">फाईल आयात करा</string>
+  <string name="import_export_layout_exported">फाईलवर निर्यात केले</string>
+  <string name="import_export_layout_export_failed">निर्यात अयशस्वी</string>
+  <string name="import_export_layout_exporting">फाईलवर निर्यात करत आहे &#8230; |</string>
+  <string name="import_export_layout_exporting_done">झाले</string>
+  <string name="import_export_layout_exporting_share">सामायिक करा</string>
+  <string name="about_page_title">आमच्याबद्दल आणि बरेच काही</string>
+  <string name="about_page_rate">प्ले स्टोअरवर रेट करा</string>
+  <string name="about_page_contribute">योगदान द्या</string>
+  <string name="about_page_app_version">अॅप आवृत्ती</string>
+  <string name="about_page_about_app">अॅप बद्दल</string>
+
+
 </resources>

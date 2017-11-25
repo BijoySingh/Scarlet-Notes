@@ -20,4 +20,30 @@
   <string name="format_hint_quote">添加引號文本&#8230;</string>
   <string name="format_hint_list">新增項目&#8230;</string>
   <string name="format_hint_code">添加代碼&#8230;</string>
+
+  <string name="home_option_sheet_title">選項和設置</string>
+  <string name="home_option_export">導出註釋</string>
+  <string name="home_option_export_subtitle">將筆記導出到設備存儲以進行共享</string>
+  <string name="home_option_import">導入註釋</string>
+  <string name="home_option_import_subtitle">從設備存儲導入筆記</string>
+  <string name="home_option_about_page">關於我們</string>
+  <string name="home_option_about_page_subtitle">了解更多關於應用程序和開發人員</string>
+  <string name="home_option_rate_and_review">打分和評論</string>
+  <string name="home_option_rate_and_review_subtitle">告訴我們你知道你有多喜歡這個應用程序</string>
+  <string name="permission_layout_give_permission">授予權限</string>
+  <string name="permission_layout_give_permission_details">導入和導出需要存儲權限。 請求時請給予許可。</string>
+  <string name="permission_layout_give_permission_ok">允許</string>
+  <string name="import_export_import_file_title">從文件導入備份</string>
+  <string name="import_export_import_file">導入文件</string>
+  <string name="import_export_layout_exported">導出到文件</string>
+  <string name="import_export_layout_export_failed">導出失敗</string>
+  <string name="import_export_layout_exporting">導出到文件&#8230;</string>
+  <string name="import_export_layout_exporting_done">完成</string>
+  <string name="import_export_layout_exporting_share">分享</string>
+  <string name="about_page_title">關於我們和更多</string>
+  <string name="about_page_rate">Play商店的價格</string>
+  <string name="about_page_contribute">有助於</string>
+  <string name="about_page_app_version">應用程式版本</string>
+  <string name="about_page_about_app">關於應用</string>
+
 </resources>

@@ -20,4 +20,30 @@
   <string name="format_hint_quote">Ajouter un texte cité &#8230;</string>
   <string name="format_hint_list">Ajouter un item&#8230;</string>
   <string name="format_hint_code">Ajouter un code &#8230;</string>
+
+  <string name="home_option_sheet_title">Options et paramètres</string>
+  <string name="home_option_export">Exporter des notes</string>
+  <string name="home_option_export_subtitle">Exporter des notes vers le stockage de l\'appareil à partager</string>
+  <string name="home_option_import">Importer des notes</string>
+  <string name="home_option_import_subtitle">Importer des notes depuis le stockage de l\'appareil</string>
+  <string name="home_option_about_page">À propos de nous</string>
+  <string name="home_option_about_page_subtitle">En savoir plus sur l\'application et les développeurs</string>
+  <string name="home_option_rate_and_review">Notez et évaluez</string>
+  <string name="home_option_rate_and_review_subtitle">Dites-nous à quel point vous avez aimé l\'application</string>
+  <string name="permission_layout_give_permission">Accorder des autorisations</string>
+  <string name="permission_layout_give_permission_details">L\'importation et l\'exportation nécessitent des autorisations de stockage. S\'il vous plaît donner la permission sur demande.</string>
+  <string name="permission_layout_give_permission_ok">Permettre</string>
+  <string name="import_export_import_file_title">Importer une sauvegarde depuis un fichier</string>
+  <string name="import_export_import_file">Importer le fichier</string>
+  <string name="import_export_layout_exported">Exporté vers un fichier</string>
+  <string name="import_export_layout_export_failed">L\'exportation a échoué</string>
+  <string name="import_export_layout_exporting">Exportation vers un fichier &#8230;</string>
+  <string name="import_export_layout_exporting_done">Terminé</string>
+  <string name="import_export_layout_exporting_share">Partager</string>
+  <string name="about_page_title">À propos de nous et plus</string>
+  <string name="about_page_rate">Noter sur le Play Store</string>
+  <string name="about_page_contribute">Contribuer</string>
+  <string name="about_page_app_version">Version de l\'application</string>
+  <string name="about_page_about_app">À propos d\'App</string>
+
 </resources>

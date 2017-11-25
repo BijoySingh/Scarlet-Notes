@@ -1,12 +1,15 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
+import com.github.bijoysingh.starter.util.IntentUtils
 
 
 class AboutUsBottomSheet : SimpleBottomSheetFragment() {
@@ -20,6 +23,9 @@ class AboutUsBottomSheet : SimpleBottomSheetFragment() {
     val aboutApp = dialog.findViewById<TextView>(R.id.about_app)
     val openSource = dialog.findViewById<TextView>(R.id.open_source)
     val appVersion = dialog.findViewById<TextView>(R.id.app_version)
+
+    val contribute = dialog.findViewById<View>(R.id.contribute)
+    val rateUs = dialog.findViewById<View>(R.id.rate_us)
 
     MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<String> {
       override fun run(): String {
@@ -46,6 +52,16 @@ class AboutUsBottomSheet : SimpleBottomSheetFragment() {
         openSource.text = openSourceDetails
 
         appVersion.text = result
+
+        contribute.setOnClickListener {
+          context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_URL)))
+          dismiss()
+        }
+
+        rateUs.setOnClickListener {
+          IntentUtils.openAppPlayStore(activity)
+          dismiss()
+        }
       }
     })
   }
@@ -53,6 +69,9 @@ class AboutUsBottomSheet : SimpleBottomSheetFragment() {
   override fun getLayout(): Int = R.layout.bottom_sheet_about_page
 
   companion object {
+
+    val GITHUB_URL = "https://github.com/BijoySingh/Material-Notes-Android-App"
+
     fun openSheet(activity: MainActivity) {
       val sheet = AboutUsBottomSheet()
       sheet.show(activity.supportFragmentManager, sheet.tag)
