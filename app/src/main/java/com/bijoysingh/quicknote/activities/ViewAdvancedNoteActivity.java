@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -63,10 +64,19 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     note = Note.db(this).getByID(getIntent().getIntExtra(NOTE_ID, 0));
     note = note == null ? Note.gen() : note;
 
+    isNightMode = getIntent().getBooleanExtra(KEY_NIGHT_THEME, false);
+
     rootView = findViewById(R.id.root_layout);
     setRecyclerView();
     setToolbars();
     setEditMode();
+  }
+
+  public static Intent getIntent(Context context, Note note, boolean nightMode) {
+    Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
+    intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, note.uid);
+    intent.putExtra(KEY_NIGHT_THEME, nightMode);
+    return intent;
   }
 
   @Override

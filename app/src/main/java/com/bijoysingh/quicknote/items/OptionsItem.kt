@@ -4,6 +4,6 @@ import android.view.View
 
 class OptionsItem(
     val title: Int,
-    val subtitle: Int = 0,
+    val subtitle: Int,
     val icon: Int,
     val listener: View.OnClickListener)

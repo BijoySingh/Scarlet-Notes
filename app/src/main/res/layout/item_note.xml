@@ -78,20 +78,9 @@
           android:textSize="12sp"/>
 
       <ImageView
-          android:id="@+id/popup_button"
-          style="@style/NoteItemActionIcon"
-          android:src="@drawable/ic_bubble_chart_white_48dp"/>
-
-      <ImageView
           android:id="@+id/delete_button"
           style="@style/NoteItemActionIcon"
           android:src="@drawable/ic_delete_white_48dp"/>
-
-      <ImageView
-          android:id="@+id/copy_button"
-          style="@style/NoteItemActionIcon"
-          android:padding="9dp"
-          android:src="@drawable/ic_content_copy_white_48dp"/>
 
       <ImageView
           android:id="@+id/share_button"
@@ -102,6 +91,11 @@
           android:id="@+id/edit_button"
           style="@style/NoteItemActionIcon"
           android:src="@drawable/ic_edit_white_48dp"/>
+
+      <ImageView
+        android:id="@+id/options_button"
+        style="@style/NoteItemActionIcon"
+        android:src="@drawable/ic_more_horiz_white_48dp"/>
 
     </LinearLayout>
   </LinearLayout>

@@ -14,7 +14,7 @@ class HomeBottomSheet : OptionItemBottomSheetBase() {
     setOptions(dialog, getOptions())
   }
 
-  override fun getOptions(): List<OptionsItem> {
+  private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(

@@ -13,12 +13,20 @@
   <string name="main_add_a_note">Add a note&#8230;</string>
   <string name="main_add_a_quick_note">Add a quick note&#8230;</string>
 
+  <string name="open_note_night_mode">Night Mode</string>
   <string name="edit_note">Edit Note</string>
   <string name="open_in_popup">Open In Popup</string>
   <string name="delete_note">Delete Note</string>
   <string name="copy_note">Copy Note</string>
   <string name="send_note">Send Note</string>
   <string name="choose_action">Choose Action&#8230;</string>
+
+  <string name="tap_for_action_open_note_night_mode">Tap to view the note in night mode</string>
+  <string name="tap_for_action_edit">Tap to open note for editing</string>
+  <string name="tap_for_action_copy">Tap to copy note content to clipboard</string>
+  <string name="tap_for_action_share">Tap to share note content to other apps</string>
+  <string name="tap_for_action_popup">Tap to open note in floating popup</string>
+  <string name="tap_for_action_delete">Tap to delete the note</string>
 
   <string name="format_hint_text">Add Content&#8230;</string>
   <string name="format_hint_heading">Add Heading&#8230;</string>

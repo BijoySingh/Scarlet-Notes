@@ -9,8 +9,8 @@ android {
         applicationId "com.bijoysingh.quicknote"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 14
-        versionName "v2.11.0"
+        versionCode 15
+        versionName "2.12.0"
     }
     buildTypes {
         release {
@@ -34,7 +34,7 @@ dependencies {
 
     compile 'com.github.bijoysingh:android-basics:3.1.2'
     compile 'com.github.bijoysingh:ui-basics:0.2.0'
-    compile 'com.github.bijoysingh:floating-bubble:1.2.0'
+    compile 'com.github.bijoysingh:floating-bubble:1.2.1'
     compile 'com.github.clans:fab:1.6.3'
     compile 'com.google.android:flexbox:0.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

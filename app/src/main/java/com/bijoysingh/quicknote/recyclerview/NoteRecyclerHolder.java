@@ -14,6 +14,7 @@ import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
 import com.bijoysingh.quicknote.activities.MainActivity;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
+import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
 import com.bijoysingh.quicknote.items.RecyclerItem;
@@ -28,11 +29,10 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
   private TextView timestamp;
   private TextView title;
   private TextView description;
-  private ImageView popUp;
   private ImageView edit;
   private ImageView share;
   private ImageView delete;
-  private ImageView copy;
+  private ImageView moreOptions;
   private MainActivity activity;
 
   /**
@@ -44,15 +44,14 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
   public NoteRecyclerHolder(Context context, View view) {
     super(context, view);
     this.view = (CardView) view;
-    timestamp = (TextView) view.findViewById(R.id.timestamp);
-    title = (TextView) view.findViewById(R.id.title);
-    description = (TextView) view.findViewById(R.id.description);
-    share = (ImageView) view.findViewById(R.id.share_button);
-    delete = (ImageView) view.findViewById(R.id.delete_button);
+    timestamp = view.findViewById(R.id.timestamp);
+    title = view.findViewById(R.id.title);
+    description = view.findViewById(R.id.description);
+    share = view.findViewById(R.id.share_button);
+    delete = view.findViewById(R.id.delete_button);
     activity = (MainActivity) context;
-    copy = (ImageView) view.findViewById(R.id.copy_button);
-    popUp = (ImageView) view.findViewById(R.id.popup_button);
-    edit = (ImageView) view.findViewById(R.id.edit_button);
+    moreOptions = view.findViewById(R.id.options_button);
+    edit = view.findViewById(R.id.edit_button);
   }
 
   @Override
@@ -87,22 +86,16 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
         data.share(context);
       }
     });
-    copy.setOnClickListener(new View.OnClickListener() {
+    moreOptions.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        data.copy(context);
+        NoteOptionsBottomSheet.Companion.openSheet(activity, data);
       }
     });
     edit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         data.edit(context);
-      }
-    });
-    popUp.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        data.popup(activity);
       }
     });
 
