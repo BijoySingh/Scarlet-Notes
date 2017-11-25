@@ -2,37 +2,22 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.view.View
-import android.widget.LinearLayout
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
-import com.bijoysingh.quicknote.items.HomeOptionsItem
-import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
+import com.bijoysingh.quicknote.items.OptionsItem
 import com.github.bijoysingh.starter.util.IntentUtils
-import com.github.bijoysingh.uibasics.views.UIContentView
 
-class HomeBottomSheet : SimpleBottomSheetFragment() {
-  override fun setupView(dialog: Dialog?) {
-    if (dialog == null) {
-      return
-    }
-
-    val layout = dialog.findViewById<LinearLayout>(R.id.options_layout);
-    for (option in getOptions()) {
-      val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIContentView
-      contentView.setTitle(option.title)
-      contentView.setSubtitle(option.subtitle)
-      contentView.setOnClickListener(option.listener)
-      contentView.setImageResource(option.icon)
-      layout.addView(contentView)
-    }
+class HomeBottomSheet : OptionItemBottomSheetBase() {
+  override fun setupViewWithDialog(dialog: Dialog) {
+    setOptions(dialog, getOptions())
   }
 
-  internal fun getOptions(): List<HomeOptionsItem> {
+  override fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
-    val options = ArrayList<HomeOptionsItem>()
-    options.add(HomeOptionsItem(
+    val options = ArrayList<OptionsItem>()
+    options.add(OptionsItem(
         title = R.string.home_option_export,
         subtitle = R.string.home_option_export_subtitle,
         icon = R.drawable.ic_export,
@@ -46,7 +31,7 @@ class HomeBottomSheet : SimpleBottomSheetFragment() {
           }
         }
     ))
-    options.add(HomeOptionsItem(
+    options.add(OptionsItem(
         title = R.string.home_option_import,
         subtitle = R.string.home_option_import_subtitle,
         icon = R.drawable.ic_import,
@@ -60,7 +45,7 @@ class HomeBottomSheet : SimpleBottomSheetFragment() {
           }
         }
     ))
-    options.add(HomeOptionsItem(
+    options.add(OptionsItem(
         title = R.string.home_option_about_page,
         subtitle = R.string.home_option_about_page_subtitle,
         icon = R.drawable.ic_info,
@@ -69,7 +54,7 @@ class HomeBottomSheet : SimpleBottomSheetFragment() {
           dismiss()
         }
     ))
-    options.add(HomeOptionsItem(
+    options.add(OptionsItem(
         title = R.string.home_option_rate_and_review,
         subtitle = R.string.home_option_rate_and_review_subtitle,
         icon = R.drawable.ic_rating,
