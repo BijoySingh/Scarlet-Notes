@@ -31,7 +31,7 @@
   <string name="home_option_rate_and_review">ਰੇਟ ਅਤੇ ਰਿਵਿਊ</string>
   <string name="home_option_rate_and_review_subtitle">ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਐਪ ਨੂੰ ਕਿੰਨੀ ਪਸੰਦ ਕੀਤਾ</string>
   <string name="permission_layout_give_permission">ਅਧਿਕਾਰ ਦਿਓ</string>
-  <string name="permission_layout_give_permission_details">ਆਯਾਤ ਅਤੇ ਨਿਰਯਾਤ ਲਈ ਸਟੋਰੇਜ਼ ਅਧਿਕਾਰਾਂ ਦੀ ਲੋੜ ਹੈ ਬੇਨਤੀ ਕਰਨ 'ਤੇ ਕਿਰਪਾ ਕਰਕੇ ਇਜਾਜ਼ਤ ਦਿਓ.</string>
+  <string name="permission_layout_give_permission_details">ਆਯਾਤ ਅਤੇ ਨਿਰਯਾਤ ਲਈ ਸਟੋਰੇਜ਼ ਅਧਿਕਾਰਾਂ ਦੀ ਲੋੜ ਹੈ ਬੇਨਤੀ ਕਰਨ \'ਤੇ ਕਿਰਪਾ ਕਰਕੇ ਇਜਾਜ਼ਤ ਦਿਓ.</string>
   <string name="permission_layout_give_permission_ok">ਦੀ ਇਜਾਜ਼ਤ</string>
   <string name="import_export_import_file_title">ਫਾਇਲ ਤੋਂ ਬੈਕਅੱਪ ਆਯਾਤ ਕਰੋ</string>
   <string name="import_export_import_file">ਫਾਇਲ ਆਯਾਤ ਕਰੋ</string>
@@ -45,5 +45,35 @@
   <string name="about_page_contribute">ਯੋਗਦਾਨ</string>
   <string name="about_page_app_version">ਐਪ ਵਰਜ਼ਨ</string>
   <string name="about_page_about_app">ਐਪ ਬਾਰੇ</string>
+
+  <string name="open_note_night_mode">ਨਾਈਟ ਮੋਡ</string>
+  <string name="delete_note_permanently">ਹਮੇਸ਼ਾ ਲਈ ਹਟਾਓ</string>
+  <string name="unarchive_note">ਅਨਾਰਚਾਇਜ਼ ਨੋਟ</string>
+  <string name="archive_note">ਆਰਕਾਈਵ ਸੂਚਨਾ</string>
+  <string name="not_favourite_note">ਨਿਸ਼ਾਨ ਨਾ ਪਸੰਦ ਕਰੋ</string>
+  <string name="favourite_note">ਮਰਕੁਸ ਪਸੰਦੀਦਾ</string>
+  <string name="restore_note">ਨੋਟ ਰੀਸਟੋਰ ਕਰੋ</string>
+  <string name="trash_note">ਰੱਦੀ \'ਚ ਭੇਜੋ</string>
+  <string name="tap_for_action_open_note_night_mode">ਰਾਤ ਨੂੰ ਮੋਡ ਵਿੱਚ ਨੋਟ ਦੇਖਣ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_edit">ਸੰਪਾਦਨ ਲਈ ਨੋਟ ਖੋਲ੍ਹਣ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_copy">ਸੂਚਨਾ ਸਮੱਗਰੀ ਦੀ ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_share">ਹੋਰ ਐਪਸ ਤੇ ਨੋਟ ਸਮੱਗਰੀ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_popup">ਫਲੋਟਿੰਗ ਪੋਪਅੱਪ ਵਿੱਚ ਨੋਟ ਖੋਲ੍ਹਣ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_delete">ਨੋਟ ਮਿਟਾਉਣ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_trash">ਸੂਚਨਾ ਨੂੰ ਰੱਦੀ ਵਿਚ ਭੇਜਣ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_not_trash">ਨੋਟ ਨੂੰ ਟ੍ਰੈਸ਼ ਤੋਂ ਬਾਹਰ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_favourite">ਨੋਟ ਨੂੰ ਪਸੰਦੀਦਾ ਵਜੋਂ ਨਿਸ਼ਾਨਬੱਧ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_not_favourite">ਨੋਟ ਨੂੰ ਮਨਪਸੰਦ ਨਾ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_archive">ਨੋਟ ਨੂੰ ਅਕਾਇਵ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_not_archive">ਨੋਟ ਨੂੰ ਅਨਾਰਿਚ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="nav_sheet_title">ਤੁਹਾਡੇ ਨੋਟਸ |</string>
+  <string name="nav_home">ਘਰ</string>
+  <string name="nav_home_details">ਤੁਹਾਡੇ ਸਾਰੇ ਆਮ ਅਤੇ ਮਨਪਸੰਦ ਨੋਟਸ</string>
+  <string name="nav_favourites">ਮਨਪਸੰਦ</string>
+  <string name="nav_favourites_details">ਤੁਹਾਡੇ ਸਾਰੇ ਪਸੰਦੀਦਾ ਨੋਟਸ</string>
+  <string name="nav_archived">ਆਰਕਾਈਵਡ</string>
+  <string name="nav_archived_details">ਤੁਹਾਡੇ ਸਾਰੇ ਸੰਗ੍ਰਹਿਤ ਨੋਟਸ</string>
+  <string name="nav_trash">ਟ੍ਰੈਸ਼</string>
+  <string name="nav_trash_details">ਰੱਦੀ ਵਿੱਚ ਤੁਹਾਡੇ ਸਾਰੇ ਨੋਟਸ</string>
 
 </resources>

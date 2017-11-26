@@ -45,4 +45,35 @@
   <string name="about_page_contribute">অবদান</string>
   <string name="about_page_app_version">অ্যাপ সংস্করণ</string>
   <string name="about_page_about_app">অ্যাপ সম্পর্কে</string>
+
+  <string name="open_note_night_mode">রাত মোড</string>
+  <string name="delete_note_permanently">চিরতরে মুছে দাও</string>
+  <string name="unarchive_note">অব্যবহৃত নোট</string>
+  <string name="archive_note">আর্কাইভ নোট</string>
+  <string name="not_favourite_note">চিহ্ন না পছন্দ করুন</string>
+  <string name="favourite_note">চিহ্নিত করুন প্রিয়</string>
+  <string name="restore_note">নোট পুনরুদ্ধার করুন</string>
+  <string name="trash_note">আবর্জনা সরান</string>
+  <string name="tap_for_action_open_note_night_mode">রাতের মোডে নোট দেখতে ট্যাপ করুন</string>
+  <string name="tap_for_action_edit">সম্পাদনা করার জন্য নোটটি খুলতে ট্যাপ করুন</string>
+  <string name="tap_for_action_copy">ক্লিপবোর্ডে নোট সামগ্রী কপি করতে আলতো চাপুন</string>
+  <string name="tap_for_action_share">অন্যান্য অ্যাপ্লিকেশনে নোট সামগ্রী ভাগ করতে আলতো চাপুন</string>
+  <string name="tap_for_action_popup">ভাসমান পপআপে নোটটি খুলতে ট্যাপ করুন</string>
+  <string name="tap_for_action_delete">নোটটি মুছে ফেলতে আলতো চাপুন</string>
+  <string name="tap_for_action_trash">নোটে ট্র্যাশ সরাতে আলতো চাপুন</string>
+  <string name="tap_for_action_not_trash">ট্র্যাশের বাইরে নোট সরানোর জন্য আলতো চাপুন</string>
+  <string name="tap_for_action_favourite">প্রিয় হিসাবে নোট চিহ্নিত করতে আলতো চাপুন</string>
+  <string name="tap_for_action_not_favourite">নোট হিসাবে প্রিয় হিসাবে চিহ্নিত করতে আলতো চাপুন</string>
+  <string name="tap_for_action_archive">নোট আর্কাইভ করতে আলতো চাপুন</string>
+  <string name="tap_for_action_not_archive">নোট অযাচাই করার জন্য আলতো চাপুন</string>
+  <string name="nav_sheet_title">আপনার নোটস |</string>
+  <string name="nav_home">বাড়ি</string>
+  <string name="nav_home_details">আপনার সব স্বাভাবিক এবং প্রিয় নোট</string>
+  <string name="nav_favourites">প্রিয়</string>
+  <string name="nav_favourites_details">আপনার প্রিয় নোট সব</string>
+  <string name="nav_archived">আর্কাইভ করা</string>
+  <string name="nav_archived_details">আপনার সংরক্ষণাগারভুক্ত সমস্ত নোট</string>
+  <string name="nav_trash">আবর্জনা</string>
+  <string name="nav_trash_details">ট্র্যাশ আপনার সমস্ত নোট</string>
+
 </resources>

@@ -46,4 +46,34 @@
   <string name="about_page_app_version">Versi App</string>
   <string name="about_page_about_app">Mengenai App</string>
 
+  <string name="open_note_night_mode">Mod malam</string>
+  <string name="delete_note_permanently">Padamkan secara kekal</string>
+  <string name="unarchive_note">Nota Unarkif</string>
+  <string name="archive_note">Nota Arkib</string>
+  <string name="not_favourite_note">Tandakan Bukan Kegemaran</string>
+  <string name="favourite_note">Tandakan Kegemaran</string>
+  <string name="restore_note">Pulihkan Nota</string>
+  <string name="trash_note">Pindah ke tong sampah</string>
+  <string name="tap_for_action_open_note_night_mode">Ketik untuk melihat nota dalam mod malam</string>
+  <string name="tap_for_action_edit">Ketik untuk membuka nota untuk mengedit</string>
+  <string name="tap_for_action_copy">Ketik untuk menyalin kandungan nota ke papan keratan</string>
+  <string name="tap_for_action_share">Ketik untuk berkongsi kandungan nota ke apl lain</string>
+  <string name="tap_for_action_popup">Ketik untuk membuka nota dalam pop timbul</string>
+  <string name="tap_for_action_delete">Ketik untuk memadam nota</string>
+  <string name="tap_for_action_trash">Ketik untuk memindahkan nota ke sampah</string>
+  <string name="tap_for_action_not_trash">Ketik untuk memindahkan nota dari sampah</string>
+  <string name="tap_for_action_favourite">Ketik untuk menandakan nota sebagai kegemaran</string>
+  <string name="tap_for_action_not_favourite">Ketik untuk menandakan nota sebagai kegemaran</string>
+  <string name="tap_for_action_archive">Ketik untuk mengarkibkan nota tersebut</string>
+  <string name="tap_for_action_not_archive">Ketik untuk menyusun notarkar nota</string>
+  <string name="nav_sheet_title">Nota andaâ € |</string>
+  <string name="nav_home">Rumah</string>
+  <string name="nav_home_details">Semua nota biasa dan kegemaran anda</string>
+  <string name="nav_favourites">Kegemaran</string>
+  <string name="nav_favourites_details">Semua nota kegemaran anda</string>
+  <string name="nav_archived">Diarkibkan</string>
+  <string name="nav_archived_details">Semua nota arkib anda</string>
+  <string name="nav_trash">Sampah</string>
+  <string name="nav_trash_details">Semua nota anda di dalam tong sampah</string>
+
 </resources>

@@ -46,4 +46,34 @@
   <string name="about_page_app_version">Uygulama sürümü</string>
   <string name="about_page_about_app">App Hakkında</string>
 
+  <string name="open_note_night_mode">Gece modu</string>
+  <string name="delete_note_permanently">kalıcı olarak sil</string>
+  <string name="unarchive_note">Unarchive Not</string>
+  <string name="archive_note">Arşiv Notu</string>
+  <string name="not_favourite_note">Beğenmediğini işaretle</string>
+  <string name="favourite_note">Favoriyi işaretle</string>
+  <string name="restore_note">Notu Geri Yükle</string>
+  <string name="trash_note">Çöp kutusuna taşıyın</string>
+  <string name="tap_for_action_open_note_night_mode">Notu gece modunda görüntülemek için dokunun</string>
+  <string name="tap_for_action_edit">Düzenlemek için notu açmak için dokunun</string>
+  <string name="tap_for_action_copy">Not içeriğini panoya kopyalamak için dokunun</string>
+  <string name="tap_for_action_share">Not içeriğini diğer uygulamalara paylaşmak için dokunun</string>
+  <string name="tap_for_action_popup">Yüzen açılır pencerede notu açmak için hafifçe vurun</string>
+  <string name="tap_for_action_delete">Notu silmek için hafifçe dokunun</string>
+  <string name="tap_for_action_trash">Notu çöp kutusuna taşımak için hafifçe vurun</string>
+  <string name="tap_for_action_not_trash">Notu çöp kutusundan çıkarmak için hafifçe vurun</string>
+  <string name="tap_for_action_favourite">Notu favori olarak işaretlemek için dokunun</string>
+  <string name="tap_for_action_not_favourite">Notu favori olarak işaretlemek için dokunun</string>
+  <string name="tap_for_action_archive">Notu arşivlemek için hafifçe dokunun</string>
+  <string name="tap_for_action_not_archive">Notu arşivden kaldırmak için hafifçe dokunun</string>
+  <string name="nav_sheet_title">Notlarınız |</string>
+  <string name="nav_home">Ev</string>
+  <string name="nav_home_details">Normal ve favori notlarınızın tümü</string>
+  <string name="nav_favourites">Favoriler</string>
+  <string name="nav_favourites_details">En sevdiğiniz notların tümü</string>
+  <string name="nav_archived">Arşivlenen</string>
+  <string name="nav_archived_details">Arşivlenen notlarınızın tamamı</string>
+  <string name="nav_trash">Çöp</string>
+  <string name="nav_trash_details">Çöplerdeki notların tümü</string>
+
 </resources>

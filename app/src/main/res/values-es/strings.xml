@@ -45,4 +45,35 @@
   <string name="about_page_contribute">Contribuir</string>
   <string name="about_page_app_version">Version de aplicacion</string>
   <string name="about_page_about_app">Acerca de la aplicación</string>
+
+  <string name="open_note_night_mode">Modo nocturno</string>
+  <string name="delete_note_permanently">borrar permanentemente</string>
+  <string name="unarchive_note">Nota de desarchivo</string>
+  <string name="archive_note">Nota de archivo</string>
+  <string name="not_favourite_note">Marcar no favorito</string>
+  <string name="favourite_note">Marcar favorito</string>
+  <string name="restore_note">Restaurar nota</string>
+  <string name="trash_note">Mover a la papelera</string>
+  <string name="tap_for_action_open_note_night_mode">Toca para ver la nota en modo nocturno</string>
+  <string name="tap_for_action_edit">Toca para abrir una nota para editar</string>
+  <string name="tap_for_action_copy">Toca para copiar el contenido de la nota en el portapapeles</string>
+  <string name="tap_for_action_share">Toca para compartir contenido de notas en otras aplicaciones</string>
+  <string name="tap_for_action_popup">Toca para abrir una nota en ventana emergente flotante</string>
+  <string name="tap_for_action_delete">Toca para eliminar la nota</string>
+  <string name="tap_for_action_trash">Toca para mover la nota a la papelera</string>
+  <string name="tap_for_action_not_trash">Toca para mover la nota de la basura</string>
+  <string name="tap_for_action_favourite">Toca para marcar la nota como favorita</string>
+  <string name="tap_for_action_not_favourite">Toca para marcar la nota no como favorita</string>
+  <string name="tap_for_action_archive">Toca para archivar la nota</string>
+  <string name="tap_for_action_not_archive">Toca para desarchivar la nota</string>
+  <string name="nav_sheet_title">Sus notas &#8230;</string>
+  <string name="nav_home">Casa</string>
+  <string name="nav_home_details">Todas sus notas normales y favoritas</string>
+  <string name="nav_favourites">Favoritos</string>
+  <string name="nav_favourites_details">Todas tus notas favoritas</string>
+  <string name="nav_archived">Archivado</string>
+  <string name="nav_archived_details">Todas tus notas archivadas</string>
+  <string name="nav_trash">Basura</string>
+  <string name="nav_trash_details">Todas tus notas en la basura</string>
+
 </resources>

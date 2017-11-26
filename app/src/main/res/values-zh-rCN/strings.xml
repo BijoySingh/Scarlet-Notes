@@ -45,5 +45,35 @@
   <string name="about_page_contribute">有助于</string>
   <string name="about_page_app_version">应用程式版本</string>
   <string name="about_page_about_app">关于应用</string>
+  <string name="open_note_night_mode">夜间模式</string>
+  <string name="delete_note_permanently">永久删除</string>
+  <string name="unarchive_note">解除注意</string>
+  <string name="archive_note">存档注意</string>
+  <string name="not_favourite_note">标记不收藏</string>
+  <string name="favourite_note">标记收藏</string>
+  <string name="restore_note">还原注意</string>
+  <string name="trash_note">移到废纸篓</string>
+  <string name="tap_for_action_open_note_night_mode">点按即可在夜间模式下查看笔记</string>
+  <string name="tap_for_action_edit">点击以打开注释进行编辑</string>
+  <string name="tap_for_action_copy">点击将音符内容复制到剪贴板</string>
+  <string name="tap_for_action_share">点按即可将笔记内容分享到其他应用</string>
+  <string name="tap_for_action_popup">点击以打开浮动弹出窗口中的音符</string>
+  <string name="tap_for_action_delete">点击删除该笔记</string>
+  <string name="tap_for_action_trash">点击将注释移动到垃圾</string>
+  <string name="tap_for_action_not_trash">点击即可将垃圾邮件移出</string>
+  <string name="tap_for_action_favourite">点击将笔记标记为收藏夹</string>
+  <string name="tap_for_action_not_favourite">点击标记注意不是最喜欢的</string>
+  <string name="tap_for_action_archive">点击归档笔记</string>
+  <string name="tap_for_action_not_archive">点击以取消存档</string>
+  <string name="nav_sheet_title">你的笔记&#8230;</string>
+  <string name="nav_home">家</string>
+  <string name="nav_home_details">所有正常和最喜欢的笔记</string>
+  <string name="nav_favourites">最爱</string>
+  <string name="nav_favourites_details">所有你最喜欢的笔记</string>
+  <string name="nav_archived">存档</string>
+  <string name="nav_archived_details">所有的归档笔记</string>
+  <string name="nav_trash">垃圾</string>
+  <string name="nav_trash_details">你在垃圾桶里的所有笔记</string>
+
 
 </resources>

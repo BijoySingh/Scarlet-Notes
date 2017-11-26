@@ -16,6 +16,7 @@
   <string name="open_note_night_mode">Night Mode</string>
   <string name="edit_note">Edit Note</string>
   <string name="open_in_popup">Open In Popup</string>
+  <string name="delete_note">Delete Note</string>
   <string name="delete_note_permanently">Delete Permanently</string>
   <string name="copy_note">Copy Note</string>
   <string name="send_note">Send Note</string>

@@ -44,5 +44,34 @@
   <string name="about_page_contribute">有助於</string>
   <string name="about_page_app_version">應用程式版本</string>
   <string name="about_page_about_app">關於應用</string>
+  <string name="open_note_night_mode">夜間模式</string>
+  <string name="delete_note_permanently">永久刪除</string>
+  <string name="unarchive_note">解除注意</string>
+  <string name="archive_note">存檔注意</string>
+  <string name="not_favourite_note">標記不收藏</string>
+  <string name="favourite_note">標記收藏</string>
+  <string name="restore_note">還原註意</string>
+  <string name="trash_note">移到廢紙簍</string>
+  <string name="tap_for_action_open_note_night_mode">點按即可在夜間模式下查看筆記</string>
+  <string name="tap_for_action_edit">點擊以打開註釋進行編輯</string>
+  <string name="tap_for_action_copy">點擊將音符內容複製到剪貼板</string>
+  <string name="tap_for_action_share">點按即可將筆記內容分享到其他應用</string>
+  <string name="tap_for_action_popup">點擊打開浮動彈出窗口中的註釋</string>
+  <string name="tap_for_action_delete">點擊刪除該筆記</string>
+  <string name="tap_for_action_trash">點擊將註釋移動到垃圾</string>
+  <string name="tap_for_action_not_trash">點擊即可將垃圾郵件移出</string>
+  <string name="tap_for_action_favourite">點擊將筆記標記為收藏夾</string>
+  <string name="tap_for_action_not_favourite">點擊標記註意不是最喜歡的</string>
+  <string name="tap_for_action_archive">點擊歸檔筆記</string>
+  <string name="tap_for_action_not_archive">點擊以取消存檔</string>
+  <string name="nav_sheet_title">你的筆記&#8230;</string>
+  <string name="nav_home">家</string>
+  <string name="nav_home_details">所有正常和最喜歡的筆記</string>
+  <string name="nav_favourites">最愛</string>
+  <string name="nav_favourites_details">所有你最喜歡的筆記</string>
+  <string name="nav_archived">存檔</string>
+  <string name="nav_archived_details">所有的歸檔筆記</string>
+  <string name="nav_trash">垃圾</string>
+  <string name="nav_trash_details">你在垃圾桶裡的所有筆記</string>
 
 </resources>

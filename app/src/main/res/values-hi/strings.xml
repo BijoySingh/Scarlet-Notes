@@ -46,4 +46,33 @@
   <string name="about_page_app_version">एप्लिकेशन वेरीज़न</string>
   <string name="about_page_about_app">ऐप के बारे में</string>
 
+  <string name="open_note_night_mode">रात्री स्वरुप</string>
+  <string name="delete_note_permanently">स्थायी रूप से मिटाएं</string>
+  <string name="unarchive_note">अनचाही नोट</string>
+  <string name="archive_note">पुरालेख नोट</string>
+  <string name="not_favourite_note">मार्क ना पसंदीदा</string>
+  <string name="favourite_note">मार्क पसंदीदा</string>
+  <string name="restore_note">नोट पुनर्स्थापित करें</string>
+  <string name="trash_note">रद्दी में डालें</string>
+  <string name="tap_for_action_open_note_night_mode">रात मोड में नोट देखने के लिए टैप करें</string>
+  <string name="tap_for_action_edit">संपादन के लिए नोट खोलने के लिए टैप करें</string>
+  <string name="tap_for_action_copy">क्लिपबोर्ड पर नोट सामग्री कॉपी करने के लिए टैप करें</string>
+  <string name="tap_for_action_share">अन्य ऐप्स पर नोट सामग्री साझा करने के लिए टैप करें</string>
+  <string name="tap_for_action_popup">फ़्लोटिंग पॉपअप में नोट खोलने के लिए टैप करें</string>
+  <string name="tap_for_action_delete">नोट हटाने के लिए टैप करें</string>
+  <string name="tap_for_action_trash">नोट को ट्रैश में स्थानांतरित करने के लिए टैप करें</string>
+  <string name="tap_for_action_not_trash">नोट कचरा से बाहर ले जाने के लिए टैप करें</string>
+  <string name="tap_for_action_favourite">नोट पसंदीदा के रूप में चिह्नित करने के लिए टैप करें</string>
+  <string name="tap_for_action_not_favourite">नोट को पसंदीदा के रूप में चिह्नित करने के लिए टैप करें</string>
+  <string name="tap_for_action_archive">नोट संग्रह करने के लिए टैप करें</string>
+  <string name="tap_for_action_not_archive">ध्यान हटाने के लिए टैप करें</string>
+  <string name="nav_sheet_title">आपका नोट्स &#8230; |</string>
+  <string name="nav_home">होम</string>
+  <string name="nav_home_details">आपके सभी सामान्य और पसंदीदा नोट्स</string>
+  <string name="nav_favourites">पसंदीदा</string>
+  <string name="nav_favourites_details">आपके सभी पसंदीदा नोट्स</string>
+  <string name="nav_archived">संग्रहीत</string>
+  <string name="nav_archived_details">आपके सभी संग्रहीत नोट</string>
+  <string name="nav_trash">कचरा</string>
+  <string name="nav_trash_details">कचरा में आपके सभी नोट्स</string>
 </resources>

@@ -45,5 +45,34 @@
   <string name="about_page_app_version">अॅप आवृत्ती</string>
   <string name="about_page_about_app">अॅप बद्दल</string>
 
+  <string name="open_note_night_mode">रात्र मोड</string>
+  <string name="delete_note_permanently">कायमचे हटवा</string>
+  <string name="unarchive_note">टीप संग्रहण रद्द करा</string>
+  <string name="archive_note">संग्रहण टीप</string>
+  <string name="not_favourite_note">चिन्हांकित नाही आवडते</string>
+  <string name="favourite_note">मार्क पसंतीचा</string>
+  <string name="restore_note">टीप पुनर्संचयित करा</string>
+  <string name="trash_note">कचरा मध्ये हलवा</string>
+  <string name="tap_for_action_open_note_night_mode">रात्रीच्या मोडमध्ये टीप पाहण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_edit">संपादनासाठी टिप उघडण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_copy">टीप सामग्री क्लिपबोर्डवर कॉपी करण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_share">अन्य अॅप्सवर टीप सामग्री सामायिक करण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_popup">फ्लोटिंग पॉपअपमध्ये टीप उघडण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_delete">टीप हटविण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_trash">टीप कचर्यात हलविण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_not_trash">टीप कचरा बाहेर हलविण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_favourite">टीप आवडत्या म्हणून चिन्हांकित करण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_not_favourite">टीप आवडलेली म्हणून चिन्हांकित करण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_archive">टीप संग्रहित करण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_not_archive">टीप संग्रहित करणे अनइझम करण्यासाठी टॅप करा</string>
+  <string name="nav_sheet_title">आपले नोट्स &#8230; |</string>
+  <string name="nav_home">घर</string>
+  <string name="nav_home_details">आपल्या सर्व सामान्य आणि आवडत्या नोट्स</string>
+  <string name="nav_favourites">आवडते</string>
+  <string name="nav_favourites_details">आपल्या सर्व आवडत्या टिपा</string>
+  <string name="nav_archived">संग्रहित</string>
+  <string name="nav_archived_details">आपल्या सर्व संग्रहित टिपा</string>
+  <string name="nav_trash">कचरा</string>
+  <string name="nav_trash_details">कचरा मधील आपल्या सर्व नोट्स</string>
 
 </resources>

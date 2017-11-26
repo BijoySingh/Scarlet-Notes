@@ -46,4 +46,34 @@
   <string name="about_page_app_version">App Version</string>
   <string name="about_page_about_app">Über App</string>
 
+  <string name="open_note_night_mode">Nacht-Modus</string>
+  <string name="delete_note_permanently">Dauerhaft löschen</string>
+  <string name="unarchive_note">Nicht archivierende Notiz</string>
+  <string name="archive_note">Archivnotiz</string>
+  <string name="not_favourite_note">Mark nicht Favorit</string>
+  <string name="favourite_note">Mark Favorit</string>
+  <string name="restore_note">Hinweis wiederherstellen</string>
+  <string name="trash_note">Ab in den Müll</string>
+  <string name="tap_for_action_open_note_night_mode">Tippen Sie auf, um die Notiz im Nachtmodus anzuzeigen.</string>
+  <string name="tap_for_action_edit">Zum Öffnen der Notiz antippen</string>
+  <string name="tap_for_action_copy">Tippen Sie auf, um den Notizinhalt in die Zwischenablage zu kopieren</string>
+  <string name="tap_for_action_share">Tippen Sie auf, um Notizinhalte an andere Apps weiterzugeben</string>
+  <string name="tap_for_action_popup">Tippen Sie auf, um die Notiz im Popup zu öffnen</string>
+  <string name="tap_for_action_delete">Tippen Sie auf, um die Notiz zu löschen</string>
+  <string name="tap_for_action_trash">Tippen Sie auf, um die Notiz in den Papierkorb zu verschieben</string>
+  <string name="tap_for_action_not_trash">Tippen Sie auf, um die Notiz aus dem Papierkorb zu verschieben</string>
+  <string name="tap_for_action_favourite">Tippen Sie auf, um die Notiz als Favorit zu markieren.</string>
+  <string name="tap_for_action_not_favourite">Tippen Sie auf, um die Notiz nicht als Favorit zu markieren.</string>
+  <string name="tap_for_action_archive">Zum Archivieren der Notiz antippen</string>
+  <string name="tap_for_action_not_archive">Tippen Sie auf, um die Notiz auszurollen</string>
+  <string name="nav_sheet_title">Deine Notizen &#8230;</string>
+  <string name="nav_home">Zuhause</string>
+  <string name="nav_home_details">Alle Ihre normalen und Lieblings-Notizen</string>
+  <string name="nav_favourites">Favoriten</string>
+  <string name="nav_favourites_details">Alle deine Lieblingsnotizen</string>
+  <string name="nav_archived">Archiviert</string>
+  <string name="nav_archived_details">Alle archivierten Notizen</string>
+  <string name="nav_trash">Müll</string>
+  <string name="nav_trash_details">Alle Ihre Notizen im Papierkorb</string>
+
 </resources>

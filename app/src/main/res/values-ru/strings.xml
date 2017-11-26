@@ -46,4 +46,34 @@
   <string name="about_page_app_version">Версия приложения</string>
   <string name="about_page_about_app">О приложении</string>
 
+  <string name="open_note_night_mode">Ночной режим</string>
+  <string name="delete_note_permanently">Удалить навсегда</string>
+  <string name="unarchive_note">Unarchive Note</string>
+  <string name="archive_note">Архивная записка</string>
+  <string name="not_favourite_note">Отметить не нравится</string>
+  <string name="favourite_note">Отметить Избранное</string>
+  <string name="restore_note">Восстановить примечание</string>
+  <string name="trash_note">Переместить в корзину</string>
+  <string name="tap_for_action_open_note_night_mode">Нажмите, чтобы просмотреть заметку в ночном режиме</string>
+  <string name="tap_for_action_edit">Нажмите, чтобы открыть примечание для редактирования.</string>
+  <string name="tap_for_action_copy">Нажмите, чтобы скопировать содержимое заметки в буфер обмена</string>
+  <string name="tap_for_action_share">Нажмите, чтобы поделиться записью контента с другими приложениями.</string>
+  <string name="tap_for_action_popup">Нажмите, чтобы открыть заметку в всплывающем всплывающем окне</string>
+  <string name="tap_for_action_delete">Нажмите, чтобы удалить заметку</string>
+  <string name="tap_for_action_trash">Нажмите, чтобы переместить заметку в корзину</string>
+  <string name="tap_for_action_not_trash">Нажмите, чтобы переместить заметку из корзины</string>
+  <string name="tap_for_action_favourite">Нажмите, чтобы отметить заметку в качестве избранного.</string>
+  <string name="tap_for_action_not_favourite">Нажмите, чтобы отметить примечание не как избранное</string>
+  <string name="tap_for_action_archive">Нажмите, чтобы архивировать заметку</string>
+  <string name="tap_for_action_not_archive">Нажмите, чтобы разблокировать заметку</string>
+  <string name="nav_sheet_title">Ваши заметки |</string>
+  <string name="nav_home">Главная</string>
+  <string name="nav_home_details">Все ваши обычные и любимые заметки</string>
+  <string name="nav_favourites">Избранные</string>
+  <string name="nav_favourites_details">Все ваши любимые заметки</string>
+  <string name="nav_archived">Архивировано</string>
+  <string name="nav_archived_details">Все ваши заархивированные заметки</string>
+  <string name="nav_trash">дрянь</string>
+  <string name="nav_trash_details">Все ваши заметки в корзине</string>
+
 </resources>

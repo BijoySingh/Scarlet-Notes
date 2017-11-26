@@ -45,4 +45,34 @@
   <string name="about_page_contribute">לתרום</string>
   <string name="about_page_app_version">גרסת האפליקציה</string>
   <string name="about_page_about_app">על האפליקציה</string>
+
+  <string name="open_note_night_mode">מצב לילה</string>
+  <string name="delete_note_permanently">מחק לצמיתות</string>
+  <string name="unarchive_note">Unarchive הערה</string>
+  <string name="archive_note">הערה בארכיון</string>
+  <string name="not_favourite_note">סמן לא מועדף</string>
+  <string name="favourite_note">סמן מועדף</string>
+  <string name="restore_note">שחזור הערה</string>
+  <string name="trash_note">העבר לאשפה</string>
+  <string name="tap_for_action_open_note_night_mode">הקש כדי להציג את ההערה במצב לילה</string>
+  <string name="tap_for_action_edit">הקש כדי לפתוח פתק לעריכה</string>
+  <string name="tap_for_action_copy">הקש כדי להעתיק תוכן הערה ללוח</string>
+  <string name="tap_for_action_share">הקש כדי לשתף תוכן הערה ביישומים אחרים</string>
+  <string name="tap_for_action_popup">הקש כדי לפתוח פתק בחלון קופץ צף</string>
+  <string name="tap_for_action_delete">הקש כדי למחוק את ההערה</string>
+  <string name="tap_for_action_trash">הקש כדי להעביר הערה לאשפה</string>
+  <string name="tap_for_action_not_trash">הקש כדי להעביר הערה מתוך אשפה</string>
+  <string name="tap_for_action_favourite">הקש כדי לסמן את ההערה כמצוין</string>
+  <string name="tap_for_action_not_favourite">הקש כדי לסמן הערה לא כאתר מועדף</string>
+  <string name="tap_for_action_archive">הקש כדי להעביר לארכיון את ההערה</string>
+  <string name="tap_for_action_not_archive">הקש כדי לשחרר את ההערה מהארכיון</string>
+  <string name="nav_sheet_title">ההערות שלך</string>
+  <string name="nav_home">בית</string>
+  <string name="nav_home_details">כל ההערות הרגילות והמועדפות שלך</string>
+  <string name="nav_favourites">מועדפים</string>
+  <string name="nav_favourites_details">כל ההערות המועדפות עליך</string>
+  <string name="nav_archived">בארכיון</string>
+  <string name="nav_archived_details">כל ההערות שלך בארכיון</string>
+  <string name="nav_trash">אַשׁפָּה</string>
+  <string name="nav_trash_details">כל ההערות שלך באשפה</string>
 </resources>
