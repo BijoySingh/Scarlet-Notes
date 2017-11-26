@@ -9,8 +9,8 @@ android {
         applicationId "com.bijoysingh.quicknote"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 15
-        versionName "2.12.0"
+        versionCode 16
+        versionName "3.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
@@ -41,15 +41,13 @@ dependencies {
     compile 'com.android.support:cardview-v7:' + rootProject.supportLibVersion;
     compile 'com.android.support:support-v4:' + rootProject.supportLibVersion;
 
-
     compile 'android.arch.persistence.room:runtime:' + rootProject.archRoomVersion;
     compile 'android.arch.persistence.room:testing:' + rootProject.archRoomVersion;
     annotationProcessor 'android.arch.persistence.room:compiler:' + rootProject.archRoomVersion;
 
     compile 'com.github.bijoysingh:android-basics:3.1.2'
     compile 'com.github.bijoysingh:ui-basics:0.2.0'
-    compile 'com.github.bijoysingh:floating-bubble:1.2.1'
-    compile 'com.github.clans:fab:1.6.3'
+    compile 'com.github.bijoysingh:floating-bubble:1.2.0'
     compile 'com.google.android:flexbox:0.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
