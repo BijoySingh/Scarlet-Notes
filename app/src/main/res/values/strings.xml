@@ -16,11 +16,14 @@
   <string name="open_note_night_mode">Night Mode</string>
   <string name="edit_note">Edit Note</string>
   <string name="open_in_popup">Open In Popup</string>
-  <string name="delete_note">Delete Note</string>
+  <string name="delete_note_permanently">Delete Permanently</string>
   <string name="copy_note">Copy Note</string>
   <string name="send_note">Send Note</string>
+  <string name="unarchive_note">Unarchive Note</string>
   <string name="archive_note">Archive Note</string>
+  <string name="not_favourite_note">Mark Not Favourite</string>
   <string name="favourite_note">Mark Favourite</string>
+  <string name="restore_note">Restore Note</string>
   <string name="trash_note">Move to Trash</string>
   <string name="choose_action">Choose Action&#8230;</string>
 
@@ -31,8 +34,11 @@
   <string name="tap_for_action_popup">Tap to open note in floating popup</string>
   <string name="tap_for_action_delete">Tap to delete the note</string>
   <string name="tap_for_action_trash">Tap to move note to trash</string>
+  <string name="tap_for_action_not_trash">Tap to move note out of trash</string>
   <string name="tap_for_action_favourite">Tap to mark note as favourite</string>
+  <string name="tap_for_action_not_favourite">Tap to mark note not as favourite</string>
   <string name="tap_for_action_archive">Tap to archive the note</string>
+  <string name="tap_for_action_not_archive">Tap to unarchive the note</string>
 
   <string name="nav_sheet_title">Your Notes&#8230;</string>
   <string name="nav_home">Home</string>

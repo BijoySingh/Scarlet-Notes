@@ -143,6 +143,7 @@ public class Note {
 
   public static Note gen() {
     Note note = new Note();
+    note.state = NoteState.DEFAULT.name();
     note.timestamp = Calendar.getInstance().getTimeInMillis();
     note.displayTimestamp = DateFormatter.getDate(Calendar.getInstance());
     note.color = 0xFF00796B;
