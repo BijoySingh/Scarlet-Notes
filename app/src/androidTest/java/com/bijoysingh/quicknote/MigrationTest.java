@@ -27,7 +27,7 @@ public class MigrationTest {
 
   private static final String NOTE_V2 =
       "INSERT INTO note (title, description, displayTimestamp, timestamp, color) "
-          + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123);";
+          + "VALUES('RICH_NOTE', '{\"formats\":[]}', '6 August 2017', 32121312, 23123);";
 
   private static final String NOTE_V3 =
       "INSERT INTO note (title, description, displayTimestamp, timestamp, color, state) "
@@ -47,11 +47,19 @@ public class MigrationTest {
   public void migrate2To3() throws IOException {
     SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 2);
     database.execSQL(NOTE_V2);
+
+    String title = getValue(database, select(TABLE_NOTE, 1, "title"));
+    String description = getValue(database, select(TABLE_NOTE, 1, "description"));
+
     database.close();
 
     database = helper.runMigrationsAndValidate(TEST_DB, 3, false, MIGRATION_2_3);
     validate(database, select(TABLE_NOTE, 1));
     validateNotNullOrEmpty(database, select(TABLE_NOTE, 1, "state"));
+    String titleChanged = getValue(database, select(TABLE_NOTE, 1, "title"));
+    String descriptionChanged = getValue(database, select(TABLE_NOTE, 1, "description"));
+    Assert.assertTrue(TextUtils.areEqualNullIsEmpty(title, titleChanged));
+    Assert.assertTrue(TextUtils.areEqualNullIsEmpty(description, descriptionChanged));
 
     database.execSQL(NOTE_V3);
     validate(database, select(TABLE_NOTE, 2));
@@ -64,9 +72,13 @@ public class MigrationTest {
   }
 
   private static void validateNotNullOrEmpty(SupportSQLiteDatabase database, String query) {
+    Assert.assertTrue(!TextUtils.isNullOrEmpty(getValue(database, query)));
+  }
+
+  private static String getValue(SupportSQLiteDatabase database, String query) {
     Cursor cursor = database.query(query);
-    Assert.assertTrue(cursor.moveToNext());
-    Assert.assertTrue(!TextUtils.isNullOrEmpty(cursor.getString(0)));
+    cursor.moveToNext();
+    return cursor.getString(0);
   }
 
   private static String select(String table, int uid) {

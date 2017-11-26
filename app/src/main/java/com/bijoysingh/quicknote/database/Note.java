@@ -165,25 +165,4 @@ public class Note {
     note.description = Format.getNote(formats);
     return note;
   }
-
-  public static void transition2To3(Context context) {
-    List<Note> notes = Note.db(context).getAll();
-    for (Note note : notes) {
-      List<Format> formats = new ArrayList<>();
-      if (note.title != null && !note.title.isEmpty()) {
-        formats.add(new Format(FormatType.HEADING, note.title));
-      }
-      formats.add(new Format(FormatType.TEXT, note.description));
-      note.description = Format.getNote(formats);
-      note.save(context);
-    }
-  }
-
-  public static void transition3To4(Context context) {
-    List<Note> notes = Note.db(context).getAll();
-    for (Note note : notes) {
-      note.title = NoteType.RICH_NOTE.name();
-      note.save(context);
-    }
-  }
 }

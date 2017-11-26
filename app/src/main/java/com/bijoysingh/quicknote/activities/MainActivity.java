@@ -13,7 +13,6 @@ import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter;
-import com.bijoysingh.quicknote.utils.TransitionUtils;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
 
 import java.util.List;
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     adapter = new NoteAppAdapter(this);
 
-    TransitionUtils.transition(this);
     setupRecyclerView();
     setListeners();
     setupData();
