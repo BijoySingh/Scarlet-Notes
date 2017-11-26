@@ -18,6 +18,7 @@ import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.recyclerview.FormatAdapter;
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
+import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
 import com.google.android.flexbox.FlexboxLayout;
 
@@ -174,7 +175,11 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     actionDelete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        note.delete(context);
+        if (note.getNoteState() == NoteState.TRASH) {
+          note.delete(context);
+        } else {
+          note.mark(context, NoteState.TRASH);
+        }
         finish();
       }
     });

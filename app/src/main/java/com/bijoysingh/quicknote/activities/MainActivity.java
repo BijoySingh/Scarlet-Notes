@@ -151,9 +151,13 @@ public class MainActivity extends AppCompatActivity {
     };
   }
 
-  public void deleteItem(Note note) {
-    note.delete(this);
-    setupData();
+  public void moveItemToTrashOrDelete(Note note) {
+    if (mode == NoteState.TRASH) {
+      note.delete(this);
+      setupData();
+      return;
+    }
+    markItem(note, NoteState.TRASH);
   }
 
   public void markItem(Note note, NoteState state) {

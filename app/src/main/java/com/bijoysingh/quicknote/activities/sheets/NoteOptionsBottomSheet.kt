@@ -1,16 +1,13 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.content.Intent
 import android.view.View
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.NoteState
-import com.github.bijoysingh.starter.util.IntentUtils
 
 class NoteOptionsBottomSheet() : OptionItemBottomSheetBase() {
 
@@ -93,7 +90,7 @@ class NoteOptionsBottomSheet() : OptionItemBottomSheetBase() {
         subtitle = R.string.tap_for_action_delete,
         icon = R.drawable.ic_delete_white_48dp,
         listener = View.OnClickListener {
-          activity.deleteItem(note)
+          activity.moveItemToTrashOrDelete(note)
           dismiss()
         }
     ))

@@ -21,6 +21,7 @@
   <string name="send_note">Send Note</string>
   <string name="archive_note">Archive Note</string>
   <string name="favourite_note">Mark Favourite</string>
+  <string name="trash_note">Move to Trash</string>
   <string name="choose_action">Choose Action&#8230;</string>
 
   <string name="tap_for_action_open_note_night_mode">Tap to view the note in night mode</string>
@@ -28,7 +29,8 @@
   <string name="tap_for_action_copy">Tap to copy note content to clipboard</string>
   <string name="tap_for_action_share">Tap to share note content to other apps</string>
   <string name="tap_for_action_popup">Tap to open note in floating popup</string>
-  <string name="tap_for_action_delete">Tap to move note to trash</string>
+  <string name="tap_for_action_delete">Tap to delete the note</string>
+  <string name="tap_for_action_trash">Tap to move note to trash</string>
   <string name="tap_for_action_favourite">Tap to mark note as favourite</string>
   <string name="tap_for_action_archive">Tap to archive the note</string>
 

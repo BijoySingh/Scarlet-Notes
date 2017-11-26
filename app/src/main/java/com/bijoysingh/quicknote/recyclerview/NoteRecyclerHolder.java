@@ -77,7 +77,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     delete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        activity.deleteItem(data);
+        activity.moveItemToTrashOrDelete(data);
       }
     });
     share.setOnClickListener(new View.OnClickListener() {
@@ -126,7 +126,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
                 data.copy(context);
                 break;
               case 3:
-                activity.deleteItem(data);
+                activity.moveItemToTrashOrDelete(data);
                 break;
               case 4:
                 data.popup(activity);
