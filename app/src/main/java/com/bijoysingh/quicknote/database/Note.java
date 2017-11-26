@@ -96,6 +96,11 @@ public class Note {
     uid = 0;
   }
 
+  public void mark(Context context, NoteState noteState) {
+    state = noteState.name();
+    save(context);
+  }
+
   public void share(Context context) {
     new IntentUtils.ShareBuilder(context)
         .setSubject(getTitle())

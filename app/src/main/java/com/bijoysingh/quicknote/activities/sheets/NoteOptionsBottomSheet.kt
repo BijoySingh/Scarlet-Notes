@@ -9,6 +9,7 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.utils.NoteState
 import com.github.bijoysingh.starter.util.IntentUtils
 
 class NoteOptionsBottomSheet() : OptionItemBottomSheetBase() {
@@ -36,6 +37,7 @@ class NoteOptionsBottomSheet() : OptionItemBottomSheetBase() {
         icon = R.drawable.night_mode_white_48dp,
         listener = View.OnClickListener {
           context.startActivity(ViewAdvancedNoteActivity.getIntent(context, note, true))
+          dismiss()
         }
     ))
     options.add(OptionsItem(
@@ -44,6 +46,27 @@ class NoteOptionsBottomSheet() : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_edit_white_48dp,
         listener = View.OnClickListener {
           note.edit(activity)
+          dismiss()
+        }
+    ))
+    // TODO: Add un-favourite option
+    options.add(OptionsItem(
+        title = R.string.favourite_note,
+        subtitle = R.string.tap_for_action_favourite,
+        icon = R.drawable.ic_favorite_border_white_48dp,
+        listener = View.OnClickListener {
+          activity.markItem(note, NoteState.FAVOURITE)
+          dismiss()
+        }
+    ))
+    // TODO: Add unarchive option
+    options.add(OptionsItem(
+        title = R.string.archive_note,
+        subtitle = R.string.tap_for_action_archive,
+        icon = R.drawable.ic_archive_white_48dp,
+        listener = View.OnClickListener {
+          activity.markItem(note, NoteState.ARCHIVED)
+          dismiss()
         }
     ))
     options.add(OptionsItem(
@@ -52,6 +75,7 @@ class NoteOptionsBottomSheet() : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_share_white_48dp,
         listener = View.OnClickListener {
           note.share(activity)
+          dismiss()
         }
     ))
     options.add(OptionsItem(
@@ -60,14 +84,17 @@ class NoteOptionsBottomSheet() : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_content_copy_white_48dp,
         listener = View.OnClickListener {
           note.copy(activity)
+          dismiss()
         }
     ))
+    // TODO: Delete the note in trash mode
     options.add(OptionsItem(
         title = R.string.delete_note,
         subtitle = R.string.tap_for_action_delete,
         icon = R.drawable.ic_delete_white_48dp,
         listener = View.OnClickListener {
           activity.deleteItem(note)
+          dismiss()
         }
     ))
     options.add(OptionsItem(
@@ -76,6 +103,7 @@ class NoteOptionsBottomSheet() : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_bubble_chart_white_48dp,
         listener = View.OnClickListener {
           note.popup(activity)
+          dismiss()
         }
     ))
     return options

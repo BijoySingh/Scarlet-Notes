@@ -35,6 +35,17 @@
       android:gravity="center"
       android:orientation="horizontal">
 
+      <ImageView
+        android:id="@+id/menu_home_nav"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:alpha="0.7"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="12dp"
+        android:src="@drawable/ic_apps_white_48dp"
+        android:tint="@color/material_blue_grey_700" />
+
       <TextView
         android:id="@+id/menu_add_note"
         android:layout_width="0dp"

@@ -26,6 +26,9 @@ public interface NoteDao {
   @Query("SELECT * FROM note ORDER BY timestamp DESC")
   List<Note> getAll();
 
+  @Query("SELECT * FROM note WHERE state in (:states) ORDER BY timestamp DESC")
+  List<Note> getByNoteState(String[] states);
+
   @Query("SELECT * FROM note ORDER BY timestamp DESC LIMIT :limit")
   List<Note> getNotes(int limit);
 

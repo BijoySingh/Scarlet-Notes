@@ -19,6 +19,8 @@
   <string name="delete_note">Delete Note</string>
   <string name="copy_note">Copy Note</string>
   <string name="send_note">Send Note</string>
+  <string name="archive_note">Archive Note</string>
+  <string name="favourite_note">Mark Favourite</string>
   <string name="choose_action">Choose Action&#8230;</string>
 
   <string name="tap_for_action_open_note_night_mode">Tap to view the note in night mode</string>
@@ -26,7 +28,19 @@
   <string name="tap_for_action_copy">Tap to copy note content to clipboard</string>
   <string name="tap_for_action_share">Tap to share note content to other apps</string>
   <string name="tap_for_action_popup">Tap to open note in floating popup</string>
-  <string name="tap_for_action_delete">Tap to delete the note</string>
+  <string name="tap_for_action_delete">Tap to move note to trash</string>
+  <string name="tap_for_action_favourite">Tap to mark note as favourite</string>
+  <string name="tap_for_action_archive">Tap to archive the note</string>
+
+  <string name="nav_sheet_title">Your Notes&#8230;</string>
+  <string name="nav_home">Home</string>
+  <string name="nav_home_details">All of your normal and favourite notes</string>
+  <string name="nav_favourites">Favourites</string>
+  <string name="nav_favourites_details">All of your favourite notes</string>
+  <string name="nav_archived">Archived</string>
+  <string name="nav_archived_details">All of your archived notes</string>
+  <string name="nav_trash">Trash</string>
+  <string name="nav_trash_details">All of your notes in the trash</string>
 
   <string name="format_hint_text">Add Content&#8230;</string>
   <string name="format_hint_heading">Add Heading&#8230;</string>
