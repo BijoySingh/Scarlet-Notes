@@ -101,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
     });
   }
 
+  public NoteState getMode() {
+    return mode == null ? NoteState.DEFAULT : mode;
+  }
+
   public void onHomeClick() {
     mode = NoteState.DEFAULT;
     loadNoteByStates(new String[]{NoteState.DEFAULT.name(), NoteState.FAVOURITE.name()});
@@ -172,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void setupData() {
-    mode = mode == null ? NoteState.DEFAULT : mode;
+    mode = getMode();
     switch (mode) {
       case FAVOURITE:
         onFavouritesClick();

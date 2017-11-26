@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -32,6 +33,11 @@ abstract class OptionItemBottomSheetBase : SimpleBottomSheetFragment() {
       contentView.setSubtitle(option.subtitle)
       contentView.setOnClickListener(option.listener)
       contentView.setImageResource(option.icon)
+      if (option.selected) {
+        contentView.setTitleColor(ContextCompat.getColor(context, R.color.material_blue_700))
+        contentView.setSubtitleColor(ContextCompat.getColor(context, R.color.material_blue_500))
+        contentView.setImageTint(ContextCompat.getColor(context, R.color.material_blue_700))
+      }
       layout.addView(contentView)
     }
   }
