@@ -164,6 +164,11 @@ public class MainActivity extends AppCompatActivity {
     markItem(note, NoteState.TRASH);
   }
 
+  public void updateNote(Note note) {
+    note.save(this);
+    setupData();
+  }
+
   public void markItem(Note note, NoteState state) {
     note.mark(this, state);
     setupData();

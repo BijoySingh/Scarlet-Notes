@@ -11,7 +11,7 @@
   <color name="color_1">#021C1E</color>
   <color name="color_2">#004445</color>
   <color name="color_3">#2C7873</color>
-  <color name="color_4">#6FB98F</color>
+  <color name="color_4">#6FB98F</color>g
 
   <color name="timestamp_text">#76000000</color>
 
@@ -20,6 +20,8 @@
   <color name="home_timestamp">@color/dark_hint_text</color>
 
   <array name="bright_colors">
+    <item>@color/material_grey_800</item>
+    <item>@color/material_blue_grey_800</item>
     <item>@color/material_purple_700</item>
     <item>@color/material_deep_purple_700</item>
     <item>@color/material_indigo_700</item>

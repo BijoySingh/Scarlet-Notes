@@ -26,6 +26,7 @@
   <string name="favourite_note">Mark Favourite</string>
   <string name="restore_note">Restore Note</string>
   <string name="trash_note">Move to Trash</string>
+  <string name="choose_note_color">Change Color</string>
   <string name="choose_action">Choose Action&#8230;</string>
 
   <string name="tap_for_action_open_note_night_mode">Tap to view the note in night mode</string>
@@ -39,6 +40,7 @@
   <string name="tap_for_action_favourite">Tap to mark note as favourite</string>
   <string name="tap_for_action_not_favourite">Tap to mark note not as favourite</string>
   <string name="tap_for_action_archive">Tap to archive the note</string>
+  <string name="tap_for_action_color">Tap to change the background colour of the note</string>
   <string name="tap_for_action_not_archive">Tap to unarchive the note</string>
 
   <string name="nav_sheet_title">Your Notes&#8230;</string>
@@ -99,4 +101,5 @@
   </string>
   <string name="about_page_about_us_details" translatable="false">Hi, we are a pair of designer and programmer, who created %s .
     We endeavour to build beautiful, carefully designed free, ad-free or minimal ads apps which serve great utility to everyone!</string>
+
 </resources>

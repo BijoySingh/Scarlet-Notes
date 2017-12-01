@@ -137,7 +137,27 @@ class NoteOptionsBottomSheet() : OptionItemBottomSheetBase() {
           }
       ))
     }
+    options.add(OptionsItem(
+        title = R.string.choose_note_color,
+        subtitle = R.string.tap_for_action_color,
+        icon = R.drawable.ic_action_color,
+        listener = View.OnClickListener {
+          ColorPickerBottomSheet.openSheet(
+              activity,
+              object: ColorPickerBottomSheet.ColorPickerController {
+                override fun onColorSelected(note: Note, color: Int) {
+                  note.color = color
+                  activity.updateNote(note)
+                }
 
+                override fun getNote(): Note {
+                  return note
+                }
+              }
+          )
+          dismiss()
+        }
+    ))
     options.add(OptionsItem(
         title = R.string.open_in_popup,
         subtitle = R.string.tap_for_action_popup,
