@@ -10,9 +10,11 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="20dp">
 
     <TextView
+      android:id="@+id/options_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="20dp"
@@ -20,13 +22,15 @@
       android:textColor="@color/dark_tertiary_text"
       android:textSize="18sp" />
 
-    <com.google.android.flexbox.FlexboxLayout
-      android:id="@+id/flexbox_layout"
-      android:layout_width="match_parent"
+    <GridLayout
+      android:id="@+id/grid_layout"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      app:alignContent="stretch"
-      app:alignItems="stretch"
-      app:flexWrap="wrap"
-      app:justifyContent="center" />
+      android:columnCount="3"
+      android:columnOrderPreserved="true"
+      android:rowOrderPreserved="true"
+      android:useDefaultMargins="true">
+
+    </GridLayout>
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

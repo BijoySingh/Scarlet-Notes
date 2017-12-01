@@ -1,8 +1,8 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import android.support.v7.app.AppCompatActivity
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.views.ColorView
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
@@ -47,7 +47,7 @@ class ColorPickerBottomSheet : SimpleBottomSheetFragment() {
     }
   }
 
-  override fun getLayout(): Int = R.layout.bottom_sheet_color_picker
+  override fun getLayout(): Int = R.layout.bottom_sheet_flexbox_layout
 
   interface ColorPickerController {
     fun onColorSelected(note: Note, color: Int)
@@ -56,7 +56,7 @@ class ColorPickerBottomSheet : SimpleBottomSheetFragment() {
   }
 
   companion object {
-    fun openSheet(activity: MainActivity, picker: ColorPickerController) {
+    fun openSheet(activity: AppCompatActivity, picker: ColorPickerController) {
       val sheet = ColorPickerBottomSheet()
       sheet.setPickerController(picker)
       sheet.show(activity.supportFragmentManager, sheet.tag)

@@ -22,22 +22,13 @@
       android:layout_weight="1"/>
 
   <ImageView
-      android:id="@+id/night_mode_button"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
-      android:background="?attr/selectableItemBackgroundBorderless"
-      android:padding="8dp"
-      android:src="@drawable/night_mode_white_48dp"
-      android:tint="@color/material_grey_600"/>
-
-  <ImageView
-      android:id="@+id/popup_button"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
-      android:background="?attr/selectableItemBackgroundBorderless"
-      android:padding="8dp"
-      android:src="@drawable/ic_bubble_chart_white_48dp"
-      android:tint="@color/material_grey_600"/>
+    android:id="@+id/note_options_button"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:padding="8dp"
+    android:src="@drawable/ic_more_horiz_white_48dp"
+    android:tint="@color/material_grey_600"/>
 
   <ImageView
       android:id="@+id/delete_button"

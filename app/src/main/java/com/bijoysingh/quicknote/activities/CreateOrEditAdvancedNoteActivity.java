@@ -135,7 +135,6 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   @Override
   protected void setTopToolbar() {
     actionDelete.setVisibility(GONE);
-    actionPopUp.setVisibility(GONE);
     actionShare.setVisibility(GONE);
     actionCopy.setVisibility(GONE);
 

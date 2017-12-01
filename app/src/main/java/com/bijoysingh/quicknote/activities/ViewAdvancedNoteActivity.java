@@ -2,7 +2,6 @@ package com.bijoysingh.quicknote.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bijoysingh.quicknote.R;
+import com.bijoysingh.quicknote.activities.sheets.NoteGridBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
@@ -46,13 +46,12 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
 
   protected View rootView;
   protected ImageView backButton;
-  protected ImageView actionNightMode;
-  protected ImageView actionPopUp;
   protected ImageView actionCopy;
   protected ImageView actionDelete;
   protected ImageView actionShare;
   protected ImageView actionEdit;
   protected ImageView actionDone;
+  protected ImageView actionOptions;
   protected FlexboxLayout colorSelectorLayout;
   protected ImageView colorButton;
 
@@ -163,14 +162,6 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     colorSelectorLayout = (FlexboxLayout) findViewById(R.id.flexbox_layout);
     setButtonToolbar();
 
-    actionNightMode = findViewById(R.id.night_mode_button);
-    actionNightMode.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        toggleNightMode();
-      }
-    });
-
     actionDelete = (ImageView) findViewById(R.id.delete_button);
     actionDelete.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -192,19 +183,19 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
       }
     });
 
-    actionPopUp = (ImageView) findViewById(R.id.popup_button);
-    actionPopUp.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        note.popup(ViewAdvancedNoteActivity.this);
-      }
-    });
-
     backButton = (ImageView) findViewById(R.id.back_button);
     backButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         onBackPressed();
+      }
+    });
+
+    actionOptions = findViewById(R.id.note_options_button);
+    actionOptions.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        NoteGridBottomSheet.Companion.openSheet(ViewAdvancedNoteActivity.this, note);
       }
     });
 
@@ -221,7 +212,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     actionEdit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        note.edit(context, isNightMode);
+        openEditor();
       }
     });
 
@@ -238,7 +229,11 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     notifyToolbarColor();
   }
 
-  private void toggleNightMode() {
+  public void openEditor() {
+    note.edit(context, isNightMode);
+  }
+
+  public void toggleNightMode() {
     setNightMode(!isNightMode);
   }
 
@@ -251,8 +246,6 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     int toolbarIconColor = ContextCompat.getColor(
         context, isNightMode ? R.color.white : R.color.material_blue_grey_700);
     backButton.setColorFilter(toolbarIconColor);
-    actionNightMode.setColorFilter(toolbarIconColor);
-    actionPopUp.setColorFilter(toolbarIconColor);
     actionCopy.setColorFilter(toolbarIconColor);
     actionDelete.setColorFilter(toolbarIconColor);
     actionShare.setColorFilter(toolbarIconColor);
@@ -302,6 +295,21 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
 
   protected void setNoteColor(int color) {
     colorButton.setBackground(new CircleDrawable(note.color));
+  }
+
+
+  public void moveItemToTrashOrDelete(Note note) {
+    if (note.getNoteState() == NoteState.TRASH) {
+      note.delete(this);
+    } else {
+      markItem(note, NoteState.TRASH);
+    }
+    finish();
+  }
+
+
+  public void markItem(Note note, NoteState state) {
+    note.mark(this, state);
   }
 
   protected int getFormatIndex(Format format) {

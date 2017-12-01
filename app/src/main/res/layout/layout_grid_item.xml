@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.bijoysingh.uibasics.views.UILabelView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:ui="http://schemas.android.com/apk/res-auto"
+  xmlns:grid="http://schemas.android.com/apk/res-auto"
+  style="@style/BorderlessBackgroundView"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:gravity="center"
+  android:layout_gravity="center|fill"
+  android:paddingTop="24dp"
+  android:paddingBottom="24dp"
+  android:minWidth="108dp"
+  ui:iconSize="24dp"
+  ui:iconTextGap="8dp"
+  ui:iconTint="@color/dark_tertiary_text"
+  ui:textColor="@color/dark_secondary_text"
+  ui:textSize="14sp"
+  ui:textStyle="@style/SanSerif" />

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.github.bijoysingh.uibasics.views.UIContentView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:ui="http://schemas.android.com/apk/res-auto"
-  style="@style/BorderedBackgroundView"
+  style="@style/BorderlessBackgroundView"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:background="@color/white"
   android:gravity="center_vertical"
   android:padding="16dp"
   ui:iconSize="24dp"
