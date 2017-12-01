@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/container_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,18 +14,6 @@
       layout="@layout/toolbar_note"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
-
-  <com.google.android.flexbox.FlexboxLayout
-      android:id="@+id/flexbox_layout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:padding="24dp"
-      android:visibility="gone"
-      app:alignContent="stretch"
-      app:alignItems="stretch"
-      app:flexWrap="wrap"
-      app:justifyContent="center">
-  </com.google.android.flexbox.FlexboxLayout>
 
   <ScrollView
       android:layout_width="match_parent"

@@ -3,21 +3,26 @@ package com.bijoysingh.quicknote.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
+import com.bijoysingh.quicknote.activities.sheets.ColorPickerBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.bijoysingh.quicknote.views.ColorView;
 import com.bijoysingh.quicknote.views.NoteViewHolder;
 import com.google.android.flexbox.FlexboxLayout;
 
+import org.jetbrains.annotations.NotNull;
+
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-public class CreateSimpleNoteActivity extends AppCompatActivity {
+public class CreateSimpleNoteActivity extends ThemedActivity {
 
   public static final String NOTE_ID = "NOTE_ID";
   public static final int HANDLER_UPDATE_TIME = 1000;
@@ -28,8 +33,10 @@ public class CreateSimpleNoteActivity extends AppCompatActivity {
 
   private Note note;
   private NoteViewHolder holder;
-  private FlexboxLayout colorSelectorLayout;
+
   private ImageView colorButton;
+  private ImageView backButton;
+  private ImageView actionDone;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +50,13 @@ public class CreateSimpleNoteActivity extends AppCompatActivity {
     holder = new NoteViewHolder(this);
     holder.setNote(note);
 
-    colorSelectorLayout = (FlexboxLayout) findViewById(R.id.flexbox_layout);
-    setColorsList();
     setListeners();
+
+    requestSetNightMode(getIntent().getBooleanExtra(ThemedActivity.Companion.getKey(), false));
   }
 
   public void setListeners() {
-    ImageView backButton = (ImageView) findViewById(R.id.back_button);
+    backButton = (ImageView) findViewById(R.id.back_button);
     backButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -62,12 +69,24 @@ public class CreateSimpleNoteActivity extends AppCompatActivity {
     colorPicker.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        boolean isVisible = colorSelectorLayout.getVisibility() == VISIBLE;
-        colorSelectorLayout.setVisibility(isVisible ? GONE : VISIBLE);
+        ColorPickerBottomSheet.Companion.openSheet(
+            CreateSimpleNoteActivity.this,
+            new ColorPickerBottomSheet.ColorPickerController() {
+              @Override
+              public void onColorSelected(@NotNull Note note, int color) {
+                setNoteColor(color);
+              }
+
+              @NotNull
+              @Override
+              public Note getNote() {
+                return note;
+              }
+            });
       }
     });
 
-    ImageView actionDone = (ImageView) findViewById(R.id.done_button);
+    actionDone = (ImageView) findViewById(R.id.done_button);
     actionDone.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -87,8 +106,6 @@ public class CreateSimpleNoteActivity extends AppCompatActivity {
 
   public void updateNote() {
     note = holder.getNote(note);
-    // note.displayTimestamp = DateFormatter.getToday();
-    // note.timestamp = Calendar.getInstance().getTimeInMillis();
     setNoteColor(note.color);
 
     if (note.isUnsaved() && note.getFormats().isEmpty()) {
@@ -135,26 +152,28 @@ public class CreateSimpleNoteActivity extends AppCompatActivity {
     }, HANDLER_UPDATE_TIME);
   }
 
-  private void setColorsList() {
-    colorSelectorLayout.removeAllViews();
-    int[] colors = getResources().getIntArray(R.array.bright_colors);
-    for (final int color : colors) {
-      ColorView item = new ColorView(this);
-      item.setColor(color, note.color == color);
-      item.root.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-          setNoteColor(color);
-          setColorsList();
-          colorSelectorLayout.setVisibility(GONE);
-        }
-      });
-      colorSelectorLayout.addView(item);
-    }
-  }
-
   private void setNoteColor(int color) {
     note.color = color;
     colorButton.setBackground(new CircleDrawable(note.color));
+  }
+
+  @Override
+  public void notifyNightModeChange() {
+    setSystemTheme();
+
+    View containerLayout = findViewById(R.id.container_layout);
+    containerLayout.setBackgroundColor(getThemeColor());
+
+    int toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.light_secondary_text);
+    backButton.setColorFilter(toolbarIconColor);
+
+    int textColor = getColor(R.color.dark_secondary_text, R.color.light_secondary_text);
+    int textHintColor = getColor(R.color.dark_hint_text, R.color.light_hint_text);
+    holder.title.setTextColor(textColor);
+    holder.title.setHintTextColor(textHintColor);
+    holder.description.setTextColor(textColor);
+    holder.description.setHintTextColor(textHintColor);
+
+    actionDone.setColorFilter(getColor(R.color.material_blue_grey_600, R.color.light_primary_text));
   }
 }

@@ -22,6 +22,8 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
 
 import java.util.List;
 
+import static android.view.View.GONE;
+
 public class MainActivity extends ThemedActivity {
 
   RecyclerView recyclerView;
@@ -138,6 +140,7 @@ public class MainActivity extends ThemedActivity {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(getApplicationContext(), CreateSimpleNoteActivity.class);
+        intent.putExtra(ThemedActivity.Companion.getKey(), isNightMode());
         startActivity(intent);
       }
     };
@@ -148,6 +151,7 @@ public class MainActivity extends ThemedActivity {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(getApplicationContext(), CreateOrEditAdvancedNoteActivity.class);
+        intent.putExtra(ThemedActivity.Companion.getKey(), isNightMode());
         startActivity(intent);
       }
     };
@@ -158,6 +162,7 @@ public class MainActivity extends ThemedActivity {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(getApplicationContext(), CreateAdvancedListActivity.class);
+        intent.putExtra(ThemedActivity.Companion.getKey(), isNightMode());
         startActivity(intent);
       }
     };
@@ -221,12 +226,11 @@ public class MainActivity extends ThemedActivity {
     homeOptions.setColorFilter(toolbarIconColor);
     addNote.setTextColor(toolbarIconColor);
 
-    findViewById(R.id.separator).setBackgroundColor(
-        getColor(R.color.dark_hint_text, R.color.light_hint_text));
+    findViewById(R.id.separator).setVisibility(isNightMode() ? GONE : View.VISIBLE);
 
     TextView actionBarTitle = findViewById(R.id.action_bar_title);
     actionBarTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text));
-    backButton.setColorFilter(getColor(R.color.colorAccent, R.color.material_pink_accent_2g00));
+    backButton.setColorFilter(getColor(R.color.colorAccent, R.color.material_pink_accent_200));
 
     findViewById(R.id.bottom_toolbar_layout).setBackgroundColor(
         getColor(R.color.material_grey_50, R.color.material_grey_850));
