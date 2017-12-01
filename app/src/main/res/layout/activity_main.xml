@@ -3,12 +3,13 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@color/white"
   tools:context="com.bijoysingh.quicknote.activities.MainActivity">
 
   <LinearLayout
+    android:id="@+id/container_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <include
@@ -23,12 +24,14 @@
       android:layout_weight="1" />
 
     <View
+      android:id="@+id/separator"
       android:layout_width="match_parent"
       android:layout_height="1.2dp"
       android:alpha="0.5"
       android:background="@color/dark_hint_text" />
 
     <LinearLayout
+      android:id="@+id/bottom_toolbar_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:background="?attr/selectableItemBackgroundBorderless"

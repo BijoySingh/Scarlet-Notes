@@ -153,8 +153,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
           public Note getNote() {
             return note;
           }
-        },
-        isNightMode());
+        });
       }
     });
   }
@@ -172,7 +171,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     quote.setColorFilter(toolbarIconColor);
     code.setColorFilter(toolbarIconColor);
 
-    toolbar.setBackgroundResource(isNightMode() ? R.color.material_grey_900 : R.color.white);
+    toolbar.setBackgroundColor(getColor(R.color.material_grey_50, R.color.material_grey_850));
   }
 
   @Override

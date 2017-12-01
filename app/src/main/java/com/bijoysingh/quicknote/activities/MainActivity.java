@@ -2,13 +2,15 @@ package com.bijoysingh.quicknote.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
-import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.HomeNavigationBottomSheet;
+import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
@@ -27,6 +29,9 @@ public class MainActivity extends ThemedActivity {
   NoteState mode;
   DataStore store;
 
+  ImageView addList, homeNav, addRichNote, homeOptions, backButton;
+  TextView addNote;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -41,13 +46,13 @@ public class MainActivity extends ThemedActivity {
   }
 
   public void setListeners() {
-    View addNote = findViewById(R.id.menu_add_note);
+    addNote = findViewById(R.id.menu_add_note);
     addNote.setOnClickListener(openNewNoteActivity());
 
-    View addList = findViewById(R.id.menu_add_list);
+    addList = findViewById(R.id.menu_add_list);
     addList.setOnClickListener(openNewListNoteActivity());
 
-    View homeNav = findViewById(R.id.menu_home_nav);
+    homeNav = findViewById(R.id.menu_home_nav);
     homeNav.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -55,10 +60,10 @@ public class MainActivity extends ThemedActivity {
       }
     });
 
-    View addRichNote = findViewById(R.id.menu_add_rich_note);
+    addRichNote = findViewById(R.id.menu_add_rich_note);
     addRichNote.setOnClickListener(openNewRichNoteActivity());
 
-    View homeOptions = findViewById(R.id.home_option_button);
+    homeOptions = findViewById(R.id.home_option_button);
     homeOptions.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -66,7 +71,7 @@ public class MainActivity extends ThemedActivity {
       }
     });
 
-    ImageView backButton = (ImageView) findViewById(R.id.back_button);
+    backButton = findViewById(R.id.back_button);
     backButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -204,11 +209,27 @@ public class MainActivity extends ThemedActivity {
   @Override
   public void notifyNightModeChange() {
     store.put(ThemedActivity.Companion.getKey(), isNightMode());
-    if (isNightMode()) {
+    setSystemTheme();
 
-    } else {
+    View containerLayout = findViewById(R.id.container_layout);
+    containerLayout.setBackgroundColor(getThemeColor());
 
-    }
+    int toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.light_secondary_text);
+    addList.setColorFilter(toolbarIconColor);
+    homeNav.setColorFilter(toolbarIconColor);
+    addRichNote.setColorFilter(toolbarIconColor);
+    homeOptions.setColorFilter(toolbarIconColor);
+    addNote.setTextColor(toolbarIconColor);
+
+    findViewById(R.id.separator).setBackgroundColor(
+        getColor(R.color.dark_hint_text, R.color.light_hint_text));
+
+    TextView actionBarTitle = findViewById(R.id.action_bar_title);
+    actionBarTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text));
+    backButton.setColorFilter(getColor(R.color.colorAccent, R.color.material_pink_accent_2g00));
+
+    findViewById(R.id.bottom_toolbar_layout).setBackgroundColor(
+        getColor(R.color.material_grey_50, R.color.material_grey_850));
   }
 
 }

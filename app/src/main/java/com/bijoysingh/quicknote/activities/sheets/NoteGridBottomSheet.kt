@@ -162,8 +162,7 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
                 override fun getNote(): Note {
                   return note
                 }
-              },
-              isNightMode
+              }
           )
           dismiss()
         }

@@ -22,7 +22,8 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.home_option_enable_night_mode_subtitle,
         icon = R.drawable.night_mode_white_48dp,
         listener = View.OnClickListener {
-
+          activity.requestSetNightMode(true)
+          dismiss()
         },
         visible = !isNightMode
     ))
@@ -31,7 +32,8 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.home_option_enable_day_mode_subtitle,
         icon = R.drawable.ic_action_day_mode,
         listener = View.OnClickListener {
-
+          activity.requestSetNightMode(false)
+          dismiss()
         },
         visible = isNightMode
     ))

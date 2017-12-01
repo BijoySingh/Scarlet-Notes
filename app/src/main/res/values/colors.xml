@@ -20,7 +20,7 @@
   <color name="home_timestamp">@color/dark_hint_text</color>
 
   <array name="bright_colors">
-    <item>@color/material_grey_800</item>
+    <item>@color/material_grey_850</item>
     <item>@color/material_blue_grey_800</item>
     <item>@color/material_purple_700</item>
     <item>@color/material_deep_purple_700</item>

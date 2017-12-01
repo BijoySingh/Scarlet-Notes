@@ -170,6 +170,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     fun openSheet(activity: MainActivity, note: Note) {
       val sheet = NoteOptionsBottomSheet()
       sheet.noteFn = { note }
+      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

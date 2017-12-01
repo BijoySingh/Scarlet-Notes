@@ -241,6 +241,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     actionShare.setColorFilter(toolbarIconColor);
     actionEdit.setColorFilter(toolbarIconColor);
     actionDone.setColorFilter(toolbarIconColor);
+    actionOptions.setColorFilter(toolbarIconColor);
 
     int backgroundColor = isNightMode() ? R.color.material_grey_800 : R.color.white;
     rootView.setBackgroundResource(backgroundColor);
@@ -248,17 +249,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
 
     resetBundle();
     adapter.notifyDataSetChanged();
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getWindow().setStatusBarColor(ContextCompat.getColor(context, backgroundColor));
-    }
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      View view = getWindow().getDecorView();
-      int flags = view.getSystemUiVisibility();
-      if (isNightMode()) flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-      else flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-      view.setSystemUiVisibility(flags);
-    }
+    setSystemTheme();
   }
 
   protected void setButtonToolbar() {
