@@ -67,6 +67,7 @@ class HomeNavigationBottomSheet : OptionItemBottomSheetBase() {
   companion object {
     fun openSheet(activity: MainActivity) {
       val sheet = HomeNavigationBottomSheet()
+      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

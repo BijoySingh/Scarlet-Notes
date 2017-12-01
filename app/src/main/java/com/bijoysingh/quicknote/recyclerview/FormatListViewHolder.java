@@ -8,10 +8,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bijoysingh.quicknote.R;
+import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
-
-import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.KEY_NIGHT_THEME;
 
 public class FormatListViewHolder extends FormatTextViewHolder {
 
@@ -35,8 +34,8 @@ public class FormatListViewHolder extends FormatTextViewHolder {
                              && extra.containsKey(KEY_EDITABLE)
                              && extra.getBoolean(KEY_EDITABLE);
     boolean nightMode = extra != null
-                        && extra.containsKey(KEY_NIGHT_THEME)
-                        && extra.getBoolean(KEY_NIGHT_THEME);
+                        && extra.containsKey(ThemedActivity.Companion.getKey())
+                        && extra.getBoolean(ThemedActivity.Companion.getKey());
     icon.setColorFilter(ContextCompat.getColor(
         context, nightMode ? R.color.white : R.color.material_blue_grey_600));
 

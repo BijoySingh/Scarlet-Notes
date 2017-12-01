@@ -63,6 +63,10 @@
   <string name="format_hint_code">Add Code&#8230;</string>
 
   <string name="home_option_sheet_title">Options and Settings</string>
+  <string name="home_option_enable_night_mode">Enable Night Mode</string>
+  <string name="home_option_enable_night_mode_subtitle">Enable dark theme as default</string>
+  <string name="home_option_enable_day_mode">Enable Day Mode</string>
+  <string name="home_option_enable_day_mode_subtitle">Enable light theme as default</string>
   <string name="home_option_export">Export Notes</string>
   <string name="home_option_export_subtitle">Export notes to device storage to share</string>
   <string name="home_option_import">Import Notes</string>

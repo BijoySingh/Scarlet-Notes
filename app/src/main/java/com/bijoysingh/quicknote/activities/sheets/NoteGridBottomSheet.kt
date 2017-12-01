@@ -184,12 +184,11 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
   companion object {
     fun openSheet(activity: ViewAdvancedNoteActivity,
                   note: Note,
-                  isEditMode: Boolean,
-                  isNightMode: Boolean = false) {
+                  isEditMode: Boolean) {
       val sheet = NoteGridBottomSheet()
       sheet.noteFn = { note }
       sheet.isEditMode = isEditMode
-      sheet.isNightMode = isNightMode
+      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

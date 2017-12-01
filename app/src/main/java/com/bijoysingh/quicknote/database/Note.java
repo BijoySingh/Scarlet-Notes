@@ -11,6 +11,7 @@ import com.bijoysingh.quicknote.FloatingNoteService;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
+import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.external.ExportableNote;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
@@ -23,8 +24,6 @@ import com.github.bijoysingh.starter.util.TextUtils;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.KEY_NIGHT_THEME;
 
 @Entity(
     tableName = "note",
@@ -129,7 +128,7 @@ public class Note {
 
   public void edit(Context context, boolean nightMode) {
     Intent intent = editIntent(context);
-    intent.putExtra(KEY_NIGHT_THEME, nightMode);
+    intent.putExtra(ThemedActivity.Companion.getKey(), nightMode);
     context.startActivity(intent);
   }
 

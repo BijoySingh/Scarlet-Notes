@@ -9,7 +9,7 @@ import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.github.bijoysingh.starter.util.IntentUtils
 
-class HomeBottomSheet : OptionItemBottomSheetBase() {
+class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
   override fun setupViewWithDialog(dialog: Dialog) {
     setOptions(dialog, getOptions())
   }
@@ -17,6 +17,24 @@ class HomeBottomSheet : OptionItemBottomSheetBase() {
   private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<OptionsItem>()
+    options.add(OptionsItem(
+        title = R.string.home_option_enable_night_mode,
+        subtitle = R.string.home_option_enable_night_mode_subtitle,
+        icon = R.drawable.night_mode_white_48dp,
+        listener = View.OnClickListener {
+
+        },
+        visible = !isNightMode
+    ))
+    options.add(OptionsItem(
+        title = R.string.home_option_enable_day_mode,
+        subtitle = R.string.home_option_enable_day_mode_subtitle,
+        icon = R.drawable.ic_action_day_mode,
+        listener = View.OnClickListener {
+
+        },
+        visible = isNightMode
+    ))
     options.add(OptionsItem(
         title = R.string.home_option_export,
         subtitle = R.string.home_option_export_subtitle,
@@ -70,7 +88,8 @@ class HomeBottomSheet : OptionItemBottomSheetBase() {
 
   companion object {
     fun openSheet(activity: MainActivity) {
-      val sheet = HomeBottomSheet()
+      val sheet = SettingsOptionsBottomSheet()
+      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

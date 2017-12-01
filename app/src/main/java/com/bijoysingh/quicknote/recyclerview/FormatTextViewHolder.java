@@ -1,7 +1,6 @@
 package com.bijoysingh.quicknote.recyclerview;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
@@ -11,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
+import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
@@ -19,7 +19,6 @@ import com.github.bijoysingh.starter.util.TextUtils;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.KEY_NIGHT_THEME;
 
 public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements TextWatcher {
 
@@ -67,8 +66,8 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
                          && !extra.getBoolean(KEY_EDITABLE));
 
     boolean nightMode = extra != null
-                        && extra.containsKey(KEY_NIGHT_THEME)
-                        && extra.getBoolean(KEY_NIGHT_THEME);
+                        && extra.containsKey(ThemedActivity.Companion.getKey())
+                        && extra.getBoolean(ThemedActivity.Companion.getKey());
 
     boolean textColorChanges = nightMode && data.formatType != FormatType.CODE;
     text.setTextColor(ContextCompat.getColor(

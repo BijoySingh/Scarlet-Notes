@@ -1,7 +1,5 @@
 package com.bijoysingh.quicknote.activities;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
@@ -17,14 +15,12 @@ import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.formats.NoteType;
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
-import com.bijoysingh.quicknote.views.ColorView;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 
 import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 import static com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity.HANDLER_UPDATE_TIME;
 
 public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
@@ -45,7 +41,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     setTouchListener();
     startHandler();
 
-    if (getIntent().getBooleanExtra(KEY_NIGHT_THEME, false)) {
+    if (getIntent().getBooleanExtra(ThemedActivity.Companion.getKey(), false)) {
       setNightMode(true);
     }
   }
@@ -158,7 +154,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
             return note;
           }
         },
-        isNightMode);
+        isNightMode());
       }
     });
   }
@@ -168,7 +164,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     super.notifyToolbarColor();
 
     int toolbarIconColor = ContextCompat.getColor(
-        context, isNightMode ? R.color.white : R.color.material_blue_grey_700);
+        context, isNightMode() ? R.color.white : R.color.material_blue_grey_700);
     text.setColorFilter(toolbarIconColor);
     heading.setColorFilter(toolbarIconColor);
     subHeading.setColorFilter(toolbarIconColor);
@@ -176,7 +172,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     quote.setColorFilter(toolbarIconColor);
     code.setColorFilter(toolbarIconColor);
 
-    toolbar.setBackgroundResource(isNightMode ? R.color.material_grey_900 : R.color.white);
+    toolbar.setBackgroundResource(isNightMode() ? R.color.material_grey_900 : R.color.white);
   }
 
   @Override

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,9 +27,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity.NOTE_ID;
 
-public class ViewAdvancedNoteActivity extends AppCompatActivity {
-
-  public static final String KEY_NIGHT_THEME = "KEY_NIGHT_THEME";
+public class ViewAdvancedNoteActivity extends ThemedActivity {
 
   protected Context context;
   protected Note note;
@@ -39,7 +36,6 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
   protected List<Format> formats;
 
   public Format focusedFormat;
-  protected boolean isNightMode = false;
 
   protected View toolbar;
   protected RecyclerView formatsView;
@@ -64,7 +60,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     note = Note.db(this).getByID(getIntent().getIntExtra(NOTE_ID, 0));
     note = note == null ? Note.gen() : note;
 
-    isNightMode = getIntent().getBooleanExtra(KEY_NIGHT_THEME, false);
+    setNightMode(getIntent().getBooleanExtra(ThemedActivity.Companion.getKey(), false));
 
     rootView = findViewById(R.id.root_layout);
     setRecyclerView();
@@ -75,7 +71,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
   public static Intent getIntent(Context context, Note note, boolean nightMode) {
     Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
     intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, note.uid);
-    intent.putExtra(KEY_NIGHT_THEME, nightMode);
+    intent.putExtra(ThemedActivity.Companion.getKey(), nightMode);
     return intent;
   }
 
@@ -96,7 +92,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
 
   protected void setEditMode() {
     setEditMode(getEditModeValue());
-    formatsView.setBackgroundResource(isNightMode ? R.color.material_grey_800 : R.color.white);
+    formatsView.setBackgroundResource(isNightMode() ? R.color.material_grey_800 : R.color.white);
   }
 
   protected boolean getEditModeValue() {
@@ -115,7 +111,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
   private void resetBundle() {
     Bundle bundle = new Bundle();
     bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, getEditModeValue());
-    bundle.putBoolean(KEY_NIGHT_THEME, isNightMode);
+    bundle.putBoolean(ThemedActivity.Companion.getKey(), isNightMode());
     adapter.setExtra(bundle);
   }
 
@@ -198,8 +194,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
         NoteGridBottomSheet.Companion.openSheet(
             ViewAdvancedNoteActivity.this,
             note,
-            getEditModeValue(),
-            isNightMode);
+            getEditModeValue());
       }
     });
 
@@ -234,21 +229,12 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
   }
 
   public void openEditor() {
-    note.edit(context, isNightMode);
-  }
-
-  public void toggleNightMode() {
-    setNightMode(!isNightMode);
-  }
-
-  protected void setNightMode(boolean nightMode) {
-    isNightMode = nightMode;
-    notifyToolbarColor();
+    note.edit(context, isNightMode());
   }
 
   protected void notifyToolbarColor() {
     int toolbarIconColor = ContextCompat.getColor(
-        context, isNightMode ? R.color.white : R.color.material_blue_grey_700);
+        context, isNightMode() ? R.color.white : R.color.material_blue_grey_700);
     backButton.setColorFilter(toolbarIconColor);
     actionCopy.setColorFilter(toolbarIconColor);
     actionDelete.setColorFilter(toolbarIconColor);
@@ -256,20 +242,20 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     actionEdit.setColorFilter(toolbarIconColor);
     actionDone.setColorFilter(toolbarIconColor);
 
-    int backgroundColor = isNightMode ? R.color.material_grey_800 : R.color.white;
+    int backgroundColor = isNightMode() ? R.color.material_grey_800 : R.color.white;
     rootView.setBackgroundResource(backgroundColor);
     formatsView.setBackgroundResource(backgroundColor);
 
     resetBundle();
     adapter.notifyDataSetChanged();
 
-    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       getWindow().setStatusBarColor(ContextCompat.getColor(context, backgroundColor));
     }
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       View view = getWindow().getDecorView();
       int flags = view.getSystemUiVisibility();
-      if (isNightMode) flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+      if (isNightMode()) flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
       else flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
       view.setSystemUiVisibility(flags);
     }
@@ -325,5 +311,10 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
       position++;
     }
     return -1;
+  }
+
+  @Override
+  public void notifyNightModeChange() {
+    notifyToolbarColor();
   }
 }

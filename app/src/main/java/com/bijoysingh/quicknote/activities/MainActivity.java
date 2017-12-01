@@ -2,13 +2,12 @@ package com.bijoysingh.quicknote.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bijoysingh.quicknote.R;
-import com.bijoysingh.quicknote.activities.sheets.HomeBottomSheet;
+import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.HomeNavigationBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem;
@@ -16,15 +15,17 @@ import com.bijoysingh.quicknote.items.NoteRecyclerItem;
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.async.MultiAsyncTask;
+import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ThemedActivity {
 
   RecyclerView recyclerView;
   NoteAppAdapter adapter;
   NoteState mode;
+  DataStore store;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,11 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     adapter = new NoteAppAdapter(this);
     mode = NoteState.DEFAULT;
+    store = DataStore.get(this);
 
     setupRecyclerView();
     setListeners();
+    requestSetNightMode(store.get(ThemedActivity.Companion.getKey(), false));
   }
 
   public void setListeners() {
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     homeOptions.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        HomeBottomSheet.Companion.openSheet(MainActivity.this);
+        SettingsOptionsBottomSheet.Companion.openSheet(MainActivity.this);
       }
     });
 
@@ -197,4 +200,15 @@ public class MainActivity extends AppCompatActivity {
         onHomeClick();
     }
   }
+
+  @Override
+  public void notifyNightModeChange() {
+    store.put(ThemedActivity.Companion.getKey(), isNightMode());
+    if (isNightMode()) {
+
+    } else {
+
+    }
+  }
+
 }

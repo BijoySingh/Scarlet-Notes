@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
+import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.MainActivity;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet;
@@ -70,6 +71,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
       public void onClick(View view) {
         Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
         intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, data.uid);
+        intent.putExtra(ThemedActivity.Companion.getKey(), ((ThemedActivity) context).isNightMode());
         context.startActivity(intent);
       }
     });
