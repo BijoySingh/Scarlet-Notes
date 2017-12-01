@@ -9,7 +9,7 @@ import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 import com.google.android.flexbox.FlexboxLayout
 
 
-class ColorPickerBottomSheet : SimpleBottomSheetFragment() {
+class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
 
   var controller: ColorPickerController? = null
 
@@ -18,6 +18,7 @@ class ColorPickerBottomSheet : SimpleBottomSheetFragment() {
   }
 
   override fun setupView(dialog: Dialog?) {
+    super.setupView(dialog)
     if (dialog == null) {
       return
     }
@@ -29,6 +30,12 @@ class ColorPickerBottomSheet : SimpleBottomSheetFragment() {
 
     val colorPicker = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout)
     setColorsList(controller!!, colorPicker)
+
+    maybeSetTextNightModeColor(dialog, R.id.options_title, R.color.light_tertiary_text)
+  }
+
+  override fun getBackgroundView(): Int {
+    return R.id.container_layout
   }
 
   private fun setColorsList(
@@ -56,9 +63,12 @@ class ColorPickerBottomSheet : SimpleBottomSheetFragment() {
   }
 
   companion object {
-    fun openSheet(activity: AppCompatActivity, picker: ColorPickerController) {
+    fun openSheet(activity: AppCompatActivity,
+                  picker: ColorPickerController,
+                  isNightMode: Boolean = false) {
       val sheet = ColorPickerBottomSheet()
       sheet.setPickerController(picker)
+      sheet.isNightMode = isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

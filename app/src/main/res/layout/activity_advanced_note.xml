@@ -15,18 +15,6 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
 
-  <com.google.android.flexbox.FlexboxLayout
-      android:id="@+id/flexbox_layout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:padding="24dp"
-      android:visibility="gone"
-      app:alignContent="stretch"
-      app:alignItems="stretch"
-      app:flexWrap="wrap"
-      app:justifyContent="center">
-  </com.google.android.flexbox.FlexboxLayout>
-
   <android.support.v7.widget.RecyclerView
       android:id="@+id/advanced_note_recycler"
       android:layout_width="match_parent"

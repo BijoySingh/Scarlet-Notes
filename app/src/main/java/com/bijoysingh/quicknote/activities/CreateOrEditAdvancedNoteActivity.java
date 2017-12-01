@@ -144,7 +144,8 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     colorButtonClicker.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        ColorPickerBottomSheet.Companion.openSheet(CreateOrEditAdvancedNoteActivity.this,
+        ColorPickerBottomSheet.Companion.openSheet(
+            CreateOrEditAdvancedNoteActivity.this,
             new ColorPickerBottomSheet.ColorPickerController() {
           @Override
           public void onColorSelected(@NotNull Note note, int color) {
@@ -156,7 +157,8 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
           public Note getNote() {
             return note;
           }
-        });
+        },
+        isNightMode);
       }
     });
   }

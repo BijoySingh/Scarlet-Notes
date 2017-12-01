@@ -45,7 +45,18 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
         listener = View.OnClickListener {
           activity.toggleNightMode()
           dismiss()
-        }
+        },
+        visible = !isNightMode
+    ))
+    options.add(OptionsItem(
+        title = R.string.open_note_day_mode,
+        subtitle = R.string.tap_for_action_open_note_day_mode,
+        icon = R.drawable.ic_action_day_mode,
+        listener = View.OnClickListener {
+          activity.toggleNightMode()
+          dismiss()
+        },
+        visible = isNightMode
     ))
     options.add(OptionsItem(
         title = R.string.edit_note,
@@ -151,7 +162,8 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
                 override fun getNote(): Note {
                   return note
                 }
-              }
+              },
+              isNightMode
           )
           dismiss()
         }
@@ -170,10 +182,14 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
   }
 
   companion object {
-    fun openSheet(activity: ViewAdvancedNoteActivity, note: Note, isEditMode: Boolean) {
+    fun openSheet(activity: ViewAdvancedNoteActivity,
+                  note: Note,
+                  isEditMode: Boolean,
+                  isNightMode: Boolean = false) {
       val sheet = NoteGridBottomSheet()
       sheet.noteFn = { note }
       sheet.isEditMode = isEditMode
+      sheet.isNightMode = isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }
