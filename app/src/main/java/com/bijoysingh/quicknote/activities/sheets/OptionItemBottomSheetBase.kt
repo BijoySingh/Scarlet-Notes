@@ -28,6 +28,10 @@ abstract class OptionItemBottomSheetBase : SimpleBottomSheetFragment() {
   fun setOptions(dialog: Dialog, options: List<OptionsItem>) {
     val layout = dialog.findViewById<LinearLayout>(R.id.options_layout);
     for (option in options) {
+      if (!option.visible) {
+        continue
+      }
+
       val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIContentView
       contentView.setTitle(option.title)
       contentView.setSubtitle(option.subtitle)

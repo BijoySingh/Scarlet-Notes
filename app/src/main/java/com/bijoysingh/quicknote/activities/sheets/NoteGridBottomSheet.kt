@@ -11,6 +11,7 @@ import com.bijoysingh.quicknote.utils.NoteState
 class NoteGridBottomSheet() : GridBottomSheetBase() {
 
   var noteFn: () -> Note? = { null }
+  var isEditMode: Boolean = false
 
   override fun setupViewWithDialog(dialog: Dialog) {
     val note = noteFn()
@@ -26,17 +27,17 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
   private fun getOptions(note: Note): List<OptionsItem> {
     val activity = context as ViewAdvancedNoteActivity
     val options = ArrayList<OptionsItem>()
-    if (note.noteState == NoteState.TRASH) {
-      options.add(OptionsItem(
-          title = R.string.restore_note,
-          subtitle = R.string.tap_for_action_not_trash,
-          icon = R.drawable.ic_restore,
-          listener = View.OnClickListener {
-            activity.moveItemToTrashOrDelete(note)
-            dismiss()
-          }
-      ))
-    }
+    options.add(OptionsItem(
+        title = R.string.restore_note,
+        subtitle = R.string.tap_for_action_not_trash,
+        icon = R.drawable.ic_restore,
+        listener = View.OnClickListener {
+          activity.moveItemToTrashOrDelete(note)
+          dismiss()
+        },
+        visible = note.noteState == NoteState.TRASH
+    ))
+
     options.add(OptionsItem(
         title = R.string.open_note_night_mode,
         subtitle = R.string.tap_for_action_open_note_night_mode,
@@ -53,50 +54,49 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
         listener = View.OnClickListener {
           activity.openEditor()
           dismiss()
-        }
+        },
+        visible = !isEditMode
     ))
-    if (note.noteState == NoteState.FAVOURITE) {
-      options.add(OptionsItem(
-          title = R.string.not_favourite_note,
-          subtitle = R.string.tap_for_action_not_favourite,
-          icon = R.drawable.ic_favorite_white_48dp,
-          listener = View.OnClickListener {
-            activity.markItem(note, NoteState.DEFAULT)
-            dismiss()
-          }
-      ))
-    } else {
-      options.add(OptionsItem(
-          title = R.string.favourite_note,
-          subtitle = R.string.tap_for_action_favourite,
-          icon = R.drawable.ic_favorite_border_white_48dp,
-          listener = View.OnClickListener {
-            activity.markItem(note, NoteState.FAVOURITE)
-            dismiss()
-          }
-      ))
-    }
-    if (note.noteState == NoteState.ARCHIVED) {
-      options.add(OptionsItem(
-          title = R.string.unarchive_note,
-          subtitle = R.string.tap_for_action_not_archive,
-          icon = R.drawable.ic_archive_white_48dp,
-          listener = View.OnClickListener {
-            activity.markItem(note, NoteState.DEFAULT)
-            dismiss()
-          }
-      ))
-    } else {
-      options.add(OptionsItem(
-          title = R.string.archive_note,
-          subtitle = R.string.tap_for_action_archive,
-          icon = R.drawable.ic_archive_white_48dp,
-          listener = View.OnClickListener {
-            activity.markItem(note, NoteState.ARCHIVED)
-            dismiss()
-          }
-      ))
-    }
+    options.add(OptionsItem(
+        title = R.string.not_favourite_note,
+        subtitle = R.string.tap_for_action_not_favourite,
+        icon = R.drawable.ic_favorite_white_48dp,
+        listener = View.OnClickListener {
+          activity.markItem(note, NoteState.DEFAULT)
+          dismiss()
+        },
+        visible = note.noteState == NoteState.FAVOURITE && !isEditMode
+    ))
+    options.add(OptionsItem(
+        title = R.string.favourite_note,
+        subtitle = R.string.tap_for_action_favourite,
+        icon = R.drawable.ic_favorite_border_white_48dp,
+        listener = View.OnClickListener {
+          activity.markItem(note, NoteState.FAVOURITE)
+          dismiss()
+        },
+        visible = note.noteState != NoteState.FAVOURITE && !isEditMode
+    ))
+    options.add(OptionsItem(
+        title = R.string.unarchive_note,
+        subtitle = R.string.tap_for_action_not_archive,
+        icon = R.drawable.ic_archive_white_48dp,
+        listener = View.OnClickListener {
+          activity.markItem(note, NoteState.DEFAULT)
+          dismiss()
+        },
+        visible = note.noteState == NoteState.ARCHIVED && !isEditMode
+    ))
+    options.add(OptionsItem(
+        title = R.string.archive_note,
+        subtitle = R.string.tap_for_action_archive,
+        icon = R.drawable.ic_archive_white_48dp,
+        listener = View.OnClickListener {
+          activity.markItem(note, NoteState.ARCHIVED)
+          dismiss()
+        },
+        visible = note.noteState != NoteState.ARCHIVED && !isEditMode
+    ))
     options.add(OptionsItem(
         title = R.string.send_note,
         subtitle = R.string.tap_for_action_share,
@@ -115,27 +115,26 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
           dismiss()
         }
     ))
-    if (note.noteState == NoteState.TRASH) {
-      options.add(OptionsItem(
-          title = R.string.delete_note_permanently,
-          subtitle = R.string.tap_for_action_delete,
-          icon = R.drawable.ic_delete_white_48dp,
-          listener = View.OnClickListener {
-            activity.moveItemToTrashOrDelete(note)
-            dismiss()
-          }
-      ))
-    } else {
-      options.add(OptionsItem(
-          title = R.string.trash_note,
-          subtitle = R.string.tap_for_action_trash,
-          icon = R.drawable.ic_delete_white_48dp,
-          listener = View.OnClickListener {
-            activity.moveItemToTrashOrDelete(note)
-            dismiss()
-          }
-      ))
-    }
+    options.add(OptionsItem(
+        title = R.string.delete_note_permanently,
+        subtitle = R.string.tap_for_action_delete,
+        icon = R.drawable.ic_delete_white_48dp,
+        listener = View.OnClickListener {
+          activity.moveItemToTrashOrDelete(note)
+          dismiss()
+        },
+        visible = note.noteState == NoteState.TRASH && !isEditMode
+    ))
+    options.add(OptionsItem(
+        title = R.string.trash_note,
+        subtitle = R.string.tap_for_action_trash,
+        icon = R.drawable.ic_delete_white_48dp,
+        listener = View.OnClickListener {
+          activity.moveItemToTrashOrDelete(note)
+          dismiss()
+        },
+        visible = note.noteState != NoteState.TRASH && !isEditMode
+    ))
     options.add(OptionsItem(
         title = R.string.choose_note_color,
         subtitle = R.string.tap_for_action_color,
@@ -143,7 +142,7 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
         listener = View.OnClickListener {
           ColorPickerBottomSheet.openSheet(
               activity,
-              object: ColorPickerBottomSheet.ColorPickerController {
+              object : ColorPickerBottomSheet.ColorPickerController {
                 override fun onColorSelected(note: Note, color: Int) {
                   note.color = color
                   note.save(context)
@@ -157,6 +156,7 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
           dismiss()
         }
     ))
+
     options.add(OptionsItem(
         title = R.string.open_in_popup,
         subtitle = R.string.tap_for_action_popup,
@@ -170,9 +170,10 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
   }
 
   companion object {
-    fun openSheet(activity: ViewAdvancedNoteActivity, note: Note) {
+    fun openSheet(activity: ViewAdvancedNoteActivity, note: Note, isEditMode: Boolean) {
       val sheet = NoteGridBottomSheet()
       sheet.noteFn = { note }
+      sheet.isEditMode = isEditMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

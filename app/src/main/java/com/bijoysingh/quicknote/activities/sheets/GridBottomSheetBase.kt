@@ -28,6 +28,10 @@ abstract class GridBottomSheetBase : SimpleBottomSheetFragment() {
   fun setOptions(dialog: Dialog, options: List<OptionsItem>) {
     val layoutGrid = dialog.findViewById<GridLayout>(R.id.grid_layout);
     for (option in options) {
+      if (!option.visible) {
+        continue
+      }
+
       val contentView = View.inflate(context, R.layout.layout_grid_item, null) as UILabelView
       contentView.setText(option.title)
       contentView.setOnClickListener(option.listener)

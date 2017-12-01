@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bijoysingh.quicknote.R;
+import com.bijoysingh.quicknote.activities.sheets.ColorPickerBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
@@ -17,6 +18,8 @@ import com.bijoysingh.quicknote.formats.NoteType;
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.bijoysingh.quicknote.views.ColorView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 
@@ -41,7 +44,6 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     super.onCreate(savedInstanceState);
     setTouchListener();
     startHandler();
-    setColorsList();
 
     if (getIntent().getBooleanExtra(KEY_NIGHT_THEME, false)) {
       setNightMode(true);
@@ -142,8 +144,19 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     colorButtonClicker.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        boolean isVisible = colorSelectorLayout.getVisibility() == VISIBLE;
-        colorSelectorLayout.setVisibility(isVisible ? GONE : VISIBLE);
+        ColorPickerBottomSheet.Companion.openSheet(CreateOrEditAdvancedNoteActivity.this,
+            new ColorPickerBottomSheet.ColorPickerController() {
+          @Override
+          public void onColorSelected(@NotNull Note note, int color) {
+            setNoteColor(color);
+          }
+
+          @NotNull
+          @Override
+          public Note getNote() {
+            return note;
+          }
+        });
       }
     });
   }
@@ -247,24 +260,6 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     }
 
     addEmptyItem(position + 1, type);
-  }
-
-  private void setColorsList() {
-    colorSelectorLayout.removeAllViews();
-    int[] colors = getResources().getIntArray(R.array.bright_colors);
-    for (final int color : colors) {
-      ColorView item = new ColorView(this);
-      item.setColor(color, note.color == color);
-      item.root.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-          setNoteColor(color);
-          setColorsList();
-          colorSelectorLayout.setVisibility(GONE);
-        }
-      });
-      colorSelectorLayout.addView(item);
-    }
   }
 
   @Override

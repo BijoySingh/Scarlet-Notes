@@ -195,7 +195,7 @@ public class ViewAdvancedNoteActivity extends AppCompatActivity {
     actionOptions.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        NoteGridBottomSheet.Companion.openSheet(ViewAdvancedNoteActivity.this, note);
+        NoteGridBottomSheet.Companion.openSheet(ViewAdvancedNoteActivity.this, note, getEditModeValue());
       }
     });
 
