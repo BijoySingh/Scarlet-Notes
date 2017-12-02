@@ -27,6 +27,15 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
     }
   }
 
+  fun getColor(lightColorRes: Int, darkColorRes: Int): Int {
+    return ContextCompat.getColor(
+        context,
+        when (isNightMode) {
+          true -> darkColorRes
+          else -> lightColorRes
+        })
+  }
+
   fun maybeSetTextNightModeColor(dialog: Dialog, viewId: Int, colorId: Int) {
     if (isNightMode) {
       val textView = dialog.findViewById<TextView>(viewId);

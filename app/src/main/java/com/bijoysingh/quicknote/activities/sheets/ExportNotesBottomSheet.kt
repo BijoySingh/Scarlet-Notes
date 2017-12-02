@@ -17,18 +17,23 @@ import com.bijoysingh.quicknote.utils.GenericFileProvider
 import java.io.File
 
 
-class ExportNotesBottomSheet : SimpleBottomSheetFragment() {
+class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
+  override fun getBackgroundView(): Int {
+    return R.id.container_layout
+  }
 
   override fun setupView(dialog: Dialog?) {
+    super.setupView(dialog)
     if (dialog == null) {
       return
     }
 
     val exportTitle = dialog.findViewById<TextView>(R.id.export_title)
+    val filename =dialog.findViewById<TextView>(R.id.filename)
     val progressBar = dialog.findViewById<ProgressBar>(R.id.progress_bar)
     val resultLayout = dialog.findViewById<View>(R.id.results_layout)
-    val exportDone = dialog.findViewById<View>(R.id.export_done)
-    val exportShare = dialog.findViewById<View>(R.id.export_share)
+    val exportDone = dialog.findViewById<TextView>(R.id.export_done)
+    val exportShare = dialog.findViewById<TextView>(R.id.export_share)
 
     MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<Boolean> {
       override fun run(): Boolean {
@@ -63,6 +68,11 @@ class ExportNotesBottomSheet : SimpleBottomSheetFragment() {
 
       dismiss()
     }
+
+    exportTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text))
+    filename.setTextColor(getColor(R.color.dark_hint_text, R.color.light_hint_text))
+    exportShare.setTextColor(getColor(R.color.dark_hint_text, R.color.light_hint_text))
+    exportDone.setTextColor(getColor(R.color.colorAccent, R.color.material_pink_300))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_import_export
@@ -74,6 +84,7 @@ class ExportNotesBottomSheet : SimpleBottomSheetFragment() {
 
     fun openSheet(activity: MainActivity) {
       val sheet = ExportNotesBottomSheet()
+      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 

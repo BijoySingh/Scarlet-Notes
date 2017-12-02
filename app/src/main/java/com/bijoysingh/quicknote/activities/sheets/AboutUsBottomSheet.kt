@@ -12,9 +12,13 @@ import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 import com.github.bijoysingh.starter.util.IntentUtils
 
 
-class AboutUsBottomSheet : SimpleBottomSheetFragment() {
+class AboutUsBottomSheet : ThemedBottomSheetFragment() {
+  override fun getBackgroundView(): Int {
+    return R.id.container_layout
+  }
 
   override fun setupView(dialog: Dialog?) {
+    super.setupView(dialog)
     if (dialog == null) {
       return
     }
@@ -24,8 +28,8 @@ class AboutUsBottomSheet : SimpleBottomSheetFragment() {
     val openSource = dialog.findViewById<TextView>(R.id.open_source)
     val appVersion = dialog.findViewById<TextView>(R.id.app_version)
 
-    val contribute = dialog.findViewById<View>(R.id.contribute)
-    val rateUs = dialog.findViewById<View>(R.id.rate_us)
+    val contribute = dialog.findViewById<TextView>(R.id.contribute)
+    val rateUs = dialog.findViewById<TextView>(R.id.rate_us)
 
     MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<String> {
       override fun run(): String {
@@ -64,6 +68,26 @@ class AboutUsBottomSheet : SimpleBottomSheetFragment() {
         }
       }
     })
+
+    val textColor = getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text)
+    aboutUs.setTextColor(textColor)
+    aboutApp.setTextColor(textColor)
+    openSource.setTextColor(textColor)
+    appVersion.setTextColor(textColor)
+
+    val aboutUsTitle = dialog.findViewById<TextView>(R.id.about_us_title)
+    val aboutAppTitle = dialog.findViewById<TextView>(R.id.about_app_title)
+    val appVersionTitle = dialog.findViewById<TextView>(R.id.app_version_title)
+    val titleTextColor = getColor(R.color.material_blue_grey_500, R.color.material_blue_grey_200)
+    aboutUsTitle.setTextColor(titleTextColor)
+    aboutAppTitle.setTextColor(titleTextColor)
+    appVersionTitle.setTextColor(titleTextColor)
+
+    contribute.setTextColor(getColor(R.color.material_grey_600, R.color.material_grey_300))
+    rateUs.setTextColor(getColor(R.color.material_blue_600, R.color.material_blue_200))
+
+    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
+    optionsTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_about_page
@@ -74,6 +98,7 @@ class AboutUsBottomSheet : SimpleBottomSheetFragment() {
 
     fun openSheet(activity: MainActivity) {
       val sheet = AboutUsBottomSheet()
+      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }
