@@ -45,6 +45,15 @@
   <string name="about_page_app_version">अॅप आवृत्ती</string>
   <string name="about_page_about_app">अॅप बद्दल</string>
 
+  <string name="open_note_day_mode">दिवस मोड</string>
+  <string name="choose_note_color">रंग बदला</string>
+  <string name="tap_for_action_open_note_day_mode">दिवस मोडमध्ये टीप पाहण्यासाठी टॅप करा</string>
+  <string name="tap_for_action_color">टीपचा पार्श्वभूमी रंग बदलण्यासाठी टॅप करा</string>
+  <string name="home_option_enable_night_mode">रात्री मोड सक्षम करा</string>
+  <string name="home_option_enable_night_mode_subtitle">डीफॉल्ट म्हणून गडद थीम सक्षम करा</string>
+  <string name="home_option_enable_day_mode">दिवस मोड सक्षम करा</string>
+  <string name="home_option_enable_day_mode_subtitle">मुलभूत म्हणून प्रकाश थीम सक्षम करा</string>
+
   <string name="open_note_night_mode">रात्र मोड</string>
   <string name="delete_note_permanently">कायमचे हटवा</string>
   <string name="unarchive_note">टीप संग्रहण रद्द करा</string>

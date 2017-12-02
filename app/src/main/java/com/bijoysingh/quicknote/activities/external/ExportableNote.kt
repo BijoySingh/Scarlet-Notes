@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.external
 
 import android.util.Base64
 import com.bijoysingh.quicknote.database.Note
+import org.json.JSONObject
 import java.io.*
 
 
@@ -21,6 +22,16 @@ class ExportableNote(
       note.color
   )
 
+  fun toJSONObject(): JSONObject {
+    val map = HashMap<String, Any>()
+    map["title"] = title
+    map["description"] = description
+    map["displayTimestamp"] = displayTimestamp
+    map["timestamp"] = timestamp
+    map["color"] = color
+    return JSONObject(map)
+  }
+
   fun toBase64String(): String {
     try {
       val byteArrayOutputStream = ByteArrayOutputStream()
@@ -37,6 +48,15 @@ class ExportableNote(
   companion object {
 
     val KEY_NOTES: String = "notes"
+
+    fun fromJSONObject(json: JSONObject): ExportableNote {
+      return ExportableNote(
+          json["title"] as String,
+          json["description"] as String,
+          json["displayTimestamp"] as String,
+          json["timestamp"] as Long,
+          json["color"] as Int)
+    }
 
     fun fromBase64String(base64: String): ExportableNote {
       try {

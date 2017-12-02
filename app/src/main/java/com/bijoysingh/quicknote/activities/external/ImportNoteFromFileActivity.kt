@@ -45,10 +45,19 @@ class ImportNoteFromFileActivity : AppCompatActivity() {
 
             try {
               val json = SafeJson(fileContent)
-              val notesBase64 = json[ExportableNote.KEY_NOTES] as JSONArray
-              for (index in 0 until notesBase64.length()) {
-                val exportableNote = ExportableNote.fromBase64String(notesBase64.getString(index))
-                Note.gen(exportableNote).save(activity)
+              val keyVersion = json.getInt(KEY_NOTE_VERSION, 1)
+              if (keyVersion == 1) {
+                val notesBase64 = json[ExportableNote.KEY_NOTES] as JSONArray
+                for (index in 0 until notesBase64.length()) {
+                  val exportableNote = ExportableNote.fromBase64String(notesBase64.getString(index))
+                  Note.gen(exportableNote).save(activity)
+                }
+              } else {
+                val notesJson = json[ExportableNote.KEY_NOTES] as JSONArray
+                for (index in 0 until notesJson.length()) {
+                  val exportableNote = ExportableNote.fromJSONObject(notesJson.getJSONObject(index))
+                  Note.gen(exportableNote).save(activity)
+                }
               }
             } catch (exception: Exception) {
               Note.gen("", fileContent).save(activity)

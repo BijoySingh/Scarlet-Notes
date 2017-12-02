@@ -45,6 +45,14 @@
   <string name="about_page_contribute">Делать вклад</string>
   <string name="about_page_app_version">Версия приложения</string>
   <string name="about_page_about_app">О приложении</string>
+  <string name="open_note_day_mode">Дневной режим</string>
+  <string name="choose_note_color">Изменить цвет</string>
+  <string name="tap_for_action_open_note_day_mode">Нажмите, чтобы просмотреть заметку в дневном режиме</string>
+  <string name="tap_for_action_color">Нажмите, чтобы изменить цвет фона заметки</string>
+  <string name="home_option_enable_night_mode">Включить ночной режим</string>
+  <string name="home_option_enable_night_mode_subtitle">Включить темную тему по умолчанию</string>
+  <string name="home_option_enable_day_mode">Включить дневной режим</string>
+  <string name="home_option_enable_day_mode_subtitle">Включить светлую тему по умолчанию</string>
 
   <string name="open_note_night_mode">Ночной режим</string>
   <string name="delete_note_permanently">Удалить навсегда</string>

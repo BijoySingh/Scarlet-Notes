@@ -46,6 +46,15 @@
   <string name="about_page_app_version">एप्लिकेशन वेरीज़न</string>
   <string name="about_page_about_app">ऐप के बारे में</string>
 
+  <string name="open_note_day_mode">दिन मोड</string>
+  <string name="choose_note_color">रंग बदलना</string>
+  <string name="tap_for_action_open_note_day_mode">दिन मोड में नोट देखने के लिए टैप करें</string>
+  <string name="tap_for_action_color">नोट के पृष्ठभूमि का रंग बदलने के लिए टैप करें</string>
+  <string name="home_option_enable_night_mode">नाइट मोड सक्षम करें</string>
+  <string name="home_option_enable_night_mode_subtitle">डिफ़ॉल्ट के रूप में गहरा विषय सक्षम करें</string>
+  <string name="home_option_enable_day_mode">डे मोड सक्षम करें</string>
+  <string name="home_option_enable_day_mode_subtitle">प्रकाश विषय को डिफ़ॉल्ट के रूप में सक्षम करें</string>
+
   <string name="open_note_night_mode">रात्री स्वरुप</string>
   <string name="delete_note_permanently">स्थायी रूप से मिटाएं</string>
   <string name="unarchive_note">अनचाही नोट</string>

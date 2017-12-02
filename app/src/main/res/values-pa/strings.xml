@@ -45,6 +45,15 @@
   <string name="about_page_contribute">ਯੋਗਦਾਨ</string>
   <string name="about_page_app_version">ਐਪ ਵਰਜ਼ਨ</string>
   <string name="about_page_about_app">ਐਪ ਬਾਰੇ</string>
+  <string name="open_note_day_mode">ਦਿਵਸ ਮੋਡ</string>
+  <string name="choose_note_color">ਰੰਗ ਬਦਲੋ</string>
+  <string name="tap_for_action_open_note_day_mode">ਦਿਨ ਦੇ ਮੋਡ ਵਿੱਚ ਨੋਟ ਦੇਖਣ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="tap_for_action_color">ਨੋਟ ਦੇ ਪਿਛੋਕੜ ਰੰਗ ਨੂੰ ਬਦਲਣ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="home_option_enable_night_mode">ਰਾਤ ਮੋਡ ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="home_option_enable_night_mode_subtitle">ਡਿਫੌਲਟ ਦੇ ਤੌਰ ਤੇ ਡੌਕ ਥੀਮ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="home_option_enable_day_mode">ਦਿਨ ਮੋਡ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="home_option_enable_day_mode_subtitle">ਡਿਫਾਲਟ ਤੌਰ ਤੇ ਲਾਈਟ ਥੀਮ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
+
 
   <string name="open_note_night_mode">ਨਾਈਟ ਮੋਡ</string>
   <string name="delete_note_permanently">ਹਮੇਸ਼ਾ ਲਈ ਹਟਾਓ</string>

@@ -73,4 +73,13 @@
   <string name="nav_archived_details">جميع الملاحظات المؤرشفة</string>
   <string name="nav_trash">قمامة، يدمر، يهدم</string>
   <string name="nav_trash_details">جميع الملاحظات في المهملات</string>
+  <string name="open_note_day_mode">وضع اليوم</string>
+  <string name="choose_note_color">غير اللون</string>
+  <string name="tap_for_action_open_note_day_mode">انقر لعرض الملاحظة في وضع اليوم</string>
+  <string name="tap_for_action_color">انقر لتغيير لون خلفية الملاحظة</string>
+  <string name="home_option_enable_night_mode">تمكين الوضع الليلي</string>
+  <string name="home_option_enable_night_mode_subtitle">تمكين المظهر المظلم كخيار افتراضي</string>
+  <string name="home_option_enable_day_mode">تمكين وضع اليوم</string>
+  <string name="home_option_enable_day_mode_subtitle">تمكين موضوع الضوء بشكل افتراضي</string>
+
 </resources>

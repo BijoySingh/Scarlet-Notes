@@ -46,6 +46,15 @@
   <string name="about_page_app_version">Versi App</string>
   <string name="about_page_about_app">Mengenai App</string>
 
+  <string name="open_note_day_mode">Mod Hari</string>
+  <string name="choose_note_color">Tukar Warna</string>
+  <string name="tap_for_action_open_note_day_mode">Ketik untuk melihat nota dalam mod hari</string>
+  <string name="tap_for_action_color">Ketik untuk menukar warna latar belakang nota</string>
+  <string name="home_option_enable_night_mode">Dayakan Mod Malam</string>
+  <string name="home_option_enable_night_mode_subtitle">Dayakan tema gelap sebagai lalai</string>
+  <string name="home_option_enable_day_mode">Dayakan Mod Hari</string>
+  <string name="home_option_enable_day_mode_subtitle">Dayakan tema cahaya sebagai lalai</string>
+
   <string name="open_note_night_mode">Mod malam</string>
   <string name="delete_note_permanently">Padamkan secara kekal</string>
   <string name="unarchive_note">Nota Unarkif</string>

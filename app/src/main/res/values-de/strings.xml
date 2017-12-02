@@ -45,6 +45,15 @@
   <string name="about_page_contribute">Beitragen</string>
   <string name="about_page_app_version">App Version</string>
   <string name="about_page_about_app">Über App</string>
+  <string name="open_note_day_mode">Tagesmodus</string>
+  <string name="choose_note_color">Farbe ändern</string>
+  <string name="tap_for_action_open_note_day_mode">Tippen Sie hier, um die Notiz im Tagesmodus anzuzeigen</string>
+  <string name="tap_for_action_color">Tippen Sie auf, um die Hintergrundfarbe der Notiz zu ändern</string>
+  <string name="home_option_enable_night_mode">Aktivieren Sie den Nachtmodus</string>
+  <string name="home_option_enable_night_mode_subtitle">Aktiviere dunkles Design als Standard</string>
+  <string name="home_option_enable_day_mode">Aktivieren Sie den Tagesmodus</string>
+  <string name="home_option_enable_day_mode_subtitle">Lights Theme als Standard aktivieren</string>
+
 
   <string name="open_note_night_mode">Nacht-Modus</string>
   <string name="delete_note_permanently">Dauerhaft löschen</string>

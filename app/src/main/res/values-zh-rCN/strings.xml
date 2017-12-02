@@ -20,7 +20,14 @@
   <string name="format_hint_quote">添加引号文本&#8230;</string>
   <string name="format_hint_list">新增项目&#8230;</string>
   <string name="format_hint_code">添加代码&#8230;</string>
-
+  <string name="open_note_day_mode">日间模式</string>
+  <string name="choose_note_color">换颜色</string>
+  <string name="tap_for_action_open_note_day_mode">点按即可在日间模式下查看笔记</string>
+  <string name="tap_for_action_color">点击改变音符的背景颜色</string>
+  <string name="home_option_enable_night_mode">启用夜间模式</string>
+  <string name="home_option_enable_night_mode_subtitle">默认启用黑色主题</string>
+  <string name="home_option_enable_day_mode">启用日间模式</string>
+  <string name="home_option_enable_day_mode_subtitle">默认启用轻量级主题</string>
   <string name="home_option_sheet_title">选项和设置</string>
   <string name="home_option_export">导出注释</string>
   <string name="home_option_export_subtitle">将笔记导出到设备存储以便共享</string>

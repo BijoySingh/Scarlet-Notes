@@ -45,6 +45,14 @@
   <string name="about_page_contribute">Katkıda bulunmak</string>
   <string name="about_page_app_version">Uygulama sürümü</string>
   <string name="about_page_about_app">App Hakkında</string>
+  <string name="open_note_day_mode">Gün Modu</string>
+  <string name="choose_note_color">Rengi değiştir</string>
+  <string name="tap_for_action_open_note_day_mode">Notu gündüz modunda görüntülemek için dokunun</string>
+  <string name="tap_for_action_color">Notun arka plan rengini değiştirmek için dokunun</string>
+  <string name="home_option_enable_night_mode">Gece Modunu Etkinleştir</string>
+  <string name="home_option_enable_night_mode_subtitle">Koyu temayı varsayılan olarak etkinleştir</string>
+  <string name="home_option_enable_day_mode">Gün Modunu Etkinleştir</string>
+  <string name="home_option_enable_day_mode_subtitle">Hafif temayı varsayılan olarak etkinleştir</string>
 
   <string name="open_note_night_mode">Gece modu</string>
   <string name="delete_note_permanently">kalıcı olarak sil</string>

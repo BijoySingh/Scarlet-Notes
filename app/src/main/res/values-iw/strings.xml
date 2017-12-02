@@ -21,6 +21,15 @@
   <string name="format_hint_list">הוסף פריט&#8230;</string>
   <string name="format_hint_code">הוסף קוד &#8230;</string>
 
+  <string name="open_note_day_mode">מצב יום</string>
+  <string name="choose_note_color">שינוי צבע</string>
+  <string name="tap_for_action_open_note_day_mode">הקש כדי להציג את ההערה במצב יום</string>
+  <string name="tap_for_action_color">הקש כדי לשנות את צבע הרקע של ההערה</string>
+  <string name="home_option_enable_night_mode">הפעל מצב לילה</string>
+  <string name="home_option_enable_night_mode_subtitle">אפשר עיצוב כהה כברירת מחדל</string>
+  <string name="home_option_enable_day_mode">הפעל מצב יום</string>
+  <string name="home_option_enable_day_mode_subtitle">אפשר עיצוב אור כברירת מחדל</string>
+
   <string name="home_option_sheet_title">אפשרויות והגדרות</string>
   <string name="home_option_export">הערות ייצוא</string>
   <string name="home_option_export_subtitle">ייצא הערות לאחסון המכשיר כדי לשתף</string>

@@ -11,17 +11,21 @@ import com.bijoysingh.quicknote.database.Note
 import com.github.bijoysingh.starter.json.SafeJson
 import com.github.bijoysingh.starter.util.PermissionManager
 import com.github.bijoysingh.starter.util.ToastHelper
+import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
 
+const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
+const val EXPORT_VERSION = 2
 
 fun getNotesForExport(context: Context): String {
   val notes = Note.db(context).all
-  val exportableNotes = ArrayList<String>()
+  val exportableNotes = ArrayList<JSONObject>()
   for (note in notes) {
-    exportableNotes.add(ExportableNote(note).toBase64String())
+    exportableNotes.add(ExportableNote(note).toJSONObject())
   }
-  val mapping = HashMap<String, ArrayList<String>>()
+  val mapping = HashMap<String, Any>()
+  mapping[KEY_NOTE_VERSION] = EXPORT_VERSION
   mapping[ExportableNote.KEY_NOTES] = exportableNotes
   val json = SafeJson(mapping)
   return json.toString()

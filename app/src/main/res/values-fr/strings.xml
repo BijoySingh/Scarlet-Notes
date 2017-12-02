@@ -46,6 +46,15 @@
   <string name="about_page_app_version">Version de l\'application</string>
   <string name="about_page_about_app">À propos d\'App</string>
 
+  <string name="open_note_day_mode">Mode Jour</string>
+  <string name="choose_note_color">Changer de couleur</string>
+  <string name="tap_for_action_open_note_day_mode">Appuyez pour afficher la note en mode jour</string>
+  <string name="tap_for_action_color">Appuyez pour modifier la couleur d\'arrière-plan de la note</string>
+  <string name="home_option_enable_night_mode">Activer le mode nuit</string>
+  <string name="home_option_enable_night_mode_subtitle">Activer le thème sombre par défaut</string>
+  <string name="home_option_enable_day_mode">Activer le mode jour</string>
+  <string name="home_option_enable_day_mode_subtitle">Activer le thème de la lumière par défaut</string>
+
   <string name="open_note_night_mode">Mode nuit</string>
   <string name="delete_note_permanently">supprimer définitivement</string>
   <string name="unarchive_note">Note d\'archivage</string>

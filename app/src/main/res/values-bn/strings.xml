@@ -46,6 +46,15 @@
   <string name="about_page_app_version">অ্যাপ সংস্করণ</string>
   <string name="about_page_about_app">অ্যাপ সম্পর্কে</string>
 
+  <string name="open_note_day_mode">দিন মোড</string>
+  <string name="choose_note_color">রঙ পরিবর্তন করুন</string>
+  <string name="tap_for_action_open_note_day_mode">দিন মোডে নোট দেখতে ট্যাপ করুন</string>
+  <string name="tap_for_action_color">নোটের পটভূমির রং পরিবর্তন করতে আলতো চাপুন</string>
+  <string name="home_option_enable_night_mode">নাইট মোড সক্ষম করুন</string>
+  <string name="home_option_enable_night_mode_subtitle">ডিফল্ট হিসাবে অন্ধকার থিমটি সক্ষম করুন</string>
+  <string name="home_option_enable_day_mode">ডে মোড সক্ষম করুন</string>
+  <string name="home_option_enable_day_mode_subtitle">ডিফল্ট হিসাবে হালকা থিমটি সক্ষম করুন</string>
+
   <string name="open_note_night_mode">রাত মোড</string>
   <string name="delete_note_permanently">চিরতরে মুছে দাও</string>
   <string name="unarchive_note">অব্যবহৃত নোট</string>

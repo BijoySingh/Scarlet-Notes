@@ -230,7 +230,7 @@ public class MainActivity extends ThemedActivity {
 
     TextView actionBarTitle = findViewById(R.id.action_bar_title);
     actionBarTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text));
-    backButton.setColorFilter(getColor(R.color.colorAccent, R.color.material_pink_accent_200));
+    backButton.setColorFilter(getColor(R.color.colorAccent, R.color.material_pink_300));
 
     findViewById(R.id.bottom_toolbar_layout).setBackgroundColor(
         getColor(R.color.material_grey_50, R.color.material_grey_850));
