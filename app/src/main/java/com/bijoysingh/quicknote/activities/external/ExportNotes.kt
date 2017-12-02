@@ -31,6 +31,10 @@ fun getNotesForExport(context: Context): String {
   return json.toString()
 }
 
+fun searchInNote(note: Note, keyword: String): Boolean {
+  return note.getTitle().contains(keyword, true) || note.text.contains(keyword, true)
+}
+
 fun getStoragePermissionManager(activity: AppCompatActivity): PermissionManager {
   val manager = PermissionManager(activity as MainActivity)
   manager.setPermissions(arrayOf(

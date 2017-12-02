@@ -1,10 +1,15 @@
 package com.bijoysingh.quicknote.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,12 +19,15 @@ import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
+import com.bijoysingh.quicknote.items.RecyclerItem;
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.async.MultiAsyncTask;
+import com.github.bijoysingh.starter.async.SimpleThreadExecutor;
 import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -31,8 +39,14 @@ public class MainActivity extends ThemedActivity {
   NoteState mode;
   DataStore store;
 
-  ImageView addList, homeNav, addRichNote, homeOptions, backButton;
+  ImageView addList, homeNav, addRichNote, homeOptions, backButton, searchIcon, searchBackButton, searchCloseIcon;
   TextView addNote;
+  EditText searchBox;
+  View mainToolbar, searchToolbar, bottomToolbar;
+
+  boolean isInSearchMode;
+  List<Note> searchNotes;
+  SimpleThreadExecutor executor;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +55,7 @@ public class MainActivity extends ThemedActivity {
     adapter = new NoteAppAdapter(this);
     mode = NoteState.DEFAULT;
     store = DataStore.get(this);
+    executor = new SimpleThreadExecutor(1);
 
     setupRecyclerView();
     setListeners();
@@ -48,8 +63,66 @@ public class MainActivity extends ThemedActivity {
   }
 
   public void setListeners() {
+    mainToolbar = findViewById(R.id.main_toolbar);
+    searchToolbar = findViewById(R.id.search_toolbar);
+    bottomToolbar = findViewById(R.id.bottom_toolbar_layout);
+
     addNote = findViewById(R.id.menu_add_note);
     addNote.setOnClickListener(openNewNoteActivity());
+
+    searchIcon = findViewById(R.id.home_search_button);
+    searchIcon.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        setSearchMode(true);
+        searchBox.requestFocus();
+      }
+    });
+
+    searchBackButton = findViewById(R.id.search_back_button);
+    searchBackButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        onBackPressed();
+      }
+    });
+
+    searchCloseIcon = findViewById(R.id.search_close_button);
+    searchCloseIcon.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        searchBox.setText("");
+      }
+    });
+
+    searchBox = findViewById(R.id.search_box);
+    searchBox.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+      }
+
+      @Override
+      public void onTextChanged(final CharSequence charSequence, int i, int i1, int i2) {
+        executor.executeNow(new Runnable() {
+          @Override
+          public void run() {
+            final List<RecyclerItem> items = search(charSequence.toString());
+            runOnUiThread(new Runnable() {
+              @Override
+              public void run() {
+                adapter.setItems(items);
+              }
+            });
+          }
+        });
+      }
+
+      @Override
+      public void afterTextChanged(Editable editable) {
+
+      }
+    });
 
     addList = findViewById(R.id.menu_add_list);
     addList.setOnClickListener(openNewListNoteActivity());
@@ -211,6 +284,63 @@ public class MainActivity extends ThemedActivity {
     }
   }
 
+  private void setSearchMode(boolean mode) {
+    isInSearchMode = mode;
+    mainToolbar.setVisibility(isInSearchMode ? View.GONE : View.VISIBLE);
+    bottomToolbar.setVisibility(isInSearchMode ? View.GONE : View.VISIBLE);
+    searchToolbar.setVisibility(isInSearchMode ? View.VISIBLE : View.GONE);
+    searchBox.setText("");
+
+    if (isInSearchMode) {
+      tryOpeningTheKeyboard();
+      searchNotes = new ArrayList<>();
+      for (RecyclerItem item : adapter.getItems()) {
+        if (item instanceof NoteRecyclerItem) {
+          searchNotes.add(((NoteRecyclerItem) item).note);
+        }
+      }
+    } else {
+      searchNotes = null;
+      setupData();
+    }
+  }
+
+  private List<RecyclerItem> search(String keyword) {
+    if (searchNotes == null) {
+      return adapter.getItems();
+    }
+
+    List<RecyclerItem> notes = new ArrayList<>();
+    for (Note note : searchNotes) {
+      if (note.search(keyword)) {
+        notes.add(new NoteRecyclerItem(note));
+      }
+    }
+    return notes;
+  }
+
+  private void tryOpeningTheKeyboard() {
+    try {
+      InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+      imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+    } catch (Exception exception) {
+      // Do nothing
+    }
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (isInSearchMode) {
+      if (searchBox.getText().toString().isEmpty()) {
+        setSearchMode(false);
+      } else {
+        searchBox.setText("");
+      }
+    } else {
+      super.onBackPressed();
+    }
+  }
+
   @Override
   public void notifyNightModeChange() {
     store.put(ThemedActivity.Companion.getKey(), isNightMode());
@@ -225,6 +355,9 @@ public class MainActivity extends ThemedActivity {
     addRichNote.setColorFilter(toolbarIconColor);
     homeOptions.setColorFilter(toolbarIconColor);
     addNote.setTextColor(toolbarIconColor);
+    searchIcon.setColorFilter(toolbarIconColor);
+    searchBackButton.setColorFilter(toolbarIconColor);
+    searchCloseIcon.setColorFilter(toolbarIconColor);
 
     findViewById(R.id.separator).setVisibility(isNightMode() ? GONE : View.VISIBLE);
 
@@ -232,7 +365,12 @@ public class MainActivity extends ThemedActivity {
     actionBarTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text));
     backButton.setColorFilter(getColor(R.color.colorAccent, R.color.material_pink_300));
 
-    findViewById(R.id.bottom_toolbar_layout).setBackgroundColor(
+    int textColor = getColor(R.color.dark_secondary_text, R.color.light_secondary_text);
+    int textHintColor = getColor(R.color.dark_hint_text, R.color.light_hint_text);
+    searchBox.setTextColor(textColor);
+    searchBox.setHintTextColor(textHintColor);
+
+    bottomToolbar.setBackgroundColor(
         getColor(R.color.material_grey_50, R.color.material_grey_850));
   }
 

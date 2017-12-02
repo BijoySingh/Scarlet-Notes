@@ -23,7 +23,8 @@
         android:resource="@xml/provider_paths"/>
     </provider>
 
-    <activity android:name=".activities.MainActivity">
+    <activity android:name=".activities.MainActivity"
+      android:windowSoftInputMode="stateHidden">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 

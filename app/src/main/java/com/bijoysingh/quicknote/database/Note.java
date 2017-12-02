@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static com.bijoysingh.quicknote.activities.external.ExportNotesKt.searchInNote;
+
 @Entity(
     tableName = "note",
     indices = {@Index("uid")}
@@ -79,6 +81,10 @@ public class Note {
       return formats.get(0).text;
     }
     return "";
+  }
+
+  public boolean search(String keywords) {
+    return searchInNote(this, keywords);
   }
 
   public void save(Context context) {
