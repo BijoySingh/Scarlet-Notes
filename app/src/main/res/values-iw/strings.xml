@@ -20,6 +20,7 @@
   <string name="format_hint_quote">הוסף טקסט מצוטט &#8230;</string>
   <string name="format_hint_list">הוסף פריט&#8230;</string>
   <string name="format_hint_code">הוסף קוד &#8230;</string>
+  <string name="search_notes">חפש הערות</string>
 
   <string name="open_note_day_mode">מצב יום</string>
   <string name="choose_note_color">שינוי צבע</string>

@@ -43,6 +43,8 @@
   <string name="about_page_title">আমাদের সম্পর্কে এবং আরও</string>
   <string name="about_page_rate">প্লে স্টোরে রেট দিন</string>
   <string name="about_page_contribute">অবদান</string>
+  <string name="search_notes">অনুসন্ধান নোটগুলি |</string>
+
   <string name="about_page_app_version">অ্যাপ সংস্করণ</string>
   <string name="about_page_about_app">অ্যাপ সম্পর্কে</string>
 

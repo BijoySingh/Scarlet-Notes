@@ -46,6 +46,8 @@
   <string name="about_page_app_version">Uygulama sürümü</string>
   <string name="about_page_about_app">App Hakkında</string>
   <string name="open_note_day_mode">Gün Modu</string>
+  <string name="search_notes">Notları Ara &#8230;</string>
+
   <string name="choose_note_color">Rengi değiştir</string>
   <string name="tap_for_action_open_note_day_mode">Notu gündüz modunda görüntülemek için dokunun</string>
   <string name="tap_for_action_color">Notun arka plan rengini değiştirmek için dokunun</string>

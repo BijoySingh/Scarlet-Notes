@@ -20,6 +20,8 @@
   <string name="format_hint_quote">添加引号文本&#8230;</string>
   <string name="format_hint_list">新增项目&#8230;</string>
   <string name="format_hint_code">添加代码&#8230;</string>
+  <string name="search_notes">搜索笔记&#8230;</string>
+
   <string name="open_note_day_mode">日间模式</string>
   <string name="choose_note_color">换颜色</string>
   <string name="tap_for_action_open_note_day_mode">点按即可在日间模式下查看笔记</string>

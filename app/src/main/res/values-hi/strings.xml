@@ -45,6 +45,7 @@
   <string name="about_page_contribute">योगदान</string>
   <string name="about_page_app_version">एप्लिकेशन वेरीज़न</string>
   <string name="about_page_about_app">ऐप के बारे में</string>
+  <string name="search_notes">नोट्स खोजें &#8230; |</string>
 
   <string name="open_note_day_mode">दिन मोड</string>
   <string name="choose_note_color">रंग बदलना</string>

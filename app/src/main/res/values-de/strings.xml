@@ -35,6 +35,7 @@
   <string name="permission_layout_give_permission_ok">ermöglichen</string>
   <string name="import_export_import_file_title">Sicherung aus Datei importieren</string>
   <string name="import_export_import_file">Datei importieren</string>
+  <string name="search_notes">Suche Notizen &#8230;</string>
   <string name="import_export_layout_exported">In Datei exportiert</string>
   <string name="import_export_layout_export_failed">Export fehlgeschlagen</string>
   <string name="import_export_layout_exporting">In Datei exportieren &#8230;</string>

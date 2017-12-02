@@ -47,6 +47,7 @@
   <string name="about_page_about_app">О приложении</string>
   <string name="open_note_day_mode">Дневной режим</string>
   <string name="choose_note_color">Изменить цвет</string>
+  <string name="search_notes">Поиск примечаний |</string>
   <string name="tap_for_action_open_note_day_mode">Нажмите, чтобы просмотреть заметку в дневном режиме</string>
   <string name="tap_for_action_color">Нажмите, чтобы изменить цвет фона заметки</string>
   <string name="home_option_enable_night_mode">Включить ночной режим</string>

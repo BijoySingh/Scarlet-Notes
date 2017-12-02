@@ -45,6 +45,7 @@
   <string name="about_page_contribute">Contribuire</string>
   <string name="about_page_app_version">Versione dell\'app</string>
   <string name="about_page_about_app">Informazioni sull\'app</string>
+  <string name="search_notes">Cerca note &#8230;</string>
 
   <string name="open_note_day_mode">Modalità giorno</string>
   <string name="choose_note_color">Cambia colore</string>

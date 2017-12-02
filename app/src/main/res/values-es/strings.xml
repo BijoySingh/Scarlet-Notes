@@ -46,6 +46,7 @@
   <string name="about_page_app_version">Version de aplicacion</string>
   <string name="about_page_about_app">Acerca de la aplicación</string>
   <string name="open_note_day_mode">Modo día</string>
+  <string name="search_notes">Notas de búsqueda &#8230;</string>
   <string name="choose_note_color">Cambiar el color</string>
   <string name="tap_for_action_open_note_day_mode">Toca para ver la nota en modo día</string>
   <string name="tap_for_action_color">Toca para cambiar el color de fondo de la nota</string>
