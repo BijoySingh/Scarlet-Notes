@@ -4,15 +4,19 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 
-public class FormatListViewHolder extends FormatTextViewHolder {
+public class FormatListViewHolder extends FormatTextViewHolder implements TextView.OnEditorActionListener {
 
   private ImageView icon;
 
@@ -25,6 +29,9 @@ public class FormatListViewHolder extends FormatTextViewHolder {
   public FormatListViewHolder(Context context, View view) {
     super(context, view);
     icon = (ImageView) view.findViewById(R.id.icon);
+    edit.setOnEditorActionListener(this);
+    edit.setImeOptions(EditorInfo.IME_ACTION_DONE);
+    edit.setRawInputType(InputType.TYPE_CLASS_TEXT);
   }
 
   @Override
@@ -57,4 +64,28 @@ public class FormatListViewHolder extends FormatTextViewHolder {
     });
   }
 
+
+  @Override
+  public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
+    if (format == null || !edit.isFocused()) {
+      return false;
+    }
+
+    // Ref: https://stackoverflow.com/questions/1489852/android-handle-enter-in-an-edittext
+    if (event == null) {
+      if (actionId != EditorInfo.IME_ACTION_DONE && actionId != EditorInfo.IME_ACTION_NEXT) {
+        return false;
+      }
+    } else if (actionId == EditorInfo.IME_NULL || actionId == KeyEvent.KEYCODE_ENTER) {
+      if (event.getAction() != KeyEvent.ACTION_DOWN) {
+        return true;
+      }
+    } else {
+      return false;
+    }
+
+    // Enter clicked
+    activity.createOrChangeToNextFormat(format);
+    return true;
+  }
 }

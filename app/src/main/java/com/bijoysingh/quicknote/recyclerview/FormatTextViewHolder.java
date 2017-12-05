@@ -27,7 +27,7 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
   protected ViewAdvancedNoteActivity activity;
   protected TextView text;
   protected EditText edit;
-  private Format format;
+  protected Format format;
   private View actionMove;
   private View actionDelete;
   private View actionCopy;
@@ -127,5 +127,9 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
   @Override
   public void afterTextChanged(Editable s) {
 
+  }
+
+  public void requestEditTextFocus() {
+    edit.requestFocus();
   }
 }

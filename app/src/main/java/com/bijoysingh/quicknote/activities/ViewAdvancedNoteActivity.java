@@ -142,6 +142,10 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     // do nothing
   }
 
+  public void createOrChangeToNextFormat(Format format) {
+    // do nothing
+  }
+
   public void setFormatChecked(Format format, boolean checked) {
     int position = getFormatIndex(format);
     if (position == -1) {

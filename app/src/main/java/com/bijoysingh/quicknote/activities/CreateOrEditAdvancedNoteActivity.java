@@ -3,8 +3,10 @@ package com.bijoysingh.quicknote.activities;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bijoysingh.quicknote.R;
@@ -13,10 +15,13 @@ import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.formats.NoteType;
+import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder;
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
+import com.github.bijoysingh.starter.async.SimpleAsyncTask;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 
@@ -256,7 +261,42 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       return;
     }
 
-    addEmptyItem(position + 1, type);
+    int newPosition = position + 1;
+    addEmptyItem(newPosition, type);
+    formatsView.getLayoutManager().scrollToPosition(newPosition);
+    focus(newPosition);
+  }
+
+  public void focus(final int position) {
+    Handler handler = new Handler();
+    handler.postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        FormatTextViewHolder holder = findViewHolderAtPositionAggressively(position);
+        if (holder == null) {
+          return;
+        }
+
+        holder.requestEditTextFocus();
+      }
+    }, 100);
+  }
+
+  @Nullable
+  private FormatTextViewHolder findViewHolderAtPositionAggressively(int position) {
+    RecyclerView.ViewHolder holder = formatsView.findViewHolderForAdapterPosition(position);
+    if (holder == null) {
+      holder = formatsView.findViewHolderForLayoutPosition(position);
+      if (holder == null) {
+        return null;
+      }
+    }
+
+    if (!(holder instanceof FormatTextViewHolder)) {
+      return null;
+    }
+
+    return (FormatTextViewHolder) holder;
   }
 
   @Override
@@ -303,5 +343,19 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   @Override
   public void setFormatChecked(Format format, boolean checked) {
     // do nothing
+  }
+
+  @Override
+  public void createOrChangeToNextFormat(Format format) {
+    int position = getFormatIndex(format);
+    if (position == -1) {
+      return;
+    }
+    int newPosition = position + 1;
+    if (newPosition < formats.size()) {
+      focus(position + 1);
+    } else {
+      addEmptyItemAtFocused(format.formatType);
+    }
   }
 }
