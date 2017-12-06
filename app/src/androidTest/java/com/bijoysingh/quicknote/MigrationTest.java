@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 import java.io.IOException;
 
 import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_2_3;
+import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_3_4;
 
 @RunWith(AndroidJUnit4.class)
 public class MigrationTest {
@@ -32,6 +33,10 @@ public class MigrationTest {
   private static final String NOTE_V3 =
       "INSERT INTO note (title, description, displayTimestamp, timestamp, color, state) "
           + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT');";
+
+  private static final String NOTE_V4 =
+      "INSERT INTO note (title, description, displayTimestamp, timestamp, color, state, locked) "
+          + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1);";
 
   @Rule
   public MigrationTestHelper helper;
@@ -66,6 +71,22 @@ public class MigrationTest {
   }
 
 
+  @Test
+  public void migrate3To4() throws IOException {
+    SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 3);
+    database.execSQL(NOTE_V3);
+    database.close();
+
+    database = helper.runMigrationsAndValidate(TEST_DB, 4, false, MIGRATION_3_4);
+    validate(database, select(TABLE_NOTE, 1));
+    Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 1, "locked")) == 0);
+
+    database.execSQL(NOTE_V4);
+    validate(database, select(TABLE_NOTE, 2));
+    Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 2, "locked")) == 1);
+  }
+
+
   private static void validate(SupportSQLiteDatabase database, String query) {
     Cursor cursor = database.query(query);
     Assert.assertTrue(cursor.moveToNext());
@@ -79,6 +100,12 @@ public class MigrationTest {
     Cursor cursor = database.query(query);
     cursor.moveToNext();
     return cursor.getString(0);
+  }
+
+  private static Integer getIntValue(SupportSQLiteDatabase database, String query) {
+    Cursor cursor = database.query(query);
+    cursor.moveToNext();
+    return cursor.getInt(0);
   }
 
   private static String select(String table, int uid) {

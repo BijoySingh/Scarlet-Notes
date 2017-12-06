@@ -47,6 +47,8 @@ public class Note {
 
   public String state;
 
+  public boolean locked;
+
   public boolean isUnsaved() {
     return uid == null || uid == 0;
   }
