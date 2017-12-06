@@ -134,4 +134,25 @@ public class Format {
             .build());
     return list;
   }
+
+  public static FormatType getNextFormatType(FormatType type) {
+    switch (type) {
+      case BULLET_LIST:
+        return FormatType.BULLET_LIST;
+      case NUMBERED_LIST:
+        return FormatType.NUMBERED_LIST;
+      case HEADING:
+        return FormatType.SUB_HEADING;
+      case CHECKLIST_CHECKED:
+      case CHECKLIST_UNCHECKED:
+        return FormatType.TEXT;
+      case IMAGE:
+      case SUB_HEADING:
+      case CODE:
+      case QUOTE:
+      case TEXT:
+      default:
+        return FormatType.TEXT;
+    }
+  }
 }

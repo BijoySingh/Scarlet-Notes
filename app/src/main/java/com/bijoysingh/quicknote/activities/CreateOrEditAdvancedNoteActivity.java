@@ -355,7 +355,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     if (newPosition < formats.size()) {
       focus(position + 1);
     } else {
-      addEmptyItemAtFocused(format.formatType);
+      addEmptyItemAtFocused(Format.getNextFormatType(format.formatType));
     }
   }
 }
