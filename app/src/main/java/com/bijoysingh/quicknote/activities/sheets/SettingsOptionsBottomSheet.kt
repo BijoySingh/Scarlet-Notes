@@ -7,9 +7,11 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.IntentUtils
 
 class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
+
   override fun setupViewWithDialog(dialog: Dialog) {
     setOptions(dialog, getOptions())
   }
@@ -36,6 +38,15 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           dismiss()
         },
         visible = isNightMode
+    ))
+    options.add(OptionsItem(
+        title = R.string.home_option_security,
+        subtitle = R.string.home_option_security_subtitle,
+        icon = R.drawable.ic_option_security,
+        listener = View.OnClickListener {
+          SecurityOptionsBottomSheet.openSheet(activity)
+          dismiss()
+        }
     ))
     options.add(OptionsItem(
         title = R.string.home_option_export,

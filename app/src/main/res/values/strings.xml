@@ -64,6 +64,8 @@
   <string name="format_hint_code">Add Code&#8230;</string>
 
   <string name="home_option_sheet_title">Options and Settings</string>
+  <string name="home_option_security">Security</string>
+  <string name="home_option_security_subtitle">Locking notes and security options</string>
   <string name="home_option_enable_night_mode">Enable Night Mode</string>
   <string name="home_option_enable_night_mode_subtitle">Enable dark theme as default</string>
   <string name="home_option_enable_day_mode">Enable Day Mode</string>
@@ -76,6 +78,22 @@
   <string name="home_option_about_page_subtitle">Know more about the app and the developers</string>
   <string name="home_option_rate_and_review">Rate and Review</string>
   <string name="home_option_rate_and_review_subtitle">Tell us know how much you liked the app</string>
+
+  <string name="security_option_title">Security Options</string>
+  <string name="security_option_set_pin_code">Pass Code</string>
+  <string name="security_option_set_pin_code_subtitle">Set a 4 digit PIN to lock notes</string>
+  <string name="security_option_fingerprint_enabled">Unlock with Fingerprint</string>
+  <string name="security_option_fingerprint_enabled_subtitle">The notes will unlock with the fingerprint, on devices which support it</string>
+  <string name="security_option_fingerprint_disabled">Fingerprint disabled</string>
+  <string name="security_option_fingerprint_disabled_subtitle">The notes will not unlock with the fingerprint, on devices which support it</string>
+
+  <string name="security_sheet_enter_new_pin_title">Enter new PIN</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Enter PIN to unlock</string>
+  <string name="security_sheet_enter_current_pin_title">Enter current PIN</string>
+  <string name="security_sheet_enter_pin_hint">enter code</string>
+  <string name="security_sheet_button_verify">Verify</string>
+  <string name="security_sheet_button_unlock">Unlock</string>
+  <string name="security_sheet_button_set">Set</string>
 
   <string name="permission_layout_give_permission">Give Permissions</string>
   <string name="permission_layout_give_permission_details">Import and export require storage permissions. Please give the permission when requested.</string>

@@ -7,8 +7,8 @@
     android:id="@+id/options_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="32dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="32dp">
 
     <TextView
       android:id="@+id/options_title"
@@ -17,6 +17,12 @@
       android:padding="16dp"
       android:text="@string/home_option_sheet_title"
       android:textSize="18sp" />
+
+    <LinearLayout
+      android:id="@+id/options_container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"/>
 
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

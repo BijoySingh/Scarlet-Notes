@@ -15,7 +15,7 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     if (dialog == null) {
       return
     }
-    setupViewWithDialog(dialog)
+    reset(dialog)
     maybeSetTextNightModeColor(dialog, R.id.options_title, R.color.light_tertiary_text)
   }
 
@@ -30,8 +30,14 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     titleView.setText(title)
   }
 
+  fun reset(dialog: Dialog) {
+    val layout = dialog.findViewById<LinearLayout>(R.id.options_container)
+    layout.removeAllViews()
+    setupViewWithDialog(dialog)
+  }
+
   fun setOptions(dialog: Dialog, options: List<OptionsItem>) {
-    val layout = dialog.findViewById<LinearLayout>(R.id.options_layout);
+    val layout = dialog.findViewById<LinearLayout>(R.id.options_container);
     for (option in options) {
       if (!option.visible) {
         continue
