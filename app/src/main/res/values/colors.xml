@@ -7,6 +7,7 @@
   <color name="colorPrimary">#07575B</color>
   <color name="colorPrimaryDark">#003B46</color>
   <color name="colorAccent">#F52549</color>
+  <color name="colorAccentDark">@color/material_pink_accent_100</color>
 
   <color name="color_1">#021C1E</color>
   <color name="color_2">#004445</color>

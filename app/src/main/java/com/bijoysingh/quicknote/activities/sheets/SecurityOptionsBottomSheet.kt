@@ -23,7 +23,21 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.security_option_set_pin_code_subtitle,
         icon = R.drawable.ic_option_security,
         listener = View.OnClickListener {
-          // Open to set / reset the password
+          EnterPincodeBottomSheet.openSheet(activity, object: EnterPincodeBottomSheet.PincodeListener {
+            override fun getTitle(): Int = R.string.security_sheet_enter_new_pin_title
+
+            override fun getActionTitle(): Int = R.string.security_sheet_button_set
+
+            override fun isFingerprintEnabled(): Boolean = dataStore.get(KEY_FINGERPRINT_ENABLED, true)
+
+            override fun onPasswordRequested(password: String) {
+              // Ignore for now
+            }
+
+            override fun onFingerprintEntered() {
+              // Ignore for now
+            }
+          })
         },
         selected = !TextUtils.isNullOrEmpty(dataStore.get(KEY_SECURITY_CODE, ""))
     ))
