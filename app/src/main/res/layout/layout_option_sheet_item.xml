@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.github.bijoysingh.uibasics.views.UIContentView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.github.bijoysingh.uibasics.views.UIActionView
+  xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:ui="http://schemas.android.com/apk/res-auto"
   style="@style/BorderedBackgroundView"
   android:layout_width="match_parent"
@@ -14,4 +15,6 @@
   ui:subtitleStyle="@style/SanSerif"
   ui:titleColor="@color/dark_secondary_text"
   ui:titleSize="16sp"
-  ui:titleStyle="@style/SanSerif" />
+  ui:titleStyle="@style/SanSerif"
+  ui:actionSize="24dp"
+  ui:actionTint="@color/material_blue_400"/>

@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.github.bijoysingh.uibasics.views.UIActionView
 import com.github.bijoysingh.uibasics.views.UIContentView
 
 abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
@@ -43,7 +44,7 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
         continue
       }
 
-      val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIContentView
+      val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIActionView
       contentView.setTitle(option.title)
       contentView.setSubtitle(option.subtitle)
       contentView.setOnClickListener(option.listener)
@@ -52,6 +53,10 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
       contentView.setTitleColor(getTitleColor(option))
       contentView.setSubtitleColor(getSubtitleColor(option))
       contentView.setImageTint(getTitleColor(option))
+
+      if (option.enabled) {
+        contentView.setActionResource(R.drawable.ic_check_box_white_24dp)
+      }
       
       layout.addView(contentView)
     }

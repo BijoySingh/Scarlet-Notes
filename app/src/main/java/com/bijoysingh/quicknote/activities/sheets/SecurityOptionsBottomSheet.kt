@@ -34,7 +34,7 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
             openCreatePasswordDialog(dialog)
           }
         },
-        selected = !TextUtils.isNullOrEmpty(dataStore.get(KEY_SECURITY_CODE, ""))
+        enabled = !TextUtils.isNullOrEmpty(dataStore.get(KEY_SECURITY_CODE, ""))
     ))
     val hasFingerprint = Reprint.hasFingerprintRegistered()
     options.add(OptionsItem(
@@ -60,7 +60,7 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         },
         visible = dataStore.get(KEY_FINGERPRINT_ENABLED, true) && hasFingerprint,
-        selected = true
+        enabled = true
     ))
     options.add(OptionsItem(
         title = R.string.security_option_fingerprint_disabled,
