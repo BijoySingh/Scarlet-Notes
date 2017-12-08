@@ -59,7 +59,7 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
 
   private fun getTitleColor(option: OptionsItem): Int {
     val colorResource = when {
-      isNightMode && option.selected -> R.color.material_blue_400
+      isNightMode && option.selected -> R.color.material_blue_300
       isNightMode -> R.color.light_secondary_text
       option.selected -> R.color.material_blue_700
       else -> R.color.dark_secondary_text

@@ -70,6 +70,17 @@
         android:layout_weight="1" />
 
       <TextView
+        android:id="@+id/action_remove_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="@string/security_sheet_button_remove"
+        android:visibility="gone"
+        android:textAllCaps="true"
+        android:textColor="@color/material_grey_600"
+        android:textSize="14sp" />
+
+      <TextView
         android:id="@+id/action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

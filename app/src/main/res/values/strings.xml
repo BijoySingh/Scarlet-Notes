@@ -94,6 +94,7 @@
   <string name="security_sheet_button_verify">Verify</string>
   <string name="security_sheet_button_unlock">Unlock</string>
   <string name="security_sheet_button_set">Set</string>
+  <string name="security_sheet_button_remove">Remove</string>
 
   <string name="permission_layout_give_permission">Give Permissions</string>
   <string name="permission_layout_give_permission_details">Import and export require storage permissions. Please give the permission when requested.</string>
