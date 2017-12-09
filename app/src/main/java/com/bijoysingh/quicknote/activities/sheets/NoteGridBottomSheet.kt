@@ -4,9 +4,11 @@ import android.app.Dialog
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
+import com.bijoysingh.quicknote.activities.sheets.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.NoteState
+import com.github.bijoysingh.starter.prefs.DataStore
 
 class NoteGridBottomSheet() : GridBottomSheetBase() {
 
@@ -26,6 +28,7 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
 
   private fun getOptions(note: Note): List<OptionsItem> {
     val activity = context as ViewAdvancedNoteActivity
+    val dataStore = DataStore.get(context)
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.restore_note,
@@ -176,6 +179,41 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
           note.popup(activity)
           dismiss()
         }
+    ))
+    options.add(OptionsItem(
+        title = R.string.trash_note,
+        subtitle = R.string.tap_for_action_trash,
+        icon = R.drawable.ic_delete_white_48dp,
+        listener = View.OnClickListener {
+          activity.moveItemToTrashOrDelete(note)
+          dismiss()
+        },
+        visible = note.noteState != NoteState.TRASH && !isEditMode
+    ))
+
+    options.add(OptionsItem(
+        title = R.string.lock_note,
+        subtitle = R.string.lock_note,
+        icon = R.drawable.ic_action_lock,
+        listener = View.OnClickListener {
+          note.locked = true
+          note.save(activity)
+          activity.notifyNoteChange()
+          dismiss()
+        },
+        visible = !note.locked && hasPinCodeEnabled(dataStore)
+    ))
+    options.add(OptionsItem(
+        title = R.string.unlock_note,
+        subtitle = R.string.unlock_note,
+        icon = R.drawable.ic_action_unlock,
+        listener = View.OnClickListener {
+          note.locked = false
+          note.save(activity)
+          activity.notifyNoteChange()
+          dismiss()
+        },
+        visible = note.locked && hasPinCodeEnabled(dataStore)
     ))
     return options
   }

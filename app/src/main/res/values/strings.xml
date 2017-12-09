@@ -29,6 +29,8 @@
   <string name="restore_note">Restore Note</string>
   <string name="trash_note">Move to Trash</string>
   <string name="choose_note_color">Change Color</string>
+  <string name="lock_note">Lock Note</string>
+  <string name="unlock_note">Unlock Note</string>
   <string name="choose_action">Choose Action&#8230;</string>
 
   <string name="tap_for_action_open_note_night_mode">Tap to view the note in night mode</string>
@@ -83,9 +85,9 @@
   <string name="security_option_set_pin_code">Pass Code</string>
   <string name="security_option_set_pin_code_subtitle">Set a 4 digit PIN to lock notes</string>
   <string name="security_option_fingerprint_enabled">Unlock with Fingerprint</string>
-  <string name="security_option_fingerprint_enabled_subtitle">The notes will unlock with the fingerprint, on devices which support it</string>
+  <string name="security_option_fingerprint_enabled_subtitle">The notes will unlock with the fingerprint</string>
   <string name="security_option_fingerprint_disabled">Fingerprint disabled</string>
-  <string name="security_option_fingerprint_disabled_subtitle">The notes will not unlock with the fingerprint, on devices which support it</string>
+  <string name="security_option_fingerprint_disabled_subtitle">The notes will not use a fingerprint</string>
 
   <string name="security_sheet_enter_new_pin_title">Enter new PIN</string>
   <string name="security_sheet_enter_pin_to_unlock_title">Enter PIN to unlock</string>

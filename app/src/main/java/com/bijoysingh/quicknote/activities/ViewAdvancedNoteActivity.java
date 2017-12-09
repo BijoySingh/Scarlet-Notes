@@ -297,6 +297,10 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     note.mark(this, state);
   }
 
+  public void notifyNoteChange() {
+
+  }
+
   protected int getFormatIndex(Format format) {
     int position = 0;
     for (Format fmt : formats) {

@@ -148,5 +148,10 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
       sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
+
+    fun hasPinCodeEnabled(dataStore: DataStore): Boolean {
+      val currentPinCode = dataStore.get(KEY_SECURITY_CODE, "")
+      return !TextUtils.isNullOrEmpty(currentPinCode)
+    }
   }
 }

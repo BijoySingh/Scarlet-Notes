@@ -8,6 +8,7 @@ import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.NoteState
+import com.github.bijoysingh.starter.prefs.DataStore
 
 class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
@@ -26,6 +27,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
   private fun getOptions(note: Note): List<OptionsItem> {
     val activity = context as MainActivity
+    val dataStore = DataStore.get(context)
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.restore_note,
@@ -162,6 +164,29 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           note.popup(activity)
           dismiss()
         }
+    ))
+
+    options.add(OptionsItem(
+        title = R.string.lock_note,
+        subtitle = R.string.lock_note,
+        icon = R.drawable.ic_action_lock,
+        listener = View.OnClickListener {
+          note.locked = true
+          activity.updateNote(note)
+          dismiss()
+        },
+        visible = !note.locked && SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)
+    ))
+    options.add(OptionsItem(
+        title = R.string.unlock_note,
+        subtitle = R.string.unlock_note,
+        icon = R.drawable.ic_action_unlock,
+        listener = View.OnClickListener {
+          note.locked = false
+          activity.updateNote(note)
+          dismiss()
+        },
+        visible = note.locked && SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)
     ))
     return options
   }
