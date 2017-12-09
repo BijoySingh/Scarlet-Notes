@@ -1,6 +1,9 @@
 package com.bijoysingh.quicknote.views;
 
 import android.app.Activity;
+import android.text.InputType;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -24,8 +27,28 @@ public class NoteViewHolder {
 
   public NoteViewHolder(Activity activity) {
     timestamp = (TextView) activity.findViewById(R.id.timestamp);
-    title = (EditText) activity.findViewById(R.id.title);
     description = (EditText) activity.findViewById(R.id.description);
+    title = (EditText) activity.findViewById(R.id.title);
+    title.setImeOptions(EditorInfo.IME_ACTION_DONE);
+    title.setRawInputType(InputType.TYPE_CLASS_TEXT);
+    title.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+      @Override
+      public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
+        if (event == null) {
+          if (actionId != EditorInfo.IME_ACTION_DONE && actionId != EditorInfo.IME_ACTION_NEXT) {
+            return false;
+          }
+        } else if (actionId == EditorInfo.IME_NULL || actionId == KeyEvent.KEYCODE_ENTER) {
+          if (event.getAction() != KeyEvent.ACTION_DOWN) {
+            return true;
+          }
+        } else {
+          return false;
+        }
+        description.requestFocus();
+        return true;
+      }
+    });
   }
 
   public void setNote(Note item) {

@@ -15,6 +15,7 @@ import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.bijoysingh.quicknote.views.ColorView;
 import com.bijoysingh.quicknote.views.NoteViewHolder;
+import com.github.bijoysingh.starter.prefs.DataStore;
 import com.google.android.flexbox.FlexboxLayout;
 
 import org.jetbrains.annotations.NotNull;
@@ -30,6 +31,7 @@ public class CreateSimpleNoteActivity extends ThemedActivity {
   public static boolean active = false;
 
   private Context context;
+  protected DataStore store;
 
   private Note note;
   private NoteViewHolder holder;
@@ -43,6 +45,7 @@ public class CreateSimpleNoteActivity extends ThemedActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_note);
     context = this;
+    store = DataStore.get(context);
 
     note = Note.db(this).getByID(getIntent().getIntExtra(NOTE_ID, 0));
     note = note == null ? Note.gen() : note;
@@ -52,7 +55,9 @@ public class CreateSimpleNoteActivity extends ThemedActivity {
 
     setListeners();
 
-    requestSetNightMode(getIntent().getBooleanExtra(ThemedActivity.Companion.getKey(), false));
+    requestSetNightMode(getIntent().getBooleanExtra(
+        ThemedActivity.Companion.getKey(),
+        store.get(ThemedActivity.Companion.getKey(), false)));
   }
 
   public void setListeners() {
