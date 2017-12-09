@@ -198,7 +198,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
 
     fun openUnlockSheet(
         activity: ThemedActivity,
-        listener: PincodeSuccessListener,
+        listener: PincodeSuccessOnlyListener,
         dataStore: DataStore) {
       openUnlockSheetBase(
           activity,
@@ -211,7 +211,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
 
     private fun openUnlockSheetBase(
         activity: ThemedActivity,
-        listener: PincodeSuccessListener,
+        listener: PincodeSuccessOnlyListener,
         dataStore: DataStore,
         title: Int,
         actionTitle: Int) {
@@ -229,7 +229,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
           val currentPassword = dataStore.get(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, password)
           if (currentPassword == password) {
             listener.onSuccess()
-          } else {
+          } else if (listener is PincodeSuccessListener) {
             listener.onFailure()
           }
         }

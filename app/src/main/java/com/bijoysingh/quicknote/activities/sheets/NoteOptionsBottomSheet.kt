@@ -29,6 +29,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     val activity = context as MainActivity
     val dataStore = DataStore.get(context)
     val options = ArrayList<OptionsItem>()
+    val locked = note.locked && SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)
+    val notLocked = !note.locked && SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)
     options.add(OptionsItem(
         title = R.string.restore_note,
         subtitle = R.string.tap_for_action_not_trash,
@@ -38,15 +40,6 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           dismiss()
         },
         visible = note.noteState == NoteState.TRASH
-    ))
-    options.add(OptionsItem(
-        title = R.string.open_note_night_mode,
-        subtitle = R.string.tap_for_action_open_note_night_mode,
-        icon = R.drawable.night_mode_white_48dp,
-        listener = View.OnClickListener {
-          context.startActivity(ViewAdvancedNoteActivity.getIntent(context, note, true))
-          dismiss()
-        }
     ))
     options.add(OptionsItem(
         title = R.string.edit_note,
@@ -104,7 +97,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         listener = View.OnClickListener {
           note.share(activity)
           dismiss()
-        }
+        },
+        visible = notLocked
     ))
     options.add(OptionsItem(
         title = R.string.copy_note,
@@ -113,7 +107,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         listener = View.OnClickListener {
           note.copy(activity)
           dismiss()
-        }
+        },
+        visible = notLocked
     ))
     options.add(OptionsItem(
         title = R.string.delete_note_permanently,
@@ -123,7 +118,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.moveItemToTrashOrDelete(note)
           dismiss()
         },
-        visible = note.noteState == NoteState.TRASH
+        visible = note.noteState == NoteState.TRASH && notLocked
     ))
     options.add(OptionsItem(
         title = R.string.trash_note,
@@ -133,7 +128,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.moveItemToTrashOrDelete(note)
           dismiss()
         },
-        visible = note.noteState != NoteState.TRASH
+        visible = note.noteState != NoteState.TRASH && notLocked
     ))
     options.add(OptionsItem(
         title = R.string.choose_note_color,
@@ -163,7 +158,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         listener = View.OnClickListener {
           note.popup(activity)
           dismiss()
-        }
+        },
+        visible = notLocked
     ))
 
     options.add(OptionsItem(
@@ -175,18 +171,25 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.updateNote(note)
           dismiss()
         },
-        visible = !note.locked && SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)
+        visible = notLocked
     ))
     options.add(OptionsItem(
         title = R.string.unlock_note,
         subtitle = R.string.unlock_note,
         icon = R.drawable.ic_action_unlock,
         listener = View.OnClickListener {
-          note.locked = false
-          activity.updateNote(note)
-          dismiss()
+          EnterPincodeBottomSheet.openUnlockSheet(
+              activity,
+              object: EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
+                override fun onSuccess() {
+                  note.locked = false
+                  activity.updateNote(note)
+                  dismiss()
+                }
+              },
+              dataStore)
         },
-        visible = note.locked && SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)
+        visible = locked
     ))
     return options
   }

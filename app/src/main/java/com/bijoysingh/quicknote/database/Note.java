@@ -13,10 +13,12 @@ import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.external.ExportableNote;
+import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.formats.NoteType;
 import com.bijoysingh.quicknote.utils.NoteState;
+import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.util.DateFormatter;
 import com.github.bijoysingh.starter.util.IntentUtils;
 import com.github.bijoysingh.starter.util.TextUtils;
@@ -69,6 +71,13 @@ public class Note {
     return text.trim();
   }
 
+  public String getLockedText() {
+    if (locked) {
+      return "******************\n***********\n****************";
+    }
+    return getText();
+  }
+
   public NoteState getNoteState() {
     try {
       return NoteState.valueOf(state);
@@ -79,7 +88,7 @@ public class Note {
 
   public String getTitle() {
     List<Format> formats = Format.getFormats(description);
-    if (!formats.isEmpty() && formats.get(0).formatType == FormatType.HEADING){
+    if (!formats.isEmpty() && formats.get(0).formatType == FormatType.HEADING) {
       return formats.get(0).text;
     }
     return "";
@@ -130,7 +139,26 @@ public class Note {
     return intent;
   }
 
-  public void edit(Context context) {
+  public void edit(final Context context) {
+    if (context instanceof ThemedActivity && locked) {
+      EnterPincodeBottomSheet.Companion.openUnlockSheet(
+          (ThemedActivity) context,
+          new EnterPincodeBottomSheet.PincodeSuccessListener() {
+            @Override
+            public void onFailure() {
+              edit(context);
+            }
+
+            @Override
+            public void onSuccess() {
+              context.startActivity(editIntent(context));
+            }
+          },
+          DataStore.get(context));
+      return;
+    } else if (locked) {
+      return;
+    }
     context.startActivity(editIntent(context));
   }
 

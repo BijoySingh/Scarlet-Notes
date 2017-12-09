@@ -2,7 +2,6 @@ package com.bijoysingh.quicknote.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +17,7 @@ import com.bijoysingh.quicknote.recyclerview.FormatAdapter;
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.bijoysingh.quicknote.utils.NoteState;
+import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
 import com.google.android.flexbox.FlexboxLayout;
 
@@ -31,6 +31,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
 
   protected Context context;
   protected Note note;
+  protected DataStore store;
 
   protected FormatAdapter adapter;
   protected List<Format> formats;
@@ -56,11 +57,14 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_advanced_note);
     context = this;
+    store = DataStore.get(context);
 
     note = Note.db(this).getByID(getIntent().getIntExtra(NOTE_ID, 0));
     note = note == null ? Note.gen() : note;
 
-    setNightMode(getIntent().getBooleanExtra(ThemedActivity.Companion.getKey(), false));
+    setNightMode(getIntent().getBooleanExtra(
+        ThemedActivity.Companion.getKey(),
+        store.get(ThemedActivity.Companion.getKey(), false)));
 
     rootView = findViewById(R.id.root_layout);
     setRecyclerView();

@@ -15,10 +15,12 @@ import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.MainActivity;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
+import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
 import com.bijoysingh.quicknote.items.RecyclerItem;
+import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
 
 import static android.view.View.GONE;
@@ -63,16 +65,13 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     title.setText(noteTitle);
     title.setVisibility(noteTitle.isEmpty() ? GONE : VISIBLE);
 
-    description.setText(data.getText());
+    description.setText(data.getLockedText());
     timestamp.setText(data.displayTimestamp);
 
     view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
-        intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, data.uid);
-        intent.putExtra(ThemedActivity.Companion.getKey(), ((ThemedActivity) context).isNightMode());
-        context.startActivity(intent);
+        openOrUnlockNote(data);
       }
     });
     view.setCardBackgroundColor(data.color);
@@ -104,42 +103,39 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     view.setOnLongClickListener(new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View view) {
-        CharSequence colors[] = new CharSequence[]{
-            context.getString(R.string.edit_note),
-            context.getString(R.string.send_note),
-            context.getString(R.string.copy_note),
-            context.getString(R.string.delete_note),
-            context.getString(R.string.open_in_popup),
-        };
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(R.string.choose_action);
-        builder.setItems(colors, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            switch (which) {
-              case 0:
-                data.edit(context);
-                break;
-              case 1:
-                data.share(context);
-                break;
-              case 2:
-                data.copy(context);
-                break;
-              case 3:
-                activity.moveItemToTrashOrDelete(data);
-                break;
-              case 4:
-                data.popup(activity);
-                break;
-            }
-          }
-        });
-        builder.setCancelable(true);
-        builder.show();
+        NoteOptionsBottomSheet.Companion.openSheet(activity, data);
         return false;
       }
     });
+  }
+
+  private void openOrUnlockNote(final Note data) {
+    if (context instanceof ThemedActivity && data.locked) {
+      EnterPincodeBottomSheet.Companion.openUnlockSheet(
+          (ThemedActivity) context,
+          new EnterPincodeBottomSheet.PincodeSuccessListener() {
+            @Override
+            public void onFailure() {
+              openOrUnlockNote(data);
+            }
+
+            @Override
+            public void onSuccess() {
+              openNote(data);
+            }
+          },
+          DataStore.get(context));
+      return;
+    } else if (data.locked) {
+      return;
+    }
+    openNote(data);
+  }
+
+  private void openNote(final Note data) {
+    Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
+    intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, data.uid);
+    intent.putExtra(ThemedActivity.Companion.getKey(), ((ThemedActivity) context).isNightMode());
+    context.startActivity(intent);
   }
 }

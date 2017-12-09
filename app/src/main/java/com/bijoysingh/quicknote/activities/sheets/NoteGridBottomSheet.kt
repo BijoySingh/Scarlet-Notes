@@ -178,19 +178,9 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
         listener = View.OnClickListener {
           note.popup(activity)
           dismiss()
-        }
-    ))
-    options.add(OptionsItem(
-        title = R.string.trash_note,
-        subtitle = R.string.tap_for_action_trash,
-        icon = R.drawable.ic_delete_white_48dp,
-        listener = View.OnClickListener {
-          activity.moveItemToTrashOrDelete(note)
-          dismiss()
         },
-        visible = note.noteState != NoteState.TRASH && !isEditMode
+        visible = !note.locked
     ))
-
     options.add(OptionsItem(
         title = R.string.lock_note,
         subtitle = R.string.lock_note,
