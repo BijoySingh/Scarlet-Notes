@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
   private ImageView edit;
   private ImageView share;
   private ImageView delete;
+  private ImageView copy;
   private ImageView moreOptions;
   private MainActivity activity;
 
@@ -50,6 +52,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     description = view.findViewById(R.id.description);
     share = view.findViewById(R.id.share_button);
     delete = view.findViewById(R.id.delete_button);
+    copy = view.findViewById(R.id.copy_button);
     activity = (MainActivity) context;
     moreOptions = view.findViewById(R.id.options_button);
     edit = view.findViewById(R.id.edit_button);
@@ -104,6 +107,17 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
       @Override
       public void onClick(View v) {
         data.edit(context);
+      }
+    });
+    copy.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        actionOrUnlockNote(data, new Runnable() {
+          @Override
+          public void run() {
+            data.copy(context);
+          }
+        });
       }
     });
 
