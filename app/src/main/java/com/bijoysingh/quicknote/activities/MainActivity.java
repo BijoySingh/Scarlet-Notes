@@ -266,7 +266,7 @@ public class MainActivity extends ThemedActivity {
     setupData();
   }
 
-  private void setupData() {
+  public void setupData() {
     mode = getMode();
     switch (mode) {
       case FAVOURITE:

@@ -1,10 +1,8 @@
 package com.bijoysingh.quicknote.recyclerview;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,8 +10,8 @@ import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
-import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.MainActivity;
+import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet;
@@ -71,14 +69,24 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        openOrUnlockNote(data);
+        actionOrUnlockNote(data, new Runnable() {
+          @Override
+          public void run() {
+            openNote(data);
+          }
+        });
       }
     });
     view.setCardBackgroundColor(data.color);
     delete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        activity.moveItemToTrashOrDelete(data);
+        actionOrUnlockNote(data, new Runnable() {
+          @Override
+          public void run() {
+            activity.moveItemToTrashOrDelete(data);
+          }
+        });
       }
     });
     share.setOnClickListener(new View.OnClickListener() {
@@ -109,19 +117,19 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     });
   }
 
-  private void openOrUnlockNote(final Note data) {
+  private void actionOrUnlockNote(final Note data, final Runnable runnable) {
     if (context instanceof ThemedActivity && data.locked) {
       EnterPincodeBottomSheet.Companion.openUnlockSheet(
           (ThemedActivity) context,
           new EnterPincodeBottomSheet.PincodeSuccessListener() {
             @Override
             public void onFailure() {
-              openOrUnlockNote(data);
+              actionOrUnlockNote(data, runnable);
             }
 
             @Override
             public void onSuccess() {
-              openNote(data);
+              runnable.run();
             }
           },
           DataStore.get(context));
@@ -129,7 +137,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     } else if (data.locked) {
       return;
     }
-    openNote(data);
+    runnable.run();
   }
 
   private void openNote(final Note data) {

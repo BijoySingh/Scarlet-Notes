@@ -35,7 +35,7 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.tap_for_action_not_trash,
         icon = R.drawable.ic_restore,
         listener = View.OnClickListener {
-          activity.moveItemToTrashOrDelete(note)
+          activity.markItem(note, NoteState.DEFAULT)
           dismiss()
         },
         visible = note.noteState == NoteState.TRASH

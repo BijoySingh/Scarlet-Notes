@@ -11,7 +11,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
+import com.bijoysingh.quicknote.database.Note
 import com.github.ajalt.reprint.core.AuthenticationFailureReason
 import com.github.ajalt.reprint.core.AuthenticationListener
 import com.github.ajalt.reprint.core.Reprint
@@ -170,7 +172,11 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
 
         override fun onRemoveButtonClick() {
           dataStore.put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
+          Note.db(activity).unlockAll()
           listener.onSuccess()
+
+          if (activity is MainActivity)
+            activity.setupData()
         }
 
         override fun onPasswordRequested(password: String) {
