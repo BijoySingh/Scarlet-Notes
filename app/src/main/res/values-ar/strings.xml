@@ -10,6 +10,7 @@
   <string name="main_add_a_quick_note">إضافة ملاحظة سريعة &#8230;</string>
   <string name="edit_note">تحرير مذكرة</string>
   <string name="open_in_popup">فتح في نافذة منبثقة</string>
+
   <string name="delete_note">حذف ملاحظة</string>
   <string name="copy_note">نسخ ملاحظة</string>
   <string name="send_note">إرسال ملاحظة</string>
@@ -46,6 +47,26 @@
   <string name="about_page_about_app">حول التطبيق</string>
   <string name="open_note_night_mode">الوضع الليلي</string>
   <string name="delete_note_permanently">الحذف بشكل نهائي</string>
+  <string name="lock_note">قفل ملاحظة</string>
+  <string name="unlock_note">فتح ملاحظة</string>
+  <string name="home_option_security">الأمان</string>
+  <string name="home_option_security_subtitle">تأمين الملاحظات وخيارات الأمان</string>
+  <string name="security_option_title">خيارات الأمان</string>
+  <string name="security_option_set_pin_code">رمز عبور</string>
+  <string name="security_option_set_pin_code_subtitle">تعيين رقم التعريف الشخصي المكون من 4 أرقام لقفل الملاحظات</string>
+  <string name="security_option_fingerprint_enabled">فتح مع بصمات الأصابع</string>
+  <string name="security_option_fingerprint_enabled_subtitle">سيتم فتح الملاحظات مع بصمات الأصابع</string>
+  <string name="security_option_fingerprint_disabled">تم تعطيل بصمة الإصبع</string>
+  <string name="security_option_fingerprint_disabled_subtitle">لن تستخدم الملاحظات بصمة الإصبع</string>
+  <string name="security_sheet_enter_new_pin_title">أدخل رقم تعريف شخصي جديد</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">أدخل رقم التعريف الشخصي لإلغاء التأمين</string>
+  <string name="security_sheet_enter_current_pin_title">أدخل رقم التعريف الشخصي الحالي</string>
+  <string name="security_sheet_enter_pin_hint">ادخل الرمز</string>
+  <string name="security_sheet_button_verify">التحقق</string>
+  <string name="security_sheet_button_unlock">فتح</string>
+  <string name="security_sheet_button_set">جلس</string>
+  <string name="security_sheet_button_remove">إزالة</string>
+
   <string name="unarchive_note">إلغاء الأرشفة</string>
   <string name="archive_note">أرشيف ملاحظة</string>
   <string name="not_favourite_note">علامة غير المفضلة</string>

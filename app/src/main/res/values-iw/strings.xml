@@ -31,6 +31,26 @@
   <string name="home_option_enable_day_mode">הפעל מצב יום</string>
   <string name="home_option_enable_day_mode_subtitle">אפשר עיצוב אור כברירת מחדל</string>
 
+  <string name="lock_note">הערה נעל</string>
+  <string name="unlock_note">נעילת הערה</string>
+  <string name="home_option_security">בִּטָחוֹן</string>
+  <string name="home_option_security_subtitle">נעילת הערות ואפשרויות אבטחה</string>
+  <string name="security_option_title">אפשרויות אבטחה</string>
+  <string name="security_option_set_pin_code">מעבר קוד</string>
+  <string name="security_option_set_pin_code_subtitle">הגדר PIN 4 ספרות כדי לנעול הערות</string>
+  <string name="security_option_fingerprint_enabled">נעילת עם טביעת אצבע</string>
+  <string name="security_option_fingerprint_enabled_subtitle">פתקים יפתח עם טביעת האצבע</string>
+  <string name="security_option_fingerprint_disabled">טביעת אצבע מושבתת</string>
+  <string name="security_option_fingerprint_disabled_subtitle">ההערות לא ישתמשו בטביעת אצבע</string>
+  <string name="security_sheet_enter_new_pin_title">הזן קוד PIN חדש</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">הזן PIN כדי לבטל את הנעילה</string>
+  <string name="security_sheet_enter_current_pin_title">הזן את קוד ה- PIN הנוכחי</string>
+  <string name="security_sheet_enter_pin_hint">להזין את הקוד</string>
+  <string name="security_sheet_button_verify">לְאַמֵת</string>
+  <string name="security_sheet_button_unlock">לבטל נעילה</string>
+  <string name="security_sheet_button_set">מַעֲרֶכֶת</string>
+  <string name="security_sheet_button_remove">לְהַסִיר</string>
+
   <string name="home_option_sheet_title">אפשרויות והגדרות</string>
   <string name="home_option_export">הערות ייצוא</string>
   <string name="home_option_export_subtitle">ייצא הערות לאחסון המכשיר כדי לשתף</string>

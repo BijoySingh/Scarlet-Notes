@@ -47,6 +47,26 @@
   <string name="about_page_about_app">Sobre a aplicação</string>
   <string name="search_notes">Notas de pesquisa &#8230;</string>
 
+  <string name="lock_note">Nota de bloqueio</string>
+  <string name="unlock_note">Desbloquear nota</string>
+  <string name="home_option_security">Segurança</string>
+  <string name="home_option_security_subtitle">Bloqueando notas e opções de segurança</string>
+  <string name="security_option_title">Opções de segurança</string>
+  <string name="security_option_set_pin_code">Código de passagem</string>
+  <string name="security_option_set_pin_code_subtitle">Defina um PIN de 4 dígitos para bloquear notas</string>
+  <string name="security_option_fingerprint_enabled">Desbloquear com impressão digital</string>
+  <string name="security_option_fingerprint_enabled_subtitle">As notas serão desbloqueadas com a impressão digital</string>
+  <string name="security_option_fingerprint_disabled">Fingerprint desativado</string>
+  <string name="security_option_fingerprint_disabled_subtitle">As notas não usarão uma impressão digital</string>
+  <string name="security_sheet_enter_new_pin_title">Digite o novo PIN</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Digite PIN para desbloquear</string>
+  <string name="security_sheet_enter_current_pin_title">Digite o PIN atual</string>
+  <string name="security_sheet_enter_pin_hint">Coloque o código</string>
+  <string name="security_sheet_button_verify">Verificar</string>
+  <string name="security_sheet_button_unlock">Desbloquear</string>
+  <string name="security_sheet_button_set">Conjunto</string>
+  <string name="security_sheet_button_remove">Remover</string>
+
   <string name="open_note_day_mode">Modo dia</string>
   <string name="choose_note_color">Mudar cor</string>
   <string name="tap_for_action_open_note_day_mode">Toque para visualizar a nota no modo dia</string>

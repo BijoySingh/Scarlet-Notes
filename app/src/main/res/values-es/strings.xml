@@ -21,6 +21,26 @@
   <string name="format_hint_list">Añadir artículo&#8230;</string>
   <string name="format_hint_code">Añadir código &#8230;</string>
 
+  <string name="lock_note">Nota de bloqueo</string>
+  <string name="unlock_note">Desbloquear nota</string>
+  <string name="home_option_security">Seguridad</string>
+  <string name="home_option_security_subtitle">Bloqueo de notas y opciones de seguridad</string>
+  <string name="security_option_title">Opciones de seguridad</string>
+  <string name="security_option_set_pin_code">Código de Pase</string>
+  <string name="security_option_set_pin_code_subtitle">Establecer un PIN de 4 dígitos para bloquear notas</string>
+  <string name="security_option_fingerprint_enabled">Desbloquear con huella digital</string>
+  <string name="security_option_fingerprint_enabled_subtitle">Las notas se desbloquearán con la huella digital</string>
+  <string name="security_option_fingerprint_disabled">Huella digital deshabilitada</string>
+  <string name="security_option_fingerprint_disabled_subtitle">Las notas no usarán una huella digital</string>
+  <string name="security_sheet_enter_new_pin_title">Ingrese un nuevo PIN</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Ingresa el PIN para desbloquear</string>
+  <string name="security_sheet_enter_current_pin_title">Ingrese el PIN actual</string>
+  <string name="security_sheet_enter_pin_hint">introduzca el código</string>
+  <string name="security_sheet_button_verify">Verificar</string>
+  <string name="security_sheet_button_unlock">desbloquear</string>
+  <string name="security_sheet_button_set">Conjunto</string>
+  <string name="security_sheet_button_remove">retirar</string>
+
   <string name="home_option_sheet_title">Opciones y configuraciones</string>
   <string name="home_option_export">Notas de exportación</string>
   <string name="home_option_export_subtitle">Exportar notas al almacenamiento del dispositivo para compartir</string>

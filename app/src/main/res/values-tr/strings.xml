@@ -20,6 +20,26 @@
   <string name="format_hint_quote">Alıntı Metni Ekle &#8230;</string>
   <string name="format_hint_list">Öğe eklemek&#8230;</string>
   <string name="format_hint_code">Kod Ekle &#8230;</string>
+  <string name="lock_note">Kilitli not</string>
+  <string name="unlock_note">Not kilidini aç</string>
+  <string name="home_option_security">Güvenlik</string>
+  <string name="home_option_security_subtitle">Kilitleme notları ve güvenlik seçenekleri</string>
+  <string name="security_option_title">Güvenlik seçenekleri</string>
+  <string name="security_option_set_pin_code">Şifreyi Gir</string>
+  <string name="security_option_set_pin_code_subtitle">Notları kilitlemek için 4 basamaklı bir PIN belirleyin</string>
+  <string name="security_option_fingerprint_enabled">Parmak izi ile kilidini aç</string>
+  <string name="security_option_fingerprint_enabled_subtitle">Notlar parmak iziyle açılacaktır</string>
+  <string name="security_option_fingerprint_disabled">Parmak izi devre dışı</string>
+  <string name="security_option_fingerprint_disabled_subtitle">Notlar bir parmak izi kullanmaz</string>
+  <string name="security_sheet_enter_new_pin_title">Yeni PIN girin</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Kilidi açmak için PIN girin</string>
+  <string name="security_sheet_enter_current_pin_title">Geçerli PIN\'i gir</string>
+  <string name="security_sheet_enter_pin_hint">Kodu girin</string>
+  <string name="security_sheet_button_verify">DOĞRULAYIN</string>
+  <string name="security_sheet_button_unlock">Kilidini aç</string>
+  <string name="security_sheet_button_set">Set</string>
+  <string name="security_sheet_button_remove">Kaldır</string>
+
 
   <string name="home_option_sheet_title">Seçenekler ve Ayarlar</string>
   <string name="home_option_export">Notları Dışa Aktar</string>

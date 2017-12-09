@@ -21,6 +21,26 @@
   <string name="format_hint_list">ਆਈਟਮ ਸ਼ਾਮਲ ਕਰੋ &#8230;</string>
   <string name="format_hint_code">ਕੋਡ ਜੋੜੋ &#8230;</string>
   <string name="search_notes">ਨੋਟ ਲੱਭੋ</string>
+  <string name="lock_note">ਲਾਕ ਨੋਟ</string>
+  <string name="unlock_note">ਨੋਟ ਅਨਲੌਕ ਕਰੋ</string>
+  <string name="home_option_security">ਸੁਰੱਖਿਆ</string>
+  <string name="home_option_security_subtitle">ਨੋਟਿੰਗ ਅਤੇ ਸੁਰੱਖਿਆ ਵਿਕਲਪ ਲਾਕ ਕਰੋ</string>
+  <string name="security_option_title">ਸੁਰੱਖਿਆ ਵਿਕਲਪ</string>
+  <string name="security_option_set_pin_code">ਪਾਸ ਕੋਡ</string>
+  <string name="security_option_set_pin_code_subtitle">ਨੋਟਸ ਨੂੰ ਲਾਕ ਕਰਨ ਲਈ ਇੱਕ 4 ਅੰਕ ਦਾ PIN ਸੈਟ ਕਰੋ</string>
+  <string name="security_option_fingerprint_enabled">ਫਿੰਗਰਪ੍ਰਿੰਟ ਨਾਲ ਅਨਲੌਕ ਕਰੋ</string>
+  <string name="security_option_fingerprint_enabled_subtitle">ਨੋਟਸ ਫਿੰਗਰਪ੍ਰਿੰਟ ਨਾਲ ਅਨਲੌਕ ਹੋ ਜਾਣਗੇ</string>
+  <string name="security_option_fingerprint_disabled">ਫਿੰਗਰਪ੍ਰਿੰਟ ਅਸਮਰਥਿਤ</string>
+  <string name="security_option_fingerprint_disabled_subtitle">ਨੋਟਸ ਫਿੰਗਰਪ੍ਰਿੰਟ ਦੀ ਵਰਤੋਂ ਨਹੀਂ ਕਰਨਗੇ</string>
+  <string name="security_sheet_enter_new_pin_title">ਨਵਾਂ PIN ਦਰਜ ਕਰੋ</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">ਅਨਲੌਕ ਕਰਨ ਲਈ PIN ਦਰਜ ਕਰੋ</string>
+  <string name="security_sheet_enter_current_pin_title">ਮੌਜੂਦਾ PIN ਦਰਜ ਕਰੋ</string>
+  <string name="security_sheet_enter_pin_hint">ਕੋਡ ਦਰਜ ਕਰੋ</string>
+  <string name="security_sheet_button_verify">ਜਾਂਚ ਕਰੋ</string>
+  <string name="security_sheet_button_unlock">ਅਨਲੌਕ</string>
+  <string name="security_sheet_button_set">ਸੈੱਟ ਕਰੋ</string>
+  <string name="security_sheet_button_remove">ਹਟਾਓ</string>
+
 
   <string name="home_option_sheet_title">ਚੋਣਾਂ ਅਤੇ ਸੈਟਿੰਗਾਂ</string>
   <string name="home_option_export">ਨੋਟ ਐਕਸਪੋਰਟ</string>

@@ -21,6 +21,27 @@
   <string name="format_hint_list">Добавить элемент&#8230;</string>
   <string name="format_hint_code">Добавить код &#8230;</string>
 
+  <string name="lock_note">Блокировка</string>
+  <string name="unlock_note">Разблокировать заметку</string>
+  <string name="home_option_security">Безопасность</string>
+  <string name="home_option_security_subtitle">Блокировка заметок и параметров безопасности</string>
+  <string name="security_option_title">Параметры безопасности</string>
+  <string name="security_option_set_pin_code">Код прохода</string>
+  <string name="security_option_set_pin_code_subtitle">Установите 4-значный PIN-код для блокировки заметок</string>
+  <string name="security_option_fingerprint_enabled">Разблокировка с помощью отпечатка пальца</string>
+  <string name="security_option_fingerprint_enabled_subtitle">Заметки будут разблокированы с помощью отпечатка пальца</string>
+  <string name="security_option_fingerprint_disabled">Отключить отпечаток пальца</string>
+  <string name="security_option_fingerprint_disabled_subtitle">Примечания не будут использовать отпечаток</string>
+  <string name="security_sheet_enter_new_pin_title">Введите новый PIN-код</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Введите PIN-код для разблокировки</string>
+  <string name="security_sheet_enter_current_pin_title">Введите текущий PIN-код</string>
+  <string name="security_sheet_enter_pin_hint">введите код</string>
+  <string name="security_sheet_button_verify">проверить</string>
+  <string name="security_sheet_button_unlock">отпереть</string>
+  <string name="security_sheet_button_set">Задавать</string>
+  <string name="security_sheet_button_remove">Удалить</string>
+
+
   <string name="home_option_sheet_title">Параметры и настройки</string>
   <string name="home_option_export">Экспортные заметки</string>
   <string name="home_option_export_subtitle">Экспорт заметок в хранилище устройств для совместного использования</string>

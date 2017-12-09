@@ -20,6 +20,25 @@
   <string name="format_hint_quote">Zitierter Text hinzufügen &#8230;</string>
   <string name="format_hint_list">Artikel hinzufügen&#8230;</string>
   <string name="format_hint_code">Code hinzufügen &#8230;</string>
+  <string name="lock_note">Notiz sperren</string>
+  <string name="unlock_note">Notiz entsperren</string>
+  <string name="home_option_security">Sicherheit</string>
+  <string name="home_option_security_subtitle">Sperrvermerke und Sicherheitsoptionen</string>
+  <string name="security_option_title">Sicherheitsoptionen</string>
+  <string name="security_option_set_pin_code">Code übergeben</string>
+  <string name="security_option_set_pin_code_subtitle">Stellen Sie eine vierstellige PIN ein, um Notizen zu sperren</string>
+  <string name="security_option_fingerprint_enabled">Entsperren mit Fingerabdruck</string>
+  <string name="security_option_fingerprint_enabled_subtitle">Die Notizen werden mit dem Fingerabdruck entsperrt</string>
+  <string name="security_option_fingerprint_disabled">Fingerabdruck deaktiviert</string>
+  <string name="security_option_fingerprint_disabled_subtitle">Die Notizen verwenden keinen Fingerabdruck</string>
+  <string name="security_sheet_enter_new_pin_title">Geben Sie eine neue PIN ein</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Geben Sie zum Entsperren die PIN ein</string>
+  <string name="security_sheet_enter_current_pin_title">Geben Sie die aktuelle PIN ein</string>
+  <string name="security_sheet_enter_pin_hint">Code eingeben</string>
+  <string name="security_sheet_button_verify">Überprüfen</string>
+  <string name="security_sheet_button_unlock">Freischalten</string>
+  <string name="security_sheet_button_set">einstellen</string>
+  <string name="security_sheet_button_remove">Löschen</string>
 
   <string name="home_option_sheet_title">Optionen und Einstellungen</string>
   <string name="home_option_export">Hinweise exportieren</string>

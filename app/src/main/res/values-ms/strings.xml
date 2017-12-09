@@ -20,7 +20,25 @@
   <string name="format_hint_quote">Tambahkan Teks Kutipan &#8230;</string>
   <string name="format_hint_list">Tambah Item &#8230;</string>
   <string name="format_hint_code">Tambah Kod &#8230;</string>
-
+  <string name="lock_note">Kunci Nota</string>
+  <string name="unlock_note">Buka kunci Nota</string>
+  <string name="home_option_security">Keselamatan</string>
+  <string name="home_option_security_subtitle">Mengunci nota dan pilihan keselamatan</string>
+  <string name="security_option_title">Pilihan Keselamatan</string>
+  <string name="security_option_set_pin_code">Kod Pas</string>
+  <string name="security_option_set_pin_code_subtitle">Tetapkan PIN 4 digit untuk mengunci nota</string>
+  <string name="security_option_fingerprint_enabled">Buka kunci dengan cap jari</string>
+  <string name="security_option_fingerprint_enabled_subtitle">Nota-nota akan dibuka dengan cap jari</string>
+  <string name="security_option_fingerprint_disabled">Cap jari dilumpuhkan</string>
+  <string name="security_option_fingerprint_disabled_subtitle">Nota tidak akan menggunakan cap jari</string>
+  <string name="security_sheet_enter_new_pin_title">Masukkan PIN baru</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Masukkan PIN untuk membuka kunci</string>
+  <string name="security_sheet_enter_current_pin_title">Masukkan PIN semasa</string>
+  <string name="security_sheet_enter_pin_hint">masukkan kod</string>
+  <string name="security_sheet_button_verify">Sahkan</string>
+  <string name="security_sheet_button_unlock">Buka kunci</string>
+  <string name="security_sheet_button_set">Tetapkan</string>
+  <string name="security_sheet_button_remove">Keluarkan</string>
   <string name="home_option_sheet_title">Pilihan dan Tetapan</string>
   <string name="home_option_export">Nota Eksport</string>
   <string name="home_option_export_subtitle">Nota eksport ke storan peranti untuk dikongsi</string>

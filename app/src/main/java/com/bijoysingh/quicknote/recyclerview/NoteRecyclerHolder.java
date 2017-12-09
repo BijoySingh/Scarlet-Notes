@@ -92,13 +92,12 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     share.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        data.share(context);
-      }
-    });
-    moreOptions.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        NoteOptionsBottomSheet.Companion.openSheet(activity, data);
+        actionOrUnlockNote(data, new Runnable() {
+          @Override
+          public void run() {
+            data.share(context);
+          }
+        });
       }
     });
     edit.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +107,12 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
       }
     });
 
+    moreOptions.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        NoteOptionsBottomSheet.Companion.openSheet(activity, data);
+      }
+    });
     view.setOnLongClickListener(new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View view) {

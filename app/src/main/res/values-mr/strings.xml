@@ -45,7 +45,25 @@
   <string name="about_page_app_version">अॅप आवृत्ती</string>
   <string name="about_page_about_app">अॅप बद्दल</string>
   <string name="search_notes">नोट्स शोधा &#8230; |</string>
-
+  <string name="lock_note">लॉक टीप</string>
+  <string name="unlock_note">टीप अनलॉक करा</string>
+  <string name="home_option_security">सुरक्षा</string>
+  <string name="home_option_security_subtitle">लॉकिंग नोट्स आणि सुरक्षा पर्याय</string>
+  <string name="security_option_title">सुरक्षा पर्याय</string>
+  <string name="security_option_set_pin_code">पास कोड</string>
+  <string name="security_option_set_pin_code_subtitle">टिपा लॉक करण्यासाठी 4 अंकी पिन सेट करा</string>
+  <string name="security_option_fingerprint_enabled">फिंगरप्रिंटसह अनलॉक करा</string>
+  <string name="security_option_fingerprint_enabled_subtitle">नोट्स फिंगरप्रिंटसह अनलॉक होतील</string>
+  <string name="security_option_fingerprint_disabled">फिंगरप्रिंट अक्षम केले</string>
+  <string name="security_option_fingerprint_disabled_subtitle">टिपा फिंगरप्रिंट वापरणार नाही</string>
+  <string name="security_sheet_enter_new_pin_title">नवीन पिन प्रविष्ट करा</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">अनलॉक करण्यासाठी पिन प्रविष्ट करा</string>
+  <string name="security_sheet_enter_current_pin_title">वर्तमान PIN प्रविष्ट करा</string>
+  <string name="security_sheet_enter_pin_hint">कोड टाका</string>
+  <string name="security_sheet_button_verify">सत्यापित करा</string>
+  <string name="security_sheet_button_unlock">अनलॉक करा</string>
+  <string name="security_sheet_button_set">सेट करा</string>
+  <string name="security_sheet_button_remove">काढा</string>
   <string name="open_note_day_mode">दिवस मोड</string>
   <string name="choose_note_color">रंग बदला</string>
   <string name="tap_for_action_open_note_day_mode">दिवस मोडमध्ये टीप पाहण्यासाठी टॅप करा</string>

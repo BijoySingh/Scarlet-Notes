@@ -21,6 +21,7 @@
   <string name="format_hint_list">Aggiungi articolo&#8230;</string>
   <string name="format_hint_code">Aggiungi codice &#8230;</string>
 
+
   <string name="home_option_sheet_title">Opzioni e impostazioni</string>
   <string name="home_option_export">Note di esportazione</string>
   <string name="home_option_export_subtitle">Esporta le note nella memoria del dispositivo da condividere</string>
@@ -46,6 +47,25 @@
   <string name="about_page_app_version">Versione dell\'app</string>
   <string name="about_page_about_app">Informazioni sull\'app</string>
   <string name="search_notes">Cerca note &#8230;</string>
+  <string name="lock_note">Nota di blocco</string>
+  <string name="unlock_note">Sblocca nota</string>
+  <string name="home_option_security">Sicurezza</string>
+  <string name="home_option_security_subtitle">Note di blocco e opzioni di sicurezza</string>
+  <string name="security_option_title">Opzioni di sicurezza</string>
+  <string name="security_option_set_pin_code">Codice di accesso</string>
+  <string name="security_option_set_pin_code_subtitle">Impostare un PIN di 4 cifre per bloccare le note</string>
+  <string name="security_option_fingerprint_enabled">Sblocca con Fingerprint</string>
+  <string name="security_option_fingerprint_enabled_subtitle">Le note verranno sbloccate con l\'impronta digitale</string>
+  <string name="security_option_fingerprint_disabled">Impronta digitale disabilitata</string>
+  <string name="security_option_fingerprint_disabled_subtitle">Le note non utilizzeranno un\'impronta digitale</string>
+  <string name="security_sheet_enter_new_pin_title">Inserisci il nuovo PIN</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Inserisci il PIN per sbloccare</string>
+  <string name="security_sheet_enter_current_pin_title">Inserisci il PIN corrente</string>
+  <string name="security_sheet_enter_pin_hint">Inserisci il codice</string>
+  <string name="security_sheet_button_verify">Verificare</string>
+  <string name="security_sheet_button_unlock">Sbloccare</string>
+  <string name="security_sheet_button_set">Impostato</string>
+  <string name="security_sheet_button_remove">Rimuovere</string>
 
   <string name="open_note_day_mode">Modalità giorno</string>
   <string name="choose_note_color">Cambia colore</string>

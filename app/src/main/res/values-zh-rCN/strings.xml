@@ -21,6 +21,25 @@
   <string name="format_hint_list">新增项目&#8230;</string>
   <string name="format_hint_code">添加代码&#8230;</string>
   <string name="search_notes">搜索笔记&#8230;</string>
+  <string name="lock_note">锁定注意</string>
+  <string name="unlock_note">解锁注意</string>
+  <string name="home_option_security">安全</string>
+  <string name="home_option_security_subtitle">锁定注释和安全选项</string>
+  <string name="security_option_title">安全选项</string>
+  <string name="security_option_set_pin_code">密码</string>
+  <string name="security_option_set_pin_code_subtitle">设置一个4位数字的PIN码来锁定音符</string>
+  <string name="security_option_fingerprint_enabled">用指纹解锁</string>
+  <string name="security_option_fingerprint_enabled_subtitle">笔记将用指纹解锁</string>
+  <string name="security_option_fingerprint_disabled">指纹被禁用</string>
+  <string name="security_option_fingerprint_disabled_subtitle">笔记不会使用指纹</string>
+  <string name="security_sheet_enter_new_pin_title">输入新的PIN码</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">输入PIN码即可解锁</string>
+  <string name="security_sheet_enter_current_pin_title">输入当前的PIN码</string>
+  <string name="security_sheet_enter_pin_hint">输入代码</string>
+  <string name="security_sheet_button_verify">校验</string>
+  <string name="security_sheet_button_unlock">开锁</string>
+  <string name="security_sheet_button_set">组</string>
+  <string name="security_sheet_button_remove">去掉</string>
 
   <string name="open_note_day_mode">日间模式</string>
   <string name="choose_note_color">换颜色</string>

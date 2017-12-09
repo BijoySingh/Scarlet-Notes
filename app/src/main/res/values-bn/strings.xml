@@ -21,6 +21,26 @@
   <string name="format_hint_list">আইটেম যোগ করুন&#8230;</string>
   <string name="format_hint_code">কোড যুক্ত করুন &#8230;</string>
 
+  <string name="lock_note">লক নোট</string>
+  <string name="unlock_note">নোট আনলক করুন</string>
+  <string name="home_option_security">নিরাপত্তা</string>
+  <string name="home_option_security_subtitle">লক নোট এবং নিরাপত্তা অপশন</string>
+  <string name="security_option_title">নিরাপত্তা অপশন</string>
+  <string name="security_option_set_pin_code">পাস কোড</string>
+  <string name="security_option_set_pin_code_subtitle">নোট লক করার জন্য একটি 4 ডিজিটের PIN সেট করুন</string>
+  <string name="security_option_fingerprint_enabled">আঙুলের ছাপ দিয়ে আনলক করুন</string>
+  <string name="security_option_fingerprint_enabled_subtitle">নোটগুলি আঙ্গুলের ছাপ দিয়ে আনলক হবে</string>
+  <string name="security_option_fingerprint_disabled">ফিঙ্গারপ্রিন্ট অক্ষম হয়েছে</string>
+  <string name="security_option_fingerprint_disabled_subtitle">নোটগুলি একটি আঙ্গুলের ছাপ ব্যবহার করবে না</string>
+  <string name="security_sheet_enter_new_pin_title">নতুন PIN লিখুন</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">আনলক করতে পিন লিখুন</string>
+  <string name="security_sheet_enter_current_pin_title">বর্তমান PIN লিখুন</string>
+  <string name="security_sheet_enter_pin_hint">কোড লিখুন</string>
+  <string name="security_sheet_button_verify">যাচাই করুন</string>
+  <string name="security_sheet_button_unlock">আনলক করুন</string>
+  <string name="security_sheet_button_set">সেট</string>
+  <string name="security_sheet_button_remove">অপসারণ</string>
+
   <string name="home_option_sheet_title">বিকল্প এবং সেটিংস</string>
   <string name="home_option_export">রপ্তানি নোট</string>
   <string name="home_option_export_subtitle">ভাগ করার জন্য ডিভাইস সঞ্চয়স্থানে নোটগুলি রপ্তানি করুন</string>
