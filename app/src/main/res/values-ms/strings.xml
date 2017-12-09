@@ -38,6 +38,10 @@
   <string name="security_sheet_button_verify">Sahkan</string>
   <string name="security_sheet_button_unlock">Buka kunci</string>
   <string name="security_sheet_button_set">Tetapkan</string>
+  <string name="home_option_enable_list_view">Dayakan Layout Senarai</string>
+  <string name="home_option_enable_list_view_subtitle">Tunjukkan nota dalam satu lajur</string>
+  <string name="home_option_enable_grid_view">Dayakan Layout Grid</string>
+  <string name="home_option_enable_grid_view_subtitle">Tunjukkan nota dalam grid yang terhuyung-huyung</string>
   <string name="security_sheet_button_remove">Keluarkan</string>
   <string name="home_option_sheet_title">Pilihan dan Tetapan</string>
   <string name="home_option_export">Nota Eksport</string>

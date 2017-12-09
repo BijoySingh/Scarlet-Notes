@@ -46,6 +46,10 @@
   <string name="about_page_app_version">Versão da aplicação</string>
   <string name="about_page_about_app">Sobre a aplicação</string>
   <string name="search_notes">Notas de pesquisa &#8230;</string>
+  <string name="home_option_enable_list_view">Ativar layout de lista</string>
+  <string name="home_option_enable_list_view_subtitle">Mostrar notas em uma única coluna</string>
+  <string name="home_option_enable_grid_view">Ativar layout de grade</string>
+  <string name="home_option_enable_grid_view_subtitle">Mostrar notas em uma grade escalonada</string>
 
   <string name="lock_note">Nota de bloqueio</string>
   <string name="unlock_note">Desbloquear nota</string>

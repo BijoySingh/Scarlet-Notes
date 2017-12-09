@@ -39,7 +39,10 @@
   <string name="security_sheet_button_unlock">Kilidini aç</string>
   <string name="security_sheet_button_set">Set</string>
   <string name="security_sheet_button_remove">Kaldır</string>
-
+  <string name="home_option_enable_list_view">Liste Düzeni\'ni etkinleştir</string>
+  <string name="home_option_enable_list_view_subtitle">Notları tek bir sütunda göster</string>
+  <string name="home_option_enable_grid_view">Izgara Düzeni\'ni etkinleştir</string>
+  <string name="home_option_enable_grid_view_subtitle">Notları sıralı bir ızgarada göster</string>
 
   <string name="home_option_sheet_title">Seçenekler ve Ayarlar</string>
   <string name="home_option_export">Notları Dışa Aktar</string>

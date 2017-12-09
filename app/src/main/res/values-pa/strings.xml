@@ -40,6 +40,10 @@
   <string name="security_sheet_button_unlock">ਅਨਲੌਕ</string>
   <string name="security_sheet_button_set">ਸੈੱਟ ਕਰੋ</string>
   <string name="security_sheet_button_remove">ਹਟਾਓ</string>
+  <string name="home_option_enable_list_view">ਸੂਚੀ ਲੇਆਉਟ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="home_option_enable_list_view_subtitle">ਇੱਕ ਇੱਕਲੇ ਕਾਲਮ ਵਿੱਚ ਨੋਟ ਦਿਖਾਉ</string>
+  <string name="home_option_enable_grid_view">ਗਰਿੱਡ ਲੇਆਉਟ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="home_option_enable_grid_view_subtitle">ਥੋੜ੍ਹੇ ਸਮੇਂ ਵਿਚ ਗਰਿੱਡ ਵਿਚ ਨੋਟ ਦਿਖਾਓ</string>
 
 
   <string name="home_option_sheet_title">ਚੋਣਾਂ ਅਤੇ ਸੈਟਿੰਗਾਂ</string>

@@ -39,6 +39,10 @@
   <string name="security_sheet_button_unlock">अनलॉक</string>
   <string name="security_sheet_button_set">सेट</string>
   <string name="security_sheet_button_remove">हटाना</string>
+  <string name="home_option_enable_list_view">सूची लेआउट को सक्षम करें</string>
+  <string name="home_option_enable_list_view_subtitle">एक एकल कॉलम में नोट्स दिखाएं</string>
+  <string name="home_option_enable_grid_view">ग्रिड लेआउट सक्षम करें</string>
+  <string name="home_option_enable_grid_view_subtitle">एक कंपित ग्रिड में नोट्स दिखाएं</string>
 
   <string name="home_option_sheet_title">विकल्प और सेटिंग्स</string>
   <string name="home_option_export">निर्यात नोट्स</string>

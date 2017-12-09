@@ -40,6 +40,10 @@
   <string name="security_sheet_button_unlock">开锁</string>
   <string name="security_sheet_button_set">组</string>
   <string name="security_sheet_button_remove">去掉</string>
+  <string name="home_option_enable_list_view">启用列表布局</string>
+  <string name="home_option_enable_list_view_subtitle">在单个栏目中显示注释</string>
+  <string name="home_option_enable_grid_view">启用网格布局</string>
+  <string name="home_option_enable_grid_view_subtitle">以交错格子显示笔记</string>
 
   <string name="open_note_day_mode">日间模式</string>
   <string name="choose_note_color">换颜色</string>

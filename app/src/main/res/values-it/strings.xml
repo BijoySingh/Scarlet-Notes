@@ -66,6 +66,10 @@
   <string name="security_sheet_button_unlock">Sbloccare</string>
   <string name="security_sheet_button_set">Impostato</string>
   <string name="security_sheet_button_remove">Rimuovere</string>
+  <string name="home_option_enable_list_view">Abilita layout elenco</string>
+  <string name="home_option_enable_list_view_subtitle">Mostra le note in una singola colonna</string>
+  <string name="home_option_enable_grid_view">Abilita il layout della griglia</string>
+  <string name="home_option_enable_grid_view_subtitle">Mostra le note in una griglia sfalsata</string>
 
   <string name="open_note_day_mode">Modalità giorno</string>
   <string name="choose_note_color">Cambia colore</string>

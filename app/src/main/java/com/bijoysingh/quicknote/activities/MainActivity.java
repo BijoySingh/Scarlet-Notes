@@ -3,8 +3,9 @@ package com.bijoysingh.quicknote.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -31,6 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.view.View.GONE;
+import static android.widget.GridLayout.VERTICAL;
+import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_LIST_VIEW;
 
 public class MainActivity extends ThemedActivity {
 
@@ -52,7 +55,6 @@ public class MainActivity extends ThemedActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    adapter = new NoteAppAdapter(this);
     mode = NoteState.DEFAULT;
     store = DataStore.get(this);
     executor = new SimpleThreadExecutor(1);
@@ -156,10 +158,22 @@ public class MainActivity extends ThemedActivity {
   }
 
   public void setupRecyclerView() {
+    boolean staggeredView = store.get(KEY_LIST_VIEW, false);
+    adapter = new NoteAppAdapter(this, staggeredView);
     recyclerView = new RecyclerViewBuilder(this)
         .setView(this, R.id.recycler_view)
         .setAdapter(adapter)
+        .setLayoutManager(
+            staggeredView
+                ? new StaggeredGridLayoutManager(2, VERTICAL)
+                : new LinearLayoutManager(this))
         .build();
+  }
+
+  public void setLayoutMode(boolean staggered) {
+    store.put(KEY_LIST_VIEW, staggered);
+    setupRecyclerView();
+    setupData();
   }
 
   private void loadNoteByStates(final String[] states) {
@@ -363,7 +377,7 @@ public class MainActivity extends ThemedActivity {
 
     TextView actionBarTitle = findViewById(R.id.action_bar_title);
     actionBarTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text));
-    backButton.setColorFilter(getColor(R.color.colorAccent, R.color.material_pink_300));
+    backButton.setColorFilter(getColor(R.color.colorAccent, R.color.colorAccentDark));
 
     int textColor = getColor(R.color.dark_secondary_text, R.color.light_secondary_text);
     int textHintColor = getColor(R.color.dark_hint_text, R.color.light_hint_text);

@@ -19,6 +19,7 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
+    val dataStore = DataStore.get(context)
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.home_option_enable_night_mode,
@@ -41,13 +42,24 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         visible = isNightMode
     ))
     options.add(OptionsItem(
-        title = R.string.home_option_security,
-        subtitle = R.string.home_option_security_subtitle,
-        icon = R.drawable.ic_option_security,
+        title = R.string.home_option_enable_list_view,
+        subtitle = R.string.home_option_enable_list_view_subtitle,
+        icon = R.drawable.ic_action_list,
         listener = View.OnClickListener {
-          SecurityOptionsBottomSheet.openSheet(activity)
+          activity.setLayoutMode(false)
           dismiss()
-        }
+        },
+        visible = dataStore.get(KEY_LIST_VIEW, false)
+    ))
+    options.add(OptionsItem(
+        title = R.string.home_option_enable_grid_view,
+        subtitle = R.string.home_option_enable_grid_view_subtitle,
+        icon = R.drawable.ic_action_grid,
+        listener = View.OnClickListener {
+          activity.setLayoutMode(true)
+          dismiss()
+        },
+        visible = !dataStore.get(KEY_LIST_VIEW, false)
     ))
     options.add(OptionsItem(
         title = R.string.home_option_export,
@@ -75,6 +87,15 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           } else {
             PermissionBottomSheet.openSheet(activity)
           }
+        }
+    ))
+    options.add(OptionsItem(
+        title = R.string.home_option_security,
+        subtitle = R.string.home_option_security_subtitle,
+        icon = R.drawable.ic_option_security,
+        listener = View.OnClickListener {
+          SecurityOptionsBottomSheet.openSheet(activity)
+          dismiss()
         }
     ))
     options.add(OptionsItem(
@@ -122,6 +143,9 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
   override fun getLayout(): Int = R.layout.layout_options_sheet
 
   companion object {
+
+    const val KEY_LIST_VIEW = "KEY_LIST_VIEW"
+
     fun openSheet(activity: MainActivity) {
       val sheet = SettingsOptionsBottomSheet()
       sheet.isNightMode = activity.isNightMode

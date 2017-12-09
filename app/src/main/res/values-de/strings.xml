@@ -39,6 +39,10 @@
   <string name="security_sheet_button_unlock">Freischalten</string>
   <string name="security_sheet_button_set">einstellen</string>
   <string name="security_sheet_button_remove">Löschen</string>
+  <string name="home_option_enable_list_view">Aktivieren Sie das Listenlayout</string>
+  <string name="home_option_enable_list_view_subtitle">Zeige Notizen in einer einzelnen Spalte</string>
+  <string name="home_option_enable_grid_view">Aktivieren Sie das Rasterlayout</string>
+  <string name="home_option_enable_grid_view_subtitle">Notizen in einem gestaffelten Raster anzeigen</string>
 
   <string name="home_option_sheet_title">Optionen und Einstellungen</string>
   <string name="home_option_export">Hinweise exportieren</string>

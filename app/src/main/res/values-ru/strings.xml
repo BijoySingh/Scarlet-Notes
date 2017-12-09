@@ -41,6 +41,10 @@
   <string name="security_sheet_button_set">Задавать</string>
   <string name="security_sheet_button_remove">Удалить</string>
 
+  <string name="home_option_enable_list_view">Включить макет списка</string>
+  <string name="home_option_enable_list_view_subtitle">Показывать заметки в одном столбце</string>
+  <string name="home_option_enable_grid_view">Включить компоновку сетки</string>
+  <string name="home_option_enable_grid_view_subtitle">Показать заметки в шахматном порядке</string>
 
   <string name="home_option_sheet_title">Параметры и настройки</string>
   <string name="home_option_export">Экспортные заметки</string>

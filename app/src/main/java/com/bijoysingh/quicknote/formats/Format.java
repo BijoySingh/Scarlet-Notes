@@ -145,7 +145,7 @@ public class Format {
         return FormatType.SUB_HEADING;
       case CHECKLIST_CHECKED:
       case CHECKLIST_UNCHECKED:
-        return FormatType.TEXT;
+        return FormatType.CHECKLIST_UNCHECKED;
       case IMAGE:
       case SUB_HEADING:
       case CODE:

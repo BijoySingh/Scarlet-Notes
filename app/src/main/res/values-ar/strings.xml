@@ -43,6 +43,11 @@
   <string name="about_page_title">معلومات عنا وأكثر</string>
   <string name="about_page_rate">معدل على اللعب المتجر</string>
   <string name="about_page_contribute">تساهم</string>
+  <string name="home_option_enable_list_view">تمكين تخطيط القائمة</string>
+  <string name="home_option_enable_list_view_subtitle">إظهار الملاحظات في عمود واحد</string>
+  <string name="home_option_enable_grid_view">تمكين تخطيط الشبكة</string>
+  <string name="home_option_enable_grid_view_subtitle">عرض الملاحظات في شبكة متداخلة</string>
+
   <string name="about_page_app_version">نسخة التطبيق</string>
   <string name="about_page_about_app">حول التطبيق</string>
   <string name="open_note_night_mode">الوضع الليلي</string>

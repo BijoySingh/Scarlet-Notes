@@ -29,6 +29,10 @@
   <string name="home_option_about_page_subtitle">अॅप आणि विकासकांबद्दल अधिक जाणून घ्या</string>
   <string name="home_option_rate_and_review">रेट आणि पुनरावलोकन</string>
   <string name="home_option_rate_and_review_subtitle">आपल्याला अॅप आवडला हे आम्हाला सांगा</string>
+  <string name="home_option_enable_list_view">सूची लेआउट सक्षम करा</string>
+  <string name="home_option_enable_list_view_subtitle">एकाच स्तंभात नोट्स दर्शवा</string>
+  <string name="home_option_enable_grid_view">ग्रिड लेआउट सक्षम करा</string>
+  <string name="home_option_enable_grid_view_subtitle">एका ठोकीत ग्रिडमध्ये टिपा दर्शवा</string>
   <string name="permission_layout_give_permission">परवानगी द्या</string>
   <string name="permission_layout_give_permission_details">आयात आणि निर्यात संचयन परवान्यांसाठी आवश्यक आहे. विनंती केल्यावर परवानगी द्या.</string>
   <string name="permission_layout_give_permission_ok">परवानगी द्या</string>

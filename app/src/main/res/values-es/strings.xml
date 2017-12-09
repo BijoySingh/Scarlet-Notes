@@ -20,6 +20,10 @@
   <string name="format_hint_quote">Añadir texto citado &#8230;</string>
   <string name="format_hint_list">Añadir artículo&#8230;</string>
   <string name="format_hint_code">Añadir código &#8230;</string>
+  <string name="home_option_enable_list_view">Habilitar el diseño de la lista</string>
+  <string name="home_option_enable_list_view_subtitle">Mostrar notas en una sola columna</string>
+  <string name="home_option_enable_grid_view">Habilitar diseño de cuadrícula</string>
+  <string name="home_option_enable_grid_view_subtitle">Mostrar notas en una grilla escalonada</string>
 
   <string name="lock_note">Nota de bloqueo</string>
   <string name="unlock_note">Desbloquear nota</string>

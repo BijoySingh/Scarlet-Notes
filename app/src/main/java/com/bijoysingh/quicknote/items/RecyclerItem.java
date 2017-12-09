@@ -18,17 +18,18 @@ public abstract class RecyclerItem {
 
   abstract public Type getType();
 
-  public static List<MultiRecyclerViewControllerItem<RecyclerItem>> getList() {
+  public static List<MultiRecyclerViewControllerItem<RecyclerItem>> getList(boolean staggered) {
     List<MultiRecyclerViewControllerItem<RecyclerItem>> list = new ArrayList<>();
     list.add(new MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
         .viewType(Type.NOTE.ordinal())
-        .layoutFile(R.layout.item_note)
+        .layoutFile(staggered ? R.layout.item_note_staggered : R.layout.item_note)
         .holderClass(NoteRecyclerHolder.class)
         .build());
     list.add(new MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
         .viewType(Type.EMPTY.ordinal())
         .layoutFile(R.layout.item_no_notes)
         .holderClass(EmptyRecyclerHolder.class)
+        .spanSize(2)
         .build());
     list.add(new MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
         .viewType(Type.FILE.ordinal())

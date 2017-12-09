@@ -39,6 +39,10 @@
   <string name="security_sheet_button_unlock">Ouvrir</string>
   <string name="security_sheet_button_set">Ensemble</string>
   <string name="security_sheet_button_remove">Retirer</string>
+  <string name="home_option_enable_list_view">Activer la disposition de la liste</string>
+  <string name="home_option_enable_list_view_subtitle">Afficher les notes dans une seule colonne</string>
+  <string name="home_option_enable_grid_view">Activer la disposition de la grille</string>
+  <string name="home_option_enable_grid_view_subtitle">Afficher les notes dans une grille décalée</string>
 
   <string name="home_option_sheet_title">Options et paramètres</string>
   <string name="home_option_export">Exporter des notes</string>
