@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.items.OptionsItem
@@ -55,7 +56,7 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         listener = View.OnClickListener {
           val manager = getStoragePermissionManager(activity)
           if (manager.hasAllPermissions()) {
-            ExportNotesBottomSheet.openSheet(activity)
+            openExportSheet()
             dismiss()
           } else {
             PermissionBottomSheet.openSheet(activity)
@@ -95,6 +96,27 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         }
     ))
     return options
+  }
+
+  private fun openExportSheet() {
+    val activity = context as MainActivity
+    val dataStore = DataStore.get(context)
+    if (!SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)) {
+      ExportNotesBottomSheet.openSheet(activity)
+      return
+    }
+    EnterPincodeBottomSheet.openUnlockSheet(
+        context as ThemedActivity,
+        object : EnterPincodeBottomSheet.PincodeSuccessListener {
+          override fun onFailure() {
+            openExportSheet()
+          }
+
+          override fun onSuccess() {
+            ExportNotesBottomSheet.openSheet(activity)
+          }
+        },
+        dataStore)
   }
 
   override fun getLayout(): Int = R.layout.layout_options_sheet
