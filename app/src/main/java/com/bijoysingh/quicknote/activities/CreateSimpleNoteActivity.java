@@ -47,7 +47,11 @@ public class CreateSimpleNoteActivity extends ThemedActivity {
     context = this;
     store = DataStore.get(context);
 
-    note = Note.db(this).getByID(getIntent().getIntExtra(NOTE_ID, 0));
+    int noteId = getIntent().getIntExtra(NOTE_ID, 0);
+    if (noteId == 0 && savedInstanceState != null) {
+      noteId = savedInstanceState.getInt(NOTE_ID, 0);
+    }
+    note = Note.db(this).getByID(noteId);
     note = note == null ? Note.gen() : note;
 
     holder = new NoteViewHolder(this);
@@ -160,6 +164,12 @@ public class CreateSimpleNoteActivity extends ThemedActivity {
   private void setNoteColor(int color) {
     note.color = color;
     colorButton.setBackground(new CircleDrawable(note.color));
+  }
+
+  @Override
+  public void onSaveInstanceState(Bundle savedInstanceState) {
+    super.onSaveInstanceState(savedInstanceState);
+    savedInstanceState.putInt(NOTE_ID, note.uid);
   }
 
   @Override

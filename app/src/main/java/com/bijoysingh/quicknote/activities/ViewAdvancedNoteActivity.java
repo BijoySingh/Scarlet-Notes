@@ -59,7 +59,11 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     context = this;
     store = DataStore.get(context);
 
-    note = Note.db(this).getByID(getIntent().getIntExtra(NOTE_ID, 0));
+    int noteId = getIntent().getIntExtra(NOTE_ID, 0);
+    if (noteId == 0 && savedInstanceState != null) {
+      noteId = savedInstanceState.getInt(NOTE_ID, 0);
+    }
+    note = Note.db(this).getByID(noteId);
     note = note == null ? Note.gen() : note;
 
     setNightMode(getIntent().getBooleanExtra(
@@ -319,5 +323,11 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
   @Override
   public void notifyNightModeChange() {
     notifyToolbarColor();
+  }
+
+  @Override
+  public void onSaveInstanceState(Bundle savedInstanceState) {
+    super.onSaveInstanceState(savedInstanceState);
+    savedInstanceState.putInt(NOTE_ID, note.uid);
   }
 }
