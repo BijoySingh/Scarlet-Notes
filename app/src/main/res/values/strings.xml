@@ -72,6 +72,8 @@
   <string name="home_option_enable_night_mode_subtitle">Enable dark theme as default</string>
   <string name="home_option_enable_day_mode">Enable Day Mode</string>
   <string name="home_option_enable_day_mode_subtitle">Enable light theme as default</string>
+  <string name="home_option_markdown_support">Markdown Support</string>
+  <string name="home_option_markdown_support_subtitle">Allow markdown supported formatting</string>
   <string name="home_option_enable_list_view">Enable List Layout</string>
   <string name="home_option_enable_list_view_subtitle">Show notes in a single column</string>
   <string name="home_option_enable_grid_view">Enable Grid Layout</string>

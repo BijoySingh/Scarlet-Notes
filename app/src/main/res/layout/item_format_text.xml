@@ -9,8 +9,7 @@
       android:id="@+id/text"
       style="@style/FormatText"
       android:hint="@string/format_hint_text"
-      android:textSize="@dimen/text_font_size"
-      android:minLines="3"/>
+      android:textSize="@dimen/text_font_size"/>
 
   <EditText
       android:id="@+id/edit"

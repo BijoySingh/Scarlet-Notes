@@ -13,12 +13,19 @@ import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.formats.Format;
-import com.bijoysingh.quicknote.formats.FormatType;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
 import com.github.bijoysingh.starter.util.TextUtils;
 
+import ru.noties.markwon.Markwon;
+
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
+import static com.bijoysingh.quicknote.formats.FormatType.CHECKLIST_CHECKED;
+import static com.bijoysingh.quicknote.formats.FormatType.CHECKLIST_UNCHECKED;
+import static com.bijoysingh.quicknote.formats.FormatType.CODE;
+import static com.bijoysingh.quicknote.formats.FormatType.QUOTE;
+import static com.bijoysingh.quicknote.formats.FormatType.TEXT;
 
 public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements TextWatcher {
 
@@ -62,30 +69,49 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
   public void populate(final Format data, Bundle extra) {
     format = null;
     boolean editable = !(extra != null
-                         && extra.containsKey(KEY_EDITABLE)
-                         && !extra.getBoolean(KEY_EDITABLE));
+        && extra.containsKey(KEY_EDITABLE)
+        && !extra.getBoolean(KEY_EDITABLE));
 
     boolean nightMode = extra != null
-                        && extra.containsKey(ThemedActivity.Companion.getKey())
-                        && extra.getBoolean(ThemedActivity.Companion.getKey());
+        && extra.containsKey(ThemedActivity.Companion.getKey())
+        && extra.getBoolean(ThemedActivity.Companion.getKey());
+    boolean isMarkdownEnabled = extra == null
+        || extra.getBoolean(KEY_MARKDOWN_ENABLED, true);
 
-    boolean textColorChanges = nightMode && data.formatType != FormatType.CODE;
     text.setTextColor(ContextCompat.getColor(
-        context, textColorChanges ? R.color.white : R.color.dark_secondary_text));
+        context, nightMode ? R.color.white : R.color.dark_secondary_text));
     edit.setTextColor(ContextCompat.getColor(
-        context, textColorChanges ? R.color.white : R.color.dark_secondary_text));
+        context, nightMode ? R.color.white : R.color.dark_secondary_text));
     edit.setHintTextColor(ContextCompat.getColor(
-        context, textColorChanges ? R.color.light_tertiary_text : R.color.dark_hint_text));
+        context, nightMode ? R.color.light_tertiary_text : R.color.dark_hint_text));
+
+    int backgroundColorRes = data.formatType == CODE
+        ? (nightMode ? R.color.material_grey_700 : R.color.material_grey_200)
+        : R.color.transparent;
+    int backgroundColor = ContextCompat.getColor(context, backgroundColorRes);
+    text.setBackgroundColor(backgroundColor);
+    edit.setBackgroundColor(backgroundColor);
+
     root.setBackgroundResource(nightMode ? R.color.material_grey_800 : R.color.white);
 
     actionPanel.setVisibility(editable ? VISIBLE : GONE);
 
     text.setTextIsSelectable(true);
-    text.setText(data.text);
     text.setVisibility(editable ? GONE : VISIBLE);
-    edit.setText(data.text);
-    edit.setEnabled(editable);
     edit.setVisibility(!editable ? GONE : VISIBLE);
+    edit.setEnabled(editable);
+    if (editable) {
+      edit.setText(data.text);
+    } else if (isMarkdownEnabled && (data.formatType == TEXT
+        || data.formatType == CHECKLIST_CHECKED
+        || data.formatType == CHECKLIST_UNCHECKED
+        || data.formatType == QUOTE)) {
+      CharSequence source = Markwon.markdown(context, data.text);
+      text.setText(trim(source));
+    } else {
+      text.setText(data.text);
+    }
+
     format = data;
 
     actionMove.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +134,18 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
         TextUtils.copyToClipboard(context, edit.getText().toString());
       }
     });
+  }
+
+  private static CharSequence trim(CharSequence source) {
+    if (source == null || source.length() == 0) {
+      return "";
+    }
+
+    int index = source.length();
+    while (--index >= 0 && Character.isWhitespace(source.charAt(index))) {
+      // Ignore, find the first non-whitespace character
+    }
+    return source.subSequence(0, index + 1);
   }
 
   @Override

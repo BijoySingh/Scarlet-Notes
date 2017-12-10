@@ -41,6 +41,17 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         },
         visible = isNightMode
     ))
+    val isMarkdownEnabled = dataStore.get(KEY_MARKDOWN_ENABLED, true)
+    options.add(OptionsItem(
+        title = R.string.home_option_markdown_support,
+        subtitle = R.string.home_option_markdown_support_subtitle,
+        icon = R.drawable.ic_action_markdown,
+        listener = View.OnClickListener {
+          dataStore.put(KEY_MARKDOWN_ENABLED, !isMarkdownEnabled)
+          reset(dialog)
+        },
+        enabled = isMarkdownEnabled
+    ))
     options.add(OptionsItem(
         title = R.string.home_option_enable_list_view,
         subtitle = R.string.home_option_enable_list_view_subtitle,
@@ -145,6 +156,7 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
   companion object {
 
     const val KEY_LIST_VIEW = "KEY_LIST_VIEW"
+    const val KEY_MARKDOWN_ENABLED = "KEY_MARKDOWN_ENABLED"
 
     fun openSheet(activity: MainActivity) {
       val sheet = SettingsOptionsBottomSheet()

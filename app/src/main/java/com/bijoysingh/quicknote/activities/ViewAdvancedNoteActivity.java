@@ -26,6 +26,7 @@ import java.util.List;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity.NOTE_ID;
+import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
 
 public class ViewAdvancedNoteActivity extends ThemedActivity {
 
@@ -119,6 +120,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
   private void resetBundle() {
     Bundle bundle = new Bundle();
     bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, getEditModeValue());
+    bundle.putBoolean(KEY_MARKDOWN_ENABLED, store.get(KEY_MARKDOWN_ENABLED, true));
     bundle.putBoolean(ThemedActivity.Companion.getKey(), isNightMode());
     adapter.setExtra(bundle);
   }

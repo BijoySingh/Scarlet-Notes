@@ -1,5 +1,7 @@
 package com.bijoysingh.quicknote.formats;
 
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.Log;
 
 import com.bijoysingh.quicknote.R;
@@ -15,6 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Format {
 
@@ -66,6 +70,19 @@ public class Format {
     Map<String, Object> cache = new HashMap<>();
     cache.put(KEY_NOTE, array);
     return new JSONObject(cache).toString();
+  }
+
+  private int[] findFirstTwoOccurance(String source, String pattern) {
+    Matcher matcher = Pattern.compile("(?=(aa))").matcher(source);
+    List<Integer> position = new ArrayList<>();
+    while (matcher.find()) {
+      position.add(matcher.start());
+    }
+
+    if (position.size() < 2) {
+      return null;
+    }
+    return new int[]{position.get(0), position.get(1)};
   }
 
   public static List<Format> getFormats(String note) {
