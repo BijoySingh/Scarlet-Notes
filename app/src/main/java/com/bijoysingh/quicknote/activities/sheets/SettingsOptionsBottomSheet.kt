@@ -52,6 +52,7 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         },
         enabled = isMarkdownEnabled
     ))
+    val isTablet = resources.getBoolean(R.bool.is_tablet)
     options.add(OptionsItem(
         title = R.string.home_option_enable_list_view,
         subtitle = R.string.home_option_enable_list_view_subtitle,
@@ -60,7 +61,7 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           activity.setLayoutMode(false)
           dismiss()
         },
-        visible = dataStore.get(KEY_LIST_VIEW, false)
+        visible = !isTablet && dataStore.get(KEY_LIST_VIEW, false)
     ))
     options.add(OptionsItem(
         title = R.string.home_option_enable_grid_view,
@@ -70,7 +71,7 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           activity.setLayoutMode(true)
           dismiss()
         },
-        visible = !dataStore.get(KEY_LIST_VIEW, false)
+        visible = !isTablet && !dataStore.get(KEY_LIST_VIEW, false)
     ))
     options.add(OptionsItem(
         title = R.string.home_option_export,

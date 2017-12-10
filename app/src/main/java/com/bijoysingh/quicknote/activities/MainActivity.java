@@ -159,15 +159,22 @@ public class MainActivity extends ThemedActivity {
 
   public void setupRecyclerView() {
     boolean staggeredView = store.get(KEY_LIST_VIEW, false);
-    adapter = new NoteAppAdapter(this, staggeredView);
+    boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
+    adapter = new NoteAppAdapter(this, staggeredView, isTablet);
     recyclerView = new RecyclerViewBuilder(this)
         .setView(this, R.id.recycler_view)
         .setAdapter(adapter)
-        .setLayoutManager(
-            staggeredView
-                ? new StaggeredGridLayoutManager(2, VERTICAL)
-                : new LinearLayoutManager(this))
+        .setLayoutManager(getLayoutManager(staggeredView, isTablet))
         .build();
+  }
+
+  private RecyclerView.LayoutManager getLayoutManager(boolean isStaggeredView, boolean isTabletView) {
+    if (isTabletView) {
+      return new StaggeredGridLayoutManager(2, VERTICAL);
+    }
+    return isStaggeredView
+        ? new StaggeredGridLayoutManager(2, VERTICAL)
+        : new LinearLayoutManager(this);
   }
 
   public void setLayoutMode(boolean staggered) {

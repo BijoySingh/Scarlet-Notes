@@ -7,11 +7,11 @@ import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewAdapter;
 
 public class NoteAppAdapter extends MultiRecyclerViewAdapter<RecyclerItem> {
   public NoteAppAdapter(Context context) {
-    this(context, false);
+    this(context, false, false);
   }
 
-  public NoteAppAdapter(Context context, boolean staggered) {
-    super(context, RecyclerItem.getList(staggered));
+  public NoteAppAdapter(Context context, boolean staggered, boolean isTablet) {
+    super(context, RecyclerItem.getList(staggered, isTablet));
   }
 
   @Override
