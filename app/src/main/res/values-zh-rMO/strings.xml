@@ -106,5 +106,9 @@
   <string name="nav_archived_details">所有的歸檔筆記</string>
   <string name="nav_trash">垃圾</string>
   <string name="nav_trash_details">你在垃圾桶裡的所有筆記</string>
-
+  <string name="markdown_sheet_markdown_support">減價支持</string>
+  <string name="markdown_sheet_markdown_support_subtitle">允許降價支持格式</string>
+  <string name="markdown_sheet_examples">例子</string>
+  <string name="home_option_markdown_settings">減價設置</string>
+  <string name="home_option_markdown_settings_subtitle">看看如何在筆記中使用降價</string>
 </resources>

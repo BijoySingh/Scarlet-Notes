@@ -34,7 +34,11 @@
   <string name="home_option_enable_list_view_subtitle">הצג הערות בעמודה אחת</string>
   <string name="home_option_enable_grid_view">הפעל פריסת רשת</string>
   <string name="home_option_enable_grid_view_subtitle">הצג הערות ברשת מטושטשת</string>
-
+  <string name="markdown_sheet_markdown_support">תמיכה Markdown</string>
+  <string name="markdown_sheet_markdown_support_subtitle">אפשר עיצוב נתמך של סימון</string>
+  <string name="markdown_sheet_examples">דוגמאות</string>
+  <string name="home_option_markdown_settings">הגדרות Markdown</string>
+  <string name="home_option_markdown_settings_subtitle">ראה כיצד להשתמש ב- markdown בהערות</string>
   <string name="lock_note">הערה נעל</string>
   <string name="unlock_note">נעילת הערה</string>
   <string name="home_option_security">בִּטָחוֹן</string>

@@ -24,7 +24,11 @@
   <string name="home_option_enable_list_view_subtitle">একক কলামে নোট দেখান</string>
   <string name="home_option_enable_grid_view">গ্রিড লেআউট সক্ষম করুন</string>
   <string name="home_option_enable_grid_view_subtitle">একটি স্তব্ধ গ্রিডে নোট দেখান</string>
-
+  <string name="markdown_sheet_markdown_support">মার্কড্ডন সহায়তা</string>
+  <string name="markdown_sheet_markdown_support_subtitle">মাপদণ্ড সমর্থিত ফরম্যাটিং মঞ্জুরি দিন</string>
+  <string name="markdown_sheet_examples">উদাহরণ</string>
+  <string name="home_option_markdown_settings">মার্কডাউন সেটিংস</string>
+  <string name="home_option_markdown_settings_subtitle">নোটগুলিতে মার্কাডাউন কিভাবে ব্যবহার করা যায় তা দেখুন</string>
   <string name="lock_note">লক নোট</string>
   <string name="unlock_note">নোট আনলক করুন</string>
   <string name="home_option_security">নিরাপত্তা</string>

@@ -43,7 +43,11 @@
   <string name="home_option_enable_list_view_subtitle">Afficher les notes dans une seule colonne</string>
   <string name="home_option_enable_grid_view">Activer la disposition de la grille</string>
   <string name="home_option_enable_grid_view_subtitle">Afficher les notes dans une grille décalée</string>
-
+  <string name="markdown_sheet_markdown_support">Prise en charge des démarques</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Autoriser le formatage pris en charge</string>
+  <string name="markdown_sheet_examples">Exemples</string>
+  <string name="home_option_markdown_settings">Paramètres de démarque</string>
+  <string name="home_option_markdown_settings_subtitle">Voir comment utiliser la démarque dans les notes</string>
   <string name="home_option_sheet_title">Options et paramètres</string>
   <string name="home_option_export">Exporter des notes</string>
   <string name="home_option_export_subtitle">Exporter des notes vers le stockage de l\'appareil à partager</string>

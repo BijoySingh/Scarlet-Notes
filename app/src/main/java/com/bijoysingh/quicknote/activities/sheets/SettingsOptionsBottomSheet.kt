@@ -41,16 +41,13 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         },
         visible = isNightMode
     ))
-    val isMarkdownEnabled = dataStore.get(KEY_MARKDOWN_ENABLED, true)
     options.add(OptionsItem(
-        title = R.string.home_option_markdown_support,
-        subtitle = R.string.home_option_markdown_support_subtitle,
+        title = R.string.home_option_markdown_settings,
+        subtitle = R.string.home_option_markdown_settings_subtitle,
         icon = R.drawable.ic_action_markdown,
         listener = View.OnClickListener {
-          dataStore.put(KEY_MARKDOWN_ENABLED, !isMarkdownEnabled)
-          reset(dialog)
-        },
-        enabled = isMarkdownEnabled
+          MarkdownBottomSheet.openSheet(activity)
+        }
     ))
     val isTablet = resources.getBoolean(R.bool.is_tablet)
     options.add(OptionsItem(

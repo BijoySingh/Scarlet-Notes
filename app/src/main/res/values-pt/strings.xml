@@ -20,7 +20,11 @@
   <string name="format_hint_quote">Adicionar texto citado &#8230;</string>
   <string name="format_hint_list">Adicionar Item&#8230;</string>
   <string name="format_hint_code">Adicionar código &#8230;</string>
-
+  <string name="markdown_sheet_markdown_support">Suporte Markdown</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Permitir formatação suportada pelo markdown</string>
+  <string name="markdown_sheet_examples">Exemplos</string>
+  <string name="home_option_markdown_settings">Configurações de Markdown</string>
+  <string name="home_option_markdown_settings_subtitle">Veja como usar markdown em notas</string>
   <string name="home_option_sheet_title">Opções e Configurações</string>
   <string name="home_option_export">Exportar notas</string>
   <string name="home_option_export_subtitle">Exportar notas para o armazenamento do dispositivo para compartilhar</string>

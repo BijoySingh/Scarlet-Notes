@@ -51,6 +51,11 @@
   <string name="search_notes">नोट्स शोधा &#8230; |</string>
   <string name="lock_note">लॉक टीप</string>
   <string name="unlock_note">टीप अनलॉक करा</string>
+  <string name="markdown_sheet_markdown_support">चिन्हांकित आधार</string>
+  <string name="markdown_sheet_markdown_support_subtitle">मार्कडाउन समर्थित स्वरूपण ला अनुमती द्या</string>
+  <string name="markdown_sheet_examples">उदाहरणे</string>
+  <string name="home_option_markdown_settings">चिन्हांकित करा सेटिंग्ज</string>
+  <string name="home_option_markdown_settings_subtitle">नोट्समध्ये चिन्हांकित कसे वापरावे ते पहा</string>
   <string name="home_option_security">सुरक्षा</string>
   <string name="home_option_security_subtitle">लॉकिंग नोट्स आणि सुरक्षा पर्याय</string>
   <string name="security_option_title">सुरक्षा पर्याय</string>

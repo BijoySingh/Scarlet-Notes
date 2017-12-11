@@ -37,6 +37,11 @@
   <string name="security_sheet_enter_pin_hint">masukkan kod</string>
   <string name="security_sheet_button_verify">Sahkan</string>
   <string name="security_sheet_button_unlock">Buka kunci</string>
+  <string name="markdown_sheet_markdown_support">Sokongan Markdown</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Benarkan markup disokong pemformatan</string>
+  <string name="markdown_sheet_examples">Contoh</string>
+  <string name="home_option_markdown_settings">Tetapan Tamat Penamatan</string>
+  <string name="home_option_markdown_settings_subtitle">Lihat cara menggunakan markdown dalam nota</string>
   <string name="security_sheet_button_set">Tetapkan</string>
   <string name="home_option_enable_list_view">Dayakan Layout Senarai</string>
   <string name="home_option_enable_list_view_subtitle">Tunjukkan nota dalam satu lajur</string>

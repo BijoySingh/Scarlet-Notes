@@ -24,6 +24,11 @@
   <string name="home_option_enable_list_view_subtitle">Mostrar notas en una sola columna</string>
   <string name="home_option_enable_grid_view">Habilitar diseño de cuadrícula</string>
   <string name="home_option_enable_grid_view_subtitle">Mostrar notas en una grilla escalonada</string>
+  <string name="markdown_sheet_markdown_support">Apoyo Markdown</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Permitir formato compatible con markdown</string>
+  <string name="markdown_sheet_examples">Ejemplos</string>
+  <string name="home_option_markdown_settings">Configuración de reducción</string>
+  <string name="home_option_markdown_settings_subtitle">Vea cómo usar el descuento en notas</string>
 
   <string name="lock_note">Nota de bloqueo</string>
   <string name="unlock_note">Desbloquear nota</string>

@@ -110,4 +110,10 @@
   <string name="nav_trash">дрянь</string>
   <string name="nav_trash_details">Все ваши заметки в корзине</string>
 
+  <string name="markdown_sheet_markdown_support">Поддержка Markdown</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Разрешить форматирование поддерживаемых меток</string>
+  <string name="markdown_sheet_examples">Примеры</string>
+  <string name="home_option_markdown_settings">Настройки разметки</string>
+  <string name="home_option_markdown_settings_subtitle">Посмотрите, как использовать уценку в заметках</string>
+
 </resources>

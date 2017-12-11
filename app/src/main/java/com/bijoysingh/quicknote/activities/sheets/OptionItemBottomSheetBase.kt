@@ -50,9 +50,9 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
       contentView.setOnClickListener(option.listener)
       contentView.setImageResource(option.icon)
 
-      contentView.setTitleColor(getTitleColor(option))
-      contentView.setSubtitleColor(getSubtitleColor(option))
-      contentView.setImageTint(getTitleColor(option))
+      contentView.setTitleColor(getOptionsTitleColor(option))
+      contentView.setSubtitleColor(getOptionsSubtitleColor(option))
+      contentView.setImageTint(getOptionsTitleColor(option))
 
       if (option.enabled) {
         contentView.setActionResource(R.drawable.ic_check_box_white_24dp)
@@ -62,25 +62,13 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     }
   }
 
-  private fun getTitleColor(option: OptionsItem): Int {
-    val colorResource = when {
-      isNightMode && option.selected -> R.color.material_blue_300
-      isNightMode -> R.color.light_secondary_text
-      option.selected -> R.color.material_blue_700
-      else -> R.color.dark_secondary_text
-    }
-    return ContextCompat.getColor(context, colorResource)
-  }
-
-  private fun getSubtitleColor(option: OptionsItem): Int {
-    val colorResource = when {
-      isNightMode && option.selected -> R.color.material_blue_200
-      isNightMode -> R.color.light_tertiary_text
-      option.selected -> R.color.material_blue_500
-      else -> R.color.dark_tertiary_text
-    }
-    return ContextCompat.getColor(context, colorResource)
-  }
-
   override fun getLayout(): Int = R.layout.layout_options_sheet
+
+  fun getOptionsTitleColor(option: OptionsItem): Int {
+    return getOptionsTitleColor(option.selected)
+  }
+
+  fun getOptionsSubtitleColor(option: OptionsItem): Int {
+    return getOptionsSubtitleColor(option.selected)
+  }
 }

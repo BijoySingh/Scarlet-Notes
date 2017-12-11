@@ -47,7 +47,11 @@
   <string name="home_option_enable_list_view_subtitle">إظهار الملاحظات في عمود واحد</string>
   <string name="home_option_enable_grid_view">تمكين تخطيط الشبكة</string>
   <string name="home_option_enable_grid_view_subtitle">عرض الملاحظات في شبكة متداخلة</string>
-
+  <string name="markdown_sheet_markdown_support">دعم تخفيض السعر</string>
+  <string name="markdown_sheet_markdown_support_subtitle">السماح بتنسيق التضمين المنسق</string>
+  <string name="markdown_sheet_examples">أمثلة</string>
+  <string name="home_option_markdown_settings">إعدادات تخفيض السعر</string>
+  <string name="home_option_markdown_settings_subtitle">اطلع على كيفية استخدام تخفيض السعر في الملاحظات</string>
   <string name="about_page_app_version">نسخة التطبيق</string>
   <string name="about_page_about_app">حول التطبيق</string>
   <string name="open_note_night_mode">الوضع الليلي</string>

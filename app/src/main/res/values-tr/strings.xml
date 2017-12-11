@@ -108,5 +108,10 @@
   <string name="nav_archived_details">Arşivlenen notlarınızın tamamı</string>
   <string name="nav_trash">Çöp</string>
   <string name="nav_trash_details">Çöplerdeki notların tümü</string>
+  <string name="markdown_sheet_markdown_support">Markdown Destek</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Markdown destekli formatlamaya izin ver</string>
+  <string name="markdown_sheet_examples">Örnekler</string>
+  <string name="home_option_markdown_settings">İşaretleme Ayarları</string>
+  <string name="home_option_markdown_settings_subtitle">Notlarda markdown'u nasıl kullanacağınızı öğrenin</string>
 
 </resources>

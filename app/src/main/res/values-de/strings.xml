@@ -43,6 +43,11 @@
   <string name="home_option_enable_list_view_subtitle">Zeige Notizen in einer einzelnen Spalte</string>
   <string name="home_option_enable_grid_view">Aktivieren Sie das Rasterlayout</string>
   <string name="home_option_enable_grid_view_subtitle">Notizen in einem gestaffelten Raster anzeigen</string>
+  <string name="markdown_sheet_markdown_support">Abschriften-Unterstützung</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Erlaube Abschriften unterstützte Formatierung</string>
+  <string name="markdown_sheet_examples">Beispiele</string>
+  <string name="home_option_markdown_settings">Abschrifteneinstellungen</string>
+  <string name="home_option_markdown_settings_subtitle">Sehen Sie, wie Sie Abschriften in Notizen verwenden</string>
 
   <string name="home_option_sheet_title">Optionen und Einstellungen</string>
   <string name="home_option_export">Hinweise exportieren</string>

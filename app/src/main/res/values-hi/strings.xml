@@ -43,7 +43,11 @@
   <string name="home_option_enable_list_view_subtitle">एक एकल कॉलम में नोट्स दिखाएं</string>
   <string name="home_option_enable_grid_view">ग्रिड लेआउट सक्षम करें</string>
   <string name="home_option_enable_grid_view_subtitle">एक कंपित ग्रिड में नोट्स दिखाएं</string>
-
+  <string name="markdown_sheet_markdown_support">मार्कडाउन समर्थन</string>
+  <string name="markdown_sheet_markdown_support_subtitle">मार्कडाउन समर्थित स्वरूपण की अनुमति दें</string>
+  <string name="markdown_sheet_examples">उदाहरण</string>
+  <string name="home_option_markdown_settings">मार्कडाउन सेटिंग्स</string>
+  <string name="home_option_markdown_settings_subtitle">नोट्स में मार्कडाउन का उपयोग कैसे करें</string>
   <string name="home_option_sheet_title">विकल्प और सेटिंग्स</string>
   <string name="home_option_export">निर्यात नोट्स</string>
   <string name="home_option_export_subtitle">साझा करने के लिए डिवाइस संग्रहण में नोट निर्यात करें</string>
