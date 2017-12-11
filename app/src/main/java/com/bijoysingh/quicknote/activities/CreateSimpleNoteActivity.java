@@ -100,7 +100,7 @@ public class CreateSimpleNoteActivity extends ThemedActivity {
       @Override
       public void onClick(View v) {
         updateNote();
-        finish();
+        onBackPressed();
       }
     });
   }
@@ -111,6 +111,12 @@ public class CreateSimpleNoteActivity extends ThemedActivity {
     active = false;
     updateNote();
     destroyIfNeeded();
+  }
+
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
+    tryClosingTheKeyboard();
   }
 
   public void updateNote() {

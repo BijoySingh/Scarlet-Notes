@@ -188,10 +188,11 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 
   @Override
   public void onBackPressed() {
+    super.onBackPressed();
     active = false;
     maybeUpdateNote();
     destroyIfNeeded();
-    finish();
+    tryClosingTheKeyboard();
   }
 
   @Override

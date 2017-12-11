@@ -1,12 +1,13 @@
 package com.bijoysingh.quicknote.activities
 
+import android.content.Context
 import android.os.Build
-import android.support.annotation.ColorRes
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.ImageView
+import android.view.inputmethod.InputMethodManager
 import com.bijoysingh.quicknote.R
+
 
 abstract class ThemedActivity : AppCompatActivity() {
 
@@ -49,6 +50,15 @@ abstract class ThemedActivity : AppCompatActivity() {
           true -> darkColorRes
           else -> lightColorRes
         })
+  }
+
+  fun tryClosingTheKeyboard() {
+    try {
+      val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+      inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+    } catch (exception: Exception) {
+      // Do nothing
+    }
   }
 
   companion object {
