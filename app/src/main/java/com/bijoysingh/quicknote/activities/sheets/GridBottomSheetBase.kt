@@ -34,6 +34,7 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
     maybeSetTextNightModeColor(dialog, R.id.options_title, R.color.light_tertiary_text)
 
     val layoutGrid = dialog.findViewById<GridLayout>(R.id.grid_layout);
+    layoutGrid.columnCount = if(resources.getBoolean(R.bool.is_tablet)) 5 else 3
     for (option in options) {
       if (!option.visible) {
         continue
