@@ -8,6 +8,7 @@ import com.bijoysingh.quicknote.activities.sheets.SecurityOptionsBottomSheet.Com
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.NoteState
+import com.bijoysingh.quicknote.utils.NotificationHandler
 import com.github.bijoysingh.starter.prefs.DataStore
 
 class NoteGridBottomSheet() : GridBottomSheetBase() {
@@ -177,6 +178,18 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
         icon = R.drawable.ic_bubble_chart_white_48dp,
         listener = View.OnClickListener {
           note.popup(activity)
+          dismiss()
+        },
+        visible = !note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.open_in_notification,
+        subtitle = R.string.open_in_notification,
+        icon = R.drawable.ic_action_notification,
+        listener = View.OnClickListener {
+          val handler = NotificationHandler(context, note)
+          handler.createNotificationChannel()
+          handler.openNotification()
           dismiss()
         },
         visible = !note.locked

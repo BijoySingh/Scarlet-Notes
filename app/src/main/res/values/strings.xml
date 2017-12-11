@@ -17,6 +17,7 @@
   <string name="open_note_night_mode">Night Mode</string>
   <string name="open_note_day_mode">Day Mode</string>
   <string name="edit_note">Edit Note</string>
+  <string name="open_in_notification">Create Notification</string>
   <string name="open_in_popup">Open In Popup</string>
   <string name="delete_note">Delete Note</string>
   <string name="delete_note_permanently">Delete Permanently</string>
@@ -132,6 +133,8 @@
   <string name="about_page_contribute">Contribute</string>
   <string name="about_page_app_version">App Version</string>
   <string name="about_page_about_app">About App</string>
+
+  <string name="notification_channel_label">Note Notifications</string>
 
   <string name="about_page_description_os" translatable="false">
     %s is open source and anyone is open to contribute to making it better. It is currently built and maintained by %s.
