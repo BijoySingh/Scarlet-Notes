@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.recyclerview;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.PatternMatcher;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -90,6 +91,8 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
         : R.color.transparent;
     int backgroundColor = ContextCompat.getColor(context, backgroundColorRes);
     text.setBackgroundColor(backgroundColor);
+    text.setLinkTextColor(ContextCompat.getColor(context,
+        nightMode ? R.color.colorAccentDark : R.color.colorAccent));
     edit.setBackgroundColor(backgroundColor);
 
     root.setBackgroundResource(nightMode ? R.color.material_grey_800 : R.color.white);

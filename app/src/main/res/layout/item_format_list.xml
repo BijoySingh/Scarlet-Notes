@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/FormatLayout">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  style="@style/FormatLayout">
 
-  <include layout="@layout/layout_modify_format"/>
+  <include layout="@layout/layout_modify_format" />
 
   <ImageView
-      android:id="@+id/icon"
-      android:layout_width="24dp"
-      android:layout_height="24dp"
-      android:layout_margin="12dp"
-      android:src="@drawable/ic_check_box_outline_blank_white_24dp"
-      android:tint="@color/material_blue_grey_500"
-      />
+    android:id="@+id/icon"
+    android:layout_width="24dp"
+    android:layout_height="24dp"
+    android:layout_margin="12dp"
+    android:src="@drawable/ic_check_box_outline_blank_white_24dp"
+    android:tint="@color/material_blue_grey_500" />
 
   <TextView
-      android:id="@+id/text"
-      style="@style/FormatText"
-      android:hint="@string/format_hint_list"
-      android:textSize="@dimen/text_font_size"/>
+    android:id="@+id/text"
+    style="@style/FormatText"
+    android:autoLink="all"
+    android:hint="@string/format_hint_list"
+    android:linksClickable="true"
+    android:textSize="@dimen/text_font_size" />
 
   <EditText
-      android:id="@+id/edit"
-      style="@style/FormatText"
-      android:hint="@string/format_hint_list"
-      android:textSize="@dimen/text_font_size"/>
+    android:id="@+id/edit"
+    style="@style/FormatText"
+    android:hint="@string/format_hint_list"
+    android:textSize="@dimen/text_font_size" />
 </LinearLayout>

@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/FormatLayout">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  style="@style/FormatLayout">
 
-  <include layout="@layout/layout_modify_format"/>
+  <include layout="@layout/layout_modify_format" />
 
   <TextView
-      android:id="@+id/text"
-      style="@style/FormatText"
-      android:hint="@string/format_hint_text"
-      android:textSize="@dimen/text_font_size"/>
+    android:id="@+id/text"
+    style="@style/FormatText"
+    android:autoLink="all"
+    android:hint="@string/format_hint_text"
+    android:linksClickable="true"
+    android:textSize="@dimen/text_font_size" />
 
   <EditText
-      android:id="@+id/edit"
-      style="@style/FormatText"
-      android:hint="@string/format_hint_text"
-      android:textSize="@dimen/text_font_size"
-      android:minLines="3"/>
+    android:id="@+id/edit"
+    style="@style/FormatText"
+    android:hint="@string/format_hint_text"
+    android:minLines="3"
+    android:textSize="@dimen/text_font_size" />
 </LinearLayout>
