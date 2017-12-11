@@ -330,6 +330,6 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
   @Override
   public void onSaveInstanceState(Bundle savedInstanceState) {
     super.onSaveInstanceState(savedInstanceState);
-    savedInstanceState.putInt(NOTE_ID, note.uid);
+    savedInstanceState.putInt(NOTE_ID,  note == null ? 0 : note.uid);
   }
 }
