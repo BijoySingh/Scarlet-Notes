@@ -38,7 +38,7 @@
       android:theme="@style/NoteTheme"
       android:windowSoftInputMode="stateVisible" />
 
-    <service android:name=".FloatingNoteService" />
+    <service android:name=".service.FloatingNoteService" />
 
     <activity
       android:name=".activities.ViewAdvancedNoteActivity"

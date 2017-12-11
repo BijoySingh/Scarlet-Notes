@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 import android.content.Intent;
 
-import com.bijoysingh.quicknote.FloatingNoteService;
+import com.bijoysingh.quicknote.service.FloatingNoteService;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
@@ -130,7 +130,7 @@ public class Note {
   }
 
   public void popup(Activity activity) {
-    FloatingNoteService.openNote(activity, this, true);
+    FloatingNoteService.Companion.openNote(activity, this, true);
   }
 
   public Intent editIntent(Context context) {
