@@ -3,25 +3,17 @@ package com.bijoysingh.quicknote.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.sheets.ColorPickerBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
-import com.bijoysingh.quicknote.views.ColorView;
-import com.bijoysingh.quicknote.views.NoteViewHolder;
+import com.bijoysingh.quicknote.views.SimpleNoteViewHolder;
 import com.github.bijoysingh.starter.prefs.DataStore;
-import com.google.android.flexbox.FlexboxLayout;
 
 import org.jetbrains.annotations.NotNull;
-
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 
 public class CreateSimpleNoteActivity extends ThemedActivity {
 
@@ -34,7 +26,7 @@ public class CreateSimpleNoteActivity extends ThemedActivity {
   protected DataStore store;
 
   private Note note;
-  private NoteViewHolder holder;
+  private SimpleNoteViewHolder holder;
 
   private ImageView colorButton;
   private ImageView backButton;
@@ -54,7 +46,7 @@ public class CreateSimpleNoteActivity extends ThemedActivity {
     note = Note.db(this).getByID(noteId);
     note = note == null ? Note.gen() : note;
 
-    holder = new NoteViewHolder(this);
+    holder = new SimpleNoteViewHolder(this);
     holder.setNote(note);
 
     setListeners();
@@ -190,10 +182,10 @@ public class CreateSimpleNoteActivity extends ThemedActivity {
 
     int textColor = getColor(R.color.dark_secondary_text, R.color.light_secondary_text);
     int textHintColor = getColor(R.color.dark_hint_text, R.color.light_hint_text);
-    holder.title.setTextColor(textColor);
-    holder.title.setHintTextColor(textHintColor);
-    holder.description.setTextColor(textColor);
-    holder.description.setHintTextColor(textHintColor);
+    holder.getTitle().setTextColor(textColor);
+    holder.getTitle().setHintTextColor(textHintColor);
+    holder.getDescription().setTextColor(textColor);
+    holder.getDescription().setHintTextColor(textHintColor);
 
     actionDone.setColorFilter(getColor(R.color.material_blue_grey_600, R.color.light_primary_text));
   }
