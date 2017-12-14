@@ -56,18 +56,24 @@ class FloatingNoteService : FloatingBubbleService() {
   }
 
   private fun loadView(): View {
+    if (note == null) {
+      note = Note.gen()
+      stopSelf()
+    }
+
     val rootView = getInflater().inflate(R.layout.layout_add_note_overlay, null)
 
     title = rootView.findViewById<View>(R.id.title) as TextView
     description = rootView.findViewById<View>(R.id.description) as TextView
     timestamp = rootView.findViewById<View>(R.id.timestamp) as TextView
 
+    val noteItem = note!!
 
     val editButton = rootView.findViewById<View>(R.id.panel_edit_button) as ImageView
     editButton.setImageResource(R.drawable.ic_edit_white_48dp)
     editButton.setOnClickListener {
       try {
-        note!!.edit(context)
+        noteItem.edit(context)
       } catch (exception: Exception) {
         // Some issue
       }
@@ -77,34 +83,30 @@ class FloatingNoteService : FloatingBubbleService() {
     val shareButton = rootView.findViewById<View>(R.id.panel_share_button) as ImageView
     shareButton.setImageResource(R.drawable.ic_share_white_48dp)
     shareButton.setOnClickListener {
-      note!!.share(context)
+      noteItem.share(context)
       stopSelf()
     }
 
     val copyButton = rootView.findViewById<View>(R.id.panel_copy_button) as ImageView
     copyButton.visibility = View.VISIBLE
     copyButton.setOnClickListener {
-      note!!.copy(context)
+      noteItem.copy(context)
       setState(false)
     }
 
     panel = rootView.findViewById(R.id.panel_layout)
-    panel.setBackgroundColor(note!!.color)
+    panel.setBackgroundColor(noteItem.color)
 
-    setNote()
+    setNote(noteItem)
     return rootView
   }
 
-  fun setNote() {
-    if (note == null) {
-      note = Note.gen()
-    }
-
-    val noteTitle = note!!.getTitle()
-    val noteDescription = note!!.text
+  fun setNote(note: Note) {
+    val noteTitle = note.getTitle()
+    val noteDescription = note.text
     title.text = noteTitle
     description.text = noteDescription
-    timestamp.text = note!!.displayTimestamp
+    timestamp.text = note.displayTimestamp
 
     title.visibility = if (TextUtils.isNullOrEmpty(noteTitle)) View.GONE else View.VISIBLE
     description.visibility = if (TextUtils.isNullOrEmpty(noteDescription)) View.GONE else View.VISIBLE
