@@ -167,6 +167,9 @@ public class CreateSimpleNoteActivity extends ThemedActivity {
   @Override
   public void onSaveInstanceState(Bundle savedInstanceState) {
     super.onSaveInstanceState(savedInstanceState);
+    if (savedInstanceState == null) {
+      return;
+    }
     savedInstanceState.putInt(NOTE_ID, note == null ? 0 : note.uid);
   }
 
