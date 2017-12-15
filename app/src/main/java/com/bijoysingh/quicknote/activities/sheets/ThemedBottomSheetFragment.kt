@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.TextView
@@ -11,6 +12,12 @@ import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
 
   var isNightMode: Boolean = false
+
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    val dialog = super.onCreateDialog(savedInstanceState)
+    setRetainInstance(true)
+    return dialog
+  }
 
   override fun setupView(dialog: Dialog?) {
     if (dialog == null) {
