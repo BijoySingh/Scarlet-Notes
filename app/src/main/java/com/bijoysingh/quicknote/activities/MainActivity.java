@@ -380,6 +380,8 @@ public class MainActivity extends ThemedActivity {
       } else {
         searchBox.setText("");
       }
+    } else if (mode != null && mode != HomeNavigationState.DEFAULT) {
+      onHomeClick();
     } else {
       super.onBackPressed();
     }
