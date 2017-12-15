@@ -12,7 +12,7 @@
   <string name="open_in_popup">Im Popup öffnen</string>
   <string name="delete_note">Notiz löschen</string>
   <string name="copy_note">Kopieren</string>
-  <string name="send_note">Notiz senden&8230;</string>
+  <string name="send_note">Notiz senden&#8230;</string>
   <string name="choose_action">Aktion wählen&#8230;</string>
   <string name="format_hint_text">Inhalt hinzufügen&#8230;</string>
   <string name="format_hint_heading">Überschrift hinzufügen&#8230;</string>
