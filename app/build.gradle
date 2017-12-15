@@ -47,7 +47,7 @@ dependencies {
     annotationProcessor 'android.arch.persistence.room:compiler:' + rootProject.archRoomVersion;
 
     compile 'com.github.bijoysingh:android-basics:3.1.2'
-    compile 'com.github.bijoysingh:ui-basics:0.2.0'
+    compile 'com.github.bijoysingh:ui-basics:0.4.0'
     compile 'com.github.bijoysingh:floating-bubble:1.2.1'
     compile 'com.google.android:flexbox:0.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

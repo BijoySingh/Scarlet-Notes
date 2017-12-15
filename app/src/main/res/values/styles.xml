@@ -96,4 +96,11 @@
     <item name="android:textColorHint">@color/dark_hint_text</item>
     <item name="android:textSize">16sp</item>
   </style>
+
+  <style name="GridText" parent="SanSerif">
+    <item name="android:gravity">center</item>
+    <item name="android:layout_gravity">center</item>
+    <item name="android:foregroundGravity">center</item>
+    <item name="android:ellipsize">end</item>
+  </style>
 </resources>
