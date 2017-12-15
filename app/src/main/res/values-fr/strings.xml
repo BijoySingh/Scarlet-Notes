@@ -112,4 +112,7 @@
   <string name="nav_archived_details">Toutes vos notes archivées</string>
   <string name="nav_trash">Poubelle</string>
   <string name="nav_trash_details">Toutes vos notes à la poubelle</string>
+  <string name="open_in_notification">Créer une notification</string>
+  <string name="notification_channel_label">Notifications de note</string>
+
 </resources>

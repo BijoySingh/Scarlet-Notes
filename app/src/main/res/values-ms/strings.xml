@@ -112,5 +112,7 @@
   <string name="nav_archived_details">Semua nota arkib anda</string>
   <string name="nav_trash">Sampah</string>
   <string name="nav_trash_details">Semua nota anda di dalam tong sampah</string>
+  <string name="open_in_notification">Buat Pemberitahuan</string>
+  <string name="notification_channel_label">Pemberitahuan Nota</string>
 
 </resources>

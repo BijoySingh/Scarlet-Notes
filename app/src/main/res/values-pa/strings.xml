@@ -112,5 +112,7 @@
   <string name="nav_archived_details">ਤੁਹਾਡੇ ਸਾਰੇ ਸੰਗ੍ਰਹਿਤ ਨੋਟਸ</string>
   <string name="nav_trash">ਟ੍ਰੈਸ਼</string>
   <string name="nav_trash_details">ਰੱਦੀ ਵਿੱਚ ਤੁਹਾਡੇ ਸਾਰੇ ਨੋਟਸ</string>
+  <string name="open_in_notification">ਸੂਚਨਾ ਬਣਾਓ</string>
+  <string name="notification_channel_label">ਸੂਚਨਾ ਨੋਟਿਸ</string>
 
 </resources>

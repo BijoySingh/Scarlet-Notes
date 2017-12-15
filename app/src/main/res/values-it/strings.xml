@@ -112,5 +112,7 @@
   <string name="nav_archived_details">Tutte le tue note archiviate</string>
   <string name="nav_trash">Cestino</string>
   <string name="nav_trash_details">Tutte le tue note nel cestino</string>
+  <string name="open_in_notification">Crea notifica</string>
+  <string name="notification_channel_label">Notare le notifiche</string>
 
 </resources>

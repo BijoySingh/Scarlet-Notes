@@ -113,5 +113,7 @@
   <string name="nav_archived_details">Alle archivierten Notizen</string>
   <string name="nav_trash">Müll</string>
   <string name="nav_trash_details">Alle Ihre Notizen im Papierkorb</string>
+  <string name="open_in_notification">Benachrichtigung erstellen</string>
+  <string name="notification_channel_label">Hinweis Benachrichtigungen</string>
 
 </resources>

@@ -113,4 +113,7 @@
   <string name="nav_archived_details">Todas as suas anotações arquivadas</string>
   <string name="nav_trash">Lixo</string>
   <string name="nav_trash_details">Todas as suas notas no lixo</string>
+  <string name="open_in_notification">Criar Notificação</string>
+  <string name="notification_channel_label">Notificações de nota</string>
+
 </resources>

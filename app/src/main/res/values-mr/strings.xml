@@ -111,5 +111,7 @@
   <string name="nav_archived_details">आपल्या सर्व संग्रहित टिपा</string>
   <string name="nav_trash">कचरा</string>
   <string name="nav_trash_details">कचरा मधील आपल्या सर्व नोट्स</string>
+  <string name="open_in_notification">सूचना तयार करा</string>
+  <string name="notification_channel_label">टीप सूचना</string>
 
 </resources>

@@ -115,5 +115,7 @@
   <string name="markdown_sheet_examples">Примеры</string>
   <string name="home_option_markdown_settings">Настройки разметки</string>
   <string name="home_option_markdown_settings_subtitle">Посмотрите, как использовать уценку в заметках</string>
+  <string name="open_in_notification">Создать уведомление</string>
+  <string name="notification_channel_label">Уведомления об уведомлениях</string>
 
 </resources>

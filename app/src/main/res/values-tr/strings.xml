@@ -112,6 +112,9 @@
   <string name="markdown_sheet_markdown_support_subtitle">Markdown destekli formatlamaya izin ver</string>
   <string name="markdown_sheet_examples">Örnekler</string>
   <string name="home_option_markdown_settings">İşaretleme Ayarları</string>
-  <string name="home_option_markdown_settings_subtitle">Notlarda markdown'u nasıl kullanacağınızı öğrenin</string>
+  <string name="home_option_markdown_settings_subtitle">Notlarda markdown\'u nasıl kullanacağınızı öğrenin</string>
+  <string name="open_in_notification">Bildirim Oluştur</string>
+  <string name="notification_channel_label">Not Bildirimleri</string>
+
 
 </resources>

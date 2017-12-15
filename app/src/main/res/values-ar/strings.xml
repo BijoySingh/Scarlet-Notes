@@ -112,5 +112,6 @@
   <string name="home_option_enable_day_mode">تمكين وضع اليوم</string>
   <string name="home_option_enable_day_mode_subtitle">تمكين موضوع الضوء بشكل افتراضي</string>
   <string name="search_notes">بحث ملاحظات | |</string>
-
+  <string name="open_in_notification">إنشاء إعلام</string>
+  <string name="notification_channel_label">ملاحظة الإخطارات</string>
 </resources>

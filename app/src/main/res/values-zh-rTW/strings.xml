@@ -112,5 +112,7 @@
   <string name="markdown_sheet_examples">例子</string>
   <string name="home_option_markdown_settings">減價設置</string>
   <string name="home_option_markdown_settings_subtitle">看看如何在筆記中使用降價</string>
+  <string name="open_in_notification">創建通知</string>
+  <string name="notification_channel_label">注意通知</string>
 
 </resources>

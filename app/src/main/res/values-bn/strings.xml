@@ -114,5 +114,7 @@
   <string name="nav_archived_details">আপনার সংরক্ষণাগারভুক্ত সমস্ত নোট</string>
   <string name="nav_trash">আবর্জনা</string>
   <string name="nav_trash_details">ট্র্যাশ আপনার সমস্ত নোট</string>
+  <string name="open_in_notification">বিজ্ঞপ্তি তৈরি করুন</string>
+  <string name="notification_channel_label">নোট বিজ্ঞপ্তিগুলি</string>
 
 </resources>
