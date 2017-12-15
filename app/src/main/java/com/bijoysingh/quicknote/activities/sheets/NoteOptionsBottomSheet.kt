@@ -99,7 +99,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           note.share(activity)
           dismiss()
         },
-        visible = !locked
+        invalid = locked
     ))
     options.add(OptionsItem(
         title = R.string.copy_note,
@@ -109,7 +109,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           note.copy(activity)
           dismiss()
         },
-        visible = !locked
+        invalid = locked
     ))
     options.add(OptionsItem(
         title = R.string.delete_note_permanently,
@@ -119,7 +119,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.moveItemToTrashOrDelete(note)
           dismiss()
         },
-        visible = note.noteState == NoteState.TRASH && !locked
+        visible = note.noteState == NoteState.TRASH,
+        invalid = locked
     ))
     options.add(OptionsItem(
         title = R.string.trash_note,
@@ -129,7 +130,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.moveItemToTrashOrDelete(note)
           dismiss()
         },
-        visible = note.noteState != NoteState.TRASH && !locked
+        visible = note.noteState != NoteState.TRASH,
+        invalid = locked
     ))
     options.add(OptionsItem(
         title = R.string.choose_note_color,
@@ -160,7 +162,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           note.popup(activity)
           dismiss()
         },
-        visible = !locked
+        invalid = locked
     ))
     options.add(OptionsItem(
         title = R.string.open_in_notification,
@@ -172,7 +174,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           handler.openNotification()
           dismiss()
         },
-        visible = !locked
+        invalid = locked
     ))
     options.add(OptionsItem(
         title = R.string.lock_note,

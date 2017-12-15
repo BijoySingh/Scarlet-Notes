@@ -42,11 +42,17 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
 
       val contentView = View.inflate(context, R.layout.layout_grid_item, null) as UILabelView
       contentView.setText(option.title)
-      contentView.setOnClickListener(option.listener)
+
       contentView.setImageResource(option.icon)
       if (isNightMode) {
         contentView.setTextColor(ContextCompat.getColor(context, R.color.light_secondary_text))
         contentView.setImageTint(ContextCompat.getColor(context, R.color.light_tertiary_text))
+      }
+
+      if (!option.invalid) {
+        contentView.setOnClickListener(option.listener)
+      } else {
+        contentView.alpha = 0.4f
       }
       layoutGrid.addView(contentView)
     }
