@@ -7,6 +7,7 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.bijoysingh.quicknote.utils.NoteState
 import com.github.bijoysingh.starter.util.IntentUtils
 
@@ -23,7 +24,7 @@ class HomeNavigationBottomSheet : OptionItemBottomSheetBase() {
         title = R.string.nav_home,
         subtitle = R.string.nav_home_details,
         icon = R.drawable.ic_home_white_48dp,
-        selected = activity.mode == NoteState.DEFAULT,
+        selected = activity.mode == HomeNavigationState.DEFAULT,
         listener = View.OnClickListener {
           activity.onHomeClick();
           dismiss();
@@ -33,7 +34,7 @@ class HomeNavigationBottomSheet : OptionItemBottomSheetBase() {
         title = R.string.nav_favourites,
         subtitle = R.string.nav_favourites_details,
         icon = R.drawable.ic_favorite_white_48dp,
-        selected = activity.mode == NoteState.FAVOURITE,
+        selected = activity.mode == HomeNavigationState.FAVOURITE,
         listener = View.OnClickListener {
           activity.onFavouritesClick();
           dismiss();
@@ -43,9 +44,19 @@ class HomeNavigationBottomSheet : OptionItemBottomSheetBase() {
         title = R.string.nav_archived,
         subtitle = R.string.nav_archived_details,
         icon = R.drawable.ic_archive_white_48dp,
-        selected = activity.mode == NoteState.ARCHIVED,
+        selected = activity.mode == HomeNavigationState.ARCHIVED,
         listener = View.OnClickListener {
           activity.onArchivedClick();
+          dismiss();
+        }
+    ))
+    options.add(OptionsItem(
+        title = R.string.nav_locked,
+        subtitle = R.string.nav_locked_details,
+        icon = R.drawable.ic_action_lock,
+        selected = activity.mode == HomeNavigationState.LOCKED,
+        listener = View.OnClickListener {
+          activity.onLockedClick();
           dismiss();
         }
     ))
@@ -53,7 +64,7 @@ class HomeNavigationBottomSheet : OptionItemBottomSheetBase() {
         title = R.string.nav_trash,
         subtitle = R.string.nav_trash_details,
         icon = R.drawable.ic_delete_white_48dp,
-        selected = activity.mode == NoteState.TRASH,
+        selected = activity.mode == HomeNavigationState.TRASH,
         listener = View.OnClickListener {
           activity.onTrashClick();
           dismiss();

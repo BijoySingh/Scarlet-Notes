@@ -114,5 +114,6 @@
   <string name="nav_trash_details">कचरा में आपके सभी नोट्स</string>
   <string name="open_in_notification">अधिसूचना बनाएं</string>
   <string name="notification_channel_label">नोट नोटिफिकेशन</string>
-
+  <string name="nav_locked">बंद</string>
+  <string name="nav_locked_details">आपके सभी लॉक नोट्स</string>
 </resources>

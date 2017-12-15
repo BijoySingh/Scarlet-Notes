@@ -116,5 +116,7 @@
   <string name="nav_trash_details">ট্র্যাশ আপনার সমস্ত নোট</string>
   <string name="open_in_notification">বিজ্ঞপ্তি তৈরি করুন</string>
   <string name="notification_channel_label">নোট বিজ্ঞপ্তিগুলি</string>
+  <string name="nav_locked">লক</string>
+  <string name="nav_locked_details">আপনার লক নোট সব</string>
 
 </resources>

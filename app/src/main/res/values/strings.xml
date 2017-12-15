@@ -56,6 +56,8 @@
   <string name="nav_favourites_details">All of your favourite notes</string>
   <string name="nav_archived">Archived</string>
   <string name="nav_archived_details">All of your archived notes</string>
+  <string name="nav_locked">Locked</string>
+  <string name="nav_locked_details">All of your locked notes</string>
   <string name="nav_trash">Trash</string>
   <string name="nav_trash_details">All of your notes in the trash</string>
 

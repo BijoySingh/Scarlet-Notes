@@ -114,5 +114,7 @@
   <string name="nav_trash_details">ਰੱਦੀ ਵਿੱਚ ਤੁਹਾਡੇ ਸਾਰੇ ਨੋਟਸ</string>
   <string name="open_in_notification">ਸੂਚਨਾ ਬਣਾਓ</string>
   <string name="notification_channel_label">ਸੂਚਨਾ ਨੋਟਿਸ</string>
+  <string name="nav_locked">ਬੰਦ</string>
+  <string name="nav_locked_details">ਤੁਹਾਡੇ ਸਾਰੇ ਲਾਕ ਨੋਟਸ</string>
 
 </resources>

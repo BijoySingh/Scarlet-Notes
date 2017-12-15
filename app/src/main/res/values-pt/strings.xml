@@ -115,5 +115,7 @@
   <string name="nav_trash_details">Todas as suas notas no lixo</string>
   <string name="open_in_notification">Criar Notificação</string>
   <string name="notification_channel_label">Notificações de nota</string>
+  <string name="nav_locked">Bloqueado</string>
+  <string name="nav_locked_details">Todas as suas notas bloqueadas</string>
 
 </resources>

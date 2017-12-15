@@ -114,5 +114,6 @@
   <string name="nav_trash_details">Toutes vos notes à la poubelle</string>
   <string name="open_in_notification">Créer une notification</string>
   <string name="notification_channel_label">Notifications de note</string>
-
+  <string name="nav_locked">Fermé à clef</string>
+  <string name="nav_locked_details">Toutes vos notes verrouillées</string>
 </resources>

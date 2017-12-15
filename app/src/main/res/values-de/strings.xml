@@ -115,5 +115,7 @@
   <string name="nav_trash_details">Alle Ihre Notizen im Papierkorb</string>
   <string name="open_in_notification">Benachrichtigung erstellen</string>
   <string name="notification_channel_label">Hinweis Benachrichtigungen</string>
+  <string name="nav_locked">Verschlossen</string>
+  <string name="nav_locked_details">Alle Ihre gesperrten Notizen</string>
 
 </resources>

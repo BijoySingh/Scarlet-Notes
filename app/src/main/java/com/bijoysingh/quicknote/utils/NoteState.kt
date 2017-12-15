@@ -4,5 +4,5 @@ enum class NoteState {
   DEFAULT,
   TRASH,
   FAVOURITE,
-  ARCHIVED
+  ARCHIVED,
 }

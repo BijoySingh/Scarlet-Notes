@@ -114,4 +114,7 @@
   <string name="search_notes">بحث ملاحظات | |</string>
   <string name="open_in_notification">إنشاء إعلام</string>
   <string name="notification_channel_label">ملاحظة الإخطارات</string>
+  <string name="nav_locked">مقفل</string>
+  <string name="nav_locked_details">كل من الملاحظات الخاصة بك مؤمن</string>
+
 </resources>

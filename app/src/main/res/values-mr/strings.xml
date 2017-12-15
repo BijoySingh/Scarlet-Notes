@@ -113,5 +113,6 @@
   <string name="nav_trash_details">कचरा मधील आपल्या सर्व नोट्स</string>
   <string name="open_in_notification">सूचना तयार करा</string>
   <string name="notification_channel_label">टीप सूचना</string>
-
+  <string name="nav_locked">लॉक केलेले</string>
+  <string name="nav_locked_details">आपली सर्व लॉक केलेली टिपा</string>
 </resources>

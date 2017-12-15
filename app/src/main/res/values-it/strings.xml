@@ -114,5 +114,7 @@
   <string name="nav_trash_details">Tutte le tue note nel cestino</string>
   <string name="open_in_notification">Crea notifica</string>
   <string name="notification_channel_label">Notare le notifiche</string>
+  <string name="nav_locked">Bloccato</string>
+  <string name="nav_locked_details">Tutte le tue note bloccate</string>
 
 </resources>

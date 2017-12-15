@@ -117,5 +117,7 @@
   <string name="home_option_markdown_settings_subtitle">Посмотрите, как использовать уценку в заметках</string>
   <string name="open_in_notification">Создать уведомление</string>
   <string name="notification_channel_label">Уведомления об уведомлениях</string>
+  <string name="nav_locked">запертый</string>
+  <string name="nav_locked_details">Все ваши заблокированные заметки</string>
 
 </resources>

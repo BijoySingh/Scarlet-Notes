@@ -22,6 +22,7 @@ import com.bijoysingh.quicknote.items.EmptyRecyclerItem;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
 import com.bijoysingh.quicknote.items.RecyclerItem;
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter;
+import com.bijoysingh.quicknote.utils.HomeNavigationState;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.async.MultiAsyncTask;
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor;
@@ -39,7 +40,7 @@ public class MainActivity extends ThemedActivity {
 
   RecyclerView recyclerView;
   NoteAppAdapter adapter;
-  NoteState mode;
+  HomeNavigationState mode;
   DataStore store;
 
   ImageView addList, homeNav, addRichNote, homeOptions, backButton, searchIcon, searchBackButton, searchCloseIcon;
@@ -55,7 +56,7 @@ public class MainActivity extends ThemedActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    mode = NoteState.DEFAULT;
+    mode = HomeNavigationState.DEFAULT;
     store = DataStore.get(this);
     executor = new SimpleThreadExecutor(1);
 
@@ -192,41 +193,60 @@ public class MainActivity extends ThemedActivity {
 
       @Override
       public void handle(List<Note> notes) {
-        adapter.clearItems();
-
-        if (notes.isEmpty()) {
-          adapter.addItem(new EmptyRecyclerItem());
-        }
-
-        for (Note note : notes) {
-          adapter.addItem(new NoteRecyclerItem(note));
-        }
+        handleNewItems(notes);
       }
     });
   }
 
-  public NoteState getMode() {
-    return mode == null ? NoteState.DEFAULT : mode;
+  public HomeNavigationState getMode() {
+    return mode == null ? HomeNavigationState.DEFAULT : mode;
   }
 
   public void onHomeClick() {
-    mode = NoteState.DEFAULT;
+    mode = HomeNavigationState.DEFAULT;
     loadNoteByStates(new String[]{NoteState.DEFAULT.name(), NoteState.FAVOURITE.name()});
   }
 
   public void onFavouritesClick() {
-    mode = NoteState.FAVOURITE;
+    mode = HomeNavigationState.FAVOURITE;
     loadNoteByStates(new String[]{NoteState.FAVOURITE.name()});
   }
 
   public void onArchivedClick() {
-    mode = NoteState.ARCHIVED;
+    mode = HomeNavigationState.ARCHIVED;
     loadNoteByStates(new String[]{NoteState.ARCHIVED.name()});
   }
 
   public void onTrashClick() {
-    mode = NoteState.TRASH;
+    mode = HomeNavigationState.TRASH;
     loadNoteByStates(new String[]{NoteState.TRASH.name()});
+  }
+
+  public void onLockedClick() {
+    mode = HomeNavigationState.LOCKED;
+    MultiAsyncTask.execute(this, new MultiAsyncTask.Task<List<Note>>() {
+      @Override
+      public List<Note> run() {
+        return Note.db(MainActivity.this).getNoteByLocked(true);
+      }
+
+      @Override
+      public void handle(List<Note> notes) {
+        handleNewItems(notes);
+      }
+    });
+  }
+
+  private void handleNewItems(List<Note> notes) {
+    adapter.clearItems();
+
+    if (notes.isEmpty()) {
+      adapter.addItem(new EmptyRecyclerItem());
+    }
+
+    for (Note note : notes) {
+      adapter.addItem(new NoteRecyclerItem(note));
+    }
   }
 
   public View.OnClickListener openNewNoteActivity() {
@@ -263,7 +283,7 @@ public class MainActivity extends ThemedActivity {
   }
 
   public void moveItemToTrashOrDelete(Note note) {
-    if (mode == NoteState.TRASH) {
+    if (mode == HomeNavigationState.TRASH) {
       note.delete(this);
       setupData();
       return;
@@ -298,6 +318,9 @@ public class MainActivity extends ThemedActivity {
         return;
       case TRASH:
         onTrashClick();
+        return;
+      case LOCKED:
+        onLockedClick();
         return;
       default:
       case DEFAULT:

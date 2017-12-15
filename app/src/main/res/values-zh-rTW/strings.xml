@@ -114,5 +114,7 @@
   <string name="home_option_markdown_settings_subtitle">看看如何在筆記中使用降價</string>
   <string name="open_in_notification">創建通知</string>
   <string name="notification_channel_label">注意通知</string>
+  <string name="nav_locked">鎖定</string>
+  <string name="nav_locked_details">所有鎖定的筆記</string>
 
 </resources>

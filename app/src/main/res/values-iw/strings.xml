@@ -115,5 +115,7 @@
   <string name="nav_trash_details">כל ההערות שלך באשפה</string>
   <string name="open_in_notification">צור הודעה</string>
   <string name="notification_channel_label">הערה הודעות</string>
+  <string name="nav_locked">נָעוּל</string>
+  <string name="nav_locked_details">כל ההערות הנעולות שלך</string>
 
 </resources>

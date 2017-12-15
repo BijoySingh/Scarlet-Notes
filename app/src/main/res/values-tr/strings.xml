@@ -115,6 +115,8 @@
   <string name="home_option_markdown_settings_subtitle">Notlarda markdown\'u nasıl kullanacağınızı öğrenin</string>
   <string name="open_in_notification">Bildirim Oluştur</string>
   <string name="notification_channel_label">Not Bildirimleri</string>
+  <string name="nav_locked">Kilitli</string>
+  <string name="nav_locked_details">Kilitli notların tümü</string>
 
 
 </resources>
