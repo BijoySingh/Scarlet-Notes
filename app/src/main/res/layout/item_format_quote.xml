@@ -13,7 +13,7 @@
   <TextView
     android:id="@+id/text"
     style="@style/FormatText"
-    android:autoLink="all"
+    android:autoLink="web"
     android:hint="@string/format_hint_quote"
     android:linksClickable="true"
     android:textColor="@color/dark_hint_text"

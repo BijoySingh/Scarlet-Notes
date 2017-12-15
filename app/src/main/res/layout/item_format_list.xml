@@ -15,7 +15,7 @@
   <TextView
     android:id="@+id/text"
     style="@style/FormatText"
-    android:autoLink="all"
+    android:autoLink="web"
     android:hint="@string/format_hint_list"
     android:linksClickable="true"
     android:textSize="@dimen/text_font_size" />
