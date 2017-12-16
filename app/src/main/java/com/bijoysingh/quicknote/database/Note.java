@@ -51,6 +51,8 @@ public class Note {
 
   public boolean locked;
 
+  public String tags;
+
   public boolean isUnsaved() {
     return uid == null || uid == 0;
   }

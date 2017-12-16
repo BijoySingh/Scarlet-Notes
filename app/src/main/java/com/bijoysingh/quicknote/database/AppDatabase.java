@@ -8,8 +8,8 @@ import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 
 @Database(
-    entities = {Note.class},
-    version = 4
+    entities = {Note.class, Tag.class},
+    version = 5
 )
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -17,12 +17,14 @@ public abstract class AppDatabase extends RoomDatabase {
 
   public abstract NoteDao notes();
 
+  public abstract TagDao tags();
+
   public static AppDatabase getDatabase(Context context) {
     if (database == null) {
       database = Room
           .databaseBuilder(context, AppDatabase.class, "note-database")
           .allowMainThreadQueries()
-          .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
+          .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
           .build();
     }
     return database;
@@ -43,11 +45,19 @@ public abstract class AppDatabase extends RoomDatabase {
     }
   };
 
-
   public static final Migration MIGRATION_3_4 = new Migration(3, 4) {
     @Override
     public void migrate(SupportSQLiteDatabase database) {
       database.execSQL("ALTER TABLE note ADD COLUMN locked INTEGER NOT NULL DEFAULT 0");
+    }
+  };
+
+  public static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+      database.execSQL("CREATE TABLE IF NOT EXISTS tag (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT)");
+      database.execSQL("CREATE  INDEX `index_tag_uid` ON `tag` (`uid`)");
+      database.execSQL("ALTER TABLE note ADD COLUMN tags TEXT DEFAULT ''");
     }
   };
 }
