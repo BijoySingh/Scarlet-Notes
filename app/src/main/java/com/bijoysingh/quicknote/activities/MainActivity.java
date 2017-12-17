@@ -38,6 +38,8 @@ import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSh
 
 public class MainActivity extends ThemedActivity {
 
+  private static final String MIGRATE_ZERO_NOTES = "MIGRATE_ZERO_NOTES";
+
   RecyclerView recyclerView;
   NoteAppAdapter adapter;
   HomeNavigationState mode;
@@ -59,6 +61,10 @@ public class MainActivity extends ThemedActivity {
     mode = HomeNavigationState.DEFAULT;
     store = DataStore.get(this);
     executor = new SimpleThreadExecutor(1);
+
+    if(!store.get(MIGRATE_ZERO_NOTES, false)) {
+      migrateZeroNotes();
+    }
 
     setupRecyclerView();
     setListeners();
@@ -420,4 +426,27 @@ public class MainActivity extends ThemedActivity {
         getColor(R.color.material_grey_50, R.color.material_grey_850));
   }
 
+  private void migrateZeroNotes() {
+    MultiAsyncTask.execute(this, new MultiAsyncTask.Task<Boolean>() {
+      @Override
+      public Boolean run() {
+        Note note = Note.db(MainActivity.this).getByID(0);
+        if (note != null) {
+          Note.db(MainActivity.this).delete(note);
+          note.uid = null;
+          note.save(MainActivity.this);
+          return true;
+        }
+        return false;
+      }
+
+      @Override
+      public void handle(Boolean result) {
+        if (result) {
+          setupData();
+        }
+        store.put(MIGRATE_ZERO_NOTES, true);
+      }
+    });
+  }
 }

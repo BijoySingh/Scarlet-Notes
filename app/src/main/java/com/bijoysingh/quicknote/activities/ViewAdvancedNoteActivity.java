@@ -67,7 +67,9 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     if (noteId == 0 && savedInstanceState != null) {
       noteId = savedInstanceState.getInt(NOTE_ID, 0);
     }
-    note = Note.db(this).getByID(noteId);
+    if (noteId != 0) {
+      note = Note.db(this).getByID(noteId);
+    }
     note = note == null ? Note.gen() : note;
 
     setNightMode(getIntent().getBooleanExtra(
@@ -359,6 +361,6 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     if (savedInstanceState == null) {
       return;
     }
-    savedInstanceState.putInt(NOTE_ID,  note == null ? 0 : note.uid);
+    savedInstanceState.putInt(NOTE_ID,  note == null || note.uid == null ? 0 : note.uid);
   }
 }

@@ -219,7 +219,6 @@ public class Note {
 
   public static Note gen() {
     Note note = new Note();
-    note.uid = 0;
     note.state = NoteState.DEFAULT.name();
     note.timestamp = Calendar.getInstance().getTimeInMillis();
     note.displayTimestamp = DateFormatter.getDate(Calendar.getInstance());

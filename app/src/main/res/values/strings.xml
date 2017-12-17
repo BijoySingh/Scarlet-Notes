@@ -148,8 +148,8 @@
     We endeavour to build beautiful, carefully designed free, ad-free or minimal ads apps which serve great utility to everyone!</string>
 
 
-  <string name="tag_sheet_create_title">Add New Tag&#8230;</string>
-  <string name="tag_sheet_edit_title">Edit Tag&#8230;</string>
-  <string name="tag_sheet_enter_tag_hint">enter tag</string>
+  <string name="tag_sheet_create_title" translatable="false">Add New Tag&#8230;</string>
+  <string name="tag_sheet_edit_title" translatable="false">Edit Tag&#8230;</string>
+  <string name="tag_sheet_enter_tag_hint" translatable="false">enter tag</string>
 
 </resources>
