@@ -31,7 +31,7 @@ public class FormatListViewHolder extends FormatTextViewHolder implements TextVi
     icon = (ImageView) view.findViewById(R.id.icon);
     edit.setOnEditorActionListener(this);
     edit.setImeOptions(EditorInfo.IME_ACTION_DONE);
-    edit.setRawInputType(InputType.TYPE_CLASS_TEXT);
+    edit.setRawInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
   }
 
   @Override
