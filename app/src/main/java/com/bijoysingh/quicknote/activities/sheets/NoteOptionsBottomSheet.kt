@@ -140,7 +140,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         listener = View.OnClickListener {
           TagChooseOptionsBottomSheet.openSheet(activity, note)
           dismiss()
-        }
+        },
+        invalid = locked
     ))
     options.add(OptionsItem(
         title = R.string.choose_note_color,

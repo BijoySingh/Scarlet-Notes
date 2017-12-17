@@ -24,6 +24,14 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
     setOptionTitle(dialog, R.string.tag_sheet_choose_tag)
   }
 
+  override fun onNewTagClick() {
+    val activity = context as ThemedActivity
+    CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), {tag, deleted ->
+      note!!.toggleTag(tag)
+      reset(dialog)
+    })
+  }
+
   private fun getOptions(): List<TagOptionsItem> {
     val options = ArrayList<TagOptionsItem>()
     val tags = note!!.tagIDs

@@ -22,6 +22,8 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
 
   abstract fun setupViewWithDialog(dialog: Dialog)
 
+  abstract fun onNewTagClick()
+
   override fun getBackgroundView(): Int {
     return R.id.options_layout
   }
@@ -35,6 +37,7 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     val newTagButton = dialog.findViewById<UITextView>(R.id.new_tag_button);
     newTagButton.setTextColor(getColor(R.color.dark_hint_text, R.color.light_hint_text))
     newTagButton.setImageTint(getColor(R.color.dark_hint_text, R.color.light_hint_text))
+    newTagButton.setOnClickListener { onNewTagClick() }
   }
 
   fun reset(dialog: Dialog) {
@@ -60,7 +63,7 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
       contentView.setTitleColor(getOptionsTitleColor(option.selected))
       contentView.setSubtitleColor(getOptionsSubtitleColor(option.selected))
       contentView.setImageTint(getOptionsTitleColor(option.selected))
-      
+
       layout.addView(contentView)
     }
   }

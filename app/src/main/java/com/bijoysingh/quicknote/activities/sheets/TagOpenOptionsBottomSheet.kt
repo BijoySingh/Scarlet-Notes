@@ -6,7 +6,6 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.items.TagOptionsItem
-import com.github.bijoysingh.starter.prefs.DataStore
 
 class TagOpenOptionsBottomSheet : TagOptionItemBottomSheetBase() {
 
@@ -26,11 +25,18 @@ class TagOpenOptionsBottomSheet : TagOptionItemBottomSheetBase() {
           },
           editable = true,
           editListener = View.OnClickListener {
-            CreateOrEditTagBottomSheet.openSheet(activity, tag)
+            CreateOrEditTagBottomSheet.openSheet(activity, tag, { tag, deleted -> })
           }
       ))
     }
     return options
+  }
+
+  override fun onNewTagClick() {
+    val activity = context as MainActivity
+    CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), { tag, deleted ->
+      reset(dialog)
+    })
   }
 
   companion object {

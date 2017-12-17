@@ -5,9 +5,11 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 
+import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.util.DateFormatter;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 @Entity(
@@ -23,6 +25,14 @@ public class Tag {
   public void save(Context context) {
     long id = Tag.db(context).insertTag(this);
     uid = isUnsaved() ? ((int) id) : uid;
+  }
+
+  public void delete(Context context) {
+    if (isUnsaved()) {
+      return;
+    }
+    Tag.db(context).delete(this);
+    uid = 0;
   }
 
   public boolean isUnsaved() {

@@ -25,12 +25,10 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_gravity="center"
-      android:layout_weight="1"
       android:background="@color/transparent"
       android:fontFamily="monospace"
       android:hint="@string/tag_sheet_enter_tag_hint"
       android:inputType="text"
-      android:maxLength="4"
       android:padding="16dp"
       android:textSize="24sp" />
 
