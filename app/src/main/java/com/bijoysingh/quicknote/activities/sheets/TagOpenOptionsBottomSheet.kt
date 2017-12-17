@@ -22,10 +22,11 @@ class TagOpenOptionsBottomSheet : TagOptionItemBottomSheetBase() {
           tag = tag,
           listener = View.OnClickListener {
             activity.openTag(tag)
+            dismiss()
           },
           editable = true,
           editListener = View.OnClickListener {
-            CreateOrEditTagBottomSheet.openSheet(activity, tag, { tag, deleted -> })
+            CreateOrEditTagBottomSheet.openSheet(activity, tag, { tag, deleted -> reset(dialog)})
           }
       ))
     }

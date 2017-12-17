@@ -28,6 +28,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
     val activity = context as ThemedActivity
     CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), {tag, deleted ->
       note!!.toggleTag(tag)
+      note!!.save(context)
       reset(dialog)
     })
   }
@@ -40,6 +41,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
           tag = tag,
           listener = View.OnClickListener {
             note!!.toggleTag(tag)
+            note!!.save(context)
             reset(dialog)
           },
           selected = tags.contains(tag.uid)

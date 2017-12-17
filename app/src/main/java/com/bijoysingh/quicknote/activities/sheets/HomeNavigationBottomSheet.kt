@@ -61,6 +61,16 @@ class HomeNavigationBottomSheet : OptionItemBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
+        title = R.string.nav_tags,
+        subtitle = R.string.nav_tags_details,
+        icon = R.drawable.ic_action_tags,
+        selected = activity.mode == HomeNavigationState.TAG,
+        listener = View.OnClickListener {
+          TagOpenOptionsBottomSheet.openSheet(activity)
+          dismiss();
+        }
+    ))
+    options.add(OptionsItem(
         title = R.string.nav_trash,
         subtitle = R.string.nav_trash_details,
         icon = R.drawable.ic_delete_white_48dp,

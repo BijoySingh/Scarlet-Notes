@@ -50,7 +50,7 @@
   <string name="tap_for_action_color">Tap to change the background colour of the note</string>
   <string name="tap_for_action_not_archive">Tap to unarchive the note</string>
 
-  <string name="nav_sheet_title">Your Notes&#8230;</string>
+  <string name="nav_sheet_title">Your Notes and More&#8230;</string>
   <string name="nav_home">Home</string>
   <string name="nav_home_details">All of your normal and favourite notes</string>
   <string name="nav_favourites">Favourites</string>
@@ -59,6 +59,8 @@
   <string name="nav_archived_details">All of your archived notes</string>
   <string name="nav_locked">Locked</string>
   <string name="nav_locked_details">All of your locked notes</string>
+  <string name="nav_tags">Tags</string>
+  <string name="nav_tags_details">All your note tags</string>
   <string name="nav_trash">Trash</string>
   <string name="nav_trash_details">All of your notes in the trash</string>
 

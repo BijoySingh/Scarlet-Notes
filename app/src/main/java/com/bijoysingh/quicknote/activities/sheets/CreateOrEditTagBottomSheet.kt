@@ -55,6 +55,7 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
       sheetOnTagListener(tag, true)
       dismiss()
     }
+    enterTag.setText(tag.title)
     enterTag.setOnEditorActionListener(getEditorActionListener {
       val updated = onActionClick(tag, enterTag.text.toString())
       sheetOnTagListener(tag, !updated)

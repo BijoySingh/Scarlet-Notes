@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.view.View
+import android.view.View.GONE
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
@@ -52,6 +53,7 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
       val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIActionView
       contentView.setTitle(option.tag.title)
       contentView.setOnClickListener(option.listener)
+      contentView.subtitle.visibility = GONE
       contentView.setImageResource(option.getIcon())
 
       if (option.editable) {
