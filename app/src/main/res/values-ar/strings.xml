@@ -116,5 +116,12 @@
   <string name="notification_channel_label">ملاحظة الإخطارات</string>
   <string name="nav_locked">مقفل</string>
   <string name="nav_locked_details">كل من الملاحظات الخاصة بك مؤمن</string>
+  <string name="nav_tags">الكلمات</string>
+  <string name="nav_tags_details">كل علامات الملاحظة الخاصة بك</string>
+  <string name="tag_sheet_create_title">إضافة علامة جديدة | |</string>
+  <string name="tag_sheet_edit_title">تحرير العلامة | |</string>
+  <string name="tag_sheet_enter_tag_hint">أدخل علامة</string>
+  <string name="tag_sheet_new_tag_button">إنشاء علامة جديدة</string>
+  <string name="tag_sheet_choose_tag">اختر تاجا | |</string>
 
 </resources>

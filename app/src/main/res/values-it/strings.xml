@@ -116,5 +116,12 @@
   <string name="notification_channel_label">Notare le notifiche</string>
   <string name="nav_locked">Bloccato</string>
   <string name="nav_locked_details">Tutte le tue note bloccate</string>
+  <string name="nav_tags">tag</string>
+  <string name="nav_tags_details">Tutti i tuoi tag delle note</string>
+  <string name="tag_sheet_create_title">Aggiungi un nuovo tag &#8230;</string>
+  <string name="tag_sheet_edit_title">Modifica tag &#8230;</string>
+  <string name="tag_sheet_enter_tag_hint">inserisci il tag</string>
+  <string name="tag_sheet_new_tag_button">Crea un nuovo tag</string>
+  <string name="tag_sheet_choose_tag">Scegli un tag &#8230;</string>
 
 </resources>

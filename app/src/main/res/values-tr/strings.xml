@@ -117,6 +117,12 @@
   <string name="notification_channel_label">Not Bildirimleri</string>
   <string name="nav_locked">Kilitli</string>
   <string name="nav_locked_details">Kilitli notların tümü</string>
-
+  <string name="nav_tags">Etiketler</string>
+  <string name="nav_tags_details">Tüm not etiketleriniz</string>
+  <string name="tag_sheet_create_title">Yeni Etiket Ekle |</string>
+  <string name="tag_sheet_edit_title">Etiketi Düzenle |</string>
+  <string name="tag_sheet_enter_tag_hint">etiketi gir</string>
+  <string name="tag_sheet_new_tag_button">Yeni Etiket Oluştur</string>
+  <string name="tag_sheet_choose_tag">Bir Tag Seçin |</string>
 
 </resources>

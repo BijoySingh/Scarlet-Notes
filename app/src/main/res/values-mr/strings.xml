@@ -115,4 +115,12 @@
   <string name="notification_channel_label">टीप सूचना</string>
   <string name="nav_locked">लॉक केलेले</string>
   <string name="nav_locked_details">आपली सर्व लॉक केलेली टिपा</string>
+  <string name="nav_tags">टॅग्ज</string>
+  <string name="nav_tags_details">आपले सर्व नोट टॅग्ज</string>
+  <string name="tag_sheet_create_title">नवीन टॅग जोडा |</string>
+  <string name="tag_sheet_edit_title">टॅगचे संपादन करा |</string>
+  <string name="tag_sheet_enter_tag_hint">टॅग प्रविष्ट करा</string>
+  <string name="tag_sheet_new_tag_button">एक नवीन टॅग तयार करा</string>
+  <string name="tag_sheet_choose_tag">एक टॅग निवडा &#8230; |</string>
+
 </resources>

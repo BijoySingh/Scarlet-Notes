@@ -119,5 +119,12 @@
   <string name="notification_channel_label">Уведомления об уведомлениях</string>
   <string name="nav_locked">запертый</string>
   <string name="nav_locked_details">Все ваши заблокированные заметки</string>
+  <string name="nav_tags">Теги</string>
+  <string name="nav_tags_details">Все ваши заметки</string>
+  <string name="tag_sheet_create_title">Добавить новый тэг |</string>
+  <string name="tag_sheet_edit_title">Изменить тег |</string>
+  <string name="tag_sheet_enter_tag_hint">ввести тег</string>
+  <string name="tag_sheet_new_tag_button">Создать новый тег</string>
+  <string name="tag_sheet_choose_tag">Выберите тег |</string>
 
 </resources>

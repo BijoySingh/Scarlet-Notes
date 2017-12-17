@@ -116,4 +116,12 @@
   <string name="notification_channel_label">नोट नोटिफिकेशन</string>
   <string name="nav_locked">बंद</string>
   <string name="nav_locked_details">आपके सभी लॉक नोट्स</string>
+  <string name="nav_tags">टैग</string>
+  <string name="nav_tags_details">आपके सभी नोट टैग</string>
+  <string name="tag_sheet_create_title">नई टैग जोड़ें | |</string>
+  <string name="tag_sheet_edit_title">टैग करें संपादित करें |</string>
+  <string name="tag_sheet_enter_tag_hint">टैग दर्ज करें</string>
+  <string name="tag_sheet_new_tag_button">एक नया टैग बनाएं</string>
+  <string name="tag_sheet_choose_tag">एक टैग चुनें &#8230; |</string>
+
 </resources>

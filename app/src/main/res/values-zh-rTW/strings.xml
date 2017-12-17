@@ -116,5 +116,12 @@
   <string name="notification_channel_label">注意通知</string>
   <string name="nav_locked">鎖定</string>
   <string name="nav_locked_details">所有鎖定的筆記</string>
+  <string name="nav_tags">標籤</string>
+  <string name="nav_tags_details">所有的筆記標籤</string>
+  <string name="tag_sheet_create_title">添加新標籤&#8230;</string>
+  <string name="tag_sheet_edit_title">編輯標籤&#8230;</string>
+  <string name="tag_sheet_enter_tag_hint">輸入標籤</string>
+  <string name="tag_sheet_new_tag_button">創建一個新的標籤</string>
+  <string name="tag_sheet_choose_tag">選擇一個標籤&#8230;</string>
 
 </resources>

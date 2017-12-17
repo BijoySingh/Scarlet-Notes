@@ -116,5 +116,12 @@
   <string name="notification_channel_label">ਸੂਚਨਾ ਨੋਟਿਸ</string>
   <string name="nav_locked">ਬੰਦ</string>
   <string name="nav_locked_details">ਤੁਹਾਡੇ ਸਾਰੇ ਲਾਕ ਨੋਟਸ</string>
+  <string name="nav_tags">ਟੈਗਸ</string>
+  <string name="nav_tags_details">ਤੁਹਾਡੇ ਸਾਰੇ ਨੋਟ ਟੈਗਸ</string>
+  <string name="tag_sheet_create_title">ਨਿਊ ਟੈਗ ਸ਼ਾਮਲ ਕਰੋ |</string>
+  <string name="tag_sheet_edit_title">ਟੈਗ ਸੰਪਾਦਨ ਕਰੋ |</string>
+  <string name="tag_sheet_enter_tag_hint">ਟੈਗ ਦਿਓ</string>
+  <string name="tag_sheet_new_tag_button">ਇੱਕ ਨਵਾਂ ਟੈਗ ਬਣਾਓ</string>
+  <string name="tag_sheet_choose_tag">ਇੱਕ ਟੈਗ ਚੁਣੋ |</string>
 
 </resources>

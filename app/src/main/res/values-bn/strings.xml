@@ -118,5 +118,12 @@
   <string name="notification_channel_label">নোট বিজ্ঞপ্তিগুলি</string>
   <string name="nav_locked">লক</string>
   <string name="nav_locked_details">আপনার লক নোট সব</string>
+  <string name="nav_tags">ট্যাগ</string>
+  <string name="nav_tags_details">আপনার সমস্ত নোট ট্যাগ</string>
+  <string name="tag_sheet_create_title">নতুন ট্যাগ যোগ করুন |</string>
+  <string name="tag_sheet_edit_title">ট্যাগ করা সম্পাদনা করুন |</string>
+  <string name="tag_sheet_enter_tag_hint">ট্যাগ লিখুন</string>
+  <string name="tag_sheet_new_tag_button">একটি নতুন ট্যাগ তৈরি করুন</string>
+  <string name="tag_sheet_choose_tag">একটি ট্যাগ চয়ন করুন &#8230; |</string>
 
 </resources>

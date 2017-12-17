@@ -117,5 +117,12 @@
   <string name="notification_channel_label">Hinweis Benachrichtigungen</string>
   <string name="nav_locked">Verschlossen</string>
   <string name="nav_locked_details">Alle Ihre gesperrten Notizen</string>
+  <string name="nav_tags">Stichworte</string>
+  <string name="nav_tags_details">Alle Ihre Notiz-Tags</string>
+  <string name="tag_sheet_create_title">Neuen Tag hinzufügen &#8230;</string>
+  <string name="tag_sheet_edit_title">Tag bearbeiten &#8230;</string>
+  <string name="tag_sheet_enter_tag_hint">Tag eingeben</string>
+  <string name="tag_sheet_new_tag_button">Erstellen Sie ein neues Tag</string>
+  <string name="tag_sheet_choose_tag">Wähle einen Tag &#8230;</string>
 
 </resources>

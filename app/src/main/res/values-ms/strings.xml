@@ -116,5 +116,12 @@
   <string name="notification_channel_label">Pemberitahuan Nota</string>
   <string name="nav_locked">Terkunci</string>
   <string name="nav_locked_details">Semua nota terkunci anda</string>
+  <string name="nav_tags">Tags</string>
+  <string name="nav_tags_details">Semua tanda nota anda</string>
+  <string name="tag_sheet_create_title">Tambah Tag Baru</string>
+  <string name="tag_sheet_edit_title">Edit Tag &#8230;</string>
+  <string name="tag_sheet_enter_tag_hint">masukkan tag</string>
+  <string name="tag_sheet_new_tag_button">Buat Tag Baru</string>
+  <string name="tag_sheet_choose_tag">Pilih Tag &#8230;</string>
 
 </resources>

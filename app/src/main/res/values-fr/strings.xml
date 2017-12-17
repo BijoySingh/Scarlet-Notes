@@ -116,4 +116,12 @@
   <string name="notification_channel_label">Notifications de note</string>
   <string name="nav_locked">Fermé à clef</string>
   <string name="nav_locked_details">Toutes vos notes verrouillées</string>
+  <string name="nav_tags">Mots clés</string>
+  <string name="nav_tags_details">Toutes vos étiquettes de note</string>
+  <string name="tag_sheet_create_title">Ajouter un nouveau tag</string>
+  <string name="tag_sheet_edit_title">Modifier le tag &#8230;</string>
+  <string name="tag_sheet_enter_tag_hint">entrez le tag</string>
+  <string name="tag_sheet_new_tag_button">Créer un nouveau tag</string>
+  <string name="tag_sheet_choose_tag">Choisissez un tag &#8230;</string>
+
 </resources>

@@ -117,5 +117,12 @@
   <string name="notification_channel_label">הערה הודעות</string>
   <string name="nav_locked">נָעוּל</string>
   <string name="nav_locked_details">כל ההערות הנעולות שלך</string>
+  <string name="nav_tags">תגים</string>
+  <string name="nav_tags_details">כל תגי ההערות שלך</string>
+  <string name="tag_sheet_create_title">הוסף תג חדש</string>
+  <string name="tag_sheet_edit_title">ערוך Taga</string>
+  <string name="tag_sheet_enter_tag_hint">הזן תג</string>
+  <string name="tag_sheet_new_tag_button">צור תג חדש</string>
+  <string name="tag_sheet_choose_tag">בחר תג</string>
 
 </resources>
