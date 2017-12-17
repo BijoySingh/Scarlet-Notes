@@ -47,7 +47,7 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     val layout = dialog.findViewById<LinearLayout>(R.id.options_container);
     for (option in options) {
       val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIActionView
-      contentView.setTitle(option.title)
+      contentView.setTitle(option.tag.title)
       contentView.setOnClickListener(option.listener)
       contentView.setImageResource(option.getIcon())
 

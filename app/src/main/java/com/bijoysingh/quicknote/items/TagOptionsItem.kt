@@ -2,12 +2,13 @@ package com.bijoysingh.quicknote.items
 
 import android.view.View
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.database.Tag
 
 class TagOptionsItem(
-    val title: Int,
+    val tag: Tag,
     val selected: Boolean = false,
     val editable: Boolean = false,
-    val editListener: View.OnClickListener,
+    val editListener: View.OnClickListener? = null,
     val listener: View.OnClickListener) {
 
   fun getIcon(): Int = when (selected) {

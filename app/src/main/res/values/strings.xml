@@ -155,6 +155,5 @@
 
   <string name="tag_sheet_new_tag_button" translatable="false">Create a New Tag</string>
   <string name="tag_sheet_choose_tag" translatable="false">Choose a Tag&#8230;</string>
-  <string name="tag_sheet_select_tag" translatable="false">Select a Tag&#8230;</string>
 
 </resources>

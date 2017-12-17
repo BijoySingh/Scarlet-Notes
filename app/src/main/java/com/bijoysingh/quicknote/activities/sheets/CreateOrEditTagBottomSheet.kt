@@ -14,6 +14,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.Tag
 import com.github.ajalt.reprint.core.AuthenticationFailureReason
 import com.github.ajalt.reprint.core.AuthenticationListener
 import com.github.ajalt.reprint.core.Reprint
@@ -22,6 +23,8 @@ import com.github.bijoysingh.starter.util.LocaleManager
 
 
 class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
+
+  var selectedTag: Tag? = null
 
   override fun getBackgroundView(): Int {
     return R.id.container_layout
@@ -37,9 +40,10 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
   override fun getLayout(): Int = R.layout.bottom_sheet_create_or_edit_tag
 
   companion object {
-    fun openSheet(activity: ThemedActivity) {
+    fun openSheet(activity: ThemedActivity, tag: Tag) {
       val sheet = CreateOrEditTagBottomSheet()
       sheet.isNightMode = activity.isNightMode
+      sheet.selectedTag = tag
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

@@ -25,6 +25,8 @@ import com.github.bijoysingh.starter.util.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -179,6 +181,16 @@ public class Note {
       }
     }
     return tagIDs;
+  }
+
+  public void toggleTag(Tag tag) {
+    Set<Integer> tags = getTagIDs();
+    if (tags.contains(tag.uid)) {
+      tags.remove(tag.uid);
+    } else {
+      tags.add(tag.uid);
+    }
+    this.tags = android.text.TextUtils.join(",", tags);
   }
 
   public Set<Tag> getTags(Context context) {

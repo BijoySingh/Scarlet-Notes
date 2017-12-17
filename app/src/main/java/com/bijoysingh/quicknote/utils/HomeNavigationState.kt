@@ -5,6 +5,7 @@ package com.bijoysingh.quicknote.utils
  */
 enum class HomeNavigationState {
   DEFAULT,
+  TAG,
   TRASH,
   FAVOURITE,
   ARCHIVED,

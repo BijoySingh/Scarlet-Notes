@@ -18,6 +18,7 @@ import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.sheets.HomeNavigationBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
+import com.bijoysingh.quicknote.database.Tag;
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
 import com.bijoysingh.quicknote.items.RecyclerItem;
@@ -295,6 +296,28 @@ public class MainActivity extends ThemedActivity {
       return;
     }
     markItem(note, NoteState.TRASH);
+  }
+
+  public void openTag(final Tag tag) {
+    mode = HomeNavigationState.TAG;
+    MultiAsyncTask.execute(this, new MultiAsyncTask.Task<List<Note>>() {
+      @Override
+      public List<Note> run() {
+        List<Note> listNoteWithTag = new ArrayList<>();
+        List<Note> notes = Note.db(MainActivity.this).getAll();
+        for (Note note: notes) {
+          if (note.getTagIDs().contains(tag.uid)) {
+            listNoteWithTag.add(note);
+          }
+        }
+        return listNoteWithTag;
+      }
+
+      @Override
+      public void handle(List<Note> notes) {
+        handleNewItems(notes);
+      }
+    });
   }
 
   public void updateNote(Note note) {
