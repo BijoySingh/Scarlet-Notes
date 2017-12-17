@@ -31,6 +31,7 @@
   <string name="trash_note">Move to Trash</string>
   <string name="choose_note_color">Change Color</string>
   <string name="lock_note">Lock Note</string>
+  <string name="change_tags" translatable="false">Change Tags</string>
   <string name="unlock_note">Unlock Note</string>
   <string name="choose_action">Choose Action&#8230;</string>
 
@@ -151,5 +152,9 @@
   <string name="tag_sheet_create_title" translatable="false">Add New Tag&#8230;</string>
   <string name="tag_sheet_edit_title" translatable="false">Edit Tag&#8230;</string>
   <string name="tag_sheet_enter_tag_hint" translatable="false">enter tag</string>
+
+  <string name="tag_sheet_new_tag_button" translatable="false">Create a New Tag</string>
+  <string name="tag_sheet_choose_tag" translatable="false">Choose a Tag&#8230;</string>
+  <string name="tag_sheet_select_tag" translatable="false">Select a Tag&#8230;</string>
 
 </resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:ui="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <LinearLayout
+    android:id="@+id/options_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="32dp">
+
+    <TextView
+      android:id="@+id/options_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="16dp"
+      android:text="@string/tag_sheet_choose_tag"
+      android:textSize="18sp" />
+
+    <LinearLayout
+      android:id="@+id/options_container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical" />
+
+    <com.github.bijoysingh.uibasics.views.UITextView
+      android:id="@+id/new_tag_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="16dp"
+      ui:icon="@drawable/ic_add_white_24dp"
+      ui:iconSize="24dp"
+      ui:iconTextGap="16dp"
+      ui:iconTint="@color/dark_tertiary_text"
+      ui:text="@string/tag_sheet_new_tag_button"
+      ui:textColor="@color/dark_tertiary_text"
+      ui:textSize="16sp" />
+
+  </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

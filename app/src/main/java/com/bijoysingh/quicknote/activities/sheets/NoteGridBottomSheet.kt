@@ -151,6 +151,15 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
         visible = note.noteState != NoteState.TRASH && !isEditMode
     ))
     options.add(OptionsItem(
+        title = R.string.change_tags,
+        subtitle = R.string.change_tags,
+        icon = R.drawable.ic_action_tags,
+        listener = View.OnClickListener {
+          // TODO: Open Tag Selection Sheet
+          dismiss()
+        }
+    ))
+    options.add(OptionsItem(
         title = R.string.choose_note_color,
         subtitle = R.string.tap_for_action_color,
         icon = R.drawable.ic_action_color,
