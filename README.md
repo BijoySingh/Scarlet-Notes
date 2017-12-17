@@ -19,3 +19,7 @@ This app is meant for a simple yet powerful rich text experience. It's still bei
 - Ad Free: Now and always ad-free.
 - Note-ifications: Notes can be kept in the notifications list of your phone.
 - Floating Heads: Quickly take notes while doing other stuff.
+
+# Google Play Store Beta Program
+The app is improving fast. As we grow, a lot of new features will not be realeased publically till it's tested on alpha/beta channels. If you would like to get the new features faster, join the beta program here:
+https://play.google.com/apps/testing/com.bijoysingh.quicknote
