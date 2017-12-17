@@ -30,6 +30,8 @@ public class Format {
 
   public String text;
 
+  public boolean forcedMarkdown = false;
+
   public Format() {
   }
 
@@ -40,6 +42,10 @@ public class Format {
   public Format(FormatType formatType, String text) {
     this.formatType = formatType;
     this.text = text;
+
+    if (formatType == FormatType.TAG) {
+      forcedMarkdown = true;
+    }
   }
 
   public JSONObject toJson() {
@@ -109,8 +115,8 @@ public class Format {
     List<MultiRecyclerViewControllerItem<Format>> list = new ArrayList<>();
     list.add(
         new MultiRecyclerViewControllerItem.Builder<Format>()
-            .viewType(FormatType.MARKDOWN.ordinal())
-            .layoutFile(R.layout.item_format_text)
+            .viewType(FormatType.TAG.ordinal())
+            .layoutFile(R.layout.item_format_tag)
             .holderClass(FormatTextViewHolder.class)
             .build());
     list.add(

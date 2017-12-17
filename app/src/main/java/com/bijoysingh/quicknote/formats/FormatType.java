@@ -1,7 +1,7 @@
 package com.bijoysingh.quicknote.formats;
 
 public enum FormatType {
-  MARKDOWN, // Ideally use TEXT. This Format will force markdown independent of user preferences
+  TAG,
   TEXT,
   BULLET_LIST,
   NUMBERED_LIST,

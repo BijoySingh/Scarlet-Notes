@@ -20,3 +20,15 @@ fun getEditorActionListener(runnable: () -> Boolean): TextView.OnEditorActionLis
     return@OnEditorActionListener runnable()
   }
 }
+
+fun trim(source: CharSequence?): CharSequence {
+  if (source == null || source.length == 0) {
+    return ""
+  }
+
+  var index = source.length
+  while (--index >= 0 && Character.isWhitespace(source[index])) {
+    // Ignore, find the first non-whitespace character
+  }
+  return source.subSequence(0, index + 1)
+}

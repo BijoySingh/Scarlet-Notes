@@ -204,6 +204,11 @@ public class Note {
     return tags;
   }
 
+  public String getTagString(Context context) {
+    Set<Tag> tags = getTags(context);
+    return getTagString(tags);
+  }
+
   public String getTagString(Set<Tag> tags) {
     StringBuilder builder = new StringBuilder();
     for (Tag tag : tags) {

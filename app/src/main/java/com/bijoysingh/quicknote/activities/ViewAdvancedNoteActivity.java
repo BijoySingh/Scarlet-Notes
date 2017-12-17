@@ -137,26 +137,15 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     adapter.addItems(formats);
 
     if (!getEditModeValue()) {
-      MultiAsyncTask.execute(this, new MultiAsyncTask.Task<Format>() {
-        @Override
-        public Format run() {
-          Set<Tag> tags = note.getTags(context);
-          String tagLabel = note.getTagString(tags);
-          if(tagLabel.isEmpty()) {
-            return null;
-          }
-          return new Format(FormatType.MARKDOWN, tagLabel);
-        }
+      Set<Tag> tags = note.getTags(context);
+      String tagLabel = note.getTagString(tags);
+      if(tagLabel.isEmpty()) {
+        return;
+      }
 
-        @Override
-        public void handle(Format result) {
-          if (result == null) {
-            return;
-          }
-          formats.add(result);
-          adapter.addItem(result);
-        }
-      });
+      Format format = new Format(FormatType.TAG,  tagLabel);
+      formats.add(format);
+      adapter.addItem(format);
     }
   }
 

@@ -2,7 +2,6 @@ package com.bijoysingh.quicknote.recyclerview;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.PatternMatcher;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,9 +24,9 @@ import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSh
 import static com.bijoysingh.quicknote.formats.FormatType.CHECKLIST_CHECKED;
 import static com.bijoysingh.quicknote.formats.FormatType.CHECKLIST_UNCHECKED;
 import static com.bijoysingh.quicknote.formats.FormatType.CODE;
-import static com.bijoysingh.quicknote.formats.FormatType.MARKDOWN;
 import static com.bijoysingh.quicknote.formats.FormatType.QUOTE;
 import static com.bijoysingh.quicknote.formats.FormatType.TEXT;
+import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.trim;
 
 public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements TextWatcher {
 
@@ -79,7 +78,7 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
         && extra.getBoolean(ThemedActivity.Companion.getKey());
     boolean isMarkdownEnabled = extra == null
         || extra.getBoolean(KEY_MARKDOWN_ENABLED, true)
-        || data.formatType == MARKDOWN;
+        || data.forcedMarkdown;
 
     text.setTextColor(ContextCompat.getColor(
         context, nightMode ? R.color.white : R.color.dark_secondary_text));
@@ -111,7 +110,7 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
         || data.formatType == CHECKLIST_CHECKED
         || data.formatType == CHECKLIST_UNCHECKED
         || data.formatType == QUOTE
-        || data.formatType == MARKDOWN)) {
+        || data.forcedMarkdown)) {
       CharSequence source = Markwon.markdown(context, data.text);
       text.setText(trim(source));
     } else {
@@ -140,18 +139,6 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
         TextUtils.copyToClipboard(context, edit.getText().toString());
       }
     });
-  }
-
-  private static CharSequence trim(CharSequence source) {
-    if (source == null || source.length() == 0) {
-      return "";
-    }
-
-    int index = source.length();
-    while (--index >= 0 && Character.isWhitespace(source.charAt(index))) {
-      // Ignore, find the first non-whitespace character
-    }
-    return source.subSequence(0, index + 1);
   }
 
   @Override

@@ -3,8 +3,8 @@ package com.bijoysingh.quicknote.recyclerview;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,14 +21,19 @@ import com.bijoysingh.quicknote.items.NoteRecyclerItem;
 import com.bijoysingh.quicknote.items.RecyclerItem;
 import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
+import com.github.bijoysingh.starter.util.DateFormatter;
+import com.github.bijoysingh.starter.util.TextUtils;
+
+import ru.noties.markwon.Markwon;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.trim;
 
 public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
 
   private CardView view;
-  private TextView timestamp;
+  private TextView tags;
   private TextView title;
   private TextView description;
   private ImageView edit;
@@ -47,7 +52,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
   public NoteRecyclerHolder(Context context, View view) {
     super(context, view);
     this.view = (CardView) view;
-    timestamp = view.findViewById(R.id.timestamp);
+    tags = view.findViewById(R.id.tags);
     title = view.findViewById(R.id.title);
     description = view.findViewById(R.id.description);
     share = view.findViewById(R.id.share_button);
@@ -67,7 +72,15 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     title.setVisibility(noteTitle.isEmpty() ? GONE : VISIBLE);
 
     description.setText(data.getLockedText());
-    timestamp.setText(data.displayTimestamp);
+
+    if (!TextUtils.isNullOrEmpty(data.tags)) {
+      tags.setTextColor(ContextCompat.getColor(context, R.color.light_secondary_text));
+      CharSequence source = Markwon.markdown(context, data.getTagString(context));
+      tags.setText(trim(source));
+    } else {
+      tags.setTextColor(ContextCompat.getColor(context, R.color.light_hint_text));
+      tags.setText(DateFormatter.getDate("dd MMMM yyyy", data.timestamp));
+    }
 
     view.setOnClickListener(new View.OnClickListener() {
       @Override

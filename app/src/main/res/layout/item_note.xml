@@ -12,8 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
-    android:orientation="vertical"
-    android:padding="4dp">
+    android:orientation="vertical">
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -51,24 +50,28 @@
         android:textColorHint="@color/light_tertiary_text"
         android:textSize="14sp" />
 
-      <TextView
-        android:id="@+id/timestamp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="monospace"
-        android:gravity="start"
-        android:hint="@string/timestamp"
-        android:textColor="@color/light_tertiary_text"
-        android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:gravity="end"
+      android:gravity="end|center_vertical"
       android:orientation="horizontal"
+      android:background="@drawable/gradient_background"
       android:padding="6dp">
+
+      <TextView
+        android:id="@+id/tags"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:lines="1"
+        android:layout_marginStart="4dp"
+        android:ellipsize="end"
+        android:hint="@string/timestamp"
+        android:textColor="@color/light_tertiary_text"
+        android:textSize="16sp" />
 
       <ImageView
         android:id="@+id/delete_button"
