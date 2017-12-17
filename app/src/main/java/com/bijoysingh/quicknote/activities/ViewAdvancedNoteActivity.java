@@ -11,17 +11,20 @@ import android.widget.ImageView;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.sheets.NoteGridBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
+import com.bijoysingh.quicknote.database.Tag;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.recyclerview.FormatAdapter;
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.bijoysingh.quicknote.utils.NoteState;
+import com.github.bijoysingh.starter.async.MultiAsyncTask;
 import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.List;
+import java.util.Set;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -130,6 +133,29 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     adapter.clearItems();
     formats = note.getFormats();
     adapter.addItems(formats);
+
+    if (!getEditModeValue()) {
+      MultiAsyncTask.execute(this, new MultiAsyncTask.Task<Format>() {
+        @Override
+        public Format run() {
+          Set<Tag> tags = note.getTags(context);
+          String tagLabel = note.getTagString(tags);
+          if(tagLabel.isEmpty()) {
+            return null;
+          }
+          return new Format(FormatType.MARKDOWN, tagLabel);
+        }
+
+        @Override
+        public void handle(Format result) {
+          if (result == null) {
+            return;
+          }
+          formats.add(result);
+          adapter.addItem(result);
+        }
+      });
+    }
   }
 
   private void setRecyclerView() {

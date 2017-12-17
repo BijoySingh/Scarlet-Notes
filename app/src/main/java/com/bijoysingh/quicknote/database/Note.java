@@ -25,7 +25,9 @@ import com.github.bijoysingh.starter.util.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.bijoysingh.quicknote.activities.external.ExportNotesKt.searchInNote;
 
@@ -162,6 +164,43 @@ public class Note {
       return;
     }
     context.startActivity(editIntent(context));
+  }
+
+  public Set<Integer> getTagIDs() {
+    tags = tags == null ? "" : tags;
+    String[] split = tags.split(",");
+    Set<Integer> tagIDs = new HashSet<>();
+    for (String tagIDString: split) {
+      try {
+        int tagID = Integer.parseInt(tagIDString);
+        tagIDs.add(tagID);
+      } catch (Exception exception) {
+        // Ignore the exception
+      }
+    }
+    return tagIDs;
+  }
+
+  public Set<Tag> getTags(Context context) {
+    Set<Tag> tags = new HashSet<>();
+    for (Integer tagID : getTagIDs()) {
+      Tag tag = Tag.db(context).getByID(tagID);
+      if (tag != null) {
+        tags.add(tag);
+      }
+    }
+    return tags;
+  }
+
+  public String getTagString(Set<Tag> tags) {
+    StringBuilder builder = new StringBuilder();
+    for (Tag tag : tags) {
+      builder.append('`');
+      builder.append(tag.title);
+      builder.append('`');
+      builder.append(" ");
+    }
+    return builder.toString();
   }
 
   public void edit(Context context, boolean nightMode) {

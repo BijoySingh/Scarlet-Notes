@@ -25,6 +25,7 @@ import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSh
 import static com.bijoysingh.quicknote.formats.FormatType.CHECKLIST_CHECKED;
 import static com.bijoysingh.quicknote.formats.FormatType.CHECKLIST_UNCHECKED;
 import static com.bijoysingh.quicknote.formats.FormatType.CODE;
+import static com.bijoysingh.quicknote.formats.FormatType.MARKDOWN;
 import static com.bijoysingh.quicknote.formats.FormatType.QUOTE;
 import static com.bijoysingh.quicknote.formats.FormatType.TEXT;
 
@@ -77,7 +78,8 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
         && extra.containsKey(ThemedActivity.Companion.getKey())
         && extra.getBoolean(ThemedActivity.Companion.getKey());
     boolean isMarkdownEnabled = extra == null
-        || extra.getBoolean(KEY_MARKDOWN_ENABLED, true);
+        || extra.getBoolean(KEY_MARKDOWN_ENABLED, true)
+        || data.formatType == MARKDOWN;
 
     text.setTextColor(ContextCompat.getColor(
         context, nightMode ? R.color.white : R.color.dark_secondary_text));
@@ -108,7 +110,8 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
     } else if (isMarkdownEnabled && (data.formatType == TEXT
         || data.formatType == CHECKLIST_CHECKED
         || data.formatType == CHECKLIST_UNCHECKED
-        || data.formatType == QUOTE)) {
+        || data.formatType == QUOTE
+        || data.formatType == MARKDOWN)) {
       CharSequence source = Markwon.markdown(context, data.text);
       text.setText(trim(source));
     } else {

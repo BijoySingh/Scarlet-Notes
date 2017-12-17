@@ -109,6 +109,12 @@ public class Format {
     List<MultiRecyclerViewControllerItem<Format>> list = new ArrayList<>();
     list.add(
         new MultiRecyclerViewControllerItem.Builder<Format>()
+            .viewType(FormatType.MARKDOWN.ordinal())
+            .layoutFile(R.layout.item_format_text)
+            .holderClass(FormatTextViewHolder.class)
+            .build());
+    list.add(
+        new MultiRecyclerViewControllerItem.Builder<Format>()
             .viewType(FormatType.TEXT.ordinal())
             .layoutFile(R.layout.item_format_text)
             .holderClass(FormatTextViewHolder.class)
