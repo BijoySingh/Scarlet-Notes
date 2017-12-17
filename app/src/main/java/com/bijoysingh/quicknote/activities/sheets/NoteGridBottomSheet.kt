@@ -155,7 +155,7 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.change_tags,
         icon = R.drawable.ic_action_tags,
         listener = View.OnClickListener {
-          TagChooseOptionsBottomSheet.openSheet(activity, note)
+          TagChooseOptionsBottomSheet.openSheet(activity, note, { activity.notifyTagsChanged() })
           dismiss()
         }
     ))

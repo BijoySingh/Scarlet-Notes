@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
@@ -13,6 +14,7 @@ import com.github.bijoysingh.starter.prefs.DataStore
 class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
 
   var note: Note? = null
+  var dismissListener: () -> Unit = {}
 
   override fun setupViewWithDialog(dialog: Dialog) {
     if (note === null) {
@@ -33,6 +35,11 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
     })
   }
 
+  override fun onDismiss(dialog: DialogInterface?) {
+    super.onDismiss(dialog)
+    dismissListener()
+  }
+
   private fun getOptions(): List<TagOptionsItem> {
     val options = ArrayList<TagOptionsItem>()
     val tags = note!!.tagIDs
@@ -51,10 +58,11 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
   }
 
   companion object {
-    fun openSheet(activity: ThemedActivity, note: Note) {
+    fun openSheet(activity: ThemedActivity, note: Note, dismissListener: () -> Unit) {
       val sheet = TagChooseOptionsBottomSheet()
       sheet.isNightMode = activity.isNightMode
       sheet.note = note
+      sheet.dismissListener = dismissListener
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

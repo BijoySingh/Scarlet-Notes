@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.NoteState
@@ -138,7 +137,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.change_tags,
         icon = R.drawable.ic_action_tags,
         listener = View.OnClickListener {
-          TagChooseOptionsBottomSheet.openSheet(activity, note)
+          TagChooseOptionsBottomSheet.openSheet(activity, note, { activity.setupData() })
           dismiss()
         },
         invalid = locked
@@ -204,7 +203,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         listener = View.OnClickListener {
           EnterPincodeBottomSheet.openUnlockSheet(
               activity,
-              object: EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
+              object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
                 override fun onSuccess() {
                   note.locked = false
                   activity.updateNote(note)

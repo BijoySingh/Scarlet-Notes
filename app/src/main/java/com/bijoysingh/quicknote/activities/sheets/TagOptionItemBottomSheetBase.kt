@@ -39,6 +39,7 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     newTagButton.setTextColor(getColor(R.color.dark_hint_text, R.color.light_hint_text))
     newTagButton.setImageTint(getColor(R.color.dark_hint_text, R.color.light_hint_text))
     newTagButton.setOnClickListener { onNewTagClick() }
+    newTagButton.icon.alpha = 0.6f
   }
 
   fun reset(dialog: Dialog) {

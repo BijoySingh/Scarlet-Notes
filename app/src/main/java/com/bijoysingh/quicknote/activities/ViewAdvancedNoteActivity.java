@@ -328,6 +328,10 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
 
   }
 
+  public void notifyTagsChanged() {
+    setNote();
+  }
+
   protected int getFormatIndex(Format format) {
     int position = 0;
     for (Format fmt : formats) {
