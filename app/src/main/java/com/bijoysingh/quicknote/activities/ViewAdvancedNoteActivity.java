@@ -294,6 +294,10 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
   }
 
   protected void updateNote() {
+    if (!getEditModeValue()) {
+      return;
+    }
+
     note.description = Format.getNote(formats);
     if (note.getFormats().isEmpty() && note.isUnsaved()) {
       return;
