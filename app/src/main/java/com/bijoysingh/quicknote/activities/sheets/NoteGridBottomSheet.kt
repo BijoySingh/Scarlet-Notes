@@ -41,27 +41,6 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
         },
         visible = note.noteState == NoteState.TRASH
     ))
-
-    options.add(OptionsItem(
-        title = R.string.open_note_night_mode,
-        subtitle = R.string.tap_for_action_open_note_night_mode,
-        icon = R.drawable.night_mode_white_48dp,
-        listener = View.OnClickListener {
-          activity.toggleNightMode()
-          dismiss()
-        },
-        visible = !isNightMode
-    ))
-    options.add(OptionsItem(
-        title = R.string.open_note_day_mode,
-        subtitle = R.string.tap_for_action_open_note_day_mode,
-        icon = R.drawable.ic_action_day_mode,
-        listener = View.OnClickListener {
-          activity.toggleNightMode()
-          dismiss()
-        },
-        visible = isNightMode
-    ))
     options.add(OptionsItem(
         title = R.string.edit_note,
         subtitle = R.string.tap_for_action_edit,
@@ -180,29 +159,6 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
           dismiss()
         }
     ))
-
-    options.add(OptionsItem(
-        title = R.string.open_in_popup,
-        subtitle = R.string.tap_for_action_popup,
-        icon = R.drawable.ic_bubble_chart_white_48dp,
-        listener = View.OnClickListener {
-          note.popup(activity)
-          dismiss()
-        },
-        visible = !note.locked
-    ))
-    options.add(OptionsItem(
-        title = R.string.open_in_notification,
-        subtitle = R.string.open_in_notification,
-        icon = R.drawable.ic_action_notification,
-        listener = View.OnClickListener {
-          val handler = NotificationHandler(context, note)
-          handler.createNotificationChannel()
-          handler.openNotification()
-          dismiss()
-        },
-        visible = !note.locked
-    ))
     options.add(OptionsItem(
         title = R.string.lock_note,
         subtitle = R.string.lock_note,
@@ -226,6 +182,48 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
           dismiss()
         },
         visible = note.locked && hasPinCodeEnabled(dataStore)
+    ))
+    options.add(OptionsItem(
+        title = R.string.open_in_popup,
+        subtitle = R.string.tap_for_action_popup,
+        icon = R.drawable.ic_bubble_chart_white_48dp,
+        listener = View.OnClickListener {
+          note.popup(activity)
+          dismiss()
+        },
+        visible = !note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.open_in_notification,
+        subtitle = R.string.open_in_notification,
+        icon = R.drawable.ic_action_notification,
+        listener = View.OnClickListener {
+          val handler = NotificationHandler(context, note)
+          handler.createNotificationChannel()
+          handler.openNotification()
+          dismiss()
+        },
+        visible = !note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.open_note_night_mode,
+        subtitle = R.string.tap_for_action_open_note_night_mode,
+        icon = R.drawable.night_mode_white_48dp,
+        listener = View.OnClickListener {
+          activity.toggleNightMode()
+          dismiss()
+        },
+        visible = !isNightMode
+    ))
+    options.add(OptionsItem(
+        title = R.string.open_note_day_mode,
+        subtitle = R.string.tap_for_action_open_note_day_mode,
+        icon = R.drawable.ic_action_day_mode,
+        listener = View.OnClickListener {
+          activity.toggleNightMode()
+          dismiss()
+        },
+        visible = isNightMode
     ))
     return options
   }
