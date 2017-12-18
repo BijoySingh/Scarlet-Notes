@@ -260,7 +260,7 @@ public class MainActivity extends ThemedActivity {
     return new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), CreateSimpleNoteActivity.class);
+        Intent intent = new Intent(getApplicationContext(), CreateOrEditAdvancedNoteActivity.class);
         intent.putExtra(ThemedActivity.Companion.getKey(), isNightMode());
         startActivity(intent);
       }

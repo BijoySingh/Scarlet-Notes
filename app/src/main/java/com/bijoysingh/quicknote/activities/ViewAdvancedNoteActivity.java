@@ -28,10 +28,12 @@ import java.util.Set;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity.NOTE_ID;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
 
 public class ViewAdvancedNoteActivity extends ThemedActivity {
+
+  public static final String NOTE_ID = "NOTE_ID";
+  public static final int HANDLER_UPDATE_TIME = 1000;
 
   protected Context context;
   protected Note note;
@@ -84,7 +86,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
 
   public static Intent getIntent(Context context, Note note, boolean nightMode) {
     Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
-    intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, note.uid);
+    intent.putExtra(NOTE_ID, note.uid);
     intent.putExtra(ThemedActivity.Companion.getKey(), nightMode);
     return intent;
   }

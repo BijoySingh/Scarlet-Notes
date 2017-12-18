@@ -33,10 +33,6 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity
-      android:name=".activities.CreateSimpleNoteActivity"
-      android:theme="@style/NoteTheme"
-      android:windowSoftInputMode="stateVisible" />
 
     <service android:name=".service.FloatingNoteService" />
 
@@ -52,7 +48,7 @@
       android:name=".activities.CreateAdvancedListActivity"
       android:theme="@style/NoteTheme"
       android:windowSoftInputMode="stateHidden" />
-    <activity android:name=".activities.external.ImportNoteFromFileActivity"></activity>
+    <activity android:name=".activities.external.ImportNoteFromFileActivity"/>
   </application>
 
 </manifest>

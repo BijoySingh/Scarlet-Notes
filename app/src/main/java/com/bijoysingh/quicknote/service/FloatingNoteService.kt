@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity.NOTE_ID
+import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID
 import com.bijoysingh.quicknote.database.Note
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions

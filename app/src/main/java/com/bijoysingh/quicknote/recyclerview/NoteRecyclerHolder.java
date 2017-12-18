@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
-import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
 import com.bijoysingh.quicknote.activities.MainActivity;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
@@ -28,6 +27,7 @@ import ru.noties.markwon.Markwon;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.trim;
 
 public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
@@ -174,7 +174,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
 
   private void openNote(final Note data) {
     Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
-    intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, data.uid);
+    intent.putExtra(NOTE_ID, data.uid);
     intent.putExtra(ThemedActivity.Companion.getKey(), ((ThemedActivity) context).isNightMode());
     context.startActivity(intent);
   }

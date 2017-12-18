@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bijoysingh.quicknote.R;
@@ -18,7 +17,6 @@ import com.bijoysingh.quicknote.formats.NoteType;
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder;
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
-import com.github.bijoysingh.starter.async.SimpleAsyncTask;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -26,7 +24,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collections;
 
 import static android.view.View.GONE;
-import static com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity.HANDLER_UPDATE_TIME;
 
 public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 

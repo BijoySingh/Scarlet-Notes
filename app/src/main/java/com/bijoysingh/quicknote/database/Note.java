@@ -10,7 +10,6 @@ import android.content.Intent;
 import com.bijoysingh.quicknote.service.FloatingNoteService;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity;
-import com.bijoysingh.quicknote.activities.CreateSimpleNoteActivity;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.external.ExportableNote;
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet;
@@ -25,12 +24,11 @@ import com.github.bijoysingh.starter.util.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID;
 import static com.bijoysingh.quicknote.activities.external.ExportNotesKt.searchInNote;
 
 @Entity(
@@ -141,7 +139,7 @@ public class Note {
 
   public Intent editIntent(Context context) {
     Intent intent = new Intent(context, CreateOrEditAdvancedNoteActivity.class);
-    intent.putExtra(CreateSimpleNoteActivity.NOTE_ID, uid);
+    intent.putExtra(NOTE_ID, uid);
     return intent;
   }
 
