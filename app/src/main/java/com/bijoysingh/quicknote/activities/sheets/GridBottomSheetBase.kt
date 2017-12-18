@@ -42,12 +42,9 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
 
       val contentView = View.inflate(context, R.layout.layout_grid_item, null) as UILabelView
       contentView.setText(option.title)
-
       contentView.setImageResource(option.icon)
-      if (isNightMode) {
-        contentView.setTextColor(ContextCompat.getColor(context, R.color.light_secondary_text))
-        contentView.setImageTint(ContextCompat.getColor(context, R.color.light_tertiary_text))
-      }
+      contentView.setTextColor(getOptionsTitleColor(option.selected))
+      contentView.setImageTint(getOptionsTitleColor(option.selected))
 
       if (!option.invalid) {
         contentView.setOnClickListener(option.listener)

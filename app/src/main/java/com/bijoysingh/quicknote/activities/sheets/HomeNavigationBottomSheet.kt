@@ -11,7 +11,7 @@ import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.bijoysingh.quicknote.utils.NoteState
 import com.github.bijoysingh.starter.util.IntentUtils
 
-class HomeNavigationBottomSheet : OptionItemBottomSheetBase() {
+class HomeNavigationBottomSheet : GridBottomSheetBase() {
   override fun setupViewWithDialog(dialog: Dialog) {
     setOptions(dialog, getOptions())
     setOptionTitle(dialog, R.string.nav_sheet_title)
@@ -82,8 +82,6 @@ class HomeNavigationBottomSheet : OptionItemBottomSheetBase() {
     ))
     return options
   }
-
-  override fun getLayout(): Int = R.layout.layout_options_sheet
 
   companion object {
     fun openSheet(activity: MainActivity) {
