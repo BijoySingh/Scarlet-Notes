@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.sheets.HomeNavigationBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet;
+import com.bijoysingh.quicknote.activities.sheets.TagOpenOptionsBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.database.Tag;
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem;
@@ -46,7 +47,7 @@ public class MainActivity extends ThemedActivity {
   HomeNavigationState mode;
   DataStore store;
 
-  ImageView addList, homeNav, addRichNote, homeOptions, backButton, searchIcon, searchBackButton, searchCloseIcon;
+  ImageView addList, homeNav, openTag, homeOptions, backButton, searchIcon, searchBackButton, searchCloseIcon;
   TextView addNote;
   EditText searchBox;
   View mainToolbar, searchToolbar, bottomToolbar;
@@ -78,7 +79,7 @@ public class MainActivity extends ThemedActivity {
     bottomToolbar = findViewById(R.id.bottom_toolbar_layout);
 
     addNote = findViewById(R.id.menu_add_note);
-    addNote.setOnClickListener(openNewNoteActivity());
+    addNote.setOnClickListener(openNewRichNoteActivity());
 
     searchIcon = findViewById(R.id.home_search_button);
     searchIcon.setOnClickListener(new View.OnClickListener() {
@@ -145,8 +146,8 @@ public class MainActivity extends ThemedActivity {
       }
     });
 
-    addRichNote = findViewById(R.id.menu_add_rich_note);
-    addRichNote.setOnClickListener(openNewRichNoteActivity());
+    openTag = findViewById(R.id.menu_open_tag);
+    openTag.setOnClickListener(openTagActivity());
 
     homeOptions = findViewById(R.id.home_option_button);
     homeOptions.setOnClickListener(new View.OnClickListener() {
@@ -256,13 +257,11 @@ public class MainActivity extends ThemedActivity {
     }
   }
 
-  public View.OnClickListener openNewNoteActivity() {
+  public View.OnClickListener openTagActivity() {
     return new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), CreateOrEditAdvancedNoteActivity.class);
-        intent.putExtra(ThemedActivity.Companion.getKey(), isNightMode());
-        startActivity(intent);
+        TagOpenOptionsBottomSheet.Companion.openSheet(MainActivity.this);
       }
     };
   }
@@ -427,7 +426,7 @@ public class MainActivity extends ThemedActivity {
     int toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.light_secondary_text);
     addList.setColorFilter(toolbarIconColor);
     homeNav.setColorFilter(toolbarIconColor);
-    addRichNote.setColorFilter(toolbarIconColor);
+    openTag.setColorFilter(toolbarIconColor);
     homeOptions.setColorFilter(toolbarIconColor);
     addNote.setTextColor(toolbarIconColor);
     searchIcon.setColorFilter(toolbarIconColor);

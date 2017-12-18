@@ -55,6 +55,16 @@
         android:src="@drawable/ic_apps_white_48dp"
         android:tint="@color/material_blue_grey_700" />
 
+      <ImageView
+        android:id="@+id/menu_open_tag"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:alpha="0.7"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="12dp"
+        android:src="@drawable/ic_action_tags"
+        android:tint="@color/material_blue_grey_700" />
+
       <TextView
         android:id="@+id/menu_add_note"
         android:layout_width="0dp"
@@ -75,17 +85,6 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="12dp"
         android:src="@drawable/ic_list_white_48dp"
-        android:tint="@color/material_blue_grey_700" />
-
-      <ImageView
-        android:id="@+id/menu_add_rich_note"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="4dp"
-        android:alpha="0.7"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:padding="12dp"
-        android:src="@drawable/ic_text_fields_white_48dp"
         android:tint="@color/material_blue_grey_700" />
 
     </LinearLayout>
