@@ -146,7 +146,6 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
       }
 
       Format format = new Format(FormatType.TAG,  tagLabel);
-      formats.add(format);
       adapter.addItem(format);
     }
   }
@@ -296,10 +295,6 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
   }
 
   protected void updateNote() {
-    if (!getEditModeValue()) {
-      return;
-    }
-
     note.description = Format.getNote(formats);
     if (note.getFormats().isEmpty() && note.isUnsaved()) {
       return;
