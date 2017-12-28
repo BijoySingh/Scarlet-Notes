@@ -16,13 +16,13 @@ import java.io.File
 import java.io.FileOutputStream
 
 const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
-const val EXPORT_VERSION = 2
+const val EXPORT_VERSION = 3
 
 fun getNotesForExport(context: Context): String {
   val notes = Note.db(context).all
   val exportableNotes = ArrayList<JSONObject>()
   for (note in notes) {
-    exportableNotes.add(ExportableNote(note).toJSONObject())
+    exportableNotes.add(ExportableNote(context, note).toJSONObject())
   }
   val mapping = HashMap<String, Any>()
   mapping[KEY_NOTE_VERSION] = EXPORT_VERSION

@@ -5,6 +5,7 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 
+import com.bijoysingh.quicknote.activities.external.ExportableTag;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.util.DateFormatter;
@@ -25,6 +26,17 @@ public class Tag {
   public void save(Context context) {
     long id = Tag.db(context).insertTag(this);
     uid = isUnsaved() ? ((int) id) : uid;
+  }
+
+  public void saveIfUnique(Context context) {
+    Tag existing = Tag.db(context).getByTitle(title);
+    if (existing == null) {
+      save(context);
+      return;
+    }
+
+    this.uid = existing.uid;
+    this.title = existing.title;
   }
 
   public void delete(Context context) {
@@ -50,4 +62,9 @@ public class Tag {
     return tag;
   }
 
+  public static Tag gen(ExportableTag exportableTag) {
+    Tag tag = Tag.gen();
+    tag.title = exportableTag.getTitle();
+    return tag;
+  }
 }

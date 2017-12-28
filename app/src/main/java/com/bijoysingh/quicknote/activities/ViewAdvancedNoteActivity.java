@@ -140,7 +140,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
 
     if (!getEditModeValue()) {
       Set<Tag> tags = note.getTags(context);
-      String tagLabel = note.getTagString(tags);
+      String tagLabel = Note.getTagString(tags);
       if(tagLabel.isEmpty()) {
         return;
       }

@@ -28,4 +28,7 @@ public interface TagDao {
 
   @Query("SELECT * FROM tag WHERE uid = :uid LIMIT 1")
   Tag getByID(int uid);
+
+  @Query("SELECT * FROM tag WHERE title = :title LIMIT 1")
+  Tag getByTitle(String title);
 }

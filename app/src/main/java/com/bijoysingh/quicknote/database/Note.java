@@ -6,21 +6,26 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 
-import com.bijoysingh.quicknote.service.FloatingNoteService;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.external.ExportableNote;
+import com.bijoysingh.quicknote.activities.external.ExportableTag;
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.formats.NoteType;
+import com.bijoysingh.quicknote.service.FloatingNoteService;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.util.DateFormatter;
 import com.github.bijoysingh.starter.util.IntentUtils;
 import com.github.bijoysingh.starter.util.TextUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -170,7 +175,7 @@ public class Note {
     tags = tags == null ? "" : tags;
     String[] split = tags.split(",");
     Set<Integer> tagIDs = new HashSet<>();
-    for (String tagIDString: split) {
+    for (String tagIDString : split) {
       try {
         int tagID = Integer.parseInt(tagIDString);
         tagIDs.add(tagID);
@@ -207,7 +212,17 @@ public class Note {
     return getTagString(tags);
   }
 
-  public String getTagString(Set<Tag> tags) {
+  public JSONArray getExportableTags(Context context) {
+    Set<Tag> tags = getTags(context);
+    JSONArray exportableTags = new JSONArray();
+    for (Tag tag : tags) {
+      exportableTags.put((new ExportableTag(tag).toJSONObject()));
+    }
+    return exportableTags;
+  }
+
+  @NonNull
+  public static String getTagString(Set<Tag> tags) {
     StringBuilder builder = new StringBuilder();
     for (Tag tag : tags) {
       builder.append('`');
@@ -241,13 +256,24 @@ public class Note {
     return note;
   }
 
-  public static Note gen(ExportableNote exportableNote) {
+  public static Note genSave(Context context, ExportableNote exportableNote) {
     Note note = Note.gen();
     note.title = exportableNote.getTitle();
     note.color = exportableNote.getColor();
     note.description = exportableNote.getDescription();
     note.displayTimestamp = exportableNote.getDisplayTimestamp();
     note.timestamp = exportableNote.getTimestamp();
+    for (int index = 0; index < exportableNote.getTags().length(); index++) {
+      try {
+        Tag tag = ExportableTag.Companion.getBestPossibleTagObject(
+            context,
+            exportableNote.getTags().getJSONObject(index));
+        note.toggleTag(tag);
+      } catch (JSONException exception) {
+        // Ignore this exception
+      }
+    }
+    note.save(context);
     return note;
   }
 

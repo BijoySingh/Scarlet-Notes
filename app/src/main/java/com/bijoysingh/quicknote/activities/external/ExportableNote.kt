@@ -1,7 +1,9 @@
 package com.bijoysingh.quicknote.activities.external
 
+import android.content.Context
 import android.util.Base64
 import com.bijoysingh.quicknote.database.Note
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.*
 
@@ -11,15 +13,30 @@ class ExportableNote(
     var description: String,
     var displayTimestamp: String,
     var timestamp: Long,
-    var color: Int
+    var color: Int,
+    var state: String,
+    var tags: JSONArray
 ): Serializable {
 
+  constructor(context: Context, note: Note) : this(
+      note.title,
+      note.description,
+      note.displayTimestamp,
+      note.timestamp,
+      note.color,
+      note.state,
+      note.getExportableTags(context)
+  )
+
+  @Deprecated("Do not use this unless no context is available, tags wont be saved")
   constructor(note: Note) : this(
       note.title,
       note.description,
       note.displayTimestamp,
       note.timestamp,
-      note.color
+      note.color,
+      note.state,
+      JSONArray()
   )
 
   fun toJSONObject(): JSONObject {
@@ -29,33 +46,35 @@ class ExportableNote(
     map["displayTimestamp"] = displayTimestamp
     map["timestamp"] = timestamp
     map["color"] = color
+    map["state"] = state
+    map["tags"] = tags
     return JSONObject(map)
-  }
-
-  fun toBase64String(): String {
-    try {
-      val byteArrayOutputStream = ByteArrayOutputStream()
-      val outputStream = ObjectOutputStream(byteArrayOutputStream)
-      outputStream.writeObject(this)
-      outputStream.close()
-      return Base64.encodeToString(byteArrayOutputStream.toByteArray(), 0)
-    } catch (exception: Exception) {
-      // Ignore the response
-      return description
-    }
   }
 
   companion object {
 
     val KEY_NOTES: String = "notes"
 
-    fun fromJSONObject(json: JSONObject): ExportableNote {
+    fun fromJSONObjectV2(json: JSONObject): ExportableNote {
       return ExportableNote(
           json["title"] as String,
           json["description"] as String,
           json["displayTimestamp"] as String,
           json["timestamp"] as Long,
-          json["color"] as Int)
+          json["color"] as Int,
+          "",
+          JSONArray())
+    }
+
+    fun fromJSONObjectV3(json: JSONObject): ExportableNote {
+      return ExportableNote(
+          json["title"] as String,
+          json["description"] as String,
+          json["displayTimestamp"] as String,
+          json["timestamp"] as Long,
+          json["color"] as Int,
+          json["state"] as String,
+          json["tags"] as JSONArray)
     }
 
     fun fromBase64String(base64: String): ExportableNote {

@@ -8,6 +8,7 @@ import android.view.View.GONE
 import android.widget.ProgressBar
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.items.FileRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
@@ -46,19 +47,16 @@ class ImportNoteFromFileActivity : AppCompatActivity() {
             try {
               val json = SafeJson(fileContent)
               val keyVersion = json.getInt(KEY_NOTE_VERSION, 1)
-              if (keyVersion == 1) {
-                val notesBase64 = json[ExportableNote.KEY_NOTES] as JSONArray
-                for (index in 0 until notesBase64.length()) {
-                  val exportableNote = ExportableNote.fromBase64String(notesBase64.getString(index))
-                  Note.gen(exportableNote).save(activity)
+              val notes = json[ExportableNote.KEY_NOTES] as JSONArray
+              for (index in 0 until notes.length()) {
+                val exportableNote = when(keyVersion) {
+                  2 -> ExportableNote.fromJSONObjectV2(notes.getJSONObject(index))
+                  3 -> ExportableNote.fromJSONObjectV3(notes.getJSONObject(index))
+                  else -> ExportableNote.fromBase64String(notes.getString(index))
                 }
-              } else {
-                val notesJson = json[ExportableNote.KEY_NOTES] as JSONArray
-                for (index in 0 until notesJson.length()) {
-                  val exportableNote = ExportableNote.fromJSONObject(notesJson.getJSONObject(index))
-                  Note.gen(exportableNote).save(activity)
-                }
+                Note.genSave(activity, exportableNote)
               }
+
             } catch (exception: Exception) {
               Note.gen("", fileContent).save(activity)
             }
