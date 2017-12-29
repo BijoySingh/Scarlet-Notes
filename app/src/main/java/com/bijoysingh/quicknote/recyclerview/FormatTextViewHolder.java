@@ -62,9 +62,13 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
         activity.focusedFormat = format;
       }
     });
-    edit.setRawInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+    edit.setRawInputType(
+        InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+            | InputType.TYPE_TEXT_FLAG_MULTI_LINE
+            | InputType.TYPE_CLASS_TEXT
+            | InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE
+    );
     actionPanel = view.findViewById(R.id.action_panel);
-
     actionDelete = view.findViewById(R.id.action_delete);
     actionCopy = view.findViewById(R.id.action_copy);
     actionMove = view.findViewById(R.id.action_move);
