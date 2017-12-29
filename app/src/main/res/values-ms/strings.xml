@@ -124,4 +124,11 @@
   <string name="tag_sheet_new_tag_button">Buat Tag Baru</string>
   <string name="tag_sheet_choose_tag">Pilih Tag &#8230;</string>
 
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">Import</string>
+  <string name="markdown_sheet_home_markdown_support">Senarai penurunan nilai dalam Senarai Nota</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Dayakan pemformatan keterlihatan dalam senarai nota</string>
+  <string name="home_option_fill_survey">Isi kajian</string>
+  <string name="home_option_fill_survey_subtitle">Bantu kami meningkatkan aplikasi dengan memberitahu kami apa yang anda suka</string>
+
 </resources>

@@ -124,4 +124,11 @@
   <string name="tag_sheet_new_tag_button">एक नया टैग बनाएं</string>
   <string name="tag_sheet_choose_tag">एक टैग चुनें &#8230; |</string>
 
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">आयात</string>
+  <string name="markdown_sheet_home_markdown_support">नोट सूची में मार्कडाउन</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">नोट्स की सूची में मार्कटाउन स्वरूपण सक्षम करें</string>
+  <string name="home_option_fill_survey">सर्वेक्षण भरें</string>
+  <string name="home_option_fill_survey_subtitle">हमें बताएं कि आप क्या पसंद करते हैं</string>
+
 </resources>

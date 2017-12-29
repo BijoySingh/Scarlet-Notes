@@ -125,4 +125,11 @@
   <string name="tag_sheet_new_tag_button">Yeni Etiket Oluştur</string>
   <string name="tag_sheet_choose_tag">Bir Tag Seçin |</string>
 
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">İthalat</string>
+  <string name="markdown_sheet_home_markdown_support">Not Listesindeki İşaretleme</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Not listesinde Markdown biçimlendirmeyi etkinleştirin</string>
+  <string name="home_option_fill_survey">Dolgu Anketi</string>
+  <string name="home_option_fill_survey_subtitle">Neye benzediğinizi söyleyerek uygulamayı geliştirmemize yardımcı olun</string>
+
 </resources>

@@ -124,4 +124,11 @@
   <string name="tag_sheet_new_tag_button">ਇੱਕ ਨਵਾਂ ਟੈਗ ਬਣਾਓ</string>
   <string name="tag_sheet_choose_tag">ਇੱਕ ਟੈਗ ਚੁਣੋ |</string>
 
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">ਆਯਾਤ ਕਰੋ</string>
+  <string name="markdown_sheet_home_markdown_support">ਨੋਟ ਸੂਚੀ ਵਿੱਚ ਮਾਰਕੇਡਾਊਨ</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">ਨੋਟਸ ਦੀ ਸੂਚੀ ਵਿੱਚ ਮਾਰਕੱਡਾਡ ਫਾਰਮੈਟਿੰਗ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="home_option_fill_survey">ਸਰਵੇਖਣ ਭਰੋ</string>
+  <string name="home_option_fill_survey_subtitle">ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕੀ ਪਸੰਦ ਕਰਦੇ ਹੋ, ਐਪ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਸਾਡੀ ਸਹਾਇਤਾ ਕਰੋ</string>
+
 </resources>

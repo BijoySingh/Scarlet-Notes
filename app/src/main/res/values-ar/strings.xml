@@ -124,4 +124,11 @@
   <string name="tag_sheet_new_tag_button">إنشاء علامة جديدة</string>
   <string name="tag_sheet_choose_tag">اختر تاجا | |</string>
 
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">استيراد</string>
+  <string name="markdown_sheet_home_markdown_support">تخفيض السعر في قائمة الملاحظات</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">تمكين تنسيق علامة التبويب في قائمة الملاحظات</string>
+  <string name="home_option_fill_survey">ملء المسح</string>
+  <string name="home_option_fill_survey_subtitle">مساعدتنا على تحسين التطبيق من خلال إخبارنا ما تريد</string>
+
 </resources>

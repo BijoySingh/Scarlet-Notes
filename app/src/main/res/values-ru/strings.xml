@@ -127,4 +127,11 @@
   <string name="tag_sheet_new_tag_button">Создать новый тег</string>
   <string name="tag_sheet_choose_tag">Выберите тег |</string>
 
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">Импортировать</string>
+  <string name="markdown_sheet_home_markdown_support">Отметка в списке заметок</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Включить форматирование Markdown в списке заметок</string>
+  <string name="home_option_fill_survey">Заполнение опроса</string>
+  <string name="home_option_fill_survey_subtitle">Помогите нам улучшить приложение, сообщив нам, что вам нравится</string>
+
 </resources>

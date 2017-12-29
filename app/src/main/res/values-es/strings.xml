@@ -125,4 +125,11 @@
   <string name="tag_sheet_new_tag_button">Crear una nueva etiqueta</string>
   <string name="tag_sheet_choose_tag">Elija una etiqueta &#8230;</string>
 
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">Importar</string>
+  <string name="markdown_sheet_home_markdown_support">Retraso en la lista de notas</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Habilitar el formateo Markdown en la lista de notas</string>
+  <string name="home_option_fill_survey">Completar encuesta</string>
+  <string name="home_option_fill_survey_subtitle">Ayúdenos a mejorar la aplicación diciéndonos lo que le gusta</string>
+
 </resources>

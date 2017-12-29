@@ -126,4 +126,11 @@
   <string name="tag_sheet_new_tag_button">একটি নতুন ট্যাগ তৈরি করুন</string>
   <string name="tag_sheet_choose_tag">একটি ট্যাগ চয়ন করুন &#8230; |</string>
 
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">আমদানি</string>
+  <string name="markdown_sheet_home_markdown_support">নোট তালিকাতে মার্কডাউন</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">নোটগুলির তালিকাতে মার্কড্ডা ফর্ম্যাটিং সক্ষম করুন</string>
+  <string name="home_option_fill_survey">সার্ভে পূরণ</string>
+  <string name="home_option_fill_survey_subtitle">আপনার পছন্দ কি আমাদের বলার মাধ্যমে অ্যাপ্লিকেশন উন্নত করতে আমাদের সাহায্য করুন</string>
+
 </resources>

@@ -124,4 +124,11 @@
   <string name="tag_sheet_new_tag_button">Crea un nuovo tag</string>
   <string name="tag_sheet_choose_tag">Scegli un tag &#8230;</string>
 
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">Importare</string>
+  <string name="markdown_sheet_home_markdown_support">Markdown in Elenco note</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Abilita la formattazione di Markdown nell\'elenco delle note</string>
+  <string name="home_option_fill_survey">Riempi sondaggio</string>
+  <string name="home_option_fill_survey_subtitle">Aiutaci a migliorare l\'app dicendoci cosa ti piace</string>
+
 </resources>

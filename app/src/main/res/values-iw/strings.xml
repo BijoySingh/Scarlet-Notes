@@ -125,4 +125,11 @@
   <string name="tag_sheet_new_tag_button">צור תג חדש</string>
   <string name="tag_sheet_choose_tag">בחר תג</string>
 
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">יְבוּא</string>
+  <string name="markdown_sheet_home_markdown_support">Markdown ברשימת ההערות</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">הפעל עיצוב Markdown ברשימת ההערות</string>
+  <string name="home_option_fill_survey">מילוי סקר</string>
+  <string name="home_option_fill_survey_subtitle">עזור לנו לשפר את האפליקציה על ידי כך שתספר לנו מה אתה אוהב</string>
+
 </resources>

@@ -125,4 +125,11 @@
   <string name="tag_sheet_new_tag_button">Erstellen Sie ein neues Tag</string>
   <string name="tag_sheet_choose_tag">Wähle einen Tag &#8230;</string>
 
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">Einführen</string>
+  <string name="markdown_sheet_home_markdown_support">Abschrift in der Notizliste</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Aktivieren Sie Markdown-Formatierung in der Liste der Notizen</string>
+  <string name="home_option_fill_survey">Umfrage ausfüllen</string>
+  <string name="home_option_fill_survey_subtitle">Hilf uns, die App zu verbessern, indem du uns sagst, was dir gefällt</string>
+
 </resources>
