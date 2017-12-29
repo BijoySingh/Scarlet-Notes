@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:ui="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:gravity="center_vertical"
@@ -28,21 +29,13 @@
     android:textSize="@dimen/header_font_size"
     android:textStyle="bold" />
 
-  <ImageView
-    android:id="@+id/edit_button"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
+  <com.github.bijoysingh.uibasics.views.UITextView
+    android:id="@+id/import_or_edit_to_app"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackgroundBorderless"
-    android:padding="8dp"
-    android:src="@drawable/ic_edit_white_48dp"
-    android:tint="@color/material_grey_600" />
-
-  <ImageView
-    android:id="@+id/done_button"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
-    android:background="?attr/selectableItemBackgroundBorderless"
-    android:padding="8dp"
-    android:src="@drawable/ic_done_white_48dp"
-    android:tint="@color/material_grey_600" />
+    android:gravity="center"
+    ui:iconTextGap="8dp"
+    ui:icon="@drawable/ic_import"
+    ui:text="@string/import_to_app" />
 </LinearLayout>

@@ -5,6 +5,7 @@
   <string name="title">Title</string>
   <string name="description">Content</string>
   <string name="save">Save</string>
+  <string name="import_to_app">Import</string>
   <string name="search_notes">Search Notes&#8230;</string>
   <string name="share_using">Share using&#8230;</string>
 

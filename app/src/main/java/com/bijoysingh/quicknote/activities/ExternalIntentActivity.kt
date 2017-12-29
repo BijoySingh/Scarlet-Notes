@@ -8,8 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity.Companion.convertStreamToString
+import com.bijoysingh.quicknote.database.Note
 import com.github.bijoysingh.starter.prefs.DataStore
+import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
+import com.github.bijoysingh.uibasics.views.UITextView
 
 
 class ExternalIntentActivity : ThemedActivity() {
@@ -26,8 +29,7 @@ class ExternalIntentActivity : ThemedActivity() {
   lateinit var content: TextView
 
   lateinit var backButton: ImageView
-  lateinit var actionDone: ImageView
-  lateinit var actionEdit: ImageView
+  lateinit var actionDone: UITextView
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -38,8 +40,8 @@ class ExternalIntentActivity : ThemedActivity() {
 
     setView()
     requestSetNightMode(store.get(ThemedActivity.getKey(), false))
-    val hasIntent = handleIntent()
-    if (!hasIntent) {
+    val shouldHandleIntent = handleIntent()
+    if (!shouldHandleIntent) {
       finish()
       return
     }
@@ -55,14 +57,24 @@ class ExternalIntentActivity : ThemedActivity() {
     title = findViewById(R.id.title)
     content = findViewById(R.id.description)
     backButton = findViewById(R.id.back_button)
-    actionDone = findViewById(R.id.done_button)
-    actionEdit = findViewById(R.id.edit_button)
+    actionDone = findViewById(R.id.import_or_edit_to_app)
+
+    backButton.setOnClickListener { onBackPressed() }
+    actionDone.setOnClickListener {
+      val note = Note.gen(titleText, contentText)
+      note.save(this)
+      startActivity(ViewAdvancedNoteActivity.getIntent(this, note, isNightMode))
+      finish()
+    }
   }
 
   fun handleIntent(): Boolean {
     val hasSendIntent = handleSendText(intent)
     if (hasSendIntent) {
-      return true
+      val note = Note.gen(titleText, contentText)
+      note.save(this)
+      startActivity(ViewAdvancedNoteActivity.getIntent(this, note, isNightMode))
+      return false
     }
     val hasFileIntent = handleFileIntent(intent)
     if (hasFileIntent) {
@@ -101,14 +113,14 @@ class ExternalIntentActivity : ThemedActivity() {
 
     val toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.light_secondary_text);
     backButton.setColorFilter(toolbarIconColor)
-    actionEdit.setColorFilter(toolbarIconColor)
 
     val textColor = getColor(R.color.dark_secondary_text, R.color.light_secondary_text);
     filename.setTextColor(textColor)
     title.setTextColor(textColor)
     content.setTextColor(textColor)
 
-    actionDone.setColorFilter(getColor(R.color.material_blue_grey_600, R.color.light_primary_text))
+    val actionColor = getColor(R.color.material_blue_grey_600, R.color.light_primary_text)
+    actionDone.setImageTint(actionColor)
+    actionDone.setTextColor(actionColor)
   }
-
 }
