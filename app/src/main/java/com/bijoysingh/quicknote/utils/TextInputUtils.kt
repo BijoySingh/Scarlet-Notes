@@ -32,3 +32,14 @@ fun trim(source: CharSequence?): CharSequence {
   }
   return source.subSequence(0, index + 1)
 }
+
+fun markwonFix(source: String): String {
+  return markwonNewlineFix(source)
+}
+
+/**
+ * Replace a "X\nY" with "X  \nY"
+ */
+fun markwonNewlineFix(source: String): String {
+  return source.replace(Regex("(\\S)\n(\\S)"), "$1  \n$2")
+}

@@ -27,6 +27,8 @@ import static com.bijoysingh.quicknote.formats.FormatType.CHECKLIST_UNCHECKED;
 import static com.bijoysingh.quicknote.formats.FormatType.CODE;
 import static com.bijoysingh.quicknote.formats.FormatType.QUOTE;
 import static com.bijoysingh.quicknote.formats.FormatType.TEXT;
+import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.markwonFix;
+import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.markwonNewlineFix;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.trim;
 
 public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements TextWatcher {
@@ -113,7 +115,8 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
         || data.formatType == CHECKLIST_UNCHECKED
         || data.formatType == QUOTE
         || data.forcedMarkdown)) {
-      CharSequence source = Markwon.markdown(context, data.text);
+      String markdownText = markwonFix(data.text);
+      CharSequence source = Markwon.markdown(context, markdownText);
       text.setText(trim(source));
     } else {
       text.setText(data.text);
