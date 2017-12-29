@@ -156,16 +156,18 @@ class ImportNoteFromFileActivity : AppCompatActivity() {
     }
   }
 
-  @Throws(Exception::class)
-  private fun convertStreamToString(inputStream: InputStream): String {
-    val reader = BufferedReader(InputStreamReader(inputStream))
-    val sb = StringBuilder()
-    var line: String? = reader.readLine()
-    while (line != null) {
-      sb.append(line).append("\n")
-      line = reader.readLine()
+  companion object {
+    @Throws(Exception::class)
+    fun convertStreamToString(inputStream: InputStream): String {
+      val reader = BufferedReader(InputStreamReader(inputStream))
+      val sb = StringBuilder()
+      var line: String? = reader.readLine()
+      while (line != null) {
+        sb.append(line).append("\n")
+        line = reader.readLine()
+      }
+      reader.close()
+      return sb.toString()
     }
-    reader.close()
-    return sb.toString()
   }
 }

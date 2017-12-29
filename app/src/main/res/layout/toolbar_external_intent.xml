@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:gravity="center_vertical"
+  android:orientation="horizontal"
+  android:padding="12dp">
+
+  <ImageView
+    android:id="@+id/back_button"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:padding="8dp"
+    android:src="@drawable/ic_close_white_48dp"
+    android:tint="@color/material_grey_600" />
+
+  <TextView
+    android:id="@+id/filename"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@android:color/transparent"
+    android:ellipsize="middle"
+    android:fontFamily="monospace"
+    android:singleLine="true"
+    android:textColor="@color/material_teal_700"
+    android:textSize="@dimen/header_font_size"
+    android:textStyle="bold" />
+
+  <ImageView
+    android:id="@+id/edit_button"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:padding="8dp"
+    android:src="@drawable/ic_edit_white_48dp"
+    android:tint="@color/material_grey_600" />
+
+  <ImageView
+    android:id="@+id/done_button"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:padding="8dp"
+    android:src="@drawable/ic_done_white_48dp"
+    android:tint="@color/material_grey_600" />
+</LinearLayout>
