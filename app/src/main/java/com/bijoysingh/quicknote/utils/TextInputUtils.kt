@@ -1,8 +1,10 @@
 package com.bijoysingh.quicknote.utils
 
+import android.content.Context
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import ru.noties.markwon.Markwon
 
 fun getEditorActionListener(runnable: () -> Boolean): TextView.OnEditorActionListener {
   return TextView.OnEditorActionListener { view: TextView, actionId: Int, event: KeyEvent? ->
@@ -42,4 +44,13 @@ fun markwonFix(source: String): String {
  */
 fun markwonNewlineFix(source: String): String {
   return source.replace(Regex("(\\S)\n(\\S)"), "$1  \n$2")
+}
+
+fun removeMarkdownHeaders(source: String): String {
+  return source.replace(Regex("(^|\n)(\\s*)(#+)(\\s)"), "$1$2$4")
+}
+
+fun renderMarkdown(context: Context, source: String): CharSequence {
+  val markdownText = markwonFix(source)
+  return trim(Markwon.markdown(context, markdownText))
 }

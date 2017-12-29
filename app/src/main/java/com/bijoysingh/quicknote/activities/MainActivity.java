@@ -37,6 +37,7 @@ import java.util.List;
 import static android.view.View.GONE;
 import static android.widget.GridLayout.VERTICAL;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_LIST_VIEW;
+import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
 
 public class MainActivity extends ThemedActivity {
 
@@ -169,7 +170,13 @@ public class MainActivity extends ThemedActivity {
   public void setupRecyclerView() {
     boolean staggeredView = store.get(KEY_LIST_VIEW, false);
     boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
+
+    boolean isMarkdownEnabled = store.get(KEY_MARKDOWN_ENABLED, true);
+    Bundle adapterExtra = new Bundle();
+    adapterExtra.putBoolean(KEY_MARKDOWN_ENABLED, isMarkdownEnabled);
+
     adapter = new NoteAppAdapter(this, staggeredView, isTablet);
+    adapter.setExtra(adapterExtra);
     recyclerView = new RecyclerViewBuilder(this)
         .setView(this, R.id.recycler_view)
         .setAdapter(adapter)

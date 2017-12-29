@@ -28,6 +28,7 @@ import ru.noties.markwon.Markwon;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID;
+import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.trim;
 
 public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
@@ -65,13 +66,16 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
 
   @Override
   public void populate(RecyclerItem itemData, Bundle extra) {
+    boolean isMarkdownEnabled = extra == null
+        || extra.getBoolean(KEY_MARKDOWN_ENABLED, true);
+
     NoteRecyclerItem item = (NoteRecyclerItem) itemData;
     final Note data = item.note;
     String noteTitle = data.getTitle();
     title.setText(noteTitle);
     title.setVisibility(noteTitle.isEmpty() ? GONE : VISIBLE);
 
-    description.setText(data.getLockedText());
+    description.setText(data.getLockedText(context, isMarkdownEnabled));
 
     if (!TextUtils.isNullOrEmpty(data.tags)) {
       tags.setTextColor(ContextCompat.getColor(context, R.color.light_secondary_text));

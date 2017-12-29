@@ -35,6 +35,8 @@ import java.util.Set;
 
 import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID;
 import static com.bijoysingh.quicknote.activities.external.ExportNotesKt.searchInNote;
+import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.removeMarkdownHeaders;
+import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.renderMarkdown;
 
 @Entity(
     tableName = "note",
@@ -80,11 +82,15 @@ public class Note {
     return text.trim();
   }
 
-  public String getLockedText() {
+  public CharSequence getLockedText(Context context, boolean isMarkdownEnabled) {
     if (locked) {
       return "******************\n***********\n****************";
     }
-    return getText();
+    if (!isMarkdownEnabled) {
+      return getText();
+    }
+
+    return renderMarkdown(context, removeMarkdownHeaders(getText()));
   }
 
   public NoteState getNoteState() {
