@@ -43,6 +43,29 @@
       ui:titleSize="16sp"
       ui:titleStyle="@style/SanSerif" />
 
+
+    <com.github.bijoysingh.uibasics.views.UIActionView
+      android:id="@+id/markdown_home_button"
+      style="@style/BorderedBackgroundView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center_vertical"
+      android:padding="16dp"
+      ui:actionSize="24dp"
+      ui:actionTint="@color/material_blue_400"
+      ui:icon="@drawable/ic_action_grid"
+      ui:iconSize="24dp"
+      ui:iconTextGap="16dp"
+      ui:iconTint="@color/dark_tertiary_text"
+      ui:subtitle="@string/markdown_sheet_home_markdown_support_subtitle"
+      ui:subtitleColor="@color/dark_tertiary_text"
+      ui:subtitleSize="14sp"
+      ui:subtitleStyle="@style/SanSerif"
+      ui:title="@string/markdown_sheet_home_markdown_support"
+      ui:titleColor="@color/dark_secondary_text"
+      ui:titleSize="16sp"
+      ui:titleStyle="@style/SanSerif" />
+
     <View
       android:layout_width="match_parent"
       android:layout_height="0.5dp"

@@ -113,6 +113,8 @@
 
   <string name="markdown_sheet_markdown_support">Markdown Support</string>
   <string name="markdown_sheet_markdown_support_subtitle">Allow markdown supported formatting</string>
+  <string name="markdown_sheet_home_markdown_support">Markdown in Note List</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Enable Markdown formatting in the list of notes</string>
   <string name="markdown_sheet_examples">Examples</string>
   <string name="markdown_sheet_examples_list" translatable="false">
 - **bold**\n- *italics*\n- ~~strike~~\n- `code`\n\n > quote\n</string>

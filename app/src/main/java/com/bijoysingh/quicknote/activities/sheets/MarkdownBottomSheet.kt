@@ -17,6 +17,21 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
       return
     }
 
+    setupDialogContent(dialog)
+    val sourceText = dialog.findViewById<TextView>(R.id.source_text);
+    val markdownText = dialog.findViewById<TextView>(R.id.markdown_text);
+    sourceText.setText(R.string.markdown_sheet_examples_list)
+    markdownText.setText(Markwon.markdown(context, getString(R.string.markdown_sheet_examples_list)))
+
+    val sheetTitle = dialog.findViewById<TextView>(R.id.options_title)
+    val exampleTitle = dialog.findViewById<TextView>(R.id.examples_title)
+    sheetTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text))
+    exampleTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text))
+    sourceText.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
+    markdownText.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
+  }
+
+  fun setupDialogContent(dialog: Dialog) {
     val dataStore = DataStore.get(context)
     val isMarkdownEnabled = dataStore.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
     val actionButton = dialog.findViewById<UIActionView>(R.id.action_button)
@@ -31,17 +46,23 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
       actionButton.setActionResource(R.drawable.ic_check_box_white_24dp);
     }
 
-    val sourceText = dialog.findViewById<TextView>(R.id.source_text);
-    val markdownText = dialog.findViewById<TextView>(R.id.markdown_text);
-    sourceText.setText(R.string.markdown_sheet_examples_list)
-    markdownText.setText(Markwon.markdown(context, getString(R.string.markdown_sheet_examples_list)))
+    val isMarkdownHomeEnabled = dataStore.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, false)
+    val markdownHomeButton = dialog.findViewById<UIActionView>(R.id.markdown_home_button)
+    if (isMarkdownEnabled) {
+      markdownHomeButton.setOnClickListener {
+        dataStore.put(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, !isMarkdownHomeEnabled)
+        setupDialogContent(dialog)
+      }
+    }
+    markdownHomeButton.setTitleColor(getOptionsTitleColor(isMarkdownEnabled && isMarkdownHomeEnabled))
+    markdownHomeButton.setSubtitleColor(getOptionsSubtitleColor(isMarkdownEnabled && isMarkdownHomeEnabled))
+    markdownHomeButton.setImageTint(getOptionsTitleColor(isMarkdownEnabled && isMarkdownHomeEnabled))
+    if (isMarkdownEnabled && isMarkdownHomeEnabled) {
+      markdownHomeButton.setActionResource(R.drawable.ic_check_box_white_24dp);
+    } else {
+      markdownHomeButton.setActionResource(0);
+    }
 
-    val sheetTitle = dialog.findViewById<TextView>(R.id.options_title)
-    val exampleTitle = dialog.findViewById<TextView>(R.id.examples_title)
-    sheetTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text))
-    exampleTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text))
-    sourceText.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
-    markdownText.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_markdown

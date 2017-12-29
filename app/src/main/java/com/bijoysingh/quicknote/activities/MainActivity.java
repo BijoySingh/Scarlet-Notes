@@ -38,6 +38,7 @@ import static android.view.View.GONE;
 import static android.widget.GridLayout.VERTICAL;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_LIST_VIEW;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
+import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED;
 
 public class MainActivity extends ThemedActivity {
 
@@ -172,8 +173,9 @@ public class MainActivity extends ThemedActivity {
     boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
 
     boolean isMarkdownEnabled = store.get(KEY_MARKDOWN_ENABLED, true);
+    boolean isMarkdownHomeEnabled = store.get(KEY_MARKDOWN_HOME_ENABLED, false);
     Bundle adapterExtra = new Bundle();
-    adapterExtra.putBoolean(KEY_MARKDOWN_ENABLED, isMarkdownEnabled);
+    adapterExtra.putBoolean(KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled);
 
     adapter = new NoteAppAdapter(this, staggeredView, isTablet);
     adapter.setExtra(adapterExtra);
