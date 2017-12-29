@@ -1,6 +1,8 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
@@ -125,6 +127,17 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           dismiss()
         }
     ))
+    options.add(OptionsItem(
+        title = R.string.home_option_fill_survey,
+        subtitle = R.string.home_option_fill_survey_subtitle,
+        icon = R.drawable.ic_note_white_48dp,
+        listener = View.OnClickListener {
+          context.startActivity(Intent(
+              Intent.ACTION_VIEW,
+              Uri.parse(SURVEY_LINK)))
+          dismiss()
+        }
+    ))
     return options
   }
 
@@ -153,6 +166,7 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   companion object {
 
+    const val SURVEY_LINK = "https://goo.gl/forms/UbE2lARpp89CNIbl2"
     const val KEY_LIST_VIEW = "KEY_LIST_VIEW"
     const val KEY_MARKDOWN_ENABLED = "KEY_MARKDOWN_ENABLED"
     const val KEY_MARKDOWN_HOME_ENABLED = "KEY_MARKDOWN_HOME_ENABLED"

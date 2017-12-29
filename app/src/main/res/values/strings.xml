@@ -93,6 +93,8 @@
   <string name="home_option_about_page_subtitle">Know more about the app and the developers</string>
   <string name="home_option_rate_and_review">Rate and Review</string>
   <string name="home_option_rate_and_review_subtitle">Tell us know how much you liked the app</string>
+  <string name="home_option_fill_survey">Fill Survey</string>
+  <string name="home_option_fill_survey_subtitle">Help us improve the app by telling us what you like</string>
 
   <string name="security_option_title">Security Options</string>
   <string name="security_option_set_pin_code">Pass Code</string>
