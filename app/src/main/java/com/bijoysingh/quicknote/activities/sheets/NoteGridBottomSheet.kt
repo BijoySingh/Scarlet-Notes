@@ -191,7 +191,7 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
           note.popup(activity)
           dismiss()
         },
-        visible = !note.locked
+        visible = !note.locked && !note.isUnsaved
     ))
     options.add(OptionsItem(
         title = R.string.open_in_notification,
@@ -203,7 +203,7 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
           handler.openNotification()
           dismiss()
         },
-        visible = !note.locked
+        visible = !note.locked && !note.isUnsaved
     ))
     options.add(OptionsItem(
         title = R.string.open_note_night_mode,
