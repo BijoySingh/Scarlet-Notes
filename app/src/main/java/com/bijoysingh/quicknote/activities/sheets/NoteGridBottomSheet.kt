@@ -160,6 +160,39 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
+        title = R.string.open_in_popup,
+        subtitle = R.string.tap_for_action_popup,
+        icon = R.drawable.ic_bubble_chart_white_48dp,
+        listener = View.OnClickListener {
+          note.popup(activity)
+          dismiss()
+        },
+        visible = !note.locked && !note.isUnsaved
+    ))
+    options.add(OptionsItem(
+        title = R.string.open_in_notification,
+        subtitle = R.string.open_in_notification,
+        icon = R.drawable.ic_action_notification,
+        listener = View.OnClickListener {
+          val handler = NotificationHandler(context, note)
+          handler.createNotificationChannel()
+          handler.openNotification()
+          dismiss()
+        },
+        visible = !note.locked && !note.isUnsaved
+    ))
+    options.add(OptionsItem(
+        title = if(note.pinned) R.string.unpin_note else R.string.pin_note,
+        subtitle = if(note.pinned) R.string.unpin_note else R.string.pin_note,
+        icon = R.drawable.ic_pin,
+        listener = View.OnClickListener {
+          note.pinned = !note.pinned
+          note.save(activity)
+          activity.notifyNoteChange()
+          dismiss()
+        }
+    ))
+    options.add(OptionsItem(
         title = R.string.lock_note,
         subtitle = R.string.lock_note,
         icon = R.drawable.ic_action_lock,
@@ -192,28 +225,6 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
           dismiss()
         },
         visible = false
-    ))
-    options.add(OptionsItem(
-        title = R.string.open_in_popup,
-        subtitle = R.string.tap_for_action_popup,
-        icon = R.drawable.ic_bubble_chart_white_48dp,
-        listener = View.OnClickListener {
-          note.popup(activity)
-          dismiss()
-        },
-        visible = !note.locked && !note.isUnsaved
-    ))
-    options.add(OptionsItem(
-        title = R.string.open_in_notification,
-        subtitle = R.string.open_in_notification,
-        icon = R.drawable.ic_action_notification,
-        listener = View.OnClickListener {
-          val handler = NotificationHandler(context, note)
-          handler.createNotificationChannel()
-          handler.openNotification()
-          dismiss()
-        },
-        visible = !note.locked && !note.isUnsaved
     ))
     options.add(OptionsItem(
         title = R.string.open_note_night_mode,

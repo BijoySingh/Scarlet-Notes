@@ -42,6 +42,8 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
   private ImageView delete;
   private ImageView copy;
   private ImageView moreOptions;
+
+  private ImageView pinIndicator;
   private MainActivity activity;
 
   /**
@@ -61,6 +63,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     copy = view.findViewById(R.id.copy_button);
     activity = (MainActivity) context;
     moreOptions = view.findViewById(R.id.options_button);
+    pinIndicator = view.findViewById(R.id.pin_icon);
     edit = view.findViewById(R.id.edit_button);
   }
 
@@ -151,6 +154,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
         return false;
       }
     });
+    pinIndicator.setVisibility(data.pinned ? VISIBLE : GONE);
   }
 
   private void actionOrUnlockNote(final Note data, final Runnable runnable) {

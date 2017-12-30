@@ -23,13 +23,13 @@ public interface NoteDao {
   @Query("SELECT count(*) FROM note")
   int getCount();
 
-  @Query("SELECT * FROM note ORDER BY timestamp DESC")
+  @Query("SELECT * FROM note ORDER BY pinned DESC, timestamp DESC")
   List<Note> getAll();
 
-  @Query("SELECT * FROM note WHERE state in (:states) ORDER BY timestamp DESC")
+  @Query("SELECT * FROM note WHERE state in (:states) ORDER BY pinned DESC, timestamp DESC")
   List<Note> getByNoteState(String[] states);
 
-  @Query("SELECT * FROM note WHERE locked = :locked ORDER BY timestamp DESC")
+  @Query("SELECT * FROM note WHERE locked = :locked ORDER BY pinned DESC, timestamp DESC")
   List<Note> getNoteByLocked(boolean locked);
 
   @Query("SELECT * FROM note ORDER BY timestamp DESC LIMIT :limit")
@@ -43,5 +43,4 @@ public interface NoteDao {
 
   @Query("UPDATE note SET locked=0 WHERE locked <> 0")
   void unlockAll();
-
 }

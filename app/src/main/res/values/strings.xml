@@ -35,6 +35,8 @@
   <string name="change_tags" translatable="false">Change Tags</string>
   <string name="unlock_note">Unlock Note</string>
   <string name="reminder">Reminder</string>
+  <string name="pin_note">Pin Note</string>
+  <string name="unpin_note">Unpin Note</string>
   <string name="choose_action">Choose Action&#8230;</string>
 
   <string name="tap_for_action_open_note_night_mode">Tap to view the note in night mode</string>

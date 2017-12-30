@@ -21,6 +21,7 @@ import com.bijoysingh.quicknote.utils.CircleDrawable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Calendar;
 import java.util.Collections;
 
 import static android.view.View.GONE;
@@ -217,6 +218,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   @Override
   protected void maybeUpdateNote() {
     note.title = NoteType.RICH_NOTE.name();
+    note.updateTimestamp = Calendar.getInstance().getTimeInMillis();
     updateNote();
   }
 

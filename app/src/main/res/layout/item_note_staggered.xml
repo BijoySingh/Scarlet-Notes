@@ -51,19 +51,35 @@
         android:textSize="14sp" />
     </LinearLayout>
 
-    <TextView
-      android:id="@+id/tags"
+    <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:ellipsize="end"
-      android:fontFamily="monospace"
-      android:gravity="start"
-      android:hint="@string/timestamp"
-      android:lines="1"
       android:background="@drawable/gradient_background"
-      android:padding="8dp"
-      android:textColor="@color/light_tertiary_text"
-      android:textSize="14sp" />
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:padding="8dp">
+
+      <TextView
+        android:id="@+id/tags"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:fontFamily="monospace"
+        android:gravity="start"
+        android:hint="@string/timestamp"
+        android:lines="1"
+        android:textColor="@color/light_tertiary_text"
+        android:textSize="12sp" />
+
+      <ImageView
+        android:id="@+id/pin_icon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:alpha="0.5"
+        android:src="@drawable/ic_pin"
+        android:visibility="gone" />
+    </LinearLayout>
 
     <LinearLayout
       android:layout_width="match_parent"
