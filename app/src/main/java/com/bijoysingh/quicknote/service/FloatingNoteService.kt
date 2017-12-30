@@ -8,12 +8,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions
 import com.bsk.floatingbubblelib.FloatingBubbleService
+import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.TextUtils
 
 /**
@@ -28,8 +30,12 @@ class FloatingNoteService : FloatingBubbleService() {
   private lateinit var description: TextView
   private lateinit var timestamp: TextView
   private lateinit var panel: View
+  private var isNightMode: Boolean = false
 
   override fun getConfig(): FloatingBubbleConfig {
+    val store = DataStore.get(context)
+    isNightMode = store.get(ThemedActivity.getKey(), false)
+
     return FloatingBubbleConfig.Builder()
         .bubbleIcon(ContextCompat.getDrawable(context, R.drawable.app_icon))
         .removeBubbleIcon(ContextCompat.getDrawable(
@@ -40,8 +46,8 @@ class FloatingNoteService : FloatingBubbleService() {
         .paddingDp(8)
         .borderRadiusDp(4)
         .physicsEnabled(true)
-        .expandableColor(-0x50506)
-        .triangleColor(-0x50506)
+        .expandableColor(getColor(R.color.white, R.color.material_grey_800))
+        .triangleColor(getColor(R.color.white, R.color.material_grey_800))
         .gravity(Gravity.END)
         .expandableView(loadView())
         .removeBubbleAlpha(0.7f)
@@ -67,6 +73,9 @@ class FloatingNoteService : FloatingBubbleService() {
     title = rootView.findViewById<View>(R.id.title) as TextView
     description = rootView.findViewById<View>(R.id.description) as TextView
     timestamp = rootView.findViewById<View>(R.id.timestamp) as TextView
+
+    title.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
+    description.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
 
     val noteItem = note!!
 
@@ -110,6 +119,15 @@ class FloatingNoteService : FloatingBubbleService() {
     timestamp.text = note.displayTimestamp
 
     title.visibility = if (TextUtils.isNullOrEmpty(noteTitle)) View.GONE else View.VISIBLE
+  }
+
+  fun getColor(lightColorRes: Int, darkColorRes: Int): Int {
+    return ContextCompat.getColor(
+        this,
+        when (isNightMode) {
+          true -> darkColorRes
+          else -> lightColorRes
+        })
   }
 
   companion object {
