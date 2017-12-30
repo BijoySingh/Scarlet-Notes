@@ -119,6 +119,15 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
+        title = R.string.home_option_open_source_page,
+        subtitle = R.string.home_option_open_source_page_subtitle,
+        icon = R.drawable.ic_code_white_48dp,
+        listener = View.OnClickListener {
+          OpenSourceBottomSheet.openSheet(activity)
+          dismiss()
+        }
+    ))
+    options.add(OptionsItem(
         title = R.string.home_option_rate_and_review,
         subtitle = R.string.home_option_rate_and_review_subtitle,
         icon = R.drawable.ic_rating,

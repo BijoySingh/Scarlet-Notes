@@ -91,6 +91,8 @@
   <string name="home_option_import_subtitle">Import notes from the device storage</string>
   <string name="home_option_about_page">About Us</string>
   <string name="home_option_about_page_subtitle">Know more about the app and the developers</string>
+  <string name="home_option_open_source_page" translatable="false">Open Source Project</string>
+  <string name="home_option_open_source_page_subtitle" translatable="false">Know more about the open source project</string>
   <string name="home_option_rate_and_review">Rate and Review</string>
   <string name="home_option_rate_and_review_subtitle">Tell us know how much you liked the app</string>
   <string name="home_option_fill_survey">Fill Survey</string>
@@ -143,6 +145,10 @@
   <string name="about_page_contribute">Contribute</string>
   <string name="about_page_app_version">App Version</string>
   <string name="about_page_about_app">About App</string>
+
+  <string name="osp_page_libraries" translatable="false">Libraries</string>
+  <string name="osp_page_about_osp" translatable="false">Open Source Project</string>
+  <string name="osp_page_title" translatable="false">About Open Source Project</string>
 
   <string name="notification_channel_label">Note Notifications</string>
 

@@ -17,51 +17,26 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
-      android:text="@string/about_page_title"
+      android:text="@string/osp_page_title"
       android:textColor="@color/dark_tertiary_text"
       android:textSize="18sp" />
-
-    <TextView
-      android:id="@+id/about_us_title"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
-      android:text="@string/home_option_about_page"
-      android:textColor="@color/material_blue_grey_500"
-      android:textSize="14sp" />
-
-    <TextView
-      android:id="@+id/about_us"
-      style="@style/SanSerif"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
-      android:text="@string/about_page_about_us_details"
-      android:textColor="@color/dark_tertiary_text"
-      android:textSize="14sp" />
-
-    <View
-      android:layout_width="match_parent"
-      android:layout_height="0.5dp"
-      android:layout_margin="16dp"
-      android:background="@color/material_blue_grey_100" />
 
     <TextView
       android:id="@+id/about_app_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
-      android:text="@string/about_page_about_app"
+      android:text="@string/osp_page_about_osp"
       android:textColor="@color/material_blue_grey_500"
       android:textSize="14sp" />
 
     <TextView
-      android:id="@+id/about_app"
+      android:id="@+id/open_source"
       style="@style/SanSerif"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
-      android:text="@string/about_page_description"
+      android:text="@string/about_page_description_os"
       android:textColor="@color/dark_tertiary_text"
       android:textSize="14sp" />
 
@@ -72,16 +47,16 @@
       android:background="@color/material_blue_grey_100" />
 
     <TextView
-      android:id="@+id/app_version_title"
+      android:id="@+id/library_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
-      android:text="@string/about_page_app_version"
+      android:text="@string/osp_page_libraries"
       android:textColor="@color/material_blue_grey_500"
       android:textSize="14sp" />
 
     <TextView
-      android:id="@+id/app_version"
+      android:id="@+id/library_list"
       style="@style/SanSerif"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -103,16 +78,18 @@
       android:orientation="horizontal">
 
       <TextView
-        android:id="@+id/rate_us"
+        android:id="@+id/contribute"
         style="@style/BorderedBackgroundView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
         android:padding="8dp"
-        android:text="@string/about_page_rate"
+        android:text="@string/about_page_contribute"
         android:textAllCaps="true"
         android:textColor="@color/material_blue_600"
         android:textSize="14sp" />
+
     </LinearLayout>
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -9,8 +9,8 @@ android {
         applicationId "com.bijoysingh.quicknote"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 32
-        versionName "3.8.0"
+        versionCode 33
+        versionName "3.8.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {

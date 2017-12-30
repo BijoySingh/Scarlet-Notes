@@ -3,12 +3,11 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
-import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.github.bijoysingh.starter.async.MultiAsyncTask
-import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 import com.github.bijoysingh.starter.util.IntentUtils
 
 
@@ -25,10 +24,7 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
 
     val aboutUs = dialog.findViewById<TextView>(R.id.about_us)
     val aboutApp = dialog.findViewById<TextView>(R.id.about_app)
-    val openSource = dialog.findViewById<TextView>(R.id.open_source)
     val appVersion = dialog.findViewById<TextView>(R.id.app_version)
-
-    val contribute = dialog.findViewById<TextView>(R.id.contribute)
     val rateUs = dialog.findViewById<TextView>(R.id.rate_us)
 
     MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<String> {
@@ -52,15 +48,7 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
         val aboutAppDetails = getString(R.string.about_page_description, appName)
         aboutApp.text = aboutAppDetails
 
-        val openSourceDetails = getString(R.string.about_page_description_os, appName, creatorName)
-        openSource.text = openSourceDetails
-
         appVersion.text = result
-
-        contribute.setOnClickListener {
-          context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_URL)))
-          dismiss()
-        }
 
         rateUs.setOnClickListener {
           IntentUtils.openAppPlayStore(activity)
@@ -72,7 +60,6 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
     val textColor = getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text)
     aboutUs.setTextColor(textColor)
     aboutApp.setTextColor(textColor)
-    openSource.setTextColor(textColor)
     appVersion.setTextColor(textColor)
 
     val aboutUsTitle = dialog.findViewById<TextView>(R.id.about_us_title)
@@ -83,7 +70,6 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
     aboutAppTitle.setTextColor(titleTextColor)
     appVersionTitle.setTextColor(titleTextColor)
 
-    contribute.setTextColor(getColor(R.color.material_grey_600, R.color.material_grey_300))
     rateUs.setTextColor(getColor(R.color.material_blue_600, R.color.material_blue_200))
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
@@ -93,9 +79,6 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
   override fun getLayout(): Int = R.layout.bottom_sheet_about_page
 
   companion object {
-
-    val GITHUB_URL = "https://github.com/BijoySingh/Material-Notes-Android-App"
-
     fun openSheet(activity: MainActivity) {
       val sheet = AboutUsBottomSheet()
       sheet.isNightMode = activity.isNightMode
