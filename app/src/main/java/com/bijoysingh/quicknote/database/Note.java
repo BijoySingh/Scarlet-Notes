@@ -62,6 +62,10 @@ public class Note {
 
   public String tags;
 
+  public long updateTimestamp;
+
+  public boolean pinned;
+
   public boolean isUnsaved() {
     return uid == null || uid == 0;
   }

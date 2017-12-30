@@ -20,6 +20,7 @@ import java.io.IOException;
 import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_2_3;
 import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_3_4;
 import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_4_5;
+import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_5_6;
 
 @RunWith(AndroidJUnit4.class)
 public class MigrationTest {
@@ -43,6 +44,11 @@ public class MigrationTest {
   private static final String NOTE_V5 =
       "INSERT INTO note (title, description, displayTimestamp, timestamp, color, state, locked, tags) "
           + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1,2');";
+
+  private static final String NOTE_V6 =
+      "INSERT INTO note (title, description, displayTimestamp, timestamp, color," +
+          " state, locked, tags, pinned, updateTimestamp) "
+          + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1,2', 1, 213213);";
 
   private static final String TAG_V5 =
       "INSERT INTO tag (title) VALUES('Title');";
@@ -112,6 +118,21 @@ public class MigrationTest {
     database.execSQL(TAG_V5);
     validate(database, select(TABLE_NOTE, 2));
     validate(database, select(TABLE_TAG, 1));
+  }
+
+  @Test
+  public void migrate5To6() throws IOException {
+    SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 5);
+    database.execSQL(NOTE_V5);
+    database.close();
+
+    database = helper.runMigrationsAndValidate(TEST_DB, 6, false, MIGRATION_5_6);
+    validate(database, select(TABLE_NOTE, 1));
+    Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 1, "pinned")) == 0);
+    Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 1, "updateTimestamp")) == 32121312);
+
+    database.execSQL(NOTE_V6);
+    validate(database, select(TABLE_NOTE, 2));
   }
 
 
