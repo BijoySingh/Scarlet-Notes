@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions
 import com.bsk.floatingbubblelib.FloatingBubbleService
@@ -103,13 +104,12 @@ class FloatingNoteService : FloatingBubbleService() {
 
   fun setNote(note: Note) {
     val noteTitle = note.getTitle()
-    val noteDescription = note.text
+    val noteDescription = renderMarkdown(context, note.text)
     title.text = noteTitle
     description.text = noteDescription
     timestamp.text = note.displayTimestamp
 
     title.visibility = if (TextUtils.isNullOrEmpty(noteTitle)) View.GONE else View.VISIBLE
-    description.visibility = if (TextUtils.isNullOrEmpty(noteDescription)) View.GONE else View.VISIBLE
   }
 
   companion object {

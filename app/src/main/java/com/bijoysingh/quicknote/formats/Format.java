@@ -59,6 +59,30 @@ public class Format {
     return new JSONObject(map);
   }
 
+  public String getMarkdownText() {
+    switch (formatType) {
+      case BULLET_LIST:
+      case NUMBERED_LIST:
+        return "- " + text;
+      case HEADING:
+        return "# " + text;
+      case CHECKLIST_CHECKED:
+        return "\u2611 " + text;
+      case CHECKLIST_UNCHECKED:
+        return "\u2610 " + text;
+      case IMAGE:
+      case SUB_HEADING:
+        return "### " + text;
+      case CODE:
+        return "```\n" + text + "\n```";
+      case QUOTE:
+        return "> " + text;
+      case TEXT:
+      default:
+        return text;
+    }
+  }
+
   public static Format fromJson(JSONObject json) throws JSONException {
     Format format = new Format();
     format.formatType = FormatType.valueOf(json.getString("format"));

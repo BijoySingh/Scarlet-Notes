@@ -72,12 +72,8 @@ public class Note {
     for (Format format : formats) {
       if (format.formatType == FormatType.HEADING) {
         continue;
-      } else if (format.formatType == FormatType.CHECKLIST_CHECKED) {
-        text += "\u2611 ";
-      } else if (format.formatType == FormatType.CHECKLIST_UNCHECKED) {
-        text += "\u2610 ";
       }
-      text += format.text + "\n";
+      text += format.getMarkdownText() + "\n";
     }
     return text.trim();
   }
