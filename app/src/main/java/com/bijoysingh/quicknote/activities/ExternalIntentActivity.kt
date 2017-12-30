@@ -85,9 +85,10 @@ class ExternalIntentActivity : ThemedActivity() {
 
   fun handleSendText(intent: Intent): Boolean {
     val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
-    val sharedTitle = intent.getStringExtra(Intent.EXTRA_SUBJECT)
+    val sharedTitle = intent.getStringExtra(Intent.EXTRA_TITLE)
+    val sharedSubject = intent.getStringExtra(Intent.EXTRA_SUBJECT)
 
-    titleText = sharedTitle ?: ""
+    titleText = sharedSubject ?: sharedTitle ?: ""
     contentText = sharedText ?: ""
     return sharedText != null
   }
