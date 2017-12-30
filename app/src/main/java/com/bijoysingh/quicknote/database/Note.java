@@ -50,6 +50,7 @@ public class Note {
 
   public String description;
 
+  @Deprecated
   public String displayTimestamp;
 
   public Long timestamp;
@@ -130,6 +131,11 @@ public class Note {
   public void mark(Context context, NoteState noteState) {
     state = noteState.name();
     save(context);
+  }
+
+  public String getDisplayTime() {
+    long time = updateTimestamp != 0 ? updateTimestamp : (timestamp == null ? 0 : timestamp);
+    return DateFormatter.getDate("dd MMMM yyyy", time);
   }
 
   public void share(Context context) {
@@ -257,7 +263,7 @@ public class Note {
     Note note = new Note();
     note.state = NoteState.DEFAULT.name();
     note.timestamp = Calendar.getInstance().getTimeInMillis();
-    note.displayTimestamp = DateFormatter.getDate(Calendar.getInstance());
+    note.updateTimestamp = note.timestamp;
     note.color = 0xFF00796B;
     return note;
   }
@@ -267,8 +273,8 @@ public class Note {
     note.title = exportableNote.getTitle();
     note.color = exportableNote.getColor();
     note.description = exportableNote.getDescription();
-    note.displayTimestamp = exportableNote.getDisplayTimestamp();
     note.timestamp = exportableNote.getTimestamp();
+    note.updateTimestamp = note.timestamp;
     for (int index = 0; index < exportableNote.getTags().length(); index++) {
       try {
         Tag tag = ExportableTag.Companion.getBestPossibleTagObject(

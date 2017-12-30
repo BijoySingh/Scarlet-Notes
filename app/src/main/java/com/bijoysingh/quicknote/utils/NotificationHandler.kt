@@ -48,7 +48,7 @@ class NotificationHandler(val context: Context, val note: Note) {
     contentView.setViewVisibility(R.id.title, if (hasTitle) VISIBLE else GONE)
     contentView.setTextViewText(R.id.title, note.getTitle())
     contentView.setTextViewText(R.id.description, note.text)
-    contentView.setTextViewText(R.id.timestamp, note.displayTimestamp)
+    contentView.setTextViewText(R.id.timestamp, note.displayTime)
 
     val isNightMode = DataStore.get(context).get(ThemedActivity.getKey(), false)
     val titleColor = if (isNightMode) R.color.light_secondary_text else R.color.dark_secondary_text

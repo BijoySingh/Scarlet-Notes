@@ -83,7 +83,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
       tags.setText(trim(source));
     } else {
       tags.setTextColor(ContextCompat.getColor(context, R.color.light_hint_text));
-      tags.setText(DateFormatter.getDate("dd MMMM yyyy", data.timestamp));
+      tags.setText(data.getDisplayTime());
     }
 
     view.setOnClickListener(new View.OnClickListener() {

@@ -21,7 +21,7 @@ class ExportableNote(
   constructor(context: Context, note: Note) : this(
       note.title,
       note.description,
-      note.displayTimestamp,
+      note.displayTime,
       note.timestamp,
       note.color,
       note.state,
@@ -32,7 +32,7 @@ class ExportableNote(
   constructor(note: Note) : this(
       note.title,
       note.description,
-      note.displayTimestamp,
+      note.displayTime,
       note.timestamp,
       note.color,
       note.state,

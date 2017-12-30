@@ -116,7 +116,7 @@ class FloatingNoteService : FloatingBubbleService() {
     val noteDescription = renderMarkdown(context, note.text)
     title.text = noteTitle
     description.text = noteDescription
-    timestamp.text = note.displayTimestamp
+    timestamp.text = note.displayTime
 
     title.visibility = if (TextUtils.isNullOrEmpty(noteTitle)) View.GONE else View.VISIBLE
   }
