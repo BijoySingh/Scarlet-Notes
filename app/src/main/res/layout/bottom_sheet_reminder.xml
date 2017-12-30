@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+      android:id="@+id/options_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:text="@string/reminder_sheet_title"
+      android:textColor="@color/dark_tertiary_text"
+      android:textSize="18sp" />
+
+    <com.github.bijoysingh.uibasics.views.UIActionView
+      android:id="@+id/reminder_date"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:padding="8dp"
+      app:action="@drawable/ic_edit_white_48dp"
+      app:icon="@drawable/ic_date"
+      app:iconSize="24dp"
+      app:iconTextGap="12dp"
+      app:subtitle=""
+      app:subtitleColor="@color/dark_tertiary_text"
+      app:subtitleSize="16sp"
+      app:title="@string/reminder_sheet_reminder_date"
+      app:titleColor="@color/material_blue_grey_500"
+      app:titleSize="12sp" />
+
+    <com.github.bijoysingh.uibasics.views.UIActionView
+      android:id="@+id/reminder_time"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:padding="8dp"
+      app:action="@drawable/ic_edit_white_48dp"
+      app:icon="@drawable/ic_time"
+      app:iconSize="24dp"
+      app:iconTextGap="12dp"
+      app:subtitle=""
+      app:subtitleColor="@color/dark_tertiary_text"
+      app:subtitleSize="16sp"
+      app:title="@string/reminder_sheet_reminder_time"
+      app:titleColor="@color/material_blue_grey_500"
+      app:titleSize="12sp" />
+
+    <com.github.bijoysingh.uibasics.views.UIActionView
+      android:id="@+id/reminder_repeat"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:padding="8dp"
+      app:action="@drawable/ic_edit_white_48dp"
+      app:icon="@drawable/ic_restore"
+      app:iconSize="24dp"
+      app:iconTextGap="12dp"
+      app:subtitle=""
+      app:subtitleColor="@color/dark_tertiary_text"
+      app:subtitleSize="16sp"
+      app:title="@string/reminder_sheet_repeat"
+      app:titleColor="@color/material_blue_grey_500"
+      app:titleSize="12sp" />
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="0.5dp"
+      android:layout_margin="16dp"
+      android:background="@color/material_blue_grey_100" />
+
+    <LinearLayout
+      android:id="@+id/results_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="end"
+      android:orientation="horizontal">
+
+      <TextView
+        android:id="@+id/remove_alarm"
+        style="@style/BorderedBackgroundView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:padding="8dp"
+        android:text="@string/security_sheet_button_remove"
+        android:textAllCaps="true"
+        android:textColor="@color/material_grey_600"
+        android:textSize="14sp" />
+
+      <TextView
+        android:id="@+id/set_alarm"
+        style="@style/BorderedBackgroundView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:padding="8dp"
+        android:text="@string/import_export_layout_exporting_done"
+        android:textAllCaps="true"
+        android:textColor="@color/material_blue_600"
+        android:textSize="14sp" />
+
+    </LinearLayout>
+  </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

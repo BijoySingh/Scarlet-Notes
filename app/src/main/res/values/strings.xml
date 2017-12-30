@@ -34,6 +34,7 @@
   <string name="lock_note">Lock Note</string>
   <string name="change_tags" translatable="false">Change Tags</string>
   <string name="unlock_note">Unlock Note</string>
+  <string name="reminder">Reminder</string>
   <string name="choose_action">Choose Action&#8230;</string>
 
   <string name="tap_for_action_open_note_night_mode">Tap to view the note in night mode</string>
@@ -149,6 +150,11 @@
   <string name="osp_page_libraries" translatable="false">Libraries</string>
   <string name="osp_page_about_osp" translatable="false">Open Source Project</string>
   <string name="osp_page_title" translatable="false">About Open Source Project</string>
+
+  <string name="reminder_sheet_title" translatable="false">Note Reminder</string>
+  <string name="reminder_sheet_reminder_date" translatable="false">Reminder Date</string>
+  <string name="reminder_sheet_reminder_time" translatable="false">Reminder Time</string>
+  <string name="reminder_sheet_repeat" translatable="false">Repeat Frequency</string>
 
   <string name="notification_channel_label">Note Notifications</string>
 

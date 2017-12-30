@@ -193,6 +193,16 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         visible = locked
     ))
     options.add(OptionsItem(
+        title = R.string.reminder,
+        subtitle = R.string.reminder,
+        icon = R.drawable.ic_action_reminder,
+        listener = View.OnClickListener {
+          ReminderBottomSheet.openSheet(activity)
+          dismiss()
+        },
+        visible = false
+    ))
+    options.add(OptionsItem(
         title = R.string.open_in_popup,
         subtitle = R.string.tap_for_action_popup,
         icon = R.drawable.ic_bubble_chart_white_48dp,
