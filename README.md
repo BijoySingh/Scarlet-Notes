@@ -27,10 +27,3 @@ https://play.google.com/apps/testing/com.bijoysingh.quicknote
 # Survey Link
 If you have used the app, here is a survey which helps me understand how to make the app better.
 https://goo.gl/forms/UbE2lARpp89CNIbl2
-
-# Donate / Support 
-If you really like the app and would like to support me build the project more actively, please donate on my Paypal link:
-- [Buy Me a Coffee](https://www.paypal.me/BijoyKochar/3) 
-- [Buy me a simple breakfast](https://www.paypal.me/BijoyKochar/5) 
-- [Buy me a meal](https://www.paypal.me/BijoyKochar/10) 
-- [Keep me an awesome meal](https://www.paypal.me/BijoyKochar/25)
