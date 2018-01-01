@@ -32,12 +32,6 @@ public interface NoteDao {
   @Query("SELECT * FROM note WHERE locked = :locked ORDER BY pinned DESC, timestamp DESC")
   List<Note> getNoteByLocked(boolean locked);
 
-  @Query("SELECT * FROM note ORDER BY timestamp DESC LIMIT :limit")
-  List<Note> getNotes(int limit);
-
-  @Query("SELECT * FROM note ORDER BY timestamp DESC LIMIT :limit OFFSET :offset")
-  List<Note> getNotes(int offset, int limit);
-
   @Query("SELECT * FROM note WHERE uid = :uid LIMIT 1")
   Note getByID(int uid);
 

@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.sheets.HomeNavigationBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet;
+import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet;
+import com.bijoysingh.quicknote.activities.sheets.SortingTechnique;
 import com.bijoysingh.quicknote.activities.sheets.TagOpenOptionsBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.database.Tag;
@@ -39,6 +41,7 @@ import static android.widget.GridLayout.VERTICAL;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_LIST_VIEW;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED;
+import static com.bijoysingh.quicknote.utils.NoteSortingUtilsKt.sort;
 
 public class MainActivity extends ThemedActivity {
 
@@ -205,7 +208,8 @@ public class MainActivity extends ThemedActivity {
     MultiAsyncTask.execute(this, new MultiAsyncTask.Task<List<Note>>() {
       @Override
       public List<Note> run() {
-        return Note.db(MainActivity.this).getByNoteState(states);
+        SortingTechnique sorting = SortingOptionsBottomSheet.Companion.getSortingState(store);
+        return sort(Note.db(MainActivity.this).getByNoteState(states), sorting);
       }
 
       @Override
@@ -244,7 +248,8 @@ public class MainActivity extends ThemedActivity {
     MultiAsyncTask.execute(this, new MultiAsyncTask.Task<List<Note>>() {
       @Override
       public List<Note> run() {
-        return Note.db(MainActivity.this).getNoteByLocked(true);
+        SortingTechnique sorting = SortingOptionsBottomSheet.Companion.getSortingState(store);
+        return sort(Note.db(MainActivity.this).getNoteByLocked(true), sorting);
       }
 
       @Override
@@ -318,7 +323,9 @@ public class MainActivity extends ThemedActivity {
             listNoteWithTag.add(note);
           }
         }
-        return listNoteWithTag;
+
+        SortingTechnique sorting = SortingOptionsBottomSheet.Companion.getSortingState(store);
+        return sort(listNoteWithTag, sorting);
       }
 
       @Override

@@ -10,6 +10,8 @@ import com.github.bijoysingh.starter.prefs.DataStore
 
 class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
 
+  var listener: () -> Unit = {}
+
   override fun setupViewWithDialog(dialog: Dialog) {
     setOptions(dialog, getOptions())
     setOptionTitle(dialog, R.string.sort_sheet_title)
@@ -28,6 +30,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         icon = getIcon(SortingTechnique.LAST_MODIFIED),
         listener = View.OnClickListener {
           setSortingState(context, SortingTechnique.LAST_MODIFIED)
+          listener()
           reset(dialog)
         },
         selected = sorting == SortingTechnique.LAST_MODIFIED
@@ -38,6 +41,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         icon = getIcon(SortingTechnique.NEWEST_FIRST),
         listener = View.OnClickListener {
           setSortingState(context, SortingTechnique.NEWEST_FIRST)
+          listener()
           reset(dialog)
         },
         selected = sorting == SortingTechnique.NEWEST_FIRST
@@ -48,6 +52,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         icon = getIcon(SortingTechnique.OLDEST_FIRST),
         listener = View.OnClickListener {
           setSortingState(context, SortingTechnique.OLDEST_FIRST)
+          listener()
           reset(dialog)
         },
         selected = sorting == SortingTechnique.OLDEST_FIRST
@@ -59,9 +64,13 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
 
     const val KEY_SORTING_TECHNIQUE = "KEY_SORTING_TECHNIQUE"
 
+    fun getSortingState(store: DataStore): SortingTechnique {
+      return SortingTechnique.values()[store.get(KEY_SORTING_TECHNIQUE, SortingTechnique.NEWEST_FIRST.ordinal)]
+    }
+
     fun getSortingState(context: Context): SortingTechnique {
       val dataStore = DataStore.get(context)
-      return SortingTechnique.values()[dataStore.get(KEY_SORTING_TECHNIQUE, SortingTechnique.LAST_MODIFIED.ordinal)]
+      return getSortingState(dataStore)
     }
 
     fun setSortingState(context: Context, sortingTechnique: SortingTechnique) {
@@ -69,9 +78,10 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
       dataStore.put(KEY_SORTING_TECHNIQUE, sortingTechnique.ordinal)
     }
 
-    fun openSheet(activity: MainActivity) {
+    fun openSheet(activity: MainActivity, listener: () -> Unit) {
       val sheet = SortingOptionsBottomSheet()
       sheet.isNightMode = activity.isNightMode
+      sheet.listener = listener
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

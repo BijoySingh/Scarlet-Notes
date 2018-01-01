@@ -75,10 +75,10 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     ))
     options.add(OptionsItem(
         title = R.string.home_option_order_notes,
-        subtitle = getSortingState(context).label,
+        subtitle = getSortingState(dataStore).label,
         icon = R.drawable.ic_sort,
         listener = View.OnClickListener {
-          SortingOptionsBottomSheet.openSheet(activity)
+          SortingOptionsBottomSheet.openSheet(activity, { activity.setupData() })
           dismiss()
         }
     ))
