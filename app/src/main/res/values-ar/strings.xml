@@ -131,4 +131,24 @@
   <string name="home_option_fill_survey">ملء المسح</string>
   <string name="home_option_fill_survey_subtitle">مساعدتنا على تحسين التطبيق من خلال إخبارنا ما تريد</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">تغيير العلامات</string>
+  <string name="home_option_order_notes">ترتيب ملاحظات</string>
+  <string name="home_option_open_source_page">مشروع المصدر المفتوح</string>
+  <string name="home_option_open_source_page_subtitle">معرفة المزيد عن مشروع مفتوح المصدر</string>
+  <string name="osp_page_libraries">المكتبات</string>
+  <string name="osp_page_about_osp">مشروع المصدر المفتوح</string>
+  <string name="osp_page_title">حول مشروع المصدر المفتوح</string>
+  <string name="reminder_sheet_title">ملاحظة تذكير</string>
+  <string name="reminder_sheet_reminder_date">تاريخ التذكير</string>
+  <string name="reminder_sheet_reminder_time">تذكير الوقت</string>
+  <string name="reminder_sheet_repeat">تكرار تكرار</string>
+  <string name="sort_sheet_title">فرز الملاحظات بواسطة</string>
+  <string name="sort_sheet_newest_first">الأحدث أولا</string>
+  <string name="sort_sheet_oldest_first">الأقدم أولا</string>
+  <string name="sort_sheet_last_modified">معظم تعديلها مؤخرا</string>
+  <string name="reminder">تذكير</string>
+  <string name="pin_note">دبوس ملاحظة</string>
+  <string name="unpin_note">إلغاء تثبيت ملاحظة</string>
+
 </resources>

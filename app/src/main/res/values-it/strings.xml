@@ -131,4 +131,24 @@
   <string name="home_option_fill_survey">Riempi sondaggio</string>
   <string name="home_option_fill_survey_subtitle">Aiutaci a migliorare l\'app dicendoci cosa ti piace</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">Cambia tag</string>
+  <string name="home_option_order_notes">Note dell\'ordine</string>
+  <string name="home_option_open_source_page">Progetto Open Source</string>
+  <string name="home_option_open_source_page_subtitle">Scopri di più sul progetto open source</string>
+  <string name="osp_page_libraries">biblioteche</string>
+  <string name="osp_page_about_osp">Progetto Open Source</string>
+  <string name="osp_page_title">Informazioni sul progetto Open Source</string>
+  <string name="reminder_sheet_title">Promemoria Nota</string>
+  <string name="reminder_sheet_reminder_date">Data del promemoria</string>
+  <string name="reminder_sheet_reminder_time">Tempo di promemoria</string>
+  <string name="reminder_sheet_repeat">Ripeti frequenza</string>
+  <string name="sort_sheet_title">Ordina note per</string>
+  <string name="sort_sheet_newest_first">Prima i più nuovi</string>
+  <string name="sort_sheet_oldest_first">Prima i più vecchi</string>
+  <string name="sort_sheet_last_modified">Più recentemente modificato</string>
+  <string name="reminder">Promemoria</string>
+  <string name="pin_note">Nota Pin</string>
+  <string name="unpin_note">Sblocca nota</string>
+
 </resources>

@@ -134,4 +134,24 @@
   <string name="home_option_fill_survey">Заполнение опроса</string>
   <string name="home_option_fill_survey_subtitle">Помогите нам улучшить приложение, сообщив нам, что вам нравится</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">Изменить теги</string>
+  <string name="home_option_order_notes">Примечания к заказу</string>
+  <string name="home_option_open_source_page">Проект с открытым исходным кодом</string>
+  <string name="home_option_open_source_page_subtitle">Узнайте больше о проекте с открытым исходным кодом</string>
+  <string name="osp_page_libraries">Библиотеки</string>
+  <string name="osp_page_about_osp">Проект с открытым исходным кодом</string>
+  <string name="osp_page_title">О проекте с открытым исходным кодом</string>
+  <string name="reminder_sheet_title">Примечание Напоминание</string>
+  <string name="reminder_sheet_reminder_date">Дата напоминания</string>
+  <string name="reminder_sheet_reminder_time">Время напоминания</string>
+  <string name="reminder_sheet_repeat">Частота повторения</string>
+  <string name="sort_sheet_title">Сортировать примечания</string>
+  <string name="sort_sheet_newest_first">Новички вперед</string>
+  <string name="sort_sheet_oldest_first">Старейший первый</string>
+  <string name="sort_sheet_last_modified">Самые последние изменения</string>
+  <string name="reminder">напоминание</string>
+  <string name="pin_note">Примечание для контактов</string>
+  <string name="unpin_note">Unpin Note</string>
+
 </resources>

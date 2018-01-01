@@ -132,4 +132,24 @@
   <string name="home_option_fill_survey">מילוי סקר</string>
   <string name="home_option_fill_survey_subtitle">עזור לנו לשפר את האפליקציה על ידי כך שתספר לנו מה אתה אוהב</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">שנה תגים</string>
+  <string name="home_option_order_notes">הערות הזמנה</string>
+  <string name="home_option_open_source_page">פרוייקט קוד פתוח</string>
+  <string name="home_option_open_source_page_subtitle">לדעת יותר על פרוייקט קוד פתוח</string>
+  <string name="osp_page_libraries">ספריות</string>
+  <string name="osp_page_about_osp">פרוייקט קוד פתוח</string>
+  <string name="osp_page_title">על פרוייקט קוד פתוח</string>
+  <string name="reminder_sheet_title">הערה תזכורת</string>
+  <string name="reminder_sheet_reminder_date">תאריך תזכורת</string>
+  <string name="reminder_sheet_reminder_time">זמן תזכורת</string>
+  <string name="reminder_sheet_repeat">חזור על תדר</string>
+  <string name="sort_sheet_title">מיין הערות לפי</string>
+  <string name="sort_sheet_newest_first">החדש ביותר יהיה ראשון</string>
+  <string name="sort_sheet_oldest_first">העתיקה ביותר</string>
+  <string name="sort_sheet_last_modified">שינוי לאחרונה</string>
+  <string name="reminder">תִזכּוֹרֶת</string>
+  <string name="pin_note">הערה פין</string>
+  <string name="unpin_note">בטל הצמדה של הערה</string>
+
 </resources>

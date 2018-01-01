@@ -131,4 +131,24 @@
   <string name="home_option_fill_survey">ਸਰਵੇਖਣ ਭਰੋ</string>
   <string name="home_option_fill_survey_subtitle">ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕੀ ਪਸੰਦ ਕਰਦੇ ਹੋ, ਐਪ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਸਾਡੀ ਸਹਾਇਤਾ ਕਰੋ</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">ਟੈਗ ਬਦਲੋ</string>
+  <string name="home_option_order_notes">ਆਰਡਰ ਨੋਟਿਸ</string>
+  <string name="home_option_open_source_page">ਓਪਨ ਸੋਰਸ ਪ੍ਰੋਜੈਕਟ</string>
+  <string name="home_option_open_source_page_subtitle">ਓਪਨ ਸੋਰਸ ਪ੍ਰੋਜੈਕਟ ਬਾਰੇ ਹੋਰ ਜਾਣੋ</string>
+  <string name="osp_page_libraries">ਲਾਇਬ੍ਰੇਰੀਆਂ</string>
+  <string name="osp_page_about_osp">ਓਪਨ ਸੋਰਸ ਪ੍ਰੋਜੈਕਟ</string>
+  <string name="osp_page_title">ਓਪਨ ਸੋਰਸ ਪ੍ਰੋਜੈਕਟ ਬਾਰੇ</string>
+  <string name="reminder_sheet_title">ਨੋਟ ਰੀਮਾਈਂਡਰ</string>
+  <string name="reminder_sheet_reminder_date">ਰੀਮਾਈਂਡਰ ਤਾਰੀਖ</string>
+  <string name="reminder_sheet_reminder_time">ਰੀਮਾਈਂਡਰ ਟਾਈਮ</string>
+  <string name="reminder_sheet_repeat">ਬਾਰ ਬਾਰ ਦੁਹਰਾਓ</string>
+  <string name="sort_sheet_title">ਸੌਰਟ ਨੋਟਸ ਕੇ</string>
+  <string name="sort_sheet_newest_first">ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਸਭ ਤੋਂ ਪਹਿਲਾਂ</string>
+  <string name="sort_sheet_oldest_first">ਸਭ ਤੋਂ ਪੁਰਾਣਾ ਪਹਿਲਾਂ</string>
+  <string name="sort_sheet_last_modified">ਸਭ ਤੋਂ ਹਾਲ ਹੀ ਵਿੱਚ ਸੰਸ਼ੋਧਿਤ</string>
+  <string name="reminder">ਰੀਮਾਈਂਡਰ</string>
+  <string name="pin_note">ਪਿਨ ਨੋਟ</string>
+  <string name="unpin_note">ਅਨਪਿਨ ਸੂਚਨਾ</string>
+
 </resources>

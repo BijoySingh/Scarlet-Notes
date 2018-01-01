@@ -130,4 +130,24 @@
   <string name="home_option_fill_survey">सर्वेक्षण भरा</string>
   <string name="home_option_fill_survey_subtitle">आपल्याला काय आवडते ते आम्हाला सांगून अनुप्रयोग सुधारण्यात आम्हाला मदत करा</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">टॅग्ज बदला</string>
+  <string name="home_option_order_notes">ऑर्डर नोट्स</string>
+  <string name="home_option_open_source_page">मुक्त स्रोत प्रकल्प</string>
+  <string name="home_option_open_source_page_subtitle">मुक्त स्त्रोत प्रकल्पाबद्दल अधिक जाणून घ्या</string>
+  <string name="osp_page_libraries">ग्रंथालये</string>
+  <string name="osp_page_about_osp">मुक्त स्रोत प्रकल्प</string>
+  <string name="osp_page_title">मुक्त स्त्रोत प्रकल्पाबद्दल</string>
+  <string name="reminder_sheet_title">टीप स्मरणपत्र</string>
+  <string name="reminder_sheet_reminder_date">स्मरणपत्र तारीख</string>
+  <string name="reminder_sheet_reminder_time">स्मरणपत्र वेळ</string>
+  <string name="reminder_sheet_repeat">वारंवारिता पुनरावृत्ती करा</string>
+  <string name="sort_sheet_title">यानुसार क्रमवारी लावा</string>
+  <string name="sort_sheet_newest_first">नवीनतम प्रथम</string>
+  <string name="sort_sheet_oldest_first">सर्वात जुने प्रथम</string>
+  <string name="sort_sheet_last_modified">सर्वाधिक अलीकडे सुधारित</string>
+  <string name="reminder">स्मरणपत्र</string>
+  <string name="pin_note">पिन टीप</string>
+  <string name="unpin_note">टीप अनपिन करा</string>
+
 </resources>

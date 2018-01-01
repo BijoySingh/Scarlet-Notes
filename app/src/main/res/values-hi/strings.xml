@@ -131,4 +131,24 @@
   <string name="home_option_fill_survey">सर्वेक्षण भरें</string>
   <string name="home_option_fill_survey_subtitle">हमें बताएं कि आप क्या पसंद करते हैं</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">टैग बदलें</string>
+  <string name="home_option_order_notes">ऑर्डर नोट</string>
+  <string name="home_option_open_source_page">ओपन सोर्स प्रोजेक्ट</string>
+  <string name="home_option_open_source_page_subtitle">ओपन सोर्स परियोजना के बारे में अधिक जानें</string>
+  <string name="osp_page_libraries">पुस्तकालय</string>
+  <string name="osp_page_about_osp">ओपन सोर्स प्रोजेक्ट</string>
+  <string name="osp_page_title">ओपन सोर्स प्रोजेक्ट के बारे में</string>
+  <string name="reminder_sheet_title">नोट अनुस्मारक</string>
+  <string name="reminder_sheet_reminder_date">अनुस्मारक तिथि</string>
+  <string name="reminder_sheet_reminder_time">अनुस्मारक समय</string>
+  <string name="reminder_sheet_repeat">आवृत्ति दोहराएं</string>
+  <string name="sort_sheet_title">सॉर्ट करें</string>
+  <string name="sort_sheet_newest_first">नवीनतम पहले</string>
+  <string name="sort_sheet_oldest_first">सबसे पुराना पहले</string>
+  <string name="sort_sheet_last_modified">सबसे हाल ही में संशोधित</string>
+  <string name="reminder">अनुस्मारक</string>
+  <string name="pin_note">पिन नोट</string>
+  <string name="unpin_note">नोट अनपिन करें</string>
+
 </resources>

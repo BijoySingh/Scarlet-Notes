@@ -130,4 +130,24 @@
   <string name="home_option_fill_survey">填寫調查</string>
   <string name="home_option_fill_survey_subtitle">通過告訴我們你喜歡什麼來幫助我們改進應用程序</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">更改標籤</string>
+  <string name="home_option_order_notes">訂單註釋</string>
+  <string name="home_option_open_source_page">開源項目</string>
+  <string name="home_option_open_source_page_subtitle">了解更多關於開源項目</string>
+  <string name="osp_page_libraries">圖書館</string>
+  <string name="osp_page_about_osp">開源項目</string>
+  <string name="osp_page_title">關於開源項目</string>
+  <string name="reminder_sheet_title">注意提醒</string>
+  <string name="reminder_sheet_reminder_date">提醒日期</string>
+  <string name="reminder_sheet_reminder_time">提醒時間</string>
+  <string name="reminder_sheet_repeat">重複頻率</string>
+  <string name="sort_sheet_title">按註釋排序</string>
+  <string name="sort_sheet_newest_first">新的先來</string>
+  <string name="sort_sheet_oldest_first">最早的</string>
+  <string name="sort_sheet_last_modified">最近修改</string>
+  <string name="reminder">提醒</string>
+  <string name="pin_note">Pin Note</string>
+  <string name="unpin_note">取消固定注意</string>
+
 </resources>

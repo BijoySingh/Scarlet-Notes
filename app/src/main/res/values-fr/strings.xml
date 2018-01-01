@@ -131,4 +131,24 @@
   <string name="home_option_fill_survey">Remplir l\'enquête</string>
   <string name="home_option_fill_survey_subtitle">Aidez-nous à améliorer l\'application en nous disant ce que vous aimez</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">Modifier les tags</string>
+  <string name="home_option_order_notes">Notes d\'ordre</string>
+  <string name="home_option_open_source_page">Projet Open Source</string>
+  <string name="home_option_open_source_page_subtitle">En savoir plus sur le projet open source</string>
+  <string name="osp_page_libraries">Bibliothèques</string>
+  <string name="osp_page_about_osp">Projet Open Source</string>
+  <string name="osp_page_title">À propos du projet Open Source</string>
+  <string name="reminder_sheet_title">Note de rappel</string>
+  <string name="reminder_sheet_reminder_date">Date de rappel</string>
+  <string name="reminder_sheet_reminder_time">Heure de rappel</string>
+  <string name="reminder_sheet_repeat">Répéter la fréquence</string>
+  <string name="sort_sheet_title">Trier les notes par</string>
+  <string name="sort_sheet_newest_first">Le plus récent d\'abord</string>
+  <string name="sort_sheet_oldest_first">Le plus ancien en premier</string>
+  <string name="sort_sheet_last_modified">Plus récemment modifié</string>
+  <string name="reminder">Rappel</string>
+  <string name="pin_note">Note de broche</string>
+  <string name="unpin_note">Annuler la note</string>
+
 </resources>

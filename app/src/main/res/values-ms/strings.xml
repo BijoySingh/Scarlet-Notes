@@ -131,4 +131,24 @@
   <string name="home_option_fill_survey">Isi kajian</string>
   <string name="home_option_fill_survey_subtitle">Bantu kami meningkatkan aplikasi dengan memberitahu kami apa yang anda suka</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">Tukar Tag</string>
+  <string name="home_option_order_notes">Nota Pesanan</string>
+  <string name="home_option_open_source_page">Projek Sumber Terbuka</string>
+  <string name="home_option_open_source_page_subtitle">Ketahui lebih lanjut mengenai projek sumber terbuka</string>
+  <string name="osp_page_libraries">Perpustakaan</string>
+  <string name="osp_page_about_osp">Projek Sumber Terbuka</string>
+  <string name="osp_page_title">Mengenai Projek Sumber Terbuka</string>
+  <string name="reminder_sheet_title">Peringatan Peringatan</string>
+  <string name="reminder_sheet_reminder_date">Tarikh Peringatan</string>
+  <string name="reminder_sheet_reminder_time">Masa Peringatan</string>
+  <string name="reminder_sheet_repeat">Kekerapan Ulang</string>
+  <string name="sort_sheet_title">Isih Nota Mengikut</string>
+  <string name="sort_sheet_newest_first">Terkini Pertama</string>
+  <string name="sort_sheet_oldest_first">Terawal Pertama</string>
+  <string name="sort_sheet_last_modified">Baru-baru ini diubah suai</string>
+  <string name="reminder">Peringatan</string>
+  <string name="pin_note">Nota Pin</string>
+  <string name="unpin_note">Ketik Nota</string>
+
 </resources>

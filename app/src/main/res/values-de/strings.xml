@@ -132,4 +132,24 @@
   <string name="home_option_fill_survey">Umfrage ausfüllen</string>
   <string name="home_option_fill_survey_subtitle">Hilf uns, die App zu verbessern, indem du uns sagst, was dir gefällt</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">Tags ändern</string>
+  <string name="home_option_order_notes">Bestellhinweise</string>
+  <string name="home_option_open_source_page">Open-Source-Projekt</string>
+  <string name="home_option_open_source_page_subtitle">Erfahren Sie mehr über das Open-Source-Projekt</string>
+  <string name="osp_page_libraries">Bibliotheken</string>
+  <string name="osp_page_about_osp">Open-Source-Projekt</string>
+  <string name="osp_page_title">Über das Open-Source-Projekt</string>
+  <string name="reminder_sheet_title">Hinweis Erinnerung</string>
+  <string name="reminder_sheet_reminder_date">Erinnerungsdatum</string>
+  <string name="reminder_sheet_reminder_time">Erinnerungszeit</string>
+  <string name="reminder_sheet_repeat">Häufigkeit wiederholen</string>
+  <string name="sort_sheet_title">Notizen sortieren nach</string>
+  <string name="sort_sheet_newest_first">Das neuste zuerst</string>
+  <string name="sort_sheet_oldest_first">Die ältesten zu erst</string>
+  <string name="sort_sheet_last_modified">Zuletzt geändert</string>
+  <string name="reminder">Erinnerung</string>
+  <string name="pin_note">Pin Hinweis</string>
+  <string name="unpin_note">Hinweis loslösen</string>
+
 </resources>

@@ -132,4 +132,24 @@
   <string name="home_option_fill_survey">Dolgu Anketi</string>
   <string name="home_option_fill_survey_subtitle">Neye benzediğinizi söyleyerek uygulamayı geliştirmemize yardımcı olun</string>
 
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">Etiketleri Değiştir</string>
+  <string name="home_option_order_notes">Sipariş Notları</string>
+  <string name="home_option_open_source_page">Açık Kaynak Projesi</string>
+  <string name="home_option_open_source_page_subtitle">Açık kaynak projesi hakkında daha fazla şey öğrenin</string>
+  <string name="osp_page_libraries">Kütüphaneler</string>
+  <string name="osp_page_about_osp">Açık Kaynak Projesi</string>
+  <string name="osp_page_title">Açık Kaynak Projesi Hakkında</string>
+  <string name="reminder_sheet_title">Not Hatırlatma</string>
+  <string name="reminder_sheet_reminder_date">Hatırlatma Tarihi</string>
+  <string name="reminder_sheet_reminder_time">Hatırlatıcı Saati</string>
+  <string name="reminder_sheet_repeat">Sıklığı Tekrarla</string>
+  <string name="sort_sheet_title">Sıralama Notları</string>
+  <string name="sort_sheet_newest_first">En yeni ilk</string>
+  <string name="sort_sheet_oldest_first">En eskiler önce</string>
+  <string name="sort_sheet_last_modified">En Son Değiştirilen</string>
+  <string name="reminder">Hatırlatma</string>
+  <string name="pin_note">Pin Not</string>
+  <string name="unpin_note">Notu Çöz</string>
+
 </resources>
