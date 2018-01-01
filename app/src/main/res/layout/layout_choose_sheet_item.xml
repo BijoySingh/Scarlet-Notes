@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.bijoysingh.uibasics.views.UITextView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:ui="http://schemas.android.com/apk/res-auto"
+  style="@style/BorderedBackgroundView"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:gravity="center_vertical"
+  android:padding="16dp"
+  ui:iconSize="24dp"
+  ui:iconTextGap="16dp"
+  ui:iconTint="@color/dark_tertiary_text"
+  ui:textColor="@color/dark_secondary_text"
+  ui:textSize="16sp"
+  ui:textStyle="@style/SanSerif"/>

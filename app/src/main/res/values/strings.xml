@@ -32,7 +32,9 @@
   <string name="trash_note">Move to Trash</string>
   <string name="choose_note_color">Change Color</string>
   <string name="lock_note">Lock Note</string>
+  <!-- To Translate START -->
   <string name="change_tags" translatable="false">Change Tags</string>
+  <!-- To Translate END -->
   <string name="unlock_note">Unlock Note</string>
   <string name="reminder">Reminder</string>
   <string name="pin_note">Pin Note</string>
@@ -94,8 +96,12 @@
   <string name="home_option_import_subtitle">Import notes from the device storage</string>
   <string name="home_option_about_page">About Us</string>
   <string name="home_option_about_page_subtitle">Know more about the app and the developers</string>
+
+  <!-- To Translate START -->
   <string name="home_option_open_source_page" translatable="false">Open Source Project</string>
   <string name="home_option_open_source_page_subtitle" translatable="false">Know more about the open source project</string>
+  <!-- To Translate END -->
+
   <string name="home_option_rate_and_review">Rate and Review</string>
   <string name="home_option_rate_and_review_subtitle">Tell us know how much you liked the app</string>
   <string name="home_option_fill_survey">Fill Survey</string>
@@ -149,6 +155,7 @@
   <string name="about_page_app_version">App Version</string>
   <string name="about_page_about_app">About App</string>
 
+  <!-- To Translate START -->
   <string name="osp_page_libraries" translatable="false">Libraries</string>
   <string name="osp_page_about_osp" translatable="false">Open Source Project</string>
   <string name="osp_page_title" translatable="false">About Open Source Project</string>
@@ -157,6 +164,7 @@
   <string name="reminder_sheet_reminder_date" translatable="false">Reminder Date</string>
   <string name="reminder_sheet_reminder_time" translatable="false">Reminder Time</string>
   <string name="reminder_sheet_repeat" translatable="false">Repeat Frequency</string>
+  <!-- To Translate END -->
 
   <string name="notification_channel_label">Note Notifications</string>
 
@@ -175,5 +183,12 @@
 
   <string name="tag_sheet_new_tag_button">Create a New Tag</string>
   <string name="tag_sheet_choose_tag">Choose a Tag&#8230;</string>
+
+  <!-- To Translate START -->
+  <string name="sort_sheet_title">Sort Notes By</string>
+  <string name="sort_sheet_newest_first">Newest First</string>
+  <string name="sort_sheet_oldest_first">Oldest First</string>
+  <string name="sort_sheet_last_modified">Most Recently Modified</string>
+  <!-- To Translate END -->
 
 </resources>

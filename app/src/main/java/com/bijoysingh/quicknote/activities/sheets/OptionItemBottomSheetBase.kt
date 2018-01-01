@@ -37,7 +37,7 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     setupViewWithDialog(dialog)
   }
 
-  fun setOptions(dialog: Dialog, options: List<OptionsItem>) {
+  open fun setOptions(dialog: Dialog, options: List<OptionsItem>) {
     val layout = dialog.findViewById<LinearLayout>(R.id.options_container);
     for (option in options) {
       if (!option.visible) {
