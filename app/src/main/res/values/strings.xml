@@ -90,6 +90,11 @@
   <string name="home_option_enable_list_view_subtitle">Show notes in a single column</string>
   <string name="home_option_enable_grid_view">Enable Grid Layout</string>
   <string name="home_option_enable_grid_view_subtitle">Show notes in a staggered grid</string>
+
+  <!-- To Translate START -->
+  <string name="home_option_order_notes" translatable="false">Order Notes</string>
+  <!-- To Translate END -->
+
   <string name="home_option_export">Export Notes</string>
   <string name="home_option_export_subtitle">Export notes to device storage to share</string>
   <string name="home_option_import">Import Notes</string>

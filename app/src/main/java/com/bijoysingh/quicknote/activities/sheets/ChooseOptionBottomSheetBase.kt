@@ -19,7 +19,13 @@ abstract class ChooseOptionBottomSheetBase : OptionItemBottomSheetBase() {
       val contentView = View.inflate(context, R.layout.layout_choose_sheet_item, null) as UITextView
       contentView.setText(option.title)
       contentView.setOnClickListener(option.listener)
-      contentView.setImageResource(option.icon)
+
+      if (option.icon != 0) {
+        contentView.setImageResource(option.icon)
+      } else {
+        contentView.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp)
+        contentView.icon.visibility = View.INVISIBLE
+      }
 
       contentView.setTextColor(getOptionsTitleColor(option))
       contentView.setImageTint(getOptionsTitleColor(option))

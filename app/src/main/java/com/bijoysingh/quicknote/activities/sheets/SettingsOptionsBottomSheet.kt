@@ -9,6 +9,7 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
+import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingState
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.IntentUtils
@@ -71,6 +72,15 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           dismiss()
         },
         visible = !isTablet && !dataStore.get(KEY_LIST_VIEW, false)
+    ))
+    options.add(OptionsItem(
+        title = R.string.home_option_order_notes,
+        subtitle = getSortingState(context).label,
+        icon = R.drawable.ic_sort,
+        listener = View.OnClickListener {
+          SortingOptionsBottomSheet.openSheet(activity)
+          dismiss()
+        }
     ))
     options.add(OptionsItem(
         title = R.string.home_option_export,
