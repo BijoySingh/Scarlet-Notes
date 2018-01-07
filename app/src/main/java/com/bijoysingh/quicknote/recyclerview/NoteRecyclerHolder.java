@@ -14,6 +14,7 @@ import com.bijoysingh.quicknote.activities.MainActivity;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet;
+import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.items.NoteRecyclerItem;
@@ -71,6 +72,9 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
   public void populate(RecyclerItem itemData, Bundle extra) {
     boolean isMarkdownEnabled = extra == null
         || extra.getBoolean(KEY_MARKDOWN_ENABLED, true);
+    int lineCount = extra == null
+        ? LineCountBottomSheet.LINE_COUNT_DEFAULT
+        : extra.getInt(LineCountBottomSheet.KEY_LINE_COUNT, LineCountBottomSheet.LINE_COUNT_DEFAULT);
 
     NoteRecyclerItem item = (NoteRecyclerItem) itemData;
     final Note data = item.note;
@@ -79,6 +83,7 @@ public class NoteRecyclerHolder extends RecyclerViewHolder<RecyclerItem> {
     title.setVisibility(noteTitle.isEmpty() ? GONE : VISIBLE);
 
     description.setText(data.getLockedText(context, isMarkdownEnabled));
+    description.setMaxLines(lineCount);
 
     if (!TextUtils.isNullOrEmpty(data.tags)) {
       tags.setTextColor(ContextCompat.getColor(context, R.color.light_secondary_text));

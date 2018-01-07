@@ -62,6 +62,15 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           dismiss()
         }
     ))
+    options.add(OptionsItem(
+        title = R.string.note_option_number_lines,
+        subtitle = R.string.note_option_default_color_subtitle,
+        icon = R.drawable.ic_action_list,
+        listener = View.OnClickListener {
+          LineCountBottomSheet.openSheet(activity)
+          dismiss()
+        }
+    ))
     return options
   }
 

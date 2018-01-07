@@ -132,6 +132,7 @@
   <!-- TODO: Translate -->
   <string name="note_option_default_color" translatable="false">Default Note Color</string>
   <string name="note_option_default_color_subtitle" translatable="false">Choose the default color of the notes</string>
+  <string name="note_option_number_lines" translatable="false">Note Line Limit</string>
   <!-- End Translate Block -->
 
   <string name="markdown_sheet_markdown_support">Markdown Support</string>

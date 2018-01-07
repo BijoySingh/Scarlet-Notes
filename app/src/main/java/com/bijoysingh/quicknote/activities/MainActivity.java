@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.sheets.HomeNavigationBottomSheet;
+import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.SortingTechnique;
@@ -38,6 +39,7 @@ import java.util.List;
 
 import static android.view.View.GONE;
 import static android.widget.GridLayout.VERTICAL;
+import static com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.KEY_LINE_COUNT;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_LIST_VIEW;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED;
@@ -179,6 +181,7 @@ public class MainActivity extends ThemedActivity {
     boolean isMarkdownHomeEnabled = store.get(KEY_MARKDOWN_HOME_ENABLED, false);
     Bundle adapterExtra = new Bundle();
     adapterExtra.putBoolean(KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled);
+    adapterExtra.putInt(KEY_LINE_COUNT, LineCountBottomSheet.Companion.getDefaultLineCount(store));
 
     adapter = new NoteAppAdapter(this, staggeredView, isTablet);
     adapter.setExtra(adapterExtra);
@@ -200,6 +203,10 @@ public class MainActivity extends ThemedActivity {
 
   public void setLayoutMode(boolean staggered) {
     store.put(KEY_LIST_VIEW, staggered);
+    notifyAdapterExtraChanged();
+  }
+
+  public void notifyAdapterExtraChanged() {
     setupRecyclerView();
     setupData();
   }
