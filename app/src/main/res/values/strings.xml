@@ -99,6 +99,8 @@
   <string name="home_option_enable_grid_view">Enable Grid Layout</string>
   <string name="home_option_enable_grid_view_subtitle">Show notes in a staggered grid</string>
   <string name="home_option_order_notes">Order Notes</string>
+  <string name="home_option_backup_options">Backup and Import</string>
+  <string name="home_option_backup_options_subtitle">Backup, import and export note options</string>
   <string name="home_option_export">Export Notes</string>
   <string name="home_option_export_subtitle">Export notes to device storage to share</string>
   <string name="home_option_import">Import Notes</string>

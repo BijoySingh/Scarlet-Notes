@@ -43,31 +43,12 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
-        title = R.string.home_option_export,
-        subtitle = R.string.home_option_export_subtitle,
+        title = R.string.home_option_backup_options,
+        subtitle = R.string.home_option_backup_options_subtitle,
         icon = R.drawable.ic_export,
         listener = View.OnClickListener {
-          val manager = getStoragePermissionManager(activity)
-          if (manager.hasAllPermissions()) {
-            openExportSheet()
-            dismiss()
-          } else {
-            PermissionBottomSheet.openSheet(activity)
-          }
-        }
-    ))
-    options.add(OptionsItem(
-        title = R.string.home_option_import,
-        subtitle = R.string.home_option_import_subtitle,
-        icon = R.drawable.ic_import,
-        listener = View.OnClickListener {
-          val manager = getStoragePermissionManager(activity)
-          if (manager.hasAllPermissions()) {
-            IntentUtils.startActivity(activity, ImportNoteFromFileActivity::class.java)
-            dismiss()
-          } else {
-            PermissionBottomSheet.openSheet(activity)
-          }
+          BackupSettingsOptionsBottomSheet.openSheet(activity)
+          dismiss()
         }
     ))
     options.add(OptionsItem(
@@ -91,32 +72,10 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     return options
   }
 
-  private fun openExportSheet() {
-    val activity = context as MainActivity
-    val dataStore = DataStore.get(context)
-    if (!SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)) {
-      ExportNotesBottomSheet.openSheet(activity)
-      return
-    }
-    EnterPincodeBottomSheet.openUnlockSheet(
-        context as ThemedActivity,
-        object : EnterPincodeBottomSheet.PincodeSuccessListener {
-          override fun onFailure() {
-            openExportSheet()
-          }
-
-          override fun onSuccess() {
-            ExportNotesBottomSheet.openSheet(activity)
-          }
-        },
-        dataStore)
-  }
-
   override fun getLayout(): Int = R.layout.layout_options_sheet
 
   companion object {
 
-    const val SURVEY_LINK = "https://goo.gl/forms/UbE2lARpp89CNIbl2"
     const val KEY_LIST_VIEW = "KEY_LIST_VIEW"
     const val KEY_MARKDOWN_ENABLED = "KEY_MARKDOWN_ENABLED"
     const val KEY_MARKDOWN_HOME_ENABLED = "KEY_MARKDOWN_HOME_ENABLED"
