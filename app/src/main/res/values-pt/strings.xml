@@ -152,4 +152,17 @@
   <string name="pin_note">Nota do Pin</string>
   <string name="unpin_note">Desmarcar nota</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">Interface e Experiência</string>
+  <string name="home_option_ui_experience_subtitle">Escolha como o aplicativo parece e se sente.</string>
+  <string name="home_option_note_settings">Preferências de nota</string>
+  <string name="home_option_note_settings_subtitle">Escolha a nota e outras configurações.</string>
+  <string name="home_option_about">Sobre</string>
+  <string name="home_option_about_subtitle">Saiba mais sobre nós e o aplicativo.</string>
+  <string name="note_option_default_color">Cor da nota padrão</string>
+  <string name="note_option_default_color_subtitle">Escolha a cor padrão das notas</string>
+  <string name="note_option_number_lines">Linha Limite de Linha</string>
+  <string name="home_option_backup_options">Backup e importação</string>
+  <string name="home_option_backup_options_subtitle">Backup, importação e exportação de opções de notas</string>
+
 </resources>

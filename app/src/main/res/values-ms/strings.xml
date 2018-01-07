@@ -151,4 +151,17 @@
   <string name="pin_note">Nota Pin</string>
   <string name="unpin_note">Ketik Nota</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">Antara Muka dan Pengalaman</string>
+  <string name="home_option_ui_experience_subtitle">Pilih bagaimana aplikasinya kelihatan dan dirasakan.</string>
+  <string name="home_option_note_settings">Nota Pilihan</string>
+  <string name="home_option_note_settings_subtitle">Pilih nota dan tetapan lain.</string>
+  <string name="home_option_about">Mengenai</string>
+  <string name="home_option_about_subtitle">Ketahui lebih lanjut mengenai kami dan aplikasinya.</string>
+  <string name="note_option_default_color">Warna Nota Default</string>
+  <string name="note_option_default_color_subtitle">Pilih warna asal nota</string>
+  <string name="note_option_number_lines">Had Talian Nota</string>
+  <string name="home_option_backup_options">Sandaran dan Import</string>
+  <string name="home_option_backup_options_subtitle">Pilihan sandaran, import dan eksport</string>
+
 </resources>

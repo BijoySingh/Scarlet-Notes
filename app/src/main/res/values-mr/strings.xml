@@ -150,4 +150,17 @@
   <string name="pin_note">पिन टीप</string>
   <string name="unpin_note">टीप अनपिन करा</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">इंटरफेस आणि अनुभव</string>
+  <string name="home_option_ui_experience_subtitle">अॅप कसे दिसते आणि कसे वाटते ते निवडा</string>
+  <string name="home_option_note_settings">टीप प्राधान्ये</string>
+  <string name="home_option_note_settings_subtitle">टीप आणि अन्य सेटिंग्ज निवडा</string>
+  <string name="home_option_about">विषयी</string>
+  <string name="home_option_about_subtitle">आमच्याबद्दल आणि अॅपबद्दल अधिक जाणून घ्या</string>
+  <string name="note_option_default_color">डीफॉल्ट टीप रंग</string>
+  <string name="note_option_default_color_subtitle">नोट्सचा डीफॉल्ट रंग निवडा</string>
+  <string name="note_option_number_lines">टीप रेखा मर्यादा</string>
+  <string name="home_option_backup_options">बॅक अप आणि आयात</string>
+  <string name="home_option_backup_options_subtitle">बॅकअप, आयात आणि निर्यात नोट पर्याय</string>
+
 </resources>

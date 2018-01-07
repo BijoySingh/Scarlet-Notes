@@ -151,4 +151,17 @@
   <string name="pin_note">पिन नोट</string>
   <string name="unpin_note">नोट अनपिन करें</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">इंटरफ़ेस और अनुभव</string>
+  <string name="home_option_ui_experience_subtitle">चुनें कि ऐप कैसा दिखता है और कैसे लगता है।</string>
+  <string name="home_option_note_settings">नोट प्राथमिकताएं</string>
+  <string name="home_option_note_settings_subtitle">नोट और अन्य सेटिंग्स चुनें</string>
+  <string name="home_option_about">के बारे में</string>
+  <string name="home_option_about_subtitle">हमारे और ऐप के बारे में अधिक जानें</string>
+  <string name="note_option_default_color">डिफ़ॉल्ट नोट रंग</string>
+  <string name="note_option_default_color_subtitle">नोट्स का डिफ़ॉल्ट रंग चुनें</string>
+  <string name="note_option_number_lines">नोट लाइन सीमा</string>
+  <string name="home_option_backup_options">बैकअप और आयात</string>
+  <string name="home_option_backup_options_subtitle">बैकअप, आयात और निर्यात नोट विकल्प</string>
+
 </resources>

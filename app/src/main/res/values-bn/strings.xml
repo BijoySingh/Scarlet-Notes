@@ -153,4 +153,17 @@
   <string name="pin_note">পিন নোট</string>
   <string name="unpin_note">নোট আনপিন করুন</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">ইন্টারফেস এবং অভিজ্ঞতা</string>
+  <string name="home_option_ui_experience_subtitle">অ্যাপ্লিকেশন কেমন দেখায় এবং অনুভব করে তা চয়ন করুন।</string>
+  <string name="home_option_note_settings">নোট পছন্দসমূহ</string>
+  <string name="home_option_note_settings_subtitle">নোট এবং অন্যান্য সেটিংস চয়ন করুন।</string>
+  <string name="home_option_about">সম্পর্কিত</string>
+  <string name="home_option_about_subtitle">আমাদের এবং অ্যাপ সম্পর্কে আরও জানুন</string>
+  <string name="note_option_default_color">ডিফল্ট নোট রঙ</string>
+  <string name="note_option_default_color_subtitle">নোটগুলির ডিফল্ট রং নির্বাচন করুন</string>
+  <string name="note_option_number_lines">নোট লাইন সীমা</string>
+  <string name="home_option_backup_options">ব্যাকআপ এবং আমদানি</string>
+  <string name="home_option_backup_options_subtitle">ব্যাকআপ, আমদানি এবং রপ্তানি নোট অপশন</string>
+
 </resources>

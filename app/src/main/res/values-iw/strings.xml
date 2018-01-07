@@ -152,4 +152,17 @@
   <string name="pin_note">הערה פין</string>
   <string name="unpin_note">בטל הצמדה של הערה</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">ממשק וניסיון</string>
+  <string name="home_option_ui_experience_subtitle">בחר כיצד האפליקציה נראית ומרגישה.</string>
+  <string name="home_option_note_settings">הערה העדפות</string>
+  <string name="home_option_note_settings_subtitle">בחר הערה והגדרות אחרות.</string>
+  <string name="home_option_about">על אודות</string>
+  <string name="home_option_about_subtitle">למידע נוסף עלינו ועל האפליקציה.</string>
+  <string name="note_option_default_color">ברירת מחדל הערה צבע</string>
+  <string name="note_option_default_color_subtitle">בחר את צבע ברירת המחדל של ההערות</string>
+  <string name="note_option_number_lines">הערה גבול קו</string>
+  <string name="home_option_backup_options">גיבוי וייבוא</string>
+  <string name="home_option_backup_options_subtitle">אפשרויות גיבוי, ייבוא וייצוא של הערות</string>
+
 </resources>

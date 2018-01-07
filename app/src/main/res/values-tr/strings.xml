@@ -152,4 +152,17 @@
   <string name="pin_note">Pin Not</string>
   <string name="unpin_note">Notu Çöz</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">Arayüz ve Deneyim</string>
+  <string name="home_option_ui_experience_subtitle">Uygulamanın nasıl göründüğünü ve neler hissettiğini seçin.</string>
+  <string name="home_option_note_settings">Not Tercihleri</string>
+  <string name="home_option_note_settings_subtitle">Not ve diğer ayarları seçin.</string>
+  <string name="home_option_about">hakkında</string>
+  <string name="home_option_about_subtitle">Bizimle uygulama hakkında daha fazla bilgi edinin.</string>
+  <string name="note_option_default_color">Varsayılan Not Renk</string>
+  <string name="note_option_default_color_subtitle">Notların varsayılan rengini seçin</string>
+  <string name="note_option_number_lines">Not Satır Sınırı</string>
+  <string name="home_option_backup_options">Yedekleme ve İçe Aktarma</string>
+  <string name="home_option_backup_options_subtitle">Yedekleme, içe aktarma ve dışa aktarma not seçenekleri</string>
+
 </resources>

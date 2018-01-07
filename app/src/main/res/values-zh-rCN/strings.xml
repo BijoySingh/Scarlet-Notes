@@ -150,4 +150,17 @@
   <string name="pin_note">Pin Note</string>
   <string name="unpin_note">取消固定注意</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">界面和经验</string>
+  <string name="home_option_ui_experience_subtitle">选择应用程序的外观和感觉。</string>
+  <string name="home_option_note_settings">注意首选项</string>
+  <string name="home_option_note_settings_subtitle">选择笔记和其他设置。</string>
+  <string name="home_option_about">关于</string>
+  <string name="home_option_about_subtitle">了解更多关于我们和应用程序。</string>
+  <string name="note_option_default_color">默认的注意颜色</string>
+  <string name="note_option_default_color_subtitle">选择笔记的默认颜色</string>
+  <string name="note_option_number_lines">注线限制</string>
+  <string name="home_option_backup_options">备份和导入</string>
+  <string name="home_option_backup_options_subtitle">备份，导入和导出备注选项</string>
+s
 </resources>

@@ -154,4 +154,17 @@
   <string name="pin_note">Примечание для контактов</string>
   <string name="unpin_note">Unpin Note</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">Интерфейс и опыт</string>
+  <string name="home_option_ui_experience_subtitle">Выберите, как приложение выглядит и чувствует.</string>
+  <string name="home_option_note_settings">Примечание.</string>
+  <string name="home_option_note_settings_subtitle">Выберите примечание и другие настройки.</string>
+  <string name="home_option_about">Около</string>
+  <string name="home_option_about_subtitle">Узнайте больше о нас и приложении.</string>
+  <string name="note_option_default_color">Цвет по умолчанию Примечание</string>
+  <string name="note_option_default_color_subtitle">Выберите цвет заметок по умолчанию</string>
+  <string name="note_option_number_lines">Линейный лимит</string>
+  <string name="home_option_backup_options">Резервирование и импорт</string>
+  <string name="home_option_backup_options_subtitle">Параметры резервного копирования, импорта и экспорта</string>
+
 </resources>

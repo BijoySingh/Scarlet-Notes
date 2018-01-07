@@ -151,4 +151,17 @@
   <string name="pin_note">ਪਿਨ ਨੋਟ</string>
   <string name="unpin_note">ਅਨਪਿਨ ਸੂਚਨਾ</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">ਇੰਟਰਫੇਸ ਅਤੇ ਅਨੁਭਵ</string>
+  <string name="home_option_ui_experience_subtitle">ਚੁਣੋ ਕਿ ਐਪ ਕਿਵੇਂ ਵੇਖਦਾ ਹੈ ਅਤੇ ਕਿਵੇਂ ਮਹਿਸੂਸ ਕਰਦਾ ਹੈ</string>
+  <string name="home_option_note_settings">ਨੋਟ ਪਸੰਦ</string>
+  <string name="home_option_note_settings_subtitle">ਨੋਟ ਅਤੇ ਹੋਰ ਸੈਟਿੰਗਜ਼ ਚੁਣੋ.</string>
+  <string name="home_option_about">ਇਸ ਬਾਰੇ</string>
+  <string name="home_option_about_subtitle">ਸਾਡੇ ਅਤੇ ਐਪ ਬਾਰੇ ਹੋਰ ਜਾਣੋ</string>
+  <string name="note_option_default_color">ਡਿਫੌਲਟ ਨੋਟ ਰੰਗ</string>
+  <string name="note_option_default_color_subtitle">ਨੋਟਸ ਦੇ ਡਿਫੌਲਟ ਰੰਗ ਨੂੰ ਚੁਣੋ</string>
+  <string name="note_option_number_lines">ਨੋਟ ਲਾਈਨ ਸੀਮਾ</string>
+  <string name="home_option_backup_options">ਬੈਕਅੱਪ ਅਤੇ ਆਯਾਤ</string>
+  <string name="home_option_backup_options_subtitle">ਬੈਕਅੱਪ, ਆਯਾਤ ਅਤੇ ਨਿਰਯਾਤ ਸੂਚਨਾ ਚੋਣਾਂ</string>
+
 </resources>

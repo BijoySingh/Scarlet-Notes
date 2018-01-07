@@ -152,4 +152,17 @@
   <string name="pin_note">Pin Hinweis</string>
   <string name="unpin_note">Hinweis loslösen</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">Schnittstelle und Erfahrung</string>
+  <string name="home_option_ui_experience_subtitle">Wählen Sie, wie die App aussieht und sich anfühlt.</string>
+  <string name="home_option_note_settings">Hinweis Einstellungen</string>
+  <string name="home_option_note_settings_subtitle">Wählen Sie Notiz und andere Einstellungen.</string>
+  <string name="home_option_about">Über</string>
+  <string name="home_option_about_subtitle">Erfahren Sie mehr über uns und die App.</string>
+  <string name="note_option_default_color">Standard Hinweisfarbe</string>
+  <string name="note_option_default_color_subtitle">Wählen Sie die Standardfarbe der Notizen</string>
+  <string name="note_option_number_lines">Hinweis Leitungsgrenze</string>
+  <string name="home_option_backup_options">Sichern und Importieren</string>
+  <string name="home_option_backup_options_subtitle">Backup, Import und Export von Notizoptionen</string>
+
 </resources>

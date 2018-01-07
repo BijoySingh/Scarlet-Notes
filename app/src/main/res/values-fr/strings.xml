@@ -151,4 +151,17 @@
   <string name="pin_note">Note de broche</string>
   <string name="unpin_note">Annuler la note</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">Interface et expérience</string>
+  <string name="home_option_ui_experience_subtitle">Choisissez l\'apparence et l\'apparence de l\'application.</string>
+  <string name="home_option_note_settings">Remarque Préférences</string>
+  <string name="home_option_note_settings_subtitle">Choisissez la note et d\'autres paramètres.</string>
+  <string name="home_option_about">Sur</string>
+  <string name="home_option_about_subtitle">En savoir plus sur nous et l\'application.</string>
+  <string name="note_option_default_color">Couleur de note par défaut</string>
+  <string name="note_option_default_color_subtitle">Choisissez la couleur par défaut des notes</string>
+  <string name="note_option_number_lines">Limite de ligne de note</string>
+  <string name="home_option_backup_options">Sauvegarde et importation</string>
+  <string name="home_option_backup_options_subtitle">Sauvegarde, importation et exportation des options de note</string>
+
 </resources>

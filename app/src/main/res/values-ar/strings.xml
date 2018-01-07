@@ -151,4 +151,17 @@
   <string name="pin_note">دبوس ملاحظة</string>
   <string name="unpin_note">إلغاء تثبيت ملاحظة</string>
 
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">واجهة والخبرة</string>
+  <string name="home_option_ui_experience_subtitle">اختيار كيف يبدو التطبيق ويشعر.</string>
+  <string name="home_option_note_settings">ملاحظة التفضيلات</string>
+  <string name="home_option_note_settings_subtitle">اختر ملاحظة وإعدادات أخرى.</string>
+  <string name="home_option_about">حول</string>
+  <string name="home_option_about_subtitle">معرفة المزيد عنا والتطبيق.</string>
+  <string name="note_option_default_color">لون ملاحظة افتراضي</string>
+  <string name="note_option_default_color_subtitle">اختر اللون الافتراضي للملاحظات</string>
+  <string name="note_option_number_lines">حد حد السطر</string>
+  <string name="home_option_backup_options">النسخ الاحتياطي والاستيراد</string>
+  <string name="home_option_backup_options_subtitle">النسخ الاحتياطي، استيراد وتصدير مذكرة الخيارات</string>
+
 </resources>
