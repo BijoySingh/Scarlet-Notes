@@ -129,6 +129,11 @@
   <string name="security_sheet_button_set">Set</string>
   <string name="security_sheet_button_remove">Remove</string>
 
+  <!-- TODO: Translate -->
+  <string name="note_option_default_color" translatable="false">Default Note Color</string>
+  <string name="note_option_default_color_subtitle" translatable="false">Choose the default color of the notes</string>
+  <!-- End Translate Block -->
+
   <string name="markdown_sheet_markdown_support">Markdown Support</string>
   <string name="markdown_sheet_markdown_support_subtitle">Allow markdown supported formatting</string>
   <string name="markdown_sheet_home_markdown_support">Markdown in Note List</string>

@@ -10,6 +10,7 @@ import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingState
+import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.IntentUtils
@@ -24,6 +25,26 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     val activity = context as MainActivity
     val dataStore = DataStore.get(context)
     val options = ArrayList<OptionsItem>()
+    options.add(OptionsItem(
+        title = R.string.note_option_default_color,
+        subtitle = R.string.note_option_default_color_subtitle,
+        icon = R.drawable.ic_action_color,
+        listener = View.OnClickListener {
+          ColorPickerBottomSheet.openSheet(
+              activity,
+              object : ColorPickerBottomSheet.ColorPickerDefaultController {
+                override fun onColorSelected(color: Int) {
+                  dataStore.put(KEY_NOTE_DEFAULT_COLOR, color)
+                }
+
+                override fun getSelectedColor(): Int {
+                  return genDefaultColor(dataStore)
+                }
+              }
+          )
+          dismiss()
+        }
+    ))
     options.add(OptionsItem(
         title = R.string.home_option_markdown_settings,
         subtitle = R.string.home_option_markdown_settings_subtitle,
@@ -69,15 +90,16 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   companion object {
 
-    const val SURVEY_LINK = "https://goo.gl/forms/UbE2lARpp89CNIbl2"
-    const val KEY_LIST_VIEW = "KEY_LIST_VIEW"
-    const val KEY_MARKDOWN_ENABLED = "KEY_MARKDOWN_ENABLED"
-    const val KEY_MARKDOWN_HOME_ENABLED = "KEY_MARKDOWN_HOME_ENABLED"
+    const val KEY_NOTE_DEFAULT_COLOR = "KEY_NOTE_DEFAULT_COLOR"
 
     fun openSheet(activity: MainActivity) {
       val sheet = NoteSettingsOptionsBottomSheet()
       sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
+    }
+
+    fun genDefaultColor(dataStore: DataStore): Int {
+      return dataStore.get(KEY_NOTE_DEFAULT_COLOR, -0xff8695)
     }
   }
 }

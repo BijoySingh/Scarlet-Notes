@@ -13,9 +13,14 @@ import com.google.android.flexbox.FlexboxLayout
 class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
 
   var controller: ColorPickerController? = null
+  var defaultController: ColorPickerDefaultController? = null
 
   fun setPickerController(pickerController: ColorPickerController) {
     controller = pickerController
+  }
+
+  fun setPickerController(pickerController: ColorPickerDefaultController) {
+    defaultController = pickerController
   }
 
   override fun setupView(dialog: Dialog?) {
@@ -24,13 +29,13 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
       return
     }
 
-    if (controller == null) {
+    if (controller == null && defaultController == null) {
       dismiss()
       return
     }
 
     val colorPicker = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout)
-    setColorsList(controller!!, colorPicker)
+    setColorsList(colorPicker)
 
     maybeSetTextNightModeColor(dialog, R.id.options_title, R.color.light_tertiary_text)
   }
@@ -39,16 +44,28 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     return R.id.container_layout
   }
 
-  private fun setColorsList(
-      controller: ColorPickerController,
-      colorSelectorLayout: FlexboxLayout) {
+  private fun setColorsList(colorSelectorLayout: FlexboxLayout) {
     colorSelectorLayout.removeAllViews()
+    val selectedColor: Int
+    if (controller !== null) {
+      selectedColor = controller!!.getNote().color
+    } else if (defaultController !== null) {
+      selectedColor = defaultController!!.getSelectedColor()
+    } else {
+      selectedColor = 0
+    }
+
     val colors = resources.getIntArray(R.array.bright_colors)
     for (color in colors) {
       val item = ColorView(context)
-      item.setColor(color, controller.getNote().color == color)
+
+      item.setColor(color, selectedColor == color)
       item.root.setOnClickListener {
-        controller.onColorSelected(controller.getNote(), color)
+        if (controller !== null) {
+          controller!!.onColorSelected(controller!!.getNote(), color)
+        } else if (defaultController !== null) {
+          defaultController!!.onColorSelected(color)
+        }
         dismiss()
       }
       colorSelectorLayout.addView(item)
@@ -63,9 +80,23 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     fun getNote(): Note
   }
 
+  interface ColorPickerDefaultController {
+    fun onColorSelected(color: Int)
+
+    fun getSelectedColor(): Int
+  }
+
   companion object {
     fun openSheet(activity: ThemedActivity,
                   picker: ColorPickerController) {
+      val sheet = ColorPickerBottomSheet()
+      sheet.setPickerController(picker)
+      sheet.isNightMode = activity.isNightMode
+      sheet.show(activity.supportFragmentManager, sheet.tag)
+    }
+
+    fun openSheet(activity: ThemedActivity,
+                  picker: ColorPickerDefaultController) {
       val sheet = ColorPickerBottomSheet()
       sheet.setPickerController(picker)
       sheet.isNightMode = activity.isNightMode

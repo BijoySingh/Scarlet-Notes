@@ -268,6 +268,12 @@ public class Note {
     return note;
   }
 
+  public static Note genWithColor(int color) {
+    Note note = Note.gen();
+    note.color = color;
+    return note;
+  }
+
   public static Note genSave(Context context, ExportableNote exportableNote) {
     Note note = Note.gen();
     note.title = exportableNote.getTitle();

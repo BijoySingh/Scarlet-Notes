@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.sheets.NoteGridBottomSheet;
+import com.bijoysingh.quicknote.activities.sheets.NoteSettingsOptionsBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.database.Tag;
 import com.bijoysingh.quicknote.formats.Format;
@@ -72,7 +73,9 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     if (noteId != 0) {
       note = Note.db(this).getByID(noteId);
     }
-    note = note == null ? Note.gen() : note;
+    note = note == null
+        ? Note.genWithColor(NoteSettingsOptionsBottomSheet.Companion.genDefaultColor(store))
+        : note;
 
     setNightMode(getIntent().getBooleanExtra(
         ThemedActivity.Companion.getKey(),
