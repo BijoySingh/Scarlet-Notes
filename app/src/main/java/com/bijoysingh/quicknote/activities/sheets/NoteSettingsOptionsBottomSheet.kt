@@ -1,19 +1,11 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.content.Intent
-import android.net.Uri
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
-import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
-import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingState
-import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.github.bijoysingh.starter.prefs.DataStore
-import com.github.bijoysingh.starter.util.IntentUtils
 
 class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
@@ -62,37 +54,7 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           dismiss()
         }
     ))
-    options.add(OptionsItem(
-        title = R.string.note_option_number_lines,
-        subtitle = R.string.note_option_default_color_subtitle,
-        icon = R.drawable.ic_action_list,
-        listener = View.OnClickListener {
-          LineCountBottomSheet.openSheet(activity)
-          dismiss()
-        }
-    ))
     return options
-  }
-
-  private fun openExportSheet() {
-    val activity = context as MainActivity
-    val dataStore = DataStore.get(context)
-    if (!SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)) {
-      ExportNotesBottomSheet.openSheet(activity)
-      return
-    }
-    EnterPincodeBottomSheet.openUnlockSheet(
-        context as ThemedActivity,
-        object : EnterPincodeBottomSheet.PincodeSuccessListener {
-          override fun onFailure() {
-            openExportSheet()
-          }
-
-          override fun onSuccess() {
-            ExportNotesBottomSheet.openSheet(activity)
-          }
-        },
-        dataStore)
   }
 
   override fun getLayout(): Int = R.layout.layout_options_sheet
