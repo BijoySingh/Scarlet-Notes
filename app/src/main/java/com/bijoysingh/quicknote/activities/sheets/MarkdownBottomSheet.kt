@@ -21,7 +21,7 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
     val sourceText = dialog.findViewById<TextView>(R.id.source_text);
     val markdownText = dialog.findViewById<TextView>(R.id.markdown_text);
     sourceText.setText(R.string.markdown_sheet_examples_list)
-    markdownText.setText(Markwon.markdown(context, getString(R.string.markdown_sheet_examples_list)))
+    markdownText.setText(Markwon.markdown(themedContext(), getString(R.string.markdown_sheet_examples_list)))
 
     val sheetTitle = dialog.findViewById<TextView>(R.id.options_title)
     val exampleTitle = dialog.findViewById<TextView>(R.id.examples_title)

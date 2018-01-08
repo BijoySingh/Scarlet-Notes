@@ -18,7 +18,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
   }
 
   private fun getOptions(): List<OptionsItem> {
-    val sorting = getSortingState(context)
+    val sorting = getSortingState(themedContext())
     val options = ArrayList<OptionsItem>()
 
     val getIcon = fun (sortingTechnique: SortingTechnique): Int
@@ -29,7 +29,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         subtitle = SortingTechnique.LAST_MODIFIED.label,
         icon = getIcon(SortingTechnique.LAST_MODIFIED),
         listener = View.OnClickListener {
-          setSortingState(context, SortingTechnique.LAST_MODIFIED)
+          setSortingState(themedContext(), SortingTechnique.LAST_MODIFIED)
           listener()
           reset(dialog)
         },
@@ -40,7 +40,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         subtitle = SortingTechnique.NEWEST_FIRST.label,
         icon = getIcon(SortingTechnique.NEWEST_FIRST),
         listener = View.OnClickListener {
-          setSortingState(context, SortingTechnique.NEWEST_FIRST)
+          setSortingState(themedContext(), SortingTechnique.NEWEST_FIRST)
           listener()
           reset(dialog)
         },
@@ -51,7 +51,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         subtitle = SortingTechnique.OLDEST_FIRST.label,
         icon = getIcon(SortingTechnique.OLDEST_FIRST),
         listener = View.OnClickListener {
-          setSortingState(context, SortingTechnique.OLDEST_FIRST)
+          setSortingState(themedContext(), SortingTechnique.OLDEST_FIRST)
           listener()
           reset(dialog)
         },

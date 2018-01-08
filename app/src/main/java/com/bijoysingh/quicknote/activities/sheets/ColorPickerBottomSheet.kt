@@ -57,7 +57,7 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
 
     val colors = resources.getIntArray(R.array.bright_colors)
     for (color in colors) {
-      val item = ColorView(context)
+      val item = ColorView(context!!)
 
       item.setColor(color, selectedColor == color)
       item.root.setOnClickListener {

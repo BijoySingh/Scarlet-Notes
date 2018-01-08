@@ -6,6 +6,7 @@ import android.net.Uri
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.IntentUtils
@@ -27,6 +28,7 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
     val appVersion = dialog.findViewById<TextView>(R.id.app_version)
     val rateUs = dialog.findViewById<TextView>(R.id.rate_us)
 
+    val activity = themedActivity()
     MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<String> {
       override fun run(): String {
         try {

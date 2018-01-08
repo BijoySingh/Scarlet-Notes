@@ -53,7 +53,7 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.home_option_fill_survey_subtitle,
         icon = R.drawable.ic_note_white_48dp,
         listener = View.OnClickListener {
-          context.startActivity(Intent(
+          activity.startActivity(Intent(
               Intent.ACTION_VIEW,
               Uri.parse(SURVEY_LINK)))
           dismiss()
@@ -88,9 +88,6 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
   companion object {
 
     const val SURVEY_LINK = "https://goo.gl/forms/UbE2lARpp89CNIbl2"
-    const val KEY_LIST_VIEW = "KEY_LIST_VIEW"
-    const val KEY_MARKDOWN_ENABLED = "KEY_MARKDOWN_ENABLED"
-    const val KEY_MARKDOWN_HOME_ENABLED = "KEY_MARKDOWN_HOME_ENABLED"
 
     fun openSheet(activity: MainActivity) {
       val sheet = AboutSettingsOptionsBottomSheet()

@@ -26,6 +26,7 @@ class OpenSourceBottomSheet : ThemedBottomSheetFragment() {
     val library = dialog.findViewById<TextView>(R.id.library_list)
     val contribute = dialog.findViewById<TextView>(R.id.contribute)
 
+    val activity = themedActivity()
     MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<String> {
       override fun run(): String {
         try {
@@ -44,10 +45,10 @@ class OpenSourceBottomSheet : ThemedBottomSheetFragment() {
         val openSourceDetails = getString(R.string.about_page_description_os, appName, creatorName)
         openSource.text = openSourceDetails
 
-        library.text = renderMarkdown(context, LIBRARY_DETAILS_MD)
+        library.text = renderMarkdown(themedContext(), LIBRARY_DETAILS_MD)
 
         contribute.setOnClickListener {
-          context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_URL)))
+          themedContext().startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_URL)))
           dismiss()
         }
       }

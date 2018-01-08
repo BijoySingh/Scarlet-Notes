@@ -1,11 +1,15 @@
 package com.bijoysingh.quicknote.activities.sheets
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 
@@ -26,18 +30,22 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
     setBackgroundView(dialog, getBackgroundView())
   }
 
+  fun themedActivity(): Activity = activity ?: context as AppCompatActivity
+
+  fun themedContext(): Context = context ?: activity!!
+
   abstract fun getBackgroundView(): Int
 
   private fun setBackgroundView(dialog: Dialog, viewId: Int) {
     if (isNightMode) {
       val containerLayout = dialog.findViewById<View>(viewId);
-      containerLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.material_grey_800))
+      containerLayout.setBackgroundColor(ContextCompat.getColor(themedContext(), R.color.material_grey_800))
     }
   }
 
   fun getColor(lightColorRes: Int, darkColorRes: Int): Int {
     return ContextCompat.getColor(
-        context,
+        themedContext(),
         when (isNightMode) {
           true -> darkColorRes
           else -> lightColorRes
@@ -47,7 +55,7 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
   fun maybeSetTextNightModeColor(dialog: Dialog, viewId: Int, colorId: Int) {
     if (isNightMode) {
       val textView = dialog.findViewById<TextView>(viewId);
-      textView.setTextColor(ContextCompat.getColor(context, colorId))
+      textView.setTextColor(ContextCompat.getColor(themedContext(), colorId))
     }
   }
 
@@ -58,7 +66,7 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
       selected -> R.color.material_blue_700
       else -> R.color.dark_secondary_text
     }
-    return ContextCompat.getColor(context, colorResource)
+    return ContextCompat.getColor(themedContext(), colorResource)
   }
 
   fun getOptionsSubtitleColor(selected: Boolean): Int {
@@ -68,6 +76,6 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
       selected -> R.color.material_blue_500
       else -> R.color.dark_tertiary_text
     }
-    return ContextCompat.getColor(context, colorResource)
+    return ContextCompat.getColor(themedContext(), colorResource)
   }
 }
