@@ -22,6 +22,9 @@
 
   <color name="fabColor">@color/colorAccent</color>
 
+  <color name="login_button_active">@color/material_blue_800</color>
+  <color name="login_button_disabled">@color/material_grey_600</color>
+
   <array name="bright_colors">
     <item>@color/material_grey_850</item>
     <item>@color/material_blue_grey_800</item>

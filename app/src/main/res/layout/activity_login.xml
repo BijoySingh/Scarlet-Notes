@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="com.bijoysingh.quicknote.activities.LoginActivity">
+
+  <LinearLayout
+    android:id="@+id/container_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+      android:id="@+id/options_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:text="@string/note_option_number_lines"
+      android:textColor="@color/dark_tertiary_text"
+      android:textSize="18sp" />
+
+    <LinearLayout
+      android:id="@+id/sign_in_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="32dp"
+      android:background="@drawable/login_button_active"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:padding="8dp">
+
+      <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="8dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_google_icon"
+        android:tint="@color/white" />
+
+      <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:fontFamily="monospace"
+        android:text="@string/login_with_google"
+        android:textColor="@color/light_primary_text"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    </LinearLayout>
+  </LinearLayout>
+</android.support.constraint.ConstraintLayout>
