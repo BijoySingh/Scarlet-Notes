@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 27
@@ -41,6 +40,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.0';
     implementation 'com.android.support:support-v4:27.1.0';
     implementation 'com.android.support:design:27.1.0';
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
     implementation 'android.arch.persistence.room:runtime:1.0.0';
     implementation 'android.arch.persistence.room:testing:1.0.0';
@@ -67,3 +67,4 @@ dependencies {
 }
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
