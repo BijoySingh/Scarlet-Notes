@@ -7,5 +7,7 @@ class MaterialNotes: Application() {
   override fun onCreate() {
     super.onCreate()
     Reprint.initialize(this)
+    Reprint.initialize(this)
+    Reprint.initialize(this)
   }
 }
