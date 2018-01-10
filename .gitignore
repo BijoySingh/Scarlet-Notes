@@ -7,7 +7,4 @@
 /build
 /captures
 /.idea/
-/gradle/
-gradlew
-gradlew.bat
 app/google-services.json
