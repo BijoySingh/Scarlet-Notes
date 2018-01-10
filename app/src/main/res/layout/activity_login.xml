@@ -12,20 +12,40 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-    <TextView
-      android:id="@+id/options_title"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
-      android:text="@string/note_option_number_lines"
-      android:textColor="@color/dark_tertiary_text"
-      android:textSize="18sp" />
+    <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:padding="20dp">
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/sign_in_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:text="@string/home_option_login_with_app"
+          android:textColor="@color/dark_secondary_text"
+          android:textSize="21sp" />
+
+        <TextView
+          android:id="@+id/sign_in_description"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:text="@string/note_option_number_lines"
+          android:textColor="@color/dark_tertiary_text"
+          android:textSize="18sp" />
+      </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
       android:id="@+id/sign_in_button"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_margin="32dp"
       android:background="@drawable/login_button_active"
       android:gravity="center"
       android:orientation="horizontal"

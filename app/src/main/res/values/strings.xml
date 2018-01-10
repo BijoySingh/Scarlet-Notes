@@ -288,7 +288,9 @@
 
   <!-- Start: Firebase Login Strings -->
   <string name="home_option_login_with_app">Sign In to App</string>
-  <string name="home_option_login_with_app_subtitle">Sign In for cloud back up and synchronisation</string>
+  <string name="home_option_login_with_app_subtitle">Sign In for cloud backup and synchronisation</string>
+  <string name="home_option_logout_of_app">Sign Out</string>
+  <string name="home_option_logout_of_app_subtitle">Sign Out to stop cloud backup</string>
   <string name="login_with_google" translatable="false">Sign In with Google</string>
   <string name="logging_into_app" translatable="false">Signing in&#8230;</string>
   <string name="logged_into_app" translatable="false">You are logged in</string>

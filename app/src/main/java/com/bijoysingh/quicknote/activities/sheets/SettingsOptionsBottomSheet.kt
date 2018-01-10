@@ -6,25 +6,39 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.LoginActivity
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.github.bijoysingh.starter.async.MultiAsyncTask
+import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.IntentUtils
+import com.google.firebase.auth.FirebaseAuth
 
 class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   override fun setupViewWithDialog(dialog: Dialog) {
-    setOptions(dialog, getOptions())
+    MultiAsyncTask.execute(activity, object: MultiAsyncTask.Task<List<OptionsItem>> {
+      override fun run(): List<OptionsItem> {
+        return getOptions()
+      }
+
+      override fun handle(result: List<OptionsItem>) {
+        setOptions(dialog, result)
+      }
+    })
   }
 
   private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<OptionsItem>()
+
+    val firebaseUser = FirebaseAuth.getInstance().getCurrentUser()
     options.add(OptionsItem(
         title = R.string.home_option_login_with_app,
         subtitle = R.string.home_option_login_with_app_subtitle,
-        icon = R.drawable.ic_google_icon,
+        icon = R.drawable.ic_sign_in_options,
         listener = View.OnClickListener {
           IntentUtils.startActivity(context, LoginActivity::class.java)
           dismiss()
-        }
+        },
+        visible = firebaseUser === null
     ))
     options.add(OptionsItem(
         title = R.string.home_option_ui_experience,
@@ -66,6 +80,16 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           IntentUtils.openAppPlayStore(activity)
           dismiss()
         }
+    ))
+    options.add(OptionsItem(
+        title = R.string.home_option_logout_of_app,
+        subtitle = R.string.home_option_logout_of_app_subtitle,
+        icon = R.drawable.ic_sign_in_options,
+        listener = View.OnClickListener {
+          IntentUtils.startActivity(context, LoginActivity::class.java)
+          dismiss()
+        },
+        visible = firebaseUser !== null
     ))
     return options
   }

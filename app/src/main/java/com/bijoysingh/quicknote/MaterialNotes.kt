@@ -7,6 +7,7 @@ import com.github.ajalt.reprint.core.Reprint
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.prefs.Store
 import com.github.bijoysingh.starter.prefs.VersionedStore
+import com.google.firebase.FirebaseApp
 
 class MaterialNotes : Application() {
 
@@ -24,6 +25,8 @@ class MaterialNotes : Application() {
     // Temporary object, will be removed soon
     var dataStoreVariable = DataStore.get(this)
     dataStoreVariable!!.migrateToStore(userPreferencesVariable)
+
+    FirebaseApp.initializeApp(this)
   }
 
   companion object {
