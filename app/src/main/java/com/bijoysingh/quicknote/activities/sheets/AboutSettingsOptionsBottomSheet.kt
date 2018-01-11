@@ -37,6 +37,17 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
+        title = R.string.material_notes_privacy_policy,
+        subtitle = R.string.material_notes_privacy_policy_subtitle,
+        icon = R.drawable.ic_privacy_policy,
+        listener = View.OnClickListener {
+          activity.startActivity(Intent(
+              Intent.ACTION_VIEW,
+              Uri.parse(PRIVACY_POLICY_LINK)))
+          dismiss()
+        }
+    ))
+    options.add(OptionsItem(
         title = R.string.home_option_rate_and_review,
         subtitle = R.string.home_option_rate_and_review_subtitle,
         icon = R.drawable.ic_rating,
@@ -73,6 +84,7 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
   companion object {
 
     const val SURVEY_LINK = "https://goo.gl/forms/UbE2lARpp89CNIbl2"
+    const val PRIVACY_POLICY_LINK = "https://www.iubenda.com/privacy-policy/8213521"
 
     fun openSheet(activity: MainActivity) {
       val sheet = AboutSettingsOptionsBottomSheet()

@@ -295,6 +295,9 @@
   <string name="logging_into_app" translatable="false">Signing in&#8230;</string>
   <string name="logged_into_app" translatable="false">You are logged in</string>
   <string name="login_to_google_failed" translatable="false">Google Login Failed</string>
+
+  <string name="material_notes_privacy_policy" translatable="false">Privacy Policy</string>
+  <string name="material_notes_privacy_policy_subtitle" translatable="false">App privacy policy for the content</string>
   <!-- End: Firebase Login Strings -->
 
 </resources>
