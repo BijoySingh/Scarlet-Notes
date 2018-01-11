@@ -22,6 +22,7 @@ import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.util.DateFormatter;
 import com.github.bijoysingh.starter.util.IntentUtils;
+import com.github.bijoysingh.starter.util.RandomHelper;
 import com.github.bijoysingh.starter.util.TextUtils;
 
 import org.json.JSONArray;
@@ -67,6 +68,8 @@ public class Note {
   public long updateTimestamp;
 
   public boolean pinned;
+
+  public String uuid;
 
   public boolean isUnsaved() {
     return uid == null || uid == 0;
@@ -262,6 +265,7 @@ public class Note {
 
   public static Note gen() {
     Note note = new Note();
+    note.uuid = RandomHelper.getRandomString(24);
     note.state = NoteState.DEFAULT.name();
     note.timestamp = Calendar.getInstance().getTimeInMillis();
     note.updateTimestamp = note.timestamp;

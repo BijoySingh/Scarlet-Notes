@@ -9,7 +9,7 @@ import android.content.Context;
 
 @Database(
     entities = {Note.class, Tag.class},
-    version = 6
+    version = 7
 )
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -24,7 +24,8 @@ public abstract class AppDatabase extends RoomDatabase {
       database = Room
           .databaseBuilder(context, AppDatabase.class, "note-database")
           .allowMainThreadQueries()
-          .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+          .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4,
+              MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
           .build();
     }
     return database;
@@ -67,6 +68,14 @@ public abstract class AppDatabase extends RoomDatabase {
       database.execSQL("ALTER TABLE note ADD COLUMN updateTimestamp INTEGER NOT NULL DEFAULT 0");
       database.execSQL("ALTER TABLE note ADD COLUMN pinned INTEGER NOT NULL DEFAULT 0");
       database.execSQL("UPDATE note SET updateTimestamp = timestamp");
+    }
+  };
+
+  public static final Migration MIGRATION_6_7 = new Migration(6, 7) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+      database.execSQL("ALTER TABLE note ADD COLUMN uuid TEXT DEFAULT ''");
+      database.execSQL("UPDATE note SET uuid = hex(randomblob(16))");
     }
   };
 }
