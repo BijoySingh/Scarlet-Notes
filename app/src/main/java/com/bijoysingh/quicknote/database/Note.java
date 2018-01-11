@@ -46,12 +46,13 @@ public class Note {
   @PrimaryKey(autoGenerate = true)
   public Integer uid;
 
-  public String title;
+  @Deprecated
+  public String title = "";
 
   public String description;
 
   @Deprecated
-  public String displayTimestamp;
+  public String displayTimestamp = "";
 
   public Long timestamp;
 
@@ -276,7 +277,6 @@ public class Note {
 
   public static Note genSave(Context context, ExportableNote exportableNote) {
     Note note = Note.gen();
-    note.title = exportableNote.getTitle();
     note.color = exportableNote.getColor();
     note.description = exportableNote.getDescription();
     note.timestamp = exportableNote.getTimestamp();
@@ -302,7 +302,6 @@ public class Note {
       formats.add(new Format(FormatType.HEADING, title));
     }
     formats.add(new Format(FormatType.TEXT, description));
-    note.title = NoteType.NOTE.name();
     note.description = Format.getNote(formats);
     return note;
   }

@@ -217,7 +217,6 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 
   @Override
   protected void maybeUpdateNote() {
-    note.title = NoteType.RICH_NOTE.name();
     note.updateTimestamp = Calendar.getInstance().getTimeInMillis();
     updateNote();
   }

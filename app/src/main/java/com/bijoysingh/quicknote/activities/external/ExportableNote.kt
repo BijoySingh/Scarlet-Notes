@@ -9,7 +9,6 @@ import java.io.*
 
 
 class ExportableNote(
-    var title: String,
     var description: String,
     var displayTimestamp: String,
     var timestamp: Long,
@@ -19,7 +18,6 @@ class ExportableNote(
 ): Serializable {
 
   constructor(context: Context, note: Note) : this(
-      note.title,
       note.description,
       note.displayTime,
       note.timestamp,
@@ -30,7 +28,6 @@ class ExportableNote(
 
   @Deprecated("Do not use this unless no context is available, tags wont be saved")
   constructor(note: Note) : this(
-      note.title,
       note.description,
       note.displayTime,
       note.timestamp,
@@ -41,7 +38,6 @@ class ExportableNote(
 
   fun toJSONObject(): JSONObject {
     val map = HashMap<String, Any>()
-    map["title"] = title
     map["description"] = description
     map["displayTimestamp"] = displayTimestamp
     map["timestamp"] = timestamp
@@ -57,7 +53,6 @@ class ExportableNote(
 
     fun fromJSONObjectV2(json: JSONObject): ExportableNote {
       return ExportableNote(
-          json["title"] as String,
           json["description"] as String,
           json["displayTimestamp"] as String,
           json["timestamp"] as Long,
@@ -68,7 +63,6 @@ class ExportableNote(
 
     fun fromJSONObjectV3(json: JSONObject): ExportableNote {
       return ExportableNote(
-          json["title"] as String,
           json["description"] as String,
           json["displayTimestamp"] as String,
           json["timestamp"] as Long,
