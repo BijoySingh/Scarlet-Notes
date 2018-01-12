@@ -70,6 +70,15 @@ public class Note {
     return uid == null || uid == 0;
   }
 
+  /*Content and Display Information Functions*/
+  public String getTitle() {
+    List<Format> formats = Format.getFormats(description);
+    if (!formats.isEmpty() && formats.get(0).formatType == FormatType.HEADING) {
+      return formats.get(0).text;
+    }
+    return "";
+  }
+
   public String getText() {
     String text = "";
     List<Format> formats = Format.getFormats(description);
@@ -93,6 +102,15 @@ public class Note {
     return renderMarkdown(context, removeMarkdownHeaders(getText()));
   }
 
+  public String getDisplayTime() {
+    long time = updateTimestamp != 0 ? updateTimestamp : (timestamp == null ? 0 : timestamp);
+    return DateFormatter.getDate("dd MMMM yyyy", time);
+  }
+
+  public List<Format> getFormats() {
+    return Format.getFormats(description);
+  }
+
   public NoteState getNoteState() {
     try {
       return NoteState.valueOf(state);
@@ -101,21 +119,9 @@ public class Note {
     }
   }
 
-  public String getTitle() {
-    List<Format> formats = Format.getFormats(description);
-    if (!formats.isEmpty() && formats.get(0).formatType == FormatType.HEADING) {
-      return formats.get(0).text;
-    }
-    return "";
-  }
-
+  /*Note Action Functions*/
   public boolean search(String keywords) {
     return searchInNote(this, keywords);
-  }
-
-  public void save(Context context) {
-    long id = Note.db(context).insertNote(this);
-    uid = isUnsaved() ? ((int) id) : uid;
   }
 
   public void delete(Context context) {
@@ -130,11 +136,6 @@ public class Note {
   public void mark(Context context, NoteState noteState) {
     state = noteState.name();
     save(context);
-  }
-
-  public String getDisplayTime() {
-    long time = updateTimestamp != 0 ? updateTimestamp : (timestamp == null ? 0 : timestamp);
-    return DateFormatter.getDate("dd MMMM yyyy", time);
   }
 
   public void share(Context context) {
@@ -153,12 +154,6 @@ public class Note {
     FloatingNoteService.Companion.openNote(activity, this, true);
   }
 
-  public Intent editIntent(Context context) {
-    Intent intent = new Intent(context, CreateOrEditAdvancedNoteActivity.class);
-    intent.putExtra(NOTE_ID, uid);
-    return intent;
-  }
-
   public void edit(final Context context) {
     if (context instanceof ThemedActivity && locked) {
       EnterPincodeBottomSheet.Companion.openUnlockSheet(
@@ -171,7 +166,7 @@ public class Note {
 
             @Override
             public void onSuccess() {
-              context.startActivity(editIntent(context));
+              context.startActivity(getEditIntent(context));
             }
           },
           DataStore.get(context));
@@ -179,9 +174,22 @@ public class Note {
     } else if (locked) {
       return;
     }
-    context.startActivity(editIntent(context));
+    context.startActivity(getEditIntent(context));
   }
 
+  public void edit(Context context, boolean nightMode) {
+    Intent intent = getEditIntent(context);
+    intent.putExtra(ThemedActivity.Companion.getKey(), nightMode);
+    context.startActivity(intent);
+  }
+
+  private Intent getEditIntent(Context context) {
+    Intent intent = new Intent(context, CreateOrEditAdvancedNoteActivity.class);
+    intent.putExtra(NOTE_ID, uid);
+    return intent;
+  }
+
+  /*Tags Functions*/
   public Set<Integer> getTagIDs() {
     tags = tags == null ? "" : tags;
     String[] split = tags.split(",");
@@ -244,17 +252,17 @@ public class Note {
     return builder.toString();
   }
 
-  public void edit(Context context, boolean nightMode) {
-    Intent intent = editIntent(context);
-    intent.putExtra(ThemedActivity.Companion.getKey(), nightMode);
-    context.startActivity(intent);
-  }
-
-  public List<Format> getFormats() {
-    return Format.getFormats(description);
+  /*Database Functions*/
+  public void save(Context context) {
+    long id = Note.db(context).insertNote(this);
+    uid = isUnsaved() ? ((int) id) : uid;
   }
 
   public static NoteDao db(Context context) {
     return AppDatabase.getDatabase(context).notes();
+  }
+
+  public void notifyChange() {
+    // Notify change to online/offline sync
   }
 }
