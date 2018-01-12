@@ -264,6 +264,11 @@ public class Note {
 
   /*Database Functions*/
   public void save(Context context) {
+    saveWithoutSync(context);
+    notifyChange();
+  }
+
+  public void saveWithoutSync(Context context) {
     long id = Note.db(context).insertNote(this);
     uid = isUnsaved() ? ((int) id) : uid;
   }
@@ -274,5 +279,29 @@ public class Note {
 
   public void notifyChange() {
     // Notify change to online/offline sync
+  }
+
+  public boolean isEqual(Note note) {
+    return TextUtils.areEqualNullIsEmpty(state, note.state)
+        && TextUtils.areEqualNullIsEmpty(description, note.description)
+        && TextUtils.areEqualNullIsEmpty(uuid, note.uuid)
+        && TextUtils.areEqualNullIsEmpty(tags, note.tags)
+        && (timestamp.longValue() == note.timestamp.longValue())
+        && locked == note.locked
+        && pinned == note.pinned;
+  }
+
+  public Note copyNote(Note reference) {
+    uid = reference.uid;
+    uuid = reference.uuid;
+    state = reference.state;
+    description = reference.description;
+    timestamp = reference.timestamp;
+    updateTimestamp = reference.updateTimestamp;
+    color = reference.color;
+    tags = reference.tags;
+    pinned = reference.pinned;
+    locked = reference.locked;
+    return this;
   }
 }

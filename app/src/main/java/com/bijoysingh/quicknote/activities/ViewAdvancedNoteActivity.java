@@ -237,7 +237,6 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     actionShare.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        maybeUpdateNote();
         note.share(context);
       }
     });
@@ -297,22 +296,21 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     colorButtonClicker.setVisibility(GONE);
   }
 
-  protected void updateNote() {
-    note.description = Format.getNote(formats);
+  protected void setNoteColor(int color) {
+    colorButton.setBackground(new CircleDrawable(note.color));
+  }
+
+  protected void maybeSaveNote() {
     if (note.getFormats().isEmpty() && note.isUnsaved()) {
       return;
     }
     note.save(context);
   }
 
-  protected void maybeUpdateNote() {
-    // do nothing
+  private void updateNote() {
+    note.description = Format.getNote(formats);
+    maybeSaveNote();
   }
-
-  protected void setNoteColor(int color) {
-    colorButton.setBackground(new CircleDrawable(note.color));
-  }
-
 
   public void moveItemToTrashOrDelete(Note note) {
     if (note.getNoteState() == NoteState.TRASH) {

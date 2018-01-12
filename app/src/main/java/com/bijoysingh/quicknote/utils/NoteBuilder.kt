@@ -78,13 +78,5 @@ fun genImportedNote(context: Context, exportableNote: ExportableNote): Note {
  */
 fun copyNote(reference: Note): Note {
   val note = genEmptyNote()
-  note.uid = reference.uid
-  note.uuid = reference.uuid
-  note.state = reference.state
-  note.timestamp = reference.timestamp
-  note.updateTimestamp = reference.updateTimestamp
-  note.color = reference.color
-  note.tags = reference.tags
-  note.pinned = reference.pinned
-  return note
+  return note.copyNote(reference)
 }

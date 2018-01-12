@@ -13,7 +13,6 @@ import com.bijoysingh.quicknote.activities.sheets.ColorPickerBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
-import com.bijoysingh.quicknote.formats.NoteType;
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder;
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
@@ -25,6 +24,7 @@ import java.util.Calendar;
 import java.util.Collections;
 
 import static android.view.View.GONE;
+import static com.bijoysingh.quicknote.utils.NoteBuilderKt.copyNote;
 
 public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 
@@ -38,6 +38,8 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   private ImageView quote;
   private ImageView code;
 
+  private Note lastNoteInstance = null;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -47,6 +49,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     if (getIntent().getBooleanExtra(ThemedActivity.Companion.getKey(), false)) {
       setNightMode(true);
     }
+    lastNoteInstance = copyNote(note);
   }
 
   @Override
@@ -146,17 +149,17 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
         ColorPickerBottomSheet.Companion.openSheet(
             CreateOrEditAdvancedNoteActivity.this,
             new ColorPickerBottomSheet.ColorPickerController() {
-          @Override
-          public void onColorSelected(@NotNull Note note, int color) {
-            setNoteColor(color);
-          }
+              @Override
+              public void onColorSelected(@NotNull Note note, int color) {
+                setNoteColor(color);
+              }
 
-          @NotNull
-          @Override
-          public Note getNote() {
-            return note;
-          }
-        });
+              @NotNull
+              @Override
+              public Note getNote() {
+                return note;
+              }
+            });
       }
     });
   }
@@ -215,10 +218,17 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     return false;
   }
 
-  @Override
   protected void maybeUpdateNote() {
     note.updateTimestamp = Calendar.getInstance().getTimeInMillis();
-    updateNote();
+    note.description = Format.getNote(formats);
+
+    // Ignore update if nothing changed. It allows for one undo per few seconds
+    if (note.isEqual(lastNoteInstance)) {
+      return;
+    }
+
+    maybeSaveNote();
+    lastNoteInstance.copyNote(note);
   }
 
   private void startHandler() {

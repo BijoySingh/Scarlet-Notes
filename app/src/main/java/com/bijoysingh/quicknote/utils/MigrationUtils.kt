@@ -39,7 +39,7 @@ fun migrate(context: Context) {
         saveNote = true
       }
       if (saveNote) {
-        note.save(context)
+        note.saveWithoutSync(context)
       }
     }
     store.put(KEY_MIGRATE_UUID, true)
