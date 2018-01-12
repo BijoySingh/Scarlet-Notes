@@ -22,6 +22,7 @@ import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_3_4;
 import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_4_5;
 import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_5_6;
 import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_6_7;
+import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_7_8;
 
 @RunWith(AndroidJUnit4.class)
 public class MigrationTest {
@@ -59,6 +60,8 @@ public class MigrationTest {
   private static final String TAG_V5 =
       "INSERT INTO tag (title) VALUES('Title');";
 
+  private static final String TAG_V8 =
+      "INSERT INTO tag (uuid, title) VALUES('324adssa', 'Title');";
 
 
   @Rule
@@ -141,7 +144,6 @@ public class MigrationTest {
     validate(database, select(TABLE_NOTE, 2));
   }
 
-
   @Test
   public void migrate6To7() throws IOException {
     SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 6);
@@ -158,6 +160,21 @@ public class MigrationTest {
     validate(database, select(TABLE_NOTE, 2));
   }
 
+  @Test
+  public void migrate7To8() throws IOException {
+    SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 7);
+    database.execSQL(TAG_V5);
+    database.close();
+
+    database = helper.runMigrationsAndValidate(TEST_DB, 8, false, MIGRATION_7_8);
+    validate(database, select(TABLE_TAG, 1));
+
+    String uuid = getValue(database, select(TABLE_TAG, 1, "uuid"));
+    Assert.assertTrue(!uuid.isEmpty());
+
+    database.execSQL(TAG_V8);
+    validate(database, select(TABLE_TAG, 2));
+  }
 
   private static void validate(SupportSQLiteDatabase database, String query) {
     Cursor cursor = database.query(query);

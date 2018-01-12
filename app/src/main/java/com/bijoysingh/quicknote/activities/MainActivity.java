@@ -43,6 +43,7 @@ import static com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.KE
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_LIST_VIEW;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED;
+import static com.bijoysingh.quicknote.utils.MigrationUtilsKt.migrate;
 import static com.bijoysingh.quicknote.utils.NoteSortingUtilsKt.sort;
 
 public class MainActivity extends ThemedActivity {
@@ -67,6 +68,10 @@ public class MainActivity extends ThemedActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    // Migrate to the newer version of the tags
+    migrate(this);
+
     mode = HomeNavigationState.DEFAULT;
     store = DataStore.get(this);
     executor = new SimpleThreadExecutor(1);

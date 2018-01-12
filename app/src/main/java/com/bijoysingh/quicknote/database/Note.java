@@ -25,6 +25,7 @@ import com.github.bijoysingh.starter.util.TextUtils;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -190,6 +191,7 @@ public class Note {
   }
 
   /*Tags Functions*/
+  @Deprecated
   public Set<Integer> getTagIDs() {
     tags = tags == null ? "" : tags;
     String[] split = tags.split(",");
@@ -205,20 +207,28 @@ public class Note {
     return tagIDs;
   }
 
+  public Set<String> getTagUUIDs() {
+    tags = tags == null ? "" : tags;
+    String[] split = tags.split(",");
+    Set<String> tagIDs = new HashSet<>();
+    Collections.addAll(tagIDs, split);
+    return tagIDs;
+  }
+
   public void toggleTag(Tag tag) {
-    Set<Integer> tags = getTagIDs();
-    if (tags.contains(tag.uid)) {
-      tags.remove(tag.uid);
+    Set<String> tags = getTagUUIDs();
+    if (tags.contains(tag.uuid)) {
+      tags.remove(tag.uuid);
     } else {
-      tags.add(tag.uid);
+      tags.add(tag.uuid);
     }
     this.tags = android.text.TextUtils.join(",", tags);
   }
 
   public Set<Tag> getTags(Context context) {
     Set<Tag> tags = new HashSet<>();
-    for (Integer tagID : getTagIDs()) {
-      Tag tag = Tag.db(context).getByID(tagID);
+    for (String tagID : getTagUUIDs()) {
+      Tag tag = Tag.db(context).getByUUID(tagID);
       if (tag != null) {
         tags.add(tag);
       }

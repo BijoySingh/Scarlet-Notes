@@ -9,6 +9,7 @@ import com.bijoysingh.quicknote.activities.external.ExportableTag;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.util.DateFormatter;
+import com.github.bijoysingh.starter.util.RandomHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,6 +23,8 @@ public class Tag {
   public int uid;
 
   public String title;
+
+  public String uuid;
 
   public void save(Context context) {
     long id = Tag.db(context).insertTag(this);
@@ -59,6 +62,7 @@ public class Tag {
     Tag tag = new Tag();
     tag.uid = 0;
     tag.title = "";
+    tag.uuid = RandomHelper.getRandomString(24);
     return tag;
   }
 
