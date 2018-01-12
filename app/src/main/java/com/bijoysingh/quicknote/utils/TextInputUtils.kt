@@ -7,7 +7,7 @@ import android.widget.TextView
 import ru.noties.markwon.Markwon
 
 fun getEditorActionListener(runnable: () -> Boolean): TextView.OnEditorActionListener {
-  return TextView.OnEditorActionListener { view: TextView, actionId: Int, event: KeyEvent? ->
+  return TextView.OnEditorActionListener { _: TextView, actionId: Int, event: KeyEvent? ->
     if (event == null) {
       if (actionId != EditorInfo.IME_ACTION_DONE && actionId != EditorInfo.IME_ACTION_NEXT) {
         return@OnEditorActionListener false
@@ -24,7 +24,7 @@ fun getEditorActionListener(runnable: () -> Boolean): TextView.OnEditorActionLis
 }
 
 fun trim(source: CharSequence?): CharSequence {
-  if (source == null || source.length == 0) {
+  if (source == null || source.isEmpty()) {
     return ""
   }
 

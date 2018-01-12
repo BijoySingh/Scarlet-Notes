@@ -19,7 +19,6 @@ import com.bijoysingh.quicknote.recyclerview.FormatAdapter;
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.bijoysingh.quicknote.utils.NoteState;
-import com.github.bijoysingh.starter.async.MultiAsyncTask;
 import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
 import com.google.android.flexbox.FlexboxLayout;
@@ -30,6 +29,7 @@ import java.util.Set;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
+import static com.bijoysingh.quicknote.utils.NoteBuilderKt.genEmptyNote;
 
 public class ViewAdvancedNoteActivity extends ThemedActivity {
 
@@ -74,7 +74,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
       note = Note.db(this).getByID(noteId);
     }
     note = note == null
-        ? Note.genWithColor(NoteSettingsOptionsBottomSheet.Companion.genDefaultColor(store))
+        ? genEmptyNote(NoteSettingsOptionsBottomSheet.Companion.genDefaultColor(store))
         : note;
 
     setNightMode(getIntent().getBooleanExtra(
@@ -144,11 +144,11 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     if (!getEditModeValue()) {
       Set<Tag> tags = note.getTags(context);
       String tagLabel = Note.getTagString(tags);
-      if(tagLabel.isEmpty()) {
+      if (tagLabel.isEmpty()) {
         return;
       }
 
-      Format format = new Format(FormatType.TAG,  tagLabel);
+      Format format = new Format(FormatType.TAG, tagLabel);
       adapter.addItem(format);
     }
   }
@@ -358,6 +358,6 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     if (savedInstanceState == null) {
       return;
     }
-    savedInstanceState.putInt(NOTE_ID,  note == null || note.uid == null ? 0 : note.uid);
+    savedInstanceState.putInt(NOTE_ID, note == null || note.uid == null ? 0 : note.uid);
   }
 }

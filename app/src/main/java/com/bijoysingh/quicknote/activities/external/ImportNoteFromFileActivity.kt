@@ -7,11 +7,11 @@ import android.view.View
 import android.view.View.GONE
 import android.widget.ProgressBar
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.items.FileRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
+import com.bijoysingh.quicknote.utils.genImportedNote
+import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.async.Parallel
 import com.github.bijoysingh.starter.json.SafeJson
@@ -54,11 +54,11 @@ class ImportNoteFromFileActivity : AppCompatActivity() {
                   3 -> ExportableNote.fromJSONObjectV3(notes.getJSONObject(index))
                   else -> ExportableNote.fromBase64String(notes.getString(index))
                 }
-                Note.genSave(activity, exportableNote)
+                genImportedNote(activity, exportableNote)
               }
 
             } catch (exception: Exception) {
-              Note.gen("", fileContent).save(activity)
+              genEmptyNote("", fileContent).save(activity)
             }
           }
         }

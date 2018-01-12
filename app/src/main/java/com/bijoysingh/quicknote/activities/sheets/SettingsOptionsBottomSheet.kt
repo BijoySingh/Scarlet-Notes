@@ -22,7 +22,6 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
-    val dataStore = DataStore.get(context)
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.home_option_ui_experience,

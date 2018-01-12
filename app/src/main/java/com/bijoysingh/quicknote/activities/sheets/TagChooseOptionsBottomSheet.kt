@@ -28,7 +28,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
 
   override fun onNewTagClick() {
     val activity = context as ThemedActivity
-    CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), {tag, deleted ->
+    CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), {tag, _ ->
       note!!.toggleTag(tag)
       note!!.save(context)
       reset(dialog)

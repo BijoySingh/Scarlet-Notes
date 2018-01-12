@@ -8,9 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity.Companion.convertStreamToString
-import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.github.bijoysingh.starter.prefs.DataStore
-import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.github.bijoysingh.uibasics.views.UITextView
 
@@ -61,7 +60,7 @@ class ExternalIntentActivity : ThemedActivity() {
 
     backButton.setOnClickListener { onBackPressed() }
     actionDone.setOnClickListener {
-      val note = Note.gen(titleText, contentText)
+      val note = genEmptyNote(titleText, contentText)
       note.save(this)
       startActivity(ViewAdvancedNoteActivity.getIntent(this, note, isNightMode))
       finish()
@@ -71,7 +70,7 @@ class ExternalIntentActivity : ThemedActivity() {
   fun handleIntent(): Boolean {
     val hasSendIntent = handleSendText(intent)
     if (hasSendIntent) {
-      val note = Note.gen(titleText, contentText)
+      val note = genEmptyNote(titleText, contentText)
       note.save(this)
       startActivity(ViewAdvancedNoteActivity.getIntent(this, note, isNightMode))
       return false

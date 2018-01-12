@@ -11,25 +11,20 @@ import android.support.annotation.NonNull;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
-import com.bijoysingh.quicknote.activities.external.ExportableNote;
 import com.bijoysingh.quicknote.activities.external.ExportableTag;
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
-import com.bijoysingh.quicknote.formats.NoteType;
 import com.bijoysingh.quicknote.service.FloatingNoteService;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.util.DateFormatter;
 import com.github.bijoysingh.starter.util.IntentUtils;
-import com.github.bijoysingh.starter.util.RandomHelper;
 import com.github.bijoysingh.starter.util.TextUtils;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -261,52 +256,5 @@ public class Note {
 
   public static NoteDao db(Context context) {
     return AppDatabase.getDatabase(context).notes();
-  }
-
-  public static Note gen() {
-    Note note = new Note();
-    note.uuid = RandomHelper.getRandomString(24);
-    note.state = NoteState.DEFAULT.name();
-    note.timestamp = Calendar.getInstance().getTimeInMillis();
-    note.updateTimestamp = note.timestamp;
-    note.color = 0xFF00796B;
-    return note;
-  }
-
-  public static Note genWithColor(int color) {
-    Note note = Note.gen();
-    note.color = color;
-    return note;
-  }
-
-  public static Note genSave(Context context, ExportableNote exportableNote) {
-    Note note = Note.gen();
-    note.color = exportableNote.getColor();
-    note.description = exportableNote.getDescription();
-    note.timestamp = exportableNote.getTimestamp();
-    note.updateTimestamp = note.timestamp;
-    for (int index = 0; index < exportableNote.getTags().length(); index++) {
-      try {
-        Tag tag = ExportableTag.Companion.getBestPossibleTagObject(
-            context,
-            exportableNote.getTags().getJSONObject(index));
-        note.toggleTag(tag);
-      } catch (JSONException exception) {
-        // Ignore this exception
-      }
-    }
-    note.save(context);
-    return note;
-  }
-
-  public static Note gen(String title, String description) {
-    Note note = Note.gen();
-    List<Format> formats = new ArrayList<>();
-    if (!TextUtils.isNullOrEmpty(title)) {
-      formats.add(new Format(FormatType.HEADING, title));
-    }
-    formats.add(new Format(FormatType.TEXT, description));
-    note.description = Format.getNote(formats);
-    return note;
   }
 }

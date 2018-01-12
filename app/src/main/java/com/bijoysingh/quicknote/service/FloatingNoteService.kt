@@ -11,6 +11,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions
@@ -64,7 +65,7 @@ class FloatingNoteService : FloatingBubbleService() {
 
   private fun loadView(): View {
     if (note == null) {
-      note = Note.gen()
+      note = genEmptyNote()
       stopSelf()
     }
 

@@ -43,7 +43,7 @@ fun getStoragePermissionManager(activity: AppCompatActivity): PermissionManager 
   return manager
 }
 
-fun saveFile(context: Context, text: String): Boolean {
+fun saveFile(text: String): Boolean {
   val file = getExportFile()
   if (file == null) {
     return false

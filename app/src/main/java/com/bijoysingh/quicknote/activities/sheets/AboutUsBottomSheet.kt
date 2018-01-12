@@ -42,8 +42,6 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
 
       override fun handle(result: String) {
         val appName = getString(R.string.app_name)
-        val creatorName = getString(R.string.maubis_apps)
-
         val aboutUsDetails = getString(R.string.about_page_about_us_details, appName)
         aboutUs.text = aboutUsDetails
 

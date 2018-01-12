@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.activities.external
 import android.content.Context
 import android.util.Base64
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.utils.genEmptyNote
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.*
@@ -79,7 +80,7 @@ class ExportableNote(
         objectInputStream.close()
         return obj as ExportableNote
       } catch (exception: Exception) {
-        return ExportableNote(Note.gen("", base64))
+        return ExportableNote(genEmptyNote("", base64))
       }
     }
   }

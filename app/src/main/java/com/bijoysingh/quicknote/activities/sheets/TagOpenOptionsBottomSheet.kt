@@ -26,7 +26,7 @@ class TagOpenOptionsBottomSheet : TagOptionItemBottomSheetBase() {
           },
           editable = true,
           editListener = View.OnClickListener {
-            CreateOrEditTagBottomSheet.openSheet(activity, tag, { tag, deleted -> reset(dialog)})
+            CreateOrEditTagBottomSheet.openSheet(activity, tag, { _, _ -> reset(dialog) })
           }
       ))
     }
@@ -35,9 +35,7 @@ class TagOpenOptionsBottomSheet : TagOptionItemBottomSheetBase() {
 
   override fun onNewTagClick() {
     val activity = context as MainActivity
-    CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), { tag, deleted ->
-      reset(dialog)
-    })
+    CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), { _, _ -> reset(dialog) })
   }
 
   companion object {

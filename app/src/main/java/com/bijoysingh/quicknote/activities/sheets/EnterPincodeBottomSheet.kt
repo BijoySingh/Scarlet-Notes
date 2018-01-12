@@ -83,7 +83,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
     }
     removeBtn.visibility = if (listener!!.isRemoveButtonEnabled()) View.VISIBLE else View.INVISIBLE
 
-    enterPin.setOnEditorActionListener { view, actionId, event ->
+    enterPin.setOnEditorActionListener { _, actionId, event ->
       if (event == null) {
         if (actionId != EditorInfo.IME_ACTION_DONE && actionId != EditorInfo.IME_ACTION_NEXT) {
           return@setOnEditorActionListener false

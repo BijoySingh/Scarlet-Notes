@@ -14,7 +14,7 @@ import com.bijoysingh.quicknote.utils.getEditorActionListener
 class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
 
   var selectedTag: Tag? = null
-  var sheetOnTagListener: (tag: Tag, deleted: Boolean) -> Unit = { tag, deleted -> }
+  var sheetOnTagListener: (tag: Tag, deleted: Boolean) -> Unit = { _, _ -> }
 
   override fun getBackgroundView(): Int {
     return R.id.container_layout
