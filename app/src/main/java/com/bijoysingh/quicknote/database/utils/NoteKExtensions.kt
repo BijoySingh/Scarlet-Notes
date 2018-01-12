@@ -12,6 +12,8 @@ import com.bijoysingh.quicknote.activities.external.searchInNote
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.database.external.FirebaseNote
+import com.bijoysingh.quicknote.database.external.insertNoteToFirebase
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.reminders.Reminder
@@ -211,6 +213,21 @@ fun Note.getReminder(): Reminder? {
   return getMeta().reminder
 }
 
+fun Note.getFirebaseNote(): FirebaseNote {
+  return FirebaseNote(
+      uuid,
+      description,
+      timestamp,
+      updateTimestamp,
+      color,
+      state,
+      tags,
+      locked,
+      pinned
+  )
+}
+
+
 /**************************************************************************************
  ********************************** Tags Functions ************************************
  **************************************************************************************/
@@ -330,6 +347,7 @@ fun Note.saveWithoutSync(context: Context) {
 
 fun Note.saveToSync() {
   // Notify change to online/offline sync
+  insertNoteToFirebase(getFirebaseNote())
 }
 
 private fun Note.updateAsyncContent(context: Context) {

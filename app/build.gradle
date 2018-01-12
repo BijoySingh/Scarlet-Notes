@@ -62,6 +62,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-auth:11.8.0'
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
+    implementation 'com.google.firebase:firebase-database:11.8.0'
 
     testImplementation 'junit:junit:4.12'
 }

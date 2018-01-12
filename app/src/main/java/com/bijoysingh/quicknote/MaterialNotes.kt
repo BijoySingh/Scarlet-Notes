@@ -3,11 +3,15 @@ package com.bijoysingh.quicknote
 import android.app.Application
 import com.bijoysingh.quicknote.database.AppDatabase
 import com.bijoysingh.quicknote.utils.ThemeManager
+import com.bijoysingh.quicknote.database.external.noteDatabaseReference
 import com.github.ajalt.reprint.core.Reprint
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.prefs.Store
 import com.github.bijoysingh.starter.prefs.VersionedStore
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class MaterialNotes : Application() {
 
@@ -27,6 +31,22 @@ class MaterialNotes : Application() {
     dataStoreVariable!!.migrateToStore(userPreferencesVariable)
 
     FirebaseApp.initializeApp(this)
+    setupFirebase()
+  }
+
+  private fun setupFirebase() {
+    try {
+      val user = FirebaseAuth.getInstance().currentUser
+      val userId = user?.uid
+      if (userId === null) {
+        return
+      }
+
+      FirebaseDatabase.getInstance()
+      noteDatabaseReference(this, userId)
+    } catch (exception: Exception) {
+      // Don't need to do anything
+    }
   }
 
   companion object {
@@ -41,5 +61,7 @@ class MaterialNotes : Application() {
 
     var userPreferencesVariable: Store? = null
     fun userPreferences() = userPreferencesVariable!!
+
+    var firebaseNote: DatabaseReference? = null
   }
 }

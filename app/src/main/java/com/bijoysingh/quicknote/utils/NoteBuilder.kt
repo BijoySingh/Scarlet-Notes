@@ -8,6 +8,9 @@ import com.bijoysingh.quicknote.database.utils.NotesDB
 import com.bijoysingh.quicknote.database.utils.copyNote
 import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.database.utils.toggleTag
+import com.bijoysingh.quicknote.database.external.FirebaseNote
+import com.bijoysingh.quicknote.database.utils.saveWithoutSync
+
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.github.bijoysingh.starter.util.RandomHelper
@@ -86,7 +89,7 @@ fun genImportFromKeep(description: String): List<Format> {
 }
 
 /**
- * Generate blank note from imported note
+ * Generate note from imported note
  */
 fun genImportedNote(context: Context, exportableNote: ExportableNote): Note {
   val existingNote = NotesDB.db.getByUUID(exportableNote.uuid)
@@ -103,6 +106,24 @@ fun genImportedNote(context: Context, exportableNote: ExportableNote): Note {
   note.state = exportableNote.state
   note.tags = exportableNote.tags
   note.save(context)
+  return note
+}
+
+
+/**
+ * Generate note from firebase note
+ */
+fun genImportedNote(context: Context, firebaseNote: FirebaseNote): Note {
+  val note = genEmptyNote()
+  note.description = firebaseNote.description
+  note.timestamp = firebaseNote.timestamp
+  note.updateTimestamp = Math.max(note.updateTimestamp, note.timestamp)
+  note.color = firebaseNote.color
+  note.state = firebaseNote.state
+  note.locked = firebaseNote.locked
+  note.pinned = firebaseNote.pinned
+  note.tags = firebaseNote.tags
+  note.saveWithoutSync(context)
   return note
 }
 
