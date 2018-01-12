@@ -125,15 +125,6 @@ public class Note {
     return searchInNote(this, keywords);
   }
 
-  public void delete(Context context) {
-    if (isUnsaved()) {
-      return;
-    }
-    Note.db(context).delete(this);
-    description = Format.getNote(new ArrayList<Format>());
-    uid = 0;
-  }
-
   public void mark(Context context, NoteState noteState) {
     state = noteState.name();
     save(context);
@@ -265,7 +256,7 @@ public class Note {
   /*Database Functions*/
   public void save(Context context) {
     saveWithoutSync(context);
-    notifyChange();
+    saveToSync();
   }
 
   public void saveWithoutSync(Context context) {
@@ -277,7 +268,25 @@ public class Note {
     return AppDatabase.getDatabase(context).notes();
   }
 
-  public void notifyChange() {
+  public void saveToSync() {
+    // Notify change to online/offline sync
+  }
+
+  public void delete(Context context) {
+    deleteWithoutSync(context);
+    deleteToSync();
+  }
+
+  public void deleteWithoutSync(Context context) {
+    if (isUnsaved()) {
+      return;
+    }
+    Note.db(context).delete(this);
+    description = Format.getNote(new ArrayList<Format>());
+    uid = 0;
+  }
+
+  public void deleteToSync() {
     // Notify change to online/offline sync
   }
 

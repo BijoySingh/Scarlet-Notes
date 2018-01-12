@@ -331,7 +331,7 @@ public class MainActivity extends ThemedActivity {
         List<Note> listNoteWithTag = new ArrayList<>();
         List<Note> notes = Note.db(MainActivity.this).getAll();
         for (Note note: notes) {
-          if (note.getTagIDs().contains(tag.uid)) {
+          if (note.getTagUUIDs().contains(tag.uuid)) {
             listNoteWithTag.add(note);
           }
         }
