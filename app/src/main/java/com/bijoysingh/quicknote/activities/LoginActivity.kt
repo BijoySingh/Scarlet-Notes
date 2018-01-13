@@ -146,7 +146,7 @@ class LoginActivity : ThemedActivity() {
 
     tagDatabaseReference(context, user.uid)
     for (tag in Tag.db(context).all) {
-      // TODO: Add tag sync here
+      tag.saveToSync()
     }
     finish()
   }

@@ -3,6 +3,8 @@ package com.bijoysingh.quicknote.database.external
 import android.content.Context
 import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.utils.genFromFirebase
+import com.github.bijoysingh.starter.util.TextUtils
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -61,11 +63,24 @@ private fun setListener(context: Context) {
     }
 
     override fun onChildAdded(snapshot: DataSnapshot?, p1: String?) {
-      // TODO: Finish this in lines with notes
+      handleTagChange(snapshot, fun(tag, existingTag, isSame) {
+        if (existingTag === null) {
+          tag.saveWithoutSync(context)
+          return
+        }
+        if (!isSame) {
+          existingTag.title = tag.title
+          existingTag.saveWithoutSync(context)
+        }
+      })
     }
 
     override fun onChildRemoved(snapshot: DataSnapshot?) {
-      // TODO: Finish this in lines with notes
+      handleTagChange(snapshot, fun(_, existingTag, _) {
+        if (existingTag !== null) {
+          existingTag.deleteWithoutSync(context)
+        }
+      })
     }
 
     fun handleTagChange(
@@ -79,6 +94,15 @@ private fun setListener(context: Context) {
         if (tag === null) {
           return
         }
+
+        val notifiedTag = genFromFirebase(tag)
+        val existingTag = Tag.db(context).getByUUID(tag.uuid)
+        var isSame = false
+        if (existingTag !== null) {
+          isSame = TextUtils.areEqualNullIsEmpty(notifiedTag.title, existingTag.title)
+        }
+
+        listener(notifiedTag, existingTag, isSame)
       } catch (e: Exception) {
         // Ignore if exception
       }
