@@ -5,6 +5,7 @@ import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.LoginActivity
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.database.external.removeNoteDatabaseReference
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.prefs.DataStore
@@ -86,7 +87,8 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.home_option_logout_of_app_subtitle,
         icon = R.drawable.ic_sign_in_options,
         listener = View.OnClickListener {
-          IntentUtils.startActivity(context, LoginActivity::class.java)
+          FirebaseAuth.getInstance().signOut()
+          removeNoteDatabaseReference()
           dismiss()
         },
         visible = firebaseUser !== null

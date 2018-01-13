@@ -76,7 +76,7 @@ private fun setListener(context: Context) {
     override fun onChildRemoved(snapshot: DataSnapshot?) {
       handleNoteChange(snapshot, fun(_, existingNote, _) {
         if (existingNote !== null) {
-          existingNote.delete(context)
+          existingNote.deleteWithoutSync(context)
         }
       })
     }
@@ -93,7 +93,7 @@ private fun setListener(context: Context) {
           return
         }
 
-        val notifiedNote = genImportedNote(context, note)
+        val notifiedNote = genImportedNote(note)
         val existingNote = Note.db(context).getByUUID(note.uuid)
         var isSame = false
         if (existingNote !== null) {

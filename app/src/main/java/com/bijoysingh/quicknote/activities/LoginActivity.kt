@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.external.noteDatabaseReference
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -132,18 +134,17 @@ class LoginActivity : ThemedActivity() {
   }
 
   private fun transitionNotesToServer(user: FirebaseUser?) {
-    val userId = user!!.uid
-    val manager = DataStore.get(context)
-    manager.put(FIREBASE_USER_ID, userId)
-
-    // TODO: Put in the notes, tags
-
+    if (user === null || user.uid.isEmpty()) {
+      return
+    }
+    noteDatabaseReference(context, user.uid)
+    for (note in Note.db(context).all) {
+      note.saveToSync()
+    }
     finish()
   }
 
   override fun notifyNightModeChange() {
 
   }
-
-
 }

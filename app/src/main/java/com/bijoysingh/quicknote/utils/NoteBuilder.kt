@@ -113,8 +113,9 @@ fun genImportedNote(context: Context, exportableNote: ExportableNote): Note {
 /**
  * Generate note from firebase note
  */
-fun genImportedNote(context: Context, firebaseNote: FirebaseNote): Note {
+fun genImportedNote(firebaseNote: FirebaseNote): Note {
   val note = genEmptyNote()
+  note.uuid = firebaseNote.uuid
   note.description = firebaseNote.description
   note.timestamp = firebaseNote.timestamp
   note.updateTimestamp = Math.max(note.updateTimestamp, note.timestamp)
@@ -123,7 +124,6 @@ fun genImportedNote(context: Context, firebaseNote: FirebaseNote): Note {
   note.locked = firebaseNote.locked
   note.pinned = firebaseNote.pinned
   note.tags = firebaseNote.tags
-  note.saveWithoutSync(context)
   return note
 }
 

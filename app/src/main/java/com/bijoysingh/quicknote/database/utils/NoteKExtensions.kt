@@ -13,6 +13,7 @@ import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.external.FirebaseNote
+import com.bijoysingh.quicknote.database.external.deleteFromFirebase
 import com.bijoysingh.quicknote.database.external.insertNoteToFirebase
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
@@ -221,7 +222,7 @@ fun Note.getFirebaseNote(): FirebaseNote {
       updateTimestamp,
       color,
       state,
-      tags,
+      if (tags == null) "" else tags,
       locked,
       pinned
   )
@@ -384,6 +385,7 @@ fun Note.deleteWithoutSync(context: Context) {
 
 fun Note.deleteToSync() {
   // Notify change to online/offline sync
+  deleteFromFirebase(getFirebaseNote())
 }
 
 fun Note.deleteOrMoveToTrash(context: Context) {
