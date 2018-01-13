@@ -19,7 +19,7 @@
     android:theme="@style/AppTheme">
     <provider
       android:name=".utils.GenericFileProvider"
-      android:authorities="com.bijoysingh.quicknote.utils.GenericFileProvider"
+      android:authorities="@string/file_provider_name"
       android:exported="false"
       android:grantUriPermissions="true">
       <meta-data

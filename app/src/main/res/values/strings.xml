@@ -1,5 +1,4 @@
 <resources>
-  <string name="app_name" translatable="false">Material Notes</string>
   <string name="maubis_apps" translatable="false">Maubis Apps</string>
   <string name="timestamp" translatable="false">dd month yyyy, hh:mm aa</string>
   <string name="title">Title</string>

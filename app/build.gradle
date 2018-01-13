@@ -18,6 +18,22 @@ android {
             }
         }
     }
+    flavorDimensions "tier"
+    productFlavors {
+        lite {
+            dimension "tier"
+            versionNameSuffix ""
+            resValue "string", "app_name", "Material Notes"
+            resValue "string", "file_provider_name", "com.bijoysingh.quicknote.utils.GenericFileProvider"
+        }
+        full {
+            dimension "tier"
+            applicationIdSuffix ".pro"
+            versionNameSuffix "-pro"
+            resValue "string", "app_name", "Material Notes Pro"
+            resValue "string", "file_provider_name", "com.bijoysingh.quicknote.pro.utils.GenericFileProvider"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
