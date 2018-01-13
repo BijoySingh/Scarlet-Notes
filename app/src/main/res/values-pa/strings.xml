@@ -164,4 +164,9 @@
   <string name="home_option_backup_options">ਬੈਕਅੱਪ ਅਤੇ ਆਯਾਤ</string>
   <string name="home_option_backup_options_subtitle">ਬੈਕਅੱਪ, ਆਯਾਤ ਅਤੇ ਨਿਰਯਾਤ ਸੂਚਨਾ ਚੋਣਾਂ</string>
 
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">ਸਟੋਰ ਤੋਂ ਇੰਸਟਾਲ ਕਰੋ</string>
+  <string name="home_option_install_from_store_subtitle">Cloud Sync ਲਈ Google ਸਟੋਰ ਤੋਂ ਐਪ ਨੂੰ ਸਥਾਪਤ ਕਰੋ</string>
+
 </resources>

@@ -164,4 +164,9 @@
   <string name="home_option_backup_options">Sauvegarde et importation</string>
   <string name="home_option_backup_options_subtitle">Sauvegarde, importation et exportation des options de note</string>
 
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">Installer à partir du magasin</string>
+  <string name="home_option_install_from_store_subtitle">Installer l\'application depuis Google Store pour Cloud Sync</string>
+
 </resources>

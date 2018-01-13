@@ -167,4 +167,9 @@
   <string name="home_option_backup_options">Резервирование и импорт</string>
   <string name="home_option_backup_options_subtitle">Параметры резервного копирования, импорта и экспорта</string>
 
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">Установить из магазина</string>
+  <string name="home_option_install_from_store_subtitle">Установка приложения из Google Store для облачной синхронизации</string>
+
 </resources>

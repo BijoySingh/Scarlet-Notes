@@ -1,3 +1,5 @@
 /build
 /release
 /release/*
+google-services.json
+/src/full/google-services.json

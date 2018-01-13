@@ -165,4 +165,9 @@
   <string name="home_option_backup_options">Sichern und Importieren</string>
   <string name="home_option_backup_options_subtitle">Backup, Import und Export von Notizoptionen</string>
 
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">Installieren Sie aus dem Geschäft</string>
+  <string name="home_option_install_from_store_subtitle">Installieren Sie die App aus dem Google Store für Cloud Sync</string>
+
 </resources>

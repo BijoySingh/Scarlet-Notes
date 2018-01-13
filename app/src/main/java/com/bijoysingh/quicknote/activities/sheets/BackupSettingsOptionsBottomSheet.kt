@@ -11,6 +11,8 @@ import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingState
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.utils.Flavor
+import com.bijoysingh.quicknote.utils.getAppFlavor
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.IntentUtils
 
@@ -23,6 +25,16 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
   private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<OptionsItem>()
+    options.add(OptionsItem(
+        title = R.string.home_option_install_from_store,
+        subtitle = R.string.home_option_install_from_store_subtitle,
+        icon = R.drawable.ic_action_play,
+        listener = View.OnClickListener {
+          IntentUtils.openAppPlayStore(context)
+          dismiss()
+        },
+        visible = getAppFlavor() == Flavor.NONE
+    ))
     options.add(OptionsItem(
         title = R.string.home_option_export,
         subtitle = R.string.home_option_export_subtitle,

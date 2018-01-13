@@ -164,4 +164,9 @@
   <string name="home_option_backup_options">備份和導入</string>
   <string name="home_option_backup_options_subtitle">備份，導入和導出備註選項</string>
 
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">從商店安裝</string>
+  <string name="home_option_install_from_store_subtitle">從Google Store for Cloud Sync安裝應用程序</string>
+
 </resources>

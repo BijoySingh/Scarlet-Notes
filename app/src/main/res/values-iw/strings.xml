@@ -165,4 +165,9 @@
   <string name="home_option_backup_options">גיבוי וייבוא</string>
   <string name="home_option_backup_options_subtitle">אפשרויות גיבוי, ייבוא וייצוא של הערות</string>
 
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">התקן מ- Store</string>
+  <string name="home_option_install_from_store_subtitle">התקן אפליקציה מ- Google Store עבור Cloud Sync</string>
+
 </resources>

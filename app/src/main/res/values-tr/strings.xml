@@ -165,4 +165,9 @@
   <string name="home_option_backup_options">Yedekleme ve İçe Aktarma</string>
   <string name="home_option_backup_options_subtitle">Yedekleme, içe aktarma ve dışa aktarma not seçenekleri</string>
 
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">Mağazadan Yükle</string>
+  <string name="home_option_install_from_store_subtitle">Bulut Senkronizasyonu için Google Store'dan uygulama yükleyin</string>
+
 </resources>

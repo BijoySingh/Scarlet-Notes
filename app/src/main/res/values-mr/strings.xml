@@ -163,4 +163,9 @@
   <string name="home_option_backup_options">बॅक अप आणि आयात</string>
   <string name="home_option_backup_options_subtitle">बॅकअप, आयात आणि निर्यात नोट पर्याय</string>
 
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">स्टोअर वरून स्थापित करा</string>
+  <string name="home_option_install_from_store_subtitle">क्लाउड सिंकसाठी Google Store वरुन अॅप स्थापित करा</string>
+
 </resources>

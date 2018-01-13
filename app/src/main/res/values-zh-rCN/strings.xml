@@ -162,5 +162,10 @@
   <string name="note_option_number_lines">注线限制</string>
   <string name="home_option_backup_options">备份和导入</string>
   <string name="home_option_backup_options_subtitle">备份，导入和导出备注选项</string>
-s
+
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">从商店安装</string>
+  <string name="home_option_install_from_store_subtitle">从Google Store for Cloud Sync安装应用程序</string>
+
 </resources>

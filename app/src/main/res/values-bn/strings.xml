@@ -166,4 +166,9 @@
   <string name="home_option_backup_options">ব্যাকআপ এবং আমদানি</string>
   <string name="home_option_backup_options_subtitle">ব্যাকআপ, আমদানি এবং রপ্তানি নোট অপশন</string>
 
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">দোকান থেকে ইনস্টল করুন</string>
+  <string name="home_option_install_from_store_subtitle">ক্লাউড সিঙ্কের জন্য Google স্টোর থেকে অ্যাপ্লিকেশন ইনস্টল করুন</string>
+
 </resources>

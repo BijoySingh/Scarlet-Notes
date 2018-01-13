@@ -164,4 +164,9 @@
   <string name="home_option_backup_options">النسخ الاحتياطي والاستيراد</string>
   <string name="home_option_backup_options_subtitle">النسخ الاحتياطي، استيراد وتصدير مذكرة الخيارات</string>
 
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">تثبيت من مخزن</string>
+  <string name="home_option_install_from_store_subtitle">تثبيت التطبيق من غوغل ستور للمزامنة السحابية</string>
+
 </resources>

@@ -194,4 +194,9 @@
   <string name="sort_sheet_oldest_first">Oldest First</string>
   <string name="sort_sheet_last_modified">Most Recently Modified</string>
 
+  <!-- Start Cloud Backup Hint -->
+  <string name="home_option_install_from_store">Install from Store</string>
+  <string name="home_option_install_from_store_subtitle">Install app from Google Store for Cloud Sync</string>
+  <!-- End -->
+
 </resources>

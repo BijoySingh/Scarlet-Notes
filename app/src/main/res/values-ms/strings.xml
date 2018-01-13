@@ -164,4 +164,9 @@
   <string name="home_option_backup_options">Sandaran dan Import</string>
   <string name="home_option_backup_options_subtitle">Pilihan sandaran, import dan eksport</string>
 
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">Pasang dari Kedai</string>
+  <string name="home_option_install_from_store_subtitle">Pasang apl dari Google Store untuk Cloud Sync</string>
+
 </resources>
