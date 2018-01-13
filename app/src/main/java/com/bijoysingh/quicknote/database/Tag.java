@@ -26,11 +26,6 @@ public class Tag {
 
   public String uuid;
 
-  public void save(Context context) {
-    long id = Tag.db(context).insertTag(this);
-    uid = isUnsaved() ? ((int) id) : uid;
-  }
-
   public void saveIfUnique(Context context) {
     Tag existing = Tag.db(context).getByTitle(title);
     if (existing == null) {
@@ -42,7 +37,35 @@ public class Tag {
     this.title = existing.title;
   }
 
+  public boolean isUnsaved() {
+    return uid == 0;
+  }
+
+  public static TagDao db(Context context) {
+    return AppDatabase.getDatabase(context).tags();
+  }
+
+  /*Database Functions*/
+  public void save(Context context) {
+    saveWithoutSync(context);
+    saveToSync();
+  }
+
+  public void saveWithoutSync(Context context) {
+    long id = Tag.db(context).insertTag(this);
+    uid = isUnsaved() ? ((int) id) : uid;
+  }
+
+  public void saveToSync() {
+    // Notify change to online/offline sync
+  }
+
   public void delete(Context context) {
+    deleteWithoutSync(context);
+    deleteToSync();
+  }
+
+  public void deleteWithoutSync(Context context) {
     if (isUnsaved()) {
       return;
     }
@@ -50,12 +73,8 @@ public class Tag {
     uid = 0;
   }
 
-  public boolean isUnsaved() {
-    return uid == 0;
-  }
-
-  public static TagDao db(Context context) {
-    return AppDatabase.getDatabase(context).tags();
+  public void deleteToSync() {
+    // Notify change to online/offline sync
   }
 
   public static Tag gen() {
