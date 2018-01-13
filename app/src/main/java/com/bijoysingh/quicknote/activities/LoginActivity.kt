@@ -8,7 +8,9 @@ import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.external.noteDatabaseReference
+import com.bijoysingh.quicknote.database.external.tagDatabaseReference
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -140,6 +142,11 @@ class LoginActivity : ThemedActivity() {
     noteDatabaseReference(context, user.uid)
     for (note in Note.db(context).all) {
       note.saveToSync()
+    }
+
+    tagDatabaseReference(context, user.uid)
+    for (tag in Tag.db(context).all) {
+      // TODO: Add tag sync here
     }
     finish()
   }

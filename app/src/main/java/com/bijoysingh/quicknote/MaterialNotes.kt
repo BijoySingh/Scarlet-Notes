@@ -4,6 +4,7 @@ import android.app.Application
 import com.bijoysingh.quicknote.database.AppDatabase
 import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.database.external.noteDatabaseReference
+import com.bijoysingh.quicknote.database.external.tagDatabaseReference
 import com.github.ajalt.reprint.core.Reprint
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.prefs.Store
@@ -44,6 +45,7 @@ class MaterialNotes : Application() {
 
       FirebaseDatabase.getInstance()
       noteDatabaseReference(this, userId)
+      tagDatabaseReference(this, userId)
     } catch (exception: Exception) {
       // Don't need to do anything
     }
@@ -63,5 +65,7 @@ class MaterialNotes : Application() {
     fun userPreferences() = userPreferencesVariable!!
 
     var firebaseNote: DatabaseReference? = null
+    var firebaseTag: DatabaseReference? = null
+
   }
 }
