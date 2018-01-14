@@ -186,6 +186,7 @@
   <string name="delete_sheet_delete_trash_no">ਰੱਦ ਕਰੋ</string>
   <string name="trash_will_delete_automatically">ਸੂਚਨਾਵਾਂ 7 ਦਿਨਾਂ ਦੇ ਬਾਅਦ ਹਮੇਸ਼ਾਂ ਮਿਟਾਈਆਂ ਜਾਂਦੀਆਂ ਹਨ</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">ਨੋਟ ਜੋੜੋ</string>
   <string name="shortcut_add_list">ਚੈੱਕਲਿਸਟ ਸ਼ਾਮਲ ਕਰੋ</string>
@@ -210,6 +211,7 @@
   <string name="note_option_font_size_example">ਨੋਟਸ ਪੇਜ ਵਿੱਚ ਟੈਕਸਟ ਦਾ ਫੌਂਟ ਸਾਈਜ ਅਡਜੱਸਟ ਕਰੋ. ਤੁਸੀਂ ਵੇਖ ਸਕਦੇ ਹੋ ਕਿ ਇਹ ਪੂਰਵਦਰਸ਼ਨ ਕਿਵੇਂ ਦਿਖਾਈ ਦੇਵੇਗਾ.</string>
   <string name="note_option_font_size_subtitle">%d ਨੋਟ ਵਿਊਅਰ ਵਿੱਚ ਟੈਕਸਟ ਦੇ ਆਕਾਰ</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">ਨਵਾਂ ਕੀ ਹੈ</string>
   <string name="whats_new_subtitle">ਐਪ ਦੇ ਹਾਲ ਹੀ ਦੇ ਅਪਡੇਟਸ ਵਿੱਚ ਨਵਾਂ ਕੀ ਹੈ ਪਤਾ ਕਰੋ</string>
@@ -217,6 +219,7 @@
   <string name="tutorial_create_a_new_note">ਇੱਕ ਨਵਾਂ ਨੋਟ ਜੋੜਨ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
   <string name="tutorial_home_menu">ਘਰ ਦੀਆਂ ਚੋਣਾਂ ਦੇਖਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
   <string name="tutorial_home_menu_subtitle">ਹੋਮ ਮੀਨੂ ਵਿੱਚ ਤੁਹਾਡੀ ਮਨਪਸੰਦ ਅਤੇ ਅਕਾਇਵ ਨੋਟਸ ਦੇ ਨਾਲ ਨਾਲ ਐਪਲੀਕੇਸ਼ਨ ਸੈਟਿੰਗਜ਼ ਵੀ ਹਨ. ਤੁਸੀਂ ਇੱਥੇ ਆਪਣੇ ਟੈਗ ਵੀ ਲੱਭ ਸਕਦੇ ਹੋ</string>
+
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">ਕਾਪੀ ਕਰੋ</string>
@@ -236,6 +239,7 @@
   <string name="format_label_image">ਚਿੱਤਰ</string>
   <string name="format_hint_image">ਚਿੱਤਰ ਨੂੰ ਜੋੜਨ ਜਾਂ ਬਦਲਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
 
+
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">ਸਿਰਫ਼ ਇੱਕ ਵਾਰ</string>
   <string name="reminder_frequency_daily">ਰੋਜ਼ਾਨਾ</string>
@@ -250,5 +254,37 @@
   <string name="search_toolbar_text">%s ਖੋਜ ਕਰੋ &#8230;</string>
   <string name="view_distraction_free">ਵਿਵਹਾਰ ਮੁਫ਼ਤ</string>
   <string name="format_label_separator">ਵਿਭਾਜਕ</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">ਐਪ ਵਿੱਚ ਸਾਈਨ ਇਨ ਕਰੋ</string>
+  <string name="home_option_login_with_app_subtitle">ਕਲਾਉਡ ਬੈਕਅਪ ਅਤੇ ਸਮਕਾਲੀਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ</string>
+  <string name="home_option_logout_of_app">ਸਾਇਨ ਆਉਟ</string>
+  <string name="home_option_logout_of_app_subtitle">ਕਲਾਉਡ ਬੈਕਅਪ ਨੂੰ ਰੋਕਣ ਲਈ ਸਾਈਨ ਆਉਟ ਕਰੋ</string>
+  <string name="login_with_google">Google ਦੇ ਨਾਲ ਸਾਈਨ ਇਨ ਕਰੋ</string>
+  <string name="logging_into_app">ਸਾਈਨ ਇੰਨ ਕਰੋ |</string>
+  <string name="logged_into_app">ਤੁਸੀਂ ਲੌਗਇਨ ਹੋ</string>
+  <string name="login_to_google_failed">ਗੂਗਲ ਲਾਗਇਨ ਫੇਲ੍ਹ</string>
+  <string name="material_notes_privacy_policy">ਪਰਾਈਵੇਟ ਨੀਤੀ</string>
+  <string name="material_notes_privacy_policy_subtitle">ਸਮਗਰੀ ਲਈ ਐਪ ਗੋਪਨੀਯਤਾ ਨੀਤੀ</string>
+  <string name="install_pro_app">ਪ੍ਰੋ ਐੱਸ ਇੰਸਟਾਲ ਕਰੋ</string>
+  <string name="why_install_pro">ਪ੍ਰੋ ਇੰਸਟਾਲ ਕਿਉਂ ਕਰੋ</string>
+  <string name="why_install_pro_details">ਕਲਾਉਡ ਸੰਕੁਚਨ ਨੂੰ ਚਲਾਉਣ ਲਈ ਵੱਡੇ ਸਰਵਰ ਲਾਗਤਾਂ ਲਈ ਸਹਿਯੋਗ ਡਿਵੈਲਪਰ,
+
+ ਪਹਿਲਾਂ ਸਭ ਤੋਂ ਨਵੀਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰੋ
+
+ ਕੁਝ ਹੋਰ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਕੇਵਲ ਪ੍ਰੋ ਯੂਜ਼ਰਸ ਲਈ ਉਪਲਬਧ ਹੋਣਗੀਆਂ</string>
+  <string name="why_cloud">ਕਿਉਂ Cloud Sync ਸਮਰਥਿਤ ਕਰੋ</string>
+  <string name="why_cloud_details">ਡਿਵਾਈਸ ਬਦਲਾਅ ਦੇ ਵਿਰੁੱਧ ਅਪਲੋਡ ਅਤੇ ਬੈਕਅੱਪ ਕਰੋ
+
+ ਬਹੁਤੇ ਡਿਵਾਈਸਾਂ ਵਿਚਕਾਰ ਸਿੰਕ ਕਰੋ, ਅਤੇ ਤੁਰੰਤ ਅਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰੋ
+
+ Google Firebase ਸਰਵਰਾਂ ਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਗਿਆ</string>
+  <string name="welcome_page_hello">ਸਤ ਸ੍ਰੀ ਅਕਾਲ,</string>
+  <string name="welcome_page_transfer_message">ਮੈਟੀਰੀਅਲ ਨੋਟਸ ਹੁਣ ਸਵਾਨੇ ਹਨ!</string>
+  <string name="welcome_page_get_started">ਸ਼ੁਰੂਆਤ ਕਰੋ</string>
+
+
+
+
 
 </resources>

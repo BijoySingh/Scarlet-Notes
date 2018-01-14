@@ -77,7 +77,6 @@
           android:scheme="content" />
       </intent-filter>
     </activity>
-<<<<<<< HEAD
 
     <receiver android:name=".service.NoteWidgetProvider">
       <intent-filter>

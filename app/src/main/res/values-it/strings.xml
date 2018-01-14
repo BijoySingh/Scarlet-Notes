@@ -186,6 +186,7 @@
   <string name="delete_sheet_delete_trash_no">Annulla</string>
   <string name="trash_will_delete_automatically">Le note vengono cancellate per sempre dopo 7 giorni</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">Aggiungi nota</string>
   <string name="shortcut_add_list">Aggiungi lista di controllo</string>
@@ -210,6 +211,7 @@
   <string name="note_option_font_size_example">Regola le dimensioni del carattere del testo nella pagina delle note. Puoi vedere come sarebbe in questa anteprima.</string>
   <string name="note_option_font_size_subtitle">%d dimensioni del testo nel visualizzatore note</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">Cosa c\'è di nuovo</string>
   <string name="whats_new_subtitle">Scopri cosa c\'è di nuovo nei recenti aggiornamenti dell\'app</string>
@@ -217,6 +219,34 @@
   <string name="tutorial_create_a_new_note">Fai clic per aggiungere una nuova nota</string>
   <string name="tutorial_home_menu">Clicca per vedere le opzioni della home</string>
   <string name="tutorial_home_menu_subtitle">Il menu principale contiene le note preferite e archiviate, nonché le impostazioni dell\'applicazione. Puoi trovare anche i tuoi tag.</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">Accedi all\'app</string>
+  <string name="home_option_login_with_app_subtitle">Accedi per il backup e la sincronizzazione del cloud</string>
+  <string name="home_option_logout_of_app">Disconnessione</string>
+  <string name="home_option_logout_of_app_subtitle">Esci per interrompere il backup del cloud</string>
+  <string name="login_with_google">Accedi con Google</string>
+  <string name="logging_into_app">Accesso in € |</string>
+  <string name="logged_into_app">Ti sei autenticato</string>
+  <string name="login_to_google_failed">Accesso Google non riuscito</string>
+  <string name="material_notes_privacy_policy">politica sulla riservatezza</string>
+  <string name="material_notes_privacy_policy_subtitle">Politica sulla privacy dell\'app per il contenuto</string>
+  <string name="install_pro_app">Installa l\'app Pro</string>
+  <string name="why_install_pro">Perché installare Pro</string>
+  <string name="why_install_pro_details">Supporta lo sviluppatore per i massivi costi del server, per eseguire la sincronizzazione del cloud
+
+ Prima le funzionalità più recenti
+
+ Alcune funzioni aggiuntive saranno disponibili solo per gli utenti Pro</string>
+  <string name="why_cloud">Perché abilitare Cloud Sync</string>
+  <string name="why_cloud_details">Carica e fai il backup delle modifiche del dispositivo
+
+ Sincronizza tra più dispositivi e ottieni aggiornamenti rapidi
+
+ Salvataggio sicuro sui server Firebase di Google</string>
+  <string name="welcome_page_hello">Ciao,</string>
+  <string name="welcome_page_transfer_message">Le note materiali sono ora scarlatte!</string>
+  <string name="welcome_page_get_started">Iniziare</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">copia</string>

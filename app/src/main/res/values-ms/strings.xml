@@ -186,6 +186,7 @@
   <string name="delete_sheet_delete_trash_no">Batalkan</string>
   <string name="trash_will_delete_automatically">Nota akan dihapuskan selamanya selepas 7 hari</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">Tambah Nota</string>
   <string name="shortcut_add_list">Tambah Senarai Semak</string>
@@ -210,6 +211,7 @@
   <string name="note_option_font_size_example">Laraskan saiz fon teks dalam halaman nota. Anda boleh melihat bagaimana ia kelihatan seperti dalam pratonton ini.</string>
   <string name="note_option_font_size_subtitle">%d saiz teks dalam pemapar nota</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">Apa yang Baru</string>
   <string name="whats_new_subtitle">Ketahui apa yang baru dalam kemas kini aplikasi baru-baru ini</string>
@@ -217,6 +219,34 @@
   <string name="tutorial_create_a_new_note">Klik untuk menambah nota baharu</string>
   <string name="tutorial_home_menu">Klik untuk melihat pilihan rumah</string>
   <string name="tutorial_home_menu_subtitle">Menu rumah mempunyai nota kegemaran dan arkib anda, serta tetapan aplikasi. Anda boleh mencari tag anda di sini juga.</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">Masuk ke App</string>
+  <string name="home_option_login_with_app_subtitle">Masuk untuk sandaran dan penyegerakan awan</string>
+  <string name="home_option_logout_of_app">Keluar</string>
+  <string name="home_option_logout_of_app_subtitle">Log keluar untuk menghentikan sandaran awan</string>
+  <string name="login_with_google">Masuk dengan Google</string>
+  <string name="logging_into_app">Menandatangani dalam € |</string>
+  <string name="logged_into_app">Anda log masuk</string>
+  <string name="login_to_google_failed">Masuk Google Gagal</string>
+  <string name="material_notes_privacy_policy">Dasar Privasi</string>
+  <string name="material_notes_privacy_policy_subtitle">Dasar privasi apl untuk kandungan</string>
+  <string name="install_pro_app">Pasang Pro App</string>
+  <string name="why_install_pro">Mengapa Memasang Pro</string>
+  <string name="why_install_pro_details">Pemaju sokongan untuk kos pelayan besar, untuk menjalankan penyegerakan awan
+
+ Dapatkan ciri-ciri terkini terlebih dahulu
+
+ Sesetengah ciri tambahan akan tersedia hanya untuk pengguna Pro</string>
+  <string name="why_cloud">Kenapa membolehkan Cloud Sync</string>
+  <string name="why_cloud_details">Muat naik dan sandaran terhadap perubahan peranti
+
+ Segerakkan antara berbilang peranti, dan dapatkan kemas kini pantas
+
+ Secepat disimpan di pelayan Google Firebase</string>
+  <string name="welcome_page_hello">Halo,</string>
+  <string name="welcome_page_transfer_message">Nota Bahan kini Scarlet!</string>
+  <string name="welcome_page_get_started">Bermula</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">Salinan</string>

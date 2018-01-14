@@ -187,6 +187,7 @@
   <string name="delete_sheet_delete_trash_no">Stornieren</string>
   <string name="trash_will_delete_automatically">Notizen werden nach 7 Tagen für immer gelöscht</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">Notiz hinzufügen</string>
   <string name="shortcut_add_list">Prüfliste hinzufügen</string>
@@ -218,6 +219,34 @@
   <string name="tutorial_create_a_new_note">Klicken Sie auf, um eine neue Notiz hinzuzufügen</string>
   <string name="tutorial_home_menu">Klicken Sie hier, um die Startseite anzuzeigen</string>
   <string name="tutorial_home_menu_subtitle">Das Home-Menü enthält Ihre Favoriten- und Archivnotizen sowie die Anwendungseinstellungen. Sie können Ihre Tags auch hier finden.</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">In der App anmelden</string>
+  <string name="home_option_login_with_app_subtitle">Melden Sie sich für Cloud-Backup und -Synchronisierung an</string>
+  <string name="home_option_logout_of_app">Ausloggen</string>
+  <string name="home_option_logout_of_app_subtitle">Melden Sie sich ab, um die Cloud-Sicherung zu stoppen</string>
+  <string name="login_with_google">Anmeldung mit Google</string>
+  <string name="logging_into_app">Anmelden &#8230;</string>
+  <string name="logged_into_app">Du bist eingeloggt</string>
+  <string name="login_to_google_failed">Google-Anmeldung fehlgeschlagen</string>
+  <string name="material_notes_privacy_policy">Datenschutz-Bestimmungen</string>
+  <string name="material_notes_privacy_policy_subtitle">App-Datenschutzrichtlinie für den Inhalt</string>
+  <string name="install_pro_app">Installieren Sie die Pro App</string>
+  <string name="why_install_pro">Warum Pro installieren?</string>
+  <string name="why_install_pro_details">Unterstütze den Entwickler für die enormen Serverkosten, um die Cloud-Synchronisierung auszuführen
+
+ Hol dir die neuesten Funktionen zuerst
+
+ Einige zusätzliche Funktionen sind nur für Pro-Benutzer verfügbar</string>
+  <string name="why_cloud">Warum sollte Cloud Sync aktiviert sein?</string>
+  <string name="why_cloud_details">Hochladen und Sichern gegen Geräteänderungen
+
+ Synchronisieren Sie mehrere Geräte und erhalten Sie schnelle Updates
+
+ Sicher auf den Google Firebase Servern gespeichert</string>
+  <string name="welcome_page_hello">Hallo,</string>
+  <string name="welcome_page_transfer_message">Material Notes ist jetzt Scarlet!</string>
+  <string name="welcome_page_get_started">Loslegen</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">Kopieren</string>

@@ -187,6 +187,7 @@
   <string name="delete_sheet_delete_trash_no">Cancelar</string>
   <string name="trash_will_delete_automatically">Las notas se eliminan para siempre después de 7 días</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">Añadir la nota</string>
   <string name="shortcut_add_list">Agregar lista de verificación</string>
@@ -211,6 +212,7 @@
   <string name="note_option_font_size_example">Ajuste el tamaño de fuente del texto en la página de notas. Puedes ver cómo se vería en esta vista previa.</string>
   <string name="note_option_font_size_subtitle">%d tamaño del texto en el visor de notas</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">Qué hay de nuevo</string>
   <string name="whats_new_subtitle">Saber qué hay de nuevo en las actualizaciones recientes de la aplicación</string>
@@ -218,6 +220,34 @@
   <string name="tutorial_create_a_new_note">Haga clic para agregar una nueva nota</string>
   <string name="tutorial_home_menu">Haga clic para ver las opciones de inicio</string>
   <string name="tutorial_home_menu_subtitle">El menú de inicio tiene sus notas favoritas y de archivo, así como la configuración de la aplicación. Usted puede encontrar sus etiquetas aquí también.</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">Iniciar sesión en la aplicación</string>
+  <string name="home_option_login_with_app_subtitle">Iniciar sesión para copia de seguridad y sincronización en la nube</string>
+  <string name="home_option_logout_of_app">Desconectar</string>
+  <string name="home_option_logout_of_app_subtitle">Cerrar sesión para detener la copia de seguridad en la nube</string>
+  <string name="login_with_google">Inicia sesión con Google</string>
+  <string name="logging_into_app">Firmando &#8230;</string>
+  <string name="logged_into_app">Usted ha iniciado sesión</string>
+  <string name="login_to_google_failed">Error de inicio de sesión de Google</string>
+  <string name="material_notes_privacy_policy">Política de privacidad</string>
+  <string name="material_notes_privacy_policy_subtitle">Política de privacidad de la aplicación para el contenido</string>
+  <string name="install_pro_app">Instalar la aplicación Pro</string>
+  <string name="why_install_pro">Por qué instalar Pro</string>
+  <string name="why_install_pro_details">Soporte al desarrollador para los costos masivos del servidor, para ejecutar la sincronización en la nube
+
+ Obtenga las características más recientes primero
+
+ Algunas características adicionales estarán disponibles solo para usuarios Pro</string>
+  <string name="why_cloud">Por qué habilitar Cloud Sync</string>
+  <string name="why_cloud_details">Cargar y realizar copias de seguridad de los cambios en el dispositivo
+
+ Sincronizar entre varios dispositivos y obtener actualizaciones rápidas
+
+ Guardado de forma segura en los servidores de Google Firebase</string>
+  <string name="welcome_page_hello">Hola,</string>
+  <string name="welcome_page_transfer_message">Material Notes ahora es Scarlet!</string>
+  <string name="welcome_page_get_started">Empezar</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">Dupdo</string>

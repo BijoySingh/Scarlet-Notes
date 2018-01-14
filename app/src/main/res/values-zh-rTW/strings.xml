@@ -20,6 +20,8 @@
   <string name="format_hint_quote">添加引號文本&#8230;</string>
   <string name="format_hint_list">新增項目&#8230;</string>
   <string name="format_hint_code">添加代碼&#8230;</string>
+  <string name="home_option_sheet_title">選項和設置</string>
+  <string name="home_option_export">導出註釋</string>
   <string name="open_note_day_mode">日間模式</string>
   <string name="choose_note_color">換顏色</string>
   <string name="tap_for_action_open_note_day_mode">點按即可在日間模式下查看筆記</string>
@@ -27,9 +29,7 @@
   <string name="home_option_enable_night_mode">啟用夜間模式</string>
   <string name="home_option_enable_night_mode_subtitle">默認啟用黑色主題</string>
   <string name="home_option_enable_day_mode">啟用日間模式</string>
-  <string name="home_option_enable_day_mode_subtitle">默認啟用輕量級主題</string>
   <string name="search_notes">搜索筆記&#8230;</string>
-  <string name="home_option_sheet_title">選項和設置</string>
   <string name="lock_note">鎖定注意</string>
   <string name="unlock_note">解鎖注意</string>
   <string name="home_option_security">安全</string>
@@ -54,7 +54,7 @@
   <string name="home_option_enable_grid_view">啟用網格佈局</string>
   <string name="home_option_enable_grid_view_subtitle">以交錯格子顯示筆記</string>
 
-  <string name="home_option_export">導出註釋</string>
+  <string name="home_option_enable_day_mode_subtitle">默認啟用輕量級主題</string>
   <string name="home_option_export_subtitle">將筆記導出到設備存儲以進行共享</string>
   <string name="home_option_import">導入註釋</string>
   <string name="home_option_import_subtitle">從設備存儲導入筆記</string>
@@ -77,7 +77,6 @@
   <string name="about_page_contribute">有助於</string>
   <string name="about_page_app_version">應用程式版本</string>
   <string name="about_page_about_app">關於應用</string>
-
   <string name="open_note_night_mode">夜間模式</string>
   <string name="delete_note_permanently">永久刪除</string>
   <string name="unarchive_note">解除注意</string>
@@ -186,6 +185,7 @@
   <string name="delete_sheet_delete_trash_no">取消</string>
   <string name="trash_will_delete_automatically">註釋在7天后被永久刪除</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">添加註釋</string>
   <string name="shortcut_add_list">添加清單</string>
@@ -210,6 +210,7 @@
   <string name="note_option_font_size_example">調整筆記頁面中文字的字體大小。 你可以看到它在這個預覽中的樣子。</string>
   <string name="note_option_font_size_subtitle">筆記查看器中文本的%d大小</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">什麼是新的</string>
   <string name="whats_new_subtitle">了解最近更新的應用程序中的新功能</string>
@@ -217,6 +218,7 @@
   <string name="tutorial_create_a_new_note">點擊添加一個新的筆記</string>
   <string name="tutorial_home_menu">點擊查看家庭選項</string>
   <string name="tutorial_home_menu_subtitle">主菜單有您最喜歡的和存檔的筆記，以及應用程序設置。 你也可以在這裡找到你的標籤。</string>
+
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">複製</string>
@@ -236,6 +238,7 @@
   <string name="format_label_image">圖片</string>
   <string name="format_hint_image">點擊添加或更改圖像</string>
 
+
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">只有一次</string>
   <string name="reminder_frequency_daily">日常</string>
@@ -250,5 +253,37 @@
   <string name="search_toolbar_text">搜索%s &#8230;</string>
   <string name="view_distraction_free">分心免費</string>
   <string name="format_label_separator">分隔器</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">登錄到應用程序</string>
+  <string name="home_option_login_with_app_subtitle">登錄雲備份和同步</string>
+  <string name="home_option_logout_of_app">登出</string>
+  <string name="home_option_logout_of_app_subtitle">註銷以停止雲備份</string>
+  <string name="login_with_google">用Google登錄</string>
+  <string name="logging_into_app">登錄&#8230;</string>
+  <string name="logged_into_app">您已經登錄</string>
+  <string name="login_to_google_failed">Google登錄失敗</string>
+  <string name="material_notes_privacy_policy">隱私政策</string>
+  <string name="material_notes_privacy_policy_subtitle">應用程序隱私政策的內容</string>
+  <string name="install_pro_app">安裝Pro App</string>
+  <string name="why_install_pro">為什麼安裝Pro</string>
+  <string name="why_install_pro_details">支持大規模服務器成本的開發人員，運行云同步
+
+首先獲取最新功能
+
+一些額外功能僅適用於專業用戶</string>
+  <string name="why_cloud">為什麼啟用雲端同步</string>
+  <string name="why_cloud_details">根據設備更改進行上傳和備份
+
+在多個設備之間進行同步，並獲得快速更新
+
+安全地保存在Google Firebase服務器上</string>
+  <string name="welcome_page_hello">你好，</string>
+  <string name="welcome_page_transfer_message">材料的筆記現在是猩紅色！</string>
+  <string name="welcome_page_get_started">開始使用</string>
+
+
+
+
 
 </resources>

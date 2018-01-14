@@ -186,6 +186,7 @@
   <string name="delete_sheet_delete_trash_no">रद्द करना</string>
   <string name="trash_will_delete_automatically">नोट्स 7 दिनों के बाद हमेशा के लिए हटा दिए जाते हैं</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">नोट जोड़े</string>
   <string name="shortcut_add_list">चेकलिस्ट जोड़ें</string>
@@ -210,6 +211,7 @@
   <string name="note_option_font_size_example">नोट्स पेज में पाठ का फ़ॉन्ट आकार समायोजित करें आप देख सकते हैं कि यह पूर्वावलोकन कैसे दिखता है।</string>
   <string name="note_option_font_size_subtitle">%d नोट दर्शक में पाठ का आकार</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">नया क्या है</string>
   <string name="whats_new_subtitle">एप के हालिया अपडेट में नया क्या है, पता करें</string>
@@ -217,6 +219,34 @@
   <string name="tutorial_create_a_new_note">कोई नया नोट जोड़ने के लिए क्लिक करें</string>
   <string name="tutorial_home_menu">होम विकल्प देखने के लिए क्लिक करें</string>
   <string name="tutorial_home_menu_subtitle">होम मेनू में आपके पसंदीदा और संग्रह नोट्स, साथ ही एप्लिकेशन सेटिंग्स हैं। आप यहां अपने टैग भी पा सकते हैं।</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">ऐप में साइन इन करें</string>
+  <string name="home_option_login_with_app_subtitle">क्लाउड बैकअप और सिंक्रनाइज़ेशन के लिए साइन इन करें</string>
+  <string name="home_option_logout_of_app">साइन आउट</string>
+  <string name="home_option_logout_of_app_subtitle">क्लाउड बैकअप को रोकने के लिए साइन आउट करें</string>
+  <string name="login_with_google">Google के साथ साइन इन करें</string>
+  <string name="logging_into_app">साइनिंग इन &#8230; |</string>
+  <string name="logged_into_app">आप लोग्ड इन हो चुके हैं</string>
+  <string name="login_to_google_failed">Google लॉगिन विफल</string>
+  <string name="material_notes_privacy_policy">गोपनीयता नीति</string>
+  <string name="material_notes_privacy_policy_subtitle">सामग्री के लिए ऐप गोपनीयता नीति</string>
+  <string name="install_pro_app">प्रो ऐप इंस्टॉल करें</string>
+  <string name="why_install_pro">क्यों प्रो स्थापित करें</string>
+  <string name="why_install_pro_details">क्लाउड सिंक चलाने के लिए बड़े सर्वर लागतों के लिए समर्थन डेवलपर का समर्थन करें
+
+ नवीनतम सुविधाओं को पहले प्राप्त करें
+
+ कुछ अतिरिक्त सुविधाएं केवल प्रो उपयोगकर्ता के लिए उपलब्ध होंगी</string>
+  <string name="why_cloud">क्लाउड सिंक क्यों सक्षम करें</string>
+  <string name="why_cloud_details">डिवाइस के बदलावों के विरुद्ध अपलोड करें और बैकअप लें
+
+ एकाधिक उपकरणों के बीच समन्वय करें, और त्वरित अपडेट प्राप्त करें
+
+ Google Firebase सर्वर पर सुरक्षित रूप से सहेजा गया</string>
+  <string name="welcome_page_hello">नमस्ते,</string>
+  <string name="welcome_page_transfer_message">सामग्री नोट्स अब लाल रंग है!</string>
+  <string name="welcome_page_get_started">शुरू हो जाओ</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">प्रतिलिपि</string>

@@ -189,6 +189,7 @@
   <string name="delete_sheet_delete_trash_no">Отмена</string>
   <string name="trash_will_delete_automatically">Заметки удаляются навсегда через 7 дней</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">Добавить заметку</string>
   <string name="shortcut_add_list">Добавить контрольный список</string>
@@ -213,6 +214,7 @@
   <string name="note_option_font_size_example">Отрегулируйте размер шрифта текста на странице заметок. Вы можете увидеть, как это будет выглядеть в этом предварительном просмотре.</string>
   <string name="note_option_font_size_subtitle">%d размер текста в приложении просмотра заметки</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">Что нового</string>
   <string name="whats_new_subtitle">Узнайте, что нового в последних обновлениях приложения</string>
@@ -220,6 +222,7 @@
   <string name="tutorial_create_a_new_note">Нажмите, чтобы добавить новую заметку</string>
   <string name="tutorial_home_menu">Нажмите, чтобы увидеть домашние параметры</string>
   <string name="tutorial_home_menu_subtitle">В главном меню есть ваши любимые и архивные заметки, а также настройки приложения. Здесь вы можете найти свои теги.</string>
+
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">копия</string>
@@ -239,6 +242,7 @@
   <string name="format_label_image">Образ</string>
   <string name="format_hint_image">Нажмите, чтобы добавить или изменить изображение</string>
 
+
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">Только один раз</string>
   <string name="reminder_frequency_daily">Ежедневно</string>
@@ -253,5 +257,37 @@
   <string name="search_toolbar_text">Поиск %s &#8230;</string>
   <string name="view_distraction_free">Отвлечение бесплатно</string>
   <string name="format_label_separator">Разделитель</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">Вход в приложение</string>
+  <string name="home_option_login_with_app_subtitle">Вход для резервного копирования и синхронизации облаков</string>
+  <string name="home_option_logout_of_app">Выход</string>
+  <string name="home_option_logout_of_app_subtitle">Выйти, чтобы остановить резервное копирование облаков</string>
+  <string name="login_with_google">Войти с помощью Google</string>
+  <string name="logging_into_app">Вход в систему |</string>
+  <string name="logged_into_app">Вы вошли в систему</string>
+  <string name="login_to_google_failed">Ошибка входа в Google</string>
+  <string name="material_notes_privacy_policy">политика конфиденциальности</string>
+  <string name="material_notes_privacy_policy_subtitle">Политика конфиденциальности приложений для контента</string>
+  <string name="install_pro_app">Установить Pro App</string>
+  <string name="why_install_pro">Зачем устанавливать Pro</string>
+  <string name="why_install_pro_details">Поддержка разработчиков для огромных затрат на сервер, для запуска облачной синхронизации
+
+ Сначала получить самые последние функции
+
+ Некоторые дополнительные функции будут доступны только пользователям Pro</string>
+  <string name="why_cloud">Зачем использовать Cloud Sync</string>
+  <string name="why_cloud_details">Загрузка и резервное копирование от изменений устройства
+
+ Синхронизация между несколькими устройствами и быстрое обновление
+
+ Безопасное сохранение на серверах Google Firebase</string>
+  <string name="welcome_page_hello">Здравствуйте,</string>
+  <string name="welcome_page_transfer_message">Материал Notes теперь Scarlet!</string>
+  <string name="welcome_page_get_started">Начать</string>
+
+
+
+
 
 </resources>

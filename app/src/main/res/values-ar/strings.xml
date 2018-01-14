@@ -186,6 +186,7 @@
   <string name="delete_sheet_delete_trash_no">إلغاء</string>
   <string name="trash_will_delete_automatically">يتم حذف الملاحظات إلى الأبد بعد 7 أيام</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">اضف ملاحظة</string>
   <string name="shortcut_add_list">إضافة قائمة التحقق</string>
@@ -210,6 +211,7 @@
   <string name="note_option_font_size_example">اضبط حجم خط النص في صفحة الملاحظات. يمكنك أن ترى كيف سيبدو في هذه المعاينة.</string>
   <string name="note_option_font_size_subtitle">%d حجم النص في عارض المذكرة</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">ما هو الجديد</string>
   <string name="whats_new_subtitle">تعرف ما هو الجديد في التحديثات الأخيرة من التطبيق</string>
@@ -217,6 +219,34 @@
   <string name="tutorial_create_a_new_note">انقر لإضافة ملاحظة جديدة</string>
   <string name="tutorial_home_menu">انقر لرؤية خيارات المنزل</string>
   <string name="tutorial_home_menu_subtitle">القائمة الرئيسية لديها الملاحظات المفضلة لديك والأرشيف، وكذلك إعدادات التطبيق. يمكنك العثور على العلامات هنا أيضا.</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">تسجيل الدخول إلى التطبيق</string>
+  <string name="home_option_login_with_app_subtitle">تسجيل الدخول للحصول على النسخ الاحتياطي سحابة والمزامنة</string>
+  <string name="home_option_logout_of_app">خروج</string>
+  <string name="home_option_logout_of_app_subtitle">تسجيل الخروج لإيقاف النسخ الاحتياطي سحابة</string>
+  <string name="login_with_google">الدخول مع جوجل</string>
+  <string name="logging_into_app">تسجيل الدخول |</string>
+  <string name="logged_into_app">لقد سجلت الدخول</string>
+  <string name="login_to_google_failed">فشل تسجيل الدخول إلى غوغل</string>
+  <string name="material_notes_privacy_policy">سياسة الخصوصية</string>
+  <string name="material_notes_privacy_policy_subtitle">سياسة خصوصية التطبيق للمحتوى</string>
+  <string name="install_pro_app">تثبيت برو التطبيق</string>
+  <string name="why_install_pro">لماذا تثبيت برو</string>
+  <string name="why_install_pro_details">دعم المطور لتكاليف الخادم الضخمة، لتشغيل مزامنة السحاب
+
+ احصل على أحدث الميزات أولا
+
+ ستتوفر بعض الميزات الإضافية فقط لمستخدمي برو</string>
+  <string name="why_cloud">سبب تمكين مزامنة السحاب</string>
+  <string name="why_cloud_details">التحميل والنسخ الاحتياطي من تغييرات الجهاز
+
+ المزامنة بين أجهزة متعددة، والحصول على تحديثات سريعة
+
+ حفظها بشكل آمن على خوادم غوغل فيريباس</string>
+  <string name="welcome_page_hello">مرحبا،</string>
+  <string name="welcome_page_transfer_message">ملاحظات المادة الآن القرمزي!</string>
+  <string name="welcome_page_get_started">البدء</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">نسخ</string>

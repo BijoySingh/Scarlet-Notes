@@ -187,6 +187,7 @@
   <string name="delete_sheet_delete_trash_no">לְבַטֵל</string>
   <string name="trash_will_delete_automatically">הערות נמחקות לעד 7 ימים</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">להוסיף הערה</string>
   <string name="shortcut_add_list">הוסף רשימת בדיקה</string>
@@ -211,6 +212,7 @@
   <string name="note_option_font_size_example">התאם את גודל הגופן של הטקסט בדף ההערות. תוכל לראות כיצד ייראה בתצוגה המקדימה הזו.</string>
   <string name="note_option_font_size_subtitle">%d של הטקסט במציג ההערות</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">מה חדש</string>
   <string name="whats_new_subtitle">דע מה חדש בעדכונים האחרונים של האפליקציה</string>
@@ -218,6 +220,34 @@
   <string name="tutorial_create_a_new_note">לחץ כדי להוסיף הערה חדשה</string>
   <string name="tutorial_home_menu">לחץ כדי לראות את אפשרויות הבית</string>
   <string name="tutorial_home_menu_subtitle">בתפריט הבית יש הערות מועדפות וארכיוניות, כמו גם הגדרות יישום. תוכל למצוא את התגים שלך גם כאן.</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">היכנס לאפליקציה</string>
+  <string name="home_option_login_with_app_subtitle">היכנס לגיבוי ענן ולסינכרון</string>
+  <string name="home_option_logout_of_app">התנתק</string>
+  <string name="home_option_logout_of_app_subtitle">צא כדי לעצור את גיבוי הענן</string>
+  <string name="login_with_google">היכנס באמצעות Google</string>
+  <string name="logging_into_app">כניסה</string>
+  <string name="logged_into_app">אתה מחובר</string>
+  <string name="login_to_google_failed">הכניסה של Google נכשלה</string>
+  <string name="material_notes_privacy_policy">מדיניות פרטיות</string>
+  <string name="material_notes_privacy_policy_subtitle">מדיניות הפרטיות של האפליקציה עבור התוכן</string>
+  <string name="install_pro_app">התקן Pro App</string>
+  <string name="why_install_pro">למה להתקין Pro</string>
+  <string name="why_install_pro_details">תמיכה מפתח עבור עלויות השרת מסיבית, כדי להפעיל את סנכרון ענן
+
+ קבל את התכונות החדשות הראשון
+
+ כמה תכונות נוספות יהיה זמין רק למשתמשים Pro</string>
+  <string name="why_cloud">מדוע להפעיל את Cloud Sync</string>
+  <string name="why_cloud_details">טען וגבה מפני שינויי מכשירים
+
+ סנכרון בין מכשירים מרובים, וקבל עדכונים מהירים
+
+ נשמר באופן מאובטח בשרתי Google Firebase</string>
+  <string name="welcome_page_hello">שלום,</string>
+  <string name="welcome_page_transfer_message">הערות החומר הוא עכשיו סקרלט!</string>
+  <string name="welcome_page_get_started">להתחיל</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">עותק</string>

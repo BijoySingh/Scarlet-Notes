@@ -185,6 +185,7 @@
   <string name="delete_sheet_delete_trash_no">रद्द करा</string>
   <string name="trash_will_delete_automatically">टिपा 7 दिवसांनंतर कायमचे हटविली जातात</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">नोंदी जोडा</string>
   <string name="shortcut_add_list">चेकलिस्ट जोडा</string>
@@ -209,6 +210,7 @@
   <string name="note_option_font_size_example">नोट्स पृष्ठामधील मजकुराचा फॉन्ट आकार समायोजित करा. आपण हे पूर्वावलोकन कसे दिसेल ते पाहू शकता.</string>
   <string name="note_option_font_size_subtitle">%d नोट दर्शक मध्ये मजकूराचा आकार</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">काय नवीन आहे</string>
   <string name="whats_new_subtitle">अॅपच्या अलीकडील अद्यतनांमध्ये नवीन काय आहे ते जाणून घ्या</string>
@@ -216,6 +218,34 @@
   <string name="tutorial_create_a_new_note">एक नवीन टीप जोडण्यासाठी क्लिक करा</string>
   <string name="tutorial_home_menu">मुख्यपृष्ठ पर्याय पाहण्यासाठी क्लिक करा</string>
   <string name="tutorial_home_menu_subtitle">होम मेनूमध्ये आपल्या पसंतीचे आणि संग्रहित नोट्स तसेच अनुप्रयोग सेटिंग्ज असतात. आपण येथे आपले टॅगदेखील शोधू शकता.</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">अॅपमध्ये साइन इन करा</string>
+  <string name="home_option_login_with_app_subtitle">मेघ बॅकअप आणि समक्रमण साठी साइन इन करा</string>
+  <string name="home_option_logout_of_app">साइन आऊट करा</string>
+  <string name="home_option_logout_of_app_subtitle">मेघ बॅकअप थांबविण्यासाठी साइन आउट करा</string>
+  <string name="login_with_google">Google सह साइन इन करा</string>
+  <string name="logging_into_app">साइन इन करत आहे &#8230; |</string>
+  <string name="logged_into_app">आपण लॉग इन केले आहे</string>
+  <string name="login_to_google_failed">Google लॉगिन अयशस्वी</string>
+  <string name="material_notes_privacy_policy">गोपनीयता धोरण</string>
+  <string name="material_notes_privacy_policy_subtitle">सामग्रीसाठी अॅप्स गोपनीयता धोरण</string>
+  <string name="install_pro_app">प्रो अॅप स्थापित करा</string>
+  <string name="why_install_pro">का प्रो स्थापित</string>
+  <string name="why_install_pro_details">क्लाऊड सिंक चालविण्याकरिता मोठ्या सर्व्हरच्या खर्चासाठी समर्थन विकसक,
+
+ प्रथम नवीनतम वैशिष्ट्ये मिळवा
+
+ काही अतिरिक्त वैशिष्ट्ये केवळ प्रो वापरकर्त्यांसाठी उपलब्ध असतील</string>
+  <string name="why_cloud">मेघ समक्रमण सक्षम का</string>
+  <string name="why_cloud_details">डिव्हाइस बदलांविषयी अपलोड आणि बॅकअप
+
+ एकाधिक डिव्हाइसेस दरम्यान समक्रमण करा, आणि द्रुत अद्यतने मिळवा
+
+ Google Firebase सर्व्हरवर सुरक्षितपणे जतन केले</string>
+  <string name="welcome_page_hello">हॅलो,</string>
+  <string name="welcome_page_transfer_message">सामग्री टिपा आता कमी दर्जाची आहे!</string>
+  <string name="welcome_page_get_started">सुरु करूया</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">कॉपी करा</string>

@@ -211,6 +211,7 @@
   <string name="note_option_font_size_example">Notlar sayfasındaki metnin yazı tipi boyutunu ayarlayın. Bu önizlemede bunun nasıl olacağını görebilirsiniz.</string>
   <string name="note_option_font_size_subtitle">%d nota görüntüleyicideki metin boyutu</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">Ne var ne yok</string>
   <string name="whats_new_subtitle">Uygulamanın son güncellemelerindeki yenilikleri bilin</string>
@@ -218,6 +219,7 @@
   <string name="tutorial_create_a_new_note">Yeni bir not eklemek için tıklayın</string>
   <string name="tutorial_home_menu">Ev seçeneklerini görmek için tıklayın</string>
   <string name="tutorial_home_menu_subtitle">Ana menü, favori ve arşiv notların yanı sıra uygulama ayarlarına sahiptir. Etiketlerinizi de burada bulabilirsiniz.</string>
+
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">kopya</string>
@@ -237,6 +239,7 @@
   <string name="format_label_image">görüntü</string>
   <string name="format_hint_image">Resmi eklemek veya değiştirmek için tıklayın</string>
 
+
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">Sadece bir kere</string>
   <string name="reminder_frequency_daily">Günlük</string>
@@ -251,5 +254,38 @@
   <string name="search_toolbar_text">%s ara &#8230;</string>
   <string name="view_distraction_free">Distraksiyon Ücretsiz</string>
   <string name="format_label_separator">Ayırıcı</string>
+
+
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">App\'da Giriş Yapın</string>
+  <string name="home_option_login_with_app_subtitle">Bulut yedekleme ve senkronizasyon için oturum açın</string>
+  <string name="home_option_logout_of_app">Oturumu Kapat</string>
+  <string name="home_option_logout_of_app_subtitle">Bulut yedeklemeyi durdurmak için çıkış yapın</string>
+  <string name="login_with_google">Google ile giriş yap</string>
+  <string name="logging_into_app">Oturum açma |</string>
+  <string name="logged_into_app">Oturum açtınız</string>
+  <string name="login_to_google_failed">Google Giriş Başarısız Oldu</string>
+  <string name="material_notes_privacy_policy">Gizlilik Politikası</string>
+  <string name="material_notes_privacy_policy_subtitle">İçerik için uygulama gizlilik politikası</string>
+  <string name="install_pro_app">Pro Uygulamasını Yükle</string>
+  <string name="why_install_pro">Neden Pro Install</string>
+  <string name="why_install_pro_details">Bulut senkronizasyonunu çalıştırmak için büyük sunucu maliyetleri için geliştiriciyi destekleyin
+
+ En yeni özellikleri edinin
+
+ Bazı ekstra özellikler yalnızca Pro kullanıcıları tarafından kullanılabilir olacak</string>
+  <string name="why_cloud">Cloud Sync\'i neden etkinleştirebilirim?</string>
+  <string name="why_cloud_details">Cihaz değişikliklerine karşı yükle ve yedekle
+
+ Birden fazla cihaz arasında senkronize edin ve hızlı güncellemeler yapın
+
+ Güvenli bir şekilde Google Firebase sunucularına kaydedin</string>
+  <string name="welcome_page_hello">Merhaba,</string>
+  <string name="welcome_page_transfer_message">Malzeme Notları artık Scarlet!</string>
+  <string name="welcome_page_get_started">Başlamak</string>
+
+
+
 
 </resources>

@@ -286,35 +286,35 @@
   <!-- End Delete Notes -->
 
   <!-- Start: Firebase Login Strings -->
-  <string name="home_option_login_with_app" translatable="false">Sign In to App</string>
-  <string name="home_option_login_with_app_subtitle" translatable="false">Sign In for cloud backup and synchronisation</string>
-  <string name="home_option_logout_of_app" translatable="false">Sign Out</string>
-  <string name="home_option_logout_of_app_subtitle" translatable="false">Sign Out to stop cloud backup</string>
-  <string name="login_with_google" translatable="false">Sign In with Google</string>
-  <string name="logging_into_app" translatable="false">Signing in&#8230;</string>
-  <string name="logged_into_app" translatable="false">You are logged in</string>
-  <string name="login_to_google_failed" translatable="false">Google Login Failed</string>
+  <string name="home_option_login_with_app">Sign In to App</string>
+  <string name="home_option_login_with_app_subtitle">Sign In for cloud backup and synchronisation</string>
+  <string name="home_option_logout_of_app">Sign Out</string>
+  <string name="home_option_logout_of_app_subtitle">Sign Out to stop cloud backup</string>
+  <string name="login_with_google">Sign In with Google</string>
+  <string name="logging_into_app">Signing in&#8230;</string>
+  <string name="logged_into_app">You are logged in</string>
+  <string name="login_to_google_failed">Google Login Failed</string>
 
-  <string name="material_notes_privacy_policy" translatable="false">Privacy Policy</string>
-  <string name="material_notes_privacy_policy_subtitle" translatable="false">App privacy policy for the content</string>
+  <string name="material_notes_privacy_policy">Privacy Policy</string>
+  <string name="material_notes_privacy_policy_subtitle">App privacy policy for the content</string>
 
-  <string name="install_pro_app" translatable="false">Install Pro App</string>
+  <string name="install_pro_app">Install Pro App</string>
 
-  <string name="why_install_pro" translatable="false">Why Install Pro</string>
-  <string name="why_install_pro_details" translatable="false">
-     &#10004; Support developer for the massive server costs, to run the cloud sync\n\n&#10004; Get the latest features first\n\n&#10004; Some extra features will be available only to Pro users
+  <string name="why_install_pro">Why Install Pro</string>
+  <string name="why_install_pro_details">
+     &#10004; Support developer for the massive server costs, to run the cloud sync \n\n&#10004; Get the latest features first \n\n&#10004; Some extra features will be available only to Pro users
   </string>
-  <string name="why_cloud" translatable="false">Why enable Cloud Sync</string>
-  <string name="why_cloud_details" translatable="false">
-    &#10004; Upload and backup against device changes\n\n&#10004; Sync between multiple devices, and get quick updates\n\n&#10004; Securely saved on Google Firebase servers
+  <string name="why_cloud">Why enable Cloud Sync</string>
+  <string name="why_cloud_details">
+    &#10004; Upload and backup against device changes \n\n&#10004; Sync between multiple devices, and get quick updates \n\n&#10004; Securely saved on Google Firebase servers
   </string>
   <!-- End: Firebase Login Strings -->
 
   <!-- Start Welcome Page -->
-  <string name="welcome_page_hello" translatable="false">Hello,</string>
+  <string name="welcome_page_hello">Hello,</string>
   <string name="welcome_page_app_name" translatable="false">Scarlet</string>
-  <string name="welcome_page_transfer_message" translatable="false">Material Notes is now Scarlet!</string>
-  <string name="welcome_page_get_started" translatable="false">Get Started</string>
+  <string name="welcome_page_transfer_message">Material Notes is now Scarlet!</string>
+  <string name="welcome_page_get_started">Get Started</string>
   <!-- End Welcome Page -->
 
 </resources>

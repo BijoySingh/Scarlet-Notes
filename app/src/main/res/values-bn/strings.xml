@@ -188,6 +188,7 @@
   <string name="delete_sheet_delete_trash_no">বাতিল</string>
   <string name="trash_will_delete_automatically">নোটগুলি 7 দিনের পরে চিরতরে মুছে ফেলা হয়</string>
 
+
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">নোট যোগ করুন</string>
   <string name="shortcut_add_list">চেকলিস্ট যোগ করুন</string>
@@ -212,6 +213,7 @@
   <string name="note_option_font_size_example">নোট পৃষ্ঠাতে পাঠ্যের ফন্টের আকার সামঞ্জস্য করুন। আপনি এই পূর্বরূপে কেমন দেখতে পাবেন তা দেখতে পারেন।</string>
   <string name="note_option_font_size_subtitle">%d নোট ভিউয়ারের পাঠ্যের আকার</string>
 
+
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">কি নতুন</string>
   <string name="whats_new_subtitle">অ্যাপ্লিকেশনের সাম্প্রতিক আপডেটে নতুন কি আছে তা জানুন</string>
@@ -219,6 +221,34 @@
   <string name="tutorial_create_a_new_note">একটি নতুন নোট যোগ করতে ক্লিক করুন</string>
   <string name="tutorial_home_menu">হোম বিকল্প দেখতে ক্লিক করুন</string>
   <string name="tutorial_home_menu_subtitle">হোম মেনু আপনার প্রিয় এবং আর্কাইভ নোট, পাশাপাশি অ্যাপ্লিকেশন সেটিংস আছে। আপনি এখানে আপনার ট্যাগ খুঁজে পেতে পারেন।</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">অ্যাপে সাইন ইন করুন</string>
+  <string name="home_option_login_with_app_subtitle">ক্লাউড ব্যাকআপ এবং সিঙ্ক্রোনাইজেশনের জন্য সাইন ইন করুন</string>
+  <string name="home_option_logout_of_app">সাইন আউট</string>
+  <string name="home_option_logout_of_app_subtitle">ক্লাউড ব্যাকআপ বন্ধ করতে সাইন আউট করুন</string>
+  <string name="login_with_google">Google এর সাথে সাইন ইন করুন</string>
+  <string name="logging_into_app">সাইন ইন ইন &#8230;</string>
+  <string name="logged_into_app">আপনি সংযুক্ত আছেন</string>
+  <string name="login_to_google_failed">Google লগইন ব্যর্থ</string>
+  <string name="material_notes_privacy_policy">গোপনীয়তা নীতি</string>
+  <string name="material_notes_privacy_policy_subtitle">কন্টেন্ট জন্য অ্যাপ্লিকেশন গোপনীয়তা নীতি</string>
+  <string name="install_pro_app">প্রো অ্যাপ ইনস্টল করুন</string>
+  <string name="why_install_pro">কেন প্রো ইনস্টল</string>
+  <string name="why_install_pro_details">ক্লাউড সিঙ্ক চালানোর জন্য ব্যাপক সার্ভারের খরচ সাপোর্ট ডেভেলপার,
+
+ প্রথমে সর্বশেষ বৈশিষ্ট্যগুলি পান
+
+ কিছু অতিরিক্ত বৈশিষ্ট্যগুলি শুধুমাত্র প্রো ব্যবহারকারীদের জন্য উপলব্ধ হবে</string>
+  <string name="why_cloud">কেন মেঘ সমন্বয় সক্ষম</string>
+  <string name="why_cloud_details">ডিভাইসের পরিবর্তনগুলির বিরুদ্ধে আপলোড এবং ব্যাকআপ করুন
+
+ একাধিক ডিভাইসের মধ্যে সমন্বয় করুন, এবং দ্রুত আপডেট পান করুন
+
+ Google Firebase সার্ভারে নিরাপদে সংরক্ষিত</string>
+  <string name="welcome_page_hello">হ্যালো,</string>
+  <string name="welcome_page_transfer_message">উপাদান টীকা এখন স্কারলেট!</string>
+  <string name="welcome_page_get_started">এবার শুরু করা যাক</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">কপি</string>
