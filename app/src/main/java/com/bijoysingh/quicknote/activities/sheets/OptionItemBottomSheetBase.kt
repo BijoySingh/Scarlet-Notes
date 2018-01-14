@@ -46,7 +46,10 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
 
       val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIActionView
       contentView.setTitle(option.title)
-      contentView.setSubtitle(option.subtitle)
+      when (option.subtitle) {
+        0 -> contentView.setSubtitle(option.content)
+        else -> contentView.setSubtitle(option.subtitle)
+      }
       contentView.setOnClickListener(option.listener)
       contentView.setImageResource(option.icon)
 

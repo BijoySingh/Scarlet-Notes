@@ -130,6 +130,7 @@
   <string name="note_option_default_color">Default Note Color</string>
   <string name="note_option_default_color_subtitle">Choose the default color of the notes</string>
   <string name="note_option_number_lines">Note Line Limit</string>
+  <string name="note_option_number_lines_subtitle" translatable="false">%d lines on home screen</string>
 
   <string name="markdown_sheet_markdown_support">Markdown Support</string>
   <string name="markdown_sheet_markdown_support_subtitle">Allow markdown supported formatting</string>

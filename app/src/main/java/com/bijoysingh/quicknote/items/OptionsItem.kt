@@ -10,4 +10,5 @@ class OptionsItem(
     val visible: Boolean = true, // indicates if the option is visible
     val enabled: Boolean = false, // indicates if the option will show a checked on the side
     val invalid: Boolean = false, // indicates that the option will be faded and click removed
+    val content: String = "", // content is an alternative to subtitle when it's 0
     val listener: View.OnClickListener)

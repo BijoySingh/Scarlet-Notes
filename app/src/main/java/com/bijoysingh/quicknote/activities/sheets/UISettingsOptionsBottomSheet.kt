@@ -1,18 +1,14 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.content.Intent
-import android.net.Uri
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
-import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
+import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion.getDefaultLineCount
 import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingState
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.github.bijoysingh.starter.prefs.DataStore
-import com.github.bijoysingh.starter.util.IntentUtils
+import com.github.bijoysingh.starter.util.LocaleManager
 
 class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
@@ -76,7 +72,8 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     ))
     options.add(OptionsItem(
         title = R.string.note_option_number_lines,
-        subtitle = R.string.note_option_default_color_subtitle,
+        subtitle = 0,
+        content = activity.getString(R.string.note_option_number_lines_subtitle, getDefaultLineCount(dataStore)),
         icon = R.drawable.ic_action_list,
         listener = View.OnClickListener {
           LineCountBottomSheet.openSheet(activity)
