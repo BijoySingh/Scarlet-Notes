@@ -184,7 +184,8 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   protected void onPause() {
     super.onPause();
     active = false;
-    maybeUpdateNoteWithSync();
+    maybeUpdateNoteWithoutSync();
+    note.saveToSync();
     destroyIfNeeded();
   }
 
@@ -217,14 +218,6 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   }
 
   protected void maybeUpdateNoteWithoutSync() {
-    maybeUpdateNote(false);
-  }
-
-  protected void maybeUpdateNoteWithSync() {
-    maybeUpdateNote(true);
-  }
-
-  protected void maybeUpdateNote(boolean sync) {
     note.updateTimestamp = Calendar.getInstance().getTimeInMillis();
     note.description = Format.getNote(formats);
 
@@ -233,7 +226,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       return;
     }
 
-    maybeSaveNote(sync);
+    maybeSaveNote(false);
     lastNoteInstance.copyNote(note);
   }
 
