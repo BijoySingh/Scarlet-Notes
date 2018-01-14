@@ -1,5 +1,6 @@
 package com.bijoysingh.quicknote.activities;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import com.bijoysingh.quicknote.items.RecyclerItem;
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter;
 import com.bijoysingh.quicknote.utils.HomeNavigationState;
 import com.bijoysingh.quicknote.utils.NoteState;
+import com.bijoysingh.quicknote.utils.SyncedNoteBroadcastReceiver;
 import com.github.bijoysingh.starter.async.MultiAsyncTask;
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor;
 import com.github.bijoysingh.starter.prefs.DataStore;
@@ -37,12 +39,16 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+
 import static android.view.View.GONE;
 import static android.widget.GridLayout.VERTICAL;
 import static com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.KEY_LINE_COUNT;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_LIST_VIEW;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED;
+import static com.bijoysingh.quicknote.utils.BroadcastUtilsKt.getNoteIntentFilter;
 import static com.bijoysingh.quicknote.utils.MigrationUtilsKt.migrate;
 import static com.bijoysingh.quicknote.utils.NoteSortingUtilsKt.sort;
 
@@ -53,6 +59,7 @@ public class MainActivity extends ThemedActivity {
   RecyclerView recyclerView;
   NoteAppAdapter adapter;
   HomeNavigationState mode;
+  BroadcastReceiver receiver;
   DataStore store;
 
   ImageView addList, homeNav, openTag, homeOptions, backButton, searchIcon, searchBackButton, searchCloseIcon;
@@ -82,6 +89,7 @@ public class MainActivity extends ThemedActivity {
 
     setupRecyclerView();
     setListeners();
+    registerNoteReceiver();
     requestSetNightMode(store.get(ThemedActivity.Companion.getKey(), false));
   }
 
@@ -498,5 +506,16 @@ public class MainActivity extends ThemedActivity {
         store.put(MIGRATE_ZERO_NOTES, true);
       }
     });
+  }
+
+  private void registerNoteReceiver() {
+    receiver = new SyncedNoteBroadcastReceiver(new Function0<Unit>() {
+      @Override
+      public Unit invoke() {
+        setupData();
+        return null;
+      }
+    });
+    registerReceiver(receiver, getNoteIntentFilter());
   }
 }

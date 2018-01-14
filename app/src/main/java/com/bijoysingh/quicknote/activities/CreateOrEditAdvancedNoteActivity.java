@@ -218,7 +218,6 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   }
 
   protected void maybeUpdateNoteWithoutSync() {
-    note.updateTimestamp = Calendar.getInstance().getTimeInMillis();
     note.description = Format.getNote(formats);
 
     // Ignore update if nothing changed. It allows for one undo per few seconds
@@ -226,6 +225,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       return;
     }
 
+    note.updateTimestamp = Calendar.getInstance().getTimeInMillis();
     maybeSaveNote(false);
     lastNoteInstance.copyNote(note);
   }
