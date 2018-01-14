@@ -1,5 +1,5 @@
 # Material Notes on Android
-This is the code which powers the Material notes app on Android by Maubis Apps. 
+This is the code which powers the Scarlet (previously Material Notes) app on Android by Maubis Apps. 
 
 <a href="https://f-droid.org/packages/com.bijoysingh.quicknote/" target="_blank">
 <img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80"/></a>

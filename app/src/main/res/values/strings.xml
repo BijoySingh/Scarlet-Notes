@@ -310,4 +310,11 @@
   </string>
   <!-- End: Firebase Login Strings -->
 
+  <!-- Start Welcome Page -->
+  <string name="welcome_page_hello" translatable="false">Hello,</string>
+  <string name="welcome_page_app_name" translatable="false">Scarlet</string>
+  <string name="welcome_page_transfer_message" translatable="false">Material Notes is now Scarlet!</string>
+  <string name="welcome_page_get_started" translatable="false">Get Started</string>
+  <!-- End Welcome Page -->
+
 </resources>

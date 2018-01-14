@@ -16,10 +16,17 @@ abstract class ThemedActivity : AppCompatActivity() {
   abstract fun notifyThemeChange()
 
   fun setSystemTheme() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      window.statusBarColor = getStatusBarColor()
-    }
+    setStatusBarColor(getStatusBarColor())
+    setStatusBarTextColor()
+  }
 
+  fun setStatusBarColor(color: Int) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      window.statusBarColor = color
+    }
+  }
+
+  fun setStatusBarTextColor() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       val view = window.decorView
       var flags = view.systemUiVisibility

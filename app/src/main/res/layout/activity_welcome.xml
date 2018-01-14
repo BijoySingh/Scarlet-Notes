@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/welcome_page_bg"
+  android:orientation="vertical"
+  tools:context="com.bijoysingh.quicknote.activities.WelcomeActivity">
+
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:padding="12dp">
+
+    <ImageView
+      android:layout_width="36dp"
+      android:layout_height="36dp"
+      android:layout_gravity="start|top"
+      android:src="@drawable/quote_start" />
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:padding="16dp">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_page_hello"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_page_app_name"
+        android:textColor="@color/white"
+        android:textSize="48sp" />
+
+    </LinearLayout>
+
+    <ImageView
+      android:layout_width="36dp"
+      android:layout_height="36dp"
+      android:layout_gravity="end|bottom"
+      android:src="@drawable/quote_end" />
+  </FrameLayout>
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:gravity="center"
+    android:padding="24dp"
+    android:text="@string/welcome_page_transfer_message"
+    android:textColor="@color/light_tertiary_text"
+    android:textSize="14sp" />
+
+  <TextView
+    android:id="@+id/get_started"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:padding="16dp"
+    android:background="@drawable/get_started_background"
+    android:gravity="center"
+    android:text="@string/welcome_page_get_started"
+    android:textColor="@color/light_primary_text"
+    android:textSize="16sp"
+    android:textStyle="bold" />
+
+</LinearLayout>
