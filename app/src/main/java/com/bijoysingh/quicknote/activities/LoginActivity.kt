@@ -3,7 +3,6 @@ package com.bijoysingh.quicknote.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
@@ -17,18 +16,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-
-
-const val FIREBASE_USER_ID = "FIREBASE_USER_ID"
 
 class LoginActivity : ThemedActivity() {
 
@@ -49,6 +43,8 @@ class LoginActivity : ThemedActivity() {
     setupSignInButton()
     setupGoogleLogin()
     firebaseAuth = FirebaseAuth.getInstance()
+
+    requestSetNightMode(DataStore.get(context).get(ThemedActivity.getKey(), false))
   }
 
   private fun setupSignInButton() {
@@ -152,6 +148,24 @@ class LoginActivity : ThemedActivity() {
   }
 
   override fun notifyNightModeChange() {
+    setSystemTheme();
 
+    val containerLayout = findViewById<View>(R.id.container_layout);
+    containerLayout.setBackgroundColor(getThemeColor());
+
+    val optionsTitle = findViewById<TextView>(R.id.sign_in_title)
+    optionsTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text))
+
+    val textColor = getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text)
+    val installProDescription = findViewById<TextView>(R.id.install_pro_details_description)
+    val cloudSyncDescription = findViewById<TextView>(R.id.cloud_sync_details_description)
+    installProDescription.setTextColor(textColor)
+    cloudSyncDescription.setTextColor(textColor)
+
+    val installProTitle = findViewById<TextView>(R.id.install_pro_details_title)
+    val cloudSyncTitle = findViewById<TextView>(R.id.cloud_sync_details_title)
+    val titleTextColor = getColor(R.color.material_blue_grey_500, R.color.material_blue_grey_200)
+    installProTitle.setTextColor(titleTextColor)
+    cloudSyncTitle.setTextColor(titleTextColor)
   }
 }
