@@ -53,7 +53,7 @@ class LoginActivity : ThemedActivity() {
 
   private fun setupSignInButton() {
     button = findViewById(R.id.sign_in_button)
-    buttonTitle = button.findViewById(R.id.title)
+    buttonTitle = button.findViewById(R.id.sign_in_button_title)
     button.setOnClickListener {
       if (loggingIn) {
         // do nothing

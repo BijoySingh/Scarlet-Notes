@@ -17,6 +17,7 @@
       android:layout_height="0dp"
       android:layout_weight="1"
       android:padding="20dp">
+
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,15 +33,83 @@
           android:textSize="21sp" />
 
         <TextView
-          android:id="@+id/sign_in_description"
-          android:layout_width="wrap_content"
+          android:id="@+id/install_pro_details_title"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginBottom="8dp"
-          android:text="@string/note_option_number_lines"
+          android:text="@string/why_install_pro"
+          android:textColor="@color/material_blue_grey_500"
+          android:textSize="14sp" />
+
+        <TextView
+          android:id="@+id/install_pro_details_description"
+          style="@style/SanSerif"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:text="@string/why_install_pro_details"
           android:textColor="@color/dark_tertiary_text"
-          android:textSize="18sp" />
+          android:textSize="16sp" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="0.5dp"
+          android:layout_margin="16dp"
+          android:background="@color/material_blue_grey_100" />
+
+        <TextView
+          android:id="@+id/cloud_sync_details_title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:text="@string/why_cloud"
+          android:textColor="@color/material_blue_grey_500"
+          android:textSize="14sp" />
+
+        <TextView
+          android:id="@+id/cloud_sync_details_description"
+          style="@style/SanSerif"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:text="@string/why_cloud_details"
+          android:textColor="@color/dark_tertiary_text"
+          android:textSize="16sp" />
+
       </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+      android:id="@+id/install_pro"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:background="@drawable/install_pro_background"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:padding="16dp">
+
+      <ImageView
+        android:id="@+id/install_pro_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_action_play"
+        android:tint="@color/white" />
+
+      <TextView
+        android:id="@+id/install_pro_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_weight="1"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:text="@string/install_pro_app"
+        android:textColor="@color/light_tertiary_text"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    </LinearLayout>
 
     <LinearLayout
       android:id="@+id/sign_in_button"
@@ -49,23 +118,24 @@
       android:background="@drawable/login_button_active"
       android:gravity="center"
       android:orientation="horizontal"
-      android:padding="8dp">
+      android:padding="16dp">
 
       <ImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:id="@+id/sign_in_button_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="8dp"
-        android:padding="12dp"
         android:src="@drawable/ic_google_icon"
         android:tint="@color/white" />
 
       <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:id="@+id/sign_in_button_title"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="24dp"
+        android:layout_weight="1"
         android:fontFamily="monospace"
+        android:gravity="center"
         android:text="@string/login_with_google"
         android:textColor="@color/light_primary_text"
         android:textSize="16sp"
