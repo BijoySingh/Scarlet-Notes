@@ -10,7 +10,10 @@ import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.external.noteDatabaseReference
 import com.bijoysingh.quicknote.database.external.tagDatabaseReference
+import com.bijoysingh.quicknote.utils.Flavor
+import com.bijoysingh.quicknote.utils.getAppFlavor
 import com.github.bijoysingh.starter.prefs.DataStore
+import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -33,6 +36,7 @@ class LoginActivity : ThemedActivity() {
   lateinit var firebaseAuth: FirebaseAuth
 
   lateinit var button: View
+  lateinit var installPro: View
   lateinit var buttonTitle: TextView
   var loggingIn = false
 
@@ -58,6 +62,21 @@ class LoginActivity : ThemedActivity() {
         signIn()
       }
     }
+
+    installPro = findViewById(R.id.install_pro)
+    installPro.setOnClickListener {
+      IntentUtils.openAppPlayStore(context, "com.bijoysingh.quicknote.pro")
+      finish()
+    }
+
+    val proInformationVisibility = if (getAppFlavor() == Flavor.PRO) View.GONE else View.VISIBLE
+    installPro.visibility = proInformationVisibility
+    val installProTitle = findViewById<View>(R.id.install_pro_details_title)
+    installProTitle.visibility = proInformationVisibility
+    val installProDescription = findViewById<View>(R.id.install_pro_details_description)
+    installProDescription.visibility = proInformationVisibility
+    val installProSeparator = findViewById<View>(R.id.install_pro_separator)
+    installProSeparator.visibility = proInformationVisibility
   }
 
   private fun setupGoogleLogin() {

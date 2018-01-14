@@ -30,7 +30,7 @@
           android:layout_marginBottom="8dp"
           android:text="@string/home_option_login_with_app"
           android:textColor="@color/dark_secondary_text"
-          android:textSize="21sp" />
+          android:textSize="24sp" />
 
         <TextView
           android:id="@+id/install_pro_details_title"
@@ -43,7 +43,6 @@
 
         <TextView
           android:id="@+id/install_pro_details_description"
-          style="@style/SanSerif"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginBottom="8dp"
@@ -52,6 +51,7 @@
           android:textSize="16sp" />
 
         <View
+          android:id="@+id/install_pro_separator"
           android:layout_width="match_parent"
           android:layout_height="0.5dp"
           android:layout_margin="16dp"
@@ -68,7 +68,6 @@
 
         <TextView
           android:id="@+id/cloud_sync_details_description"
-          style="@style/SanSerif"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginBottom="8dp"
