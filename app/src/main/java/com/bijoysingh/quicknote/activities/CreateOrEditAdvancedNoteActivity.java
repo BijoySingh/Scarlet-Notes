@@ -185,8 +185,10 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     super.onPause();
     active = false;
     maybeUpdateNoteWithoutSync();
-    note.saveToSync();
-    destroyIfNeeded();
+    boolean destroyed = destroyIfNeeded();
+    if (!destroyed) {
+      note.saveToSync();
+    }
   }
 
   @Override
@@ -242,7 +244,6 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       }
     }, HANDLER_UPDATE_TIME);
   }
-
 
   protected void addEmptyItem(FormatType type) {
     addEmptyItem(formats.size(), type);
