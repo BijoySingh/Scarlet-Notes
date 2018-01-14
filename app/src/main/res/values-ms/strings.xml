@@ -169,4 +169,11 @@
   <string name="home_option_install_from_store">Pasang dari Kedai</string>
   <string name="home_option_install_from_store_subtitle">Pasang apl dari Google Store untuk Cloud Sync</string>
 
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">Tiada set PIN</string>
+  <string name="no_pincode_sheet_details">Anda belum menyiapkan PIN. Adakah anda ingin menetapkannya sekarang?</string>
+  <string name="no_pincode_sheet_not_now">Kemudian</string>
+  <string name="no_pincode_sheet_dont_ask">Jangan Tanya</string>
+  <string name="no_pincode_sheet_set_up">Sediakan</string>
+
 </resources>

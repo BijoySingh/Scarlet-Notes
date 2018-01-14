@@ -169,4 +169,11 @@
   <string name="home_option_install_from_store">स्टोर से इंस्टॉल करें</string>
   <string name="home_option_install_from_store_subtitle">क्लाउड सिंक के लिए Google स्टोर से एप्लिकेशन इंस्टॉल करें</string>
 
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">कोई पिन सेट नहीं है</string>
+  <string name="no_pincode_sheet_details">आपने पिन सेट नहीं किया है क्या आप इसे अभी सेट करना चाहते हैं?</string>
+  <string name="no_pincode_sheet_not_now">बाद में</string>
+  <string name="no_pincode_sheet_dont_ask">कभी पूछें</string>
+  <string name="no_pincode_sheet_set_up">सेट अप</string>
+
 </resources>

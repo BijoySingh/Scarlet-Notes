@@ -169,4 +169,11 @@
   <string name="home_option_install_from_store">تثبيت من مخزن</string>
   <string name="home_option_install_from_store_subtitle">تثبيت التطبيق من غوغل ستور للمزامنة السحابية</string>
 
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">لم يتم تعيين رقم تعريف شخصي</string>
+  <string name="no_pincode_sheet_details">لم تقم بإعداد رقم التعريف الشخصي. هل تريد إعداده الآن؟</string>
+  <string name="no_pincode_sheet_not_now">في وقت لاحق</string>
+  <string name="no_pincode_sheet_dont_ask">لم نطلب</string>
+  <string name="no_pincode_sheet_set_up">اقامة</string>
+
 </resources>

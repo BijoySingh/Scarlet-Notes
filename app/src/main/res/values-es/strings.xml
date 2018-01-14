@@ -170,4 +170,11 @@
   <string name="home_option_install_from_store">Instalar desde la tienda</string>
   <string name="home_option_install_from_store_subtitle">Instalar la aplicación de Google Store para Cloud Sync</string>
 
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">Sin PIN establecido</string>
+  <string name="no_pincode_sheet_details">No ha configurado el PIN. ¿Te gustaría configurarlo ahora?</string>
+  <string name="no_pincode_sheet_not_now">Luego</string>
+  <string name="no_pincode_sheet_dont_ask">Nunca preguntes</string>
+  <string name="no_pincode_sheet_set_up">Preparar</string>
+
 </resources>

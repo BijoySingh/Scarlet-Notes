@@ -170,4 +170,11 @@
   <string name="home_option_install_from_store">התקן מ- Store</string>
   <string name="home_option_install_from_store_subtitle">התקן אפליקציה מ- Google Store עבור Cloud Sync</string>
 
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">לא הוגדר קוד PIN</string>
+  <string name="no_pincode_sheet_details">לא הגדרת את ה- PIN. האם אתה רוצה להגדיר את זה עכשיו?</string>
+  <string name="no_pincode_sheet_not_now">יותר מאוחר</string>
+  <string name="no_pincode_sheet_dont_ask">לעולם אל תשאל</string>
+  <string name="no_pincode_sheet_set_up">להכין</string>
+
 </resources>

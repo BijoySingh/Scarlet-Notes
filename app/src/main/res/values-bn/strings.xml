@@ -171,4 +171,11 @@
   <string name="home_option_install_from_store">দোকান থেকে ইনস্টল করুন</string>
   <string name="home_option_install_from_store_subtitle">ক্লাউড সিঙ্কের জন্য Google স্টোর থেকে অ্যাপ্লিকেশন ইনস্টল করুন</string>
 
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">কোন PIN সেট করা নেই</string>
+  <string name="no_pincode_sheet_details">আপনি পিনটি সেট আপ করেন নি আপনি এটি এখন সেট আপ করতে চান?</string>
+  <string name="no_pincode_sheet_not_now">পরবর্তীতে</string>
+  <string name="no_pincode_sheet_dont_ask">কখনো জিজ্ঞাসা করবেন না</string>
+  <string name="no_pincode_sheet_set_up">সেটআপ করুন</string>
+
 </resources>

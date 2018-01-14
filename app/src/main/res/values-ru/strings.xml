@@ -172,4 +172,11 @@
   <string name="home_option_install_from_store">Установить из магазина</string>
   <string name="home_option_install_from_store_subtitle">Установка приложения из Google Store для облачной синхронизации</string>
 
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">Нет PIN-кода</string>
+  <string name="no_pincode_sheet_details">PIN-код не установлен. Вы хотите настроить его сейчас?</string>
+  <string name="no_pincode_sheet_not_now">Позже</string>
+  <string name="no_pincode_sheet_dont_ask">Никогда не спрашивайте</string>
+  <string name="no_pincode_sheet_set_up">Настроить</string>
+
 </resources>

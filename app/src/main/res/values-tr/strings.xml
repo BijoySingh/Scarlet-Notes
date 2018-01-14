@@ -168,6 +168,13 @@
   <!-- Added in release v4.0.0 -->
   <!-- Cloud Backup Hint -->
   <string name="home_option_install_from_store">Mağazadan Yükle</string>
-  <string name="home_option_install_from_store_subtitle">Bulut Senkronizasyonu için Google Store'dan uygulama yükleyin</string>
+  <string name="home_option_install_from_store_subtitle">Bulut Senkronizasyonu için Google Store\'dan uygulama yükleyin</string>
+
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">PIN seti yok</string>
+  <string name="no_pincode_sheet_details">PIN\'i kurmadınız. Şimdi kurmak ister misiniz?</string>
+  <string name="no_pincode_sheet_not_now">Sonra</string>
+  <string name="no_pincode_sheet_dont_ask">Asla sorma</string>
+  <string name="no_pincode_sheet_set_up">Kurmak</string>
 
 </resources>

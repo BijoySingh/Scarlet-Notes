@@ -169,4 +169,11 @@
   <string name="home_option_install_from_store">ਸਟੋਰ ਤੋਂ ਇੰਸਟਾਲ ਕਰੋ</string>
   <string name="home_option_install_from_store_subtitle">Cloud Sync ਲਈ Google ਸਟੋਰ ਤੋਂ ਐਪ ਨੂੰ ਸਥਾਪਤ ਕਰੋ</string>
 
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">ਕੋਈ PIN ਸੈਟ ਨਹੀਂ ਹੈ</string>
+  <string name="no_pincode_sheet_details">ਤੁਸੀਂ ਪਿੰਨ ਨੂੰ ਸੈਟ ਅਪ ਨਹੀਂ ਕੀਤਾ ਹੈ ਕੀ ਤੁਸੀਂ ਇਸ ਨੂੰ ਹੁਣੇ ਸੈੱਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+  <string name="no_pincode_sheet_not_now">ਬਾਅਦ ਵਿਚ</string>
+  <string name="no_pincode_sheet_dont_ask">ਕਦੇ ਕਹੋ ਨਾ</string>
+  <string name="no_pincode_sheet_set_up">ਸਥਾਪਨਾ ਕਰਨਾ</string>
+
 </resources>

@@ -168,4 +168,11 @@
   <string name="home_option_install_from_store">从商店安装</string>
   <string name="home_option_install_from_store_subtitle">从Google Store for Cloud Sync安装应用程序</string>
 
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">没有PIN码设置</string>
+  <string name="no_pincode_sheet_details">您尚未设置PIN码。 你想现在设置它？</string>
+  <string name="no_pincode_sheet_not_now">后来</string>
+  <string name="no_pincode_sheet_dont_ask">永远不要问</string>
+  <string name="no_pincode_sheet_set_up">建立</string>
+
 </resources>
