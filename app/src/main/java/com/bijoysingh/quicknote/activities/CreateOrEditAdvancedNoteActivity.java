@@ -184,15 +184,13 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   protected void onPause() {
     super.onPause();
     active = false;
-    maybeUpdateNote();
+    maybeUpdateNoteWithSync();
+    destroyIfNeeded();
   }
 
   @Override
   public void onBackPressed() {
     super.onBackPressed();
-    active = false;
-    maybeUpdateNote();
-    destroyIfNeeded();
     tryClosingTheKeyboard();
   }
 
@@ -218,7 +216,15 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     return false;
   }
 
-  protected void maybeUpdateNote() {
+  protected void maybeUpdateNoteWithoutSync() {
+    maybeUpdateNote(false);
+  }
+
+  protected void maybeUpdateNoteWithSync() {
+    maybeUpdateNote(true);
+  }
+
+  protected void maybeUpdateNote(boolean sync) {
     note.updateTimestamp = Calendar.getInstance().getTimeInMillis();
     note.description = Format.getNote(formats);
 
@@ -227,7 +233,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       return;
     }
 
-    maybeSaveNote();
+    maybeSaveNote(sync);
     lastNoteInstance.copyNote(note);
   }
 
@@ -237,7 +243,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
       @Override
       public void run() {
         if (active) {
-          maybeUpdateNote();
+          maybeUpdateNoteWithoutSync();
           handler.postDelayed(this, HANDLER_UPDATE_TIME);
         }
       }
@@ -334,7 +340,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
         Collections.swap(formats, i, i - 1);
       }
     }
-    maybeUpdateNote();
+    maybeUpdateNoteWithoutSync();
   }
 
   @Override
@@ -346,7 +352,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     focusedFormat = focusedFormat == null || focusedFormat.uid == format.uid ? null : focusedFormat;
     formats.remove(position);
     adapter.removeItem(position);
-    maybeUpdateNote();
+    maybeUpdateNoteWithoutSync();
   }
 
   @Override

@@ -300,16 +300,21 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     colorButton.setBackground(new CircleDrawable(note.color));
   }
 
-  protected void maybeSaveNote() {
+  protected void maybeSaveNoteWithSync() {
+    maybeSaveNote(true);
+  }
+
+  protected void maybeSaveNote(boolean sync) {
     if (note.getFormats().isEmpty() && note.isUnsaved()) {
       return;
     }
-    note.save(context);
+    if (sync) note.save(context);
+    else note.saveWithoutSync(context);
   }
 
   private void updateNote() {
     note.description = Format.getNote(formats);
-    maybeSaveNote();
+    maybeSaveNoteWithSync();
   }
 
   public void moveItemToTrashOrDelete(Note note) {
