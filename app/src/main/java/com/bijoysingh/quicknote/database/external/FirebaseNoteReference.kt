@@ -3,7 +3,9 @@ package com.bijoysingh.quicknote.database.external
 import android.content.Context
 import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.utils.NoteBroadcast
 import com.bijoysingh.quicknote.utils.genImportedNote
+import com.bijoysingh.quicknote.utils.sendNoteBroadcast
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -65,10 +67,12 @@ private fun setListener(context: Context) {
       handleNoteChange(snapshot, fun(note, existingNote, isSame) {
         if (existingNote === null) {
           note.saveWithoutSync(context)
+          sendNoteBroadcast(context, NoteBroadcast.NOTE_CHANGED, note.uuid)
           return
         }
         if (!isSame) {
           existingNote.copyNote(note).saveWithoutSync(context)
+          sendNoteBroadcast(context, NoteBroadcast.NOTE_CHANGED, existingNote.uuid)
         }
       })
     }
@@ -77,6 +81,7 @@ private fun setListener(context: Context) {
       handleNoteChange(snapshot, fun(_, existingNote, _) {
         if (existingNote !== null) {
           existingNote.deleteWithoutSync(context)
+          sendNoteBroadcast(context, NoteBroadcast.NOTE_DELETED, existingNote.uuid)
         }
       })
     }

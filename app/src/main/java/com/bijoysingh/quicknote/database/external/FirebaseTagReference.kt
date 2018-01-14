@@ -4,6 +4,8 @@ import android.content.Context
 import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.utils.genFromFirebase
+import com.bijoysingh.quicknote.utils.NoteBroadcast
+import com.bijoysingh.quicknote.utils.sendNoteBroadcast
 import com.github.bijoysingh.starter.util.TextUtils
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -66,11 +68,13 @@ private fun setListener(context: Context) {
       handleTagChange(snapshot, fun(tag, existingTag, isSame) {
         if (existingTag === null) {
           tag.saveWithoutSync(context)
+          sendNoteBroadcast(context, NoteBroadcast.TAG_CHANGED, tag.uuid)
           return
         }
         if (!isSame) {
           existingTag.title = tag.title
           existingTag.saveWithoutSync(context)
+          sendNoteBroadcast(context, NoteBroadcast.TAG_CHANGED, existingTag.uuid)
         }
       })
     }
@@ -79,6 +83,7 @@ private fun setListener(context: Context) {
       handleTagChange(snapshot, fun(_, existingTag, _) {
         if (existingTag !== null) {
           existingTag.deleteWithoutSync(context)
+          sendNoteBroadcast(context, NoteBroadcast.TAG_DELETED, existingTag.uuid)
         }
       })
     }
