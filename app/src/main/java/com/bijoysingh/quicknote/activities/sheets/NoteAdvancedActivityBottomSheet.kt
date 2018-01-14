@@ -11,7 +11,7 @@ import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.NotificationHandler
 import com.github.bijoysingh.starter.prefs.DataStore
 
-class NoteGridBottomSheet() : GridBottomSheetBase() {
+class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
 
   var noteFn: () -> Note? = { null }
   var isEditMode: Boolean = false
@@ -253,7 +253,7 @@ class NoteGridBottomSheet() : GridBottomSheetBase() {
     fun openSheet(activity: ViewAdvancedNoteActivity,
                   note: Note,
                   isEditMode: Boolean) {
-      val sheet = NoteGridBottomSheet()
+      val sheet = NoteAdvancedActivityBottomSheet()
       sheet.noteFn = { note }
       sheet.isEditMode = isEditMode
       sheet.isNightMode = activity.isNightMode

@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bijoysingh.quicknote.R;
-import com.bijoysingh.quicknote.activities.sheets.NoteGridBottomSheet;
+import com.bijoysingh.quicknote.activities.sheets.NoteAdvancedActivityBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.NoteSettingsOptionsBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.database.Tag;
@@ -226,7 +226,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     actionOptions.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        NoteGridBottomSheet.Companion.openSheet(
+        NoteAdvancedActivityBottomSheet.Companion.openSheet(
             ViewAdvancedNoteActivity.this,
             note,
             getEditModeValue());
