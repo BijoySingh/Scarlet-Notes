@@ -29,8 +29,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     val activity = context as MainActivity
     val dataStore = DataStore.get(context)
     val options = ArrayList<OptionsItem>()
-    val locked = note.locked && SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)
-    val notLocked = !note.locked && SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)
+
+    val pinSetup = SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)
     options.add(OptionsItem(
         title = R.string.restore_note,
         subtitle = R.string.tap_for_action_not_trash,
@@ -98,7 +98,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           note.share(activity)
           dismiss()
         },
-        invalid = locked
+        invalid = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.copy_note,
@@ -108,7 +108,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           note.copy(activity)
           dismiss()
         },
-        invalid = locked
+        invalid = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.delete_note_permanently,
@@ -119,7 +119,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           dismiss()
         },
         visible = note.noteState == NoteState.TRASH,
-        invalid = locked
+        invalid = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.trash_note,
@@ -130,7 +130,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           dismiss()
         },
         visible = note.noteState != NoteState.TRASH,
-        invalid = locked
+        invalid = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.change_tags,
@@ -140,7 +140,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           TagChooseOptionsBottomSheet.openSheet(activity, note, { activity.setupData() })
           dismiss()
         },
-        invalid = locked
+        invalid = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.choose_note_color,
@@ -171,7 +171,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           note.popup(activity)
           dismiss()
         },
-        invalid = locked
+        invalid = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.open_in_notification,
@@ -183,7 +183,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           handler.openNotification()
           dismiss()
         },
-        invalid = locked
+        invalid = note.locked
     ))
     options.add(OptionsItem(
         title = if(note.pinned) R.string.unpin_note else R.string.pin_note,
@@ -204,7 +204,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.updateNote(note)
           dismiss()
         },
-        visible = notLocked
+        visible = !note.locked
     ))
     options.add(OptionsItem(
         title = R.string.unlock_note,
@@ -222,7 +222,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
               },
               dataStore)
         },
-        visible = locked
+        visible = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.reminder,

@@ -29,7 +29,6 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
 
   private fun getOptions(note: Note): List<OptionsItem> {
     val activity = context as ViewAdvancedNoteActivity
-    val dataStore = DataStore.get(context)
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.restore_note,
@@ -167,7 +166,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           note.popup(activity)
           dismiss()
         },
-        visible = !note.locked && !note.isUnsaved
+        invalid = note.locked || note.isUnsaved
     ))
     options.add(OptionsItem(
         title = R.string.open_in_notification,
@@ -179,7 +178,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           handler.openNotification()
           dismiss()
         },
-        visible = !note.locked && !note.isUnsaved
+        invalid = note.locked || note.isUnsaved
     ))
     options.add(OptionsItem(
         title = if(note.pinned) R.string.unpin_note else R.string.pin_note,
@@ -202,7 +201,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           activity.notifyNoteChange()
           dismiss()
         },
-        visible = !note.locked && hasPinCodeEnabled(dataStore)
+        visible = !note.locked
     ))
     options.add(OptionsItem(
         title = R.string.unlock_note,
@@ -214,7 +213,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           activity.notifyNoteChange()
           dismiss()
         },
-        visible = note.locked && hasPinCodeEnabled(dataStore)
+        visible = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.reminder,

@@ -200,4 +200,13 @@
   <string name="home_option_install_from_store_subtitle">Install app from Google Store for Cloud Sync</string>
   <!-- End -->
 
+  <!-- Start Cloud Backup Hint -->
+  <string name="no_pincode_sheet_title" translatable="false">No PIN set</string>
+  <string name="no_pincode_sheet_details" translatable="false">You have not set up the PIN. Would you like to set it up now?</string>
+  <string name="no_pincode_sheet_not_now" translatable="false">Later</string>
+  <string name="no_pincode_sheet_dont_ask" translatable="false">Never Ask</string>
+  <string name="no_pincode_sheet_set_up" translatable="false">Set Up</string>
+
+  <!-- End No Pincode -->
+
 </resources>

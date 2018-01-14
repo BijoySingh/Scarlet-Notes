@@ -61,27 +61,6 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     return options
   }
 
-  private fun openExportSheet() {
-    val activity = context as MainActivity
-    val dataStore = DataStore.get(context)
-    if (!SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)) {
-      ExportNotesBottomSheet.openSheet(activity)
-      return
-    }
-    EnterPincodeBottomSheet.openUnlockSheet(
-        context as ThemedActivity,
-        object : EnterPincodeBottomSheet.PincodeSuccessListener {
-          override fun onFailure() {
-            openExportSheet()
-          }
-
-          override fun onSuccess() {
-            ExportNotesBottomSheet.openSheet(activity)
-          }
-        },
-        dataStore)
-  }
-
   override fun getLayout(): Int = R.layout.layout_options_sheet
 
   companion object {

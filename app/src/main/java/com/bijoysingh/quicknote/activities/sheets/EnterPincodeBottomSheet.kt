@@ -13,6 +13,8 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
+import com.bijoysingh.quicknote.activities.sheets.NoPincodeBottomSheet.Companion.ignoreNoPinSheet
+import com.bijoysingh.quicknote.activities.sheets.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
 import com.bijoysingh.quicknote.database.Note
 import com.github.ajalt.reprint.core.AuthenticationFailureReason
 import com.github.ajalt.reprint.core.AuthenticationListener
@@ -172,7 +174,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
 
         override fun onRemoveButtonClick() {
           dataStore.put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
-          Note.db(activity).unlockAll()
+          dataStore.put(NoPincodeBottomSheet.KEY_NO_PIN_ASK, false)
           listener.onSuccess()
 
           if (activity is MainActivity)
@@ -206,6 +208,15 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
         activity: ThemedActivity,
         listener: PincodeSuccessOnlyListener,
         dataStore: DataStore) {
+      if (!hasPinCodeEnabled(dataStore)) {
+        if (ignoreNoPinSheet(dataStore)) {
+          listener.onSuccess()
+          return
+        }
+        NoPincodeBottomSheet.openSheet(activity, listener)
+        return
+      }
+
       openUnlockSheetBase(
           activity,
           listener,
@@ -232,8 +243,8 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
         }
 
         override fun onPasswordRequested(password: String) {
-          val currentPassword = dataStore.get(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, password)
-          if (currentPassword == password) {
+          val currentPassword = dataStore.get(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
+          if (currentPassword != "" && currentPassword == password) {
             listener.onSuccess()
           } else if (listener is PincodeSuccessListener) {
             listener.onFailure()
