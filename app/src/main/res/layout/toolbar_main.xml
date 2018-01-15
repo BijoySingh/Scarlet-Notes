@@ -10,11 +10,11 @@
 
   <ImageView
     android:id="@+id/back_button"
-    android:layout_width="48dp"
-    android:layout_height="48dp"
+    android:layout_width="@dimen/icon_size_xlarge"
+    android:layout_height="@dimen/icon_size_xlarge"
     android:layout_marginEnd="4dp"
     android:layout_marginStart="4dp"
-    android:padding="8dp"
+    android:padding="@dimen/spacing_xsmall"
     android:src="@drawable/ic_format_quote_white_48dp"
     android:tint="@color/colorAccent" />
 
@@ -27,21 +27,21 @@
     android:ellipsize="end"
     android:text="@string/app_name"
     android:textColor="@color/dark_tertiary_text"
-    android:textSize="18sp" />
+    android:textSize="@dimen/font_size_large" />
 
   <ImageView
     android:id="@+id/home_search_button"
-    android:layout_width="48dp"
-    android:layout_height="48dp"
-    android:padding="12dp"
+    android:layout_width="@dimen/icon_size_xlarge"
+    android:layout_height="@dimen/icon_size_xlarge"
+    android:padding="@dimen/spacing_small"
     android:src="@drawable/ic_action_search"
     android:tint="@color/dark_tertiary_text" />
 
   <ImageView
     android:id="@+id/home_option_button"
-    android:layout_width="48dp"
-    android:layout_height="48dp"
-    android:padding="12dp"
+    android:layout_width="@dimen/icon_size_xlarge"
+    android:layout_height="@dimen/icon_size_xlarge"
+    android:padding="@dimen/spacing_small"
     android:src="@drawable/ic_action_settings"
     android:tint="@color/dark_tertiary_text" />
 

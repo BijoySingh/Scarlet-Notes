@@ -33,12 +33,12 @@
           android:background="@android:color/transparent"
           android:ellipsize="end"
           android:maxLines="2"
-          android:paddingEnd="8dp"
-          android:paddingStart="8dp"
-          android:paddingTop="8dp"
+          android:paddingEnd="@dimen/spacing_xsmall"
+          android:paddingStart="@dimen/spacing_xsmall"
+          android:paddingTop="@dimen/spacing_xsmall"
           android:textColor="@color/light_primary_text"
           android:textColorHint="@color/light_tertiary_text"
-          android:textSize="16sp"
+          android:textSize="@dimen/font_size_normal"
           android:textStyle="bold" />
 
         <TextView
@@ -51,11 +51,10 @@
           android:lineSpacingExtra="2dp"
           android:maxLines="7"
           android:minLines="2"
-          android:padding="8dp"
+          android:padding="@dimen/spacing_xsmall"
           android:textColor="@color/light_primary_text"
           android:textColorHint="@color/light_tertiary_text"
-          android:textSize="14sp" />
-
+          android:textSize="@dimen/font_size_small" />
       </LinearLayout>
 
       <ImageView
@@ -63,7 +62,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:alpha="0.5"
-        android:padding="8dp"
+        android:padding="@dimen/spacing_xsmall"
         android:src="@drawable/ic_pin"
         android:visibility="gone" />
     </LinearLayout>
@@ -87,7 +86,7 @@
         android:hint="@string/timestamp"
         android:lines="1"
         android:textColor="@color/light_tertiary_text"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_size_small" />
 
       <ImageView
         android:id="@+id/delete_button"

@@ -9,34 +9,34 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="@dimen/spacing_large">
 
     <TextView
       android:id="@+id/export_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
+      android:layout_marginBottom="@dimen/spacing_xsmall"
       android:text="@string/import_export_layout_exporting"
       android:textColor="@color/dark_tertiary_text"
-      android:textSize="18sp" />
+      android:textSize="@dimen/font_size_large" />
 
     <TextView
       android:id="@+id/filename"
       style="@style/SanSerif"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
-      android:layout_marginTop="8dp"
+      android:layout_marginBottom="@dimen/spacing_xsmall"
+      android:layout_marginTop="@dimen/spacing_xsmall"
       android:text="@string/import_export_layout_filename"
       android:textColor="@color/dark_hint_text"
-      android:textSize="14sp" />
+      android:textSize="@dimen/font_size_small" />
 
     <ProgressBar
       android:id="@+id/progress_bar"
       style="@style/Widget.AppCompat.ProgressBar.Horizontal"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
+      android:layout_marginBottom="@dimen/spacing_xsmall"
       android:indeterminate="true" />
 
     <LinearLayout
@@ -52,24 +52,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:padding="8dp"
+        android:layout_marginEnd="@dimen/spacing_xsmall"
+        android:layout_marginStart="@dimen/spacing_xsmall"
+        android:padding="@dimen/spacing_xsmall"
         android:text="@string/import_export_layout_exporting_share"
         android:textAllCaps="true"
         android:textColor="@color/dark_hint_text"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_size_small" />
 
       <TextView
         android:id="@+id/export_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:padding="8dp"
+        android:padding="@dimen/spacing_xsmall"
         android:text="@string/import_export_layout_exporting_done"
         android:textAllCaps="true"
         android:textColor="@color/colorAccent"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_size_small" />
     </LinearLayout>
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="4dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginStart="8dp"
+    android:layout_marginEnd="@dimen/spacing_xsmall"
+    android:layout_marginStart="@dimen/spacing_xsmall"
     android:layout_marginTop="4dp"
     app:cardBackgroundColor="@color/material_blue_grey_700"
     app:cardCornerRadius="4dp"
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="@dimen/spacing_xsmall">
 
       <TextView
           android:id="@+id/title"
@@ -33,11 +33,11 @@
           android:background="@android:color/transparent"
           android:ellipsize="end"
           android:maxLines="2"
-          android:padding="8dp"
+          android:padding="@dimen/spacing_xsmall"
           android:text="@string/main_no_notes"
           android:textColor="@color/light_primary_text"
           android:textColorHint="@color/light_tertiary_text"
-          android:textSize="18sp"
+          android:textSize="@dimen/font_size_large"
           android:textStyle="bold"/>
 
       <TextView
@@ -49,11 +49,11 @@
           android:gravity="top"
           android:lineSpacingExtra="4dp"
           android:maxLines="5"
-          android:padding="8dp"
+          android:padding="@dimen/spacing_xsmall"
           android:text="@string/main_no_notes_hint"
           android:textColor="@color/light_primary_text"
           android:textColorHint="@color/light_tertiary_text"
-          android:textSize="18sp"/>
+          android:textSize="@dimen/font_size_large"/>
     </LinearLayout>
   </LinearLayout>
 </android.support.v7.widget.CardView>

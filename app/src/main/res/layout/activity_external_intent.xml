@@ -20,7 +20,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
-      android:padding="12dp">
+      android:padding="@dimen/spacing_small">
 
       <TextView
         android:id="@+id/title"
@@ -32,7 +32,7 @@
         android:padding="6dp"
         android:textColor="@color/material_teal_700"
         android:textColorHint="@color/dark_hint_text"
-        android:textSize="@dimen/header_font_size"
+        android:textSize="@dimen/font_size_xlarge"
         android:textStyle="bold" />
 
       <TextView
@@ -48,7 +48,7 @@
         android:padding="6dp"
         android:textColor="@color/dark_secondary_text"
         android:textColorHint="@color/dark_hint_text"
-        android:textSize="@dimen/text_font_size" />
+        android:textSize="@dimen/font_size_large" />
 
     </LinearLayout>
   </ScrollView>

@@ -13,9 +13,9 @@
     android:orientation="horizontal">
 
     <ImageView
-      android:layout_width="48dp"
-      android:layout_height="48dp"
-      android:padding="12dp"
+      android:layout_width="@dimen/icon_size_xlarge"
+      android:layout_height="@dimen/icon_size_xlarge"
+      android:padding="@dimen/spacing_small"
       android:src="@drawable/ic_close_white_48dp"
       android:tint="@color/dark_tertiary_text" />
 
@@ -28,7 +28,7 @@
       android:gravity="center"
       android:text="@string/import_export_import_file_title"
       android:textColor="@color/dark_tertiary_text"
-      android:textSize="16sp" />
+      android:textSize="@dimen/font_size_normal" />
   </FrameLayout>
 
   <FrameLayout
@@ -47,18 +47,18 @@
       android:id="@+id/recycler_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:paddingTop="16dp"
-      android:paddingBottom="16dp"/>
+      android:paddingTop="@dimen/spacing_normal"
+      android:paddingBottom="@dimen/spacing_normal"/>
   </FrameLayout>
 
   <TextView
     android:id="@+id/import_file"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="@dimen/spacing_xsmall"
     android:background="@drawable/circular_border_bg"
     android:gravity="center"
-    android:padding="16dp"
+    android:padding="@dimen/spacing_normal"
     android:text="@string/import_export_import_file"
     android:textColor="@color/dark_tertiary_text" />
 </LinearLayout>

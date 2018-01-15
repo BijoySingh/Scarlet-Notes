@@ -27,12 +27,12 @@
         android:background="@android:color/transparent"
         android:ellipsize="end"
         android:maxLines="2"
-        android:paddingEnd="8dp"
-        android:paddingStart="8dp"
-        android:paddingTop="8dp"
+        android:paddingEnd="@dimen/spacing_xsmall"
+        android:paddingStart="@dimen/spacing_xsmall"
+        android:paddingTop="@dimen/spacing_xsmall"
         android:textColor="@color/light_primary_text"
         android:textColorHint="@color/light_tertiary_text"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_size_normal"
         android:textStyle="bold" />
 
       <TextView
@@ -45,10 +45,10 @@
         android:lineSpacingExtra="2dp"
         android:maxLines="7"
         android:minLines="2"
-        android:padding="8dp"
+        android:padding="@dimen/spacing_xsmall"
         android:textColor="@color/light_primary_text"
         android:textColorHint="@color/light_tertiary_text"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_size_small" />
     </LinearLayout>
 
     <LinearLayout
@@ -57,7 +57,7 @@
       android:background="@drawable/gradient_background"
       android:gravity="center"
       android:orientation="horizontal"
-      android:padding="8dp">
+      android:padding="@dimen/spacing_xsmall">
 
       <TextView
         android:id="@+id/tags"
@@ -70,12 +70,12 @@
         android:hint="@string/timestamp"
         android:lines="1"
         android:textColor="@color/light_tertiary_text"
-        android:textSize="12sp" />
+        android:textSize="@dimen/font_size_xsmall" />
 
       <ImageView
         android:id="@+id/pin_icon"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="@dimen/spacing_normal"
+        android:layout_height="@dimen/spacing_normal"
         android:alpha="0.5"
         android:src="@drawable/ic_pin"
         android:visibility="gone" />

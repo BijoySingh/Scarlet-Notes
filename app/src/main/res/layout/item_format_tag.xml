@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   style="@style/FormatLayout"
-  android:paddingTop="20dp">
+  android:paddingTop="@dimen/spacing_large">
 
   <include layout="@layout/layout_modify_format" />
 
@@ -11,7 +11,7 @@
     android:autoLink="web"
     android:hint="@string/format_hint_text"
     android:linksClickable="true"
-    android:textSize="@dimen/text_font_size" />
+    android:textSize="@dimen/font_size_large" />
 
   <EditText
     android:id="@+id/edit"
@@ -19,5 +19,5 @@
     android:hint="@string/format_hint_text"
     android:minLines="3"
     android:visibility="gone"
-    android:textSize="@dimen/text_font_size" />
+    android:textSize="@dimen/font_size_large" />
 </LinearLayout>

@@ -9,8 +9,8 @@
 
   <LinearLayout
       android:id="@+id/action_move"
-      android:layout_width="36dp"
-      android:layout_height="36dp"
+      android:layout_width="@dimen/icon_size_normal"
+      android:layout_height="@dimen/icon_size_normal"
       android:layout_marginTop="4dp"
       android:background="?attr/selectableItemBackgroundBorderless"
       android:gravity="center"

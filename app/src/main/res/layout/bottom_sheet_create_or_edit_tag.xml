@@ -9,16 +9,16 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="@dimen/spacing_large">
 
     <TextView
       android:id="@+id/options_title"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
+      android:layout_marginBottom="@dimen/spacing_xsmall"
       android:text="@string/tag_sheet_create_title"
       android:textColor="@color/dark_tertiary_text"
-      android:textSize="18sp" />
+      android:textSize="@dimen/font_size_large" />
 
     <EditText
       android:id="@+id/enter_tag"
@@ -29,13 +29,13 @@
       android:fontFamily="monospace"
       android:hint="@string/tag_sheet_enter_tag_hint"
       android:inputType="text"
-      android:padding="16dp"
+      android:padding="@dimen/spacing_normal"
       android:textSize="24sp" />
 
     <LinearLayout
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
+      android:layout_marginTop="@dimen/spacing_xsmall"
       android:gravity="center"
       android:orientation="horizontal">
 
@@ -48,22 +48,22 @@
         android:id="@+id/action_remove_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="@dimen/spacing_normal"
         android:text="@string/security_sheet_button_remove"
         android:textAllCaps="true"
         android:textColor="@color/material_grey_600"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_size_small"
         android:visibility="gone" />
 
       <TextView
         android:id="@+id/action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="@dimen/spacing_normal"
         android:text="@string/save"
         android:textAllCaps="true"
         android:textColor="@color/colorAccent"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_size_small" />
     </LinearLayout>
 
   </LinearLayout>

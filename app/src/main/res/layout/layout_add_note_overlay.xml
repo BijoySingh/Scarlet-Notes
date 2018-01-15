@@ -12,12 +12,12 @@
       android:background="@android:color/transparent"
       android:fontFamily="monospace"
       android:hint="@string/title"
-      android:paddingLeft="16dp"
-      android:paddingRight="16dp"
-      android:paddingTop="16dp"
+      android:paddingLeft="@dimen/spacing_normal"
+      android:paddingRight="@dimen/spacing_normal"
+      android:paddingTop="@dimen/spacing_normal"
       android:textColor="@color/dark_primary_text"
       android:textIsSelectable="true"
-      android:textSize="21sp"
+      android:textSize="@dimen/font_size_xlarge"
       android:textStyle="bold"/>
 
   <ScrollView
@@ -34,10 +34,10 @@
         android:gravity="top"
         android:hint="@string/description"
         android:lineSpacingExtra="6dp"
-        android:padding="16dp"
+        android:padding="@dimen/spacing_normal"
         android:textColor="@color/dark_secondary_text"
         android:textIsSelectable="true"
-        android:textSize="16sp"/>
+        android:textSize="@dimen/font_size_normal"/>
   </ScrollView>
 
   <View
@@ -61,31 +61,31 @@
         android:fontFamily="monospace"
         android:gravity="start"
         android:hint="@string/timestamp"
-        android:padding="16dp"
+        android:padding="@dimen/spacing_normal"
         android:textColor="@color/light_tertiary_text"
-        android:textSize="12sp"/>
+        android:textSize="@dimen/font_size_xsmall"/>
 
     <ImageView
         android:id="@+id/panel_copy_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:padding="8dp"
+        android:layout_width="@dimen/icon_size_large"
+        android:layout_height="@dimen/icon_size_large"
+        android:padding="@dimen/spacing_xsmall"
         android:src="@drawable/ic_content_copy_white_48dp"
         android:tint="@color/light_hint_text"/>
 
     <ImageView
         android:id="@+id/panel_share_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:padding="8dp"
+        android:layout_width="@dimen/icon_size_large"
+        android:layout_height="@dimen/icon_size_large"
+        android:padding="@dimen/spacing_xsmall"
         android:src="@drawable/ic_share_white_48dp"
         android:tint="@color/light_hint_text"/>
 
     <ImageView
         android:id="@+id/panel_edit_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:padding="8dp"
+        android:layout_width="@dimen/icon_size_large"
+        android:layout_height="@dimen/icon_size_large"
+        android:padding="@dimen/spacing_xsmall"
         android:src="@drawable/ic_done_white_48dp"
         android:tint="@color/light_hint_text"/>
 

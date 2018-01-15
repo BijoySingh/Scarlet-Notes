@@ -6,9 +6,9 @@
 
   <ImageView
     android:id="@+id/icon"
-    android:layout_width="24dp"
-    android:layout_height="24dp"
-    android:layout_margin="12dp"
+    android:layout_width="@dimen/icon_size_normal"
+    android:layout_height="@dimen/icon_size_normal"
+    android:layout_margin="@dimen/spacing_small"
     android:src="@drawable/ic_check_box_outline_blank_white_24dp"
     android:tint="@color/material_blue_grey_500" />
 
@@ -18,11 +18,11 @@
     android:autoLink="web"
     android:hint="@string/format_hint_list"
     android:linksClickable="true"
-    android:textSize="@dimen/text_font_size" />
+    android:textSize="@dimen/font_size_large" />
 
   <EditText
     android:id="@+id/edit"
     style="@style/FormatText"
     android:hint="@string/format_hint_list"
-    android:textSize="@dimen/text_font_size" />
+    android:textSize="@dimen/font_size_large" />
 </LinearLayout>

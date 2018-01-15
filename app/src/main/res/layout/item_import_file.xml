@@ -4,15 +4,15 @@
   android:layout_height="wrap_content"
   android:gravity="center"
   android:orientation="horizontal"
-  android:paddingTop="16dp"
-  android:paddingBottom="16dp"
-  android:paddingStart="32dp"
-  android:paddingEnd="32dp">
+  android:paddingTop="@dimen/spacing_normal"
+  android:paddingBottom="@dimen/spacing_normal"
+  android:paddingStart="@dimen/spacing_xxlarge"
+  android:paddingEnd="@dimen/spacing_xxlarge">
 
   <ImageView
-    android:layout_width="24dp"
-    android:layout_height="24dp"
-    android:layout_marginEnd="16dp"
+    android:layout_width="@dimen/icon_size_normal"
+    android:layout_height="@dimen/icon_size_normal"
+    android:layout_marginEnd="@dimen/spacing_normal"
     android:visibility="gone"
     android:src="@drawable/ic_check_box_outline_blank_white_24dp"
     android:tint="@color/dark_tertiary_text" />
@@ -29,7 +29,7 @@
       android:layout_height="wrap_content"
       android:text="Filename"
       android:textColor="@color/dark_tertiary_text"
-      android:textSize="16sp" />
+      android:textSize="@dimen/font_size_normal" />
 
     <TextView
       android:id="@+id/file_path"
@@ -39,7 +39,7 @@
       android:maxLines="1"
       android:text="MaterialNote/Examples"
       android:textColor="@color/dark_hint_text"
-      android:textSize="12sp" />
+      android:textSize="@dimen/font_size_xsmall" />
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -55,7 +55,7 @@
         android:fontFamily="@style/SanSerif"
         android:text="12 Aug 2017, 11:00 PM"
         android:textColor="@color/dark_hint_text"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_size_small" />
 
       <TextView
         android:id="@+id/file_size"
@@ -64,7 +64,7 @@
         android:fontFamily="@style/SanSerif"
         android:text="2.0MB"
         android:textColor="@color/dark_hint_text"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_size_small" />
     </LinearLayout>
   </LinearLayout>
 </LinearLayout>

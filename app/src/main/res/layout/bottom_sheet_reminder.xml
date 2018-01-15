@@ -10,72 +10,72 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="@dimen/spacing_large">
 
     <TextView
       android:id="@+id/options_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="16dp"
+      android:layout_marginBottom="@dimen/spacing_normal"
       android:text="@string/reminder_sheet_title"
       android:textColor="@color/dark_tertiary_text"
-      android:textSize="18sp" />
+      android:textSize="@dimen/font_size_large" />
 
     <com.github.bijoysingh.uibasics.views.UIActionView
       android:id="@+id/reminder_date"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
-      android:padding="8dp"
+      android:padding="@dimen/spacing_xsmall"
       app:action="@drawable/ic_edit_white_48dp"
       app:icon="@drawable/ic_date"
-      app:iconSize="24dp"
-      app:iconTextGap="12dp"
+      app:iconSize="@dimen/icon_size_normal"
+      app:iconTextGap="@dimen/spacing_small"
       app:subtitle=""
       app:subtitleColor="@color/dark_tertiary_text"
-      app:subtitleSize="16sp"
+      app:subtitleSize="@dimen/font_size_normal"
       app:title="@string/reminder_sheet_reminder_date"
       app:titleColor="@color/material_blue_grey_500"
-      app:titleSize="12sp" />
+      app:titleSize="@dimen/font_size_xsmall" />
 
     <com.github.bijoysingh.uibasics.views.UIActionView
       android:id="@+id/reminder_time"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
-      android:padding="8dp"
+      android:padding="@dimen/spacing_xsmall"
       app:action="@drawable/ic_edit_white_48dp"
       app:icon="@drawable/ic_time"
-      app:iconSize="24dp"
-      app:iconTextGap="12dp"
+      app:iconSize="@dimen/icon_size_normal"
+      app:iconTextGap="@dimen/spacing_small"
       app:subtitle=""
       app:subtitleColor="@color/dark_tertiary_text"
-      app:subtitleSize="16sp"
+      app:subtitleSize="@dimen/font_size_normal"
       app:title="@string/reminder_sheet_reminder_time"
       app:titleColor="@color/material_blue_grey_500"
-      app:titleSize="12sp" />
+      app:titleSize="@dimen/font_size_xsmall" />
 
     <com.github.bijoysingh.uibasics.views.UIActionView
       android:id="@+id/reminder_repeat"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
-      android:padding="8dp"
+      android:padding="@dimen/spacing_xsmall"
       app:action="@drawable/ic_edit_white_48dp"
       app:icon="@drawable/ic_restore"
-      app:iconSize="24dp"
-      app:iconTextGap="12dp"
+      app:iconSize="@dimen/icon_size_normal"
+      app:iconTextGap="@dimen/spacing_small"
       app:subtitle=""
       app:subtitleColor="@color/dark_tertiary_text"
-      app:subtitleSize="16sp"
+      app:subtitleSize="@dimen/font_size_normal"
       app:title="@string/reminder_sheet_repeat"
       app:titleColor="@color/material_blue_grey_500"
-      app:titleSize="12sp" />
+      app:titleSize="@dimen/font_size_xsmall" />
 
     <View
       android:layout_width="match_parent"
       android:layout_height="0.5dp"
-      android:layout_margin="16dp"
+      android:layout_margin="@dimen/spacing_normal"
       android:background="@color/material_blue_grey_100" />
 
     <LinearLayout
@@ -91,12 +91,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="16dp"
-        android:padding="8dp"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:padding="@dimen/spacing_xsmall"
         android:text="@string/security_sheet_button_remove"
         android:textAllCaps="true"
         android:textColor="@color/material_grey_600"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_size_small" />
 
       <TextView
         android:id="@+id/set_alarm"
@@ -104,12 +104,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="16dp"
-        android:padding="8dp"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:padding="@dimen/spacing_xsmall"
         android:text="@string/import_export_layout_exporting_done"
         android:textAllCaps="true"
         android:textColor="@color/material_blue_600"
-        android:textSize="14sp" />
+        android:textSize="@dimen/font_size_small" />
 
     </LinearLayout>
   </LinearLayout>

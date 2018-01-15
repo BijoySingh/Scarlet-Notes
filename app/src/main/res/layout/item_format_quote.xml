@@ -17,7 +17,7 @@
     android:hint="@string/format_hint_quote"
     android:linksClickable="true"
     android:textColor="@color/dark_hint_text"
-    android:textSize="@dimen/text_font_size"
+    android:textSize="@dimen/font_size_large"
     android:textStyle="italic" />
 
   <EditText
@@ -25,7 +25,7 @@
     style="@style/FormatText"
     android:hint="@string/format_hint_quote"
     android:textColor="@color/dark_hint_text"
-    android:textSize="@dimen/text_font_size"
+    android:textSize="@dimen/font_size_large"
     android:textStyle="italic" />
 
 </LinearLayout>

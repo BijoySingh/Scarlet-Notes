@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <dimen name="header_font_size">21sp</dimen>
-  <dimen name="sub_header_font_size">18sp</dimen>
-  <dimen name="text_font_size">18sp</dimen>
-  <dimen name="extra_text_line_spacing">6dp</dimen>
+  <dimen name="extra_text_line_spacing">4dp</dimen>
+
+  <dimen name="icon_size_xlarge">36dp</dimen>
+  <dimen name="icon_size_large">32dp</dimen>
+  <dimen name="icon_size_normal">20dp</dimen>
+
+  <dimen name="font_size_xlarge">18sp</dimen>
+  <dimen name="font_size_large">16sp</dimen>
+  <dimen name="font_size_normal">14sp</dimen>
+  <dimen name="font_size_small">12sp</dimen>
+  <dimen name="font_size_xsmall">12sp</dimen>
+
+  <dimen name="spacing_xxlarge">24dp</dimen>
+  <dimen name="spacing_xlarge">20dp</dimen>
+  <dimen name="spacing_large">16dp</dimen>
+  <dimen name="spacing_normal">12dp</dimen>
+  <dimen name="spacing_small">8dp</dimen>
+  <dimen name="spacing_xsmall">6dp</dimen>
 </resources>

@@ -38,7 +38,7 @@
     <ImageView
         android:id="@+id/format_sub_heading"
         style="@style/FormatButtonIcon"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/icon_size_large"
         android:src="@drawable/ic_title_white_48dp"
         android:tint="@color/material_blue_grey_500"/>
 

@@ -9,15 +9,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="32dp">
+    android:paddingBottom="@dimen/spacing_xxlarge">
 
     <TextView
       android:id="@+id/options_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="16dp"
+      android:padding="@dimen/spacing_normal"
       android:text="@string/tag_sheet_choose_tag"
-      android:textSize="18sp" />
+      android:textSize="@dimen/font_size_large" />
 
     <LinearLayout
       android:id="@+id/options_container"
@@ -29,14 +29,14 @@
       android:id="@+id/new_tag_button"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="16dp"
+      android:padding="@dimen/spacing_normal"
       ui:icon="@drawable/ic_add_white_24dp"
-      ui:iconSize="24dp"
-      ui:iconTextGap="16dp"
+      ui:iconSize="@dimen/icon_size_normal"
+      ui:iconTextGap="@dimen/spacing_normal"
       ui:iconTint="@color/dark_tertiary_text"
       ui:text="@string/tag_sheet_new_tag_button"
       ui:textColor="@color/dark_tertiary_text"
-      ui:textSize="16sp" />
+      ui:textSize="@dimen/font_size_normal" />
 
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

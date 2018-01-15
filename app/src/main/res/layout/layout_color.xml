@@ -5,13 +5,13 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="@dimen/spacing_xsmall">
 
   <ImageView
       android:id="@+id/color_icon"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
+      android:layout_width="@dimen/icon_size_large"
+      android:layout_height="@dimen/icon_size_large"
       android:layout_gravity="center"
-      android:padding="8dp"/>
+      android:padding="@dimen/spacing_xsmall"/>
 
 </LinearLayout>

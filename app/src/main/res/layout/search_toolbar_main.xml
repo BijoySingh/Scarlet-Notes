@@ -10,9 +10,9 @@
 
   <ImageView
     android:id="@+id/search_back_button"
-    android:layout_width="48dp"
-    android:layout_height="48dp"
-    android:padding="12dp"
+    android:layout_width="@dimen/icon_size_xlarge"
+    android:layout_height="@dimen/icon_size_xlarge"
+    android:padding="@dimen/spacing_small"
     android:src="@drawable/ic_arrow_back_white_48dp"
     android:tint="@color/dark_tertiary_text" />
 
@@ -24,13 +24,13 @@
     android:background="@color/transparent"
     android:hint="@string/search_notes"
     android:textColor="@color/dark_tertiary_text"
-    android:textSize="18sp" />
+    android:textSize="@dimen/font_size_large" />
 
   <ImageView
     android:id="@+id/search_close_button"
-    android:layout_width="48dp"
-    android:layout_height="48dp"
-    android:padding="16dp"
+    android:layout_width="@dimen/icon_size_xlarge"
+    android:layout_height="@dimen/icon_size_xlarge"
+    android:padding="@dimen/spacing_normal"
     android:src="@drawable/ic_close_white_48dp"
     android:tint="@color/dark_tertiary_text" />
 

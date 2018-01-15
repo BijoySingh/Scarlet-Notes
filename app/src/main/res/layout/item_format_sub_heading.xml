@@ -9,13 +9,13 @@
       android:id="@+id/text"
       style="@style/FormatText"
       android:hint="@string/format_hint_sub_heading"
-      android:textSize="@dimen/sub_header_font_size"
+      android:textSize="@dimen/font_size_large"
       android:textStyle="bold"/>
 
   <EditText
       android:id="@+id/edit"
       style="@style/FormatText"
       android:hint="@string/format_hint_sub_heading"
-      android:textSize="@dimen/sub_header_font_size"
+      android:textSize="@dimen/font_size_large"
       android:textStyle="bold"/>
 </LinearLayout>

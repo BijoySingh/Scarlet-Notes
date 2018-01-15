@@ -5,14 +5,14 @@
   android:layout_height="wrap_content"
   android:gravity="center_vertical"
   android:orientation="horizontal"
-  android:padding="12dp">
+  android:padding="@dimen/spacing_small">
 
   <ImageView
     android:id="@+id/back_button"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
+    android:layout_width="@dimen/icon_size_large"
+    android:layout_height="@dimen/icon_size_large"
     android:background="?attr/selectableItemBackgroundBorderless"
-    android:padding="8dp"
+    android:padding="@dimen/spacing_xsmall"
     android:src="@drawable/ic_close_white_48dp"
     android:tint="@color/material_grey_600" />
 
@@ -26,7 +26,7 @@
     android:fontFamily="monospace"
     android:singleLine="true"
     android:textColor="@color/material_teal_700"
-    android:textSize="@dimen/header_font_size"
+    android:textSize="@dimen/font_size_xlarge"
     android:textStyle="bold" />
 
   <com.github.bijoysingh.uibasics.views.UITextView
@@ -35,7 +35,7 @@
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackgroundBorderless"
     android:gravity="center"
-    ui:iconTextGap="8dp"
+    ui:iconTextGap="@dimen/spacing_xsmall"
     ui:icon="@drawable/ic_import"
     ui:text="@string/import_to_app" />
 </LinearLayout>

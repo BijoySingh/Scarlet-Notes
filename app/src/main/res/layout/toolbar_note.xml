@@ -5,14 +5,14 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="12dp">
+    android:padding="@dimen/spacing_small">
 
   <ImageView
       android:id="@+id/back_button"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
+      android:layout_width="@dimen/icon_size_large"
+      android:layout_height="@dimen/icon_size_large"
       android:background="?attr/selectableItemBackgroundBorderless"
-      android:padding="8dp"
+      android:padding="@dimen/spacing_xsmall"
       android:src="@drawable/ic_close_white_48dp"
       android:tint="@color/material_grey_600"/>
 
@@ -23,8 +23,8 @@
 
   <LinearLayout
       android:id="@+id/color_button_clicker"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
+      android:layout_width="@dimen/icon_size_large"
+      android:layout_height="@dimen/icon_size_large"
       android:background="?attr/selectableItemBackgroundBorderless"
       android:gravity="center"
       android:orientation="horizontal">
@@ -38,10 +38,10 @@
 
   <ImageView
       android:id="@+id/done_button"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
+      android:layout_width="@dimen/icon_size_large"
+      android:layout_height="@dimen/icon_size_large"
       android:background="?attr/selectableItemBackgroundBorderless"
-      android:padding="8dp"
+      android:padding="@dimen/spacing_xsmall"
       android:src="@drawable/ic_done_white_48dp"
       android:tint="@color/material_grey_600"/>
 </LinearLayout>

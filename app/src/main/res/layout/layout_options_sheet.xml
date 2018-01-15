@@ -8,15 +8,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="32dp">
+    android:paddingBottom="@dimen/spacing_xxlarge">
 
     <TextView
       android:id="@+id/options_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="16dp"
+      android:padding="@dimen/spacing_normal"
       android:text="@string/home_option_sheet_title"
-      android:textSize="18sp" />
+      android:textSize="@dimen/font_size_large" />
 
     <LinearLayout
       android:id="@+id/options_container"

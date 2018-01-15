@@ -9,17 +9,17 @@
       android:id="@+id/text"
       style="@style/FormatText"
       android:hint="@string/format_hint_heading"
-      android:paddingBottom="12dp"
-      android:paddingTop="12dp"
-      android:textSize="@dimen/header_font_size"
+      android:paddingBottom="@dimen/spacing_small"
+      android:paddingTop="@dimen/spacing_small"
+      android:textSize="@dimen/font_size_xlarge"
       android:textStyle="bold"/>
 
   <EditText
       android:id="@+id/edit"
       style="@style/FormatText"
       android:hint="@string/format_hint_heading"
-      android:paddingBottom="12dp"
-      android:paddingTop="12dp"
-      android:textSize="@dimen/header_font_size"
+      android:paddingBottom="@dimen/spacing_small"
+      android:paddingTop="@dimen/spacing_small"
+      android:textSize="@dimen/font_size_xlarge"
       android:textStyle="bold"/>
 </LinearLayout>

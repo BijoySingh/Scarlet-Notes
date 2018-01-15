@@ -10,16 +10,16 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="@dimen/spacing_large">
 
     <TextView
       android:id="@+id/options_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
+      android:layout_marginBottom="@dimen/spacing_xsmall"
       android:text="@string/home_option_markdown_settings"
       android:textColor="@color/dark_tertiary_text"
-      android:textSize="18sp" />
+      android:textSize="@dimen/font_size_large" />
 
     <com.github.bijoysingh.uibasics.views.UIActionView
       android:id="@+id/action_button"
@@ -27,22 +27,21 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center_vertical"
-      android:padding="16dp"
-      ui:actionSize="24dp"
+      android:padding="@dimen/spacing_normal"
+      ui:actionSize="@dimen/icon_size_normal"
       ui:actionTint="@color/material_blue_400"
       ui:icon="@drawable/ic_action_markdown"
-      ui:iconSize="24dp"
-      ui:iconTextGap="16dp"
+      ui:iconSize="@dimen/icon_size_normal"
+      ui:iconTextGap="@dimen/spacing_normal"
       ui:iconTint="@color/dark_tertiary_text"
       ui:subtitle="@string/markdown_sheet_markdown_support_subtitle"
       ui:subtitleColor="@color/dark_tertiary_text"
-      ui:subtitleSize="14sp"
+      ui:subtitleSize="@dimen/font_size_small"
       ui:subtitleStyle="@style/SanSerif"
       ui:title="@string/markdown_sheet_markdown_support"
       ui:titleColor="@color/dark_secondary_text"
-      ui:titleSize="16sp"
+      ui:titleSize="@dimen/font_size_normal"
       ui:titleStyle="@style/SanSerif" />
-
 
     <com.github.bijoysingh.uibasics.views.UIActionView
       android:id="@+id/markdown_home_button"
@@ -50,37 +49,37 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center_vertical"
-      android:padding="16dp"
-      ui:actionSize="24dp"
+      android:padding="@dimen/spacing_normal"
+      ui:actionSize="@dimen/icon_size_normal"
       ui:actionTint="@color/material_blue_400"
       ui:icon="@drawable/ic_action_grid"
-      ui:iconSize="24dp"
-      ui:iconTextGap="16dp"
+      ui:iconSize="@dimen/icon_size_normal"
+      ui:iconTextGap="@dimen/spacing_normal"
       ui:iconTint="@color/dark_tertiary_text"
       ui:subtitle="@string/markdown_sheet_home_markdown_support_subtitle"
       ui:subtitleColor="@color/dark_tertiary_text"
-      ui:subtitleSize="14sp"
+      ui:subtitleSize="@dimen/font_size_small"
       ui:subtitleStyle="@style/SanSerif"
       ui:title="@string/markdown_sheet_home_markdown_support"
       ui:titleColor="@color/dark_secondary_text"
-      ui:titleSize="16sp"
+      ui:titleSize="@dimen/font_size_normal"
       ui:titleStyle="@style/SanSerif" />
 
     <View
       android:layout_width="match_parent"
       android:layout_height="0.5dp"
-      android:layout_margin="8dp"
+      android:layout_margin="@dimen/spacing_xsmall"
       android:background="@color/dark_hint_text" />
 
     <TextView
       android:id="@+id/examples_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
-      android:layout_marginTop="8dp"
+      android:layout_marginBottom="@dimen/spacing_xsmall"
+      android:layout_marginTop="@dimen/spacing_xsmall"
       android:text="@string/markdown_sheet_examples"
       android:textColor="@color/dark_tertiary_text"
-      android:textSize="16sp" />
+      android:textSize="@dimen/font_size_normal" />
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -92,18 +91,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:padding="8dp"
+        android:padding="@dimen/spacing_xsmall"
         android:text="@string/markdown_sheet_examples_list"
-        android:textSize="16sp" />
+        android:textSize="@dimen/font_size_normal" />
 
       <TextView
         android:id="@+id/markdown_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:padding="8dp"
+        android:padding="@dimen/spacing_xsmall"
         android:text="@string/markdown_sheet_examples_list"
-        android:textSize="16sp" />
+        android:textSize="@dimen/font_size_normal" />
     </LinearLayout>
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
