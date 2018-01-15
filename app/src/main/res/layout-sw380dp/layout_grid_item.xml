@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Width: 8 + 8 + 64 = 80dp ( * 3 ) + 20 + 20 = 280dp -->
+<!-- Width: 16 + 16 + 80 = 112dp ( * 3 ) + 20 + 20 = 376dp -->
 <com.github.bijoysingh.uibasics.views.UILabelView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:ui="http://schemas.android.com/apk/res-auto"
   style="@style/BorderlessBackgroundView"
@@ -7,13 +7,16 @@
   android:layout_height="wrap_content"
   android:gravity="center"
   android:layout_gravity="center|fill"
-  android:padding="8dp"
+  android:paddingTop="16dp"
+  android:paddingBottom="16dp"
+  android:paddingStart="12dp"
+  android:paddingEnd="12dp"
   ui:iconSize="24dp"
   ui:iconTextGap="8dp"
   ui:iconTint="@color/dark_tertiary_text"
   ui:textColor="@color/dark_secondary_text"
   ui:textSize="14sp"
   ui:textLines="2"
-  ui:textWidth="64dp"
+  ui:textWidth="80dp"
   ui:textGravity="center"
   ui:textStyle="@style/GridText" />

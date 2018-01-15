@@ -21,7 +21,7 @@
       layout="@layout/search_toolbar_main"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:visibility="gone"/>
+      android:visibility="gone" />
 
     <android.support.v7.widget.RecyclerView
       android:id="@+id/recycler_view"
@@ -71,6 +71,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:padding="16dp"
         android:text="@string/main_add_a_quick_note"
         android:textColor="@color/material_blue_grey_700"
