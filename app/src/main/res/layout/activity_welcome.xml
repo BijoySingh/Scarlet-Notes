@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
-    android:padding="12dp">
+    android:padding="@dimen/spacing_small">
 
     <ImageView
       android:layout_width="36dp"
@@ -25,7 +25,7 @@
       android:layout_gravity="center"
       android:gravity="center"
       android:orientation="vertical"
-      android:padding="16dp">
+      android:padding="@dimen/spacing_normal">
 
       <TextView
         android:layout_width="wrap_content"
@@ -53,24 +53,24 @@
   <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
+    android:layout_marginBottom="@dimen/spacing_normal"
     android:gravity="center"
-    android:padding="24dp"
+    android:padding="@dimen/spacing_xlarge"
     android:text="@string/welcome_page_transfer_message"
     android:textColor="@color/light_tertiary_text"
-    android:textSize="14sp" />
+    android:textSize="@dimen/font_size_small" />
 
   <TextView
     android:id="@+id/get_started"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    android:padding="16dp"
+    android:layout_margin="@dimen/spacing_normal"
+    android:padding="@dimen/spacing_normal"
     android:background="@drawable/get_started_background"
     android:gravity="center"
     android:text="@string/welcome_page_get_started"
     android:textColor="@color/light_primary_text"
-    android:textSize="16sp"
+    android:textSize="@dimen/font_size_normal"
     android:textStyle="bold" />
 
 </LinearLayout>
