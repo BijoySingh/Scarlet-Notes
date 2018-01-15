@@ -4,6 +4,7 @@
 
   <dimen name="icon_size_xlarge">36dp</dimen>
   <dimen name="icon_size_large">32dp</dimen>
+  <dimen name="icon_size_slarge">32dp</dimen>
   <dimen name="icon_size_normal">20dp</dimen>
 
   <dimen name="font_size_xlarge">18sp</dimen>
