@@ -233,17 +233,9 @@
   <string name="material_notes_privacy_policy_subtitle">سياسة خصوصية التطبيق للمحتوى</string>
   <string name="install_pro_app">تثبيت برو التطبيق</string>
   <string name="why_install_pro">لماذا تثبيت برو</string>
-  <string name="why_install_pro_details">دعم المطور لتكاليف الخادم الضخمة، لتشغيل مزامنة السحاب
-
- احصل على أحدث الميزات أولا
-
- ستتوفر بعض الميزات الإضافية فقط لمستخدمي برو</string>
+  <string name="why_install_pro_details">دعم المطور لتكاليف الخادم الضخمة، لتشغيل مزامنة السحاب \n\n احصل على أحدث الميزات أولا \n\n ستتوفر بعض الميزات الإضافية فقط لمستخدمي برو</string>
   <string name="why_cloud">سبب تمكين مزامنة السحاب</string>
-  <string name="why_cloud_details">التحميل والنسخ الاحتياطي من تغييرات الجهاز
-
- المزامنة بين أجهزة متعددة، والحصول على تحديثات سريعة
-
- حفظها بشكل آمن على خوادم غوغل فيريباس</string>
+  <string name="why_cloud_details">التحميل والنسخ الاحتياطي من تغييرات الجهاز \n\n المزامنة بين أجهزة متعددة، والحصول على تحديثات سريعة \n\n حفظها بشكل آمن على خوادم غوغل فيريباس</string>
   <string name="welcome_page_hello">مرحبا،</string>
   <string name="welcome_page_transfer_message">ملاحظات المادة الآن القرمزي!</string>
   <string name="welcome_page_get_started">البدء</string>

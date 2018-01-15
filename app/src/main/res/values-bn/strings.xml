@@ -235,17 +235,9 @@
   <string name="material_notes_privacy_policy_subtitle">কন্টেন্ট জন্য অ্যাপ্লিকেশন গোপনীয়তা নীতি</string>
   <string name="install_pro_app">প্রো অ্যাপ ইনস্টল করুন</string>
   <string name="why_install_pro">কেন প্রো ইনস্টল</string>
-  <string name="why_install_pro_details">ক্লাউড সিঙ্ক চালানোর জন্য ব্যাপক সার্ভারের খরচ সাপোর্ট ডেভেলপার,
-
- প্রথমে সর্বশেষ বৈশিষ্ট্যগুলি পান
-
- কিছু অতিরিক্ত বৈশিষ্ট্যগুলি শুধুমাত্র প্রো ব্যবহারকারীদের জন্য উপলব্ধ হবে</string>
+  <string name="why_install_pro_details">ক্লাউড সিঙ্ক চালানোর জন্য ব্যাপক সার্ভারের খরচ সাপোর্ট ডেভেলপার, \n\n প্রথমে সর্বশেষ বৈশিষ্ট্যগুলি পান \n\n কিছু অতিরিক্ত বৈশিষ্ট্যগুলি শুধুমাত্র প্রো ব্যবহারকারীদের জন্য উপলব্ধ হবে</string>
   <string name="why_cloud">কেন মেঘ সমন্বয় সক্ষম</string>
-  <string name="why_cloud_details">ডিভাইসের পরিবর্তনগুলির বিরুদ্ধে আপলোড এবং ব্যাকআপ করুন
-
- একাধিক ডিভাইসের মধ্যে সমন্বয় করুন, এবং দ্রুত আপডেট পান করুন
-
- Google Firebase সার্ভারে নিরাপদে সংরক্ষিত</string>
+  <string name="why_cloud_details">ডিভাইসের পরিবর্তনগুলির বিরুদ্ধে আপলোড এবং ব্যাকআপ করুন \n\n একাধিক ডিভাইসের মধ্যে সমন্বয় করুন, এবং দ্রুত আপডেট পান করুন \n\n Google Firebase সার্ভারে নিরাপদে সংরক্ষিত</string>
   <string name="welcome_page_hello">হ্যালো,</string>
   <string name="welcome_page_transfer_message">উপাদান টীকা এখন স্কারলেট!</string>
   <string name="welcome_page_get_started">এবার শুরু করা যাক</string>

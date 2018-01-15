@@ -233,17 +233,9 @@
   <string name="material_notes_privacy_policy_subtitle">Dasar privasi apl untuk kandungan</string>
   <string name="install_pro_app">Pasang Pro App</string>
   <string name="why_install_pro">Mengapa Memasang Pro</string>
-  <string name="why_install_pro_details">Pemaju sokongan untuk kos pelayan besar, untuk menjalankan penyegerakan awan
-
- Dapatkan ciri-ciri terkini terlebih dahulu
-
- Sesetengah ciri tambahan akan tersedia hanya untuk pengguna Pro</string>
+  <string name="why_install_pro_details">Pemaju sokongan untuk kos pelayan besar, untuk menjalankan penyegerakan awan \n\n Dapatkan ciri-ciri terkini terlebih dahulu \n\n Sesetengah ciri tambahan akan tersedia hanya untuk pengguna Pro</string>
   <string name="why_cloud">Kenapa membolehkan Cloud Sync</string>
-  <string name="why_cloud_details">Muat naik dan sandaran terhadap perubahan peranti
-
- Segerakkan antara berbilang peranti, dan dapatkan kemas kini pantas
-
- Secepat disimpan di pelayan Google Firebase</string>
+  <string name="why_cloud_details">Muat naik dan sandaran terhadap perubahan peranti \n\n Segerakkan antara berbilang peranti, dan dapatkan kemas kini pantas \n\n Secepat disimpan di pelayan Google Firebase</string>
   <string name="welcome_page_hello">Halo,</string>
   <string name="welcome_page_transfer_message">Nota Bahan kini Scarlet!</string>
   <string name="welcome_page_get_started">Bermula</string>

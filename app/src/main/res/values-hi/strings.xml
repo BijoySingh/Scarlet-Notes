@@ -233,17 +233,9 @@
   <string name="material_notes_privacy_policy_subtitle">सामग्री के लिए ऐप गोपनीयता नीति</string>
   <string name="install_pro_app">प्रो ऐप इंस्टॉल करें</string>
   <string name="why_install_pro">क्यों प्रो स्थापित करें</string>
-  <string name="why_install_pro_details">क्लाउड सिंक चलाने के लिए बड़े सर्वर लागतों के लिए समर्थन डेवलपर का समर्थन करें
-
- नवीनतम सुविधाओं को पहले प्राप्त करें
-
- कुछ अतिरिक्त सुविधाएं केवल प्रो उपयोगकर्ता के लिए उपलब्ध होंगी</string>
+  <string name="why_install_pro_details">क्लाउड सिंक चलाने के लिए बड़े सर्वर लागतों के लिए समर्थन डेवलपर का समर्थन करें \n\n नवीनतम सुविधाओं को पहले प्राप्त करें \n\n कुछ अतिरिक्त सुविधाएं केवल प्रो उपयोगकर्ता के लिए उपलब्ध होंगी</string>
   <string name="why_cloud">क्लाउड सिंक क्यों सक्षम करें</string>
-  <string name="why_cloud_details">डिवाइस के बदलावों के विरुद्ध अपलोड करें और बैकअप लें
-
- एकाधिक उपकरणों के बीच समन्वय करें, और त्वरित अपडेट प्राप्त करें
-
- Google Firebase सर्वर पर सुरक्षित रूप से सहेजा गया</string>
+  <string name="why_cloud_details">डिवाइस के बदलावों के विरुद्ध अपलोड करें और बैकअप लें \n\n एकाधिक उपकरणों के बीच समन्वय करें, और त्वरित अपडेट प्राप्त करें \n\n Google Firebase सर्वर पर सुरक्षित रूप से सहेजा गया</string>
   <string name="welcome_page_hello">नमस्ते,</string>
   <string name="welcome_page_transfer_message">सामग्री नोट्स अब लाल रंग है!</string>
   <string name="welcome_page_get_started">शुरू हो जाओ</string>

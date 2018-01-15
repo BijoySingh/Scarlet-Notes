@@ -233,17 +233,9 @@
   <string name="material_notes_privacy_policy_subtitle">Politica sulla privacy dell\'app per il contenuto</string>
   <string name="install_pro_app">Installa l\'app Pro</string>
   <string name="why_install_pro">Perché installare Pro</string>
-  <string name="why_install_pro_details">Supporta lo sviluppatore per i massivi costi del server, per eseguire la sincronizzazione del cloud
-
- Prima le funzionalità più recenti
-
- Alcune funzioni aggiuntive saranno disponibili solo per gli utenti Pro</string>
+  <string name="why_install_pro_details">Supporta lo sviluppatore per i massivi costi del server, per eseguire la sincronizzazione del cloud \n\n Prima le funzionalità più recenti \n\n Alcune funzioni aggiuntive saranno disponibili solo per gli utenti Pro</string>
   <string name="why_cloud">Perché abilitare Cloud Sync</string>
-  <string name="why_cloud_details">Carica e fai il backup delle modifiche del dispositivo
-
- Sincronizza tra più dispositivi e ottieni aggiornamenti rapidi
-
- Salvataggio sicuro sui server Firebase di Google</string>
+  <string name="why_cloud_details">Carica e fai il backup delle modifiche del dispositivo \n\n Sincronizza tra più dispositivi e ottieni aggiornamenti rapidi \n\n Salvataggio sicuro sui server Firebase di Google</string>
   <string name="welcome_page_hello">Ciao,</string>
   <string name="welcome_page_transfer_message">Le note materiali sono ora scarlatte!</string>
   <string name="welcome_page_get_started">Iniziare</string>

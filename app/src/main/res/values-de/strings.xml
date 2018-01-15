@@ -233,17 +233,9 @@
   <string name="material_notes_privacy_policy_subtitle">App-Datenschutzrichtlinie für den Inhalt</string>
   <string name="install_pro_app">Installieren Sie die Pro App</string>
   <string name="why_install_pro">Warum Pro installieren?</string>
-  <string name="why_install_pro_details">Unterstütze den Entwickler für die enormen Serverkosten, um die Cloud-Synchronisierung auszuführen
-
- Hol dir die neuesten Funktionen zuerst
-
- Einige zusätzliche Funktionen sind nur für Pro-Benutzer verfügbar</string>
+  <string name="why_install_pro_details">Unterstütze den Entwickler für die enormen Serverkosten, um die Cloud-Synchronisierung auszuführen \n\n Hol dir die neuesten Funktionen zuerst \n\n Einige zusätzliche Funktionen sind nur für Pro-Benutzer verfügbar</string>
   <string name="why_cloud">Warum sollte Cloud Sync aktiviert sein?</string>
-  <string name="why_cloud_details">Hochladen und Sichern gegen Geräteänderungen
-
- Synchronisieren Sie mehrere Geräte und erhalten Sie schnelle Updates
-
- Sicher auf den Google Firebase Servern gespeichert</string>
+  <string name="why_cloud_details">Hochladen und Sichern gegen Geräteänderungen \n\n Synchronisieren Sie mehrere Geräte und erhalten Sie schnelle Updates \n\n Sicher auf den Google Firebase Servern gespeichert</string>
   <string name="welcome_page_hello">Hallo,</string>
   <string name="welcome_page_transfer_message">Material Notes ist jetzt Scarlet!</string>
   <string name="welcome_page_get_started">Loslegen</string>

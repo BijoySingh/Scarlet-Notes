@@ -288,17 +288,9 @@
   <string name="material_notes_privacy_policy_subtitle">应用程序隐私政策的内容</string>
   <string name="install_pro_app">安装Pro App</string>
   <string name="why_install_pro">为什么安装Pro</string>
-  <string name="why_install_pro_details">支持大规模服务器成本的开发人员，运行云同步
-
-首先获取最新功能
-
-一些额外功能仅适用于专业用户</string>
+  <string name="why_install_pro_details">支持大规模服务器成本的开发人员，运行云同步 \n\n 首先获取最新功能 \n\n 一些额外功能仅适用于专业用户</string>
   <string name="why_cloud">为什么启用云端同步</string>
-  <string name="why_cloud_details">根据设备更改进行上传和备份
-
-在多个设备之间进行同步，并获得快速更新
-
-安全地保存在Google Firebase服务器上</string>
+  <string name="why_cloud_details">根据设备更改进行上传和备份 \n\n 在多个设备之间进行同步，并获得快速更新 \n\n 安全地保存在Google Firebase服务器上</string>
   <string name="welcome_page_hello">你好，</string>
   <string name="welcome_page_transfer_message">材料的笔记现在是猩红色！</string>
   <string name="welcome_page_get_started">开始使用</string>

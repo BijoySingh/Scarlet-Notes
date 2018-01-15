@@ -269,17 +269,9 @@
   <string name="material_notes_privacy_policy_subtitle">Política de privacidade da aplicação para o conteúdo</string>
   <string name="install_pro_app">Instale a aplicação Pro</string>
   <string name="why_install_pro">Por que instalar o Pro</string>
-  <string name="why_install_pro_details">Desenvolvedor de suporte para os custos maciços do servidor, para executar a sincronização da nuvem
-
- Obtenha os recursos mais recentes primeiro
-
- Alguns recursos extras estarão disponíveis apenas para usuários do Pro</string>
+  <string name="why_install_pro_details">Desenvolvedor de suporte para os custos maciços do servidor, para executar a sincronização da nuvem \n\n Obtenha os recursos mais recentes primeiro \n\n Alguns recursos extras estarão disponíveis apenas para usuários do Pro</string>
   <string name="why_cloud">Por que ativar o Cloud Sync</string>
-  <string name="why_cloud_details">Carregar e fazer backup de mudanças no dispositivo
-
- Sincronizar entre vários dispositivos e obter atualizações rápidas
-
- Salvaguardado de forma segura em servidores do Google Firebase</string>
+  <string name="why_cloud_details">Carregar e fazer backup de mudanças no dispositivo \n\n Sincronizar entre vários dispositivos e obter atualizações rápidas \n\n Salvaguardado de forma segura em servidores do Google Firebase</string>
   <string name="welcome_page_hello">Olá,</string>
   <string name="welcome_page_transfer_message">Notas de material agora é escarlate!</string>
   <string name="welcome_page_get_started">Iniciar</string>

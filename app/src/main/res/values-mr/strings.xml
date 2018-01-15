@@ -232,17 +232,9 @@
   <string name="material_notes_privacy_policy_subtitle">सामग्रीसाठी अॅप्स गोपनीयता धोरण</string>
   <string name="install_pro_app">प्रो अॅप स्थापित करा</string>
   <string name="why_install_pro">का प्रो स्थापित</string>
-  <string name="why_install_pro_details">क्लाऊड सिंक चालविण्याकरिता मोठ्या सर्व्हरच्या खर्चासाठी समर्थन विकसक,
-
- प्रथम नवीनतम वैशिष्ट्ये मिळवा
-
- काही अतिरिक्त वैशिष्ट्ये केवळ प्रो वापरकर्त्यांसाठी उपलब्ध असतील</string>
+  <string name="why_install_pro_details">क्लाऊड सिंक चालविण्याकरिता मोठ्या सर्व्हरच्या खर्चासाठी समर्थन विकसक \n\n प्रथम नवीनतम वैशिष्ट्ये मिळवा \n\n काही अतिरिक्त वैशिष्ट्ये केवळ प्रो वापरकर्त्यांसाठी उपलब्ध असतील</string>
   <string name="why_cloud">मेघ समक्रमण सक्षम का</string>
-  <string name="why_cloud_details">डिव्हाइस बदलांविषयी अपलोड आणि बॅकअप
-
- एकाधिक डिव्हाइसेस दरम्यान समक्रमण करा, आणि द्रुत अद्यतने मिळवा
-
- Google Firebase सर्व्हरवर सुरक्षितपणे जतन केले</string>
+  <string name="why_cloud_details">डिव्हाइस बदलांविषयी अपलोड आणि बॅकअप \n\n एकाधिक डिव्हाइसेस दरम्यान समक्रमण करा, आणि द्रुत अद्यतने मिळवा \n\n Google Firebase सर्व्हरवर सुरक्षितपणे जतन केले</string>
   <string name="welcome_page_hello">हॅलो,</string>
   <string name="welcome_page_transfer_message">सामग्री टिपा आता कमी दर्जाची आहे!</string>
   <string name="welcome_page_get_started">सुरु करूया</string>

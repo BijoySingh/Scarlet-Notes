@@ -270,17 +270,9 @@
   <string name="material_notes_privacy_policy_subtitle">İçerik için uygulama gizlilik politikası</string>
   <string name="install_pro_app">Pro Uygulamasını Yükle</string>
   <string name="why_install_pro">Neden Pro Install</string>
-  <string name="why_install_pro_details">Bulut senkronizasyonunu çalıştırmak için büyük sunucu maliyetleri için geliştiriciyi destekleyin
-
- En yeni özellikleri edinin
-
- Bazı ekstra özellikler yalnızca Pro kullanıcıları tarafından kullanılabilir olacak</string>
+  <string name="why_install_pro_details">Bulut senkronizasyonunu çalıştırmak için büyük sunucu maliyetleri için geliştiriciyi destekleyin \n\n En yeni özellikleri edinin \n\n Bazı ekstra özellikler yalnızca Pro kullanıcıları tarafından kullanılabilir olacak</string>
   <string name="why_cloud">Cloud Sync\'i neden etkinleştirebilirim?</string>
-  <string name="why_cloud_details">Cihaz değişikliklerine karşı yükle ve yedekle
-
- Birden fazla cihaz arasında senkronize edin ve hızlı güncellemeler yapın
-
- Güvenli bir şekilde Google Firebase sunucularına kaydedin</string>
+  <string name="why_cloud_details">Cihaz değişikliklerine karşı yükle ve yedekle \n\n Birden fazla cihaz arasında senkronize edin ve hızlı güncellemeler yapın \n\n Güvenli bir şekilde Google Firebase sunucularına kaydedin</string>
   <string name="welcome_page_hello">Merhaba,</string>
   <string name="welcome_page_transfer_message">Malzeme Notları artık Scarlet!</string>
   <string name="welcome_page_get_started">Başlamak</string>

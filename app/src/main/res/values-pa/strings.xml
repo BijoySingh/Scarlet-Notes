@@ -268,17 +268,9 @@
   <string name="material_notes_privacy_policy_subtitle">ਸਮਗਰੀ ਲਈ ਐਪ ਗੋਪਨੀਯਤਾ ਨੀਤੀ</string>
   <string name="install_pro_app">ਪ੍ਰੋ ਐੱਸ ਇੰਸਟਾਲ ਕਰੋ</string>
   <string name="why_install_pro">ਪ੍ਰੋ ਇੰਸਟਾਲ ਕਿਉਂ ਕਰੋ</string>
-  <string name="why_install_pro_details">ਕਲਾਉਡ ਸੰਕੁਚਨ ਨੂੰ ਚਲਾਉਣ ਲਈ ਵੱਡੇ ਸਰਵਰ ਲਾਗਤਾਂ ਲਈ ਸਹਿਯੋਗ ਡਿਵੈਲਪਰ,
-
- ਪਹਿਲਾਂ ਸਭ ਤੋਂ ਨਵੀਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰੋ
-
- ਕੁਝ ਹੋਰ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਕੇਵਲ ਪ੍ਰੋ ਯੂਜ਼ਰਸ ਲਈ ਉਪਲਬਧ ਹੋਣਗੀਆਂ</string>
+  <string name="why_install_pro_details">ਕਲਾਉਡ ਸੰਕੁਚਨ ਨੂੰ ਚਲਾਉਣ ਲਈ ਵੱਡੇ ਸਰਵਰ ਲਾਗਤਾਂ ਲਈ ਸਹਿਯੋਗ ਡਿਵੈਲਪਰ \n\n ਪਹਿਲਾਂ ਸਭ ਤੋਂ ਨਵੀਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰੋ \n\n ਕੁਝ ਹੋਰ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਕੇਵਲ ਪ੍ਰੋ ਯੂਜ਼ਰਸ ਲਈ ਉਪਲਬਧ ਹੋਣਗੀਆਂ</string>
   <string name="why_cloud">ਕਿਉਂ Cloud Sync ਸਮਰਥਿਤ ਕਰੋ</string>
-  <string name="why_cloud_details">ਡਿਵਾਈਸ ਬਦਲਾਅ ਦੇ ਵਿਰੁੱਧ ਅਪਲੋਡ ਅਤੇ ਬੈਕਅੱਪ ਕਰੋ
-
- ਬਹੁਤੇ ਡਿਵਾਈਸਾਂ ਵਿਚਕਾਰ ਸਿੰਕ ਕਰੋ, ਅਤੇ ਤੁਰੰਤ ਅਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰੋ
-
- Google Firebase ਸਰਵਰਾਂ ਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਗਿਆ</string>
+  <string name="why_cloud_details">ਡਿਵਾਈਸ ਬਦਲਾਅ ਦੇ ਵਿਰੁੱਧ ਅਪਲੋਡ ਅਤੇ ਬੈਕਅੱਪ ਕਰੋ \n\n ਬਹੁਤੇ ਡਿਵਾਈਸਾਂ ਵਿਚਕਾਰ ਸਿੰਕ ਕਰੋ, ਅਤੇ ਤੁਰੰਤ ਅਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰੋ \n\n Google Firebase ਸਰਵਰਾਂ ਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਗਿਆ</string>
   <string name="welcome_page_hello">ਸਤ ਸ੍ਰੀ ਅਕਾਲ,</string>
   <string name="welcome_page_transfer_message">ਮੈਟੀਰੀਅਲ ਨੋਟਸ ਹੁਣ ਸਵਾਨੇ ਹਨ!</string>
   <string name="welcome_page_get_started">ਸ਼ੁਰੂਆਤ ਕਰੋ</string>

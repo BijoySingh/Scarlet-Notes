@@ -234,17 +234,9 @@
   <string name="material_notes_privacy_policy_subtitle">מדיניות הפרטיות של האפליקציה עבור התוכן</string>
   <string name="install_pro_app">התקן Pro App</string>
   <string name="why_install_pro">למה להתקין Pro</string>
-  <string name="why_install_pro_details">תמיכה מפתח עבור עלויות השרת מסיבית, כדי להפעיל את סנכרון ענן
-
- קבל את התכונות החדשות הראשון
-
- כמה תכונות נוספות יהיה זמין רק למשתמשים Pro</string>
+  <string name="why_install_pro_details">תמיכה מפתח עבור עלויות השרת מסיבית, כדי להפעיל את סנכרון ענן \n\n קבל את התכונות החדשות הראשון \n\n כמה תכונות נוספות יהיה זמין רק למשתמשים Pro</string>
   <string name="why_cloud">מדוע להפעיל את Cloud Sync</string>
-  <string name="why_cloud_details">טען וגבה מפני שינויי מכשירים
-
- סנכרון בין מכשירים מרובים, וקבל עדכונים מהירים
-
- נשמר באופן מאובטח בשרתי Google Firebase</string>
+  <string name="why_cloud_details">טען וגבה מפני שינויי מכשירים \n\n סנכרון בין מכשירים מרובים, וקבל עדכונים מהירים \n\n נשמר באופן מאובטח בשרתי Google Firebase</string>
   <string name="welcome_page_hello">שלום,</string>
   <string name="welcome_page_transfer_message">הערות החומר הוא עכשיו סקרלט!</string>
   <string name="welcome_page_get_started">להתחיל</string>
