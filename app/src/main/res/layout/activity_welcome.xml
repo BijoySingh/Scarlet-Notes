@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
@@ -17,10 +18,11 @@
       android:layout_width="36dp"
       android:layout_height="36dp"
       android:layout_gravity="start|top"
+      android:alpha="0.7"
       android:src="@drawable/quote_start" />
 
     <LinearLayout
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_gravity="center"
       android:gravity="center"
@@ -30,16 +32,20 @@
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:alpha="0.8"
         android:text="@string/welcome_page_hello"
         android:textColor="@color/white"
         android:textSize="24sp" />
 
-      <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+      <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:gravity="center"
+        android:padding="8dp"
         android:text="@string/welcome_page_app_name"
         android:textColor="@color/white"
-        android:textSize="48sp" />
+        android:textSize="48sp"
+        app:autoSizeTextType="uniform" />
 
     </LinearLayout>
 
@@ -47,6 +53,7 @@
       android:layout_width="36dp"
       android:layout_height="36dp"
       android:layout_gravity="end|bottom"
+      android:alpha="0.7"
       android:src="@drawable/quote_end" />
   </FrameLayout>
 
@@ -65,9 +72,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/spacing_normal"
-    android:padding="@dimen/spacing_normal"
     android:background="@drawable/get_started_background"
     android:gravity="center"
+    android:padding="@dimen/spacing_normal"
     android:text="@string/welcome_page_get_started"
     android:textColor="@color/light_primary_text"
     android:textSize="@dimen/font_size_normal"
