@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_large">
+
+    <TextView
+      android:id="@+id/alert_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_xsmall"
+      android:textColor="@color/dark_tertiary_text"
+      android:textSize="@dimen/font_size_large" />
+
+    <TextView
+      android:id="@+id/alert_description"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_xsmall"
+      android:textColor="@color/dark_tertiary_text"
+      android:textSize="@dimen/font_size_normal" />
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/spacing_xsmall"
+      android:padding="@dimen/spacing_xsmall"
+      android:gravity="center"
+      android:orientation="horizontal">
+      <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" />
+
+      <TextView
+        android:id="@+id/alert_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_xsmall"
+        android:text="@string/no_pincode_sheet_not_now"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/font_size_small" />
+
+      <TextView
+        android:id="@+id/alert_yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_xsmall"
+        android:text="@string/no_pincode_sheet_set_up"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/font_size_small" />
+    </LinearLayout>
+
+  </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -25,6 +25,7 @@ import com.github.bijoysingh.starter.util.TextUtils;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -127,6 +128,7 @@ public class Note {
 
   public void mark(Context context, NoteState noteState) {
     state = noteState.name();
+    updateTimestamp = Calendar.getInstance().getTimeInMillis();
     save(context);
   }
 

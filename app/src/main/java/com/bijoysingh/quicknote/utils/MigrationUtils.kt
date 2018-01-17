@@ -1,13 +1,16 @@
 package com.bijoysingh.quicknote.utils
 
 import android.content.Context
+import android.os.AsyncTask
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.github.bijoysingh.starter.util.TextUtils
+import java.util.*
 
 const val KEY_MIGRATE_UUID = "KEY_MIGRATE_UUID"
+const val KEY_MIGRATE_TRASH = "KEY_MIGRATE_TRASH"
 
 fun migrate(context: Context) {
   val store = DataStore.get(context)
@@ -43,5 +46,25 @@ fun migrate(context: Context) {
       }
     }
     store.put(KEY_MIGRATE_UUID, true)
+  }
+  if (!store.get(KEY_MIGRATE_TRASH, false)) {
+    val notes = Note.db(context).getByNoteState(arrayOf(NoteState.TRASH.name))
+    for (note in notes) {
+      // Updates the timestamp for the note in trash
+      note.mark(context, NoteState.TRASH)
+    }
+    store.put(KEY_MIGRATE_TRASH, true)
+  }
+}
+
+fun removeOlderClips(context: Context) {
+  AsyncTask.execute {
+    val notes = Note.db(context).getByNoteState(arrayOf(NoteState.TRASH.name))
+    val timestamp = Calendar.getInstance().timeInMillis - 1000 * 60 * 60 * 24 * 7
+    for (note in notes) {
+      if (note.updateTimestamp < timestamp) {
+        note.delete(context)
+      }
+    }
   }
 }

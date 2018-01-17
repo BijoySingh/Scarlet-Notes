@@ -37,40 +37,72 @@
       android:background="@color/dark_hint_text" />
 
     <LinearLayout
-      android:id="@+id/bottom_toolbar_layout"
+      android:id="@+id/bottom_delete_toolbar_layout"
+      style="@style/BorderlessBackgroundView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="?attr/selectableItemBackgroundBorderless"
+      android:gravity="center"
+      android:visibility="gone"
+      android:orientation="horizontal">
+
+      <TextView
+        android:id="@+id/deletes_automatically"
+        style="@style/BorderlessBackgroundView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="@dimen/spacing_small"
+        android:text="@string/trash_will_delete_automatically"
+        android:textColor="@color/material_blue_grey_700"
+        android:textSize="@dimen/font_size_small" />
+
+      <ImageView
+        android:id="@+id/menu_delete_everything"
+        style="@style/BorderlessBackgroundView"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:alpha="0.7"
+        android:padding="@dimen/spacing_small"
+        android:src="@drawable/ic_delete_permanently"
+        android:tint="@color/material_blue_grey_700" />
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:id="@+id/bottom_toolbar_layout"
+      style="@style/BorderlessBackgroundView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:gravity="center"
       android:orientation="horizontal">
 
       <ImageView
         android:id="@+id/menu_home_nav"
+        style="@style/BorderlessBackgroundView"
         android:layout_width="@dimen/icon_size_xlarge"
         android:layout_height="@dimen/icon_size_xlarge"
         android:layout_marginStart="4dp"
         android:alpha="0.7"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/spacing_small"
         android:src="@drawable/ic_apps_white_48dp"
         android:tint="@color/material_blue_grey_700" />
 
       <ImageView
         android:id="@+id/menu_open_tag"
+        style="@style/BorderlessBackgroundView"
         android:layout_width="@dimen/icon_size_xlarge"
         android:layout_height="@dimen/icon_size_xlarge"
         android:alpha="0.7"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/spacing_small"
         android:src="@drawable/ic_action_tags"
         android:tint="@color/material_blue_grey_700" />
 
       <TextView
         android:id="@+id/menu_add_note"
+        style="@style/BorderlessBackgroundView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:ellipsize="end"
         android:maxLines="1"
         android:padding="@dimen/spacing_normal"
@@ -80,11 +112,11 @@
 
       <ImageView
         android:id="@+id/menu_add_list"
+        style="@style/BorderlessBackgroundView"
         android:layout_width="@dimen/icon_size_xlarge"
         android:layout_height="@dimen/icon_size_xlarge"
         android:layout_marginStart="4dp"
         android:alpha="0.7"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/spacing_small"
         android:src="@drawable/ic_list_white_48dp"
         android:tint="@color/material_blue_grey_700" />

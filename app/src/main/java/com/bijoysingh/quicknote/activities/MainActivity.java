@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
+import com.bijoysingh.quicknote.activities.sheets.AlertBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.HomeNavigationBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet;
@@ -50,6 +51,7 @@ import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSh
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED;
 import static com.bijoysingh.quicknote.utils.BroadcastUtilsKt.getNoteIntentFilter;
 import static com.bijoysingh.quicknote.utils.MigrationUtilsKt.migrate;
+import static com.bijoysingh.quicknote.utils.MigrationUtilsKt.removeOlderClips;
 import static com.bijoysingh.quicknote.utils.NoteSortingUtilsKt.sort;
 
 public class MainActivity extends ThemedActivity {
@@ -62,10 +64,10 @@ public class MainActivity extends ThemedActivity {
   BroadcastReceiver receiver;
   DataStore store;
 
-  ImageView addList, homeNav, openTag, homeOptions, backButton, searchIcon, searchBackButton, searchCloseIcon;
-  TextView addNote;
+  ImageView addList, homeNav, openTag, homeOptions, backButton, searchIcon, searchBackButton, searchCloseIcon, deleteTrashIcon;
+  TextView addNote, deletesAutomatically;
   EditText searchBox;
-  View mainToolbar, searchToolbar, bottomToolbar;
+  View mainToolbar, searchToolbar, bottomToolbar, deleteToolbar;
 
   boolean isInSearchMode;
   List<Note> searchNotes;
@@ -109,6 +111,17 @@ public class MainActivity extends ThemedActivity {
         searchBox.requestFocus();
       }
     });
+
+    deleteTrashIcon = findViewById(R.id.menu_delete_everything);
+    deleteTrashIcon.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(final View view) {
+        AlertBottomSheet.Companion.openDeleteTrashSheet(MainActivity.this);
+      }
+    });
+
+    deleteToolbar = findViewById(R.id.bottom_delete_toolbar_layout);
+    deletesAutomatically = findViewById(R.id.deletes_automatically);
 
     searchBackButton = findViewById(R.id.search_back_button);
     searchBackButton.setOnClickListener(new View.OnClickListener() {
@@ -246,21 +259,25 @@ public class MainActivity extends ThemedActivity {
   public void onHomeClick() {
     mode = HomeNavigationState.DEFAULT;
     loadNoteByStates(new String[]{NoteState.DEFAULT.name(), NoteState.FAVOURITE.name()});
+    notifyModeChange();
   }
 
   public void onFavouritesClick() {
     mode = HomeNavigationState.FAVOURITE;
     loadNoteByStates(new String[]{NoteState.FAVOURITE.name()});
+    notifyModeChange();
   }
 
   public void onArchivedClick() {
     mode = HomeNavigationState.ARCHIVED;
     loadNoteByStates(new String[]{NoteState.ARCHIVED.name()});
+    notifyModeChange();
   }
 
   public void onTrashClick() {
     mode = HomeNavigationState.TRASH;
     loadNoteByStates(new String[]{NoteState.TRASH.name()});
+    notifyModeChange();
   }
 
   public void onLockedClick() {
@@ -277,6 +294,12 @@ public class MainActivity extends ThemedActivity {
         handleNewItems(notes);
       }
     });
+    notifyModeChange();
+  }
+
+  private void notifyModeChange() {
+    boolean isTrash = mode == HomeNavigationState.TRASH;
+    deleteToolbar.setVisibility(isTrash ? View.VISIBLE : GONE);
   }
 
   private void handleNewItems(List<Note> notes) {
@@ -353,6 +376,7 @@ public class MainActivity extends ThemedActivity {
         handleNewItems(notes);
       }
     });
+    notifyModeChange();
   }
 
   public void updateNote(Note note) {
@@ -452,6 +476,12 @@ public class MainActivity extends ThemedActivity {
   }
 
   @Override
+  protected void onPause() {
+    super.onPause();
+    removeOlderClips(this);
+  }
+
+  @Override
   public void notifyNightModeChange() {
     store.put(ThemedActivity.Companion.getKey(), isNightMode());
     setSystemTheme();
@@ -463,8 +493,10 @@ public class MainActivity extends ThemedActivity {
     addList.setColorFilter(toolbarIconColor);
     homeNav.setColorFilter(toolbarIconColor);
     openTag.setColorFilter(toolbarIconColor);
+    deleteTrashIcon.setColorFilter(toolbarIconColor);
     homeOptions.setColorFilter(toolbarIconColor);
     addNote.setTextColor(toolbarIconColor);
+    deletesAutomatically.setTextColor(toolbarIconColor);
     searchIcon.setColorFilter(toolbarIconColor);
     searchBackButton.setColorFilter(toolbarIconColor);
     searchCloseIcon.setColorFilter(toolbarIconColor);

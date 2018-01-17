@@ -35,6 +35,7 @@
   <string name="change_tags">Change Tags</string>
   <string name="unlock_note">Unlock Note</string>
   <string name="reminder">Reminder</string>
+  <string name="select">Select</string>
   <string name="duplicate">Duplicate</string>
   <string name="pin_note">Pin Note</string>
   <string name="unpin_note">Unpin Note</string>
@@ -208,5 +209,13 @@
   <string name="no_pincode_sheet_dont_ask">Never Ask</string>
   <string name="no_pincode_sheet_set_up">Set Up</string>
   <!-- End No Pincode -->
+
+  <!-- Start Delete Notes -->
+  <string name="delete_sheet_are_you_sure">Are you sure?</string>
+  <string name="delete_sheet_delete_trash">Would you like to permanently delete the notes in the trash folder</string>
+  <string name="delete_sheet_delete_trash_yes">Delete</string>
+  <string name="delete_sheet_delete_trash_no">Cancel</string>
+  <string name="trash_will_delete_automatically">Notes are deleted forever after 7 days</string>
+  <!-- End Delete Notes -->
 
 </resources>
