@@ -35,6 +35,7 @@
   <string name="change_tags">Change Tags</string>
   <string name="unlock_note">Unlock Note</string>
   <string name="reminder">Reminder</string>
+  <string name="duplicate">Duplicate</string>
   <string name="pin_note">Pin Note</string>
   <string name="unpin_note">Unpin Note</string>
   <string name="choose_action">Choose Action&#8230;</string>

@@ -8,7 +8,9 @@ import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.NotificationHandler
+import com.bijoysingh.quicknote.utils.copyNote
 import com.github.bijoysingh.starter.prefs.DataStore
+import com.github.bijoysingh.starter.util.RandomHelper
 
 class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
@@ -113,7 +115,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     options.add(OptionsItem(
         title = R.string.delete_note_permanently,
         subtitle = R.string.tap_for_action_delete,
-        icon = R.drawable.ic_delete_white_48dp,
+        icon = R.drawable.ic_delete_permanently,
         listener = View.OnClickListener {
           activity.moveItemToTrashOrDelete(note)
           dismiss()
@@ -223,6 +225,32 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
               dataStore)
         },
         visible = note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.duplicate,
+        subtitle = R.string.duplicate,
+        icon = R.drawable.ic_duplicate,
+        listener = View.OnClickListener {
+          val copiedNote = copyNote(note)
+          copiedNote.uid = null
+          copiedNote.uuid = RandomHelper.getRandomString(24)
+          copiedNote.save(context)
+          activity.setupData()
+          dismiss()
+        },
+        invalid = note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.delete_note_permanently,
+        subtitle = R.string.delete_note_permanently,
+        icon = R.drawable.ic_delete_permanently,
+        listener = View.OnClickListener {
+          note.delete(context)
+          activity.setupData()
+          dismiss()
+        },
+        visible = note.noteState !== NoteState.TRASH,
+        invalid = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.reminder,
