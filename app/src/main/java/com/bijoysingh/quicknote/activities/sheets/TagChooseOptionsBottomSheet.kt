@@ -42,7 +42,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
 
   private fun getOptions(): List<TagOptionsItem> {
     val options = ArrayList<TagOptionsItem>()
-    val tags = note!!.tagIDs
+    val tags = note!!.tagUUIDs
     for (tag in Tag.db(context).all) {
       options.add(TagOptionsItem(
           tag = tag,
@@ -51,7 +51,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
             note!!.save(context)
             reset(dialog)
           },
-          selected = tags.contains(tag.uid)
+          selected = tags.contains(tag.uuid)
       ))
     }
     return options
