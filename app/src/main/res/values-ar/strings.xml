@@ -176,4 +176,14 @@
   <string name="no_pincode_sheet_dont_ask">لم نطلب</string>
   <string name="no_pincode_sheet_set_up">اقامة</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">مكرر</string>
+  <string name="select">تحديد</string>
+  <string name="delete_sheet_are_you_sure">هل أنت واثق؟</string>
+  <string name="delete_sheet_delete_trash">هل تريد حذف الملاحظات في مجلد المهملات نهائيا؟</string>
+  <string name="delete_sheet_delete_note_permanently">هل تريد حذف هذه الملاحظة نهائيا؟</string>
+  <string name="delete_sheet_delete_trash_yes">حذف</string>
+  <string name="delete_sheet_delete_trash_no">إلغاء</string>
+  <string name="trash_will_delete_automatically">يتم حذف الملاحظات إلى الأبد بعد 7 أيام</string>
+
 </resources>

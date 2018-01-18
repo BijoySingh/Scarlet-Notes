@@ -177,4 +177,14 @@
   <string name="no_pincode_sheet_dont_ask">Nunca pergunte</string>
   <string name="no_pincode_sheet_set_up">Configuração</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">Duplicado</string>
+  <string name="select">Selecione</string>
+  <string name="delete_sheet_are_you_sure">Você tem certeza?</string>
+  <string name="delete_sheet_delete_trash">Gostaria de excluir permanentemente as notas na pasta de lixo?</string>
+  <string name="delete_sheet_delete_note_permanently">Gostaria de excluir definitivamente esta nota?</string>
+  <string name="delete_sheet_delete_trash_yes">Excluir</string>
+  <string name="delete_sheet_delete_trash_no">Cancelar</string>
+  <string name="trash_will_delete_automatically">As notas são apagadas para sempre após 7 dias</string>
+
 </resources>

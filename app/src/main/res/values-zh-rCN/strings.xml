@@ -175,4 +175,14 @@
   <string name="no_pincode_sheet_dont_ask">永远不要问</string>
   <string name="no_pincode_sheet_set_up">建立</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">重复</string>
+  <string name="select">选择</string>
+  <string name="delete_sheet_are_you_sure">你确定？</string>
+  <string name="delete_sheet_delete_trash">你想永久删除垃圾文件夹中的笔记吗？</string>
+  <string name="delete_sheet_delete_note_permanently">你想永久删除这个笔记吗？</string>
+  <string name="delete_sheet_delete_trash_yes">删除</string>
+  <string name="delete_sheet_delete_trash_no">取消</string>
+  <string name="trash_will_delete_automatically">注释在7天后被永久删除</string>
+
 </resources>

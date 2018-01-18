@@ -177,4 +177,14 @@
   <string name="no_pincode_sheet_dont_ask">Frag nie</string>
   <string name="no_pincode_sheet_set_up">Konfiguration</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">Duplikat</string>
+  <string name="select">Wählen</string>
+  <string name="delete_sheet_are_you_sure">Bist du sicher?</string>
+  <string name="delete_sheet_delete_trash">Möchten Sie die Notizen im Papierkorb dauerhaft löschen?</string>
+  <string name="delete_sheet_delete_note_permanently">Möchten Sie diese Notiz dauerhaft löschen?</string>
+  <string name="delete_sheet_delete_trash_yes">Löschen</string>
+  <string name="delete_sheet_delete_trash_no">Stornieren</string>
+  <string name="trash_will_delete_automatically">Notizen werden nach 7 Tagen für immer gelöscht</string>
+
 </resources>

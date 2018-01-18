@@ -176,4 +176,14 @@
   <string name="no_pincode_sheet_dont_ask">Ne demande jamais</string>
   <string name="no_pincode_sheet_set_up">Installer</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">Dupliquer</string>
+  <string name="select">Sélectionner</string>
+  <string name="delete_sheet_are_you_sure">Êtes-vous sûr?</string>
+  <string name="delete_sheet_delete_trash">Voulez-vous supprimer définitivement les notes dans le dossier Corbeille?</string>
+  <string name="delete_sheet_delete_note_permanently">Voulez-vous supprimer définitivement cette note?</string>
+  <string name="delete_sheet_delete_trash_yes">Effacer</string>
+  <string name="delete_sheet_delete_trash_no">Annuler</string>
+  <string name="trash_will_delete_automatically">Les notes sont supprimées pour toujours après 7 jours</string>
+
 </resources>

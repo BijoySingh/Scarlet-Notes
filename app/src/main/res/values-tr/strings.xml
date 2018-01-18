@@ -177,4 +177,14 @@
   <string name="no_pincode_sheet_dont_ask">Asla sorma</string>
   <string name="no_pincode_sheet_set_up">Kurmak</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">Çift</string>
+  <string name="select">seçmek</string>
+  <string name="delete_sheet_are_you_sure">Emin misiniz?</string>
+  <string name="delete_sheet_delete_trash">Çöp kutusunda notları kalıcı olarak silmek istiyor musunuz?</string>
+  <string name="delete_sheet_delete_note_permanently">Bu notu kalıcı olarak silmek ister misiniz?</string>
+  <string name="delete_sheet_delete_trash_yes">silmek</string>
+  <string name="delete_sheet_delete_trash_no">İptal etmek</string>
+  <string name="trash_will_delete_automatically">Notlar son 7 gün sonra silinir</string>
+
 </resources>

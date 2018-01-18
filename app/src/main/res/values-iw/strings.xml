@@ -177,4 +177,14 @@
   <string name="no_pincode_sheet_dont_ask">לעולם אל תשאל</string>
   <string name="no_pincode_sheet_set_up">להכין</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">לְשַׁכְפֵּל</string>
+  <string name="select">בחר</string>
+  <string name="delete_sheet_are_you_sure">האם אתה בטוח?</string>
+  <string name="delete_sheet_delete_trash">האם ברצונך למחוק לצמיתות את ההערות בתיקיית האשפה?</string>
+  <string name="delete_sheet_delete_note_permanently">האם ברצונך למחוק הערה זו לצמיתות?</string>
+  <string name="delete_sheet_delete_trash_yes">לִמְחוֹק</string>
+  <string name="delete_sheet_delete_trash_no">לְבַטֵל</string>
+  <string name="trash_will_delete_automatically">הערות נמחקות לעד 7 ימים</string>
+
 </resources>

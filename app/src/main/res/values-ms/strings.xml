@@ -176,4 +176,14 @@
   <string name="no_pincode_sheet_dont_ask">Jangan Tanya</string>
   <string name="no_pincode_sheet_set_up">Sediakan</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">Duplikat</string>
+  <string name="select">Pilih</string>
+  <string name="delete_sheet_are_you_sure">Adakah anda pasti?</string>
+  <string name="delete_sheet_delete_trash">Adakah anda ingin memadamkan nota secara kekal dalam folder sampah?</string>
+  <string name="delete_sheet_delete_note_permanently">Adakah anda ingin memadamkan nota ini secara kekal?</string>
+  <string name="delete_sheet_delete_trash_yes">Padam</string>
+  <string name="delete_sheet_delete_trash_no">Batalkan</string>
+  <string name="trash_will_delete_automatically">Nota akan dihapuskan selamanya selepas 7 hari</string>
+
 </resources>

@@ -176,4 +176,14 @@
   <string name="no_pincode_sheet_dont_ask">ਕਦੇ ਕਹੋ ਨਾ</string>
   <string name="no_pincode_sheet_set_up">ਸਥਾਪਨਾ ਕਰਨਾ</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">ਡੁਪਲੀਕੇਟ</string>
+  <string name="select">ਚੁਣੋ</string>
+  <string name="delete_sheet_are_you_sure">ਤੁਹਾਨੂੰ ਪੂਰਾ ਵਿਸ਼ਵਾਸ ਹੈ?</string>
+  <string name="delete_sheet_delete_trash">ਕੀ ਤੁਸੀਂ ਰੱਦੀ ਫੋਲਡਰ ਵਿੱਚ ਨੋਟਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+  <string name="delete_sheet_delete_note_permanently">ਕੀ ਤੁਸੀਂ ਇਸ ਨੋਟ ਨੂੰ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+  <string name="delete_sheet_delete_trash_yes">ਮਿਟਾਓ</string>
+  <string name="delete_sheet_delete_trash_no">ਰੱਦ ਕਰੋ</string>
+  <string name="trash_will_delete_automatically">ਸੂਚਨਾਵਾਂ 7 ਦਿਨਾਂ ਦੇ ਬਾਅਦ ਹਮੇਸ਼ਾਂ ਮਿਟਾਈਆਂ ਜਾਂਦੀਆਂ ਹਨ</string>
+
 </resources>

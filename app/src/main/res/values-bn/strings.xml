@@ -178,4 +178,14 @@
   <string name="no_pincode_sheet_dont_ask">কখনো জিজ্ঞাসা করবেন না</string>
   <string name="no_pincode_sheet_set_up">সেটআপ করুন</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">নকল</string>
+  <string name="select">নির্বাচন করা</string>
+  <string name="delete_sheet_are_you_sure">তুমি কি নিশ্চিত?</string>
+  <string name="delete_sheet_delete_trash">আপনি কি ট্র্যাশ ফোল্ডারে নোটগুলি স্থায়ীভাবে মুছে ফেলতে চান?</string>
+  <string name="delete_sheet_delete_note_permanently">আপনি এই নোটটি স্থায়ীভাবে মুছে ফেলতে চান?</string>
+  <string name="delete_sheet_delete_trash_yes">মুছে ফেলা</string>
+  <string name="delete_sheet_delete_trash_no">বাতিল</string>
+  <string name="trash_will_delete_automatically">নোটগুলি 7 দিনের পরে চিরতরে মুছে ফেলা হয়</string>
+
 </resources>

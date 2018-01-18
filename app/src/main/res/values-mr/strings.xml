@@ -175,4 +175,14 @@
   <string name="no_pincode_sheet_dont_ask">कधीही विचारा नका</string>
   <string name="no_pincode_sheet_set_up">सेट अप</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">डुप्लिकेट</string>
+  <string name="select">निवडा</string>
+  <string name="delete_sheet_are_you_sure">तुला खात्री आहे?</string>
+  <string name="delete_sheet_delete_trash">आपण कचरा फोल्डरमध्ये नोट्स कायमचे हटवू इच्छिता?</string>
+  <string name="delete_sheet_delete_note_permanently">आपण ही टीप कायमची हटवू इच्छिता?</string>
+  <string name="delete_sheet_delete_trash_yes">हटवा</string>
+  <string name="delete_sheet_delete_trash_no">रद्द करा</string>
+  <string name="trash_will_delete_automatically">टिपा 7 दिवसांनंतर कायमचे हटविली जातात</string>
+
 </resources>

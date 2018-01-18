@@ -179,4 +179,14 @@
   <string name="no_pincode_sheet_dont_ask">Никогда не спрашивайте</string>
   <string name="no_pincode_sheet_set_up">Настроить</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">дублировать</string>
+  <string name="select">Выбрать</string>
+  <string name="delete_sheet_are_you_sure">Ты уверен?</string>
+  <string name="delete_sheet_delete_trash">Вы хотите навсегда удалить заметки в корзине?</string>
+  <string name="delete_sheet_delete_note_permanently">Вы хотите окончательно удалить эту заметку?</string>
+  <string name="delete_sheet_delete_trash_yes">Удалить</string>
+  <string name="delete_sheet_delete_trash_no">Отмена</string>
+  <string name="trash_will_delete_automatically">Заметки удаляются навсегда через 7 дней</string>
+
 </resources>

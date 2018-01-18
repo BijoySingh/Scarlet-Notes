@@ -176,4 +176,14 @@
   <string name="no_pincode_sheet_dont_ask">Non chiedere mai</string>
   <string name="no_pincode_sheet_set_up">Impostare</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">Duplicare</string>
+  <string name="select">Selezionare</string>
+  <string name="delete_sheet_are_you_sure">Sei sicuro?</string>
+  <string name="delete_sheet_delete_trash">Vorresti eliminare definitivamente le note nella cartella cestino?</string>
+  <string name="delete_sheet_delete_note_permanently">Vuoi eliminare definitivamente questa nota?</string>
+  <string name="delete_sheet_delete_trash_yes">Elimina</string>
+  <string name="delete_sheet_delete_trash_no">Annulla</string>
+  <string name="trash_will_delete_automatically">Le note vengono cancellate per sempre dopo 7 giorni</string>
+
 </resources>

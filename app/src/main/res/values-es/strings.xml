@@ -177,4 +177,14 @@
   <string name="no_pincode_sheet_dont_ask">Nunca preguntes</string>
   <string name="no_pincode_sheet_set_up">Preparar</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">Duplicar</string>
+  <string name="select">Seleccionar</string>
+  <string name="delete_sheet_are_you_sure">¿Estás seguro?</string>
+  <string name="delete_sheet_delete_trash">¿Desea eliminar permanentemente las notas en la carpeta de la papelera?</string>
+  <string name="delete_sheet_delete_note_permanently">¿Desea eliminar permanentemente esta nota?</string>
+  <string name="delete_sheet_delete_trash_yes">Borrar</string>
+  <string name="delete_sheet_delete_trash_no">Cancelar</string>
+  <string name="trash_will_delete_automatically">Las notas se eliminan para siempre después de 7 días</string>
+
 </resources>

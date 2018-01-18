@@ -176,4 +176,14 @@
   <string name="no_pincode_sheet_dont_ask">कभी पूछें</string>
   <string name="no_pincode_sheet_set_up">सेट अप</string>
 
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">प्रतिलिपि</string>
+  <string name="select">चुनते हैं</string>
+  <string name="delete_sheet_are_you_sure">क्या आपको यकीन है?</string>
+  <string name="delete_sheet_delete_trash">क्या आप कचरा फ़ोल्डर में नोटों को स्थायी रूप से हटा देना चाहते हैं?</string>
+  <string name="delete_sheet_delete_note_permanently">क्या आप इस नोट को स्थायी रूप से हटाना चाहते हैं?</string>
+  <string name="delete_sheet_delete_trash_yes">हटाना</string>
+  <string name="delete_sheet_delete_trash_no">रद्द करना</string>
+  <string name="trash_will_delete_automatically">नोट्स 7 दिनों के बाद हमेशा के लिए हटा दिए जाते हैं</string>
+
 </resources>
