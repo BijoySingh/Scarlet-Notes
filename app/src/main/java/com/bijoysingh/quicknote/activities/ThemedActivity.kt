@@ -25,9 +25,8 @@ abstract class ThemedActivity : AppCompatActivity() {
   }
 
   fun setSystemTheme() {
-    val backgroundColor = getThemeColor()
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      window.statusBarColor = backgroundColor
+      window.statusBarColor = getStatusBarColor()
     }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -40,7 +39,11 @@ abstract class ThemedActivity : AppCompatActivity() {
   }
 
   fun getThemeColor(): Int {
-    val lightColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) R.color.white else R.color.material_grey_400
+    return getColor(R.color.white, R.color.material_grey_800)
+  }
+
+  fun getStatusBarColor(): Int {
+    val lightColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) R.color.white else R.color.material_grey_500
     return getColor(lightColor, R.color.material_grey_800)
   }
 
