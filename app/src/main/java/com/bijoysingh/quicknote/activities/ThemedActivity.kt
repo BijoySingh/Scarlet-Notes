@@ -40,7 +40,8 @@ abstract class ThemedActivity : AppCompatActivity() {
   }
 
   fun getThemeColor(): Int {
-    return getColor(R.color.white, R.color.material_grey_800)
+    val lightColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) R.color.white else R.color.material_grey_400
+    return getColor(lightColor, R.color.material_grey_800)
   }
 
   fun getColor(lightColorRes: Int, darkColorRes: Int): Int {
