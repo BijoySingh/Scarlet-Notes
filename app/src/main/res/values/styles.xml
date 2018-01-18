@@ -37,10 +37,10 @@
   </style>
 
   <style name="NoteItemActionIcon" parent="BorderlessBackgroundView">
-    <item name="android:layout_width">@dimen/icon_size_slarge</item>
-    <item name="android:layout_height">@dimen/icon_size_slarge</item>
+    <item name="android:layout_width">@dimen/icon_size_large</item>
+    <item name="android:layout_height">@dimen/icon_size_large</item>
     <item name="android:tint">@color/light_hint_text</item>
-    <item name="android:padding">@dimen/spacing_small</item>
+    <item name="android:padding">@dimen/spacing_xsmall</item>
     <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
     <item name="android:layout_gravity">center_vertical|end</item>
   </style>
