@@ -212,7 +212,8 @@
 
   <!-- Start Delete Notes -->
   <string name="delete_sheet_are_you_sure">Are you sure?</string>
-  <string name="delete_sheet_delete_trash">Would you like to permanently delete the notes in the trash folder</string>
+  <string name="delete_sheet_delete_trash">Would you like to permanently delete the notes in the trash folder?</string>
+  <string name="delete_sheet_delete_note_permanently">Would you like to permanently delete this note?</string>
   <string name="delete_sheet_delete_trash_yes">Delete</string>
   <string name="delete_sheet_delete_trash_no">Cancel</string>
   <string name="trash_will_delete_automatically">Notes are deleted forever after 7 days</string>

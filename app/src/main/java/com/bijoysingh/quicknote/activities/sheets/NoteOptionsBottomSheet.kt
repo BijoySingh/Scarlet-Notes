@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.activities.sheets.AlertBottomSheet.Companion.openDeleteNotePermanentlySheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.NoteState
@@ -245,8 +246,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.delete_note_permanently,
         icon = R.drawable.ic_delete_permanently,
         listener = View.OnClickListener {
-          note.delete(context)
-          activity.setupData()
+          openDeleteNotePermanentlySheet(activity, note)
           dismiss()
         },
         visible = note.noteState !== NoteState.TRASH,
