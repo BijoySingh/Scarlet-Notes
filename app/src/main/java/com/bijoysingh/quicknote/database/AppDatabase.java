@@ -8,8 +8,8 @@ import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 
 @Database(
-    entities = {Note.class, Tag.class},
-    version = 8
+    entities = {Note.class, Tag.class, Widget.class},
+    version = 9
 )
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -19,13 +19,15 @@ public abstract class AppDatabase extends RoomDatabase {
 
   public abstract TagDao tags();
 
+  public abstract WidgetDao widgets();
+
   public static AppDatabase getDatabase(Context context) {
     if (database == null) {
       database = Room
           .databaseBuilder(context, AppDatabase.class, "note-database")
           .allowMainThreadQueries()
           .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4,
-              MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8)
+              MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9)
           .build();
     }
     return database;
@@ -84,6 +86,14 @@ public abstract class AppDatabase extends RoomDatabase {
     public void migrate(SupportSQLiteDatabase database) {
       database.execSQL("ALTER TABLE tag ADD COLUMN uuid TEXT DEFAULT ''");
       database.execSQL("UPDATE tag SET uuid = hex(randomblob(16))");
+    }
+  };
+
+  public static final Migration MIGRATION_8_9 = new Migration(8, 9) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+      database.execSQL("CREATE TABLE IF NOT EXISTS widget (`widgetId` INTEGER PRIMARY KEY NOT NULL, `noteUUID` TEXT)");
+      database.execSQL("CREATE  INDEX `index_widget_widgetId` ON `widget` (`widgetId`)");
     }
   };
 }

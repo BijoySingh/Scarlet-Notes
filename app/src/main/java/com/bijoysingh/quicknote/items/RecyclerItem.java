@@ -4,6 +4,7 @@ import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.recyclerview.EmptyRecyclerHolder;
 import com.bijoysingh.quicknote.recyclerview.FileImportViewHolder;
 import com.bijoysingh.quicknote.recyclerview.NoteRecyclerHolder;
+import com.bijoysingh.quicknote.recyclerview.SelectableNoteRecyclerViewHolder;
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem;
 
 import java.util.ArrayList;
@@ -37,6 +38,24 @@ public abstract class RecyclerItem {
         .viewType(Type.FILE.ordinal())
         .layoutFile(R.layout.item_import_file)
         .holderClass(FileImportViewHolder.class)
+        .build());
+    return list;
+  }
+
+  public static List<MultiRecyclerViewControllerItem<RecyclerItem>> getSelectableList(
+      boolean staggered,
+      boolean isTablet) {
+    List<MultiRecyclerViewControllerItem<RecyclerItem>> list = new ArrayList<>();
+    list.add(new MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
+        .viewType(Type.NOTE.ordinal())
+        .layoutFile((staggered && !isTablet) ? R.layout.item_note_staggered : R.layout.item_note)
+        .holderClass(SelectableNoteRecyclerViewHolder.class)
+        .build());
+    list.add(new MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
+        .viewType(Type.EMPTY.ordinal())
+        .layoutFile(R.layout.item_no_notes)
+        .holderClass(EmptyRecyclerHolder.class)
+        .spanSize(2)
         .build());
     return list;
   }

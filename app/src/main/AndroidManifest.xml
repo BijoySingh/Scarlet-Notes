@@ -53,17 +53,38 @@
     <activity android:name=".activities.ExternalIntentActivity">
       <intent-filter>
         <action android:name="android.intent.action.SEND" />
+
         <category android:name="android.intent.category.DEFAULT" />
+
         <data android:mimeType="text/plain" />
       </intent-filter>
-      <intent-filter >
+      <intent-filter>
         <action android:name="android.intent.action.VIEW" />
 
         <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE"/>
+        <category android:name="android.intent.category.BROWSABLE" />
 
-        <data android:scheme="file" android:mimeType="text/plain" />
-        <data android:scheme="content" android:mimeType="text/plain" />
+        <data
+          android:mimeType="text/plain"
+          android:scheme="file" />
+        <data
+          android:mimeType="text/plain"
+          android:scheme="content" />
+      </intent-filter>
+    </activity>
+
+    <receiver android:name=".service.NoteWidgetProvider">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info" />
+    </receiver>
+
+    <activity android:name=".activities.WidgetConfigureActivity" >
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
       </intent-filter>
     </activity>
   </application>

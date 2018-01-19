@@ -87,6 +87,12 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     setEditMode();
   }
 
+  public static Intent getIntent(Context context, Note note) {
+    Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
+    intent.putExtra(NOTE_ID, note.uid);
+    return intent;
+  }
+
   public static Intent getIntent(Context context, Note note, boolean nightMode) {
     Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
     intent.putExtra(NOTE_ID, note.uid);

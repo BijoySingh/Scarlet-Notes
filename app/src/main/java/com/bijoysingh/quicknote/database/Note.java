@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
+import com.bijoysingh.quicknote.activities.WidgetConfigureActivity;
 import com.bijoysingh.quicknote.activities.external.ExportableTag;
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet;
 import com.bijoysingh.quicknote.formats.Format;
@@ -259,6 +260,7 @@ public class Note {
   public void save(Context context) {
     saveWithoutSync(context);
     saveToSync();
+    WidgetConfigureActivity.Companion.notifyNoteChange(context, this);
   }
 
   public void saveWithoutSync(Context context) {
@@ -298,6 +300,7 @@ public class Note {
         && TextUtils.areEqualNullIsEmpty(uuid, note.uuid)
         && TextUtils.areEqualNullIsEmpty(tags, note.tags)
         && (timestamp.longValue() == note.timestamp.longValue())
+        && color.intValue() == note.color.intValue()
         && locked == note.locked
         && pinned == note.pinned;
   }
