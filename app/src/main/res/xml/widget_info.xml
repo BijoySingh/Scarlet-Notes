@@ -3,7 +3,7 @@
   android:minWidth="40dp"
   android:minHeight="40dp"
   android:updatePeriodMillis="86400000"
-  android:previewImage="@drawable/app_icon"
+  android:previewImage="@drawable/lorem_ipsum_widget"
   android:initialLayout="@layout/widget_layout"
   android:configure="com.bijoysingh.quicknote.activities.WidgetConfigureActivity"
   android:resizeMode="horizontal|vertical"

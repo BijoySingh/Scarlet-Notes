@@ -166,7 +166,7 @@ class WidgetConfigureActivity : ThemedActivity(), INoteSelectorActivity {
       views.setTextViewText(R.id.title, noteTitle)
       views.setTextViewText(
           R.id.description,
-          note.getText())
+          note.getLockedText(context, false))
       views.setInt(R.id.container_layout, "setBackgroundColor", note.color);
 
       views.setOnClickPendingIntent(R.id.title, pendingIntent)
