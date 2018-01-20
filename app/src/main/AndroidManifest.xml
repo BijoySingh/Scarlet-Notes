@@ -121,7 +121,6 @@
     </activity>
     <activity android:name=".activities.SelectNotesActivity"></activity>
     <activity android:name=".activities.LoginActivity"/>
-    <activity android:name=".activities.WelcomeActivity"/>
   </application>
 
 </manifest>
