@@ -197,6 +197,11 @@
   <string name="sort_sheet_oldest_first">Oldest First</string>
   <string name="sort_sheet_last_modified">Most Recently Modified</string>
 
+  <!-- Start Select Notes -->
+  <string name="select_a_note_title" translatable="false">Select a Note</string>
+  <string name="select_notes_title" translatable="false">Select Notes</string>
+  <!-- End Select Notes -->
+
   <!-- Start Cloud Backup Hint -->
   <string name="home_option_install_from_store">Install from Store</string>
   <string name="home_option_install_from_store_subtitle">Install app from Google Store for Cloud Sync</string>

@@ -11,7 +11,7 @@
     android:id="@+id/back_button"
     android:layout_width="@dimen/icon_size_large"
     android:layout_height="@dimen/icon_size_large"
-    android:background="?attr/selectableItemBackgroundBorderless"
+    style="@style/BorderlessBackgroundView"
     android:padding="@dimen/spacing_xsmall"
     android:src="@drawable/ic_close_white_48dp"
     android:tint="@color/material_grey_600" />
@@ -33,7 +33,7 @@
     android:id="@+id/import_or_edit_to_app"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackgroundBorderless"
+    style="@style/BorderlessBackgroundView"
     android:gravity="center"
     ui:iconTextGap="@dimen/spacing_xsmall"
     ui:icon="@drawable/ic_import"

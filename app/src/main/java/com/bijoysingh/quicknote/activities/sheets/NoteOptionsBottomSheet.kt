@@ -1,9 +1,13 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import android.content.Intent
 import android.view.View
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_MODE
+import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_NOTE_ID
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.activities.SelectNotesActivity
 import com.bijoysingh.quicknote.activities.sheets.AlertBottomSheet.Companion.openDeleteNotePermanentlySheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
@@ -189,8 +193,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         invalid = note.locked
     ))
     options.add(OptionsItem(
-        title = if(note.pinned) R.string.unpin_note else R.string.pin_note,
-        subtitle = if(note.pinned) R.string.unpin_note else R.string.pin_note,
+        title = if (note.pinned) R.string.unpin_note else R.string.pin_note,
+        subtitle = if (note.pinned) R.string.unpin_note else R.string.pin_note,
         icon = R.drawable.ic_pin,
         listener = View.OnClickListener {
           note.pinned = !note.pinned
@@ -226,6 +230,18 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
               dataStore)
         },
         visible = note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.select,
+        subtitle = R.string.select,
+        icon = R.drawable.ic_action_select,
+        listener = View.OnClickListener {
+          val intent = Intent(context, SelectNotesActivity::class.java)
+          intent.putExtra(KEY_SELECT_EXTRA_MODE, activity.mode.name)
+          intent.putExtra(KEY_SELECT_EXTRA_NOTE_ID, note.uid)
+          activity.startActivity(intent)
+          dismiss()
+        }
     ))
     options.add(OptionsItem(
         title = R.string.duplicate,

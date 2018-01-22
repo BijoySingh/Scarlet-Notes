@@ -11,7 +11,7 @@
     android:layout_width="@dimen/icon_size_normal"
     android:layout_height="@dimen/icon_size_normal"
     android:layout_margin="@dimen/spacing_small"
-    android:background="?attr/selectableItemBackgroundBorderless"
+    style="@style/BorderlessBackgroundView"
     android:gravity="center"
     android:orientation="horizontal">
 

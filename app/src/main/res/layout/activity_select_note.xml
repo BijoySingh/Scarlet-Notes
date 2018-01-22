@@ -19,17 +19,16 @@
       android:layout_width="@dimen/icon_size_large"
       android:layout_height="@dimen/icon_size_large"
       android:layout_marginEnd="4dp"
-      android:background="?attr/selectableItemBackgroundBorderless"
       android:padding="@dimen/spacing_xsmall"
       android:src="@drawable/ic_close_white_48dp"
-      android:tint="@color/material_grey_600" />
+      android:tint="@color/dark_tertiary_text" />
 
     <TextView
       android:id="@+id/toolbar_title"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_weight="1"
-      android:text="Select a Note"
+      android:text="@string/select_a_note_title"
       android:textColor="@color/dark_tertiary_text"
       android:textSize="@dimen/font_size_large" />
   </LinearLayout>

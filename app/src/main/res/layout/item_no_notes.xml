@@ -16,7 +16,7 @@
       android:id="@+id/note_panel"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="?android:attr/selectableItemBackground"
+    style="@style/BorderedBackgroundView"
       android:orientation="vertical"
       android:padding="4dp">
 

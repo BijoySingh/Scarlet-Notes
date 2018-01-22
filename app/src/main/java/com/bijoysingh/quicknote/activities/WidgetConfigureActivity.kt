@@ -8,48 +8,24 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
-import android.util.Log
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.widget.GridLayout.VERTICAL
-import android.widget.ImageView
 import android.widget.RemoteViews
-import android.widget.TextView
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet
-import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion.KEY_LINE_COUNT
-import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_LIST_VIEW
-import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
-import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
-import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Widget
-import com.bijoysingh.quicknote.items.EmptyRecyclerItem
-import com.bijoysingh.quicknote.items.NoteRecyclerItem
-import com.bijoysingh.quicknote.items.RecyclerItem
-import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
 import com.bijoysingh.quicknote.service.NoteWidgetProvider
 import com.bijoysingh.quicknote.utils.NoteState
-import com.bijoysingh.quicknote.utils.sort
-import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.prefs.DataStore
-import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.github.bijoysingh.starter.util.TextUtils
 
-class WidgetConfigureActivity : ThemedActivity(), INoteSelectorActivity {
+class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActivity {
 
-  lateinit var recyclerView: RecyclerView
-  lateinit var adapter: NoteAppAdapter
-  lateinit var store: DataStore
   var appWidgetId: Int = AppWidgetManager.INVALID_APPWIDGET_ID
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_widget_configure)
+    setContentView(R.layout.activity_select_note)
 
     val intent = intent
     val extras = intent.extras
@@ -64,49 +40,12 @@ class WidgetConfigureActivity : ThemedActivity(), INoteSelectorActivity {
       return
     }
 
-    store = DataStore.get(this)
-    requestSetNightMode(store.get(ThemedActivity.getKey(), false))
-    setupRecyclerView()
-
-    MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
-      override fun run(): List<Note> {
-        val sorting = SortingOptionsBottomSheet.getSortingState(store)
-        return sort(Note.db(this@WidgetConfigureActivity).getByNoteState(
-            arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name, NoteState.ARCHIVED.name)),
-            sorting)
-      }
-
-      override fun handle(notes: List<Note>) {
-        adapter.clearItems()
-
-        if (notes.isEmpty()) {
-          adapter.addItem(EmptyRecyclerItem())
-        }
-
-        for (note in notes) {
-          adapter.addItem(NoteRecyclerItem(note))
-        }
-      }
-    })
+    initUI()
   }
 
-  fun setupRecyclerView() {
-    val staggeredView = store.get(KEY_LIST_VIEW, false)
-    val isTablet = resources.getBoolean(R.bool.is_tablet)
-
-    val isMarkdownEnabled = store.get(KEY_MARKDOWN_ENABLED, true)
-    val isMarkdownHomeEnabled = store.get(KEY_MARKDOWN_HOME_ENABLED, false)
-    val adapterExtra = Bundle()
-    adapterExtra.putBoolean(KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
-    adapterExtra.putInt(KEY_LINE_COUNT, LineCountBottomSheet.getDefaultLineCount(store))
-
-    adapter = NoteAppAdapter(this, RecyclerItem.getSelectableList(staggeredView, isTablet))
-    adapter.setExtra(adapterExtra)
-    recyclerView = RecyclerViewBuilder(this)
-        .setView(this, R.id.recycler_view)
-        .setAdapter(adapter)
-        .setLayoutManager(getLayoutManager(staggeredView, isTablet))
-        .build()
+  override fun getNotes(): List<Note> {
+    return Note.db(this@WidgetConfigureActivity).getByNoteState(
+        arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name, NoteState.ARCHIVED.name))
   }
 
   override fun onNoteClicked(note: Note) {
@@ -116,28 +55,7 @@ class WidgetConfigureActivity : ThemedActivity(), INoteSelectorActivity {
   }
 
   override fun isNoteSelected(note: Note): Boolean {
-    return false
-  }
-
-  override fun notifyNightModeChange() {
-    setSystemTheme()
-
-    val containerLayout = findViewById<View>(R.id.container_layout)
-    containerLayout.setBackgroundColor(getThemeColor())
-
-    val toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.light_secondary_text)
-    findViewById<ImageView>(R.id.back_button).setColorFilter(toolbarIconColor)
-    findViewById<TextView>(R.id.toolbar_title).setTextColor(toolbarIconColor)
-  }
-
-  private fun getLayoutManager(isStaggeredView: Boolean, isTabletView: Boolean): RecyclerView.LayoutManager {
-    if (isTabletView) {
-      return StaggeredGridLayoutManager(2, VERTICAL)
-    }
-    return if (isStaggeredView)
-      StaggeredGridLayoutManager(2, VERTICAL)
-    else
-      LinearLayoutManager(this)
+    return true
   }
 
   fun createWidget(widget: Widget) {

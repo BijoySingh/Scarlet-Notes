@@ -11,7 +11,7 @@
       android:id="@+id/back_button"
       android:layout_width="@dimen/icon_size_large"
       android:layout_height="@dimen/icon_size_large"
-      android:background="?attr/selectableItemBackgroundBorderless"
+    style="@style/BorderlessBackgroundView"
       android:padding="@dimen/spacing_xsmall"
       android:src="@drawable/ic_close_white_48dp"
       android:tint="@color/material_grey_600"/>
@@ -25,7 +25,7 @@
     android:id="@+id/note_options_button"
     android:layout_width="@dimen/icon_size_large"
     android:layout_height="@dimen/icon_size_large"
-    android:background="?attr/selectableItemBackgroundBorderless"
+    style="@style/BorderlessBackgroundView"
     android:padding="@dimen/spacing_xsmall"
     android:src="@drawable/ic_more_horiz_white_48dp"
     android:tint="@color/material_grey_600"/>
@@ -34,7 +34,7 @@
       android:id="@+id/delete_button"
       android:layout_width="@dimen/icon_size_large"
       android:layout_height="@dimen/icon_size_large"
-      android:background="?attr/selectableItemBackgroundBorderless"
+    style="@style/BorderlessBackgroundView"
       android:padding="@dimen/spacing_xsmall"
       android:src="@drawable/ic_delete_white_48dp"
       android:tint="@color/material_grey_600"/>
@@ -43,7 +43,7 @@
       android:id="@+id/copy_button"
       android:layout_width="@dimen/icon_size_large"
       android:layout_height="@dimen/icon_size_large"
-      android:background="?attr/selectableItemBackgroundBorderless"
+    style="@style/BorderlessBackgroundView"
       android:padding="9dp"
       android:src="@drawable/ic_content_copy_white_48dp"
       android:tint="@color/material_grey_600"/>
@@ -52,7 +52,7 @@
       android:id="@+id/share_button"
       android:layout_width="@dimen/icon_size_large"
       android:layout_height="@dimen/icon_size_large"
-      android:background="?attr/selectableItemBackgroundBorderless"
+    style="@style/BorderlessBackgroundView"
       android:padding="@dimen/spacing_xsmall"
       android:src="@drawable/ic_share_white_48dp"
       android:tint="@color/material_grey_600"/>
@@ -61,7 +61,7 @@
       android:id="@+id/color_button_clicker"
       android:layout_width="@dimen/icon_size_large"
       android:layout_height="@dimen/icon_size_large"
-      android:background="?attr/selectableItemBackgroundBorderless"
+    style="@style/BorderlessBackgroundView"
       android:gravity="center"
       android:orientation="horizontal">
 
@@ -76,7 +76,7 @@
       android:id="@+id/edit_button"
       android:layout_width="@dimen/icon_size_large"
       android:layout_height="@dimen/icon_size_large"
-      android:background="?attr/selectableItemBackgroundBorderless"
+    style="@style/BorderlessBackgroundView"
       android:padding="@dimen/spacing_xsmall"
       android:src="@drawable/ic_edit_white_48dp"
       android:tint="@color/material_grey_600"/>
@@ -85,7 +85,7 @@
       android:id="@+id/done_button"
       android:layout_width="@dimen/icon_size_large"
       android:layout_height="@dimen/icon_size_large"
-      android:background="?attr/selectableItemBackgroundBorderless"
+    style="@style/BorderlessBackgroundView"
       android:padding="@dimen/spacing_xsmall"
       android:src="@drawable/ic_done_white_48dp"
       android:tint="@color/material_grey_600"/>
