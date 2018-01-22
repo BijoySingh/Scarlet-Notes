@@ -49,10 +49,10 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     }
 
     val delete = findViewById<View>(R.id.delete_button) as ImageView
-    delete.setImageResource(if (mode === HomeNavigationState.TRASH.name) R.drawable.ic_delete_permanently else R.drawable.ic_delete_white_48dp)
+    delete.setImageResource(if (mode == HomeNavigationState.TRASH.name) R.drawable.ic_delete_permanently else R.drawable.ic_delete_white_48dp)
     delete.setOnClickListener {
       runNoteFunction {
-        if (mode === HomeNavigationState.TRASH.name) {
+        if (mode == HomeNavigationState.TRASH.name) {
           it.delete(this)
           return@runNoteFunction
         }
@@ -68,10 +68,10 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     }
 
     val favourite = findViewById<View>(R.id.favourite_button) as ImageView
-    favourite.setImageResource(if (mode === HomeNavigationState.FAVOURITE.name) R.drawable.ic_favorite_white_48dp else R.drawable.ic_favorite_border_white_48dp)
+    favourite.setImageResource(if (mode == HomeNavigationState.FAVOURITE.name) R.drawable.ic_favorite_white_48dp else R.drawable.ic_favorite_border_white_48dp)
     favourite.setOnClickListener {
       runNoteFunction {
-        it.mark(this, if (mode === HomeNavigationState.FAVOURITE.name) NoteState.DEFAULT else NoteState.FAVOURITE)
+        it.mark(this, if (mode == HomeNavigationState.FAVOURITE.name) NoteState.DEFAULT else NoteState.FAVOURITE)
       }
       finish()
     }
@@ -79,7 +79,7 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     val archive = findViewById<View>(R.id.archive_button) as ImageView
     archive.setOnClickListener {
       runNoteFunction {
-        it.mark(this, if (mode === HomeNavigationState.ARCHIVED.name) NoteState.DEFAULT else NoteState.ARCHIVED)
+        it.mark(this, if (mode == HomeNavigationState.ARCHIVED.name) NoteState.DEFAULT else NoteState.ARCHIVED)
       }
       finish()
     }

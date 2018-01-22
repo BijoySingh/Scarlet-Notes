@@ -10,14 +10,12 @@
     style="@style/FormatText"
     android:autoLink="web"
     android:hint="@string/format_hint_text"
-    android:linksClickable="true"
-    android:textSize="@dimen/font_size_large" />
+    android:linksClickable="true" />
 
   <EditText
     android:id="@+id/edit"
     style="@style/FormatText"
     android:hint="@string/format_hint_text"
     android:minLines="3"
-    android:visibility="gone"
-    android:textSize="@dimen/font_size_large" />
+    android:visibility="gone" />
 </LinearLayout>

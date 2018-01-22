@@ -17,12 +17,10 @@
     style="@style/FormatText"
     android:autoLink="web"
     android:hint="@string/format_hint_list"
-    android:linksClickable="true"
-    android:textSize="@dimen/font_size_large" />
+    android:linksClickable="true" />
 
   <EditText
     android:id="@+id/edit"
     style="@style/FormatText"
-    android:hint="@string/format_hint_list"
-    android:textSize="@dimen/font_size_large" />
+    android:hint="@string/format_hint_list" />
 </LinearLayout>

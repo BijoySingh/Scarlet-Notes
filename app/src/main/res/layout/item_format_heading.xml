@@ -11,7 +11,7 @@
       android:hint="@string/format_hint_heading"
       android:paddingBottom="@dimen/spacing_small"
       android:paddingTop="@dimen/spacing_small"
-      android:textSize="@dimen/font_size_xlarge"
+      android:textSize="@dimen/font_size_large"
       android:textStyle="bold"/>
 
   <EditText
@@ -20,6 +20,6 @@
       android:hint="@string/format_hint_heading"
       android:paddingBottom="@dimen/spacing_small"
       android:paddingTop="@dimen/spacing_small"
-      android:textSize="@dimen/font_size_xlarge"
+      android:textSize="@dimen/font_size_large"
       android:textStyle="bold"/>
 </LinearLayout>
