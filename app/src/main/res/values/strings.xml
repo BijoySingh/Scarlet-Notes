@@ -200,6 +200,8 @@
   <!-- Start Select Notes -->
   <string name="select_a_note_title" translatable="false">Select a Note</string>
   <string name="select_notes_title" translatable="false">Select Notes</string>
+
+  <string name="widget_no_valid_note" translatable="false">Note either deleted or locked</string>
   <!-- End Select Notes -->
 
   <!-- Start Note Text Size -->

@@ -289,6 +289,7 @@ public class Note {
   public void delete(Context context) {
     deleteWithoutSync(context);
     deleteToSync();
+    WidgetConfigureActivity.Companion.notifyNoteChange(context, this);
   }
 
   public void deleteWithoutSync(Context context) {

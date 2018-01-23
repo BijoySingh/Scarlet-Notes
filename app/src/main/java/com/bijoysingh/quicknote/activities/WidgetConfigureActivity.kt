@@ -71,7 +71,10 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
   companion object {
     fun createNoteWidget(context: Context, widget: Widget) {
       val note = Note.db(context).getByUUID(widget.noteUUID)
-      if (note === null) {
+      val appWidgetManager = AppWidgetManager.getInstance(context)
+      if (note === null || note.locked) {
+        val views = RemoteViews(context.getPackageName(), R.layout.widget_invalid_note)
+        appWidgetManager.updateAppWidget(widget.widgetId, views)
         return
       }
 
@@ -92,7 +95,6 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
       views.setOnClickPendingIntent(R.id.description, pendingIntent)
       views.setOnClickPendingIntent(R.id.container_layout, pendingIntent)
 
-      val appWidgetManager = AppWidgetManager.getInstance(context)
       appWidgetManager.updateAppWidget(widget.widgetId, views)
     }
 
