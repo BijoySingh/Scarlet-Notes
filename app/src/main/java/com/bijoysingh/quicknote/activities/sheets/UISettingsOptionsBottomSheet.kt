@@ -83,7 +83,8 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
             TextSizeBottomSheet.openSheet(activity)
           }
           dismiss()
-        }
+        },
+        visible = getAppFlavor() != Flavor.NONE
     ))
     options.add(OptionsItem(
         title = R.string.note_option_number_lines,
