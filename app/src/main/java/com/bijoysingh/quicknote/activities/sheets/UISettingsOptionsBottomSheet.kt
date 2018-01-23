@@ -6,7 +6,10 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion.getDefaultLineCount
 import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingState
+import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.getDefaultTextSize
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.utils.Flavor
+import com.bijoysingh.quicknote.utils.getAppFlavor
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.LocaleManager
 
@@ -67,6 +70,18 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_sort,
         listener = View.OnClickListener {
           SortingOptionsBottomSheet.openSheet(activity, { activity.setupData() })
+          dismiss()
+        }
+    ))
+    options.add(OptionsItem(
+        title = R.string.note_option_font_size,
+        subtitle = 0,
+        content = activity.getString(R.string.note_option_font_size_subtitle, getDefaultTextSize(dataStore)),
+        icon = R.drawable.ic_title_white_48dp,
+        listener = View.OnClickListener {
+          if (getAppFlavor() == Flavor.PRO) {
+            TextSizeBottomSheet.openSheet(activity)
+          }
           dismiss()
         }
     ))

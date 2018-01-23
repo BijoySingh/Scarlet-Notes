@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,24 +14,22 @@ import android.widget.TextView;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
+import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet;
 import com.bijoysingh.quicknote.formats.Format;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
 import com.github.bijoysingh.starter.util.TextUtils;
 
-import ru.noties.markwon.Markwon;
-
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
+import static com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.KEY_TEXT_SIZE;
+import static com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.TEXT_SIZE_DEFAULT;
 import static com.bijoysingh.quicknote.formats.FormatType.CHECKLIST_CHECKED;
 import static com.bijoysingh.quicknote.formats.FormatType.CHECKLIST_UNCHECKED;
 import static com.bijoysingh.quicknote.formats.FormatType.CODE;
 import static com.bijoysingh.quicknote.formats.FormatType.QUOTE;
 import static com.bijoysingh.quicknote.formats.FormatType.TEXT;
-import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.markwonFix;
-import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.markwonNewlineFix;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.renderMarkdown;
-import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.trim;
 
 public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements TextWatcher {
 
@@ -88,6 +87,12 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
     boolean isMarkdownEnabled = extra == null
         || extra.getBoolean(KEY_MARKDOWN_ENABLED, true)
         || data.forcedMarkdown;
+
+    int fontSize = extra == null
+        ? TextSizeBottomSheet.TEXT_SIZE_DEFAULT
+        : extra.getInt(KEY_TEXT_SIZE ,TEXT_SIZE_DEFAULT);
+    text.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
+    edit.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
 
     text.setTextColor(ContextCompat.getColor(
         context, nightMode ? R.color.white : R.color.dark_secondary_text));

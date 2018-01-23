@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.sheets.NoteAdvancedActivityBottomSheet;
 import com.bijoysingh.quicknote.activities.sheets.NoteSettingsOptionsBottomSheet;
+import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet;
 import com.bijoysingh.quicknote.database.Note;
 import com.bijoysingh.quicknote.database.Tag;
 import com.bijoysingh.quicknote.formats.Format;
@@ -138,6 +139,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, getEditModeValue());
     bundle.putBoolean(KEY_MARKDOWN_ENABLED, store.get(KEY_MARKDOWN_ENABLED, true));
     bundle.putBoolean(ThemedActivity.Companion.getKey(), isNightMode());
+    bundle.putInt(TextSizeBottomSheet.KEY_TEXT_SIZE, TextSizeBottomSheet.Companion.getDefaultTextSize(store));
     adapter.setExtra(bundle);
   }
 
