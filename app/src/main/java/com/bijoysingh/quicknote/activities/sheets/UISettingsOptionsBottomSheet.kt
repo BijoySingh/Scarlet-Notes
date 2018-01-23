@@ -84,7 +84,8 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
           dismiss()
         },
-        visible = getAppFlavor() != Flavor.NONE
+        visible = getAppFlavor() != Flavor.NONE,
+        actionIcon = if (getAppFlavor() == Flavor.PRO) 0 else R.drawable.ic_rating
     ))
     options.add(OptionsItem(
         title = R.string.note_option_number_lines,

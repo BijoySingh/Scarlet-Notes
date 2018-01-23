@@ -59,6 +59,8 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
 
       if (option.enabled) {
         contentView.setActionResource(R.drawable.ic_check_box_white_24dp)
+      } else if (option.actionIcon != 0) {
+        contentView.setActionResource(option.actionIcon)
       }
       
       layout.addView(contentView)
