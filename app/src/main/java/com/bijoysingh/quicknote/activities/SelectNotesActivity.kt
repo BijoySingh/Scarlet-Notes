@@ -131,13 +131,13 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
 
   override fun isNoteSelected(note: Note): Boolean = selectedNotes.contains(note.uid)
 
-  override fun getNotes(): List<Note> = Note.db(this).getByNoteState(getMode(mode))
+  override fun getNotes(): List<Note> = Note.db(this).getByNoteState(getMode(mode)).filter { note -> !note.locked }
 
   fun getText(): String {
     val builder = StringBuilder()
     for (noteId in selectedNotes) {
-      builder.append(Note.db(this).getByID(noteId))
-      builder.append("\n---\n")
+      builder.append(Note.db(this).getByID(noteId).fullText)
+      builder.append("\n\n---\n\n")
     }
     return builder.toString()
   }

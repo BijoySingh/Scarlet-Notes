@@ -46,6 +46,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
   override fun getNotes(): List<Note> {
     return Note.db(this@WidgetConfigureActivity).getByNoteState(
         arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name, NoteState.ARCHIVED.name))
+        .filter { note -> !note.locked }
   }
 
   override fun onNoteClicked(note: Note) {

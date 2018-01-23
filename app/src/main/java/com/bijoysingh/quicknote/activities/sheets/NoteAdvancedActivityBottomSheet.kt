@@ -216,6 +216,17 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
         visible = note.locked
     ))
     options.add(OptionsItem(
+        title = R.string.delete_note_permanently,
+        subtitle = R.string.delete_note_permanently,
+        icon = R.drawable.ic_delete_permanently,
+        listener = View.OnClickListener {
+          AlertBottomSheet.openDeleteNotePermanentlySheet(activity, note, { activity.finish() })
+          dismiss()
+        },
+        visible = note.noteState !== NoteState.TRASH,
+        invalid = note.locked
+    ))
+    options.add(OptionsItem(
         title = R.string.reminder,
         subtitle = R.string.reminder,
         icon = R.drawable.ic_action_reminder,

@@ -89,7 +89,7 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
       openSheet(activity, details)
     }
 
-    fun openDeleteNotePermanentlySheet(activity: MainActivity, note: Note) {
+    fun openDeleteNotePermanentlySheet(activity: ThemedActivity, note: Note, onDelete: () -> Unit) {
       val details = object: AlertDetails {
         override fun getTitle(): Int = R.string.delete_sheet_are_you_sure
 
@@ -101,7 +101,7 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
 
         override fun getPositiveClickListener() {
           note.delete(activity)
-          activity.setupData()
+          onDelete()
         }
 
         override fun getNegativeClickListener() {
@@ -109,6 +109,10 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
         }
       }
       openSheet(activity, details)
+    }
+
+    fun openDeleteNotePermanentlySheet(activity: MainActivity, note: Note) {
+      openDeleteNotePermanentlySheet(activity, note, { activity.setupData() })
     }
   }
 

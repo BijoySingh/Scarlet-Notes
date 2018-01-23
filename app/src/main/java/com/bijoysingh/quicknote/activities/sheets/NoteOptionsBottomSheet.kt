@@ -241,7 +241,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           intent.putExtra(KEY_SELECT_EXTRA_NOTE_ID, note.uid)
           activity.startActivity(intent)
           dismiss()
-        }
+        },
+        invalid = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.duplicate,

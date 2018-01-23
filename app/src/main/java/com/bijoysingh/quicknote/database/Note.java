@@ -94,6 +94,16 @@ public class Note {
     return text.trim();
   }
 
+  public String getFullText() {
+    StringBuilder builder = new StringBuilder();
+    List<Format> formats = Format.getFormats(description);
+    for (Format format : formats) {
+      builder.append(format.getMarkdownText());
+      builder.append("\n\n");
+    }
+    return builder.toString().trim();
+  }
+
   public CharSequence getLockedText(Context context, boolean isMarkdownEnabled) {
     if (locked) {
       return "******************\n***********\n****************";
