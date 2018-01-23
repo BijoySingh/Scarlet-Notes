@@ -194,7 +194,7 @@ public class MainActivity extends ThemedActivity {
     backButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        onBackPressed();
+        HomeNavigationBottomSheet.Companion.openSheet(MainActivity.this);
       }
     });
   }
