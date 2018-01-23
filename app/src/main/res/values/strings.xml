@@ -299,6 +299,7 @@
   <string name="material_notes_privacy_policy_subtitle">App privacy policy for the content</string>
 
   <string name="install_pro_app">Install Pro App</string>
+  <string name="available_in_pro_only" translatable="false">Available on Scarlet Pro</string>
 
   <string name="why_install_pro">Why Install Pro</string>
   <string name="why_install_pro_details">

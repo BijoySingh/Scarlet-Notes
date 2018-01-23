@@ -88,6 +88,8 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         listener = View.OnClickListener {
           if (getAppFlavor() == Flavor.PRO) {
             TextSizeBottomSheet.openSheet(activity)
+          } else {
+            InstallProUpsellBottomSheet.openSheet(activity)
           }
           dismiss()
         },
