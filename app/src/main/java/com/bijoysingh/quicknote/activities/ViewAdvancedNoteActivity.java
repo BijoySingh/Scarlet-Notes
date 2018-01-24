@@ -20,6 +20,7 @@ import com.bijoysingh.quicknote.recyclerview.FormatAdapter;
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.bijoysingh.quicknote.utils.NoteState;
+import com.bijoysingh.quicknote.utils.ThemeManager;
 import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
 import com.google.android.flexbox.FlexboxLayout;
@@ -31,6 +32,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED;
 import static com.bijoysingh.quicknote.utils.NoteBuilderKt.genEmptyNote;
+import static com.bijoysingh.quicknote.utils.ThemeManagerKt.KEY_NIGHT_THEME;
 
 public class ViewAdvancedNoteActivity extends ThemedActivity {
 
@@ -79,8 +81,8 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
         : note;
 
     setNightMode(getIntent().getBooleanExtra(
-        ThemedActivity.Companion.getKey(),
-        store.get(ThemedActivity.Companion.getKey(), false)));
+        KEY_NIGHT_THEME,
+        ThemeManager.Companion.get(context).isNightTheme()));
 
     rootView = findViewById(R.id.root_layout);
     setRecyclerView();
@@ -97,7 +99,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
   public static Intent getIntent(Context context, Note note, boolean nightMode) {
     Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
     intent.putExtra(NOTE_ID, note.uid);
-    intent.putExtra(ThemedActivity.Companion.getKey(), nightMode);
+    intent.putExtra(KEY_NIGHT_THEME, nightMode);
     return intent;
   }
 
@@ -138,7 +140,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     Bundle bundle = new Bundle();
     bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, getEditModeValue());
     bundle.putBoolean(KEY_MARKDOWN_ENABLED, store.get(KEY_MARKDOWN_ENABLED, true));
-    bundle.putBoolean(ThemedActivity.Companion.getKey(), isNightMode());
+    bundle.putBoolean(KEY_NIGHT_THEME, isNightMode());
     bundle.putInt(TextSizeBottomSheet.KEY_TEXT_SIZE, TextSizeBottomSheet.Companion.getDefaultTextSize(store));
     adapter.setExtra(bundle);
   }

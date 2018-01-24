@@ -17,6 +17,7 @@ import com.bijoysingh.quicknote.items.EmptyRecyclerItem
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
+import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.sort
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.prefs.DataStore
@@ -35,7 +36,7 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
   }
 
   open fun initUI() {
-    requestSetNightMode(store.get(ThemedActivity.getKey(), false))
+    requestSetNightMode(ThemeManager.get(this).isNightTheme())
     setupRecyclerView()
 
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {

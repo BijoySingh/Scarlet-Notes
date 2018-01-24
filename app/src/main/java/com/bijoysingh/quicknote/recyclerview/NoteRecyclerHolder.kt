@@ -11,6 +11,7 @@ import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.utils.KEY_NIGHT_THEME
 import com.github.bijoysingh.starter.prefs.DataStore
 
 class NoteRecyclerHolder(context: Context, view: View) : NoteRecyclerViewHolderBase(context, view) {
@@ -69,7 +70,7 @@ class NoteRecyclerHolder(context: Context, view: View) : NoteRecyclerViewHolderB
   private fun openNote(data: Note) {
     val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
     intent.putExtra(NOTE_ID, data.uid)
-    intent.putExtra(ThemedActivity.getKey(), (context as ThemedActivity).isNightMode)
+    intent.putExtra(KEY_NIGHT_THEME, (context as ThemedActivity).isNightMode)
     context.startActivity(intent)
   }
 }

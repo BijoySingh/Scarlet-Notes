@@ -16,6 +16,8 @@ import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 
+import static com.bijoysingh.quicknote.utils.ThemeManagerKt.KEY_NIGHT_THEME;
+
 public class FormatListViewHolder extends FormatTextViewHolder implements TextView.OnEditorActionListener {
 
   private ImageView icon;
@@ -41,8 +43,8 @@ public class FormatListViewHolder extends FormatTextViewHolder implements TextVi
                              && extra.containsKey(KEY_EDITABLE)
                              && extra.getBoolean(KEY_EDITABLE);
     boolean nightMode = extra != null
-                        && extra.containsKey(ThemedActivity.Companion.getKey())
-                        && extra.getBoolean(ThemedActivity.Companion.getKey());
+                        && extra.containsKey(KEY_NIGHT_THEME)
+                        && extra.getBoolean(KEY_NIGHT_THEME);
     icon.setColorFilter(ContextCompat.getColor(
         context, nightMode ? R.color.white : R.color.material_blue_grey_600));
 

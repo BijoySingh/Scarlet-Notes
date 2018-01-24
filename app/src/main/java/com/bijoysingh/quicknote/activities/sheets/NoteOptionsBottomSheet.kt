@@ -36,8 +36,6 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     val activity = context as MainActivity
     val dataStore = DataStore.get(context)
     val options = ArrayList<OptionsItem>()
-
-    val pinSetup = SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)
     options.add(OptionsItem(
         title = R.string.restore_note,
         subtitle = R.string.tap_for_action_not_trash,

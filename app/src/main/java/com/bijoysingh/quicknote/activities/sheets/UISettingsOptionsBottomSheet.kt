@@ -8,8 +8,7 @@ import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion
 import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingState
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.getDefaultTextSize
 import com.bijoysingh.quicknote.items.OptionsItem
-import com.bijoysingh.quicknote.utils.Flavor
-import com.bijoysingh.quicknote.utils.getAppFlavor
+import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.LocaleManager
 
@@ -28,6 +27,8 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.home_option_enable_night_mode_subtitle,
         icon = R.drawable.night_mode_white_48dp,
         listener = View.OnClickListener {
+          dataStore.put(KEY_APP_THEME, Theme.DARK.name)
+          ThemeManager.get(activity).notifyUpdate(activity)
           activity.requestSetNightMode(true)
           dismiss()
         },
@@ -38,6 +39,8 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.home_option_enable_day_mode_subtitle,
         icon = R.drawable.ic_action_day_mode,
         listener = View.OnClickListener {
+          dataStore.put(KEY_APP_THEME, Theme.LIGHT.name)
+          ThemeManager.get(activity).notifyUpdate(activity)
           activity.requestSetNightMode(false)
           dismiss()
         },

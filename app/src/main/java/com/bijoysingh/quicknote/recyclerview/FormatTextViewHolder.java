@@ -30,6 +30,7 @@ import static com.bijoysingh.quicknote.formats.FormatType.CODE;
 import static com.bijoysingh.quicknote.formats.FormatType.QUOTE;
 import static com.bijoysingh.quicknote.formats.FormatType.TEXT;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.renderMarkdown;
+import static com.bijoysingh.quicknote.utils.ThemeManagerKt.KEY_NIGHT_THEME;
 
 public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements TextWatcher {
 
@@ -82,8 +83,8 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
         && !extra.getBoolean(KEY_EDITABLE));
 
     boolean nightMode = extra != null
-        && extra.containsKey(ThemedActivity.Companion.getKey())
-        && extra.getBoolean(ThemedActivity.Companion.getKey());
+        && extra.containsKey(KEY_NIGHT_THEME)
+        && extra.getBoolean(KEY_NIGHT_THEME);
     boolean isMarkdownEnabled = extra == null
         || extra.getBoolean(KEY_MARKDOWN_ENABLED, true)
         || data.forcedMarkdown;

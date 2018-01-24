@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity.Companion.convertStreamToString
+import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.TextUtils
@@ -38,7 +39,7 @@ class ExternalIntentActivity : ThemedActivity() {
     store = DataStore.get(context)
 
     setView()
-    requestSetNightMode(store.get(ThemedActivity.getKey(), false))
+    requestSetNightMode(ThemeManager.get(context).isNightTheme())
     val shouldHandleIntent = handleIntent()
     if (!shouldHandleIntent) {
       finish()

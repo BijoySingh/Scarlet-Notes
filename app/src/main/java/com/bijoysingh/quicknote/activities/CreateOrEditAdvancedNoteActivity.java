@@ -25,6 +25,7 @@ import java.util.Collections;
 
 import static android.view.View.GONE;
 import static com.bijoysingh.quicknote.utils.NoteBuilderKt.copyNote;
+import static com.bijoysingh.quicknote.utils.ThemeManagerKt.KEY_NIGHT_THEME;
 
 public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 
@@ -46,7 +47,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     setTouchListener();
     startHandler();
 
-    if (getIntent().getBooleanExtra(ThemedActivity.Companion.getKey(), false)) {
+    if (getIntent().getBooleanExtra(KEY_NIGHT_THEME, false)) {
       setNightMode(true);
     }
     lastNoteInstance = copyNote(note);

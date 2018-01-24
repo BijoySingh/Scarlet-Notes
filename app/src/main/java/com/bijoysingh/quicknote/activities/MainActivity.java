@@ -32,6 +32,7 @@ import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter;
 import com.bijoysingh.quicknote.utils.HomeNavigationState;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.bijoysingh.quicknote.utils.SyncedNoteBroadcastReceiver;
+import com.bijoysingh.quicknote.utils.ThemeManager;
 import com.github.bijoysingh.starter.async.MultiAsyncTask;
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor;
 import com.github.bijoysingh.starter.prefs.DataStore;
@@ -53,6 +54,7 @@ import static com.bijoysingh.quicknote.utils.BroadcastUtilsKt.getNoteIntentFilte
 import static com.bijoysingh.quicknote.utils.MigrationUtilsKt.migrate;
 import static com.bijoysingh.quicknote.utils.MigrationUtilsKt.removeOlderClips;
 import static com.bijoysingh.quicknote.utils.NoteSortingUtilsKt.sort;
+import static com.bijoysingh.quicknote.utils.ThemeManagerKt.KEY_NIGHT_THEME;
 
 public class MainActivity extends ThemedActivity {
 
@@ -92,7 +94,7 @@ public class MainActivity extends ThemedActivity {
     setupRecyclerView();
     setListeners();
     registerNoteReceiver();
-    requestSetNightMode(store.get(ThemedActivity.Companion.getKey(), false));
+    requestSetNightMode(ThemeManager.Companion.get(this).isNightTheme());
   }
 
   public void setListeners() {
@@ -328,7 +330,7 @@ public class MainActivity extends ThemedActivity {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(getApplicationContext(), CreateOrEditAdvancedNoteActivity.class);
-        intent.putExtra(ThemedActivity.Companion.getKey(), isNightMode());
+        intent.putExtra(KEY_NIGHT_THEME, isNightMode());
         startActivity(intent);
       }
     };
@@ -339,7 +341,7 @@ public class MainActivity extends ThemedActivity {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(getApplicationContext(), CreateAdvancedListActivity.class);
-        intent.putExtra(ThemedActivity.Companion.getKey(), isNightMode());
+        intent.putExtra(KEY_NIGHT_THEME, isNightMode());
         startActivity(intent);
       }
     };
@@ -483,7 +485,6 @@ public class MainActivity extends ThemedActivity {
 
   @Override
   public void notifyNightModeChange() {
-    store.put(ThemedActivity.Companion.getKey(), isNightMode());
     setSystemTheme();
 
     View containerLayout = findViewById(R.id.container_layout);

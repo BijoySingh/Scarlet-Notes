@@ -6,7 +6,9 @@ import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.utils.genEmptyNote
 import org.json.JSONArray
 import org.json.JSONObject
-import java.io.*
+import java.io.ByteArrayInputStream
+import java.io.ObjectInputStream
+import java.io.Serializable
 
 
 class ExportableNote(

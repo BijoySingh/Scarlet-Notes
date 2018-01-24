@@ -11,6 +11,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
@@ -34,9 +35,7 @@ class FloatingNoteService : FloatingBubbleService() {
   private var isNightMode: Boolean = false
 
   override fun getConfig(): FloatingBubbleConfig {
-    val store = DataStore.get(context)
-    isNightMode = store.get(ThemedActivity.getKey(), false)
-
+    isNightMode = ThemeManager.get(context).isNightTheme()
     return FloatingBubbleConfig.Builder()
         .bubbleIcon(ContextCompat.getDrawable(context, R.drawable.app_icon))
         .removeBubbleIcon(ContextCompat.getDrawable(

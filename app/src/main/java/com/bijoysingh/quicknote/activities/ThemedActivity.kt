@@ -64,10 +64,4 @@ abstract class ThemedActivity : AppCompatActivity() {
       // Do nothing
     }
   }
-
-  companion object {
-    val KEY_NIGHT_THEME: String = "KEY_NIGHT_THEME"
-
-    fun getKey() = KEY_NIGHT_THEME
-  }
 }
