@@ -10,7 +10,6 @@ import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.prefs.DataStore
-import com.github.bijoysingh.starter.util.LocaleManager
 
 class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
@@ -29,10 +28,10 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         listener = View.OnClickListener {
           dataStore.put(KEY_APP_THEME, Theme.DARK.name)
           ThemeManager.get(activity).notifyUpdate(activity)
-          activity.requestSetNightMode(true)
+          activity.notifyThemeChange()
           dismiss()
         },
-        visible = !isNightMode
+        visible = !isNightMode()
     ))
     options.add(OptionsItem(
         title = R.string.home_option_enable_day_mode,
@@ -41,10 +40,10 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         listener = View.OnClickListener {
           dataStore.put(KEY_APP_THEME, Theme.LIGHT.name)
           ThemeManager.get(activity).notifyUpdate(activity)
-          activity.requestSetNightMode(false)
+          activity.notifyThemeChange()
           dismiss()
         },
-        visible = isNightMode
+        visible = isNightMode()
     ))
     val isTablet = resources.getBoolean(R.bool.is_tablet)
     options.add(OptionsItem(
@@ -109,7 +108,6 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
     fun openSheet(activity: MainActivity) {
       val sheet = UISettingsOptionsBottomSheet()
-      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

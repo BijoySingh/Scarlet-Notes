@@ -1,12 +1,10 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.support.v7.app.AppCompatActivity
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.views.ColorView
-import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 import com.google.android.flexbox.FlexboxLayout
 
 
@@ -91,7 +89,7 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
                   picker: ColorPickerController) {
       val sheet = ColorPickerBottomSheet()
       sheet.setPickerController(picker)
-      sheet.isNightMode = activity.isNightMode
+
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 
@@ -99,7 +97,7 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
                   picker: ColorPickerDefaultController) {
       val sheet = ColorPickerBottomSheet()
       sheet.setPickerController(picker)
-      sheet.isNightMode = activity.isNightMode
+
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

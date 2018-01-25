@@ -1,17 +1,10 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.content.Intent
-import android.net.Uri
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
-import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
-import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingState
 import com.bijoysingh.quicknote.items.OptionsItem
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.IntentUtils
 
 class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
@@ -81,7 +74,7 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
     fun openSheet(activity: MainActivity) {
       val sheet = SettingsOptionsBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

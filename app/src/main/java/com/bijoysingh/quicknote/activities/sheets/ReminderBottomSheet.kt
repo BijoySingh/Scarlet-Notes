@@ -55,7 +55,6 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
   companion object {
     fun openSheet(activity: ThemedActivity) {
       val sheet = ReminderBottomSheet()
-      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

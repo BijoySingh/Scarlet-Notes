@@ -1,13 +1,11 @@
 package com.bijoysingh.quicknote.activities.sheets
 
-import android.Manifest
 import android.app.Dialog
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
-import com.github.bijoysingh.starter.util.PermissionManager
 
 class PermissionBottomSheet : SimpleBottomSheetFragment() {
   override fun setupView(dialog: Dialog?) {

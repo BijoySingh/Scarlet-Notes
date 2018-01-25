@@ -15,7 +15,6 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.sheets.NoPincodeBottomSheet.Companion.ignoreNoPinSheet
 import com.bijoysingh.quicknote.activities.sheets.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
-import com.bijoysingh.quicknote.database.Note
 import com.github.ajalt.reprint.core.AuthenticationFailureReason
 import com.github.ajalt.reprint.core.AuthenticationListener
 import com.github.ajalt.reprint.core.Reprint
@@ -154,7 +153,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
 
     fun openSheet(activity: ThemedActivity, listener: PincodeListener) {
       val sheet = EnterPincodeBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.listener = listener
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }

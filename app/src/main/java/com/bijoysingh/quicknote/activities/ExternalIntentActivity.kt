@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity.Companion.convertStreamToString
-import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.TextUtils
@@ -39,7 +38,7 @@ class ExternalIntentActivity : ThemedActivity() {
     store = DataStore.get(context)
 
     setView()
-    requestSetNightMode(ThemeManager.get(context).isNightTheme())
+    notifyThemeChange()
     val shouldHandleIntent = handleIntent()
     if (!shouldHandleIntent) {
       finish()
@@ -63,7 +62,7 @@ class ExternalIntentActivity : ThemedActivity() {
     actionDone.setOnClickListener {
       val note = genEmptyNote(titleText, contentText)
       note.save(this)
-      startActivity(ViewAdvancedNoteActivity.getIntent(this, note, isNightMode))
+      startActivity(ViewAdvancedNoteActivity.getIntent(this, note))
       finish()
     }
   }
@@ -73,7 +72,7 @@ class ExternalIntentActivity : ThemedActivity() {
     if (hasSendIntent) {
       val note = genEmptyNote(titleText, contentText)
       note.save(this)
-      startActivity(ViewAdvancedNoteActivity.getIntent(this, note, isNightMode))
+      startActivity(ViewAdvancedNoteActivity.getIntent(this, note))
       return false
     }
     val hasFileIntent = handleFileIntent(intent)
@@ -106,7 +105,7 @@ class ExternalIntentActivity : ThemedActivity() {
     }
   }
 
-  override fun notifyNightModeChange() {
+  override fun notifyThemeChange() {
     setSystemTheme();
 
     val containerLayout = findViewById<View>(R.id.container_layout);

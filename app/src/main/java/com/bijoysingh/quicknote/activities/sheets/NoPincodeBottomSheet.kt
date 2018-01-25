@@ -64,7 +64,7 @@ class NoPincodeBottomSheet : ThemedBottomSheetFragment() {
     fun openSheet(activity: ThemedActivity,
                   listener: EnterPincodeBottomSheet.PincodeSuccessOnlyListener) {
       val sheet = NoPincodeBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.listener = listener
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }

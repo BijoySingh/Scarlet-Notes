@@ -4,12 +4,10 @@ import android.app.Dialog
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
-import com.bijoysingh.quicknote.activities.sheets.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.NotificationHandler
-import com.github.bijoysingh.starter.prefs.DataStore
 
 class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
 
@@ -181,8 +179,8 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
         invalid = note.locked || note.isUnsaved
     ))
     options.add(OptionsItem(
-        title = if(note.pinned) R.string.unpin_note else R.string.pin_note,
-        subtitle = if(note.pinned) R.string.unpin_note else R.string.pin_note,
+        title = if (note.pinned) R.string.unpin_note else R.string.pin_note,
+        subtitle = if (note.pinned) R.string.unpin_note else R.string.pin_note,
         icon = R.drawable.ic_pin,
         listener = View.OnClickListener {
           note.pinned = !note.pinned
@@ -236,26 +234,6 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
         },
         visible = false
     ))
-    options.add(OptionsItem(
-        title = R.string.open_note_night_mode,
-        subtitle = R.string.tap_for_action_open_note_night_mode,
-        icon = R.drawable.night_mode_white_48dp,
-        listener = View.OnClickListener {
-          activity.toggleNightMode()
-          dismiss()
-        },
-        visible = !isNightMode
-    ))
-    options.add(OptionsItem(
-        title = R.string.open_note_day_mode,
-        subtitle = R.string.tap_for_action_open_note_day_mode,
-        icon = R.drawable.ic_action_day_mode,
-        listener = View.OnClickListener {
-          activity.toggleNightMode()
-          dismiss()
-        },
-        visible = isNightMode
-    ))
     return options
   }
 
@@ -266,7 +244,6 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
       val sheet = NoteAdvancedActivityBottomSheet()
       sheet.noteFn = { note }
       sheet.isEditMode = isEditMode
-      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

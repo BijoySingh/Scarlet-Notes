@@ -21,8 +21,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
     val sorting = getSortingState(themedContext())
     val options = ArrayList<OptionsItem>()
 
-    val getIcon = fun (sortingTechnique: SortingTechnique): Int
-        = if (sorting == sortingTechnique) R.drawable.ic_done_white_48dp else 0
+    val getIcon = fun(sortingTechnique: SortingTechnique): Int = if (sorting == sortingTechnique) R.drawable.ic_done_white_48dp else 0
 
     options.add(OptionsItem(
         title = SortingTechnique.LAST_MODIFIED.label,
@@ -80,7 +79,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
 
     fun openSheet(activity: MainActivity, listener: () -> Unit) {
       val sheet = SortingOptionsBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.listener = listener
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }

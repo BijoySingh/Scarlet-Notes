@@ -46,7 +46,7 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
           val hasPinCode = !TextUtils.isNullOrEmpty(currentPinCode)
           if (hasPinCode) {
             openVerifyPasswordDialog(
-                object: EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
+                object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
                   override fun onSuccess() {
                     dataStore.put(KEY_FINGERPRINT_ENABLED, false)
                     reset(dialog)
@@ -70,7 +70,7 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
           val hasPinCode = !TextUtils.isNullOrEmpty(currentPinCode)
           if (hasPinCode) {
             openVerifyPasswordDialog(
-                object: EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
+                object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
                   override fun onSuccess() {
                     dataStore.put(KEY_FINGERPRINT_ENABLED, true)
                     reset(dialog)
@@ -143,7 +143,6 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
 
     fun openSheet(activity: MainActivity) {
       val sheet = SecurityOptionsBottomSheet()
-      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 

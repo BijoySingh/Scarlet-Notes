@@ -36,7 +36,6 @@ import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_
 import static com.bijoysingh.quicknote.activities.external.ExportNotesKt.searchInNote;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.removeMarkdownHeaders;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.renderMarkdown;
-import static com.bijoysingh.quicknote.utils.ThemeManagerKt.KEY_NIGHT_THEME;
 
 @Entity(
     tableName = "note",
@@ -183,9 +182,8 @@ public class Note {
     context.startActivity(getEditIntent(context));
   }
 
-  public void edit(Context context, boolean nightMode) {
+  public void startEditActivity(Context context) {
     Intent intent = getEditIntent(context);
-    intent.putExtra(KEY_NIGHT_THEME, nightMode);
     context.startActivity(intent);
   }
 

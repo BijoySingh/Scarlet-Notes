@@ -36,7 +36,7 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
   }
 
   open fun initUI() {
-    requestSetNightMode(ThemeManager.get(this).isNightTheme())
+    notifyThemeChange()
     setupRecyclerView()
 
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
@@ -86,7 +86,7 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
         .build()
   }
 
-  override fun notifyNightModeChange() {
+  override fun notifyThemeChange() {
     setSystemTheme()
 
     val containerLayout = findViewById<View>(R.id.container_layout)

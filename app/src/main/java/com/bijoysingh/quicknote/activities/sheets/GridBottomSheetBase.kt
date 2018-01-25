@@ -1,7 +1,6 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.GridLayout
 import android.widget.TextView
@@ -34,7 +33,7 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
     maybeSetTextNightModeColor(dialog, R.id.options_title, R.color.light_tertiary_text)
 
     val layoutGrid = dialog.findViewById<GridLayout>(R.id.grid_layout);
-    layoutGrid.columnCount = if(resources.getBoolean(R.bool.is_tablet)) 5 else 3
+    layoutGrid.columnCount = if (resources.getBoolean(R.bool.is_tablet)) 5 else 3
     for (option in options) {
       if (!option.visible) {
         continue

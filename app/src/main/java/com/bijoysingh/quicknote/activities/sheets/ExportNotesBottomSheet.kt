@@ -27,7 +27,7 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
     }
 
     val exportTitle = dialog.findViewById<TextView>(R.id.export_title)
-    val filename =dialog.findViewById<TextView>(R.id.filename)
+    val filename = dialog.findViewById<TextView>(R.id.filename)
     val progressBar = dialog.findViewById<ProgressBar>(R.id.progress_bar)
     val resultLayout = dialog.findViewById<View>(R.id.results_layout)
     val exportDone = dialog.findViewById<TextView>(R.id.export_done)
@@ -83,7 +83,7 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
 
     fun openSheet(activity: MainActivity) {
       val sheet = ExportNotesBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

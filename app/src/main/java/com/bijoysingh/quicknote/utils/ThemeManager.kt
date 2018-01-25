@@ -24,6 +24,10 @@ class ThemeManager(context: Context) {
     theme = getThemeFromDataStore(context)
   }
 
+  fun getThemedColor(context: Context, lightColor: Int, darkColor: Int): Int {
+    return ContextCompat.getColor(context, if (isNightTheme()) darkColor else lightColor)
+  }
+
   private fun getThemeFromDataStore(context: Context): Theme {
     val dataStore = DataStore.get(context)
     val theme = dataStore.get(KEY_APP_THEME, Theme.LIGHT.name)

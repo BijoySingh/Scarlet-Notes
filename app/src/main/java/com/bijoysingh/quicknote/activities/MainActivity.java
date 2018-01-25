@@ -54,7 +54,6 @@ import static com.bijoysingh.quicknote.utils.BroadcastUtilsKt.getNoteIntentFilte
 import static com.bijoysingh.quicknote.utils.MigrationUtilsKt.migrate;
 import static com.bijoysingh.quicknote.utils.MigrationUtilsKt.removeOlderClips;
 import static com.bijoysingh.quicknote.utils.NoteSortingUtilsKt.sort;
-import static com.bijoysingh.quicknote.utils.ThemeManagerKt.KEY_NIGHT_THEME;
 
 public class MainActivity extends ThemedActivity {
 
@@ -87,14 +86,14 @@ public class MainActivity extends ThemedActivity {
     store = DataStore.get(this);
     executor = new SimpleThreadExecutor(1);
 
-    if(!store.get(MIGRATE_ZERO_NOTES, false)) {
+    if (!store.get(MIGRATE_ZERO_NOTES, false)) {
       migrateZeroNotes();
     }
 
     setupRecyclerView();
     setListeners();
     registerNoteReceiver();
-    requestSetNightMode(ThemeManager.Companion.get(this).isNightTheme());
+    notifyThemeChange();
   }
 
   public void setListeners() {
@@ -330,7 +329,6 @@ public class MainActivity extends ThemedActivity {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(getApplicationContext(), CreateOrEditAdvancedNoteActivity.class);
-        intent.putExtra(KEY_NIGHT_THEME, isNightMode());
         startActivity(intent);
       }
     };
@@ -341,7 +339,6 @@ public class MainActivity extends ThemedActivity {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(getApplicationContext(), CreateAdvancedListActivity.class);
-        intent.putExtra(KEY_NIGHT_THEME, isNightMode());
         startActivity(intent);
       }
     };
@@ -363,7 +360,7 @@ public class MainActivity extends ThemedActivity {
       public List<Note> run() {
         List<Note> listNoteWithTag = new ArrayList<>();
         List<Note> notes = Note.db(MainActivity.this).getAll();
-        for (Note note: notes) {
+        for (Note note : notes) {
           if (note.getTagUUIDs().contains(tag.uuid)) {
             listNoteWithTag.add(note);
           }
@@ -484,7 +481,7 @@ public class MainActivity extends ThemedActivity {
   }
 
   @Override
-  public void notifyNightModeChange() {
+  public void notifyThemeChange() {
     setSystemTheme();
 
     View containerLayout = findViewById(R.id.container_layout);
@@ -502,7 +499,7 @@ public class MainActivity extends ThemedActivity {
     searchBackButton.setColorFilter(toolbarIconColor);
     searchCloseIcon.setColorFilter(toolbarIconColor);
 
-    findViewById(R.id.separator).setVisibility(isNightMode() ? GONE : View.VISIBLE);
+    findViewById(R.id.separator).setVisibility(ThemeManager.Companion.get(this).isNightTheme() ? GONE : View.VISIBLE);
 
     TextView actionBarTitle = findViewById(R.id.action_bar_title);
     actionBarTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text));

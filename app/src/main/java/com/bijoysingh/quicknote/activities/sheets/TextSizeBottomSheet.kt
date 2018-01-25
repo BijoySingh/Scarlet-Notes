@@ -45,7 +45,6 @@ class TextSizeBottomSheet : CounterBottomSheetBase() {
 
     fun openSheet(activity: MainActivity) {
       val sheet = TextSizeBottomSheet()
-      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 

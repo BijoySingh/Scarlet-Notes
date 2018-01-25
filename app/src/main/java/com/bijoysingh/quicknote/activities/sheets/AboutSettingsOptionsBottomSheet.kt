@@ -6,9 +6,7 @@ import android.net.Uri
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.items.OptionsItem
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.IntentUtils
 
 class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
@@ -69,7 +67,7 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
     fun openSheet(activity: MainActivity) {
       val sheet = AboutSettingsOptionsBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

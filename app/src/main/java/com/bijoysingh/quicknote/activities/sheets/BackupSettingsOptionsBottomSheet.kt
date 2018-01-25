@@ -1,15 +1,12 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.content.Intent
-import android.net.Uri
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
-import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingState
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.Flavor
 import com.bijoysingh.quicknote.utils.getAppFlavor
@@ -92,7 +89,7 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
   companion object {
     fun openSheet(activity: MainActivity) {
       val sheet = BackupSettingsOptionsBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

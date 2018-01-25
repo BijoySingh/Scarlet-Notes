@@ -2,7 +2,6 @@ package com.bijoysingh.quicknote.activities;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
@@ -25,7 +24,6 @@ import java.util.Collections;
 
 import static android.view.View.GONE;
 import static com.bijoysingh.quicknote.utils.NoteBuilderKt.copyNote;
-import static com.bijoysingh.quicknote.utils.ThemeManagerKt.KEY_NIGHT_THEME;
 
 public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 
@@ -46,10 +44,6 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     super.onCreate(savedInstanceState);
     setTouchListener();
     startHandler();
-
-    if (getIntent().getBooleanExtra(KEY_NIGHT_THEME, false)) {
-      setNightMode(true);
-    }
     lastNoteInstance = copyNote(note);
   }
 
@@ -169,8 +163,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   protected void notifyToolbarColor() {
     super.notifyToolbarColor();
 
-    int toolbarIconColor = ContextCompat.getColor(
-        context, isNightMode() ? R.color.white : R.color.material_blue_grey_700);
+    int toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.white);
     text.setColorFilter(toolbarIconColor);
     heading.setColorFilter(toolbarIconColor);
     subHeading.setColorFilter(toolbarIconColor);

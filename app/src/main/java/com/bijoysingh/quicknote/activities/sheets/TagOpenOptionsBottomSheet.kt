@@ -41,7 +41,6 @@ class TagOpenOptionsBottomSheet : TagOptionItemBottomSheetBase() {
   companion object {
     fun openSheet(activity: MainActivity) {
       val sheet = TagOpenOptionsBottomSheet()
-      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

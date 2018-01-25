@@ -8,7 +8,6 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.github.bijoysingh.starter.async.MultiAsyncTask
-import com.github.bijoysingh.starter.util.IntentUtils
 
 
 class OpenSourceBottomSheet : ThemedBottomSheetFragment() {
@@ -99,7 +98,6 @@ class OpenSourceBottomSheet : ThemedBottomSheetFragment() {
 
     fun openSheet(activity: MainActivity) {
       val sheet = OpenSourceBottomSheet()
-      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

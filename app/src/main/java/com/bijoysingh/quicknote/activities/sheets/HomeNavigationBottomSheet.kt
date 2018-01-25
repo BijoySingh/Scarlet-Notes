@@ -4,12 +4,8 @@ import android.app.Dialog
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
-import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.HomeNavigationState
-import com.bijoysingh.quicknote.utils.NoteState
-import com.github.bijoysingh.starter.util.IntentUtils
 
 class HomeNavigationBottomSheet : GridBottomSheetBase() {
   override fun setupViewWithDialog(dialog: Dialog) {
@@ -86,7 +82,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   companion object {
     fun openSheet(activity: MainActivity) {
       val sheet = HomeNavigationBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

@@ -79,7 +79,7 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
   companion object {
     fun openSheet(activity: ThemedActivity, tag: Tag, listener: (tag: Tag, deleted: Boolean) -> Unit) {
       val sheet = CreateOrEditTagBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.selectedTag = tag
       sheet.sheetOnTagListener = listener
       sheet.show(activity.supportFragmentManager, sheet.tag)

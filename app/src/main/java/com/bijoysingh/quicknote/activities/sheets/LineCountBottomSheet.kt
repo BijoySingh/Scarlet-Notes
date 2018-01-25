@@ -1,12 +1,9 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.widget.TextView
-import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.github.bijoysingh.starter.prefs.DataStore
-import com.github.bijoysingh.starter.util.LocaleManager
 
 
 class LineCountBottomSheet : CounterBottomSheetBase() {
@@ -30,7 +27,7 @@ class LineCountBottomSheet : CounterBottomSheetBase() {
 
     fun openSheet(activity: MainActivity) {
       val sheet = LineCountBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 

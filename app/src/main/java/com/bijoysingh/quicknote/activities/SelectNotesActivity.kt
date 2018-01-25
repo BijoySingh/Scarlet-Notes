@@ -1,13 +1,13 @@
 package com.bijoysingh.quicknote.activities
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.ImageView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.bijoysingh.quicknote.utils.NoteState
+import com.bijoysingh.quicknote.utils.ThemeManager
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 
@@ -107,11 +107,13 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     }
   }
 
-  override fun notifyNightModeChange() {
-    super.notifyNightModeChange()
+  override fun notifyThemeChange() {
+    super.notifyThemeChange()
 
-    val toolbarIconColor = ContextCompat.getColor(
-        this, if (isNightMode) R.color.white else R.color.material_blue_grey_700)
+    val toolbarIconColor = ThemeManager.get(this).getThemedColor(
+        this,
+        R.color.material_blue_grey_700,
+        R.color.white)
 
     val share = findViewById<View>(R.id.share_button) as ImageView
     share.setColorFilter(toolbarIconColor)

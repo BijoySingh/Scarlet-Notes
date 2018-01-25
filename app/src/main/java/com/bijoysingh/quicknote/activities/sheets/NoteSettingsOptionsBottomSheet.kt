@@ -65,7 +65,6 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
     fun openSheet(activity: MainActivity) {
       val sheet = NoteSettingsOptionsBottomSheet()
-      sheet.isNightMode = activity.isNightMode
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 

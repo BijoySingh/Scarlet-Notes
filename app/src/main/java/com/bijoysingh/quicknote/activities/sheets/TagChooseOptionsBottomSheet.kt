@@ -4,12 +4,10 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.view.View
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.items.TagOptionsItem
-import com.github.bijoysingh.starter.prefs.DataStore
 
 class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
 
@@ -28,7 +26,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
 
   override fun onNewTagClick() {
     val activity = context as ThemedActivity
-    CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), {tag, _ ->
+    CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), { tag, _ ->
       note!!.toggleTag(tag)
       note!!.save(context)
       reset(dialog)
@@ -60,7 +58,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
   companion object {
     fun openSheet(activity: ThemedActivity, note: Note, dismissListener: () -> Unit) {
       val sheet = TagChooseOptionsBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.note = note
       sheet.dismissListener = dismissListener
       sheet.show(activity.supportFragmentManager, sheet.tag)

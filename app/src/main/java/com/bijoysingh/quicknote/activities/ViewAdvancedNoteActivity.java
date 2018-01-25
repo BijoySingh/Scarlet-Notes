@@ -3,7 +3,6 @@ package com.bijoysingh.quicknote.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -80,26 +79,16 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
         ? genEmptyNote(NoteSettingsOptionsBottomSheet.Companion.genDefaultColor(store))
         : note;
 
-    setNightMode(getIntent().getBooleanExtra(
-        KEY_NIGHT_THEME,
-        ThemeManager.Companion.get(context).isNightTheme()));
-
     rootView = findViewById(R.id.root_layout);
     setRecyclerView();
     setToolbars();
     setEditMode();
+    notifyThemeChange();
   }
 
   public static Intent getIntent(Context context, Note note) {
     Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
     intent.putExtra(NOTE_ID, note.uid);
-    return intent;
-  }
-
-  public static Intent getIntent(Context context, Note note, boolean nightMode) {
-    Intent intent = new Intent(context, ViewAdvancedNoteActivity.class);
-    intent.putExtra(NOTE_ID, note.uid);
-    intent.putExtra(KEY_NIGHT_THEME, nightMode);
     return intent;
   }
 
@@ -120,7 +109,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
 
   protected void setEditMode() {
     setEditMode(getEditModeValue());
-    formatsView.setBackgroundResource(isNightMode() ? R.color.material_grey_800 : R.color.white);
+    formatsView.setBackgroundColor(ThemeManager.Companion.get(this).getThemedColor(this, R.color.white, R.color.material_grey_800));
   }
 
   protected boolean getEditModeValue() {
@@ -140,7 +129,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     Bundle bundle = new Bundle();
     bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, getEditModeValue());
     bundle.putBoolean(KEY_MARKDOWN_ENABLED, store.get(KEY_MARKDOWN_ENABLED, true));
-    bundle.putBoolean(KEY_NIGHT_THEME, isNightMode());
+    bundle.putBoolean(KEY_NIGHT_THEME, ThemeManager.Companion.get(this).isNightTheme());
     bundle.putInt(TextSizeBottomSheet.KEY_TEXT_SIZE, TextSizeBottomSheet.Companion.getDefaultTextSize(store));
     adapter.setExtra(bundle);
   }
@@ -273,12 +262,11 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
   }
 
   public void openEditor() {
-    note.edit(context, isNightMode());
+    note.startEditActivity(context);
   }
 
   protected void notifyToolbarColor() {
-    int toolbarIconColor = ContextCompat.getColor(
-        context, isNightMode() ? R.color.white : R.color.material_blue_grey_700);
+    int toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.white);
     backButton.setColorFilter(toolbarIconColor);
     actionCopy.setColorFilter(toolbarIconColor);
     actionDelete.setColorFilter(toolbarIconColor);
@@ -287,9 +275,9 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     actionDone.setColorFilter(toolbarIconColor);
     actionOptions.setColorFilter(toolbarIconColor);
 
-    int backgroundColor = isNightMode() ? R.color.material_grey_800 : R.color.white;
-    rootView.setBackgroundResource(backgroundColor);
-    formatsView.setBackgroundResource(backgroundColor);
+    int backgroundColor = getColor(R.color.white, R.color.material_grey_800);
+    rootView.setBackgroundColor(backgroundColor);
+    formatsView.setBackgroundColor(backgroundColor);
 
     resetBundle();
     adapter.notifyDataSetChanged();
@@ -361,7 +349,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
   }
 
   @Override
-  public void notifyNightModeChange() {
+  public void notifyThemeChange() {
     notifyToolbarColor();
   }
 

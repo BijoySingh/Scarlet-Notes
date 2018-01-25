@@ -1,7 +1,6 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
@@ -59,13 +58,13 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
   companion object {
     fun openSheet(activity: ThemedActivity, listener: AlertDetails) {
       val sheet = AlertBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.listener = listener
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 
     fun openDeleteTrashSheet(activity: MainActivity) {
-      val details = object: AlertDetails {
+      val details = object : AlertDetails {
         override fun getTitle(): Int = R.string.delete_sheet_are_you_sure
 
         override fun getDescription(): Int = R.string.delete_sheet_delete_trash
@@ -90,7 +89,7 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
     }
 
     fun openDeleteNotePermanentlySheet(activity: ThemedActivity, note: Note, onDelete: () -> Unit) {
-      val details = object: AlertDetails {
+      val details = object : AlertDetails {
         override fun getTitle(): Int = R.string.delete_sheet_are_you_sure
 
         override fun getDescription(): Int = R.string.delete_sheet_delete_note_permanently

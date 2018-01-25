@@ -1,14 +1,12 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.github.bijoysingh.uibasics.views.UIActionView
-import com.github.bijoysingh.uibasics.views.UIContentView
 
 abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
   override fun setupView(dialog: Dialog?) {
@@ -62,7 +60,7 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
       } else if (option.actionIcon != 0) {
         contentView.setActionResource(option.actionIcon)
       }
-      
+
       layout.addView(contentView)
     }
   }

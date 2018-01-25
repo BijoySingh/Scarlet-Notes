@@ -1,13 +1,9 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.content.Intent
-import android.net.Uri
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.IntentUtils
 
@@ -81,7 +77,7 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
   companion object {
     fun openSheet(activity: MainActivity) {
       val sheet = AboutUsBottomSheet()
-      sheet.isNightMode = activity.isNightMode
+
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }
