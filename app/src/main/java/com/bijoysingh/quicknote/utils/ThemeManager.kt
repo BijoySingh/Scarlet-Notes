@@ -129,7 +129,7 @@ enum class Theme(
       accentText = R.color.colorAccent,
       sectionHeader = R.color.material_blue_grey_700,
       toolbarBackground = R.color.bg_peach_dark,
-      toolbarIcon = R.color.dark_tertiary_text,
+      toolbarIcon = R.color.dark_secondary_text,
       statusBarColorFallback = R.color.bg_peach_dark),
   DARK(
       isNightTheme = true,

@@ -17,9 +17,7 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
       return
     }
     reset(dialog)
-
-    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
+    resetOptionTitle(dialog)
   }
 
   abstract fun setupViewWithDialog(dialog: Dialog)
@@ -31,6 +29,11 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
   fun setOptionTitle(dialog: Dialog, title: Int) {
     val titleView = dialog.findViewById<TextView>(R.id.options_title);
     titleView.setText(title)
+  }
+
+  fun resetOptionTitle(dialog: Dialog) {
+    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
+    optionsTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
   }
 
   fun reset(dialog: Dialog) {

@@ -32,7 +32,7 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
     if (dialog == null) {
       return
     }
-    setBackgroundView(dialog, getBackgroundView())
+    resetBackground(dialog)
   }
 
   fun themedActivity(): Activity = activity ?: context as AppCompatActivity
@@ -46,6 +46,10 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
   private fun setBackgroundView(dialog: Dialog, viewId: Int) {
     val containerLayout = dialog.findViewById<View>(viewId);
     containerLayout.setBackgroundColor(appTheme().get(ThemeColorType.BACKGROUND))
+  }
+
+  fun resetBackground(dialog: Dialog) {
+    setBackgroundView(dialog, getBackgroundView())
   }
 
   // Remove once done

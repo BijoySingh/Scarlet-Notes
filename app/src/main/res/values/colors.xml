@@ -27,12 +27,11 @@
   <color name="login_button_active">@color/material_blue_800</color>
   <color name="login_button_disabled">@color/material_grey_600</color>
 
-  <color name="bg_baby_blue">#d9fcf6</color>
-  <color name="bg_baby_blue_dark">#9ad6cc</color>
+  <color name="bg_baby_blue">#d2eaf4</color>
+  <color name="bg_baby_blue_dark">#bbe7f9</color>
 
-  <color name="bg_peach">#ffece0</color>
-  <color name="bg_peach_dark">#ffe4d3</color>
-  <color name="bg_peach_darkest">#fcbe97</color>
+  <color name="bg_peach">#d8c8b8</color>
+  <color name="bg_peach_dark">#ccb6a1</color>
 
   <array name="bright_colors">
     <item>@color/material_grey_850</item>
