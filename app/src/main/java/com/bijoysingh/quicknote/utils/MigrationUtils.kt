@@ -60,6 +60,7 @@ fun migrate(context: Context) {
   if (!store.get(KEY_MIGRATE_THEME, false)) {
     val isNightMode = store.get(KEY_NIGHT_THEME, false)
     store.put(KEY_APP_THEME, if (isNightMode) Theme.DARK.name else Theme.LIGHT.name)
+    store.put(KEY_MIGRATE_THEME, true)
   }
 }
 

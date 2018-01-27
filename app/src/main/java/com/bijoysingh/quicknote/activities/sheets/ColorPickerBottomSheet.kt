@@ -1,9 +1,11 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.views.ColorView
 import com.google.android.flexbox.FlexboxLayout
 
@@ -35,7 +37,8 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     val colorPicker = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout)
     setColorsList(colorPicker)
 
-    maybeSetTextNightModeColor(dialog, R.id.options_title, R.color.light_tertiary_text)
+    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
+    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
   }
 
   override fun getBackgroundView(): Int {

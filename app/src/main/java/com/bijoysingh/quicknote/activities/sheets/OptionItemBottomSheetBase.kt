@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.bijoysingh.uibasics.views.UIActionView
 
 abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
@@ -15,7 +16,9 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
       return
     }
     reset(dialog)
-    maybeSetTextNightModeColor(dialog, R.id.options_title, R.color.light_tertiary_text)
+
+    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
+    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
   }
 
   abstract fun setupViewWithDialog(dialog: Dialog)

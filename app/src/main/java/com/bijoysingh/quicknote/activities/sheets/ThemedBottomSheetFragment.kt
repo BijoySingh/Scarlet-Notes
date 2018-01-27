@@ -35,20 +35,11 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
   abstract fun getBackgroundView(): Int
 
   private fun setBackgroundView(dialog: Dialog, viewId: Int) {
-    if (isNightMode()) {
-      val containerLayout = dialog.findViewById<View>(viewId);
-      containerLayout.setBackgroundColor(theme().get(themedContext(), ThemeColorType.BACKGROUND))
-    }
+    val containerLayout = dialog.findViewById<View>(viewId);
+    containerLayout.setBackgroundColor(theme().get(themedContext(), ThemeColorType.BACKGROUND))
   }
 
   fun theme() = ThemeManager.get(themedContext())
-
-  fun maybeSetTextNightModeColor(dialog: Dialog, viewId: Int, colorId: Int) {
-    if (isNightMode()) {
-      val textView = dialog.findViewById<TextView>(viewId);
-      textView.setTextColor(ContextCompat.getColor(themedContext(), colorId))
-    }
-  }
 
   // Remove once done
   fun isNightMode() = theme().isNightTheme()

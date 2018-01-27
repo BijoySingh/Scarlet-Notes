@@ -6,6 +6,7 @@ import android.widget.GridLayout
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.bijoysingh.uibasics.views.UILabelView
 
 abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
@@ -30,7 +31,8 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
   }
 
   fun setOptions(dialog: Dialog, options: List<OptionsItem>) {
-    maybeSetTextNightModeColor(dialog, R.id.options_title, R.color.light_tertiary_text)
+    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
+    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
 
     val layoutGrid = dialog.findViewById<GridLayout>(R.id.grid_layout);
     layoutGrid.columnCount = if (resources.getBoolean(R.bool.is_tablet)) 5 else 3

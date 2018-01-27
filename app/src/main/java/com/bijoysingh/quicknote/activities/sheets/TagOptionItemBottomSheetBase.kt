@@ -18,7 +18,10 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
       return
     }
     reset(dialog)
-    maybeSetTextNightModeColor(dialog, R.id.options_title, R.color.light_tertiary_text)
+
+    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
+    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+
     setAddTagOption(dialog)
   }
 

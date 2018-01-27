@@ -70,7 +70,7 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
     rateUs.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(theme().get(activity, ThemeColorType.TERTIARY_TEXT))
+    optionsTitle.setTextColor(theme().get(activity, ThemeColorType.SECONDARY_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_about_page
