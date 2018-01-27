@@ -15,6 +15,7 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.sheets.NoPincodeBottomSheet.Companion.ignoreNoPinSheet
 import com.bijoysingh.quicknote.activities.sheets.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.ajalt.reprint.core.AuthenticationFailureReason
 import com.github.ajalt.reprint.core.AuthenticationListener
 import com.github.ajalt.reprint.core.Reprint
@@ -47,12 +48,14 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
     val fingerprint = dialog.findViewById<ImageView>(R.id.fingerprint)
     val removeBtn = dialog.findViewById<TextView>(R.id.action_remove_button)
 
-    title.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
-    action.setTextColor(getColor(R.color.colorAccent, R.color.colorAccentDark))
-    enterPin.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
-    enterPin.setHintTextColor(getColor(R.color.dark_hint_text, R.color.light_hint_text))
-    pinLength.setTextColor(getColor(R.color.dark_hint_text, R.color.light_hint_text))
-    fingerprint.setColorFilter(getColor(R.color.dark_hint_text, R.color.light_hint_text))
+    title.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    action.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
+    enterPin.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+
+    val hintColor = theme().get(themedContext(), ThemeColorType.HINT_TEXT)
+    enterPin.setHintTextColor(hintColor)
+    pinLength.setTextColor(hintColor)
+    fingerprint.setColorFilter(hintColor)
 
     title.setText(listener!!.getTitle())
     action.setText(listener!!.getActionTitle())

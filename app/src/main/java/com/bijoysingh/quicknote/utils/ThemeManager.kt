@@ -29,8 +29,8 @@ class ThemeManager(context: Context) {
     val colorResource = when (type) {
       ThemeColorType.BACKGROUND -> theme.background
       ThemeColorType.STATUS_BAR -> {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) return theme.background
-        return theme.statusBarColorFallback ?: theme.background
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) theme.background
+        else theme.statusBarColorFallback ?: theme.background
       }
       ThemeColorType.PRIMARY_TEXT -> theme.primaryText
       ThemeColorType.SECONDARY_TEXT -> theme.secondaryText

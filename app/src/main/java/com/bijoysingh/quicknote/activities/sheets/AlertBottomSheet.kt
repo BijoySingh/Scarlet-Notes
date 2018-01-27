@@ -7,6 +7,7 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.utils.NoteState
+import com.bijoysingh.quicknote.utils.ThemeColorType
 
 
 class AlertBottomSheet : ThemedBottomSheetFragment() {
@@ -32,10 +33,10 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
     val sheetYes = dialog.findViewById<TextView>(R.id.alert_yes)
     val sheetNo = dialog.findViewById<TextView>(R.id.alert_no)
 
-    sheetTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text))
-    sheetDescription.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text))
-    sheetYes.setTextColor(getColor(R.color.colorAccent, R.color.colorAccentDark))
-    sheetNo.setTextColor(getColor(R.color.dark_hint_text, R.color.light_tertiary_text))
+    sheetTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    sheetDescription.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
+    sheetYes.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
+    sheetNo.setTextColor(theme().get(themedContext(), ThemeColorType.DISABLED_TEXT))
 
     sheetTitle.setText(details.getTitle())
     sheetDescription.setText(details.getDescription())

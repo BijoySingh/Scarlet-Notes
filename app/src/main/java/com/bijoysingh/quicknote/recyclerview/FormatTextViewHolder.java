@@ -105,7 +105,7 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
     edit.setBackgroundColor(backgroundColor);
     text.setLinkTextColor(theme.get(context, ThemeColorType.ACCENT_TEXT));
 
-    root.setBackgroundResource(theme.get(context, ThemeColorType.BACKGROUND));
+    root.setBackgroundColor(theme.get(context, ThemeColorType.BACKGROUND));
 
     actionPanel.setVisibility(editable ? VISIBLE : GONE);
 

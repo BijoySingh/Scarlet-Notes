@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.getEditorActionListener
 
 
@@ -37,11 +38,11 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
     val enterTag = dialog.findViewById<EditText>(R.id.enter_tag)
     val removeBtn = dialog.findViewById<TextView>(R.id.action_remove_button)
 
-    title.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
-    action.setTextColor(getColor(R.color.colorAccent, R.color.colorAccentDark))
-    enterTag.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
-    enterTag.setHintTextColor(getColor(R.color.dark_hint_text, R.color.light_hint_text))
-    removeBtn.setTextColor(getColor(R.color.dark_hint_text, R.color.light_hint_text))
+    title.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    action.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
+    enterTag.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    enterTag.setHintTextColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+    removeBtn.setTextColor(theme().get(themedContext(), ThemeColorType.DISABLED_TEXT))
 
     title.setText(if (tag.isUnsaved) R.string.tag_sheet_create_title else R.string.tag_sheet_edit_title)
     action.setOnClickListener {

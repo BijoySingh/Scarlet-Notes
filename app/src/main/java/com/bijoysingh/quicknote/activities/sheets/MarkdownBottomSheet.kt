@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.uibasics.views.UIActionView
 import ru.noties.markwon.Markwon
@@ -25,10 +26,11 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
 
     val sheetTitle = dialog.findViewById<TextView>(R.id.options_title)
     val exampleTitle = dialog.findViewById<TextView>(R.id.examples_title)
-    sheetTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text))
-    exampleTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text))
-    sourceText.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
-    markdownText.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
+    sheetTitle.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
+    exampleTitle.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
+
+    sourceText.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    markdownText.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
   }
 
   fun setupDialogContent(dialog: Dialog) {

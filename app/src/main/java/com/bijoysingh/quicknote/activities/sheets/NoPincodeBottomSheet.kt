@@ -6,6 +6,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet.Companion.openCreateSheet
 import com.bijoysingh.quicknote.activities.sheets.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.bijoysingh.starter.prefs.DataStore
 
 
@@ -30,11 +31,11 @@ class NoPincodeBottomSheet : ThemedBottomSheetFragment() {
     val notNow = dialog.findViewById<TextView>(R.id.no_pincode_not_now)
     val neverAsk = dialog.findViewById<TextView>(R.id.no_pincode_dont_ask)
 
-    sheetTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text))
-    sheetDescription.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text))
-    notNow.setTextColor(getColor(R.color.dark_hint_text, R.color.light_tertiary_text))
-    neverAsk.setTextColor(getColor(R.color.dark_hint_text, R.color.light_tertiary_text))
-    setUp.setTextColor(getColor(R.color.colorAccent, R.color.colorAccentDark))
+    sheetTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    sheetDescription.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
+    notNow.setTextColor(theme().get(themedContext(), ThemeColorType.DISABLED_TEXT))
+    neverAsk.setTextColor(theme().get(themedContext(), ThemeColorType.DISABLED_TEXT))
+    setUp.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
 
     notNow.setOnClickListener {
       listener?.onSuccess()

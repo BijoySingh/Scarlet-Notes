@@ -6,6 +6,7 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.bijoysingh.starter.prefs.DataStore
 
 class TextSizeBottomSheet : CounterBottomSheetBase() {
@@ -31,8 +32,8 @@ class TextSizeBottomSheet : CounterBottomSheetBase() {
   override fun setupFurther(dialog: Dialog, dataStore: DataStore) {
     val example = dialog.findViewById<TextView>(R.id.options_example)
     updateExample(example, getDefaultTextSize(dataStore))
-    example.setBackgroundColor(getColor(R.color.material_grey_200, R.color.material_grey_700))
-    example.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
+    example.setBackgroundColor(theme().getThemedColor(themedContext(), R.color.material_grey_200, R.color.material_grey_700))
+    example.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_text_size

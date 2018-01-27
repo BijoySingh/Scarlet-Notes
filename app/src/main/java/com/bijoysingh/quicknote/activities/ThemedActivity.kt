@@ -34,9 +34,6 @@ abstract class ThemedActivity : AppCompatActivity() {
 
   fun getStatusBarColor(): Int = getAppTheme().get(this, ThemeColorType.STATUS_BAR)
 
-  fun getColor(lightColorRes: Int, darkColorRes: Int): Int =
-      getAppTheme().getThemedColor(this, lightColorRes, darkColorRes)
-
   fun tryClosingTheKeyboard() {
     try {
       val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

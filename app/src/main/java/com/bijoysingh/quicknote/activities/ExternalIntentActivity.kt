@@ -115,12 +115,12 @@ class ExternalIntentActivity : ThemedActivity() {
     val toolbarIconColor = getAppTheme().get(context, ThemeColorType.TOOLBAR_ICON);
     backButton.setColorFilter(toolbarIconColor)
 
-    val textColor = getColor(R.color.dark_secondary_text, R.color.light_secondary_text);
+    val textColor = getAppTheme().get(this, ThemeColorType.SECONDARY_TEXT)
     filename.setTextColor(textColor)
     title.setTextColor(textColor)
     content.setTextColor(textColor)
 
-    val actionColor = getColor(R.color.material_blue_grey_600, R.color.light_primary_text)
+    val actionColor = getAppTheme().get(this, ThemeColorType.TOOLBAR_ICON)
     actionDone.setImageTint(actionColor)
     actionDone.setTextColor(actionColor)
   }

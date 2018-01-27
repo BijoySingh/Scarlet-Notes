@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.LocaleManager
 
@@ -27,11 +28,11 @@ abstract class CounterBottomSheetBase : ThemedBottomSheetFragment() {
     val increaseLineLimit = dialog.findViewById<TextView>(R.id.increase_line_limit)
     val done = dialog.findViewById<TextView>(R.id.action_button)
 
-    val textColor = getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text)
+    val textColor = theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT)
     lineLimit.setTextColor(textColor)
     setColor(count, reduceLineLimit, increaseLineLimit)
     setText(count, lineLimit)
-    done.setTextColor(getColor(R.color.colorAccent, R.color.colorAccentDark))
+    done.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
     done.setOnClickListener {
       dismiss()
     }
@@ -51,14 +52,14 @@ abstract class CounterBottomSheetBase : ThemedBottomSheetFragment() {
     }
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text))
+    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
 
     setupFurther(dialog, dataStore)
   }
 
   fun setColor(count: Int, reduceLineLimit: TextView, increaseLineLimit: TextView) {
-    val textColor = getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text)
-    val textDisabledColor = getColor(R.color.dark_hint_text, R.color.light_hint_text)
+    val textColor = theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT)
+    val textDisabledColor = theme().get(themedContext(), ThemeColorType.HINT_TEXT)
     reduceLineLimit.setTextColor(if (count <= getMinCountLimit()) textDisabledColor else textColor)
     increaseLineLimit.setTextColor(if (count >= getMaxCountLimit()) textDisabledColor else textColor)
   }

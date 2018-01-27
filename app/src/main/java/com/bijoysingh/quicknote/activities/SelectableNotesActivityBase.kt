@@ -17,6 +17,7 @@ import com.bijoysingh.quicknote.items.EmptyRecyclerItem
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.sort
 import com.github.bijoysingh.starter.async.MultiAsyncTask
@@ -92,7 +93,7 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
     val containerLayout = findViewById<View>(R.id.container_layout)
     containerLayout.setBackgroundColor(getThemeColor())
 
-    val toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.light_secondary_text)
+    val toolbarIconColor = getAppTheme().get(this, ThemeColorType.TOOLBAR_ICON);
     findViewById<ImageView>(R.id.back_button).setColorFilter(toolbarIconColor)
     findViewById<TextView>(R.id.toolbar_title).setTextColor(toolbarIconColor)
   }
