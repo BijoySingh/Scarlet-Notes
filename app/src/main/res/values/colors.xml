@@ -27,6 +27,11 @@
   <color name="login_button_active">@color/material_blue_800</color>
   <color name="login_button_disabled">@color/material_grey_600</color>
 
+  <color name="bg_baby_blue">#C1E1DC</color>
+
+  <color name="bg_peach">#FFCCac</color>
+  <color name="bg_peach_dark">#fcbe97</color>
+
   <array name="bright_colors">
     <item>@color/material_grey_850</item>
     <item>@color/material_blue_grey_800</item>
@@ -61,5 +66,13 @@
     <item>@color/material_orange_accent_100</item>
     <item>@color/material_pink_accent_100</item>
     <item>@color/material_red_accent_100</item>
+  </array>
+
+  <array name="theme_color">
+    <item>@color/white</item>
+    <item>@color/bg_peach</item>
+    <item>@color/bg_baby_blue</item>
+    <item>@color/material_grey_800</item>
+    <item>@color/black</item>
   </array>
 </resources>

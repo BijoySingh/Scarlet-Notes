@@ -58,8 +58,23 @@ class ThemeManager(context: Context) {
   }
 
   private fun getThemeFromStore(): Theme {
-    val theme = userPreferences().get(KEY_APP_THEME, Theme.DARK.name)
-    return Theme.valueOf(theme)
+    val theme = userPreferences().get(KEY_APP_THEME, Theme.LIGHT.name)
+    try {
+      return Theme.valueOf(theme)
+    } catch (_: Exception) {
+      return Theme.LIGHT
+    }
+  }
+
+  companion object {
+    fun getThemeByBackgroundColor(context: Context, color: Int): Theme {
+      for (theme in Theme.values()) {
+        if (color == ContextCompat.getColor(context, theme.background)) {
+          return theme
+        }
+      }
+      return Theme.DARK
+    }
   }
 }
 
@@ -90,9 +105,47 @@ enum class Theme(
       toolbarBackground = R.color.material_grey_50,
       toolbarIcon = R.color.material_blue_grey_700,
       statusBarColorFallback = R.color.material_grey_500),
+  BABY_BLUE(
+      isNightTheme = false,
+      background = R.color.bg_baby_blue,
+      primaryText = R.color.dark_primary_text,
+      secondaryText = R.color.dark_secondary_text,
+      tertiaryText = R.color.dark_tertiary_text,
+      hintText = R.color.light_hint_text,
+      disabledText = R.color.material_grey_600,
+      accentText = R.color.colorAccent,
+      sectionHeader = R.color.material_blue_grey_500,
+      toolbarBackground = R.color.material_grey_50,
+      toolbarIcon = R.color.material_blue_grey_700,
+      statusBarColorFallback = R.color.material_grey_500),
+  PEACH(
+      isNightTheme = false,
+      background = R.color.bg_peach,
+      primaryText = R.color.dark_primary_text,
+      secondaryText = R.color.dark_secondary_text,
+      tertiaryText = R.color.dark_tertiary_text,
+      hintText = R.color.light_hint_text,
+      disabledText = R.color.material_grey_600,
+      accentText = R.color.colorAccent,
+      sectionHeader = R.color.material_blue_grey_500,
+      toolbarBackground = R.color.bg_peach_dark,
+      toolbarIcon = R.color.material_blue_grey_700,
+      statusBarColorFallback = R.color.material_grey_500),
   DARK(
       isNightTheme = true,
       background = R.color.material_grey_800,
+      primaryText = R.color.light_primary_text,
+      secondaryText = R.color.light_primary_text,
+      tertiaryText = R.color.light_secondary_text,
+      hintText = R.color.light_hint_text,
+      disabledText = R.color.material_grey_200,
+      accentText = R.color.colorAccentDark,
+      sectionHeader = R.color.material_blue_grey_200,
+      toolbarBackground = R.color.material_grey_850,
+      toolbarIcon = R.color.white),
+  BLACK(
+      isNightTheme = true,
+      background = R.color.black,
       primaryText = R.color.light_primary_text,
       secondaryText = R.color.light_primary_text,
       tertiaryText = R.color.light_secondary_text,

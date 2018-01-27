@@ -24,6 +24,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
   private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<OptionsItem>()
+    val flavor = getAppFlavor()
     options.add(OptionsItem(
         title = R.string.home_option_enable_night_mode,
         subtitle = R.string.home_option_enable_night_mode_subtitle,
@@ -34,7 +35,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           activity.notifyThemeChange()
           dismiss()
         },
-        visible = !isNightMode()
+        visible = !isNightMode() && flavor != Flavor.PRO
     ))
     options.add(OptionsItem(
         title = R.string.home_option_enable_day_mode,
@@ -46,7 +47,34 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           activity.notifyThemeChange()
           dismiss()
         },
-        visible = isNightMode()
+        visible = isNightMode() && flavor != Flavor.PRO
+    ))
+    options.add(OptionsItem(
+        title = R.string.home_option_theme_color,
+        subtitle = R.string.home_option_theme_color_subtitle,
+        icon = if (isNightMode()) R.drawable.night_mode_white_48dp else R.drawable.ic_action_day_mode,
+        listener = View.OnClickListener {
+          if (flavor == Flavor.PRO) {
+            ColorPickerBottomSheet.openSheet(activity, object : ColorPickerBottomSheet.ColorPickerDefaultController {
+              override fun getSheetTitle(): Int = R.string.theme_page_title
+
+              override fun getColorList(): IntArray? = resources.getIntArray(R.array.theme_color)
+
+              override fun onColorSelected(color: Int) {
+                val theme = ThemeManager.getThemeByBackgroundColor(activity, color)
+                dataStore.put(KEY_APP_THEME, theme.name)
+                theme().notifyUpdate(activity)
+                activity.notifyThemeChange()
+              }
+
+              override fun getSelectedColor(): Int = theme().get(activity, ThemeColorType.BACKGROUND)
+            })
+          } else {
+            InstallProUpsellBottomSheet.openSheet(activity)
+            dismiss()
+          }
+        },
+        visible = flavor != Flavor.NONE
     ))
     val isTablet = resources.getBoolean(R.bool.is_tablet)
     options.add(OptionsItem(
@@ -86,15 +114,15 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         content = activity.getString(R.string.note_option_font_size_subtitle, getDefaultTextSize()),
         icon = R.drawable.ic_title_white_48dp,
         listener = View.OnClickListener {
-          if (getAppFlavor() == Flavor.PRO) {
+          if (flavor == Flavor.PRO) {
             TextSizeBottomSheet.openSheet(activity)
           } else {
             InstallProUpsellBottomSheet.openSheet(activity)
           }
           dismiss()
         },
-        visible = getAppFlavor() != Flavor.NONE,
-        actionIcon = if (getAppFlavor() == Flavor.PRO) 0 else R.drawable.ic_rating
+        visible = flavor != Flavor.NONE,
+        actionIcon = if (flavor == Flavor.PRO) 0 else R.drawable.ic_rating
     ))
     options.add(OptionsItem(
         title = R.string.note_option_number_lines,

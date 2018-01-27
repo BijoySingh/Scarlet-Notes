@@ -46,7 +46,9 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     separator.setBackgroundColor(appTheme().get(ThemeColorType.HINT_TEXT))
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
+
     optionsTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
+    optionsTitle.text = getSheetTitle()
   }
 
   override fun getBackgroundView(): Int {
@@ -64,7 +66,8 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
       selectedColor = 0
     }
 
-    val colors = resources.getIntArray(colorRange)
+    // val colors = resources.getIntArray(colorRange)
+    val colors = getColorOptions()
     for (color in colors) {
       val item = ColorView(context!!)
 
@@ -81,6 +84,16 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     }
   }
 
+  private fun getColorOptions(): IntArray {
+    val providedColorList = defaultController?.getColorList()
+    return providedColorList ?: resources.getIntArray(R.array.bright_colors)
+  }
+
+  private fun getSheetTitle(): String {
+    val resource = defaultController?.getSheetTitle() ?: R.string.choose_note_color
+    return getString(resource)
+  }
+
   override fun getLayout(): Int = R.layout.bottom_sheet_flexbox_layout
 
   interface ColorPickerController {
@@ -90,6 +103,10 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
   }
 
   interface ColorPickerDefaultController {
+    open fun getSheetTitle(): Int = R.string.choose_note_color
+
+    open fun getColorList(): IntArray? = null
+
     fun onColorSelected(color: Int)
 
     fun getSelectedColor(): Int
