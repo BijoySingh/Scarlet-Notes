@@ -77,7 +77,8 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
             dismiss()
           }
         },
-        visible = flavor != Flavor.NONE
+        visible = flavor != Flavor.NONE,
+        actionIcon = if (flavor == Flavor.PRO) 0 else R.drawable.ic_rating
     ))
     val isTablet = resources.getBoolean(R.bool.is_tablet)
     options.add(OptionsItem(
