@@ -115,9 +115,9 @@ enum class Theme(
       disabledText = R.color.material_grey_600,
       accentText = R.color.colorAccent,
       sectionHeader = R.color.material_blue_grey_500,
-      toolbarBackground = R.color.material_grey_50,
+      toolbarBackground = R.color.bg_baby_blue_dark,
       toolbarIcon = R.color.material_blue_grey_700,
-      statusBarColorFallback = R.color.material_grey_500),
+      statusBarColorFallback = R.color.bg_baby_blue_dark),
   PEACH(
       isNightTheme = false,
       background = R.color.bg_peach,
@@ -130,7 +130,7 @@ enum class Theme(
       sectionHeader = R.color.material_blue_grey_500,
       toolbarBackground = R.color.bg_peach_dark,
       toolbarIcon = R.color.material_blue_grey_700,
-      statusBarColorFallback = R.color.material_grey_500),
+      statusBarColorFallback = R.color.bg_peach_dark),
   DARK(
       isNightTheme = true,
       background = R.color.material_grey_800,
@@ -153,7 +153,7 @@ enum class Theme(
       disabledText = R.color.material_grey_200,
       accentText = R.color.colorAccentDark,
       sectionHeader = R.color.material_blue_grey_200,
-      toolbarBackground = R.color.material_grey_850,
+      toolbarBackground = R.color.black,
       toolbarIcon = R.color.white),
 }
 

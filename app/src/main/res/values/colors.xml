@@ -27,9 +27,10 @@
   <color name="login_button_active">@color/material_blue_800</color>
   <color name="login_button_disabled">@color/material_grey_600</color>
 
-  <color name="bg_baby_blue">#C1E1DC</color>
+  <color name="bg_baby_blue">#d9fcf6</color>
+  <color name="bg_baby_blue_dark">#9ad6cc</color>
 
-  <color name="bg_peach">#FFCCac</color>
+  <color name="bg_peach">#ffece0</color>
   <color name="bg_peach_dark">#fcbe97</color>
 
   <array name="bright_colors">

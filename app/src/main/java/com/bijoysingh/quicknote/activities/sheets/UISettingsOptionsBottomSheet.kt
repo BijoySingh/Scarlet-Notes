@@ -65,6 +65,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
                 dataStore.put(KEY_APP_THEME, theme.name)
                 theme().notifyUpdate(activity)
                 activity.notifyThemeChange()
+                reset(dialog)
               }
 
               override fun getSelectedColor(): Int = theme().get(activity, ThemeColorType.BACKGROUND)
