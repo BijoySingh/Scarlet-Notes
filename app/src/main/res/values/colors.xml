@@ -31,7 +31,8 @@
   <color name="bg_baby_blue_dark">#9ad6cc</color>
 
   <color name="bg_peach">#ffece0</color>
-  <color name="bg_peach_dark">#fcbe97</color>
+  <color name="bg_peach_dark">#ffe4d3</color>
+  <color name="bg_peach_darkest">#fcbe97</color>
 
   <array name="bright_colors">
     <item>@color/material_grey_850</item>
