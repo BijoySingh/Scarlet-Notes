@@ -1,7 +1,5 @@
 package com.bijoysingh.quicknote.formats;
 
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.util.Log;
 
 import com.bijoysingh.quicknote.R;

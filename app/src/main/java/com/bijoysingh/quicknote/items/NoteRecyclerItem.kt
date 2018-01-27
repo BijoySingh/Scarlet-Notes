@@ -1,0 +1,8 @@
+package com.bijoysingh.quicknote.items
+
+import com.bijoysingh.quicknote.database.Note
+
+class NoteRecyclerItem(var note: Note) : RecyclerItem() {
+
+  override fun getType(): RecyclerItem.Type = RecyclerItem.Type.NOTE
+}

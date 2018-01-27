@@ -1,6 +1,6 @@
-package com.bijoysingh.quicknote.formats;
+package com.bijoysingh.quicknote.formats
 
-public enum FormatType {
+enum class FormatType {
   TAG,
   TEXT,
   BULLET_LIST,
@@ -11,5 +11,5 @@ public enum FormatType {
   CHECKLIST_UNCHECKED,
   CHECKLIST_CHECKED,
   CODE,
-  QUOTE,
+  QUOTE
 }

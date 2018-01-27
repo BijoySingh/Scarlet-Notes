@@ -128,7 +128,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
 
   private void resetBundle() {
     Bundle bundle = new Bundle();
-    bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, getEditModeValue());
+    bundle.putBoolean(FormatTextViewHolder.Companion.getKEY_EDITABLE(), getEditModeValue());
     bundle.putBoolean(KEY_MARKDOWN_ENABLED, store.get(KEY_MARKDOWN_ENABLED, true));
     bundle.putBoolean(KEY_NIGHT_THEME, ThemeManager.Companion.get(this).isNightTheme());
     bundle.putInt(TextSizeBottomSheet.KEY_TEXT_SIZE, TextSizeBottomSheet.Companion.getDefaultTextSize(store));
