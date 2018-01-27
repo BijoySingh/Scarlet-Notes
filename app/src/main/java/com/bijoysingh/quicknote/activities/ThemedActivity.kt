@@ -1,7 +1,9 @@
 package com.bijoysingh.quicknote.activities
 
+import android.app.Activity
 import android.content.Context
 import android.os.Build
+import android.support.annotation.IdRes
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -38,6 +40,15 @@ abstract class ThemedActivity : AppCompatActivity() {
     try {
       val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
       inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+    } catch (exception: Exception) {
+      // Do nothing
+    }
+  }
+
+  fun tryOpeningTheKeyboard() {
+    try {
+      val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+      inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     } catch (exception: Exception) {
       // Do nothing
     }

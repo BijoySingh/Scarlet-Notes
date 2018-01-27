@@ -12,6 +12,7 @@ import java.util.*
 const val KEY_MIGRATE_UUID = "KEY_MIGRATE_UUID"
 const val KEY_MIGRATE_TRASH = "KEY_MIGRATE_TRASH"
 const val KEY_MIGRATE_THEME = "KEY_MIGRATE_THEME"
+const val KEY_MIGRATE_ZERO_NOTES = "MIGRATE_ZERO_NOTES"
 
 fun migrate(context: Context) {
   val store = DataStore.get(context)
@@ -61,6 +62,16 @@ fun migrate(context: Context) {
     val isNightMode = store.get(KEY_NIGHT_THEME, false)
     store.put(KEY_APP_THEME, if (isNightMode) Theme.DARK.name else Theme.LIGHT.name)
     store.put(KEY_MIGRATE_THEME, true)
+  }
+
+  if (!store.get(KEY_MIGRATE_ZERO_NOTES, false)) {
+    val note = Note.db(context).getByID(0)
+    if (note != null) {
+      Note.db(context).delete(note)
+      note.uid = null
+      note.save(context)
+    }
+    store.put(KEY_MIGRATE_ZERO_NOTES, true)
   }
 }
 

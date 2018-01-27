@@ -190,10 +190,10 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
 
   private void setToolbars() {
     toolbar = findViewById(R.id.toolbar);
-    colorSelectorLayout = (FlexboxLayout) findViewById(R.id.flexbox_layout);
+    colorSelectorLayout = findViewById(R.id.flexbox_layout);
     setButtonToolbar();
 
-    actionDelete = (ImageView) findViewById(R.id.delete_button);
+    actionDelete = findViewById(R.id.delete_button);
     actionDelete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -206,7 +206,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
       }
     });
 
-    actionCopy = (ImageView) findViewById(R.id.copy_button);
+    actionCopy = findViewById(R.id.copy_button);
     actionCopy.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -214,7 +214,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
       }
     });
 
-    backButton = (ImageView) findViewById(R.id.back_button);
+    backButton = findViewById(R.id.back_button);
     backButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -233,7 +233,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
       }
     });
 
-    actionShare = (ImageView) findViewById(R.id.share_button);
+    actionShare = findViewById(R.id.share_button);
     actionShare.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -241,7 +241,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
       }
     });
 
-    actionEdit = (ImageView) findViewById(R.id.edit_button);
+    actionEdit = findViewById(R.id.edit_button);
     actionEdit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -249,7 +249,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
       }
     });
 
-    actionDone = (ImageView) findViewById(R.id.done_button);
+    actionDone = findViewById(R.id.done_button);
     actionDone.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -257,7 +257,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
       }
     });
 
-    colorButton = (ImageView) findViewById(R.id.color_button);
+    colorButton = findViewById(R.id.color_button);
     setTopToolbar();
     notifyToolbarColor();
   }

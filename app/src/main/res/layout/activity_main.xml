@@ -42,8 +42,8 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
-      android:visibility="gone"
-      android:orientation="horizontal">
+      android:orientation="horizontal"
+      android:visibility="gone">
 
       <TextView
         android:id="@+id/deletes_automatically"
@@ -82,20 +82,16 @@
         android:layout_width="@dimen/icon_size_xlarge"
         android:layout_height="@dimen/icon_size_xlarge"
         android:layout_marginStart="4dp"
-        android:alpha="0.7"
         android:padding="@dimen/spacing_small"
-        android:src="@drawable/ic_apps_white_48dp"
-        android:tint="@color/material_blue_grey_700" />
+        android:src="@drawable/ic_apps_white_48dp" />
 
       <ImageView
         android:id="@+id/menu_open_tag"
         style="@style/BorderlessBackgroundView"
         android:layout_width="@dimen/icon_size_xlarge"
         android:layout_height="@dimen/icon_size_xlarge"
-        android:alpha="0.7"
         android:padding="@dimen/spacing_small"
-        android:src="@drawable/ic_action_tags"
-        android:tint="@color/material_blue_grey_700" />
+        android:src="@drawable/ic_action_tags" />
 
       <TextView
         android:id="@+id/menu_add_note"
@@ -116,10 +112,8 @@
         android:layout_width="@dimen/icon_size_xlarge"
         android:layout_height="@dimen/icon_size_xlarge"
         android:layout_marginStart="4dp"
-        android:alpha="0.7"
         android:padding="@dimen/spacing_small"
-        android:src="@drawable/ic_list_white_48dp"
-        android:tint="@color/material_blue_grey_700" />
+        android:src="@drawable/ic_list_white_48dp" />
 
     </LinearLayout>
   </LinearLayout>
