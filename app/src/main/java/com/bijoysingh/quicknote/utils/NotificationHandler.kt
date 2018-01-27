@@ -50,14 +50,15 @@ class NotificationHandler(val context: Context, val note: Note) {
     contentView.setTextViewText(R.id.description, note.text)
     contentView.setTextViewText(R.id.timestamp, note.displayTime)
 
-    val isNightMode = ThemeManager.get(context).isNightTheme()
+    val theme = ThemeManager.get(context)
+    val isNightMode = theme.isNightTheme()
     val titleColor = if (isNightMode) R.color.light_secondary_text else R.color.dark_secondary_text
     val descColor = if (isNightMode) R.color.light_hint_text else R.color.dark_hint_text
     contentView.setTextColor(R.id.title, ContextCompat.getColor(context, titleColor))
     contentView.setTextColor(R.id.description, ContextCompat.getColor(context, titleColor))
     contentView.setTextColor(R.id.timestamp, ContextCompat.getColor(context, descColor))
 
-    val backgroundColor = if (isNightMode) R.color.material_grey_800 else R.color.white
+    val backgroundColor = theme.get(context, ThemeColorType.BACKGROUND)
     contentView.setInt(
         R.id.root_layout,
         "setBackgroundColor",

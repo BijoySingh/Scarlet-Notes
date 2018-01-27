@@ -15,6 +15,8 @@ import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder;
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
+import com.bijoysingh.quicknote.utils.ThemeColorType;
+import com.bijoysingh.quicknote.utils.ThemeManager;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -162,16 +164,16 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   @Override
   protected void notifyToolbarColor() {
     super.notifyToolbarColor();
+    ThemeManager theme =  ThemeManager.Companion.get(this);
+    toolbar.setBackgroundColor(theme.get(this, ThemeColorType.TOOLBAR_BACKGROUND));
 
-    int toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.white);
+    int toolbarIconColor = theme.get(this, ThemeColorType.TOOLBAR_ICON);
     text.setColorFilter(toolbarIconColor);
     heading.setColorFilter(toolbarIconColor);
     subHeading.setColorFilter(toolbarIconColor);
     checkList.setColorFilter(toolbarIconColor);
     quote.setColorFilter(toolbarIconColor);
     code.setColorFilter(toolbarIconColor);
-
-    toolbar.setBackgroundColor(getColor(R.color.material_grey_50, R.color.material_grey_850));
   }
 
   @Override

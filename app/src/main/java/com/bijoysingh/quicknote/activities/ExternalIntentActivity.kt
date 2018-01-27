@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity.Companion.convertStreamToString
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.TextUtils
@@ -111,7 +112,7 @@ class ExternalIntentActivity : ThemedActivity() {
     val containerLayout = findViewById<View>(R.id.container_layout);
     containerLayout.setBackgroundColor(getThemeColor());
 
-    val toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.light_secondary_text);
+    val toolbarIconColor = getAppTheme().get(context, ThemeColorType.TOOLBAR_ICON);
     backButton.setColorFilter(toolbarIconColor)
 
     val textColor = getColor(R.color.dark_secondary_text, R.color.light_secondary_text);

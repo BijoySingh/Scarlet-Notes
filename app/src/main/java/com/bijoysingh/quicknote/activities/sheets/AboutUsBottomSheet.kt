@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.IntentUtils
 
@@ -53,7 +54,7 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
       }
     })
 
-    val textColor = getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text)
+    val textColor = theme().get(activity, ThemeColorType.TERTIARY_TEXT)
     aboutUs.setTextColor(textColor)
     aboutApp.setTextColor(textColor)
     appVersion.setTextColor(textColor)
@@ -61,15 +62,15 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
     val aboutUsTitle = dialog.findViewById<TextView>(R.id.about_us_title)
     val aboutAppTitle = dialog.findViewById<TextView>(R.id.about_app_title)
     val appVersionTitle = dialog.findViewById<TextView>(R.id.app_version_title)
-    val titleTextColor = getColor(R.color.material_blue_grey_500, R.color.material_blue_grey_200)
+    val titleTextColor = theme().get(activity, ThemeColorType.SECTION_HEADER)
     aboutUsTitle.setTextColor(titleTextColor)
     aboutAppTitle.setTextColor(titleTextColor)
     appVersionTitle.setTextColor(titleTextColor)
 
-    rateUs.setTextColor(getColor(R.color.material_blue_600, R.color.material_blue_200))
+    rateUs.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text))
+    optionsTitle.setTextColor(theme().get(activity, ThemeColorType.TERTIARY_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_about_page

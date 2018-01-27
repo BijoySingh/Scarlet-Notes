@@ -5,7 +5,7 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.ThemeManager
 
 abstract class ThemedActivity : AppCompatActivity() {
@@ -20,7 +20,7 @@ abstract class ThemedActivity : AppCompatActivity() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       val view = window.decorView
       var flags = view.systemUiVisibility
-      flags = when (ThemeManager.get(this).isNightTheme()) {
+      flags = when (getAppTheme().isNightTheme()) {
         true -> flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
         false -> flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
       }
@@ -28,18 +28,14 @@ abstract class ThemedActivity : AppCompatActivity() {
     }
   }
 
-  fun getThemeColor(): Int {
-    return getColor(R.color.white, R.color.material_grey_800)
-  }
+  fun getAppTheme(): ThemeManager = ThemeManager.get(this)
 
-  fun getStatusBarColor(): Int {
-    val lightColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) R.color.white else R.color.material_grey_500
-    return getColor(lightColor, R.color.material_grey_800)
-  }
+  fun getThemeColor(): Int = getAppTheme().get(this, ThemeColorType.BACKGROUND)
 
-  fun getColor(lightColorRes: Int, darkColorRes: Int): Int {
-    return ThemeManager.get(this).getThemedColor(this, lightColorRes, darkColorRes)
-  }
+  fun getStatusBarColor(): Int = getAppTheme().get(this, ThemeColorType.STATUS_BAR)
+
+  fun getColor(lightColorRes: Int, darkColorRes: Int): Int =
+      getAppTheme().getThemedColor(this, lightColorRes, darkColorRes)
 
   fun tryClosingTheKeyboard() {
     try {

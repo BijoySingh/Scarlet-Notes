@@ -15,6 +15,8 @@ import com.bijoysingh.quicknote.R;
 import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
+import com.bijoysingh.quicknote.utils.ThemeColorType;
+import com.bijoysingh.quicknote.utils.ThemeManager;
 
 import static com.bijoysingh.quicknote.utils.ThemeManagerKt.KEY_NIGHT_THEME;
 
@@ -42,11 +44,7 @@ public class FormatListViewHolder extends FormatTextViewHolder implements TextVi
     final boolean editable = extra != null
                              && extra.containsKey(KEY_EDITABLE)
                              && extra.getBoolean(KEY_EDITABLE);
-    boolean nightMode = extra != null
-                        && extra.containsKey(KEY_NIGHT_THEME)
-                        && extra.getBoolean(KEY_NIGHT_THEME);
-    icon.setColorFilter(ContextCompat.getColor(
-        context, nightMode ? R.color.white : R.color.material_blue_grey_600));
+    icon.setColorFilter(ThemeManager.Companion.get(context).get(context, ThemeColorType.TOOLBAR_ICON));
 
     if (data.formatType == FormatType.CHECKLIST_UNCHECKED) {
       icon.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp);

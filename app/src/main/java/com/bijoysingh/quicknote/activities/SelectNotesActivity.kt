@@ -110,7 +110,7 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
   override fun notifyThemeChange() {
     super.notifyThemeChange()
 
-    val toolbarIconColor = ThemeManager.get(this).getThemedColor(
+    val toolbarIconColor = getAppTheme().getThemedColor(
         this,
         R.color.material_blue_grey_700,
         R.color.white)

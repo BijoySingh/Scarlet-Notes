@@ -19,6 +19,7 @@ import com.bijoysingh.quicknote.recyclerview.FormatAdapter;
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder;
 import com.bijoysingh.quicknote.utils.CircleDrawable;
 import com.bijoysingh.quicknote.utils.NoteState;
+import com.bijoysingh.quicknote.utils.ThemeColorType;
 import com.bijoysingh.quicknote.utils.ThemeManager;
 import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder;
@@ -109,7 +110,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
 
   protected void setEditMode() {
     setEditMode(getEditModeValue());
-    formatsView.setBackgroundColor(ThemeManager.Companion.get(this).getThemedColor(this, R.color.white, R.color.material_grey_800));
+    formatsView.setBackgroundColor(ThemeManager.Companion.get(this).get(this, ThemeColorType.BACKGROUND));
   }
 
   protected boolean getEditModeValue() {
@@ -266,7 +267,8 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
   }
 
   protected void notifyToolbarColor() {
-    int toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.white);
+    ThemeManager theme =  ThemeManager.Companion.get(this);
+    int toolbarIconColor = theme.get(context, ThemeColorType.TOOLBAR_ICON);
     backButton.setColorFilter(toolbarIconColor);
     actionCopy.setColorFilter(toolbarIconColor);
     actionDelete.setColorFilter(toolbarIconColor);
@@ -275,7 +277,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     actionDone.setColorFilter(toolbarIconColor);
     actionOptions.setColorFilter(toolbarIconColor);
 
-    int backgroundColor = getColor(R.color.white, R.color.material_grey_800);
+    int backgroundColor = theme.get(context, ThemeColorType.BACKGROUND);
     rootView.setBackgroundColor(backgroundColor);
     formatsView.setBackgroundColor(backgroundColor);
 

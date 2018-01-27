@@ -12,10 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bijoysingh.quicknote.R;
-import com.bijoysingh.quicknote.activities.ThemedActivity;
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity;
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet;
 import com.bijoysingh.quicknote.formats.Format;
+import com.bijoysingh.quicknote.utils.ThemeColorType;
+import com.bijoysingh.quicknote.utils.ThemeManager;
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder;
 import com.github.bijoysingh.starter.util.TextUtils;
 
@@ -30,7 +31,6 @@ import static com.bijoysingh.quicknote.formats.FormatType.CODE;
 import static com.bijoysingh.quicknote.formats.FormatType.QUOTE;
 import static com.bijoysingh.quicknote.formats.FormatType.TEXT;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.renderMarkdown;
-import static com.bijoysingh.quicknote.utils.ThemeManagerKt.KEY_NIGHT_THEME;
 
 public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements TextWatcher {
 
@@ -81,37 +81,31 @@ public class FormatTextViewHolder extends RecyclerViewHolder<Format> implements 
     boolean editable = !(extra != null
         && extra.containsKey(KEY_EDITABLE)
         && !extra.getBoolean(KEY_EDITABLE));
-
-    boolean nightMode = extra != null
-        && extra.containsKey(KEY_NIGHT_THEME)
-        && extra.getBoolean(KEY_NIGHT_THEME);
     boolean isMarkdownEnabled = extra == null
         || extra.getBoolean(KEY_MARKDOWN_ENABLED, true)
         || data.forcedMarkdown;
 
     int fontSize = extra == null
         ? TextSizeBottomSheet.TEXT_SIZE_DEFAULT
-        : extra.getInt(KEY_TEXT_SIZE ,TEXT_SIZE_DEFAULT);
+        : extra.getInt(KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT);
     text.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
     edit.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
 
-    text.setTextColor(ContextCompat.getColor(
-        context, nightMode ? R.color.white : R.color.dark_secondary_text));
-    edit.setTextColor(ContextCompat.getColor(
-        context, nightMode ? R.color.white : R.color.dark_secondary_text));
-    edit.setHintTextColor(ContextCompat.getColor(
-        context, nightMode ? R.color.light_tertiary_text : R.color.dark_hint_text));
+    ThemeManager theme = ThemeManager.Companion.get(context);
+
+    text.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT));
+    edit.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT));
+    edit.setHintTextColor(theme.get(context, ThemeColorType.HINT_TEXT));
 
     int backgroundColorRes = data.formatType == CODE
-        ? (nightMode ? R.color.material_grey_700 : R.color.material_grey_200)
+        ? theme.getThemedColor(context, R.color.material_grey_200, R.color.material_grey_700)
         : R.color.transparent;
     int backgroundColor = ContextCompat.getColor(context, backgroundColorRes);
     text.setBackgroundColor(backgroundColor);
-    text.setLinkTextColor(ContextCompat.getColor(context,
-        nightMode ? R.color.colorAccentDark : R.color.colorAccent));
     edit.setBackgroundColor(backgroundColor);
+    text.setLinkTextColor(theme.get(context, ThemeColorType.ACCENT_TEXT));
 
-    root.setBackgroundResource(nightMode ? R.color.material_grey_800 : R.color.white);
+    root.setBackgroundResource(theme.get(context, ThemeColorType.BACKGROUND));
 
     actionPanel.setVisibility(editable ? VISIBLE : GONE);
 

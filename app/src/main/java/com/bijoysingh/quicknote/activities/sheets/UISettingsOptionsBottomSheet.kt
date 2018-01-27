@@ -27,7 +27,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.night_mode_white_48dp,
         listener = View.OnClickListener {
           dataStore.put(KEY_APP_THEME, Theme.DARK.name)
-          ThemeManager.get(activity).notifyUpdate(activity)
+          theme().notifyUpdate(activity)
           activity.notifyThemeChange()
           dismiss()
         },
@@ -39,7 +39,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_action_day_mode,
         listener = View.OnClickListener {
           dataStore.put(KEY_APP_THEME, Theme.LIGHT.name)
-          ThemeManager.get(activity).notifyUpdate(activity)
+          theme().notifyUpdate(activity)
           activity.notifyThemeChange()
           dismiss()
         },

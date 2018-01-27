@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.bijoysingh.uibasics.views.UIActionView
 
 
@@ -23,13 +24,13 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     val reminderRepeat = dialog.findViewById<UIActionView>(R.id.reminder_repeat)
     val removeAlarm = dialog.findViewById<TextView>(R.id.remove_alarm)
     val setAlarm = dialog.findViewById<TextView>(R.id.set_alarm)
+
+    val iconColor = theme().get(themedContext(), ThemeColorType.TOOLBAR_ICON)
+    val textColor = theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT)
+    val titleColor = theme().get(themedContext(), ThemeColorType.SECTION_HEADER)
+
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-
-    val titleColor = getColor(R.color.material_blue_grey_600, R.color.material_blue_grey_300)
-    val iconColor = getColor(R.color.dark_tertiary_text, R.color.light_primary_text)
-    val textColor = getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text)
-
-    optionsTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text))
+    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
 
     reminderDate.setTitleColor(titleColor)
     reminderDate.setSubtitleColor(textColor)
@@ -46,8 +47,8 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     reminderRepeat.setImageTint(iconColor)
     reminderRepeat.setActionTint(iconColor)
 
-    removeAlarm.setTextColor(getColor(R.color.material_grey_600, R.color.material_grey_200))
-    setAlarm.setTextColor(getColor(R.color.material_blue_600, R.color.material_blue_200))
+    removeAlarm.setTextColor(theme().get(themedContext(), ThemeColorType.DISABLED_TEXT))
+    setAlarm.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_reminder

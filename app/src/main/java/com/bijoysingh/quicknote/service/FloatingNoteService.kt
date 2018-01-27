@@ -11,6 +11,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.bijoysingh.quicknote.utils.renderMarkdown
@@ -35,7 +36,7 @@ class FloatingNoteService : FloatingBubbleService() {
   private var isNightMode: Boolean = false
 
   override fun getConfig(): FloatingBubbleConfig {
-    isNightMode = ThemeManager.get(context).isNightTheme()
+    val theme = ThemeManager.get(context)
     return FloatingBubbleConfig.Builder()
         .bubbleIcon(ContextCompat.getDrawable(context, R.drawable.app_icon))
         .removeBubbleIcon(ContextCompat.getDrawable(
@@ -46,8 +47,8 @@ class FloatingNoteService : FloatingBubbleService() {
         .paddingDp(8)
         .borderRadiusDp(4)
         .physicsEnabled(true)
-        .expandableColor(getColor(R.color.white, R.color.material_grey_800))
-        .triangleColor(getColor(R.color.white, R.color.material_grey_800))
+        .expandableColor(theme.get(context, ThemeColorType.BACKGROUND))
+        .triangleColor(theme.get(context, ThemeColorType.BACKGROUND))
         .gravity(Gravity.END)
         .expandableView(loadView())
         .removeBubbleAlpha(0.7f)

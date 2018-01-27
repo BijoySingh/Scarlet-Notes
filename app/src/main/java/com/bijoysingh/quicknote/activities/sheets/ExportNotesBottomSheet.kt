@@ -12,6 +12,7 @@ import com.bijoysingh.quicknote.activities.external.getExportFile
 import com.bijoysingh.quicknote.activities.external.getNotesForExport
 import com.bijoysingh.quicknote.activities.external.saveFile
 import com.bijoysingh.quicknote.utils.GenericFileProvider
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 
 
@@ -68,10 +69,10 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
       dismiss()
     }
 
-    exportTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text))
-    filename.setTextColor(getColor(R.color.dark_hint_text, R.color.light_hint_text))
-    exportShare.setTextColor(getColor(R.color.dark_hint_text, R.color.light_hint_text))
-    exportDone.setTextColor(getColor(R.color.colorAccent, R.color.material_pink_300))
+    exportTitle.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
+    filename.setTextColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+    exportShare.setTextColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+    exportDone.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_import_export

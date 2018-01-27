@@ -6,6 +6,7 @@ import android.net.Uri
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 
@@ -53,20 +54,21 @@ class OpenSourceBottomSheet : ThemedBottomSheetFragment() {
       }
     })
 
-    val textColor = getColor(R.color.dark_tertiary_text, R.color.light_tertiary_text)
+    val textColor = theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT)
     openSource.setTextColor(textColor)
     library.setTextColor(textColor)
 
     val aboutAppTitle = dialog.findViewById<TextView>(R.id.about_app_title)
     val libraryTitle = dialog.findViewById<TextView>(R.id.library_title)
-    val titleTextColor = getColor(R.color.material_blue_grey_500, R.color.material_blue_grey_200)
+
+    val titleTextColor = theme().get(themedContext(), ThemeColorType.SECTION_HEADER)
     aboutAppTitle.setTextColor(titleTextColor)
     libraryTitle.setTextColor(titleTextColor)
 
-    contribute.setTextColor(getColor(R.color.material_blue_600, R.color.material_blue_200))
+    contribute.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text))
+    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_open_source

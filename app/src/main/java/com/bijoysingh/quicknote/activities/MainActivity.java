@@ -32,6 +32,7 @@ import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter;
 import com.bijoysingh.quicknote.utils.HomeNavigationState;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.bijoysingh.quicknote.utils.SyncedNoteBroadcastReceiver;
+import com.bijoysingh.quicknote.utils.ThemeColorType;
 import com.bijoysingh.quicknote.utils.ThemeManager;
 import com.github.bijoysingh.starter.async.MultiAsyncTask;
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor;
@@ -483,11 +484,13 @@ public class MainActivity extends ThemedActivity {
   @Override
   public void notifyThemeChange() {
     setSystemTheme();
+    ThemeManager theme = ThemeManager.Companion.get(this);
 
     View containerLayout = findViewById(R.id.container_layout);
     containerLayout.setBackgroundColor(getThemeColor());
 
-    int toolbarIconColor = getColor(R.color.material_blue_grey_700, R.color.light_secondary_text);
+
+    int toolbarIconColor = theme.get(this, ThemeColorType.TOOLBAR_ICON);
     addList.setColorFilter(toolbarIconColor);
     homeNav.setColorFilter(toolbarIconColor);
     openTag.setColorFilter(toolbarIconColor);
@@ -499,19 +502,18 @@ public class MainActivity extends ThemedActivity {
     searchBackButton.setColorFilter(toolbarIconColor);
     searchCloseIcon.setColorFilter(toolbarIconColor);
 
-    findViewById(R.id.separator).setVisibility(ThemeManager.Companion.get(this).isNightTheme() ? GONE : View.VISIBLE);
+    findViewById(R.id.separator).setVisibility(theme.isNightTheme() ? GONE : View.VISIBLE);
 
     TextView actionBarTitle = findViewById(R.id.action_bar_title);
-    actionBarTitle.setTextColor(getColor(R.color.dark_tertiary_text, R.color.light_secondary_text));
-    backButton.setColorFilter(getColor(R.color.colorAccent, R.color.colorAccentDark));
+    actionBarTitle.setTextColor(theme.get(this, ThemeColorType.TERTIARY_TEXT));
+    backButton.setColorFilter(theme.get(this, ThemeColorType.ACCENT_TEXT));
 
-    int textColor = getColor(R.color.dark_secondary_text, R.color.light_secondary_text);
-    int textHintColor = getColor(R.color.dark_hint_text, R.color.light_hint_text);
+    int textColor = theme.get(this, ThemeColorType.SECONDARY_TEXT);
+    int textHintColor = theme.get(this, ThemeColorType.HINT_TEXT);
     searchBox.setTextColor(textColor);
     searchBox.setHintTextColor(textHintColor);
 
-    bottomToolbar.setBackgroundColor(
-        getColor(R.color.material_grey_50, R.color.material_grey_850));
+    bottomToolbar.setBackgroundColor(theme.get(this, ThemeColorType.TOOLBAR_BACKGROUND));
   }
 
   private void migrateZeroNotes() {

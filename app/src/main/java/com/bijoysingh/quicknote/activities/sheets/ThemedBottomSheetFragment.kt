@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.ThemeManager
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 
@@ -36,12 +37,14 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
   private fun setBackgroundView(dialog: Dialog, viewId: Int) {
     if (isNightMode()) {
       val containerLayout = dialog.findViewById<View>(viewId);
-      containerLayout.setBackgroundColor(ContextCompat.getColor(themedContext(), R.color.material_grey_800))
+      containerLayout.setBackgroundColor(theme().get(themedContext(), ThemeColorType.BACKGROUND))
     }
   }
 
+  fun theme() = ThemeManager.get(themedContext())
+
   fun getColor(lightColorRes: Int, darkColorRes: Int): Int =
-      ThemeManager.get(themedContext()).getThemedColor(themedContext(), lightColorRes, darkColorRes)
+      theme().getThemedColor(themedContext(), lightColorRes, darkColorRes)
 
   fun maybeSetTextNightModeColor(dialog: Dialog, viewId: Int, colorId: Int) {
     if (isNightMode()) {
@@ -51,7 +54,7 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
   }
 
   // Remove once done
-  fun isNightMode() = ThemeManager.get(themedContext()).isNightTheme()
+  fun isNightMode() = theme().isNightTheme()
 
   fun getOptionsTitleColor(selected: Boolean): Int {
     val colorResource = when {
