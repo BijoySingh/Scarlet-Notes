@@ -182,7 +182,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
     if (position == -1) {
       return;
     }
-    format.formatType = checked ? FormatType.CHECKLIST_CHECKED : FormatType.CHECKLIST_UNCHECKED;
+    format.setFormatType(checked ? FormatType.CHECKLIST_CHECKED : FormatType.CHECKLIST_UNCHECKED);
     formats.set(position, format);
     adapter.updateItem(format, position);
     updateNote();
@@ -313,7 +313,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
   }
 
   private void updateNote() {
-    note.description = Format.getNote(formats);
+    note.description = Format.Companion.getNote(formats);
     maybeSaveNoteWithSync();
   }
 
@@ -342,7 +342,7 @@ public class ViewAdvancedNoteActivity extends ThemedActivity {
   protected int getFormatIndex(Format format) {
     int position = 0;
     for (Format fmt : formats) {
-      if (fmt.uid == format.uid) {
+      if (fmt.getUid() == format.getUid()) {
         return position;
       }
       position++;

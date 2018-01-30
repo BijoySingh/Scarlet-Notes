@@ -7,7 +7,7 @@ import java.util.*
 
 
 class FormatAdapter(internal var activity: ViewAdvancedNoteActivity)
-  : MultiRecyclerViewAdapter<Format>(activity, Format.getList()), ItemTouchHelperAdapter {
+  : MultiRecyclerViewAdapter<Format>(activity, Format.list), ItemTouchHelperAdapter {
 
   override fun getItemViewType(position: Int): Int {
     return items[position].formatType.ordinal

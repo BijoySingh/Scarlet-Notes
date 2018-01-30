@@ -75,18 +75,18 @@ public class Note {
 
   /*Content and Display Information Functions*/
   public String getTitle() {
-    List<Format> formats = Format.getFormats(description);
-    if (!formats.isEmpty() && formats.get(0).formatType == FormatType.HEADING) {
-      return formats.get(0).text;
+    List<Format> formats = Format.Companion.getFormats(description);
+    if (!formats.isEmpty() && formats.get(0).getFormatType() == FormatType.HEADING) {
+      return formats.get(0).getText();
     }
     return "";
   }
 
   public String getText() {
     String text = "";
-    List<Format> formats = Format.getFormats(description);
+    List<Format> formats = Format.Companion.getFormats(description);
     for (Format format : formats) {
-      if (format.formatType == FormatType.HEADING) {
+      if (format.getFormatType() == FormatType.HEADING) {
         continue;
       }
       text += format.getMarkdownText() + "\n";
@@ -96,7 +96,7 @@ public class Note {
 
   public String getFullText() {
     StringBuilder builder = new StringBuilder();
-    List<Format> formats = Format.getFormats(description);
+    List<Format> formats = Format.Companion.getFormats(description);
     for (Format format : formats) {
       builder.append(format.getMarkdownText());
       builder.append("\n\n");
@@ -121,7 +121,7 @@ public class Note {
   }
 
   public List<Format> getFormats() {
-    return Format.getFormats(description);
+    return Format.Companion.getFormats(description);
   }
 
   public NoteState getNoteState() {
@@ -296,7 +296,7 @@ public class Note {
       return;
     }
     Note.db(context).delete(this);
-    description = Format.getNote(new ArrayList<Format>());
+    description = Format.Companion.getNote(new ArrayList<Format>());
     uid = 0;
   }
 

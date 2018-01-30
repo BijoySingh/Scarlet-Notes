@@ -70,7 +70,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     super.setNote();
     maxUid = formats.size() + 1;
     boolean isEmpty = formats.isEmpty();
-    if (isEmpty || formats.get(0).formatType != FormatType.HEADING) {
+    if (isEmpty || formats.get(0).getFormatType() != FormatType.HEADING) {
       addEmptyItem(0, FormatType.HEADING);
     }
     if (isEmpty) {
@@ -216,7 +216,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
   }
 
   protected void maybeUpdateNoteWithoutSync() {
-    note.description = Format.getNote(formats);
+    note.description = Format.Companion.getNote(formats);
 
     // Ignore update if nothing changed. It allows for one undo per few seconds
     if (note.isEqual(lastNoteInstance)) {
@@ -247,7 +247,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
 
   private void addEmptyItem(int position, FormatType type) {
     Format format = new Format(type);
-    format.uid = maxUid + 1;
+    format.setUid(maxUid + 1);
     maxUid++;
 
     formats.add(position, format);
@@ -339,7 +339,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     if (position <= 0) {
       return;
     }
-    focusedFormat = focusedFormat == null || focusedFormat.uid == format.uid ? null : focusedFormat;
+    focusedFormat = focusedFormat == null || focusedFormat.getUid() == format.getUid() ? null : focusedFormat;
     formats.remove(position);
     adapter.removeItem(position);
     maybeUpdateNoteWithoutSync();
@@ -360,7 +360,7 @@ public class CreateOrEditAdvancedNoteActivity extends ViewAdvancedNoteActivity {
     if (newPosition < formats.size()) {
       focus(position + 1);
     } else {
-      addEmptyItemAtFocused(Format.getNextFormatType(format.formatType));
+      addEmptyItemAtFocused(Format.Companion.getNextFormatType(format.getFormatType()));
     }
   }
 }
