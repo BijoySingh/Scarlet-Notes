@@ -1,16 +1,29 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import android.os.AsyncTask
+import android.os.Bundle
+import android.os.Handler
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.items.TagOptionsItem
 import com.bijoysingh.quicknote.utils.HomeNavigationState
+import com.bijoysingh.quicknote.utils.ThemeColorType
+import com.github.bijoysingh.starter.async.MultiAsyncTask
+import com.github.bijoysingh.uibasics.views.UIActionView
 
 class HomeNavigationBottomSheet : GridBottomSheetBase() {
+
   override fun setupViewWithDialog(dialog: Dialog) {
-    setOptions(dialog, getOptions())
-    setOptionTitle(dialog, R.string.nav_sheet_title)
+    Handler().postDelayed({
+      resetOptions(dialog)
+      resetTags(dialog)
+    }, 500)
   }
 
   private fun getOptions(): List<OptionsItem> {
@@ -76,6 +89,77 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
           dismiss();
         }
     ))
+    return options
+  }
+
+  override fun getLayout(): Int = R.layout.bottom_sheet_home_navigation
+
+  fun resetOptions(dialog: Dialog) {
+    MultiAsyncTask.execute(themedActivity(), object : MultiAsyncTask.Task<List<OptionsItem>> {
+      override fun run(): List<OptionsItem> = getOptions()
+      override fun handle(result: List<OptionsItem>) {
+        val titleView = dialog.findViewById<TextView>(R.id.options_title)
+        titleView.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+
+        val separator = dialog.findViewById<View>(R.id.separator)
+        separator.setBackgroundColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+
+        setOptions(dialog, result)
+      }
+    })
+  }
+
+  fun resetTags(dialog: Dialog) {
+    MultiAsyncTask.execute(themedActivity(), object : MultiAsyncTask.Task<List<TagOptionsItem>> {
+      override fun run(): List<TagOptionsItem> = getTagOptions()
+      override fun handle(result: List<TagOptionsItem>) {
+        val titleView = dialog.findViewById<TextView>(R.id.tag_options_title)
+        titleView.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+
+        val layout = dialog.findViewById<LinearLayout>(R.id.options_container)
+        layout.removeAllViews()
+        setTagOptions(dialog, result)
+      }
+    })
+  }
+
+  fun setTagOptions(dialog: Dialog, options: List<TagOptionsItem>) {
+    val layout = dialog.findViewById<LinearLayout>(R.id.options_container);
+    for (option in options) {
+      val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIActionView
+      contentView.setTitle(option.tag.title)
+      contentView.setOnClickListener(option.listener)
+      contentView.subtitle.visibility = View.GONE
+      contentView.setImageResource(option.getIcon())
+
+      contentView.setActionResource(option.getEditIcon());
+      contentView.setActionTint(theme().get(themedContext(), ThemeColorType.HINT_TEXT));
+      contentView.setActionClickListener(option.editListener)
+
+      contentView.setTitleColor(getOptionsTitleColor(option.selected))
+      contentView.setSubtitleColor(getOptionsSubtitleColor(option.selected))
+      contentView.setImageTint(getOptionsTitleColor(option.selected))
+
+      layout.addView(contentView)
+    }
+  }
+
+  fun getTagOptions(): List<TagOptionsItem> {
+    val activity = context as MainActivity
+    val options = ArrayList<TagOptionsItem>()
+    for (tag in Tag.db(context).all) {
+      options.add(TagOptionsItem(
+          tag = tag,
+          listener = View.OnClickListener {
+            activity.openTag(tag)
+            dismiss()
+          },
+          editable = true,
+          editListener = View.OnClickListener {
+            CreateOrEditTagBottomSheet.openSheet(activity, tag, { _, _ -> resetTags(dialog) })
+          }
+      ))
+    }
     return options
   }
 

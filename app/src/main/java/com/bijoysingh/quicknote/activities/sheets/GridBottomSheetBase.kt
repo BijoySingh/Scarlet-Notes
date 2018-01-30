@@ -26,14 +26,12 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
   }
 
   fun setOptionTitle(dialog: Dialog, title: Int) {
-    val titleView = dialog.findViewById<TextView>(R.id.options_title);
+    val titleView = dialog.findViewById<TextView>(R.id.options_title)
+    titleView.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
     titleView.setText(title)
   }
 
   fun setOptions(dialog: Dialog, options: List<OptionsItem>) {
-    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
-
     val layoutGrid = dialog.findViewById<GridLayout>(R.id.grid_layout);
     layoutGrid.columnCount = if (resources.getBoolean(R.bool.is_tablet)) 5 else 3
     for (option in options) {

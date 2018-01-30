@@ -87,7 +87,7 @@ enum class Theme(
       primaryText = R.color.dark_primary_text,
       secondaryText = R.color.dark_secondary_text,
       tertiaryText = R.color.dark_tertiary_text,
-      hintText = R.color.light_hint_text,
+      hintText = R.color.dark_hint_text,
       disabledText = R.color.material_grey_600,
       accentText = R.color.colorAccent,
       sectionHeader = R.color.material_blue_grey_500,
