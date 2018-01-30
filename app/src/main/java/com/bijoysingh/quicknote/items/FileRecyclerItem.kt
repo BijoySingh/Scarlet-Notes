@@ -9,8 +9,6 @@ class FileRecyclerItem(val name: String,
 
   var selected = false
 
-  override fun getType(): Type {
-    return Type.FILE
-  }
+  override val type = Type.FILE
 
 }

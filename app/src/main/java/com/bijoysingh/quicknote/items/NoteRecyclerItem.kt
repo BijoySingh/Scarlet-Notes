@@ -4,5 +4,5 @@ import com.bijoysingh.quicknote.database.Note
 
 class NoteRecyclerItem(var note: Note) : RecyclerItem() {
 
-  override fun getType(): RecyclerItem.Type = RecyclerItem.Type.NOTE
+  override val type = RecyclerItem.Type.NOTE
 }

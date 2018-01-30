@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
-import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
@@ -68,7 +68,7 @@ class NoteRecyclerHolder(context: Context, view: View) : NoteRecyclerViewHolderB
 
   private fun openNote(data: Note) {
     val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
-    intent.putExtra(NOTE_ID, data.uid)
+    intent.putExtra(INTENT_KEY_NOTE_ID, data.uid)
     context.startActivity(intent)
   }
 }

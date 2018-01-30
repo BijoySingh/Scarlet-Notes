@@ -32,7 +32,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID;
+import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivityKt.INTENT_KEY_NOTE_ID;
 import static com.bijoysingh.quicknote.activities.external.ExportNotesKt.searchInNote;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.removeMarkdownHeaders;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.renderMarkdown;
@@ -189,7 +189,7 @@ public class Note {
 
   private Intent getEditIntent(Context context) {
     Intent intent = new Intent(context, CreateOrEditAdvancedNoteActivity.class);
-    intent.putExtra(NOTE_ID, uid);
+    intent.putExtra(INTENT_KEY_NOTE_ID, uid);
     return intent;
   }
 

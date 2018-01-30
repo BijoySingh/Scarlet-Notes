@@ -56,7 +56,7 @@ class FormatListViewHolder(context: Context, view: View)
 
 
   override fun onEditorAction(textView: TextView, actionId: Int, event: KeyEvent?): Boolean {
-    if (format == null || !edit.isFocused) {
+    if (format === null || !edit.isFocused) {
       return false
     }
 
@@ -74,7 +74,7 @@ class FormatListViewHolder(context: Context, view: View)
     }
 
     // Enter clicked
-    activity.createOrChangeToNextFormat(format)
+    activity.createOrChangeToNextFormat(format!!)
     return true
   }
 }

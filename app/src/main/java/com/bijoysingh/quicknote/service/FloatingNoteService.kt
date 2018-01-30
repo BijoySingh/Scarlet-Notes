@@ -8,8 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID
+import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.ThemeManager
@@ -18,7 +17,6 @@ import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions
 import com.bsk.floatingbubblelib.FloatingBubbleService
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.TextUtils
 
 /**
@@ -57,8 +55,8 @@ class FloatingNoteService : FloatingBubbleService() {
 
   override fun onGetIntent(intent: Intent): Boolean {
     note = null
-    if (intent.hasExtra(NOTE_ID)) {
-      note = Note.db(context).getByID(intent.getIntExtra(NOTE_ID, 0))
+    if (intent.hasExtra(INTENT_KEY_NOTE_ID)) {
+      note = Note.db(context).getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
     }
     return note != null
   }
@@ -138,7 +136,7 @@ class FloatingNoteService : FloatingBubbleService() {
       } else {
         val intent = Intent(activity, FloatingNoteService::class.java)
         if (note != null) {
-          intent.putExtra(NOTE_ID, note.uid)
+          intent.putExtra(INTENT_KEY_NOTE_ID, note.uid)
         }
         activity.startService(intent)
         if (finishOnOpen) activity.finish()

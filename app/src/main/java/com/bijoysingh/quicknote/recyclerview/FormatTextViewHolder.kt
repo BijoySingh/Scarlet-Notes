@@ -111,7 +111,7 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
       actionCopy.visibility = visibility(!areActionsVisible)
       actionDelete.visibility = visibility(!areActionsVisible)
     }
-    actionDelete.setOnClickListener { activity.deleteFormat(format) }
+    actionDelete.setOnClickListener { activity.deleteFormat(format!!) }
     actionCopy.setOnClickListener { TextUtils.copyToClipboard(context, edit.text.toString()) }
   }
 
@@ -120,11 +120,11 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
   }
 
   override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-    if (format == null || !edit.isFocused) {
+    if (format === null || !edit.isFocused) {
       return
     }
     format!!.text = s.toString()
-    activity.setFormat(format)
+    activity.setFormat(format!!)
   }
 
   override fun afterTextChanged(s: Editable) {

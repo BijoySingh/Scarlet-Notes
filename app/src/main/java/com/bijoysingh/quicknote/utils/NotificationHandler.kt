@@ -14,12 +14,10 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.RemoteViews
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
-import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity.NOTE_ID
 import com.bijoysingh.quicknote.database.Note
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.TextUtils
 
 const val REQUEST_CODE_BASE = 3200;
@@ -68,7 +66,7 @@ class NotificationHandler(val context: Context, val note: Note) {
 
   fun getNoteOpenIntent(): PendingIntent {
     val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
-    intent.putExtra(NOTE_ID, note.uid)
+    intent.putExtra(INTENT_KEY_NOTE_ID, note.uid)
     return getPendingActivityIntentWithStack(intent)
   }
 
