@@ -2,7 +2,6 @@ package com.bijoysingh.quicknote.activities
 
 import android.content.BroadcastReceiver
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -45,6 +44,9 @@ class MainActivity : ThemedActivity() {
   internal lateinit var store: DataStore
   internal lateinit var executor: SimpleThreadExecutor
 
+  val homeNav: ImageView by bind(R.id.menu_home_nav)
+  val addList: ImageView by bind(R.id.menu_add_list)
+  val addNote: TextView by bind(R.id.menu_add_note)
   val homeOptions: ImageView by bind(R.id.home_option_button)
   val homeButton: ImageView by bind(R.id.home_button)
   val searchIcon: ImageView by bind(R.id.home_search_button)
@@ -55,7 +57,7 @@ class MainActivity : ThemedActivity() {
   val searchBox: EditText by bind(R.id.search_box)
   val mainToolbar: View by bind(R.id.main_toolbar)
   val searchToolbar: View by bind(R.id.search_toolbar)
-  val fabButton: FloatingActionButton by bind(R.id.fab_button)
+  val bottomToolbar: View by bind(R.id.bottom_toolbar_layout)
 
   val deleteToolbar: View by bind(R.id.bottom_delete_toolbar_layout)
   internal var isInSearchMode: Boolean = false
@@ -104,7 +106,9 @@ class MainActivity : ThemedActivity() {
     })
     homeOptions.setOnClickListener { SettingsOptionsBottomSheet.openSheet(this@MainActivity) }
     homeButton.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
-    fabButton.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateOrEditAdvancedNoteActivity::class.java) }
+    homeNav.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
+    addList.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateAdvancedListActivity::class.java) }
+    addNote.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateOrEditAdvancedNoteActivity::class.java) }
   }
 
   fun setupRecyclerView() {
@@ -124,16 +128,6 @@ class MainActivity : ThemedActivity() {
         .setAdapter(adapter)
         .setLayoutManager(getLayoutManager(staggeredView, isTablet))
         .build()
-    recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
-      override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-        super.onScrollStateChanged(recyclerView, newState)
-        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-          fabButton.hide()
-        } else if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-          fabButton.show()
-        }
-      }
-    })
   }
 
   private fun getLayoutManager(isStaggeredView: Boolean, isTabletView: Boolean): RecyclerView.LayoutManager {
@@ -349,6 +343,9 @@ class MainActivity : ThemedActivity() {
     searchIcon.setColorFilter(toolbarIconColor)
     searchBackButton.setColorFilter(toolbarIconColor)
     searchCloseIcon.setColorFilter(toolbarIconColor)
+    addList.setColorFilter(toolbarIconColor)
+    homeNav.setColorFilter(toolbarIconColor)
+    addNote.setTextColor(toolbarIconColor)
 
     findViewById<View>(R.id.separator).setBackgroundColor(toolbarIconColor)
 
@@ -360,8 +357,10 @@ class MainActivity : ThemedActivity() {
     val textHintColor = theme.get(this, ThemeColorType.HINT_TEXT)
     searchBox.setTextColor(textColor)
     searchBox.setHintTextColor(textHintColor)
+
+    bottomToolbar.setBackgroundColor(theme.get(this, ThemeColorType.TOOLBAR_BACKGROUND))
   }
-  
+
   private fun registerNoteReceiver() {
     receiver = SyncedNoteBroadcastReceiver {
       setupData()
