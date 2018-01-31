@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities
 
 import android.content.BroadcastReceiver
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -44,21 +45,17 @@ class MainActivity : ThemedActivity() {
   internal lateinit var store: DataStore
   internal lateinit var executor: SimpleThreadExecutor
 
-  val addList: ImageView by bind(R.id.menu_add_list)
-  val homeNav: ImageView by bind(R.id.menu_home_nav)
-  val openTag: ImageView by bind(R.id.menu_open_tag)
   val homeOptions: ImageView by bind(R.id.home_option_button)
-  val backButton: ImageView by bind(R.id.back_button)
+  val homeButton: ImageView by bind(R.id.home_button)
   val searchIcon: ImageView by bind(R.id.home_search_button)
   val searchBackButton: ImageView by bind(R.id.search_back_button)
   val searchCloseIcon: ImageView by bind(R.id.search_close_button)
   val deleteTrashIcon: ImageView by bind(R.id.menu_delete_everything)
-  val addNote: TextView by bind(R.id.menu_add_note)
   val deletesAutomatically: TextView by bind(R.id.deletes_automatically)
   val searchBox: EditText by bind(R.id.search_box)
   val mainToolbar: View by bind(R.id.main_toolbar)
   val searchToolbar: View by bind(R.id.search_toolbar)
-  val bottomToolbar: View by bind(R.id.bottom_toolbar_layout)
+  val fabButton: FloatingActionButton by bind(R.id.fab_button)
 
   val deleteToolbar: View by bind(R.id.bottom_delete_toolbar_layout)
   internal var isInSearchMode: Boolean = false
@@ -82,9 +79,6 @@ class MainActivity : ThemedActivity() {
   }
 
   fun setListeners() {
-    addNote.setOnClickListener {
-      IntentUtils.startActivity(this@MainActivity, CreateOrEditAdvancedNoteActivity::class.java)
-    }
     searchIcon.setOnClickListener {
       setSearchMode(true)
       searchBox.requestFocus()
@@ -108,11 +102,9 @@ class MainActivity : ThemedActivity() {
 
       }
     })
-    addList.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateAdvancedListActivity::class.java) }
-    homeNav.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
-    openTag.setOnClickListener { TagOpenOptionsBottomSheet.openSheet(this@MainActivity) }
     homeOptions.setOnClickListener { SettingsOptionsBottomSheet.openSheet(this@MainActivity) }
-    backButton.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
+    homeButton.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
+    fabButton.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateOrEditAdvancedNoteActivity::class.java) }
   }
 
   fun setupRecyclerView() {
@@ -132,6 +124,16 @@ class MainActivity : ThemedActivity() {
         .setAdapter(adapter)
         .setLayoutManager(getLayoutManager(staggeredView, isTablet))
         .build()
+    recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+      override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+        super.onScrollStateChanged(recyclerView, newState)
+        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+          fabButton.hide()
+        } else if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+          fabButton.show()
+        }
+      }
+    })
   }
 
   private fun getLayoutManager(isStaggeredView: Boolean, isTabletView: Boolean): RecyclerView.LayoutManager {
@@ -288,7 +290,6 @@ class MainActivity : ThemedActivity() {
   private fun setSearchMode(mode: Boolean) {
     isInSearchMode = mode
     mainToolbar.visibility = if (isInSearchMode) View.GONE else View.VISIBLE
-    bottomToolbar.visibility = if (isInSearchMode) View.GONE else View.VISIBLE
     searchToolbar.visibility = if (isInSearchMode) View.VISIBLE else View.GONE
     searchBox.setText("")
 
@@ -342,12 +343,8 @@ class MainActivity : ThemedActivity() {
     containerLayout.setBackgroundColor(getThemeColor())
 
     val toolbarIconColor = theme.get(this, ThemeColorType.TOOLBAR_ICON)
-    addList.setColorFilter(toolbarIconColor)
-    homeNav.setColorFilter(toolbarIconColor)
-    openTag.setColorFilter(toolbarIconColor)
     deleteTrashIcon.setColorFilter(toolbarIconColor)
     homeOptions.setColorFilter(toolbarIconColor)
-    addNote.setTextColor(toolbarIconColor)
     deletesAutomatically.setTextColor(toolbarIconColor)
     searchIcon.setColorFilter(toolbarIconColor)
     searchBackButton.setColorFilter(toolbarIconColor)
@@ -357,14 +354,12 @@ class MainActivity : ThemedActivity() {
 
     val actionBarTitle = findViewById<TextView>(R.id.action_bar_title)
     actionBarTitle.setTextColor(theme.get(this, ThemeColorType.TERTIARY_TEXT))
-    backButton.setColorFilter(theme.get(this, ThemeColorType.ACCENT_TEXT))
+    homeButton.setColorFilter(theme.get(this, ThemeColorType.ACCENT_TEXT))
 
     val textColor = theme.get(this, ThemeColorType.SECONDARY_TEXT)
     val textHintColor = theme.get(this, ThemeColorType.HINT_TEXT)
     searchBox.setTextColor(textColor)
     searchBox.setHintTextColor(textHintColor)
-
-    bottomToolbar.setBackgroundColor(theme.get(this, ThemeColorType.TOOLBAR_BACKGROUND))
   }
   
   private fun registerNoteReceiver() {

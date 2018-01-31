@@ -16,6 +16,7 @@ import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.uibasics.views.UIActionView
+import com.github.bijoysingh.uibasics.views.UITextView
 
 class HomeNavigationBottomSheet : GridBottomSheetBase() {
 
@@ -23,6 +24,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
     Handler().postDelayed({
       resetOptions(dialog)
       resetTags(dialog)
+      setAddTagOption(dialog)
     }, 500)
   }
 
@@ -92,8 +94,6 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
     return options
   }
 
-  override fun getLayout(): Int = R.layout.bottom_sheet_home_navigation
-
   fun resetOptions(dialog: Dialog) {
     MultiAsyncTask.execute(themedActivity(), object : MultiAsyncTask.Task<List<OptionsItem>> {
       override fun run(): List<OptionsItem> = getOptions()
@@ -162,6 +162,21 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
     }
     return options
   }
+
+  fun setAddTagOption(dialog: Dialog) {
+    val newTagButton = dialog.findViewById<UITextView>(R.id.new_tag_button);
+    newTagButton.setTextColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+    newTagButton.setImageTint(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+    newTagButton.setOnClickListener { onNewTagClick() }
+    newTagButton.icon.alpha = 0.6f
+  }
+
+  fun onNewTagClick() {
+    val activity = context as MainActivity
+    CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), { _, _ -> resetTags(dialog) })
+  }
+
+  override fun getLayout(): Int = R.layout.bottom_sheet_home_navigation
 
   companion object {
     fun openSheet(activity: MainActivity) {

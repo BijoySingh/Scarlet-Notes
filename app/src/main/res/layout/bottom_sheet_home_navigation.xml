@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="match_parent"
+  xmlns:ui="http://schemas.android.com/apk/res-auto">
 
   <LinearLayout
     android:id="@+id/container_layout"
@@ -55,6 +56,20 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical" />
+
+
+    <com.github.bijoysingh.uibasics.views.UITextView
+      android:id="@+id/new_tag_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/spacing_normal"
+      ui:icon="@drawable/ic_add_white_24dp"
+      ui:iconSize="@dimen/icon_size_normal"
+      ui:iconTextGap="@dimen/spacing_normal"
+      ui:iconTint="@color/dark_tertiary_text"
+      ui:text="@string/tag_sheet_new_tag_button"
+      ui:textColor="@color/dark_tertiary_text"
+      ui:textSize="@dimen/font_size_normal" />
 
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -48,7 +48,7 @@ public class Note {
   @Deprecated
   public String title = "";
 
-  public String description;
+  public String description = "";
 
   @Deprecated
   public String displayTimestamp = "";
