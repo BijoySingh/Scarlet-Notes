@@ -31,7 +31,6 @@ class FloatingNoteService : FloatingBubbleService() {
   private lateinit var description: TextView
   private lateinit var timestamp: TextView
   private lateinit var panel: View
-  private var isNightMode: Boolean = false
 
   override fun getConfig(): FloatingBubbleConfig {
     val theme = ThemeManager.get(context)
@@ -67,14 +66,16 @@ class FloatingNoteService : FloatingBubbleService() {
       stopSelf()
     }
 
+    val theme = ThemeManager.get(context)
+
     val rootView = getInflater().inflate(R.layout.layout_add_note_overlay, null)
 
     title = rootView.findViewById<View>(R.id.title) as TextView
     description = rootView.findViewById<View>(R.id.description) as TextView
     timestamp = rootView.findViewById<View>(R.id.timestamp) as TextView
 
-    title.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
-    description.setTextColor(getColor(R.color.dark_secondary_text, R.color.light_secondary_text))
+    title.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT))
+    description.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT))
 
     val noteItem = note!!
 
@@ -104,7 +105,7 @@ class FloatingNoteService : FloatingBubbleService() {
     }
 
     panel = rootView.findViewById(R.id.panel_layout)
-    panel.setBackgroundColor(noteItem.color)
+    panel.setBackgroundColor(theme.get(context, ThemeColorType.BACKGROUND))
 
     setNote(noteItem)
     return rootView
@@ -118,15 +119,6 @@ class FloatingNoteService : FloatingBubbleService() {
     timestamp.text = note.displayTime
 
     title.visibility = if (TextUtils.isNullOrEmpty(noteTitle)) View.GONE else View.VISIBLE
-  }
-
-  fun getColor(lightColorRes: Int, darkColorRes: Int): Int {
-    return ContextCompat.getColor(
-        this,
-        when (isNightMode) {
-          true -> darkColorRes
-          else -> lightColorRes
-        })
   }
 
   companion object {

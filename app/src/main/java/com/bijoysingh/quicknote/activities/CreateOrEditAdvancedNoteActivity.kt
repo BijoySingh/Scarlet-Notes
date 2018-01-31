@@ -24,11 +24,11 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
   private var maxUid = 0
 
   val text: ImageView by bind(R.id.format_text)
-  val heading: ImageView by bind(R.id.format_text)
-  val subHeading: ImageView by bind(R.id.format_text)
-  val checkList: ImageView by bind(R.id.format_text)
-  val quote: ImageView by bind(R.id.format_text)
-  val code: ImageView by bind(R.id.format_text)
+  val heading: ImageView by bind(R.id.format_heading)
+  val subHeading: ImageView by bind(R.id.format_sub_heading)
+  val checkList: ImageView by bind(R.id.format_check_list)
+  val quote: ImageView by bind(R.id.format_quote)
+  val code: ImageView by bind(R.id.format_code)
 
   override val editModeValue: Boolean get() = true
 
@@ -84,13 +84,8 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
       ColorPickerBottomSheet.openSheet(
           this@CreateOrEditAdvancedNoteActivity,
           object : ColorPickerBottomSheet.ColorPickerController {
-            override fun onColorSelected(note: Note, color: Int) {
-              setNoteColor(color)
-            }
-
-            override fun getNote(): Note {
-              return getNote()
-            }
+            override fun onColorSelected(note: Note, color: Int) = setNoteColor(color)
+            override fun getNote(): Note = note!!
           })
     }
   }
