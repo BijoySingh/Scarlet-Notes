@@ -9,8 +9,8 @@ android {
         applicationId "com.bijoysingh.quicknote"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 46
-        versionName "4.2.2"
+        versionCode 47
+        versionName "4.3.0-alpha"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
