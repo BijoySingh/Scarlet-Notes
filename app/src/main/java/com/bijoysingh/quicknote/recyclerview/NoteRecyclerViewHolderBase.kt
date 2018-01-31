@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.CardView
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
@@ -63,13 +65,18 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
 
     pinIndicator.visibility = if (data.pinned) View.VISIBLE else View.GONE
 
+    val noteTimestamp = data.displayTime
     if (!TextUtils.isNullOrEmpty(data.tags)) {
       tags.setTextColor(ContextCompat.getColor(context, R.color.light_secondary_text))
       val source = Markwon.markdown(context, data.getTagString(context))
-      tags.setText(trim(source))
-    } else {
+      tags.text = trim(source)
+      tags.visibility = VISIBLE
+    } else if (!TextUtils.isNullOrEmpty(noteTimestamp)) {
       tags.setTextColor(ContextCompat.getColor(context, R.color.light_hint_text))
-      tags.text = data.displayTime
+      tags.text = noteTimestamp
+      tags.visibility = VISIBLE
+    } else {
+      tags.visibility = GONE
     }
 
     view.setOnClickListener { viewClick(data, extra) }
