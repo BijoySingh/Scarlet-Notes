@@ -15,6 +15,7 @@ import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Com
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
+import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.trim
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.TextUtils
@@ -34,6 +35,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
   protected val bottomLayout: View
 
   protected val pinIndicator: ImageView
+  protected val stateIndicator: ImageView
 
   init {
     this.view = view as CardView
@@ -47,6 +49,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     pinIndicator = view.findViewById(R.id.pin_icon)
     edit = view.findViewById(R.id.edit_button)
     bottomLayout = view.findViewById(R.id.bottom_toolbar_layout)
+    stateIndicator = view.findViewById(R.id.state_icon)
   }
 
   override fun populate(itemData: RecyclerItem, extra: Bundle?) {
@@ -64,6 +67,23 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     description.maxLines = lineCount
 
     pinIndicator.visibility = if (data.pinned) View.VISIBLE else View.GONE
+
+    when (data.noteState) {
+      NoteState.FAVOURITE -> {
+        stateIndicator.visibility = View.VISIBLE
+        stateIndicator.setImageResource(R.drawable.ic_favorite_white_48dp)
+      }
+      NoteState.ARCHIVED -> {
+        stateIndicator.visibility = View.VISIBLE
+        stateIndicator.setImageResource(R.drawable.ic_archive_white_48dp)
+      }
+      NoteState.TRASH -> {
+        stateIndicator.visibility = View.VISIBLE
+        stateIndicator.setImageResource(R.drawable.ic_delete_white_48dp)
+      }
+      NoteState.DEFAULT -> stateIndicator.visibility = GONE
+      else -> stateIndicator.visibility = GONE
+    }
 
     val noteTimestamp = data.displayTime
     if (!TextUtils.isNullOrEmpty(data.tags)) {

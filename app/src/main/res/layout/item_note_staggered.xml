@@ -80,6 +80,14 @@
         android:alpha="0.5"
         android:src="@drawable/ic_pin"
         android:visibility="gone" />
+
+      <ImageView
+        android:id="@+id/state_icon"
+        android:layout_width="@dimen/spacing_normal"
+        android:layout_height="@dimen/spacing_normal"
+        android:alpha="0.5"
+        android:src="@drawable/ic_pin"
+        android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout

@@ -118,7 +118,7 @@ public class Note {
   public String getDisplayTime() {
     long time = updateTimestamp != 0 ? updateTimestamp : (timestamp == null ? 0 : timestamp);
     String format = (Calendar.getInstance().getTimeInMillis() - time < 1000 * 60 * 60 * 2)
-        ? "hh:mm aa" : "dd MMM";
+        ? "hh:mm aa" : "dd MMMM";
     return DateFormatter.getDate(format, time);
   }
 
