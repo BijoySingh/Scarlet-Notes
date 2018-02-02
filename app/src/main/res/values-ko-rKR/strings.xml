@@ -2,12 +2,12 @@
     <string name="app_name" translatable="false">Material Notes</string>
     <string name="maubis_apps" translatable="false">Maubis Apps</string>
     <string name="timestamp" translatable="false">yyyy month dd, hh:mm aa</string>
-    <string name="title">Title</string>
-    <string name="description">Content</string>
-    <string name="save">Save</string>
-    <string name="import_to_app">Import</string>
-    <string name="search_notes">Search Notes&#8230;</string>
-    <string name="share_using">Share using&#8230;</string>
+    <string name="title">제목</string>
+    <string name="description">설명</string>
+    <string name="save">저장</string>
+    <string name="import_to_app">가져오기</string>
+    <string name="search_notes">노트 검색&#8230;</string>
+    <string name="share_using">공유 프로그램&#8230;</string>
 
     <string name="main_no_notes">노트 없음</string>
     <string name="main_no_notes_hint">작성된 노트가 없습니다. 노트를 추가하려면 클릭하세요.</string>
@@ -15,12 +15,12 @@
     <string name="main_add_a_note">노트 추가&#8230;</string>
     <string name="main_add_a_quick_note">퀵노트 추가&#8230;</string>
 
-    <string name="open_note_night_mode">Night Mode</string>
-    <string name="open_note_day_mode">Day Mode</string>
+    <string name="open_note_night_mode">야간 모드</string>
+    <string name="open_note_day_mode">주가 모드</string>
     <string name="edit_note">노트 수정</string>
-    <string name="open_in_notification">Create Notification</string>
-    <string name="open_in_popup">Open In Popup</string>
-    <string name="delete_note">Delete Note</string>
+    <string name="open_in_notification">알림 생성</string>
+    <string name="open_in_popup">팝업에서 열기</string>
+    <string name="delete_note">노트 삭제</string>
     <string name="delete_note_permanently">영구 삭제</string>
     <string name="copy_note">노트 복사</string>
     <string name="send_note">노트 공유</string>
@@ -28,13 +28,13 @@
     <string name="archive_note">노트 보관</string>
     <string name="not_favourite_note">하트 제거</string>
     <string name="favourite_note">하트 추가</string>
-    <string name="restore_note">Restore Note</string>
+    <string name="restore_note">노트 복원</string>
     <string name="trash_note">휴지통 이동</string>
     <string name="choose_note_color">색상 변경</string>
     <string name="lock_note">잠금 설정</string>
     <string name="change_tags">태그 변경</string>
     <string name="unlock_note">잠금 해제</string>
-    <string name="reminder">Reminder</string>
+    <string name="reminder">알림</string>
     <string name="select">선택</string>
     <string name="duplicate">복제</string>
     <string name="pin_note">핀 추가</string>
