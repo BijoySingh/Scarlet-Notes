@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.InputType
+import android.text.Selection
 import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.View
@@ -19,6 +20,7 @@ import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.TEXT_SIZE_DEFAULT
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType.*
+import com.bijoysingh.quicknote.formats.MarkdownType
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.renderMarkdown
@@ -133,6 +135,27 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
 
   fun requestEditTextFocus() {
     edit.requestFocus()
+  }
+
+  fun requestMarkdownAction(markdownType: MarkdownType) {
+    val cursorStartPosition = edit.selectionStart
+    val cursorEndPosition = edit.selectionEnd
+    val content = edit.text
+
+    val startString = content.substring(0, cursorStartPosition)
+    val middleString = content.substring(cursorStartPosition, cursorEndPosition)
+    val endString = content.substring(cursorEndPosition, content.length)
+
+    val stringBuilder = StringBuilder()
+    stringBuilder.append(startString)
+    stringBuilder.append(if (startString.isEmpty() || !markdownType.requiresNewLine) "" else "\n")
+    stringBuilder.append(markdownType.startToken)
+    stringBuilder.append(middleString)
+    stringBuilder.append(markdownType.endToken)
+    stringBuilder.append(endString)
+
+    edit.setText(stringBuilder.toString())
+    edit.setSelection(startString.length + markdownType.startToken.length)
   }
 
   companion object {

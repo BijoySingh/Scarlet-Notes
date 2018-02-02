@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.EditText
 import android.widget.ImageView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.NoteAdvancedActivityBottomSheet
@@ -35,6 +36,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   protected lateinit var formatsView: RecyclerView
 
   val toolbar: View by bind(R.id.toolbar)
+  val markdownToolbar: View by bind(R.id.markdown_toolbar)
   val rootView: View by bind(R.id.root_layout)
   val backButton: ImageView by bind(R.id.back_button)
   val actionCopy: ImageView by bind(R.id.copy_button)
@@ -97,6 +99,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     actionEdit.visibility = if (mode) GONE else VISIBLE
     actionDone.visibility = if (mode) VISIBLE else GONE
     toolbar.visibility = if (mode) VISIBLE else GONE
+    markdownToolbar.visibility = GONE
   }
 
   private fun resetBundle() {
@@ -163,6 +166,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
 
   private fun setToolbars() {
     setButtonToolbar()
+    setMarkdownButtonToolbar()
     actionDelete.setOnClickListener {
       moveItemToTrashOrDelete(note!!)
     }
@@ -208,6 +212,11 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   protected open fun setButtonToolbar() {
     // do nothing
     toolbar.visibility = GONE
+  }
+
+  protected open fun setMarkdownButtonToolbar() {
+    // do nothing
+    markdownToolbar.visibility = GONE
   }
 
   protected open fun setTopToolbar() {

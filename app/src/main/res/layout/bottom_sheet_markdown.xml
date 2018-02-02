@@ -30,7 +30,7 @@
       android:padding="@dimen/spacing_normal"
       ui:actionSize="@dimen/icon_size_normal"
       ui:actionTint="@color/material_blue_400"
-      ui:icon="@drawable/ic_action_markdown"
+      ui:icon="@drawable/ic_markdown_logo"
       ui:iconSize="@dimen/icon_size_normal"
       ui:iconTextGap="@dimen/spacing_normal"
       ui:iconTint="@color/dark_tertiary_text"
