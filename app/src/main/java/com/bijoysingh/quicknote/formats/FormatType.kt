@@ -11,5 +11,6 @@ enum class FormatType {
   CHECKLIST_UNCHECKED,
   CHECKLIST_CHECKED,
   CODE,
-  QUOTE
+  QUOTE,
+  EMPTY,
 }

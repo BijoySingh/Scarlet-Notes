@@ -20,7 +20,7 @@
   <color name="home_text">@color/material_blue_grey_500</color>
   <color name="home_timestamp">@color/dark_hint_text</color>
 
-  <color name="fabColor">@color/material_blue_700</color>
+  <color name="fabColor">@color/colorAccent</color>
 
   <array name="bright_colors">
     <item>@color/material_grey_850</item>

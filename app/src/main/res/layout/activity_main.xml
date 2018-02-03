@@ -117,11 +117,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|end"
-    android:gravity="end"
+    android:gravity="bottom|end"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:orientation="vertical"
-    android:paddingTop="32dp"
+    android:background="@drawable/home_toolbar_gradient_background"
     android:padding="@dimen/spacing_normal">
 
     <android.support.design.widget.FloatingActionButton
@@ -129,7 +129,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="@dimen/spacing_normal"
-      android:src="@drawable/ic_more_horiz_white_48dp"
+      android:src="@drawable/ic_apps_white_48dp"
       android:tint="@color/dark_tertiary_text"
       app:backgroundTint="@color/white"
       app:elevation="8dp"
@@ -140,7 +140,7 @@
       android:id="@+id/primary_fab_action"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:src="@drawable/ic_edit_white_48dp"
+      android:src="@drawable/ic_add_white_48dp"
       app:backgroundTint="@color/fabColor"
       app:elevation="8dp"
       app:fabSize="normal" />

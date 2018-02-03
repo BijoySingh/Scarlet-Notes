@@ -22,6 +22,9 @@ import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
+import android.support.v7.widget.LinearLayoutManager
+import com.bijoysingh.quicknote.recyclerview.EmptyFormatHolder
+
 
 const val INTENT_KEY_NOTE_ID = "NOTE_ID"
 open class ViewAdvancedNoteActivity : ThemedActivity() {
@@ -125,15 +128,24 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     adapter.addItems(formats)
 
     if (!editModeValue) {
-      val tags = note!!.getTags(context)
-      val tagLabel = Note.getTagString(tags)
-      if (tagLabel.isEmpty()) {
-        return
-      }
-
-      val format = Format(FormatType.TAG, tagLabel)
-      adapter.addItem(format)
+      maybeAddTags()
+      maybeAddEmptySpace()
     }
+  }
+
+  private fun maybeAddTags() {
+    val tags = note!!.getTags(context)
+    val tagLabel = Note.getTagString(tags)
+    if (tagLabel.isEmpty()) {
+      return
+    }
+
+    val format = Format(FormatType.TAG, tagLabel)
+    adapter.addItem(format)
+  }
+
+  private fun maybeAddEmptySpace() {
+    adapter.addItem(Format(FormatType.EMPTY))
   }
 
   private fun setRecyclerView() {
@@ -144,16 +156,24 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
         .build()
     if (!editModeValue) {
       formatsView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        private fun onShow() {
+          primaryFab.show()
+          secondaryFab.show()
+        }
+
+        private fun onHide() {
+          primaryFab.hide()
+          secondaryFab.hide()
+        }
+
         override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
           super.onScrollStateChanged(recyclerView, newState)
           when (newState) {
             RecyclerView.SCROLL_STATE_DRAGGING -> {
-              primaryFab.hide()
-              secondaryFab.hide()
+              onHide()
             }
             RecyclerView.SCROLL_STATE_IDLE -> {
-              primaryFab.show()
-              secondaryFab.show()
+              onShow()
             }
           }
         }

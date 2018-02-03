@@ -3,6 +3,8 @@ package com.bijoysingh.quicknote.formats
 import android.util.Log
 
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.recyclerview.EmptyFormatHolder
+import com.bijoysingh.quicknote.recyclerview.EmptyRecyclerHolder
 import com.bijoysingh.quicknote.recyclerview.FormatListViewHolder
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem
@@ -158,6 +160,12 @@ class Format {
                 .viewType(FormatType.CHECKLIST_UNCHECKED.ordinal)
                 .layoutFile(R.layout.item_format_list)
                 .holderClass(FormatListViewHolder::class.java)
+                .build())
+        list.add(
+            MultiRecyclerViewControllerItem.Builder<Format>()
+                .viewType(FormatType.EMPTY.ordinal)
+                .layoutFile(R.layout.item_format_fab_space)
+                .holderClass(EmptyFormatHolder::class.java)
                 .build())
         return list
       }
