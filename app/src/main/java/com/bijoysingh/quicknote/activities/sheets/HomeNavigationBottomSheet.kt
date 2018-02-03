@@ -80,12 +80,11 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
-        title = R.string.nav_tags,
-        subtitle = R.string.nav_tags_details,
-        icon = R.drawable.ic_action_tags,
-        selected = activity.mode == HomeNavigationState.TAG,
+        title = R.string.nav_settings,
+        subtitle = R.string.nav_settings,
+        icon = R.drawable.ic_action_settings,
         listener = View.OnClickListener {
-          TagOpenOptionsBottomSheet.openSheet(activity)
+          SettingsOptionsBottomSheet.openSheet(activity)
           dismiss();
         }
     ))

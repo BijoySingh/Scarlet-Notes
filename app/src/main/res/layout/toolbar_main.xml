@@ -36,13 +36,5 @@
     android:padding="@dimen/spacing_small"
     android:src="@drawable/ic_action_search"
     android:tint="@color/dark_tertiary_text" />
-
-  <ImageView
-    android:id="@+id/home_option_button"
-    android:layout_width="@dimen/icon_size_xlarge"
-    android:layout_height="@dimen/icon_size_xlarge"
-    android:padding="@dimen/spacing_small"
-    android:src="@drawable/ic_action_settings"
-    android:tint="@color/dark_tertiary_text" />
-
+  
 </LinearLayout>

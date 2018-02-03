@@ -70,47 +70,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-      android:id="@+id/bottom_toolbar_layout"
-      style="@style/BorderlessBackgroundView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom"
-      android:gravity="center"
-      android:orientation="horizontal"
-      android:visibility="gone">
-
-      <ImageView
-        android:id="@+id/menu_home_nav"
-        style="@style/BorderlessBackgroundView"
-        android:layout_width="@dimen/icon_size_xlarge"
-        android:layout_height="@dimen/icon_size_xlarge"
-        android:layout_marginStart="4dp"
-        android:padding="@dimen/spacing_small"
-        android:src="@drawable/ic_apps_white_48dp" />
-
-      <TextView
-        android:id="@+id/menu_add_note"
-        style="@style/BorderlessBackgroundView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:padding="@dimen/spacing_normal"
-        android:text="@string/main_add_a_quick_note"
-        android:textColor="@color/material_blue_grey_700"
-        android:textSize="@dimen/font_size_normal" />
-
-      <ImageView
-        android:id="@+id/menu_add_list"
-        style="@style/BorderlessBackgroundView"
-        android:layout_width="@dimen/icon_size_xlarge"
-        android:layout_height="@dimen/icon_size_xlarge"
-        android:layout_marginStart="4dp"
-        android:padding="@dimen/spacing_small"
-        android:src="@drawable/ic_list_white_48dp" />
-    </LinearLayout>
   </LinearLayout>
 
   <LinearLayout

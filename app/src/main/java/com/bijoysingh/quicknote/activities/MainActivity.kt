@@ -46,10 +46,6 @@ class MainActivity : ThemedActivity() {
   internal lateinit var store: DataStore
   internal lateinit var executor: SimpleThreadExecutor
 
-  val homeNav: ImageView by bind(R.id.menu_home_nav)
-  val addList: ImageView by bind(R.id.menu_add_list)
-  val addNote: TextView by bind(R.id.menu_add_note)
-  val homeOptions: ImageView by bind(R.id.home_option_button)
   val homeButton: ImageView by bind(R.id.home_button)
   val searchIcon: ImageView by bind(R.id.home_search_button)
   val searchBackButton: ImageView by bind(R.id.search_back_button)
@@ -59,7 +55,6 @@ class MainActivity : ThemedActivity() {
   val searchBox: EditText by bind(R.id.search_box)
   val mainToolbar: View by bind(R.id.main_toolbar)
   val searchToolbar: View by bind(R.id.search_toolbar)
-  val bottomToolbar: View by bind(R.id.bottom_toolbar_layout)
   val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
   val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
 
@@ -108,11 +103,7 @@ class MainActivity : ThemedActivity() {
 
       }
     })
-    homeOptions.setOnClickListener { SettingsOptionsBottomSheet.openSheet(this@MainActivity) }
     homeButton.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
-    homeNav.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
-    addList.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateAdvancedListActivity::class.java) }
-    addNote.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateOrEditAdvancedNoteActivity::class.java) }
     primaryFab.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateOrEditAdvancedNoteActivity::class.java) }
     secondaryFab.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
   }
@@ -359,14 +350,10 @@ class MainActivity : ThemedActivity() {
 
     val toolbarIconColor = theme.get(this, ThemeColorType.TOOLBAR_ICON)
     deleteTrashIcon.setColorFilter(toolbarIconColor)
-    homeOptions.setColorFilter(toolbarIconColor)
     deletesAutomatically.setTextColor(toolbarIconColor)
     searchIcon.setColorFilter(toolbarIconColor)
     searchBackButton.setColorFilter(toolbarIconColor)
     searchCloseIcon.setColorFilter(toolbarIconColor)
-    addList.setColorFilter(toolbarIconColor)
-    homeNav.setColorFilter(toolbarIconColor)
-    addNote.setTextColor(toolbarIconColor)
 
     findViewById<View>(R.id.separator).setBackgroundColor(toolbarIconColor)
 
@@ -378,7 +365,6 @@ class MainActivity : ThemedActivity() {
     val textHintColor = theme.get(this, ThemeColorType.HINT_TEXT)
     searchBox.setTextColor(textColor)
     searchBox.setHintTextColor(textHintColor)
-    bottomToolbar.setBackgroundColor(theme.get(this, ThemeColorType.TOOLBAR_BACKGROUND))
   }
 
   private fun registerNoteReceiver() {
