@@ -10,11 +10,11 @@ import android.view.View.VISIBLE
 import android.widget.ImageView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.ColorPickerBottomSheet
-import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.formats.MarkdownType
+import com.bijoysingh.quicknote.formats.ToolbarMode
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper
 import com.bijoysingh.quicknote.utils.*
@@ -25,6 +25,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
   private var active = false
   private var lastNoteInstance: Note? = null
   private var maxUid = 0
+  private var toolbarMode: ToolbarMode = ToolbarMode.FORMAT
 
   val text: ImageView by bind(R.id.format_text)
   val heading: ImageView by bind(R.id.format_heading)
@@ -39,9 +40,8 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
   val markdownItalics: ImageView by bind(R.id.markdown_italics)
   val markdownCode: ImageView by bind(R.id.markdown_code)
   val markdownUnordered: ImageView by bind(R.id.markdown_unordered)
-
-  val markdownActivate: ImageView by bind(R.id.markdown_mode_activate)
-  val markdownDeactivate: ImageView by bind(R.id.markdown_mode_deactivate)
+  val chevronLeft: ImageView by bind(R.id.toolbar_chevron_left)
+  val chevronRight: ImageView by bind(R.id.toolbar_chevron_right)
 
   override val editModeValue: Boolean get() = true
 
@@ -78,30 +78,49 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     addEmptyItem(FormatType.TEXT)
   }
 
-  override fun setButtonToolbar() {
+  override fun setBottomToolbar() {
+    setFormatToolbar()
+    setMarkdownButtonToolbar()
+    chevronLeft.setOnClickListener { toggleToolbarMode() }
+    chevronRight.setOnClickListener { toggleToolbarMode() }
+  }
+
+  fun setFormatToolbar() {
     text.setOnClickListener { addEmptyItemAtFocused(FormatType.TEXT) }
     heading.setOnClickListener { addEmptyItemAtFocused(FormatType.HEADING) }
     subHeading.setOnClickListener { addEmptyItemAtFocused(FormatType.SUB_HEADING) }
     checkList.setOnClickListener { addEmptyItemAtFocused(FormatType.CHECKLIST_UNCHECKED) }
     quote.setOnClickListener { addEmptyItemAtFocused(FormatType.QUOTE) }
     code.setOnClickListener { addEmptyItemAtFocused(FormatType.CODE) }
-    markdownActivate.visibility = if (store.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)) VISIBLE else GONE
-    markdownActivate.setOnClickListener {
-      toolbar.visibility = GONE
-      markdownToolbar.visibility = VISIBLE
-    }
   }
 
-  override fun setMarkdownButtonToolbar() {
+  fun setMarkdownButtonToolbar() {
     markdownBold.setOnClickListener { triggerMarkdown(MarkdownType.BOLD) }
     markdownItalics.setOnClickListener { triggerMarkdown(MarkdownType.ITALICS) }
     markdownUnderline.setOnClickListener { triggerMarkdown(MarkdownType.UNDERLINE) }
     markdownHeading.setOnClickListener { triggerMarkdown(MarkdownType.HEADER) }
     markdownCode.setOnClickListener { triggerMarkdown(MarkdownType.CODE) }
     markdownUnordered.setOnClickListener { triggerMarkdown(MarkdownType.UNORDERED) }
-    markdownDeactivate.setOnClickListener {
-      toolbar.visibility = VISIBLE
-      markdownToolbar.visibility = GONE
+  }
+
+  fun toggleToolbarMode() {
+    toolbarMode = when (toolbarMode) {
+      ToolbarMode.FORMAT -> ToolbarMode.MARKDOWN
+      ToolbarMode.MARKDOWN -> ToolbarMode.FORMAT
+    }
+    notifyToolbarModeChange()
+  }
+
+  fun notifyToolbarModeChange() {
+    when (toolbarMode) {
+      ToolbarMode.FORMAT -> {
+        formatToolbar.visibility = VISIBLE
+        markdownToolbar.visibility = GONE
+      }
+      ToolbarMode.MARKDOWN -> {
+        formatToolbar.visibility = GONE
+        markdownToolbar.visibility = VISIBLE
+      }
     }
   }
 
@@ -142,8 +161,9 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     markdownCode.setColorFilter(toolbarIconColor)
     markdownItalics.setColorFilter(toolbarIconColor)
 
-    markdownActivate.setColorFilter(toolbarIconColor)
-    markdownDeactivate.setColorFilter(theme.get(this, ThemeColorType.HINT_TEXT))
+    val hintColor = theme.get(this, ThemeColorType.PRIMARY_TEXT)
+    chevronLeft.setColorFilter(hintColor)
+    chevronRight.setColorFilter(hintColor)
   }
 
   override fun onPause() {

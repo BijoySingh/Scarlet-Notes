@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/markdown_toolbar"
+  android:layout_width="0dp"
+  android:layout_height="wrap_content"
+  android:layout_weight="1"
+  android:gravity="center"
+  android:orientation="horizontal">
+
+  <ImageView
+    android:id="@+id/markdown_heading"
+    style="@style/FormatButtonIcon"
+    android:src="@drawable/ic_title_white_48dp" />
+
+  <ImageView
+    android:id="@+id/markdown_bold"
+    style="@style/FormatButtonIcon"
+    android:src="@drawable/ic_markdown_bold" />
+
+  <ImageView
+    android:id="@+id/markdown_underline"
+    style="@style/FormatButtonIcon"
+    android:src="@drawable/ic_markdown_underline" />
+
+  <ImageView
+    android:id="@+id/markdown_italics"
+    style="@style/FormatButtonIcon"
+    android:src="@drawable/ic_markdown_italics" />
+
+  <ImageView
+    android:id="@+id/markdown_code"
+    style="@style/FormatButtonIcon"
+    android:src="@drawable/ic_code_white_48dp" />
+
+  <ImageView
+    android:id="@+id/markdown_unordered"
+    style="@style/FormatButtonIcon"
+    android:src="@drawable/ic_format_list_bulleted_white_48dp" />
+
+</LinearLayout>
