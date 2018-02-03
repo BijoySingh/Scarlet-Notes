@@ -21,11 +21,9 @@ import com.github.bijoysingh.uibasics.views.UITextView
 class HomeNavigationBottomSheet : GridBottomSheetBase() {
 
   override fun setupViewWithDialog(dialog: Dialog) {
-    Handler().postDelayed({
-      resetOptions(dialog)
-      resetTags(dialog)
-      setAddTagOption(dialog)
-    }, 500)
+    resetOptions(dialog)
+    resetTags(dialog)
+    setAddTagOption(dialog)
   }
 
   private fun getOptions(): List<OptionsItem> {

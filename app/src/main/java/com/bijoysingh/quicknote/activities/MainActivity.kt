@@ -1,7 +1,9 @@
 package com.bijoysingh.quicknote.activities
 
 import android.content.BroadcastReceiver
+import android.content.res.ColorStateList
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -58,6 +60,8 @@ class MainActivity : ThemedActivity() {
   val mainToolbar: View by bind(R.id.main_toolbar)
   val searchToolbar: View by bind(R.id.search_toolbar)
   val bottomToolbar: View by bind(R.id.bottom_toolbar_layout)
+  val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
+  val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
 
   val deleteToolbar: View by bind(R.id.bottom_delete_toolbar_layout)
   internal var isInSearchMode: Boolean = false
@@ -109,6 +113,8 @@ class MainActivity : ThemedActivity() {
     homeNav.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
     addList.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateAdvancedListActivity::class.java) }
     addNote.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateOrEditAdvancedNoteActivity::class.java) }
+    primaryFab.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateOrEditAdvancedNoteActivity::class.java) }
+    secondaryFab.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
   }
 
   fun setupRecyclerView() {
@@ -128,6 +134,21 @@ class MainActivity : ThemedActivity() {
         .setAdapter(adapter)
         .setLayoutManager(getLayoutManager(staggeredView, isTablet))
         .build()
+    recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+      override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+        super.onScrollStateChanged(recyclerView, newState)
+        when (newState) {
+          RecyclerView.SCROLL_STATE_DRAGGING -> {
+            primaryFab.hide()
+            secondaryFab.hide()
+          }
+          RecyclerView.SCROLL_STATE_IDLE -> {
+            primaryFab.show()
+            secondaryFab.show()
+          }
+        }
+      }
+    })
   }
 
   private fun getLayoutManager(isStaggeredView: Boolean, isTabletView: Boolean): RecyclerView.LayoutManager {
@@ -357,7 +378,6 @@ class MainActivity : ThemedActivity() {
     val textHintColor = theme.get(this, ThemeColorType.HINT_TEXT)
     searchBox.setTextColor(textColor)
     searchBox.setHintTextColor(textHintColor)
-
     bottomToolbar.setBackgroundColor(theme.get(this, ThemeColorType.TOOLBAR_BACKGROUND))
   }
 

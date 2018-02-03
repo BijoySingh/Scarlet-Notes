@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.View.GONE
@@ -46,6 +47,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   val actionDone: ImageView by bind(R.id.done_button)
   val actionOptions: ImageView by bind(R.id.note_options_button)
   val colorButton: ImageView by bind(R.id.color_button)
+  val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
+  val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
 
   protected open val editModeValue: Boolean
     get() = false
@@ -99,6 +102,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     actionEdit.visibility = if (mode) GONE else VISIBLE
     actionDone.visibility = if (mode) VISIBLE else GONE
     toolbar.visibility = if (mode) VISIBLE else GONE
+    primaryFab.visibility = if (mode) GONE else VISIBLE
+    secondaryFab.visibility = if (mode) GONE else VISIBLE
     markdownToolbar.visibility = GONE
   }
 
@@ -135,6 +140,23 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
         .setAdapter(adapter)
         .setView(this, R.id.advanced_note_recycler)
         .build()
+    if (!editModeValue) {
+      formatsView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+          super.onScrollStateChanged(recyclerView, newState)
+          when (newState) {
+            RecyclerView.SCROLL_STATE_DRAGGING -> {
+              primaryFab.hide()
+              secondaryFab.hide()
+            }
+            RecyclerView.SCROLL_STATE_IDLE -> {
+              primaryFab.show()
+              secondaryFab.show()
+            }
+          }
+        }
+      })
+    }
   }
 
   open fun setFormat(format: Format) {
@@ -172,17 +194,21 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     }
     actionCopy.setOnClickListener { note!!.copy(context) }
     backButton.setOnClickListener { onBackPressed() }
-    actionOptions.setOnClickListener {
-      NoteAdvancedActivityBottomSheet.openSheet(
-          this@ViewAdvancedNoteActivity,
-          note!!,
-          editModeValue)
-    }
+    actionOptions.setOnClickListener { openMoreOptions() }
     actionShare.setOnClickListener { note!!.share(context) }
     actionEdit.setOnClickListener { openEditor() }
     actionDone.setOnClickListener { onBackPressed() }
+    primaryFab.setOnClickListener { openEditor() }
+    secondaryFab.setOnClickListener { openMoreOptions() }
     setTopToolbar()
     notifyToolbarColor()
+  }
+
+  fun openMoreOptions() {
+    NoteAdvancedActivityBottomSheet.openSheet(
+        this@ViewAdvancedNoteActivity,
+        note!!,
+        editModeValue)
   }
 
   fun openEditor() {

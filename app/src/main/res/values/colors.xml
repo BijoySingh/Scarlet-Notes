@@ -12,13 +12,15 @@
   <color name="color_1">#021C1E</color>
   <color name="color_2">#004445</color>
   <color name="color_3">#2C7873</color>
-  <color name="color_4">#6FB98F</color>g
+  <color name="color_4">#6FB98F</color>
 
   <color name="timestamp_text">#76000000</color>
 
   <color name="home_title">@color/material_blue_grey_700</color>
   <color name="home_text">@color/material_blue_grey_500</color>
   <color name="home_timestamp">@color/dark_hint_text</color>
+
+  <color name="fabColor">@color/material_blue_700</color>
 
   <array name="bright_colors">
     <item>@color/material_grey_850</item>

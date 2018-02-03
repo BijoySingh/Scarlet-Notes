@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
@@ -34,7 +35,8 @@
       android:layout_width="match_parent"
       android:layout_height="1.2dp"
       android:alpha="0.5"
-      android:background="@color/dark_hint_text" />
+      android:background="@color/dark_hint_text"
+      android:visibility="gone" />
 
     <LinearLayout
       android:id="@+id/bottom_delete_toolbar_layout"
@@ -75,7 +77,8 @@
       android:layout_height="wrap_content"
       android:layout_gravity="bottom"
       android:gravity="center"
-      android:orientation="horizontal">
+      android:orientation="horizontal"
+      android:visibility="gone">
 
       <ImageView
         android:id="@+id/menu_home_nav"
@@ -108,7 +111,39 @@
         android:padding="@dimen/spacing_small"
         android:src="@drawable/ic_list_white_48dp" />
     </LinearLayout>
+  </LinearLayout>
 
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:gravity="end"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingTop="32dp"
+    android:padding="@dimen/spacing_normal">
+
+    <android.support.design.widget.FloatingActionButton
+      android:id="@+id/secondary_fab_action"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_normal"
+      android:src="@drawable/ic_more_horiz_white_48dp"
+      android:tint="@color/dark_tertiary_text"
+      app:backgroundTint="@color/white"
+      app:elevation="8dp"
+      app:fabSize="normal"
+      app:rippleColor="@color/dark_hint_text" />
+
+    <android.support.design.widget.FloatingActionButton
+      android:id="@+id/primary_fab_action"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_edit_white_48dp"
+      app:backgroundTint="@color/fabColor"
+      app:elevation="8dp"
+      app:fabSize="normal" />
   </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
