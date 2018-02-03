@@ -1,13 +1,17 @@
 package com.bijoysingh.quicknote.activities
 
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.sheets.SelectedNoteOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.ThemeManager
+import com.bijoysingh.quicknote.utils.bind
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 
@@ -18,6 +22,9 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
 
   val selectedNotes = ArrayList<Int>()
   var mode = ""
+
+  val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
+  val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -33,56 +40,38 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
         selectedNotes.add(noteId)
       }
     }
+
     initUI()
   }
 
   override fun initUI() {
     super.initUI()
-
-    val share = findViewById<View>(R.id.share_button) as ImageView
-    share.setOnClickListener {
-      IntentUtils.ShareBuilder(applicationContext)
-          .setChooserText(getString(R.string.share_using))
-          .setText(getText())
-          .share()
-
+    primaryFab.setOnClickListener {
+      runTextFunction {
+        IntentUtils.ShareBuilder(applicationContext)
+            .setChooserText(getString(R.string.share_using))
+            .setText(it)
+            .share()
+      }
     }
-
-    val delete = findViewById<View>(R.id.delete_button) as ImageView
-    delete.setImageResource(if (mode == HomeNavigationState.TRASH.name) R.drawable.ic_delete_permanently else R.drawable.ic_delete_white_48dp)
-    delete.setOnClickListener {
-      runNoteFunction {
-        if (mode == HomeNavigationState.TRASH.name) {
-          it.delete(this)
-          return@runNoteFunction
+    secondaryFab.setOnClickListener {
+      SelectedNoteOptionsBottomSheet.openSheet(this, mode)
+    }
+    recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+      override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+        super.onScrollStateChanged(recyclerView, newState)
+        when (newState) {
+          RecyclerView.SCROLL_STATE_DRAGGING -> {
+            primaryFab.hide()
+            secondaryFab.hide()
+          }
+          RecyclerView.SCROLL_STATE_IDLE -> {
+            primaryFab.show()
+            secondaryFab.show()
+          }
         }
-        it.mark(this, NoteState.TRASH)
       }
-      finish()
-    }
-
-    val copy = findViewById<View>(R.id.copy_button) as ImageView
-    copy.setOnClickListener {
-      TextUtils.copyToClipboard(this, getText())
-      finish()
-    }
-
-    val favourite = findViewById<View>(R.id.favourite_button) as ImageView
-    favourite.setImageResource(if (mode == HomeNavigationState.FAVOURITE.name) R.drawable.ic_favorite_white_48dp else R.drawable.ic_favorite_border_white_48dp)
-    favourite.setOnClickListener {
-      runNoteFunction {
-        it.mark(this, if (mode == HomeNavigationState.FAVOURITE.name) NoteState.DEFAULT else NoteState.FAVOURITE)
-      }
-      finish()
-    }
-
-    val archive = findViewById<View>(R.id.archive_button) as ImageView
-    archive.setOnClickListener {
-      runNoteFunction {
-        it.mark(this, if (mode == HomeNavigationState.ARCHIVED.name) NoteState.DEFAULT else NoteState.ARCHIVED)
-      }
-      finish()
-    }
+    })
   }
 
   fun runNoteFunction(noteFunction: (Note) -> Unit) {
@@ -90,6 +79,10 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
       val note = Note.db(this).getByID(noteId)
       noteFunction(note)
     }
+  }
+
+  fun runTextFunction(textFunction: (String) -> Unit) {
+    textFunction(getText())
   }
 
   override fun getLayoutUI() = R.layout.activity_select_notes
@@ -109,26 +102,6 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
 
   override fun notifyThemeChange() {
     super.notifyThemeChange()
-
-    val toolbarIconColor = getAppTheme().getThemedColor(
-        this,
-        R.color.material_blue_grey_700,
-        R.color.white)
-
-    val share = findViewById<View>(R.id.share_button) as ImageView
-    share.setColorFilter(toolbarIconColor)
-
-    val delete = findViewById<View>(R.id.delete_button) as ImageView
-    delete.setColorFilter(toolbarIconColor)
-
-    val copy = findViewById<View>(R.id.copy_button) as ImageView
-    copy.setColorFilter(toolbarIconColor)
-
-    val favourite = findViewById<View>(R.id.favourite_button) as ImageView
-    favourite.setColorFilter(toolbarIconColor)
-
-    val archive = findViewById<View>(R.id.archive_button) as ImageView
-    archive.setColorFilter(toolbarIconColor)
   }
 
   override fun isNoteSelected(note: Note): Boolean = selectedNotes.contains(note.uid)

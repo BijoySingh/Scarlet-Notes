@@ -1,73 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/container_layout"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:orientation="vertical">
+  tools:context="com.bijoysingh.quicknote.activities.MainActivity">
 
-  <LinearLayout
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="@dimen/spacing_small">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <ImageView
-      android:id="@+id/back_button"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
-      android:layout_marginEnd="4dp"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_close_white_48dp"
-      android:tint="@color/dark_tertiary_text" />
-
-    <TextView
-      android:id="@+id/toolbar_title"
-      android:layout_width="0dp"
+    <LinearLayout
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:text="@string/select_notes_title"
-      android:textColor="@color/dark_tertiary_text"
-      android:textSize="@dimen/font_size_large" />
-  </LinearLayout>
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:padding="@dimen/spacing_small">
 
-  <android.support.v7.widget.RecyclerView
-    android:id="@+id/recycler_view"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1" />
+      <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="@dimen/icon_size_large"
+        android:layout_height="@dimen/icon_size_large"
+        android:layout_marginEnd="4dp"
+        android:padding="@dimen/spacing_xsmall"
+        android:src="@drawable/ic_close_white_48dp"
+        android:tint="@color/dark_tertiary_text" />
+
+      <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/select_notes_title"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_large" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/recycler_view"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1" />
+  </LinearLayout>
 
   <LinearLayout
-    android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="horizontal">
+    android:layout_gravity="bottom|end"
+    android:background="@drawable/home_toolbar_gradient_background"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:gravity="bottom|end"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
 
-    <ImageView
-      android:id="@+id/delete_button"
-      style="@style/FormatButtonIcon"
-      android:src="@drawable/ic_delete_white_48dp" />
+    <android.support.design.widget.FloatingActionButton
+      android:id="@+id/secondary_fab_action"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_normal"
+      android:src="@drawable/ic_more_horiz_white_48dp"
+      android:tint="@color/dark_tertiary_text"
+      app:backgroundTint="@color/white"
+      app:elevation="8dp"
+      app:fabSize="normal"
+      app:rippleColor="@color/dark_hint_text" />
 
-    <ImageView
-      android:id="@+id/archive_button"
-      style="@style/FormatButtonIcon"
-      android:src="@drawable/ic_archive_white_48dp" />
-
-    <ImageView
-      android:id="@+id/favourite_button"
-      style="@style/FormatButtonIcon"
-      android:src="@drawable/ic_favorite_border_white_48dp" />
-
-    <ImageView
-      android:id="@+id/copy_button"
-      style="@style/FormatButtonIcon"
-      android:src="@drawable/ic_content_copy_white_48dp" />
-
-    <ImageView
-      android:id="@+id/share_button"
-      style="@style/FormatButtonIcon"
-      android:src="@drawable/ic_share_white_48dp" />
-
+    <android.support.design.widget.FloatingActionButton
+      android:id="@+id/primary_fab_action"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_share_white_48dp"
+      app:backgroundTint="@color/fabColor"
+      app:elevation="8dp"
+      app:fabSize="normal" />
   </LinearLayout>
-</LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
