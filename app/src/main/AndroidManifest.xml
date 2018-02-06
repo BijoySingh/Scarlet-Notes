@@ -36,6 +36,7 @@
     </activity>
 
     <service android:name=".service.FloatingNoteService" />
+    <service android:name=".service.NotificationIntentService" />
 
     <activity
       android:name=".activities.ViewAdvancedNoteActivity"

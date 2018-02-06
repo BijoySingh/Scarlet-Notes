@@ -287,6 +287,14 @@ public class Note {
     // Notify change to online/offline sync
   }
 
+  public void deleteOrMoveToTrash(Context context) {
+    if (getNoteState() == NoteState.TRASH) {
+      delete(context);
+      return;
+    }
+    mark(context, NoteState.TRASH);
+  }
+
   public void delete(Context context) {
     deleteWithoutSync(context);
     deleteToSync();
