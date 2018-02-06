@@ -113,7 +113,7 @@ class MainActivity : ThemedActivity() {
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
     val isMarkdownEnabled = store.get(KEY_MARKDOWN_ENABLED, true)
-    val isMarkdownHomeEnabled = store.get(KEY_MARKDOWN_HOME_ENABLED, false)
+    val isMarkdownHomeEnabled = store.get(KEY_MARKDOWN_HOME_ENABLED, true)
     val adapterExtra = Bundle()
     adapterExtra.putBoolean(KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
     adapterExtra.putInt(KEY_LINE_COUNT, LineCountBottomSheet.getDefaultLineCount(store))

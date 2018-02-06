@@ -48,7 +48,7 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
       actionButton.setActionResource(R.drawable.ic_check_box_white_24dp);
     }
 
-    val isMarkdownHomeEnabled = dataStore.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, false)
+    val isMarkdownHomeEnabled = dataStore.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, true)
     val markdownHomeButton = dialog.findViewById<UIActionView>(R.id.markdown_home_button)
     if (isMarkdownEnabled) {
       markdownHomeButton.setOnClickListener {

@@ -94,6 +94,19 @@ public class Note {
     return text.trim();
   }
 
+  public CharSequence getMarkdownTitle(Context context, boolean isMarkdownEnabled) {
+    String titleString = getTitle();
+    if (titleString.isEmpty()) {
+      return "";
+    }
+
+    if (!isMarkdownEnabled) {
+      return titleString;
+    }
+
+    return renderMarkdown(context, removeMarkdownHeaders(titleString));
+  }
+
   public String getFullText() {
     StringBuilder builder = new StringBuilder();
     List<Format> formats = Format.Companion.getFormats(description);

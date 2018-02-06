@@ -91,23 +91,14 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
     edit.visibility = visibility(editable)
     edit.isEnabled = editable
 
-
     root.setBackgroundColor(theme.get(context, ThemeColorType.BACKGROUND))
-
-    actionPanel.visibility = visibility(editable)
-
-    if (editable) {
-      edit.setText(data.text)
-    } else if (isMarkdownEnabled && (data.formatType == TEXT
-            || data.formatType == CHECKLIST_CHECKED
-            || data.formatType == CHECKLIST_UNCHECKED
-            || data.formatType == QUOTE
-            || data.forcedMarkdown)) {
-      text.text = renderMarkdown(context, data.text)
-    } else {
-      text.text = data.text
+    when {
+      editable -> edit.setText(data.text)
+      isMarkdownEnabled -> text.text = renderMarkdown(context, data.text)
+      else -> text.text = data.text
     }
 
+    actionPanel.visibility = visibility(editable)
     actionMove.setOnClickListener {
       val areActionsVisible = actionCopy.visibility == VISIBLE
       actionCopy.visibility = visibility(!areActionsVisible)

@@ -73,7 +73,7 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
     val isMarkdownEnabled = store.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
-    val isMarkdownHomeEnabled = store.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, false)
+    val isMarkdownHomeEnabled = store.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, true)
     val adapterExtra = Bundle()
     adapterExtra.putBoolean(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
     adapterExtra.putInt(LineCountBottomSheet.KEY_LINE_COUNT, LineCountBottomSheet.getDefaultLineCount(store))

@@ -59,7 +59,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
 
     val item = itemData as NoteRecyclerItem
     val data = item.note
-    val noteTitle = data.getTitle()
+    val noteTitle = data.getMarkdownTitle(context, isMarkdownEnabled)
     title.text = noteTitle
     title.visibility = if (noteTitle.isEmpty()) View.GONE else View.VISIBLE
 
