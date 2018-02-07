@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/bottom_delete_toolbar_layout"
+  style="@style/BorderlessBackgroundView"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:gravity="center"
+  android:orientation="horizontal"
+  android:visibility="gone">
+
+  <TextView
+    android:id="@+id/deletes_automatically"
+    style="@style/BorderlessBackgroundView"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:padding="@dimen/spacing_small"
+    android:text="@string/trash_will_delete_automatically"
+    android:textColor="@color/material_blue_grey_700"
+    android:textSize="@dimen/font_size_small" />
+
+  <ImageView
+    android:id="@+id/menu_delete_everything"
+    style="@style/BorderlessBackgroundView"
+    android:layout_width="@dimen/icon_size_xlarge"
+    android:layout_height="@dimen/icon_size_xlarge"
+    android:alpha="0.7"
+    android:padding="@dimen/spacing_small"
+    android:src="@drawable/ic_delete_permanently"
+    android:tint="@color/material_blue_grey_700" />
+
+</LinearLayout>

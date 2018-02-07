@@ -355,8 +355,6 @@ class MainActivity : ThemedActivity() {
     searchBackButton.setColorFilter(toolbarIconColor)
     searchCloseIcon.setColorFilter(toolbarIconColor)
 
-    findViewById<View>(R.id.separator).setBackgroundColor(toolbarIconColor)
-
     val actionBarTitle = findViewById<TextView>(R.id.action_bar_title)
     actionBarTitle.setTextColor(theme.get(this, ThemeColorType.TERTIARY_TEXT))
     homeButton.setColorFilter(theme.get(this, ThemeColorType.ACCENT_TEXT))
