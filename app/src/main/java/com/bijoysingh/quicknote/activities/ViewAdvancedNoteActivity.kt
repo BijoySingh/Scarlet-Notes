@@ -47,9 +47,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   val actionCopy: ImageView by bind(R.id.copy_button)
   val actionDelete: ImageView by bind(R.id.delete_button)
   val actionShare: ImageView by bind(R.id.share_button)
-  val actionEdit: ImageView by bind(R.id.edit_button)
   val actionDone: ImageView by bind(R.id.done_button)
-  val actionOptions: ImageView by bind(R.id.note_options_button)
   val colorButton: ImageView by bind(R.id.color_button)
 
   val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
@@ -104,7 +102,6 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     resetBundle()
     setNote()
 
-    actionEdit.visibility = if (mode) GONE else VISIBLE
     actionDone.visibility = if (mode) VISIBLE else GONE
     toolbar.visibility = if (mode) VISIBLE else GONE
     primaryFab.visibility = if (mode) GONE else VISIBLE
@@ -215,9 +212,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     }
     actionCopy.setOnClickListener { note!!.copy(context) }
     backButton.setOnClickListener { onBackPressed() }
-    actionOptions.setOnClickListener { openMoreOptions() }
     actionShare.setOnClickListener { note!!.share(context) }
-    actionEdit.setOnClickListener { openEditor() }
     actionDone.setOnClickListener { onBackPressed() }
     primaryFab.setOnClickListener { openEditor() }
     secondaryFab.setOnClickListener { openMoreOptions() }
@@ -243,9 +238,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     actionCopy.setColorFilter(toolbarIconColor)
     actionDelete.setColorFilter(toolbarIconColor)
     actionShare.setColorFilter(toolbarIconColor)
-    actionEdit.setColorFilter(toolbarIconColor)
     actionDone.setColorFilter(toolbarIconColor)
-    actionOptions.setColorFilter(toolbarIconColor)
 
     val backgroundColor = theme.get(context, ThemeColorType.BACKGROUND)
     rootView.setBackgroundColor(backgroundColor)

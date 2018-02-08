@@ -22,15 +22,6 @@
       android:layout_weight="1"/>
 
   <ImageView
-    android:id="@+id/note_options_button"
-    android:layout_width="@dimen/icon_size_large"
-    android:layout_height="@dimen/icon_size_large"
-    style="@style/BorderlessBackgroundView"
-    android:padding="@dimen/spacing_xsmall"
-    android:src="@drawable/ic_more_horiz_white_48dp"
-    android:tint="@color/material_grey_600"/>
-
-  <ImageView
       android:id="@+id/delete_button"
       android:layout_width="@dimen/icon_size_large"
       android:layout_height="@dimen/icon_size_large"
@@ -71,15 +62,6 @@
         android:layout_height="20dp"
         android:layout_margin="10dp"/>
   </LinearLayout>
-
-  <ImageView
-      android:id="@+id/edit_button"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
-    style="@style/BorderlessBackgroundView"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_edit_white_48dp"
-      android:tint="@color/material_grey_600"/>
 
   <ImageView
       android:id="@+id/done_button"
