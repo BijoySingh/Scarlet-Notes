@@ -72,10 +72,10 @@
   </style>
 
   <style name="FormatButtonIcon" parent="BorderlessBackgroundView">
-    <item name="android:layout_width">@dimen/icon_size_normal</item>
-    <item name="android:layout_height">@dimen/icon_size_normal</item>
+    <item name="android:layout_width">@dimen/icon_size_large</item>
+    <item name="android:layout_height">@dimen/icon_size_large</item>
     <item name="android:tint">@color/material_blue_grey_600</item>
-    <item name="android:layout_margin">@dimen/spacing_xsmall</item>
+    <item name="android:padding">@dimen/spacing_xsmall</item>
   </style>
 
   <style name="FormatLabel">

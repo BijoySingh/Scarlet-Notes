@@ -5,6 +5,7 @@
   <dimen name="icon_size_xlarge">48dp</dimen>
   <dimen name="icon_size_large">40dp</dimen>
   <dimen name="icon_size_slarge">36dp</dimen>
+  <dimen name="icon_size_l_normal">32dp</dimen>
   <dimen name="icon_size_normal">24dp</dimen>
 
   <dimen name="font_size_xlarge">21sp</dimen>
