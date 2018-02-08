@@ -6,6 +6,7 @@
   <dimen name="icon_size_large">32dp</dimen>
   <dimen name="icon_size_slarge">32dp</dimen>
   <dimen name="icon_size_normal">20dp</dimen>
+  <dimen name="icon_size_small">16dp</dimen>
 
   <dimen name="font_size_xlarge">18sp</dimen>
   <dimen name="font_size_large">16sp</dimen>

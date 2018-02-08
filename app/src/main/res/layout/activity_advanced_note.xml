@@ -70,8 +70,10 @@
     <ImageView
       android:id="@+id/toolbar_chevron_left"
       style="@style/FormatButtonIcon"
-      android:layout_width="@dimen/icon_size_large"
+      android:layout_width="@dimen/icon_size_normal"
+      android:layout_height="match_parent"
       android:alpha="0.6"
+      android:layout_margin="0dp"
       android:scaleType="centerCrop"
       android:src="@drawable/ic_chevron_left" />
 
@@ -96,8 +98,10 @@
     <ImageView
       android:id="@+id/toolbar_chevron_right"
       style="@style/FormatButtonIcon"
-      android:layout_width="@dimen/icon_size_large"
+      android:layout_width="@dimen/icon_size_normal"
+      android:layout_height="match_parent"
       android:alpha="0.6"
+      android:layout_margin="0dp"
       android:scaleType="centerCrop"
       android:src="@drawable/ic_chevron_right" />
 
