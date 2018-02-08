@@ -10,7 +10,7 @@
     android:id="@+id/action_move"
     android:layout_width="@dimen/icon_size_normal"
     android:layout_height="@dimen/icon_size_normal"
-    android:layout_margin="@dimen/spacing_small"
+    android:layout_margin="@dimen/spacing_xsmall"
     style="@style/BorderlessBackgroundView"
     android:gravity="center"
     android:orientation="horizontal">
