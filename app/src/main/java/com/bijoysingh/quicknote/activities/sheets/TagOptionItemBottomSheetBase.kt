@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.view.View
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
@@ -65,6 +66,11 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
         contentView.setActionResource(option.getEditIcon());
         contentView.setActionTint(theme().get(themedContext(), ThemeColorType.HINT_TEXT));
         contentView.setActionClickListener(option.editListener)
+      }
+
+      if (option.usages > 0) {
+        contentView.setSubtitle(themedContext().getString(R.string.notes_count_for_tags, option.usages))
+        contentView.subtitle.visibility = VISIBLE
       }
 
       contentView.setTitleColor(getOptionsTitleColor(option.selected))

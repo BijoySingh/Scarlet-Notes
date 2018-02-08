@@ -32,6 +32,12 @@ public interface NoteDao {
   @Query("SELECT * FROM note WHERE locked = :locked ORDER BY pinned DESC, timestamp DESC")
   List<Note> getNoteByLocked(boolean locked);
 
+  @Query("SELECT * FROM note WHERE tags LIKE :uuidRegex ORDER BY pinned DESC, timestamp DESC")
+  List<Note> getNoteByTag(String uuidRegex);
+
+  @Query("SELECT COUNT(*) FROM note WHERE tags LIKE :uuidRegex ORDER BY pinned DESC, timestamp DESC")
+  int getNoteCountByTag(String uuidRegex);
+
   @Query("SELECT * FROM note WHERE uid = :uid LIMIT 1")
   Note getByID(int uid);
 

@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.items.TagOptionsItem
@@ -122,7 +123,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
 
   fun setTagOptions(dialog: Dialog, options: List<TagOptionsItem>) {
     val layout = dialog.findViewById<LinearLayout>(R.id.options_container);
-    for (option in options) {
+    for (option in options.sorted()) {
       val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIActionView
       contentView.setTitle(option.tag.title)
       contentView.setOnClickListener(option.listener)
@@ -132,6 +133,11 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
       contentView.setActionResource(option.getEditIcon());
       contentView.setActionTint(theme().get(themedContext(), ThemeColorType.HINT_TEXT));
       contentView.setActionClickListener(option.editListener)
+
+      if (option.usages > 0) {
+        contentView.setSubtitle(themedContext().getString(R.string.notes_count_for_tags, option.usages))
+        contentView.subtitle.visibility = View.VISIBLE
+      }
 
       contentView.setTitleColor(getOptionsTitleColor(option.selected))
       contentView.setSubtitleColor(getOptionsSubtitleColor(option.selected))
@@ -147,6 +153,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
     for (tag in Tag.db(context).all) {
       options.add(TagOptionsItem(
           tag = tag,
+          usages = Note.db(context).getNoteCountByTag("%" + tag.uuid + "%"),
           listener = View.OnClickListener {
             activity.openTag(tag)
             dismiss()

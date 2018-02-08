@@ -204,6 +204,8 @@
   <string name="nav_settings" translatable="false">Settings</string>
 
   <string name="widget_no_valid_note" translatable="false">Note either deleted or locked</string>
+
+  <string name="notes_count_for_tags" translatable="false">%d notes</string>
   <!-- End Select Notes -->
 
   <!-- Start Note Text Size -->

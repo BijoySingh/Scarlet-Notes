@@ -248,16 +248,8 @@ class MainActivity : ThemedActivity() {
     mode = HomeNavigationState.TAG
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
       override fun run(): List<Note> {
-        val listNoteWithTag = ArrayList<Note>()
-        val notes = Note.db(this@MainActivity).all
-        for (note in notes) {
-          if (note.tagUUIDs.contains(tag.uuid)) {
-            listNoteWithTag.add(note)
-          }
-        }
-
         val sorting = SortingOptionsBottomSheet.getSortingState(store)
-        return sort(listNoteWithTag, sorting)
+        return sort(Note.db(this@MainActivity).getNoteByTag("%" + tag.uuid +"%"), sorting)
       }
 
       override fun handle(notes: List<Note>) {
