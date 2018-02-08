@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.AsyncTask
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.formats.Format
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.github.bijoysingh.starter.util.TextUtils
@@ -12,6 +13,7 @@ import java.util.*
 const val KEY_MIGRATE_UUID = "KEY_MIGRATE_UUID"
 const val KEY_MIGRATE_TRASH = "KEY_MIGRATE_TRASH"
 const val KEY_MIGRATE_THEME = "KEY_MIGRATE_THEME"
+const val KEY_MIGRATE_CHECKED_LIST = "KEY_MIGRATE_CHECKED_LIST"
 const val KEY_MIGRATE_ZERO_NOTES = "MIGRATE_ZERO_NOTES"
 
 fun migrate(context: Context) {
@@ -72,6 +74,13 @@ fun migrate(context: Context) {
       note.save(context)
     }
     store.put(KEY_MIGRATE_ZERO_NOTES, true)
+  }
+  if (!store.get(KEY_MIGRATE_CHECKED_LIST, false)) {
+    for (note in Note.db(context).all) {
+      note.description = Format.getNote(note.formats.sorted())
+      note.save(context)
+    }
+    store.put(KEY_MIGRATE_CHECKED_LIST, true)
   }
 }
 
