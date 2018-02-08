@@ -2,7 +2,9 @@ package com.bijoysingh.quicknote.activities
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,11 +12,12 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity.Companion.convertStreamToString
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.genEmptyNote
+import com.bijoysingh.quicknote.utils.genImportFromKeep
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.TextUtils
 import com.github.bijoysingh.uibasics.views.UITextView
 
-
+const val KEEP_PACKAGE = "com.google.android.keep"
 class ExternalIntentActivity : ThemedActivity() {
 
   lateinit var context: Context
@@ -71,7 +74,10 @@ class ExternalIntentActivity : ThemedActivity() {
   fun handleIntent(): Boolean {
     val hasSendIntent = handleSendText(intent)
     if (hasSendIntent) {
-      val note = genEmptyNote(titleText, contentText)
+      val note = when(isCallerKeep()) {
+        true -> genEmptyNote(titleText, genImportFromKeep(contentText))
+        false -> genEmptyNote(titleText, contentText)
+      }
       note.save(this)
       startActivity(ViewAdvancedNoteActivity.getIntent(this, note))
       return false
@@ -103,6 +109,15 @@ class ExternalIntentActivity : ThemedActivity() {
       return true
     } catch (exception: Exception) {
       return false
+    }
+  }
+
+  fun isCallerKeep(): Boolean {
+    return when {
+      Build.VERSION.SDK_INT >= 22 && (referrer?.toString() ?: "").contains(KEEP_PACKAGE) -> true
+      callingPackage.contains(KEEP_PACKAGE) -> true
+      (intent?.`package` ?: "").contains(KEEP_PACKAGE) -> true
+      else -> false
     }
   }
 

@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.utils
 
 import android.content.Context
+import android.util.Log
 import com.bijoysingh.quicknote.activities.external.ExportableNote
 import com.bijoysingh.quicknote.activities.external.ExportableTag
 import com.bijoysingh.quicknote.database.Note
@@ -10,6 +11,7 @@ import com.github.bijoysingh.starter.util.RandomHelper
 import com.github.bijoysingh.starter.util.TextUtils
 import org.json.JSONException
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Generate blank note with default configuration
@@ -45,6 +47,37 @@ fun genEmptyNote(title: String, description: String): Note {
   formats.add(Format(FormatType.TEXT, description))
   note.description = Format.getNote(formats)
   return note
+}
+
+/**
+ * Generate blank note from basic title and description
+ */
+fun genEmptyNote(title: String, formatSource: List<Format>): Note {
+  val note = genEmptyNote()
+  val formats = ArrayList<Format>()
+  if (!TextUtils.isNullOrEmpty(title)) {
+    formats.add(Format(FormatType.HEADING, title))
+  }
+  formats.addAll(formatSource)
+  note.description = Format.getNote(formats)
+  return note
+}
+
+fun genImportFromKeep(description: String): List<Format> {
+  val randomDelimiter = "-+-" + RandomHelper.getRandom() + "-+-"
+  var delimitered = description.replace("(^|\n)\\s*\\[\\s\\]\\s*".toRegex(), randomDelimiter + "[ ]")
+  delimitered = delimitered.replace("(^|\n)\\s*\\[x\\]\\s*".toRegex(), randomDelimiter + "[x]")
+
+  val items = delimitered.split(randomDelimiter)
+  val formats = ArrayList<Format>()
+  for (item in items) {
+    when {
+      item.startsWith("[ ]") -> formats.add(Format(FormatType.CHECKLIST_UNCHECKED, item.removePrefix("[ ]")))
+      item.startsWith("[x]") -> formats.add(Format(FormatType.CHECKLIST_CHECKED, item.removePrefix("[x]")))
+      !item.isBlank() -> formats.add(Format(FormatType.TEXT, item))
+    }
+  }
+  return formats
 }
 
 /**
