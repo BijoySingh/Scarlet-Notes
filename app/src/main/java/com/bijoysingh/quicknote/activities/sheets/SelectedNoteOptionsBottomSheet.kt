@@ -62,6 +62,7 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
         listener = View.OnClickListener {
           activity.runNoteFunction {
             it.mark(activity, if (mode == HomeNavigationState.ARCHIVED.name) NoteState.DEFAULT else NoteState.ARCHIVED)
+            activity.finish()
           }
         },
         visible = mode == NoteState.ARCHIVED.name
@@ -73,6 +74,7 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
         listener = View.OnClickListener {
           activity.runNoteFunction {
             it.mark(activity, if (mode == HomeNavigationState.ARCHIVED.name) NoteState.DEFAULT else NoteState.ARCHIVED)
+            activity.finish()
           }
         },
         visible = mode != NoteState.ARCHIVED.name
@@ -102,26 +104,27 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
-        title = R.string.delete_note_permanently,
-        subtitle = R.string.tap_for_action_delete,
-        icon = R.drawable.ic_delete_permanently,
-        listener = View.OnClickListener {
-          activity.runNoteFunction {
-            it.delete(activity)
-          }
-        },
-        visible = mode == NoteState.TRASH.name
-    ))
-    options.add(OptionsItem(
         title = R.string.trash_note,
         subtitle = R.string.tap_for_action_trash,
         icon = R.drawable.ic_delete_white_48dp,
         listener = View.OnClickListener {
           activity.runNoteFunction {
             it.mark(activity, NoteState.TRASH)
+            activity.finish()
           }
         },
         visible = mode != NoteState.TRASH.name
+    ))
+    options.add(OptionsItem(
+        title = R.string.delete_note_permanently,
+        subtitle = R.string.tap_for_action_delete,
+        icon = R.drawable.ic_delete_permanently,
+        listener = View.OnClickListener {
+          activity.runNoteFunction {
+            it.delete(activity)
+            activity.finish()
+          }
+        }
     ))
     return options
   }
