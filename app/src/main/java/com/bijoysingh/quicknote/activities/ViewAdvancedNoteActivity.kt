@@ -22,8 +22,6 @@ import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
-import android.support.v7.widget.LinearLayoutManager
-import com.bijoysingh.quicknote.recyclerview.EmptyFormatHolder
 
 
 const val INTENT_KEY_NOTE_ID = "NOTE_ID"
@@ -202,7 +200,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     format.formatType = if (checked) FormatType.CHECKLIST_CHECKED else FormatType.CHECKLIST_UNCHECKED
     formats[position] = format
     adapter.updateItem(format, position)
-    updateNote()
+    updateNoteForChecked()
   }
 
   private fun setToolbars() {
@@ -277,8 +275,9 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
       note!!.saveWithoutSync(context)
   }
 
-  private fun updateNote() {
-    note!!.description = Format.getNote(formats)
+  private fun updateNoteForChecked() {
+    note!!.description = Format.getNote(formats.sorted())
+    setNote()
     maybeSaveNoteWithSync()
   }
 

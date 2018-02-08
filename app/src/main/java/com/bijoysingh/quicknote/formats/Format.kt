@@ -18,7 +18,7 @@ import java.util.HashMap
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class Format {
+class Format : Comparable<Format> {
 
   var formatType: FormatType = FormatType.TEXT
 
@@ -67,6 +67,14 @@ class Format {
     map["format"] = formatType.name
     map["text"] = text
     return JSONObject(map)
+  }
+
+  override fun compareTo(other: Format): Int {
+    return when {
+      other.formatType == FormatType.CHECKLIST_CHECKED && formatType == FormatType.CHECKLIST_UNCHECKED -> -1
+      other.formatType == FormatType.CHECKLIST_UNCHECKED && formatType == FormatType.CHECKLIST_CHECKED -> 1
+      else -> 0
+    }
   }
 
   companion object {

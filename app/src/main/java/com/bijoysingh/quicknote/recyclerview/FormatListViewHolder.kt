@@ -39,10 +39,12 @@ class FormatListViewHolder(context: Context, view: View)
       FormatType.CHECKLIST_CHECKED -> {
         icon.setImageResource(R.drawable.ic_check_box_white_24dp)
         text.paintFlags = text.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        itemView.alpha = 0.5f
       }
       FormatType.CHECKLIST_UNCHECKED -> {
         icon.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp)
         text.paintFlags = text.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+        itemView.alpha = 1f
       }
       else -> {} // Ignore other cases
     }
