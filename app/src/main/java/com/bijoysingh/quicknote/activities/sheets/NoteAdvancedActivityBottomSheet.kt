@@ -1,13 +1,20 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import android.content.Intent
 import android.view.View
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_MODE
+import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_NOTE_ID
+import com.bijoysingh.quicknote.activities.SelectNotesActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.NotificationHandler
+import com.bijoysingh.quicknote.utils.copyNote
+import com.github.bijoysingh.starter.util.RandomHelper
 
 class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
 
@@ -157,6 +164,20 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
+        title = R.string.select,
+        subtitle = R.string.select,
+        icon = R.drawable.ic_action_select,
+        listener = View.OnClickListener {
+          val intent = Intent(context, SelectNotesActivity::class.java)
+          intent.putExtra(KEY_SELECT_EXTRA_MODE, HomeNavigationState.DEFAULT.name)
+          intent.putExtra(KEY_SELECT_EXTRA_NOTE_ID, note.uid)
+          activity.startActivity(intent)
+          activity.finish()
+          dismiss()
+        },
+        invalid = note.locked
+    ))
+    options.add(OptionsItem(
         title = R.string.open_in_popup,
         subtitle = R.string.tap_for_action_popup,
         icon = R.drawable.ic_bubble_chart_white_48dp,
@@ -212,6 +233,20 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           dismiss()
         },
         visible = note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.duplicate,
+        subtitle = R.string.duplicate,
+        icon = R.drawable.ic_duplicate,
+        listener = View.OnClickListener {
+          val copiedNote = copyNote(note)
+          copiedNote.uid = null
+          copiedNote.uuid = RandomHelper.getRandomString(24)
+          copiedNote.save(context)
+          activity.finish()
+          dismiss()
+        },
+        invalid = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.delete_note_permanently,

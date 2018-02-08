@@ -169,6 +169,19 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
+        title = R.string.select,
+        subtitle = R.string.select,
+        icon = R.drawable.ic_action_select,
+        listener = View.OnClickListener {
+          val intent = Intent(context, SelectNotesActivity::class.java)
+          intent.putExtra(KEY_SELECT_EXTRA_MODE, activity.mode.name)
+          intent.putExtra(KEY_SELECT_EXTRA_NOTE_ID, note.uid)
+          activity.startActivity(intent)
+          dismiss()
+        },
+        invalid = note.locked
+    ))
+    options.add(OptionsItem(
         title = R.string.open_in_popup,
         subtitle = R.string.tap_for_action_popup,
         icon = R.drawable.ic_bubble_chart_white_48dp,
@@ -228,19 +241,6 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
               dataStore)
         },
         visible = note.locked
-    ))
-    options.add(OptionsItem(
-        title = R.string.select,
-        subtitle = R.string.select,
-        icon = R.drawable.ic_action_select,
-        listener = View.OnClickListener {
-          val intent = Intent(context, SelectNotesActivity::class.java)
-          intent.putExtra(KEY_SELECT_EXTRA_MODE, activity.mode.name)
-          intent.putExtra(KEY_SELECT_EXTRA_NOTE_ID, note.uid)
-          activity.startActivity(intent)
-          dismiss()
-        },
-        invalid = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.duplicate,
