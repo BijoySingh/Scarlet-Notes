@@ -69,7 +69,7 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     }
 
     fun genDefaultColor(dataStore: DataStore): Int {
-      return dataStore.get(KEY_NOTE_DEFAULT_COLOR, -0xff8695)
+      return dataStore.get(KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
     }
   }
 }

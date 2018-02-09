@@ -344,11 +344,14 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     if (position == -1) {
       return
     }
+
+    val isCheckList = (format.formatType === FormatType.CHECKLIST_UNCHECKED
+        || format.formatType === FormatType.CHECKLIST_CHECKED)
     val newPosition = position + 1
-    if (newPosition < formats.size) {
-      focus(position + 1)
-    } else {
-      addEmptyItemAtFocused(Format.getNextFormatType(format.formatType))
+    when {
+      isCheckList -> addEmptyItemAtFocused(Format.getNextFormatType(FormatType.CHECKLIST_CHECKED))
+      newPosition < formats.size -> focus(position + 1)
+      else -> addEmptyItemAtFocused(Format.getNextFormatType(format.formatType))
     }
   }
 }
