@@ -43,8 +43,7 @@
     <View
       android:layout_width="match_parent"
       android:layout_height="0.5dp"
-      android:layout_margin="@dimen/spacing_normal"
-      android:background="@color/material_blue_grey_100" />
+      android:layout_margin="@dimen/spacing_normal" />
 
     <TextView
       android:id="@+id/library_title"
@@ -67,8 +66,7 @@
     <View
       android:layout_width="match_parent"
       android:layout_height="0.5dp"
-      android:layout_margin="@dimen/spacing_normal"
-      android:background="@color/material_blue_grey_100" />
+      android:layout_margin="@dimen/spacing_normal" />
 
     <LinearLayout
       android:id="@+id/results_layout"
