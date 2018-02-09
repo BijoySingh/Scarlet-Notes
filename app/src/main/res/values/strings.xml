@@ -15,6 +15,9 @@
   <string name="main_add_a_note">Add a note&#8230;</string>
   <string name="main_add_a_quick_note">Add a quick note&#8230;</string>
 
+  <string name="shortcut_add_note">Add Note</string>
+  <string name="shortcut_add_list">Add Checklist</string>
+
   <string name="open_note_night_mode">Night Mode</string>
   <string name="open_note_day_mode">Day Mode</string>
   <string name="edit_note">Edit Note</string>
