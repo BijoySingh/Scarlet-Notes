@@ -10,6 +10,7 @@ import android.view.View.VISIBLE
 import android.widget.ImageView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.ColorPickerBottomSheet
+import com.bijoysingh.quicknote.activities.sheets.NoteFormatOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
@@ -31,8 +32,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
   val heading: ImageView by bind(R.id.format_heading)
   val subHeading: ImageView by bind(R.id.format_sub_heading)
   val checkList: ImageView by bind(R.id.format_check_list)
-  val quote: ImageView by bind(R.id.format_quote)
-  val code: ImageView by bind(R.id.format_code)
+  val formatMore: ImageView by bind(R.id.format_more)
 
   val markdownBold: ImageView by bind(R.id.markdown_bold)
   val markdownUnderline: ImageView by bind(R.id.markdown_underline)
@@ -90,8 +90,9 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     heading.setOnClickListener { addEmptyItemAtFocused(FormatType.HEADING) }
     subHeading.setOnClickListener { addEmptyItemAtFocused(FormatType.SUB_HEADING) }
     checkList.setOnClickListener { addEmptyItemAtFocused(FormatType.CHECKLIST_UNCHECKED) }
-    quote.setOnClickListener { addEmptyItemAtFocused(FormatType.QUOTE) }
-    code.setOnClickListener { addEmptyItemAtFocused(FormatType.CODE) }
+    formatMore.setOnClickListener {
+      NoteFormatOptionsBottomSheet.openSheet(this)
+    }
   }
 
   fun setMarkdownButtonToolbar() {
@@ -151,8 +152,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     heading.setColorFilter(toolbarIconColor)
     subHeading.setColorFilter(toolbarIconColor)
     checkList.setColorFilter(toolbarIconColor)
-    quote.setColorFilter(toolbarIconColor)
-    code.setColorFilter(toolbarIconColor)
+    formatMore.setColorFilter(toolbarIconColor)
 
     markdownHeading.setColorFilter(toolbarIconColor)
     markdownBold.setColorFilter(toolbarIconColor)
@@ -239,7 +239,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     adapter.addItem(format, position)
   }
 
-  private fun addEmptyItemAtFocused(type: FormatType) {
+  fun addEmptyItemAtFocused(type: FormatType) {
     if (focusedFormat == null) {
       addEmptyItem(type)
       return
@@ -349,7 +349,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
         || format.formatType === FormatType.CHECKLIST_CHECKED)
     val newPosition = position + 1
     when {
-      isCheckList -> addEmptyItemAtFocused(Format.getNextFormatType(FormatType.CHECKLIST_CHECKED))
+      isCheckList -> addEmptyItemAtFocused(Format.getNextFormatType(FormatType.CHECKLIST_UNCHECKED))
       newPosition < formats.size -> focus(position + 1)
       else -> addEmptyItemAtFocused(Format.getNextFormatType(format.formatType))
     }

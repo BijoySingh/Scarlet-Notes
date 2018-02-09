@@ -77,6 +77,14 @@
   <string name="format_hint_list">Add Item&#8230;</string>
   <string name="format_hint_code">Add Code&#8230;</string>
 
+  <string name="format_sheet_option_title">Block Formats</string>
+  <string name="format_label_heading">Heading</string>
+  <string name="format_label_sub_heading">Sub Heading</string>
+  <string name="format_label_text">Text</string>
+  <string name="format_label_quote">Quote</string>
+  <string name="format_label_code">Code</string>
+  <string name="format_label_list">Checklist</string>
+
   <string name="home_option_sheet_title">Options and Settings</string>
   <string name="home_option_ui_experience">Interface and Experience</string>
   <string name="home_option_ui_experience_subtitle">Choose how the app looks and feels.</string>
