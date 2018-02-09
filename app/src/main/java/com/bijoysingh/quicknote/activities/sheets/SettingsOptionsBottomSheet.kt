@@ -22,7 +22,6 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_action_grid,
         listener = View.OnClickListener {
           UISettingsOptionsBottomSheet.openSheet(activity)
-          dismiss()
         }
     ))
     options.add(OptionsItem(
@@ -31,7 +30,6 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_subject_white_48dp,
         listener = View.OnClickListener {
           NoteSettingsOptionsBottomSheet.openSheet(activity)
-          dismiss()
         }
     ))
     options.add(OptionsItem(
@@ -40,7 +38,6 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_export,
         listener = View.OnClickListener {
           BackupSettingsOptionsBottomSheet.openSheet(activity)
-          dismiss()
         }
     ))
     options.add(OptionsItem(
@@ -49,7 +46,6 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_info,
         listener = View.OnClickListener {
           AboutSettingsOptionsBottomSheet.openSheet(activity)
-          dismiss()
         }
     ))
     options.add(OptionsItem(
