@@ -146,7 +146,9 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
     stringBuilder.append(endString)
 
     edit.setText(stringBuilder.toString())
-    edit.setSelection(startString.length + markdownType.startToken.length)
+
+    val additionTokenLength = (if (markdownType.requiresNewLine) 1 else 0) + markdownType.startToken.length
+    edit.setSelection(startString.length + additionTokenLength)
   }
 
   companion object {

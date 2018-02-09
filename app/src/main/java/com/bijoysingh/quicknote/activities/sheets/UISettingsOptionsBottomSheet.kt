@@ -51,20 +51,22 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.home_option_enable_list_view_subtitle,
         icon = R.drawable.ic_action_list,
         listener = View.OnClickListener {
-          activity.setLayoutMode(false)
+          setGridView(dataStore, false)
+          activity.notifyAdapterExtraChanged()
           dismiss()
         },
-        visible = !isTablet && dataStore.get(KEY_LIST_VIEW, false)
+        visible = !isTablet && isGridView(dataStore)
     ))
     options.add(OptionsItem(
         title = R.string.home_option_enable_grid_view,
         subtitle = R.string.home_option_enable_grid_view_subtitle,
         icon = R.drawable.ic_action_grid,
         listener = View.OnClickListener {
-          activity.setLayoutMode(true)
+          setGridView(dataStore, true)
+          activity.notifyAdapterExtraChanged()
           dismiss()
         },
-        visible = !isTablet && !dataStore.get(KEY_LIST_VIEW, false)
+        visible = !isTablet && !isGridView(dataStore)
     ))
     options.add(OptionsItem(
         title = R.string.home_option_order_notes,
@@ -110,5 +112,9 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
       val sheet = UISettingsOptionsBottomSheet()
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
+
+    fun isGridView(dataStore: DataStore): Boolean = dataStore.get(KEY_LIST_VIEW, true)
+
+    fun setGridView(dataStore: DataStore, isGrid: Boolean) = dataStore.put(KEY_LIST_VIEW, isGrid)
   }
 }

@@ -1,7 +1,6 @@
 package com.bijoysingh.quicknote.activities
 
 import android.content.BroadcastReceiver
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
@@ -18,9 +17,9 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.*
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion.KEY_LINE_COUNT
-import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_LIST_VIEW
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
+import com.bijoysingh.quicknote.activities.sheets.UISettingsOptionsBottomSheet.Companion.KEY_LIST_VIEW
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem
@@ -109,7 +108,7 @@ class MainActivity : ThemedActivity() {
   }
 
   fun setupRecyclerView() {
-    val staggeredView = store.get(KEY_LIST_VIEW, false)
+    val staggeredView = UISettingsOptionsBottomSheet.isGridView(store)
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
     val isMarkdownEnabled = store.get(KEY_MARKDOWN_ENABLED, true)
@@ -125,7 +124,7 @@ class MainActivity : ThemedActivity() {
         .setAdapter(adapter)
         .setLayoutManager(getLayoutManager(staggeredView, isTablet))
         .build()
-    recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+    recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
       override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)
         when (newState) {
@@ -147,11 +146,6 @@ class MainActivity : ThemedActivity() {
       isTabletView || isStaggeredView -> StaggeredGridLayoutManager(2, VERTICAL)
       else -> LinearLayoutManager(this)
     }
-  }
-
-  fun setLayoutMode(staggered: Boolean) {
-    store.put(KEY_LIST_VIEW, staggered)
-    notifyAdapterExtraChanged()
   }
 
   fun notifyAdapterExtraChanged() {
@@ -249,7 +243,7 @@ class MainActivity : ThemedActivity() {
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
       override fun run(): List<Note> {
         val sorting = SortingOptionsBottomSheet.getSortingState(store)
-        return sort(Note.db(this@MainActivity).getNoteByTag("%" + tag.uuid +"%"), sorting)
+        return sort(Note.db(this@MainActivity).getNoteByTag("%" + tag.uuid + "%"), sorting)
       }
 
       override fun handle(notes: List<Note>) {

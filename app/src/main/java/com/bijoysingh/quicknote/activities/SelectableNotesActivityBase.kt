@@ -12,6 +12,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet
+import com.bijoysingh.quicknote.activities.sheets.UISettingsOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
@@ -69,7 +70,7 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
   open fun getLayoutUI(): Int = R.layout.activity_select_note
 
   fun setupRecyclerView() {
-    val staggeredView = store.get(SettingsOptionsBottomSheet.KEY_LIST_VIEW, false)
+    val staggeredView = store.get(UISettingsOptionsBottomSheet.KEY_LIST_VIEW, false)
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
     val isMarkdownEnabled = store.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
