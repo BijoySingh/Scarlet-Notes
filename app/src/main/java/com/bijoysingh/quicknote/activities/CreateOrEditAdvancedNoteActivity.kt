@@ -11,6 +11,7 @@ import android.widget.ImageView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.ColorPickerBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteFormatOptionsBottomSheet
+import com.bijoysingh.quicknote.activities.sheets.NoteMarkdownOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
@@ -35,11 +36,11 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
   val formatMore: ImageView by bind(R.id.format_more)
 
   val markdownBold: ImageView by bind(R.id.markdown_bold)
-  val markdownUnderline: ImageView by bind(R.id.markdown_underline)
   val markdownHeading: ImageView by bind(R.id.markdown_heading)
   val markdownItalics: ImageView by bind(R.id.markdown_italics)
-  val markdownCode: ImageView by bind(R.id.markdown_code)
   val markdownUnordered: ImageView by bind(R.id.markdown_unordered)
+  val markdownMore: ImageView by bind(R.id.markdown_more)
+
   val chevronLeft: ImageView by bind(R.id.toolbar_chevron_left)
   val chevronRight: ImageView by bind(R.id.toolbar_chevron_right)
 
@@ -98,10 +99,11 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
   fun setMarkdownButtonToolbar() {
     markdownBold.setOnClickListener { triggerMarkdown(MarkdownType.BOLD) }
     markdownItalics.setOnClickListener { triggerMarkdown(MarkdownType.ITALICS) }
-    markdownUnderline.setOnClickListener { triggerMarkdown(MarkdownType.UNDERLINE) }
     markdownHeading.setOnClickListener { triggerMarkdown(MarkdownType.HEADER) }
-    markdownCode.setOnClickListener { triggerMarkdown(MarkdownType.CODE) }
     markdownUnordered.setOnClickListener { triggerMarkdown(MarkdownType.UNORDERED) }
+    markdownMore.setOnClickListener {
+      NoteMarkdownOptionsBottomSheet.openSheet(this)
+    }
   }
 
   fun toggleToolbarMode() {
@@ -157,9 +159,8 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     markdownHeading.setColorFilter(toolbarIconColor)
     markdownBold.setColorFilter(toolbarIconColor)
     markdownUnordered.setColorFilter(toolbarIconColor)
-    markdownUnderline.setColorFilter(toolbarIconColor)
-    markdownCode.setColorFilter(toolbarIconColor)
     markdownItalics.setColorFilter(toolbarIconColor)
+    markdownMore.setColorFilter(toolbarIconColor)
 
     val hintColor = theme.get(this, ThemeColorType.PRIMARY_TEXT)
     chevronLeft.setColorFilter(hintColor)

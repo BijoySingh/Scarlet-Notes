@@ -7,4 +7,5 @@ enum class MarkdownType(val startToken: String, val endToken: String = "", val r
   HEADER(startToken = "### ", requiresNewLine = true),
   UNORDERED(startToken = "- ", requiresNewLine = true),
   CODE(startToken = "`", endToken = "`"),
+  STRIKE_THROUGH(startToken = "~~", endToken = "~~"),
 }

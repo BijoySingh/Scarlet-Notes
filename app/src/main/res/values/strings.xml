@@ -77,13 +77,20 @@
   <string name="format_hint_list">Add Item&#8230;</string>
   <string name="format_hint_code">Add Code&#8230;</string>
 
-  <string name="format_sheet_option_title">Block Formats</string>
+  <string name="format_sheet_option_title">Block Formatting</string>
   <string name="format_label_heading">Heading</string>
   <string name="format_label_sub_heading">Sub Heading</string>
   <string name="format_label_text">Text</string>
   <string name="format_label_quote">Quote</string>
   <string name="format_label_code">Code</string>
   <string name="format_label_list">Checklist</string>
+
+  <string name="markdown_sheet_option_title">Markdown Formatting</string>
+  <string name="markdown_label_bold">Bold</string>
+  <string name="markdown_label_italics">Italics</string>
+  <string name="markdown_label_underline">Underline</string>
+  <string name="markdown_label_strikethrough">Strike</string>
+  <string name="markdown_label_list">List</string>
 
   <string name="home_option_sheet_title">Options and Settings</string>
   <string name="home_option_ui_experience">Interface and Experience</string>

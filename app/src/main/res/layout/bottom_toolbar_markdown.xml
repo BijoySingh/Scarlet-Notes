@@ -10,31 +10,30 @@
   <ImageView
     android:id="@+id/markdown_heading"
     style="@style/FormatButtonIcon"
+    android:contentDescription="@string/format_label_heading"
     android:src="@drawable/ic_title_white_48dp" />
 
   <ImageView
     android:id="@+id/markdown_bold"
     style="@style/FormatButtonIcon"
+    android:contentDescription="@string/markdown_label_bold"
     android:src="@drawable/ic_markdown_bold" />
-
-  <ImageView
-    android:id="@+id/markdown_underline"
-    style="@style/FormatButtonIcon"
-    android:src="@drawable/ic_markdown_underline" />
 
   <ImageView
     android:id="@+id/markdown_italics"
     style="@style/FormatButtonIcon"
+    android:contentDescription="@string/markdown_label_italics"
     android:src="@drawable/ic_markdown_italics" />
-
-  <ImageView
-    android:id="@+id/markdown_code"
-    style="@style/FormatButtonIcon"
-    android:src="@drawable/ic_code_white_48dp" />
 
   <ImageView
     android:id="@+id/markdown_unordered"
     style="@style/FormatButtonIcon"
+    android:contentDescription="@string/markdown_label_list"
     android:src="@drawable/ic_format_list_bulleted_white_48dp" />
+
+  <ImageView
+    android:id="@+id/markdown_more"
+    style="@style/FormatButtonIcon"
+    android:src="@drawable/ic_more_horiz_white_48dp" />
 
 </LinearLayout>
