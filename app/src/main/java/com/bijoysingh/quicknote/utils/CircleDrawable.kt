@@ -3,7 +3,7 @@ package com.bijoysingh.quicknote.utils
 import android.graphics.*
 import android.graphics.drawable.Drawable
 
-class CircleDrawable(color: Int) : Drawable() {
+class CircleDrawable(color: Int, showBorder: Boolean = true) : Drawable() {
   private val paint: Paint
   private val borderPaint: Paint
   private var radius = 0
@@ -14,7 +14,11 @@ class CircleDrawable(color: Int) : Drawable() {
 
     val isNightTheme = ThemeManager.themeManager?.isNightTheme() ?: false
     this.borderPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    this.borderPaint.color = if(isNightTheme) Color.LTGRAY else Color.GRAY
+    this.borderPaint.color = when {
+      !showBorder -> Color.TRANSPARENT
+      isNightTheme -> Color.LTGRAY
+      else -> Color.GRAY
+    }
   }
 
   override fun draw(canvas: Canvas) {

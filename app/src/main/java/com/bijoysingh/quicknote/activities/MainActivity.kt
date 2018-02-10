@@ -76,6 +76,8 @@ class MainActivity : ThemedActivity() {
     setListeners()
     registerNoteReceiver()
     notifyThemeChange()
+
+    WhatsNewItemsBottomSheet.maybeOpenSheet(this, store)
   }
 
   fun setListeners() {

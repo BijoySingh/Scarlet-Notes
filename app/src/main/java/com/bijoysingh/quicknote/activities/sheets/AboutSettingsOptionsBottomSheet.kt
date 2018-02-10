@@ -46,6 +46,15 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
+        title = R.string.whats_new_title,
+        subtitle = R.string.whats_new_subtitle,
+        icon = R.drawable.ic_format_quote_white_48dp,
+        listener = View.OnClickListener {
+          WhatsNewItemsBottomSheet.openSheet(activity)
+          dismiss()
+        }
+    ))
+    options.add(OptionsItem(
         title = R.string.home_option_fill_survey,
         subtitle = R.string.home_option_fill_survey_subtitle,
         icon = R.drawable.ic_note_white_48dp,
