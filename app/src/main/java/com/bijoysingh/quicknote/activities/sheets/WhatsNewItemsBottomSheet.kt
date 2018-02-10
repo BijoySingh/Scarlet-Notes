@@ -43,6 +43,7 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
         "- **Notification Actions :** Notifications have better and more actions to take actions quickly\n" +
         "- **Tags in Home Menu :** The tags are now easier to find in the home menu\n" +
         "- **Checked Items :** Checked items now become dull and move down in a checklist\n" +
+        "- **Tablet Support :** Much better tablet support with a consistent bottom sheet experience\n" +
         "### Focusing on the little things\n" +
         "- **Tag Count :** Tags show the number of notes which have that tag, and are sorted by that\n" +
         "- **Indicator Icon :** Notes show a small indicator which help know favourite, archived notes\n" +

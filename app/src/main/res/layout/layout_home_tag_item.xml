@@ -5,7 +5,7 @@
   android:gravity="center_vertical"
   android:orientation="horizontal"
   style="@style/BorderedBackgroundView"
-  android:padding="@dimen/spacing_normal">
+  android:padding="@dimen/spacing_xsmall">
 
   <ImageView
     android:id="@+id/icon"
@@ -34,8 +34,11 @@
 
   <ImageView
     android:id="@+id/action"
-    android:layout_width="@dimen/icon_size_normal"
-    android:layout_height="@dimen/icon_size_normal"
+    android:layout_width="@dimen/icon_size_large"
+    android:layout_height="@dimen/icon_size_large"
+    android:alpha="0.7"
+    style="@style/BorderlessBackgroundView"
+    android:padding="@dimen/spacing_xsmall"
     android:tint="@color/material_blue_400"
     android:contentDescription="@string/ui_icon" />
 </LinearLayout>
