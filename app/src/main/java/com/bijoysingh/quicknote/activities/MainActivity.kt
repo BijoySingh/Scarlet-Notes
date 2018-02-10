@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities
 
 import android.content.BroadcastReceiver
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -15,6 +16,8 @@ import android.widget.GridLayout.VERTICAL
 import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.external.ITutorialActivity
+import com.bijoysingh.quicknote.activities.external.createHint
 import com.bijoysingh.quicknote.activities.sheets.*
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion.KEY_LINE_COUNT
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
@@ -34,7 +37,7 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.github.bijoysingh.starter.util.IntentUtils
 import java.util.*
 
-class MainActivity : ThemedActivity() {
+class MainActivity : ThemedActivity(), ITutorialActivity {
 
   internal lateinit var recyclerView: RecyclerView
   internal lateinit var adapter: NoteAppAdapter
@@ -77,7 +80,12 @@ class MainActivity : ThemedActivity() {
     registerNoteReceiver()
     notifyThemeChange()
 
-    WhatsNewItemsBottomSheet.maybeOpenSheet(this, store)
+    val shown = WhatsNewItemsBottomSheet.maybeOpenSheet(this, store)
+    if (shown) {
+      markHintShown(TUTORIAL_KEY_NEW_NOTE)
+      markHintShown(TUTORIAL_KEY_HOME_SETTINGS)
+    }
+    showHints()
   }
 
   fun setListeners() {
@@ -358,5 +366,49 @@ class MainActivity : ThemedActivity() {
       setupData()
     }
     registerReceiver(receiver, getNoteIntentFilter())
+  }
+
+  /**
+   * Start : Tutorial
+   */
+
+  override fun showHints(): Boolean {
+    when {
+      Note.db(this).count == 0 -> showHint(TUTORIAL_KEY_NEW_NOTE)
+      shouldShowHint(TUTORIAL_KEY_NEW_NOTE) -> showHint(TUTORIAL_KEY_NEW_NOTE)
+      shouldShowHint(TUTORIAL_KEY_HOME_SETTINGS) -> showHint(TUTORIAL_KEY_HOME_SETTINGS)
+      else -> return false
+    }
+
+    return true
+  }
+
+  override fun shouldShowHint(key: String): Boolean {
+    return !store.get(key, false)
+  }
+
+  override fun showHint(key: String) {
+    when (key) {
+      TUTORIAL_KEY_NEW_NOTE -> createHint(this, primaryFab,
+          getString(R.string.tutorial_create_a_new_note),
+          getString(R.string.main_no_notes_hint))
+      TUTORIAL_KEY_HOME_SETTINGS -> createHint(this, secondaryFab,
+          getString(R.string.tutorial_home_menu),
+          getString(R.string.tutorial_home_menu_subtitle))
+    }
+    markHintShown(key)
+  }
+
+  override fun markHintShown(key: String) {
+    store.put(key, true)
+  }
+
+  /**
+   * End : Tutorial
+   */
+
+  companion object {
+    const val TUTORIAL_KEY_NEW_NOTE = "TUTORIAL_KEY_NEW_NOTE"
+    const val TUTORIAL_KEY_HOME_SETTINGS = "TUTORIAL_KEY_HOME_SETTINGS"
   }
 }

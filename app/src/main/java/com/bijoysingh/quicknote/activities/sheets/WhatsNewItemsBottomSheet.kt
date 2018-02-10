@@ -87,10 +87,12 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 
-    fun maybeOpenSheet(activity: MainActivity, dataStore: DataStore) {
+    fun maybeOpenSheet(activity: MainActivity, dataStore: DataStore): Boolean {
       if (shouldShowWhatsNewSheet(activity, dataStore)) {
         openSheet(activity)
+        return true
       }
+      return false
     }
   }
 }

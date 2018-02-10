@@ -226,6 +226,10 @@
   <string name="whats_new_title">What\'s New</string>
   <string name="whats_new_subtitle">Know what is new in the recent updates of the app</string>
   <string name="whats_new_translate">Translate</string>
+
+  <string name="tutorial_create_a_new_note">Click to add a new note</string>
+  <string name="tutorial_home_menu">Click to see home options</string>
+  <string name="tutorial_home_menu_subtitle">The home menu has your favourite and archive notes, as well as application settings. You can find your tags here too.</string>
   <!-- End Whats New -->
 
   <!-- Start Note Text Size -->
