@@ -322,6 +322,5 @@
   <string name="home_option_theme_color" translatable="false">App Theme</string>
   <string name="home_option_theme_color_subtitle" translatable="false">Select the background color for the theme</string>
   <string name="theme_page_title" translatable="false">Select App Theme</string>
-
   <!-- End Theme Color-->
 </resources>

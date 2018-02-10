@@ -201,6 +201,25 @@
   <string name="delete_sheet_delete_trash_no">キャンセル</string>
   <string name="trash_will_delete_automatically">メモは7日後に永久に削除されます</string>
 
+  <string name="home_option_login_with_app">アプリにサインインする</string>
+  <string name="home_option_login_with_app_subtitle">クラウドバックアップと同期のためのサインイン</string>
+  <string name="home_option_logout_of_app">サインアウト</string>
+  <string name="home_option_logout_of_app_subtitle">ログアウトしてクラウドバックアップを停止する</string>
+  <string name="login_with_google">Googleでログイン</string>
+  <string name="logging_into_app">サインイン|</string>
+  <string name="logged_into_app">あなたはログインしています</string>
+  <string name="login_to_google_failed">Googleログインに失敗しました</string>
+  <string name="material_notes_privacy_policy">個人情報保護方針</string>
+  <string name="material_notes_privacy_policy_subtitle">コンテンツのアプリプライバシーポリシー</string>
+  <string name="install_pro_app">プロアプリのインストール</string>
+  <string name="why_install_pro">プロをインストールする理由</string>
+  <string name="why_install_pro_details">クラウド同期を実行するために大規模なサーバーコストの開発者をサポートする \n\n 最新の機能を最初に入手する \n\n いくつかの追加機能はProユーザーだけが利用できます</string>
+  <string name="why_cloud">クラウド同期を有効にする理由</string>
+  <string name="why_cloud_details">â€ "デバイスの変更に対するアップロードとバックアップ \n\n 複数のデバイス間の同期とクイックアップデートの取得 \n\n Google Firebaseサーバーへの安全な保存</string>
+  <string name="welcome_page_hello">こんにちは、</string>
+  <string name="welcome_page_transfer_message">マテリアルノートはスカーレットになりました！</string>
+  <string name="welcome_page_get_started">開始する</string>
+
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">コピー</string>
   <string name="format_action_title">テキストアクションをブロックする</string>

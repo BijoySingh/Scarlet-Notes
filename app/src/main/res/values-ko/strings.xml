@@ -201,6 +201,25 @@
   <string name="delete_sheet_delete_trash_no">취소</string>
   <string name="trash_will_delete_automatically">메모는 7 일 후 영구 삭제됩니다.</string>
 
+  <string name="home_option_login_with_app">앱에 로그인</string>
+  <string name="home_option_login_with_app_subtitle">클라우드 백업 및 동기화를위한 로그인</string>
+  <string name="home_option_logout_of_app">로그 아웃</string>
+  <string name="home_option_logout_of_app_subtitle">클라우드 백업을 중지하려면 로그 아웃하십시오.</string>
+  <string name="login_with_google">Google로 로그인</string>
+  <string name="logging_into_app">로그인 |</string>
+  <string name="logged_into_app">로그인하셨습니다.</string>
+  <string name="login_to_google_failed">Google 로그인 실패</string>
+  <string name="material_notes_privacy_policy">개인 정보 정책</string>
+  <string name="material_notes_privacy_policy_subtitle">콘텐츠에 대한 앱 개인 정보 취급 방침</string>
+  <string name="install_pro_app">프로 앱 설치</string>
+  <string name="why_install_pro">Pro를 설치해야하는 이유</string>
+  <string name="why_install_pro_details">대규모의 서버 비용, 클라우드 동기화 실행을위한 개발자 지원 \n\n 최신 기능 먼저 가져 오기 \n\n 일부 추가 기능은 Pro 사용자 만 사용할 수 있습니다</string>
+  <string name="why_cloud">클라우드 동기화를 사용 설정해야하는 이유</string>
+  <string name="why_cloud_details">장치 변경에 대한 업로드 및 백업 \n\n 여러 장치 간 동기화 및 빠른 업데이트 받기 \n\n Google Firebase 서버에 안전하게 저장</string>
+  <string name="welcome_page_hello">여보세요,</string>
+  <string name="welcome_page_transfer_message">소재 노트는 스칼렛입니다!</string>
+  <string name="welcome_page_get_started">시작하다</string>
+
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">부</string>
   <string name="format_action_title">텍스트 작업 차단</string>
