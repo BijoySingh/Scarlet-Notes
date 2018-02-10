@@ -15,7 +15,9 @@ import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.items.TagOptionsItem
 import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.bijoysingh.quicknote.utils.ThemeColorType
+import com.bijoysingh.quicknote.views.HomeTagView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
+import com.github.bijoysingh.starter.util.LocaleManager
 import com.github.bijoysingh.uibasics.views.UIActionView
 import com.github.bijoysingh.uibasics.views.UITextView
 
@@ -124,26 +126,26 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   fun setTagOptions(dialog: Dialog, options: List<TagOptionsItem>) {
     val layout = dialog.findViewById<LinearLayout>(R.id.options_container);
     for (option in options.sorted()) {
-      val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIActionView
-      contentView.setTitle(option.tag.title)
-      contentView.setOnClickListener(option.listener)
+      val contentView = HomeTagView(View.inflate(context, R.layout.layout_home_tag_item, null))
+      contentView.title.setText(option.tag.title)
+      contentView.rootView.setOnClickListener(option.listener)
       contentView.subtitle.visibility = View.GONE
-      contentView.setImageResource(option.getIcon())
+      contentView.icon.setImageResource(option.getIcon())
 
-      contentView.setActionResource(option.getEditIcon());
-      contentView.setActionTint(theme().get(themedContext(), ThemeColorType.HINT_TEXT));
-      contentView.setActionClickListener(option.editListener)
+      contentView.action.setImageResource(option.getEditIcon());
+      contentView.action.setColorFilter(theme().get(themedContext(), ThemeColorType.HINT_TEXT));
+      contentView.action.setOnClickListener(option.editListener)
 
       if (option.usages > 0) {
-        contentView.setSubtitle(themedContext().getString(R.string.notes_count_for_tags, option.usages))
+        contentView.subtitle.setText(LocaleManager.toString(option.usages))
         contentView.subtitle.visibility = View.VISIBLE
       }
 
-      contentView.setTitleColor(getOptionsTitleColor(option.selected))
-      contentView.setSubtitleColor(getOptionsSubtitleColor(option.selected))
-      contentView.setImageTint(getOptionsTitleColor(option.selected))
+      contentView.title.setTextColor(getOptionsTitleColor(option.selected))
+      contentView.subtitle.setTextColor(getOptionsSubtitleColor(option.selected))
+      contentView.icon.setColorFilter(getOptionsTitleColor(option.selected))
 
-      layout.addView(contentView)
+      layout.addView(contentView.rootView)
     }
   }
 

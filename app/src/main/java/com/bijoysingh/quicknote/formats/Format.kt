@@ -33,7 +33,7 @@ class Format : Comparable<Format> {
       when (formatType) {
         FormatType.BULLET_LIST, FormatType.NUMBERED_LIST -> return "- " + text
         FormatType.HEADING -> return "# " + text
-        FormatType.CHECKLIST_CHECKED -> return "\u2611 " + text
+        FormatType.CHECKLIST_CHECKED -> return "\u2612 " + text
         FormatType.CHECKLIST_UNCHECKED -> return "\u2610 " + text
         FormatType.IMAGE, FormatType.SUB_HEADING -> return "### " + text
         FormatType.CODE -> return "```\n$text\n```"
