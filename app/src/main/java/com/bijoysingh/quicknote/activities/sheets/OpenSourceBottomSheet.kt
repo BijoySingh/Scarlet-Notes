@@ -98,6 +98,13 @@ class OpenSourceBottomSheet : ThemedBottomSheetFragment() {
         "- `'uk.co.samuelwall:material-tap-target-prompt'`\n" +
         "#### Markwon: Markdown Library\n" +
         "- `'ru.noties:markwon'`\n" +
+        "#### Google Firebase Support Library\n" +
+        "- `'com.google.firebase:firebase-auth'`\n" +
+        "- `'com.google.firebase:firebase-database'`\n" +
+        "#### Google Play Services Library\n" +
+        "- `'com.google.android.gms:play-services-auth'`\n" +
+        "#### Shortcuts Gradle Plugin\n" +
+        "- `'com.github.zellius:android-shortcut-gradle-plugin'`\n" +
         "#### Google Flexbox Library\n" +
         "- `'com.google.android:flexbox'`\n"
 
