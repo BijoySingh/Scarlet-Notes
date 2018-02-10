@@ -210,4 +210,12 @@
   <string name="note_option_font_size_example">Laraskan saiz fon teks dalam halaman nota. Anda boleh melihat bagaimana ia kelihatan seperti dalam pratonton ini.</string>
   <string name="note_option_font_size_subtitle">%d saiz teks dalam pemapar nota</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">Apa yang Baru</string>
+  <string name="whats_new_subtitle">Ketahui apa yang baru dalam kemas kini aplikasi baru-baru ini</string>
+  <string name="whats_new_translate">Terjemah</string>
+  <string name="tutorial_create_a_new_note">Klik untuk menambah nota baharu</string>
+  <string name="tutorial_home_menu">Klik untuk melihat pilihan rumah</string>
+  <string name="tutorial_home_menu_subtitle">Menu rumah mempunyai nota kegemaran dan arkib anda, serta tetapan aplikasi. Anda boleh mencari tag anda di sini juga.</string>
+
 </resources>

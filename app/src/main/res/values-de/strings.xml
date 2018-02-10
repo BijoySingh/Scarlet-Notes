@@ -211,5 +211,12 @@
   <string name="note_option_font_size_example">Passen Sie die Schriftgröße des Textes auf der Notizenseite an. Sie können sehen, wie es in dieser Vorschau aussehen würde.</string>
   <string name="note_option_font_size_subtitle">%d Größe des Textes im Notizenbetrachter</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">Was gibt\'s Neues</string>
+  <string name="whats_new_subtitle">Erfahren Sie, was in den letzten Updates der App neu ist</string>
+  <string name="whats_new_translate">Übersetzen</string>
+  <string name="tutorial_create_a_new_note">Klicken Sie auf, um eine neue Notiz hinzuzufügen</string>
+  <string name="tutorial_home_menu">Klicken Sie hier, um die Startseite anzuzeigen</string>
+  <string name="tutorial_home_menu_subtitle">Das Home-Menü enthält Ihre Favoriten- und Archivnotizen sowie die Anwendungseinstellungen. Sie können Ihre Tags auch hier finden.</string>
 
 </resources>

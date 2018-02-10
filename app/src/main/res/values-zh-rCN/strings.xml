@@ -209,4 +209,12 @@
   <string name="note_option_font_size_example">调整笔记页面中文字的字体大小。 你可以看到它在这个预览中的样子。</string>
   <string name="note_option_font_size_subtitle">笔记查看器中文本的%d大小</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">什么是新的</string>
+  <string name="whats_new_subtitle">了解最近更新的应用程序中的新功能</string>
+  <string name="whats_new_translate">翻译</string>
+  <string name="tutorial_create_a_new_note">点击添加一个新的笔记</string>
+  <string name="tutorial_home_menu">点击查看家庭选项</string>
+  <string name="tutorial_home_menu_subtitle">主菜单有您最喜欢的和存档的笔记，以及应用程序设置。 你也可以在这里找到你的标签。</string>
+
 </resources>

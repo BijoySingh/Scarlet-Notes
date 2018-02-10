@@ -211,4 +211,12 @@
   <string name="note_option_font_size_example">Ajuste el tamaño de fuente del texto en la página de notas. Puedes ver cómo se vería en esta vista previa.</string>
   <string name="note_option_font_size_subtitle">%d tamaño del texto en el visor de notas</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">Qué hay de nuevo</string>
+  <string name="whats_new_subtitle">Saber qué hay de nuevo en las actualizaciones recientes de la aplicación</string>
+  <string name="whats_new_translate">Traducir</string>
+  <string name="tutorial_create_a_new_note">Haga clic para agregar una nueva nota</string>
+  <string name="tutorial_home_menu">Haga clic para ver las opciones de inicio</string>
+  <string name="tutorial_home_menu_subtitle">El menú de inicio tiene sus notas favoritas y de archivo, así como la configuración de la aplicación. Usted puede encontrar sus etiquetas aquí también.</string>
+
 </resources>

@@ -211,4 +211,12 @@
   <string name="note_option_font_size_example">התאם את גודל הגופן של הטקסט בדף ההערות. תוכל לראות כיצד ייראה בתצוגה המקדימה הזו.</string>
   <string name="note_option_font_size_subtitle">%d של הטקסט במציג ההערות</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">מה חדש</string>
+  <string name="whats_new_subtitle">דע מה חדש בעדכונים האחרונים של האפליקציה</string>
+  <string name="whats_new_translate">לתרגם</string>
+  <string name="tutorial_create_a_new_note">לחץ כדי להוסיף הערה חדשה</string>
+  <string name="tutorial_home_menu">לחץ כדי לראות את אפשרויות הבית</string>
+  <string name="tutorial_home_menu_subtitle">בתפריט הבית יש הערות מועדפות וארכיוניות, כמו גם הגדרות יישום. תוכל למצוא את התגים שלך גם כאן.</string>
+
 </resources>

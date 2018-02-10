@@ -210,4 +210,12 @@
   <string name="note_option_font_size_example">Regola le dimensioni del carattere del testo nella pagina delle note. Puoi vedere come sarebbe in questa anteprima.</string>
   <string name="note_option_font_size_subtitle">%d dimensioni del testo nel visualizzatore note</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">Cosa c\'è di nuovo</string>
+  <string name="whats_new_subtitle">Scopri cosa c\'è di nuovo nei recenti aggiornamenti dell\'app</string>
+  <string name="whats_new_translate">Tradurre</string>
+  <string name="tutorial_create_a_new_note">Fai clic per aggiungere una nuova nota</string>
+  <string name="tutorial_home_menu">Clicca per vedere le opzioni di casa</string>
+  <string name="tutorial_home_menu_subtitle">Il menu principale contiene le note preferite e di archivio, nonché le impostazioni dell\'applicazione. Puoi trovare i tuoi tag anche qui.</string>
+
 </resources>

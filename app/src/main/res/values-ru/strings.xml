@@ -213,4 +213,12 @@
   <string name="note_option_font_size_example">Отрегулируйте размер шрифта текста на странице заметок. Вы можете увидеть, как это будет выглядеть в этом предварительном просмотре.</string>
   <string name="note_option_font_size_subtitle">%d размер текста в приложении просмотра заметки</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">Что нового</string>
+  <string name="whats_new_subtitle">Узнайте, что нового в последних обновлениях приложения</string>
+  <string name="whats_new_translate">Переведите</string>
+  <string name="tutorial_create_a_new_note">Нажмите, чтобы добавить новую заметку</string>
+  <string name="tutorial_home_menu">Нажмите, чтобы увидеть домашние параметры</string>
+  <string name="tutorial_home_menu_subtitle">В главном меню есть ваши любимые и архивные заметки, а также настройки приложения. Здесь вы можете найти свои теги.</string>
+
 </resources>

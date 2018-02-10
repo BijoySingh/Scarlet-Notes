@@ -210,4 +210,12 @@
   <string name="note_option_font_size_example">नोट्स पेज में पाठ का फ़ॉन्ट आकार समायोजित करें आप देख सकते हैं कि यह पूर्वावलोकन कैसे दिखता है।</string>
   <string name="note_option_font_size_subtitle">%d नोट दर्शक में पाठ का आकार</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">नया क्या है</string>
+  <string name="whats_new_subtitle">एप के हालिया अपडेट में नया क्या है, पता करें</string>
+  <string name="whats_new_translate">अनुवाद करना</string>
+  <string name="tutorial_create_a_new_note">कोई नया नोट जोड़ने के लिए क्लिक करें</string>
+  <string name="tutorial_home_menu">होम विकल्प देखने के लिए क्लिक करें</string>
+  <string name="tutorial_home_menu_subtitle">होम मेनू में आपके पसंदीदा और संग्रह नोट्स, साथ ही एप्लिकेशन सेटिंग्स हैं। आप यहां अपने टैग भी पा सकते हैं।</string>
+
 </resources>

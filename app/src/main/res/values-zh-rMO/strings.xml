@@ -209,4 +209,12 @@
   <string name="note_option_font_size_example">調整筆記頁面中文字的字體大小。 你可以看到它在這個預覽中的樣子。</string>
   <string name="note_option_font_size_subtitle">筆記查看器中文本的%d大小</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">什麼是新的</string>
+  <string name="whats_new_subtitle">了解最近更新的應用程序中的新功能</string>
+  <string name="whats_new_translate">翻譯</string>
+  <string name="tutorial_create_a_new_note">點擊添加一個新的筆記</string>
+  <string name="tutorial_home_menu">點擊查看家庭選項</string>
+  <string name="tutorial_home_menu_subtitle">主菜單有您最喜歡的和存檔的筆記，以及應用程序設置。 你也可以在這裡找到你的標籤。</string>
+
 </resources>

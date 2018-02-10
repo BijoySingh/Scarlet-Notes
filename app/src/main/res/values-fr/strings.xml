@@ -210,4 +210,12 @@
   <string name="note_option_font_size_example">Ajustez la taille de la police du texte dans la page des notes. Vous pouvez voir à quoi cela ressemblerait dans cet aperçu.</string>
   <string name="note_option_font_size_subtitle">%d taille du texte dans la visionneuse de notes</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">Quoi de neuf</string>
+  <string name="whats_new_subtitle">Savoir ce qu\'il y a de neuf dans les mises à jour récentes de l\'application</string>
+  <string name="whats_new_translate">Traduire</string>
+  <string name="tutorial_create_a_new_note">Cliquez pour ajouter une nouvelle note</string>
+  <string name="tutorial_home_menu">Cliquez pour voir les options de la maison</string>
+  <string name="tutorial_home_menu_subtitle">Le menu d\'accueil a vos notes préférées et d\'archivage, ainsi que les paramètres de l\'application. Vous pouvez trouver vos tags ici aussi.</string>
+
 </resources>

@@ -211,4 +211,12 @@
   <string name="note_option_font_size_example">Notlar sayfasındaki metnin yazı tipi boyutunu ayarlayın. Bu önizlemede bunun nasıl olacağını görebilirsiniz.</string>
   <string name="note_option_font_size_subtitle">%d nota görüntüleyicideki metin boyutu</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">Ne var ne yok</string>
+  <string name="whats_new_subtitle">Uygulamanın son güncellemelerindeki yenilikleri bilin</string>
+  <string name="whats_new_translate">Çevirmek</string>
+  <string name="tutorial_create_a_new_note">Yeni bir not eklemek için tıklayın</string>
+  <string name="tutorial_home_menu">Ev seçeneklerini görmek için tıklayın</string>
+  <string name="tutorial_home_menu_subtitle">Ana menü, favori ve arşiv notların yanı sıra uygulama ayarlarına sahiptir. Etiketlerinizi de burada bulabilirsiniz.</string>
+
 </resources>

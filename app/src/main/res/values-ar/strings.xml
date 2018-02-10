@@ -210,4 +210,12 @@
   <string name="note_option_font_size_example">اضبط حجم خط النص في صفحة الملاحظات. يمكنك أن ترى كيف سيبدو في هذه المعاينة.</string>
   <string name="note_option_font_size_subtitle">%d حجم النص في عارض المذكرة</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">ما هو الجديد</string>
+  <string name="whats_new_subtitle">تعرف ما هو الجديد في التحديثات الأخيرة من التطبيق</string>
+  <string name="whats_new_translate">ترجمه</string>
+  <string name="tutorial_create_a_new_note">انقر لإضافة ملاحظة جديدة</string>
+  <string name="tutorial_home_menu">انقر لرؤية خيارات المنزل</string>
+  <string name="tutorial_home_menu_subtitle">القائمة الرئيسية لديها الملاحظات المفضلة لديك والأرشيف، وكذلك إعدادات التطبيق. يمكنك العثور على العلامات هنا أيضا.</string>
+
 </resources>

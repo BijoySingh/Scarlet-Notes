@@ -209,4 +209,12 @@
   <string name="note_option_font_size_example">नोट्स पृष्ठामधील मजकुराचा फॉन्ट आकार समायोजित करा. आपण हे पूर्वावलोकन कसे दिसेल ते पाहू शकता.</string>
   <string name="note_option_font_size_subtitle">%d नोट दर्शक मध्ये मजकूराचा आकार</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">काय नवीन आहे</string>
+  <string name="whats_new_subtitle">अॅपच्या अलीकडील अद्यतनांमध्ये नवीन काय आहे ते जाणून घ्या</string>
+  <string name="whats_new_translate">भाषांतर करा</string>
+  <string name="tutorial_create_a_new_note">एक नवीन टीप जोडण्यासाठी क्लिक करा</string>
+  <string name="tutorial_home_menu">मुख्यपृष्ठ पर्याय पाहण्यासाठी क्लिक करा</string>
+  <string name="tutorial_home_menu_subtitle">होम मेनूमध्ये आपल्या पसंतीचे आणि संग्रहित नोट्स तसेच अनुप्रयोग सेटिंग्ज असतात. आपण येथे आपले टॅगदेखील शोधू शकता.</string>
+
 </resources>

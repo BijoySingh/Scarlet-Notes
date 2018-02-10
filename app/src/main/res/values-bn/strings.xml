@@ -212,4 +212,12 @@
   <string name="note_option_font_size_example">নোট পৃষ্ঠাতে পাঠ্যের ফন্টের আকার সামঞ্জস্য করুন। আপনি এই পূর্বরূপে কেমন দেখতে পাবেন তা দেখতে পারেন।</string>
   <string name="note_option_font_size_subtitle">%d নোট ভিউয়ারের পাঠ্যের আকার</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">কি নতুন</string>
+  <string name="whats_new_subtitle">অ্যাপ্লিকেশনের সাম্প্রতিক আপডেটে নতুন কি আছে তা জানুন</string>
+  <string name="whats_new_translate">অনুবাদ</string>
+  <string name="tutorial_create_a_new_note">একটি নতুন নোট যোগ করতে ক্লিক করুন</string>
+  <string name="tutorial_home_menu">হোম বিকল্প দেখতে ক্লিক করুন</string>
+  <string name="tutorial_home_menu_subtitle">হোম মেনু আপনার প্রিয় এবং আর্কাইভ নোট, পাশাপাশি অ্যাপ্লিকেশন সেটিংস আছে। আপনি এখানে আপনার ট্যাগ খুঁজে পেতে পারেন।</string>
+
 </resources>

@@ -210,4 +210,12 @@
   <string name="note_option_font_size_example">ਨੋਟਸ ਪੇਜ ਵਿੱਚ ਟੈਕਸਟ ਦਾ ਫੌਂਟ ਸਾਈਜ ਅਡਜੱਸਟ ਕਰੋ. ਤੁਸੀਂ ਵੇਖ ਸਕਦੇ ਹੋ ਕਿ ਇਹ ਪੂਰਵਦਰਸ਼ਨ ਕਿਵੇਂ ਦਿਖਾਈ ਦੇਵੇਗਾ.</string>
   <string name="note_option_font_size_subtitle">%d ਨੋਟ ਵਿਊਅਰ ਵਿੱਚ ਟੈਕਸਟ ਦੇ ਆਕਾਰ</string>
 
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">ਨਵਾਂ ਕੀ ਹੈ</string>
+  <string name="whats_new_subtitle">ਐਪ ਦੇ ਹਾਲ ਹੀ ਦੇ ਅਪਡੇਟਸ ਵਿੱਚ ਨਵਾਂ ਕੀ ਹੈ ਪਤਾ ਕਰੋ</string>
+  <string name="whats_new_translate">ਅਨੁਵਾਦ</string>
+  <string name="tutorial_create_a_new_note">ਇੱਕ ਨਵਾਂ ਨੋਟ ਜੋੜਨ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
+  <string name="tutorial_home_menu">ਘਰ ਦੀਆਂ ਚੋਣਾਂ ਦੇਖਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
+  <string name="tutorial_home_menu_subtitle">ਹੋਮ ਮੀਨੂ ਵਿੱਚ ਤੁਹਾਡੀ ਮਨਪਸੰਦ ਅਤੇ ਅਕਾਇਵ ਨੋਟਸ ਦੇ ਨਾਲ ਨਾਲ ਐਪਲੀਕੇਸ਼ਨ ਸੈਟਿੰਗਜ਼ ਵੀ ਹਨ. ਤੁਸੀਂ ਇੱਥੇ ਆਪਣੇ ਟੈਗ ਵੀ ਲੱਭ ਸਕਦੇ ਹੋ</string>
+
 </resources>
