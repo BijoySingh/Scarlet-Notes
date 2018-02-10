@@ -187,4 +187,29 @@
   <string name="delete_sheet_delete_trash_no">Stornieren</string>
   <string name="trash_will_delete_automatically">Notizen werden nach 7 Tagen für immer gelöscht</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">Notiz hinzufügen</string>
+  <string name="shortcut_add_list">Prüfliste hinzufügen</string>
+  <string name="format_sheet_option_title">Blockformatierung</string>
+  <string name="format_label_heading">Überschrift</string>
+  <string name="format_label_sub_heading">Unter Überschrift</string>
+  <string name="format_label_text">Text</string>
+  <string name="format_label_quote">Zitat</string>
+  <string name="format_label_code">Code</string>
+  <string name="format_label_list">Checkliste</string>
+  <string name="markdown_sheet_option_title">Abzeichnungsformatierung</string>
+  <string name="markdown_label_bold">Fett gedruckt</string>
+  <string name="markdown_label_italics">Kursivschrift</string>
+  <string name="markdown_label_underline">Unterstreichen</string>
+  <string name="markdown_label_strikethrough">Streik</string>
+  <string name="markdown_label_list">Liste</string>
+  <string name="select_a_note_title">Wählen Sie eine Notiz</string>
+  <string name="select_notes_title">Wählen Sie Notizen</string>
+  <string name="nav_settings">die Einstellungen</string>
+  <string name="widget_no_valid_note">Notiz entweder gelöscht oder gesperrt</string>
+  <string name="note_option_font_size">Hinweis Schriftgröße</string>
+  <string name="note_option_font_size_example">Passen Sie die Schriftgröße des Textes auf der Notizenseite an. Sie können sehen, wie es in dieser Vorschau aussehen würde.</string>
+  <string name="note_option_font_size_subtitle">%d Größe des Textes im Notizenbetrachter</string>
+
+
 </resources>

@@ -189,4 +189,28 @@
   <string name="delete_sheet_delete_trash_no">Отмена</string>
   <string name="trash_will_delete_automatically">Заметки удаляются навсегда через 7 дней</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">Добавить заметку</string>
+  <string name="shortcut_add_list">Добавить контрольный список</string>
+  <string name="format_sheet_option_title">Блокирование форматирования</string>
+  <string name="format_label_heading">заголовок</string>
+  <string name="format_label_sub_heading">Sub Heading</string>
+  <string name="format_label_text">Текст</string>
+  <string name="format_label_quote">котировка</string>
+  <string name="format_label_code">Код</string>
+  <string name="format_label_list">контрольный список</string>
+  <string name="markdown_sheet_option_title">Форматирование Markdown</string>
+  <string name="markdown_label_bold">Жирный</string>
+  <string name="markdown_label_italics">Курсив</string>
+  <string name="markdown_label_underline">подчеркивание</string>
+  <string name="markdown_label_strikethrough">удар</string>
+  <string name="markdown_label_list">Список</string>
+  <string name="select_a_note_title">Выберите примечание</string>
+  <string name="select_notes_title">Выберите заметки</string>
+  <string name="nav_settings">настройки</string>
+  <string name="widget_no_valid_note">Примечание: удалены или заблокированы</string>
+  <string name="note_option_font_size">Примечание Размер шрифта</string>
+  <string name="note_option_font_size_example">Отрегулируйте размер шрифта текста на странице заметок. Вы можете увидеть, как это будет выглядеть в этом предварительном просмотре.</string>
+  <string name="note_option_font_size_subtitle">%d размер текста в приложении просмотра заметки</string>
+
 </resources>

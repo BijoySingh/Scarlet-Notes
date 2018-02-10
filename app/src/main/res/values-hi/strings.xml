@@ -186,4 +186,28 @@
   <string name="delete_sheet_delete_trash_no">रद्द करना</string>
   <string name="trash_will_delete_automatically">नोट्स 7 दिनों के बाद हमेशा के लिए हटा दिए जाते हैं</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">नोट जोड़े</string>
+  <string name="shortcut_add_list">चेकलिस्ट जोड़ें</string>
+  <string name="format_sheet_option_title">ब्लॉक फ़ॉर्मेटिंग</string>
+  <string name="format_label_heading">शीर्षक</string>
+  <string name="format_label_sub_heading">उप शीर्षक</string>
+  <string name="format_label_text">टेक्स्ट</string>
+  <string name="format_label_quote">उद्धरण</string>
+  <string name="format_label_code">कोड</string>
+  <string name="format_label_list">चेकलिस्ट</string>
+  <string name="markdown_sheet_option_title">मार्कडाउन फ़ॉर्मेटिंग</string>
+  <string name="markdown_label_bold">साहसिक</string>
+  <string name="markdown_label_italics">इटैलिक</string>
+  <string name="markdown_label_underline">रेखांकित करना</string>
+  <string name="markdown_label_strikethrough">धरना</string>
+  <string name="markdown_label_list">सूची</string>
+  <string name="select_a_note_title">एक नोट चुनें</string>
+  <string name="select_notes_title">नोट्स का चयन करें</string>
+  <string name="nav_settings">सेटिंग्स</string>
+  <string name="widget_no_valid_note">नोट या तो नष्ट या लॉक</string>
+  <string name="note_option_font_size">नोट फ़ॉन्ट आकार</string>
+  <string name="note_option_font_size_example">नोट्स पेज में पाठ का फ़ॉन्ट आकार समायोजित करें आप देख सकते हैं कि यह पूर्वावलोकन कैसे दिखता है।</string>
+  <string name="note_option_font_size_subtitle">%d नोट दर्शक में पाठ का आकार</string>
+
 </resources>

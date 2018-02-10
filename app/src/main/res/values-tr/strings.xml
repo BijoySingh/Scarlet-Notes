@@ -187,4 +187,28 @@
   <string name="delete_sheet_delete_trash_no">İptal etmek</string>
   <string name="trash_will_delete_automatically">Notlar son 7 gün sonra silinir</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">Not ekle</string>
+  <string name="shortcut_add_list">Kontrol Listesi Ekle</string>
+  <string name="format_sheet_option_title">Blok Formatlama</string>
+  <string name="format_label_heading">başlık</string>
+  <string name="format_label_sub_heading">Alt Başlık</string>
+  <string name="format_label_text">Metin</string>
+  <string name="format_label_quote">Alıntı</string>
+  <string name="format_label_code">kod</string>
+  <string name="format_label_list">Kontrol Listesi</string>
+  <string name="markdown_sheet_option_title">İşaretleme Biçimlendirme</string>
+  <string name="markdown_label_bold">cesur</string>
+  <string name="markdown_label_italics">italik yazı</string>
+  <string name="markdown_label_underline">Altını çizmek</string>
+  <string name="markdown_label_strikethrough">Vuruş</string>
+  <string name="markdown_label_list">Liste</string>
+  <string name="select_a_note_title">Not Seç</string>
+  <string name="select_notes_title">Notlar\'ı seçin</string>
+  <string name="nav_settings">Ayarlar</string>
+  <string name="widget_no_valid_note">Silinmiş veya kilitlenmiş olarak not edin</string>
+  <string name="note_option_font_size">Not Yazı Tipi Boyutu</string>
+  <string name="note_option_font_size_example">Notlar sayfasındaki metnin yazı tipi boyutunu ayarlayın. Bu önizlemede bunun nasıl olacağını görebilirsiniz.</string>
+  <string name="note_option_font_size_subtitle">%d nota görüntüleyicideki metin boyutu</string>
+
 </resources>

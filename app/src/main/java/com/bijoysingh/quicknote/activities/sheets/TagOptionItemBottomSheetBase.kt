@@ -68,11 +68,6 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
         contentView.setActionClickListener(option.editListener)
       }
 
-      if (option.usages > 0) {
-        contentView.setSubtitle(themedContext().getString(R.string.notes_count_for_tags, option.usages))
-        contentView.subtitle.visibility = VISIBLE
-      }
-
       contentView.setTitleColor(getOptionsTitleColor(option.selected))
       contentView.setSubtitleColor(getOptionsSubtitleColor(option.selected))
       contentView.setImageTint(getOptionsTitleColor(option.selected))

@@ -186,4 +186,28 @@
   <string name="delete_sheet_delete_trash_no">Batalkan</string>
   <string name="trash_will_delete_automatically">Nota akan dihapuskan selamanya selepas 7 hari</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">Tambah Nota</string>
+  <string name="shortcut_add_list">Tambah Senarai Semak</string>
+  <string name="format_sheet_option_title">Blok Pemformatan</string>
+  <string name="format_label_heading">Tajuk</string>
+  <string name="format_label_sub_heading">Sub Tajuk</string>
+  <string name="format_label_text">Teks</string>
+  <string name="format_label_quote">Quote</string>
+  <string name="format_label_code">Kod</string>
+  <string name="format_label_list">Senarai Semak</string>
+  <string name="markdown_sheet_option_title">Pemformatan Markdown</string>
+  <string name="markdown_label_bold">Bold</string>
+  <string name="markdown_label_italics">Italik</string>
+  <string name="markdown_label_underline">Garis bawah</string>
+  <string name="markdown_label_strikethrough">Mogok</string>
+  <string name="markdown_label_list">Senarai</string>
+  <string name="select_a_note_title">Pilih Nota</string>
+  <string name="select_notes_title">Pilih Nota</string>
+  <string name="nav_settings">Tetapan</string>
+  <string name="widget_no_valid_note">Perhatikan sama ada dipadam atau dikunci</string>
+  <string name="note_option_font_size">Nota Saiz Fon</string>
+  <string name="note_option_font_size_example">Laraskan saiz fon teks dalam halaman nota. Anda boleh melihat bagaimana ia kelihatan seperti dalam pratonton ini.</string>
+  <string name="note_option_font_size_subtitle">%d saiz teks dalam pemapar nota</string>
+
 </resources>

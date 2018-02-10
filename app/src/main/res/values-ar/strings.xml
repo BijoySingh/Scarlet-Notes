@@ -186,4 +186,28 @@
   <string name="delete_sheet_delete_trash_no">إلغاء</string>
   <string name="trash_will_delete_automatically">يتم حذف الملاحظات إلى الأبد بعد 7 أيام</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">اضف ملاحظة</string>
+  <string name="shortcut_add_list">إضافة قائمة التحقق</string>
+  <string name="format_sheet_option_title">كتلة التنسيق</string>
+  <string name="format_label_heading">عنوان</string>
+  <string name="format_label_sub_heading">عنوان فرعي</string>
+  <string name="format_label_text">نص</string>
+  <string name="format_label_quote">اقتبس</string>
+  <string name="format_label_code">الشفرة</string>
+  <string name="format_label_list">قائمة تدقيق</string>
+  <string name="markdown_sheet_option_title">تنسيق تحديد السعر</string>
+  <string name="markdown_label_bold">بالخط العريض</string>
+  <string name="markdown_label_italics">المائل</string>
+  <string name="markdown_label_underline">أكد</string>
+  <string name="markdown_label_strikethrough">إضراب</string>
+  <string name="markdown_label_list">قائمة</string>
+  <string name="select_a_note_title">حدد ملاحظة</string>
+  <string name="select_notes_title">حدد نوتس</string>
+  <string name="nav_settings">إعدادات</string>
+  <string name="widget_no_valid_note">لاحظ إما حذف أو تأمين</string>
+  <string name="note_option_font_size">ملاحظة حجم الخط</string>
+  <string name="note_option_font_size_example">اضبط حجم خط النص في صفحة الملاحظات. يمكنك أن ترى كيف سيبدو في هذه المعاينة.</string>
+  <string name="note_option_font_size_subtitle">%d حجم النص في عارض المذكرة</string>
+
 </resources>

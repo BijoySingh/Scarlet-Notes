@@ -186,4 +186,28 @@
   <string name="delete_sheet_delete_trash_no">ਰੱਦ ਕਰੋ</string>
   <string name="trash_will_delete_automatically">ਸੂਚਨਾਵਾਂ 7 ਦਿਨਾਂ ਦੇ ਬਾਅਦ ਹਮੇਸ਼ਾਂ ਮਿਟਾਈਆਂ ਜਾਂਦੀਆਂ ਹਨ</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">ਨੋਟ ਜੋੜੋ</string>
+  <string name="shortcut_add_list">ਚੈੱਕਲਿਸਟ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="format_sheet_option_title">ਬਲਾਕ ਫਾਰਮੈਟਿੰਗ</string>
+  <string name="format_label_heading">ਸਿਰਲੇਖ</string>
+  <string name="format_label_sub_heading">ਉਪ ਸਿਰਲੇਖ</string>
+  <string name="format_label_text">ਟੈਕਸਟ</string>
+  <string name="format_label_quote">ਹਵਾਲਾ</string>
+  <string name="format_label_code">ਕੋਡ</string>
+  <string name="format_label_list">ਚੈੱਕਲਿਸਟ</string>
+  <string name="markdown_sheet_option_title">ਮਾਰਕੇਡੋਂ ਫਾਰਮੈਟਿੰਗ</string>
+  <string name="markdown_label_bold">ਬੋਲਡ</string>
+  <string name="markdown_label_italics">ਇਟਾਲਿਕ</string>
+  <string name="markdown_label_underline">ਹੇਠਾਂ ਰੇਖਾ ਖਿੱਚੋ</string>
+  <string name="markdown_label_strikethrough">ਹੜਤਾਲ</string>
+  <string name="markdown_label_list">ਸੂਚੀ</string>
+  <string name="select_a_note_title">ਇੱਕ ਨੋਟ ਚੁਣੋ</string>
+  <string name="select_notes_title">ਨੋਟਸ ਚੁਣੋ</string>
+  <string name="nav_settings">ਸੈਟਿੰਗਾਂ</string>
+  <string name="widget_no_valid_note">ਸੂਚਨਾ ਜਾਂ ਤਾਂ ਮਿਟਾਈ ਜਾਂ ਲਾਕ ਕੀਤੀ ਹੈ</string>
+  <string name="note_option_font_size">ਨੋਟ ਫੋਂਟ ਆਕਾਰ</string>
+  <string name="note_option_font_size_example">ਨੋਟਸ ਪੇਜ ਵਿੱਚ ਟੈਕਸਟ ਦਾ ਫੌਂਟ ਸਾਈਜ ਅਡਜੱਸਟ ਕਰੋ. ਤੁਸੀਂ ਵੇਖ ਸਕਦੇ ਹੋ ਕਿ ਇਹ ਪੂਰਵਦਰਸ਼ਨ ਕਿਵੇਂ ਦਿਖਾਈ ਦੇਵੇਗਾ.</string>
+  <string name="note_option_font_size_subtitle">%d ਨੋਟ ਵਿਊਅਰ ਵਿੱਚ ਟੈਕਸਟ ਦੇ ਆਕਾਰ</string>
+
 </resources>

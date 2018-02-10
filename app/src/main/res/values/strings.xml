@@ -216,20 +216,18 @@
   <string name="sort_sheet_last_modified">Most Recently Modified</string>
 
   <!-- Start Select Notes -->
-  <string name="select_a_note_title" translatable="false">Select a Note</string>
-  <string name="select_notes_title" translatable="false">Select Notes</string>
+  <string name="select_a_note_title">Select a Note</string>
+  <string name="select_notes_title">Select Notes</string>
 
-  <string name="nav_settings" translatable="false">Settings</string>
+  <string name="nav_settings">Settings</string>
 
-  <string name="widget_no_valid_note" translatable="false">Note either deleted or locked</string>
-
-  <string name="notes_count_for_tags" translatable="false">%d notes</string>
+  <string name="widget_no_valid_note">Note either deleted or locked</string>
   <!-- End Select Notes -->
 
   <!-- Start Note Text Size -->
-  <string name="note_option_font_size" translatable="false">Note Font Size</string>
-  <string name="note_option_font_size_example" translatable="false">Adjust the font size of the text in the notes page. You can see how it would look like in this preview.</string>
-  <string name="note_option_font_size_subtitle" translatable="false">%d size of the text in the note viewer</string>
+  <string name="note_option_font_size">Note Font Size</string>
+  <string name="note_option_font_size_example">Adjust the font size of the text in the notes page. You can see how it would look like in this preview.</string>
+  <string name="note_option_font_size_subtitle">%d size of the text in the note viewer</string>
   <!-- End Note Text Size -->
 
   <!-- Start Cloud Backup Hint -->

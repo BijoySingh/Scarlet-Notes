@@ -187,4 +187,28 @@
   <string name="delete_sheet_delete_trash_no">לְבַטֵל</string>
   <string name="trash_will_delete_automatically">הערות נמחקות לעד 7 ימים</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">להוסיף הערה</string>
+  <string name="shortcut_add_list">הוסף רשימת בדיקה</string>
+  <string name="format_sheet_option_title">חסום עיצוב</string>
+  <string name="format_label_heading">כּוֹתֶרֶת</string>
+  <string name="format_label_sub_heading">כותרת משנה</string>
+  <string name="format_label_text">טֶקסט</string>
+  <string name="format_label_quote">ציטוט</string>
+  <string name="format_label_code">קוד</string>
+  <string name="format_label_list">צ\'ק ליסט</string>
+  <string name="markdown_sheet_option_title">עיצוב סמן</string>
+  <string name="markdown_label_bold">נוֹעָז</string>
+  <string name="markdown_label_italics">אוֹתִיוֹת מוּטוֹת</string>
+  <string name="markdown_label_underline">לָשִׂים דָגֵשׁ</string>
+  <string name="markdown_label_strikethrough">לְהַכּוֹת</string>
+  <string name="markdown_label_list">רשימה</string>
+  <string name="select_a_note_title">בחר הערה</string>
+  <string name="select_notes_title">בחר הערות</string>
+  <string name="nav_settings">הגדרות</string>
+  <string name="widget_no_valid_note">הערה נמחקה או נעולה</string>
+  <string name="note_option_font_size">הערה גודל גופן</string>
+  <string name="note_option_font_size_example">התאם את גודל הגופן של הטקסט בדף ההערות. תוכל לראות כיצד ייראה בתצוגה המקדימה הזו.</string>
+  <string name="note_option_font_size_subtitle">%d של הטקסט במציג ההערות</string>
+
 </resources>

@@ -185,4 +185,28 @@
   <string name="delete_sheet_delete_trash_no">取消</string>
   <string name="trash_will_delete_automatically">注释在7天后被永久删除</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">添加注释</string>
+  <string name="shortcut_add_list">添加清单</string>
+  <string name="format_sheet_option_title">块格式化</string>
+  <string name="format_label_heading">标题</string>
+  <string name="format_label_sub_heading">小标题</string>
+  <string name="format_label_text">文本</string>
+  <string name="format_label_quote">引用</string>
+  <string name="format_label_code">码</string>
+  <string name="format_label_list">清单</string>
+  <string name="markdown_sheet_option_title">降价格式</string>
+  <string name="markdown_label_bold">胆大</string>
+  <string name="markdown_label_italics">斜体</string>
+  <string name="markdown_label_underline">强调</string>
+  <string name="markdown_label_strikethrough">罢工</string>
+  <string name="markdown_label_list">名单</string>
+  <string name="select_a_note_title">选择一个注释</string>
+  <string name="select_notes_title">选择注释</string>
+  <string name="nav_settings">设置</string>
+  <string name="widget_no_valid_note">请注意删除或锁定</string>
+  <string name="note_option_font_size">注意字体大小</string>
+  <string name="note_option_font_size_example">调整笔记页面中文字的字体大小。 你可以看到它在这个预览中的样子。</string>
+  <string name="note_option_font_size_subtitle">笔记查看器中文本的%d大小</string>
+
 </resources>

@@ -186,4 +186,28 @@
   <string name="delete_sheet_delete_trash_no">Annuler</string>
   <string name="trash_will_delete_automatically">Les notes sont supprimées pour toujours après 7 jours</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">Ajouter une note</string>
+  <string name="shortcut_add_list">Ajouter une liste</string>
+  <string name="format_sheet_option_title">Bloquer le formatage</string>
+  <string name="format_label_heading">Titre</string>
+  <string name="format_label_sub_heading">Sous-titre</string>
+  <string name="format_label_text">Texte</string>
+  <string name="format_label_quote">Citation</string>
+  <string name="format_label_code">Code</string>
+  <string name="format_label_list">Liste de contrôle</string>
+  <string name="markdown_sheet_option_title">Formatage des démarques</string>
+  <string name="markdown_label_bold">Audacieux</string>
+  <string name="markdown_label_italics">Italique</string>
+  <string name="markdown_label_underline">Souligner</string>
+  <string name="markdown_label_strikethrough">La grève</string>
+  <string name="markdown_label_list">liste</string>
+  <string name="select_a_note_title">Sélectionnez une note</string>
+  <string name="select_notes_title">Sélectionnez Notes</string>
+  <string name="nav_settings">Paramètres</string>
+  <string name="widget_no_valid_note">Notez soit supprimé ou verrouillé</string>
+  <string name="note_option_font_size">Remarque Taille de la police</string>
+  <string name="note_option_font_size_example">Ajustez la taille de la police du texte dans la page des notes. Vous pouvez voir à quoi cela ressemblerait dans cet aperçu.</string>
+  <string name="note_option_font_size_subtitle">%d taille du texte dans la visionneuse de notes</string>
+
 </resources>

@@ -188,4 +188,28 @@
   <string name="delete_sheet_delete_trash_no">বাতিল</string>
   <string name="trash_will_delete_automatically">নোটগুলি 7 দিনের পরে চিরতরে মুছে ফেলা হয়</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">নোট যোগ করুন</string>
+  <string name="shortcut_add_list">চেকলিস্ট যোগ করুন</string>
+  <string name="format_sheet_option_title">ফরম্যাটিং ব্লক করুন</string>
+  <string name="format_label_heading">শিরোনাম</string>
+  <string name="format_label_sub_heading">উপ শিরোনাম</string>
+  <string name="format_label_text">পাঠ</string>
+  <string name="format_label_quote">উদ্ধৃতি</string>
+  <string name="format_label_code">কোড</string>
+  <string name="format_label_list">চেকলিস্ট</string>
+  <string name="markdown_sheet_option_title">মার্কডাউন ফরম্যাটিং</string>
+  <string name="markdown_label_bold">সাহসী</string>
+  <string name="markdown_label_italics">ইটালিক</string>
+  <string name="markdown_label_underline">আনডারলাইন করা</string>
+  <string name="markdown_label_strikethrough">ধর্মঘট</string>
+  <string name="markdown_label_list">তালিকা</string>
+  <string name="select_a_note_title">একটি নোট নির্বাচন করুন</string>
+  <string name="select_notes_title">নোট নির্বাচন করুন</string>
+  <string name="nav_settings">সেটিংস</string>
+  <string name="widget_no_valid_note">নোট বা লক করা নোট</string>
+  <string name="note_option_font_size">নোট ফন্ট সাইজ</string>
+  <string name="note_option_font_size_example">নোট পৃষ্ঠাতে পাঠ্যের ফন্টের আকার সামঞ্জস্য করুন। আপনি এই পূর্বরূপে কেমন দেখতে পাবেন তা দেখতে পারেন।</string>
+  <string name="note_option_font_size_subtitle">%d নোট ভিউয়ারের পাঠ্যের আকার</string>
+
 </resources>

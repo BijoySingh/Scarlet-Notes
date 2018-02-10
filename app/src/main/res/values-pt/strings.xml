@@ -187,4 +187,28 @@
   <string name="delete_sheet_delete_trash_no">Cancelar</string>
   <string name="trash_will_delete_automatically">As notas são apagadas para sempre após 7 dias</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">Adicionar nota</string>
+  <string name="shortcut_add_list">Adicionar lista de verificação</string>
+  <string name="format_sheet_option_title">Formatação de blocos</string>
+  <string name="format_label_heading">Título</string>
+  <string name="format_label_sub_heading">Título secundário</string>
+  <string name="format_label_text">Texto</string>
+  <string name="format_label_quote">Citar</string>
+  <string name="format_label_code">Código</string>
+  <string name="format_label_list">Lista de controle</string>
+  <string name="markdown_sheet_option_title">Formatação de Markdown</string>
+  <string name="markdown_label_bold">Negrito</string>
+  <string name="markdown_label_italics">Itálico</string>
+  <string name="markdown_label_underline">Sublinhado</string>
+  <string name="markdown_label_strikethrough">Greve</string>
+  <string name="markdown_label_list">Lista</string>
+  <string name="select_a_note_title">Selecione uma nota</string>
+  <string name="select_notes_title">Selecione notas</string>
+  <string name="nav_settings">Configurações</string>
+  <string name="widget_no_valid_note">Observe que seja excluído ou bloqueado</string>
+  <string name="note_option_font_size">Nota Tamanho da fonte</string>
+  <string name="note_option_font_size_example">Ajuste o tamanho da fonte do texto na página de notas. Você pode ver como isso parece nesta pré-visualização.</string>
+  <string name="note_option_font_size_subtitle">%d tamanho do texto no visualizador de notas</string>
+
 </resources>

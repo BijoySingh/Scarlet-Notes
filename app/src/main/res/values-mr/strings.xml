@@ -185,4 +185,28 @@
   <string name="delete_sheet_delete_trash_no">रद्द करा</string>
   <string name="trash_will_delete_automatically">टिपा 7 दिवसांनंतर कायमचे हटविली जातात</string>
 
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">नोंदी जोडा</string>
+  <string name="shortcut_add_list">चेकलिस्ट जोडा</string>
+  <string name="format_sheet_option_title">ब्लॉक फॉरमॅटिंग</string>
+  <string name="format_label_heading">मथळा</string>
+  <string name="format_label_sub_heading">उप शीर्षलेख</string>
+  <string name="format_label_text">मजकूर</string>
+  <string name="format_label_quote">कोट</string>
+  <string name="format_label_code">कोड</string>
+  <string name="format_label_list">चेकलिस्ट</string>
+  <string name="markdown_sheet_option_title">चिन्हांकित स्वरूपन</string>
+  <string name="markdown_label_bold">धीट</string>
+  <string name="markdown_label_italics">तिर्यक</string>
+  <string name="markdown_label_underline">अधोरेखित करा</string>
+  <string name="markdown_label_strikethrough">स्ट्राइक</string>
+  <string name="markdown_label_list">यादी</string>
+  <string name="select_a_note_title">एक टीप निवडा</string>
+  <string name="select_notes_title">टिपा निवडा</string>
+  <string name="nav_settings">सेटिंग्ज</string>
+  <string name="widget_no_valid_note">टीप हटविली किंवा लॉक केली आहे</string>
+  <string name="note_option_font_size">टीप फॉन्ट आकार</string>
+  <string name="note_option_font_size_example">नोट्स पृष्ठामधील मजकुराचा फॉन्ट आकार समायोजित करा. आपण हे पूर्वावलोकन कसे दिसेल ते पाहू शकता.</string>
+  <string name="note_option_font_size_subtitle">%d नोट दर्शक मध्ये मजकूराचा आकार</string>
+
 </resources>
