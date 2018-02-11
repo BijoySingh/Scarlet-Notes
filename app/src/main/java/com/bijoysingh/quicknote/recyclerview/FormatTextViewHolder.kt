@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.InputType
-import android.text.Selection
 import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.View
@@ -19,7 +18,7 @@ import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.KEY_TEXT_SIZE
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.TEXT_SIZE_DEFAULT
 import com.bijoysingh.quicknote.formats.Format
-import com.bijoysingh.quicknote.formats.FormatType.*
+import com.bijoysingh.quicknote.formats.FormatType.CODE
 import com.bijoysingh.quicknote.formats.MarkdownType
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.ThemeManager
@@ -147,8 +146,12 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
 
     edit.setText(stringBuilder.toString())
 
-    val additionTokenLength = (if (markdownType.requiresNewLine) 1 else 0) + markdownType.startToken.length
-    edit.setSelection(startString.length + additionTokenLength)
+    try {
+      val additionTokenLength = (if (markdownType.requiresNewLine) 1 else 0) + markdownType.startToken.length
+      edit.setSelection(Math.min(startString.length + additionTokenLength, edit.text.length))
+    } catch (_: Exception) {
+      // Ignore the exception
+    }
   }
 
   companion object {
