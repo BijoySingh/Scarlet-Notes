@@ -115,7 +115,7 @@ class ExternalIntentActivity : ThemedActivity() {
   fun isCallerKeep(): Boolean {
     return when {
       Build.VERSION.SDK_INT >= 22 && (referrer?.toString() ?: "").contains(KEEP_PACKAGE) -> true
-      callingPackage.contains(KEEP_PACKAGE) -> true
+      callingPackage?.contains(KEEP_PACKAGE) ?: false -> true
       (intent?.`package` ?: "").contains(KEEP_PACKAGE) -> true
       else -> false
     }
