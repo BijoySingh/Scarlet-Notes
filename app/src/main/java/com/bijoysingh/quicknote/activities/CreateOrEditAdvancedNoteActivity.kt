@@ -1,5 +1,6 @@
 package com.bijoysingh.quicknote.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.RecyclerView
@@ -21,6 +22,12 @@ import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper
 import com.bijoysingh.quicknote.utils.*
 import java.util.*
+import android.R.attr.data
+import com.bijoysingh.quicknote.recyclerview.FormatImageViewHolder
+import pl.aprilapps.easyphotopicker.DefaultCallback
+import pl.aprilapps.easyphotopicker.EasyImage
+import java.io.File
+
 
 open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
 
@@ -167,6 +174,23 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     chevronRight.setColorFilter(hintColor)
   }
 
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    EasyImage.handleActivityResult(requestCode, resultCode, data, this, object : DefaultCallback() {
+      override fun onImagePicked(imageFile: File?, source: EasyImage.ImageSource?, type: Int) {
+        if (imageFile == null) {
+          return
+        }
+        val index = getFormatIndex(type)
+        triggerImageLoaded(index, imageFile)
+      }
+
+      override fun onImagePickerError(e: Exception, source: EasyImage.ImageSource, type: Int) {
+        //Some error handling
+      }
+    })
+  }
+
   override fun onPause() {
     super.onPause()
     active = false
@@ -261,8 +285,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
   fun focus(position: Int) {
     val handler = Handler()
     handler.postDelayed(Runnable {
-      val holder = findViewHolderAtPositionAggressively(position) ?: return@Runnable
-
+      val holder = findTextViewHolderAtPosition(position) ?: return@Runnable
       holder.requestEditTextFocus()
     }, 100)
   }
@@ -279,12 +302,31 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
 
     val handler = Handler()
     handler.postDelayed(Runnable {
-      val holder = findViewHolderAtPositionAggressively(position) ?: return@Runnable
+      val holder = findTextViewHolderAtPosition(position) ?: return@Runnable
       holder.requestMarkdownAction(markdownType)
     }, 100)
   }
 
-  private fun findViewHolderAtPositionAggressively(position: Int): FormatTextViewHolder? {
+  fun triggerImageLoaded(position: Int, file: File) {
+    if (position == -1) {
+      return
+    }
+
+    val holder = findImageViewHolderAtPosition(position) ?: return
+    holder.populateFile(file)
+  }
+
+  private fun findTextViewHolderAtPosition(position: Int): FormatTextViewHolder? {
+    val holder = findViewHolderAtPositionAggressively(position)
+    return if (holder !== null && holder is FormatTextViewHolder) holder else null
+  }
+
+  private fun findImageViewHolderAtPosition(position: Int): FormatImageViewHolder? {
+    val holder = findViewHolderAtPositionAggressively(position)
+    return if (holder !== null && holder is FormatImageViewHolder) holder else null
+  }
+
+  private fun findViewHolderAtPositionAggressively(position: Int): RecyclerView.ViewHolder? {
     var holder: RecyclerView.ViewHolder? = formatsView.findViewHolderForAdapterPosition(position)
     if (holder == null) {
       holder = formatsView.findViewHolderForLayoutPosition(position)
@@ -292,11 +334,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
         return null
       }
     }
-
-    return if (holder !is FormatTextViewHolder) {
-      null
-    } else holder
-
+    return holder
   }
 
   override fun setNoteColor(color: Int) {

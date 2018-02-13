@@ -3,10 +3,7 @@ package com.bijoysingh.quicknote.formats
 import android.util.Log
 
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.recyclerview.EmptyFormatHolder
-import com.bijoysingh.quicknote.recyclerview.EmptyRecyclerHolder
-import com.bijoysingh.quicknote.recyclerview.FormatListViewHolder
-import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
+import com.bijoysingh.quicknote.recyclerview.*
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem
 
 import org.json.JSONArray
@@ -168,6 +165,12 @@ class Format : Comparable<Format> {
                 .viewType(FormatType.CHECKLIST_UNCHECKED.ordinal)
                 .layoutFile(R.layout.item_format_list)
                 .holderClass(FormatListViewHolder::class.java)
+                .build())
+        list.add(
+            MultiRecyclerViewControllerItem.Builder<Format>()
+                .viewType(FormatType.IMAGE.ordinal)
+                .layoutFile(R.layout.item_format_image)
+                .holderClass(FormatImageViewHolder::class.java)
                 .build())
         list.add(
             MultiRecyclerViewControllerItem.Builder<Format>()

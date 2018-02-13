@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.recyclerview
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
@@ -29,19 +30,27 @@ import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.bijoysingh.quicknote.utils.visibility
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.TextUtils
+import com.squareup.picasso.Picasso
+import pl.aprilapps.easyphotopicker.EasyImage
+import java.io.File
 
 class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<Format>(context, view) {
 
   protected val activity: ViewAdvancedNoteActivity
   protected val text: TextView
   protected val image: ImageView
-  private val actionMove: View
+
+  protected val actionCamera: ImageView
+  protected val actionGallery: ImageView
+  protected val actionMove: View
 
   protected var format: Format? = null
 
   init {
     text = view.findViewById<View>(R.id.text) as TextView
-    image = view.findViewById<View>(R.id.image) as ImageView
+    image = view.findViewById<ImageView>(R.id.image) as ImageView
+    actionCamera = view.findViewById<ImageView>(R.id.action_camera) as ImageView
+    actionGallery = view.findViewById<ImageView>(R.id.action_gallery) as ImageView
     activity = context as ViewAdvancedNoteActivity
     actionMove = view.findViewById(R.id.action_move)
   }
@@ -67,8 +76,21 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
 
     }
 
+    val iconColor = theme.get(context, ThemeColorType.TOOLBAR_ICON)
+    actionCamera.setColorFilter(iconColor)
+    actionGallery.setColorFilter(iconColor)
+    actionCamera.setOnClickListener {
+      EasyImage.openCamera(context as AppCompatActivity, data.uid)
+    }
+    actionGallery.setOnClickListener {
+      EasyImage.openGallery(context as AppCompatActivity, data.uid)
+    }
     actionMove.setOnClickListener {
 
     }
+  }
+
+  fun populateFile(file: File) {
+    Picasso.with(context).load(file).fit().into(image)
   }
 }

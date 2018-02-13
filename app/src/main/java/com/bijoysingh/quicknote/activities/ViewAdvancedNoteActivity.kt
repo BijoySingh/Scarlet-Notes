@@ -303,10 +303,12 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     setNote()
   }
 
-  protected fun getFormatIndex(format: Format): Int {
+  protected fun getFormatIndex(format: Format): Int = getFormatIndex(format.uid)
+
+  protected fun getFormatIndex(formatUid: Int): Int {
     var position = 0
     for (fmt in formats) {
-      if (fmt.uid == format.uid) {
+      if (fmt.uid == formatUid) {
         return position
       }
       position++

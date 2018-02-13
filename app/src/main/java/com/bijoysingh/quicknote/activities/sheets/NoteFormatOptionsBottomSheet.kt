@@ -71,6 +71,15 @@ class NoteFormatOptionsBottomSheet : GridBottomSheetBase() {
           dismiss()
         }
     ))
+    options.add(OptionsItem(
+        title = R.string.format_label_list,
+        subtitle = R.string.format_label_list,
+        icon = R.drawable.ic_check_box_white_24dp,
+        listener = View.OnClickListener {
+          activity.addEmptyItemAtFocused(FormatType.IMAGE)
+          dismiss()
+        }
+    ))
     return options
   }
 
