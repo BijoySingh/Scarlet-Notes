@@ -16,6 +16,6 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:adjustViewBounds="true"
-    android:src="placeholder" />
+    android:src="@color/dark_hint_text" />
 
 </LinearLayout>

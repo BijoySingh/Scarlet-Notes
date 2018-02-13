@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
+import com.bijoysingh.quicknote.activities.sheets.FormatActionBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.KEY_TEXT_SIZE
@@ -32,11 +33,7 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
   protected val activity: ViewAdvancedNoteActivity
   protected val text: TextView
   protected val edit: EditText
-
   private val actionMove: View
-  private val actionDelete: View
-  private val actionCopy: View
-  private val actionPanel: View
 
   protected var format: Format? = null
 
@@ -52,9 +49,6 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
             or InputType.TYPE_CLASS_TEXT
             or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE
     )
-    actionPanel = view.findViewById(R.id.action_panel)
-    actionDelete = view.findViewById(R.id.action_delete)
-    actionCopy = view.findViewById(R.id.action_copy)
     actionMove = view.findViewById(R.id.action_move)
   }
 
@@ -96,14 +90,10 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
       else -> text.text = data.text
     }
 
-    actionPanel.visibility = visibility(editable)
+    actionMove.visibility = visibility(editable)
     actionMove.setOnClickListener {
-      val areActionsVisible = actionCopy.visibility == VISIBLE
-      actionCopy.visibility = visibility(!areActionsVisible)
-      actionDelete.visibility = visibility(!areActionsVisible)
+      FormatActionBottomSheet.openSheet(activity, data)
     }
-    actionDelete.setOnClickListener { activity.deleteFormat(format!!) }
-    actionCopy.setOnClickListener { TextUtils.copyToClipboard(context, edit.text.toString()) }
   }
 
   override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {

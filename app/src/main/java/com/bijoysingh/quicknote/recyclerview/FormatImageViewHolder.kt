@@ -35,11 +35,7 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
   protected val activity: ViewAdvancedNoteActivity
   protected val text: TextView
   protected val image: ImageView
-
   private val actionMove: View
-  private val actionDelete: View
-  private val actionCopy: View
-  private val actionPanel: View
 
   protected var format: Format? = null
 
@@ -47,10 +43,6 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
     text = view.findViewById<View>(R.id.text) as TextView
     image = view.findViewById<View>(R.id.image) as ImageView
     activity = context as ViewAdvancedNoteActivity
-
-    actionPanel = view.findViewById(R.id.action_panel)
-    actionDelete = view.findViewById(R.id.action_delete)
-    actionCopy = view.findViewById(R.id.action_copy)
     actionMove = view.findViewById(R.id.action_move)
   }
 
@@ -72,16 +64,11 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
     text.visibility = visibility(!editable)
 
     text.setOnClickListener {
-      
+
     }
 
-    actionPanel.visibility = visibility(editable)
     actionMove.setOnClickListener {
-      val areActionsVisible = actionCopy.visibility == VISIBLE
-      actionCopy.visibility = visibility(!areActionsVisible)
-      actionDelete.visibility = visibility(!areActionsVisible)
+
     }
-    actionDelete.setOnClickListener { activity.deleteFormat(format!!) }
-    actionCopy.visibility = GONE
   }
 }
