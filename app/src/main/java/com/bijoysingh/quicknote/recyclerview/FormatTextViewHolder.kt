@@ -90,7 +90,6 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
     edit.visibility = visibility(editable)
     edit.isEnabled = editable
 
-    root.setBackgroundColor(theme.get(context, ThemeColorType.BACKGROUND))
     when {
       editable -> edit.setText(data.text)
       isMarkdownEnabled -> text.text = renderMarkdown(context, data.text)

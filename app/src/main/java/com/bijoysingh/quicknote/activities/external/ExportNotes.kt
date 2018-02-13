@@ -36,7 +36,7 @@ fun searchInNote(note: Note, keyword: String): Boolean {
 }
 
 fun getStoragePermissionManager(activity: AppCompatActivity): PermissionManager {
-  val manager = PermissionManager(activity as MainActivity)
+  val manager = PermissionManager(activity)
   manager.setPermissions(arrayOf(
       Manifest.permission.WRITE_EXTERNAL_STORAGE,
       Manifest.permission.READ_EXTERNAL_STORAGE))

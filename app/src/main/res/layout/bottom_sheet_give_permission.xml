@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:orientation="vertical"
-  android:background="@color/white"
-  android:padding="@dimen/spacing_large">
+  android:layout_height="match_parent">
 
-  <TextView
+  <LinearLayout
+    android:id="@+id/container_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/spacing_xsmall"
-    android:text="@string/permission_layout_give_permission"
-    android:textColor="@color/dark_tertiary_text"
-    android:textSize="@dimen/font_size_large" />
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_large">
 
-  <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/spacing_xsmall"
-    style="@style/SanSerif"
-    android:text="@string/permission_layout_give_permission_details"
-    android:textColor="@color/dark_tertiary_text"
-    android:textSize="@dimen/font_size_small" />
+    <TextView
+      android:id="@+id/permissions_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_xsmall"
+      android:text="@string/permission_layout_give_permission"
+      android:textColor="@color/dark_tertiary_text"
+      android:textSize="@dimen/font_size_large" />
 
-  <TextView
-    android:id="@+id/give_permissions"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="end"
-    android:padding="@dimen/spacing_xsmall"
-    android:text="@string/permission_layout_give_permission_ok"
-    android:textAllCaps="true"
-    android:textColor="@color/colorAccent"
-    android:textSize="@dimen/font_size_small" />
-</LinearLayout>
+    <TextView
+      android:id="@+id/permissions_details"
+      style="@style/SanSerif"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_xsmall"
+      android:text="@string/permission_layout_give_permission_details"
+      android:textColor="@color/dark_tertiary_text"
+      android:textSize="@dimen/font_size_small" />
+
+    <TextView
+      android:id="@+id/give_permissions"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="end"
+      android:padding="@dimen/spacing_xsmall"
+      android:text="@string/permission_layout_give_permission_ok"
+      android:textAllCaps="true"
+      android:textColor="@color/colorAccent"
+      android:textSize="@dimen/font_size_small" />
+  </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  style="@style/FormatLayout">
+
+  <include layout="@layout/layout_modify_format" />
+
+  <TextView
+    android:id="@+id/text"
+    style="@style/FormatText"
+    android:background="@color/dark_hint_text"
+    android:hint="@string/format_hint_image" />
+
+  <ImageView
+    android:id="@+id/image"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:adjustViewBounds="true"
+    android:src="placeholder" />
+
+</LinearLayout>
