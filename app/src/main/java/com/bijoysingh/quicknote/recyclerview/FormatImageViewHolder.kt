@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
+import com.bijoysingh.quicknote.activities.sheets.FormatActionBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.KEY_TEXT_SIZE
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.TEXT_SIZE_DEFAULT
@@ -57,7 +58,7 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
     text.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT))
     text.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize.toFloat())
     text.setOnClickListener {
-
+      EasyImage.openGallery(context as AppCompatActivity, data.uid)
     }
 
     val fileName = data.text
@@ -75,7 +76,7 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
       EasyImage.openGallery(context as AppCompatActivity, data.uid)
     }
     actionMove.setOnClickListener {
-
+      FormatActionBottomSheet.openSheet(activity, data)
     }
     imageToolbar.visibility = visibility(editable)
     imageToolbar.setBackgroundColor(theme.getThemedColor(context, R.color.material_grey_200, R.color.material_grey_700))

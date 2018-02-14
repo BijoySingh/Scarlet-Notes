@@ -73,8 +73,8 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     super.setNote()
     maxUid = formats.size + 1
     val isEmpty = formats.isEmpty()
-    if (isEmpty
-        || (formats[0].formatType !== FormatType.HEADING && formats[0].formatType !== FormatType.IMAGE)) {
+    if (isEmpty || (formats[0].formatType !== FormatType.HEADING
+            && formats[0].formatType !== FormatType.IMAGE)) {
       addEmptyItem(0, FormatType.HEADING)
     }
     if (isEmpty) {
@@ -316,6 +316,9 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     holder.populateFile(file)
 
     val formatToChange = formats[position]
+    if (!formatToChange.text.isBlank()) {
+      File(formatToChange.text).delete()
+    }
     formatToChange.text = file.absolutePath
     setFormat(formatToChange)
   }
@@ -369,7 +372,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
 
   override fun deleteFormat(format: Format) {
     val position = getFormatIndex(format)
-    if (position <= 0) {
+    if (position < 0) {
       return
     }
     focusedFormat = if (focusedFormat == null || focusedFormat!!.uid == format.uid) null else focusedFormat

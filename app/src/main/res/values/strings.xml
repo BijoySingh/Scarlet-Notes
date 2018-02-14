@@ -79,7 +79,7 @@
   <string name="format_hint_quote">Add Quoted Text&#8230;</string>
   <string name="format_hint_list">Add Item&#8230;</string>
   <string name="format_hint_code">Add Code&#8230;</string>
-  <string name="format_hint_image">Click to add image</string>
+  <string name="format_hint_image">Click to add or change image</string>
 
   <string name="format_sheet_option_title">Block Formatting</string>
   <string name="format_label_heading">Heading</string>
@@ -235,6 +235,8 @@
 
   <string name="format_action_copy">Copy</string>
   <string name="format_action_title">Block Text Actions</string>
+  <string name="format_action_gallery" translatable="false">Gallery</string>
+  <string name="format_action_camera" translatable="false">Camera</string>
   <!-- End Whats New -->
 
   <!-- Start Note Text Size -->
