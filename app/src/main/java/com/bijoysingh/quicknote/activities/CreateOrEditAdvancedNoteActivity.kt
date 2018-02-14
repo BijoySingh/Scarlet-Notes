@@ -18,15 +18,14 @@ import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.formats.MarkdownType
 import com.bijoysingh.quicknote.formats.ToolbarMode
+import com.bijoysingh.quicknote.recyclerview.FormatImageViewHolder
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper
 import com.bijoysingh.quicknote.utils.*
-import java.util.*
-import android.R.attr.data
-import com.bijoysingh.quicknote.recyclerview.FormatImageViewHolder
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
+import java.util.*
 
 
 open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
@@ -74,7 +73,8 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     super.setNote()
     maxUid = formats.size + 1
     val isEmpty = formats.isEmpty()
-    if (isEmpty || formats[0].formatType !== FormatType.HEADING) {
+    if (isEmpty
+        || (formats[0].formatType !== FormatType.HEADING && formats[0].formatType !== FormatType.IMAGE)) {
       addEmptyItem(0, FormatType.HEADING)
     }
     if (isEmpty) {

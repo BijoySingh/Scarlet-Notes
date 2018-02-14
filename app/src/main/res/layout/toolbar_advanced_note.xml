@@ -1,74 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="@dimen/spacing_small">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:gravity="center_vertical"
+  android:orientation="horizontal"
+  android:paddingBottom="@dimen/spacing_xsmall"
+  android:paddingEnd="@dimen/spacing_small"
+  android:paddingStart="@dimen/spacing_small"
+  android:paddingTop="@dimen/spacing_xsmall">
 
   <ImageView
-      android:id="@+id/back_button"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
+    android:id="@+id/back_button"
     style="@style/BorderlessBackgroundView"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_close_white_48dp"
-      android:tint="@color/material_grey_600"/>
+    android:layout_width="@dimen/icon_size_large"
+    android:layout_height="@dimen/icon_size_large"
+    android:padding="@dimen/spacing_xsmall"
+    android:src="@drawable/ic_close_white_48dp"
+    android:tint="@color/material_grey_600" />
 
   <View
-      android:layout_width="0dp"
-      android:layout_height="1dp"
-      android:layout_weight="1"/>
+    android:layout_width="0dp"
+    android:layout_height="1dp"
+    android:layout_weight="1" />
 
   <ImageView
-      android:id="@+id/delete_button"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
+    android:id="@+id/delete_button"
     style="@style/BorderlessBackgroundView"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_delete_white_48dp"
-      android:tint="@color/material_grey_600"/>
+    android:layout_width="@dimen/icon_size_large"
+    android:layout_height="@dimen/icon_size_large"
+    android:padding="@dimen/spacing_xsmall"
+    android:src="@drawable/ic_delete_white_48dp"
+    android:tint="@color/material_grey_600" />
 
   <ImageView
-      android:id="@+id/copy_button"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
+    android:id="@+id/copy_button"
     style="@style/BorderlessBackgroundView"
-      android:padding="9dp"
-      android:src="@drawable/ic_content_copy_white_48dp"
-      android:tint="@color/material_grey_600"/>
+    android:layout_width="@dimen/icon_size_large"
+    android:layout_height="@dimen/icon_size_large"
+    android:padding="9dp"
+    android:src="@drawable/ic_content_copy_white_48dp"
+    android:tint="@color/material_grey_600" />
 
   <ImageView
-      android:id="@+id/share_button"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
+    android:id="@+id/share_button"
     style="@style/BorderlessBackgroundView"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_share_white_48dp"
-      android:tint="@color/material_grey_600"/>
+    android:layout_width="@dimen/icon_size_large"
+    android:layout_height="@dimen/icon_size_large"
+    android:padding="@dimen/spacing_xsmall"
+    android:src="@drawable/ic_share_white_48dp"
+    android:tint="@color/material_grey_600" />
 
   <LinearLayout
-      android:id="@+id/color_button_clicker"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
+    android:id="@+id/color_button_clicker"
     style="@style/BorderlessBackgroundView"
-      android:gravity="center"
-      android:orientation="horizontal">
+    android:layout_width="@dimen/icon_size_large"
+    android:layout_height="@dimen/icon_size_large"
+    android:gravity="center"
+    android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/color_button"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_margin="10dp"/>
+      android:id="@+id/color_button"
+      android:layout_width="20dp"
+      android:layout_height="20dp"
+      android:layout_margin="10dp" />
   </LinearLayout>
 
   <ImageView
-      android:id="@+id/done_button"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
+    android:id="@+id/done_button"
     style="@style/BorderlessBackgroundView"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_done_white_48dp"
-      android:tint="@color/material_grey_600"/>
+    android:layout_width="@dimen/icon_size_large"
+    android:layout_height="@dimen/icon_size_large"
+    android:padding="@dimen/spacing_xsmall"
+    android:src="@drawable/ic_done_white_48dp"
+    android:tint="@color/material_grey_600" />
 </LinearLayout>

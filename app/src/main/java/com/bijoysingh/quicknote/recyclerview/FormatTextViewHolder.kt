@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.View
 import android.view.View.VISIBLE
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
@@ -19,7 +20,7 @@ import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.KEY_TEXT_SIZE
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.TEXT_SIZE_DEFAULT
 import com.bijoysingh.quicknote.formats.Format
-import com.bijoysingh.quicknote.formats.FormatType.CODE
+import com.bijoysingh.quicknote.formats.FormatType.*
 import com.bijoysingh.quicknote.formats.MarkdownType
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.ThemeManager
@@ -70,14 +71,19 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
       else -> ContextCompat.getColor(context, R.color.transparent)
     }
 
-    text.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize.toFloat())
+    val fontSizeFloat = when(data.formatType) {
+      HEADING -> fontSize.toFloat() + 4
+      SUB_HEADING -> fontSize.toFloat() + 2
+      else -> fontSize.toFloat()
+    }
+    text.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeFloat)
     text.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT))
     text.setBackgroundColor(backgroundColor)
     text.setLinkTextColor(theme.get(context, ThemeColorType.ACCENT_TEXT))
     text.setTextIsSelectable(true)
     text.visibility = visibility(!editable)
 
-    edit.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize.toFloat())
+    edit.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeFloat)
     edit.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT))
     edit.setHintTextColor(theme.get(context, ThemeColorType.HINT_TEXT))
     edit.setBackgroundColor(backgroundColor)

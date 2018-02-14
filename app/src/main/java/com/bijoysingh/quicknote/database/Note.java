@@ -76,8 +76,15 @@ public class Note {
   /*Content and Display Information Functions*/
   public String getTitle() {
     List<Format> formats = Format.Companion.getFormats(description);
-    if (!formats.isEmpty() && formats.get(0).getFormatType() == FormatType.HEADING) {
-      return formats.get(0).getText();
+    for (Format format : formats) {
+      if (format.getFormatType() == FormatType.HEADING || format.getFormatType() == FormatType.SUB_HEADING) {
+        return format.getText();
+      }
+
+      if (format.getFormatType() == FormatType.IMAGE) {
+        continue;
+      }
+      break;
     }
     return "";
   }
