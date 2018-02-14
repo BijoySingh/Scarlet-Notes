@@ -19,12 +19,15 @@ import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.trim
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.TextUtils
+import com.squareup.picasso.Picasso
 import ru.noties.markwon.Markwon
+import java.io.File
 
 open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerViewHolder<RecyclerItem>(context, view) {
 
   protected val view: CardView
   protected val tags: TextView
+  protected val image: ImageView
   protected val title: TextView
   protected val description: TextView
   protected val edit: ImageView
@@ -40,6 +43,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
   init {
     this.view = view as CardView
     tags = view.findViewById(R.id.tags)
+    image = view.findViewById(R.id.image)
     title = view.findViewById(R.id.title)
     description = view.findViewById(R.id.description)
     share = view.findViewById(R.id.share_button)
@@ -83,6 +87,15 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
       }
       NoteState.DEFAULT -> stateIndicator.visibility = GONE
       else -> stateIndicator.visibility = GONE
+    }
+
+    val imageFileName = data.getImageFile()
+    when {
+      imageFileName.isBlank() -> image.visibility = GONE
+      else -> {
+        Picasso.with(context).load(File(imageFileName)).into(image)
+        image.visibility = VISIBLE
+      }
     }
 
     val noteTimestamp = data.displayTime

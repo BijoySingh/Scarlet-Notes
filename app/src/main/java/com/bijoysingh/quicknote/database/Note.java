@@ -101,6 +101,16 @@ public class Note {
     return text.trim();
   }
 
+  public String getImageFile() {
+    List<Format> formats = Format.Companion.getFormats(description);
+    for (Format format : formats) {
+      if (format.getFormatType() == FormatType.IMAGE) {
+        return format.getText();
+      }
+    }
+    return "";
+  }
+
   public CharSequence getMarkdownTitle(Context context, boolean isMarkdownEnabled) {
     String titleString = getTitle();
     if (titleString.isEmpty()) {
