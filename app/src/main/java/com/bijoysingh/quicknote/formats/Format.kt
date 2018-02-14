@@ -25,6 +25,8 @@ class Format : Comparable<Format> {
 
   var forcedMarkdown = false
 
+  var metaData = HashMap<String, Any>()
+
   val markdownText: String
     get() {
       when (formatType) {
@@ -32,10 +34,11 @@ class Format : Comparable<Format> {
         FormatType.HEADING -> return "# " + text
         FormatType.CHECKLIST_CHECKED -> return "\u2612 " + text
         FormatType.CHECKLIST_UNCHECKED -> return "\u2610 " + text
-        FormatType.IMAGE, FormatType.SUB_HEADING -> return "### " + text
+        FormatType.SUB_HEADING -> return "### " + text
         FormatType.CODE -> return "```\n$text\n```"
         FormatType.QUOTE -> return "> " + text
         FormatType.TEXT -> return text
+        FormatType.IMAGE -> return ""
         else -> return text
       }
     }
@@ -55,6 +58,14 @@ class Format : Comparable<Format> {
     }
   }
 
+  fun meta(key: String, defaultValue: Any): Any {
+    return metaData[key] ?: defaultValue
+  }
+
+  fun addOrUpdateMeta(key: String, value: Any) {
+    metaData[key] = value
+  }
+
   fun toJson(): JSONObject? {
     if (text.trim { it <= ' ' }.isEmpty()) {
       return null
@@ -63,6 +74,7 @@ class Format : Comparable<Format> {
     val map = HashMap<String, Any>()
     map["format"] = formatType.name
     map["text"] = text
+    map["meta"] = metaData
     return JSONObject(map)
   }
 
@@ -82,6 +94,13 @@ class Format : Comparable<Format> {
       val format = Format()
       format.formatType = FormatType.valueOf(json.getString("format"))
       format.text = json.getString("text")
+
+      if (json.has("meta")) {
+        val metaJSON = json.getJSONObject("meta")
+        for (key in metaJSON.keys()) {
+          format.metaData.put(key, metaJSON.get(key))
+        }
+      }
       return format
     }
 

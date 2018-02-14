@@ -314,6 +314,10 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
 
     val holder = findImageViewHolderAtPosition(position) ?: return
     holder.populateFile(file)
+
+    val formatToChange = formats[position]
+    formatToChange.text = file.absolutePath
+    setFormat(formatToChange)
   }
 
   private fun findTextViewHolderAtPosition(position: Int): FormatTextViewHolder? {

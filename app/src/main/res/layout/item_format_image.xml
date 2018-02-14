@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   style="@style/FormatLayout"
+  android:paddingStart="0dp"
+  android:paddingEnd="0dp"
   android:orientation="vertical">
 
+  <ImageView
+    android:id="@+id/image"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:adjustViewBounds="true" />
+
   <LinearLayout
+    android:id="@+id/image_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
+    android:paddingStart="@dimen/spacing_normal"
+    android:paddingEnd="@dimen/spacing_normal"
     android:orientation="horizontal">
 
     <include layout="@layout/layout_modify_format" />
@@ -19,20 +30,13 @@
     <ImageView
       android:id="@+id/action_camera"
       style="@style/FormatActionButtons"
-      android:src="@drawable/ic_content_copy_white_48dp" />
+      android:src="@drawable/ic_image_camera" />
 
     <ImageView
       android:id="@+id/action_gallery"
       style="@style/FormatActionButtons"
-      android:src="@drawable/ic_content_copy_white_48dp" />
+      android:src="@drawable/ic_image_gallery" />
 
   </LinearLayout>
-
-  <ImageView
-    android:id="@+id/image"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:adjustViewBounds="true"
-    android:src="@color/dark_hint_text" />
 
 </LinearLayout>
