@@ -11,6 +11,7 @@ class PermissionBottomSheet : ThemedBottomSheetFragment() {
   override fun getBackgroundView(): Int = R.id.container_layout
 
   override fun setupView(dialog: Dialog?) {
+    super.setupView(dialog)
     if (dialog == null) {
       return
     }
