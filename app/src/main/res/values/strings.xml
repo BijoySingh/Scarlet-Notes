@@ -237,6 +237,9 @@
   <string name="format_action_title" translatable="false">Block Text Actions</string>
   <string name="format_action_gallery" translatable="false">Gallery</string>
   <string name="format_action_camera" translatable="false">Camera</string>
+
+  <string name="voice_sheet_title">Speak Note Aloud</string>
+  <string name="voice_action_title">Speak Aloud</string>
   <!-- End Whats New -->
 
   <!-- Start Note Text Size -->

@@ -138,6 +138,13 @@ public class Note {
     return builder.toString().trim();
   }
 
+  public String getUnreliablyStrippedText(Context context) {
+    StringBuilder builder = new StringBuilder();
+    builder.append(renderMarkdown(context, removeMarkdownHeaders(getTitle())));
+    builder.append(renderMarkdown(context, removeMarkdownHeaders(getText())));
+    return builder.toString().trim();
+  }
+
   public CharSequence getLockedText(Context context, boolean isMarkdownEnabled) {
     if (locked) {
       return "******************\n***********\n****************";
