@@ -1,11 +1,14 @@
 package com.bijoysingh.quicknote.database;
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.service.notification.StatusBarNotification;
 import android.support.annotation.NonNull;
 
 import com.bijoysingh.quicknote.R;
@@ -18,6 +21,7 @@ import com.bijoysingh.quicknote.formats.Format;
 import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.service.FloatingNoteService;
 import com.bijoysingh.quicknote.utils.NoteState;
+import com.bijoysingh.quicknote.utils.NotificationHandler;
 import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.util.DateFormatter;
 import com.github.bijoysingh.starter.util.IntentUtils;
@@ -301,12 +305,26 @@ public class Note {
   public void save(Context context) {
     saveWithoutSync(context);
     saveToSync();
+  }
+
+  private void updateAsyncContent(Context context) {
     WidgetConfigureActivity.Companion.notifyNoteChange(context, this);
+    NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    if (Build.VERSION.SDK_INT >= 23 && notificationManager != null) {
+      for (StatusBarNotification notification : notificationManager.getActiveNotifications()) {
+        if (notification.getId() == uid) {
+          NotificationHandler handler = new NotificationHandler(context, this);
+          handler.createNotificationChannel();
+          handler.openNotification();
+        }
+      }
+    }
   }
 
   public void saveWithoutSync(Context context) {
     long id = Note.db(context).insertNote(this);
     uid = isUnsaved() ? ((int) id) : uid;
+    updateAsyncContent(context);
   }
 
   public static NoteDao db(Context context) {
@@ -329,6 +347,10 @@ public class Note {
     deleteWithoutSync(context);
     deleteToSync();
     WidgetConfigureActivity.Companion.notifyNoteChange(context, this);
+    NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    if (notificationManager != null) {
+      notificationManager.cancel(uid);
+    }
   }
 
   public void deleteWithoutSync(Context context) {
