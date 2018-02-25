@@ -7,6 +7,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
+import com.bijoysingh.quicknote.activities.external.KEY_AUTO_BACKUP_MODE
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.Flavor
@@ -38,13 +39,39 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_export,
         listener = View.OnClickListener {
           val manager = getStoragePermissionManager(activity)
-          if (manager.hasAllPermissions()) {
-            openExportSheet()
-            dismiss()
-          } else {
-            PermissionBottomSheet.openSheet(activity)
+          val hasAllPermissions = manager.hasAllPermissions()
+          when (hasAllPermissions) {
+            true -> {
+              openExportSheet()
+              dismiss()
+            }
+            false -> {
+              PermissionBottomSheet.openSheet(activity)
+            }
           }
         }
+    ))
+    val autoBackupEnabled = MaterialNotes.getDataStore().get(KEY_AUTO_BACKUP_MODE, false)
+    options.add(OptionsItem(
+        title = R.string.home_option_auto_export,
+        subtitle = R.string.home_option_auto_export_subtitle,
+        icon = R.drawable.ic_time,
+        listener = View.OnClickListener {
+          val manager = getStoragePermissionManager(activity)
+          val hasAllPermissions = manager.hasAllPermissions()
+          when {
+            autoBackupEnabled -> {
+              MaterialNotes.getDataStore().put(KEY_AUTO_BACKUP_MODE, false)
+              reset(dialog)
+            }
+            hasAllPermissions -> {
+              MaterialNotes.getDataStore().put(KEY_AUTO_BACKUP_MODE, true)
+              reset(dialog)
+            }
+            else -> PermissionBottomSheet.openSheet(activity)
+          }
+        },
+        enabled = autoBackupEnabled
     ))
     options.add(OptionsItem(
         title = R.string.home_option_import,
@@ -52,11 +79,15 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_import,
         listener = View.OnClickListener {
           val manager = getStoragePermissionManager(activity)
-          if (manager.hasAllPermissions()) {
-            IntentUtils.startActivity(activity, ImportNoteFromFileActivity::class.java)
-            dismiss()
-          } else {
-            PermissionBottomSheet.openSheet(activity)
+          val hasAllPermissions = manager.hasAllPermissions()
+          when (hasAllPermissions) {
+            true -> {
+              IntentUtils.startActivity(activity, ImportNoteFromFileActivity::class.java)
+              dismiss()
+            }
+            false -> {
+              PermissionBottomSheet.openSheet(activity)
+            }
           }
         }
     ))

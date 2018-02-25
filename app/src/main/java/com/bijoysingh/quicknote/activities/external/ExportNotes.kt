@@ -2,20 +2,21 @@ package com.bijoysingh.quicknote.activities.external
 
 import android.Manifest
 import android.content.Context
+import android.os.AsyncTask
 import android.os.Environment
 import android.support.v7.app.AppCompatActivity
-import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.activities.sheets.ExportNotesBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.github.bijoysingh.starter.json.SafeJson
 import com.github.bijoysingh.starter.util.PermissionManager
-import com.github.bijoysingh.starter.util.ToastHelper
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
 
 const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
+const val KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
+const val KEY_AUTO_BACKUP_LAST_TIMESTAMP = "KEY_AUTO_BACKUP_LAST_TIMESTAMP"
 const val EXPORT_VERSION = 3
 
 fun getNotesForExport(context: Context): String {
@@ -29,6 +30,26 @@ fun getNotesForExport(context: Context): String {
   mapping[ExportableNote.KEY_NOTES] = exportableNotes
   val json = SafeJson(mapping)
   return json.toString()
+}
+
+fun maybeAutoExport(context: Context) {
+  AsyncTask.execute {
+    val autoBackup = MaterialNotes.getDataStore().get(KEY_AUTO_BACKUP_MODE, false)
+    if (!autoBackup) {
+      return@execute
+    }
+    val lastBackup = MaterialNotes.getDataStore().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
+    val lastTimestamp = Note.db(context).getLastTimestamp()
+    if (lastBackup >= lastTimestamp) {
+      // return@execute
+    }
+
+    val exportFile = getExportFile("autoBackup")
+    if (exportFile === null) {
+      return@execute
+    }
+    saveFile(exportFile, getNotesForExport(context))
+  }
 }
 
 fun searchInNote(note: Note, keyword: String): Boolean {
@@ -48,7 +69,10 @@ fun saveFile(text: String): Boolean {
   if (file == null) {
     return false
   }
+  return saveFile(file, text)
+}
 
+fun saveFile(file: File, text: String): Boolean {
   var stream: FileOutputStream? = null
   var successful = false
   try {
@@ -71,12 +95,16 @@ fun saveFile(text: String): Boolean {
 }
 
 fun getExportFile(): File? {
+  return getExportFile(ExportNotesBottomSheet.FILENAME)
+}
+
+fun getExportFile(filename: String): File? {
   val folder = createFolder()
-  if (folder == null) {
+  if (folder === null) {
     return null
   }
 
-  return File(folder.path + "/" + ExportNotesBottomSheet.FILE_NAME + ".txt")
+  return File(folder, filename + ".txt")
 }
 
 fun createFolder(): File? {

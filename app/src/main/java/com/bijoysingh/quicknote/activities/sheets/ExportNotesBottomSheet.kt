@@ -11,8 +11,10 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.external.getExportFile
 import com.bijoysingh.quicknote.activities.external.getNotesForExport
 import com.bijoysingh.quicknote.activities.external.saveFile
+import com.bijoysingh.quicknote.utils.Flavor
 import com.bijoysingh.quicknote.utils.GenericFileProvider
 import com.bijoysingh.quicknote.utils.ThemeColorType
+import com.bijoysingh.quicknote.utils.getAppFlavor
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 
 
@@ -79,12 +81,11 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
 
   companion object {
 
-    val MATERIAL_NOTES_FOLDER = "MaterialNotes"
-    val FILE_NAME = "BACKUP"
+    val MATERIAL_NOTES_FOLDER = if (getAppFlavor() === Flavor.NONE) "MaterialNotes" else "Scarlet"
+    val FILENAME = "BACKUP"
 
     fun openSheet(activity: MainActivity) {
       val sheet = ExportNotesBottomSheet()
-
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

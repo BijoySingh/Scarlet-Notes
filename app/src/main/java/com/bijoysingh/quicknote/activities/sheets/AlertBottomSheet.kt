@@ -12,7 +12,6 @@ import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.ThemeColorType
 
-
 class AlertBottomSheet : ThemedBottomSheetFragment() {
 
   var listener: AlertDetails? = null

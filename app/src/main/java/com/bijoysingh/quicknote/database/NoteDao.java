@@ -45,7 +45,10 @@ public interface NoteDao {
   Note getByUUID(String uuid);
 
   @Query("SELECT uuid FROM note")
-  String getAllUUIDs();
+  List<String> getAllUUIDs();
+
+  @Query("SELECT timestamp FROM note ORDER BY timestamp DESC LIMIT 1")
+  long getLastTimestamp();
 
   @Query("UPDATE note SET locked=0 WHERE locked <> 0")
   void unlockAll();

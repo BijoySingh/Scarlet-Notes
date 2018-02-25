@@ -123,6 +123,8 @@
   <string name="home_option_export_subtitle">Export notes to device storage to share</string>
   <string name="home_option_import">Import Notes</string>
   <string name="home_option_import_subtitle">Import notes from the device storage</string>
+  <string name="home_option_auto_export">Export Automatically</string>
+  <string name="home_option_auto_export_subtitle">Export notes frequently to external file as backup</string>
   <string name="home_option_about_page">About Us</string>
   <string name="home_option_about_page_subtitle">Know more about the app and the developers</string>
   <string name="home_option_open_source_page">Open Source Project</string>

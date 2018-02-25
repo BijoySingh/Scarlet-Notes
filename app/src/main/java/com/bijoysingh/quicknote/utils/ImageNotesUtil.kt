@@ -65,7 +65,7 @@ fun deleteAllRedundantImageFiles(context: Context) {
   }
   val ids = Note.db(context).allUUIDs
   for (id in ids) {
-    availableDirectories.remove(id.toString())
+    availableDirectories.remove(id)
   }
   for (uuid in availableDirectories) {
     val noteFolder = File(imagesFolder, uuid)

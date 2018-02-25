@@ -18,6 +18,8 @@ import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ITutorialActivity
 import com.bijoysingh.quicknote.activities.external.createHint
+import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
+import com.bijoysingh.quicknote.activities.external.maybeAutoExport
 import com.bijoysingh.quicknote.activities.sheets.*
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion.KEY_LINE_COUNT
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
@@ -334,6 +336,9 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
   override fun onPause() {
     super.onPause()
     removeOlderClips(this)
+    if (getStoragePermissionManager(this).hasAllPermissions()) {
+      maybeAutoExport(this)
+    }
     unregisterReceiver(receiver)
   }
 

@@ -68,7 +68,9 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
     noImageMessage.visibility = View.GONE
     noImageMessage.setTextColor(theme.get(context, ThemeColorType.TERTIARY_TEXT))
     noImageMessage.setOnClickListener {
-      AlertBottomSheet.openDeleteFormatDialog(activity, data)
+      if (getAppFlavor() != Flavor.NONE) {
+        AlertBottomSheet.openDeleteFormatDialog(activity, data)
+      }
     }
 
     val iconColor = theme.get(context, ThemeColorType.TOOLBAR_ICON)
