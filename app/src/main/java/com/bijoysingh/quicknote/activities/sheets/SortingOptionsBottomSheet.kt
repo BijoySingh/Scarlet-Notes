@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.content.Context
 import android.view.View
+import com.bijoysingh.quicknote.MaterialNotes.Companion.getDataStore
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.items.OptionsItem
@@ -68,13 +69,11 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
     }
 
     fun getSortingState(context: Context): SortingTechnique {
-      val dataStore = DataStore.get(context)
-      return getSortingState(dataStore)
+      return getSortingState(getDataStore())
     }
 
     fun setSortingState(context: Context, sortingTechnique: SortingTechnique) {
-      val dataStore = DataStore.get(context)
-      dataStore.put(KEY_SORTING_TECHNIQUE, sortingTechnique.ordinal)
+      getDataStore().put(KEY_SORTING_TECHNIQUE, sortingTechnique.ordinal)
     }
 
     fun openSheet(activity: MainActivity, listener: () -> Unit) {

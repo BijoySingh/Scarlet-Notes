@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -11,7 +12,6 @@ import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
-import com.github.bijoysingh.starter.prefs.DataStore
 
 class NoteRecyclerHolder(context: Context, view: View) : NoteRecyclerViewHolderBase(context, view) {
 
@@ -58,7 +58,7 @@ class NoteRecyclerHolder(context: Context, view: View) : NoteRecyclerViewHolderB
               runnable.run()
             }
           },
-          DataStore.get(context))
+          MaterialNotes.getDataStore())
       return
     } else if (data.locked) {
       return

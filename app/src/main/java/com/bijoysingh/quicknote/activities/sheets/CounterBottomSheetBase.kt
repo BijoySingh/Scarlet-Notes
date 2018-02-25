@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.utils.ThemeColorType
@@ -20,7 +21,7 @@ abstract class CounterBottomSheetBase : ThemedBottomSheetFragment() {
     }
 
     val mainActivity = activity as ThemedActivity
-    val dataStore = DataStore.get(context)
+    val dataStore = MaterialNotes.getDataStore()
     var count = getDefaultCount(dataStore)
 
     val lineLimit = dialog.findViewById<TextView>(R.id.line_limit)

@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet.Companion.openCreateSheet
@@ -46,12 +47,12 @@ class NoPincodeBottomSheet : ThemedBottomSheetFragment() {
       openCreateSheet(
           activity,
           listener ?: getEmptySuccessListener(),
-          DataStore.get(context))
+          MaterialNotes.getDataStore())
       dismiss()
     }
 
     neverAsk.setOnClickListener {
-      DataStore.get(context).put(KEY_NO_PIN_ASK, true)
+      MaterialNotes.getDataStore().put(KEY_NO_PIN_ASK, true)
       listener?.onSuccess()
       dismiss()
     }
@@ -83,7 +84,7 @@ class NoPincodeBottomSheet : ThemedBottomSheetFragment() {
     }
 
     fun maybeOpenSheet(activity: ThemedActivity) {
-      val dataStore = DataStore.get(activity)
+      val dataStore = MaterialNotes.getDataStore()
       if (hasPinCodeEnabled(dataStore) || ignoreNoPinSheet(dataStore)) {
         return
       }

@@ -3,8 +3,8 @@ package com.bijoysingh.quicknote.utils
 import android.content.Context
 import android.os.Build
 import android.support.v4.content.ContextCompat
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
-import com.github.bijoysingh.starter.prefs.DataStore
 
 const val KEY_APP_THEME = "KEY_APP_THEME"
 
@@ -50,8 +50,7 @@ class ThemeManager(context: Context) {
   }
 
   private fun getThemeFromDataStore(context: Context): Theme {
-    val dataStore = DataStore.get(context)
-    val theme = dataStore.get(KEY_APP_THEME, Theme.LIGHT.name)
+    val theme = MaterialNotes.getDataStore().get(KEY_APP_THEME, Theme.LIGHT.name)
     return Theme.valueOf(theme)
   }
 

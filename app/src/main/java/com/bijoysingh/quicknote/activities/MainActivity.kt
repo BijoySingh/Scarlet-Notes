@@ -2,7 +2,6 @@ package com.bijoysingh.quicknote.activities
 
 import android.content.BroadcastReceiver
 import android.os.Bundle
-import android.os.Handler
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -15,6 +14,7 @@ import android.widget.EditText
 import android.widget.GridLayout.VERTICAL
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ITutorialActivity
 import com.bijoysingh.quicknote.activities.external.createHint
@@ -22,7 +22,6 @@ import com.bijoysingh.quicknote.activities.sheets.*
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion.KEY_LINE_COUNT
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
-import com.bijoysingh.quicknote.activities.sheets.UISettingsOptionsBottomSheet.Companion.KEY_LIST_VIEW
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem
@@ -72,7 +71,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
     migrate(this)
 
     mode = HomeNavigationState.DEFAULT
-    store = DataStore.get(this)
+    store = MaterialNotes.getDataStore()
     executor = SimpleThreadExecutor(1)
 
     setupRecyclerView()

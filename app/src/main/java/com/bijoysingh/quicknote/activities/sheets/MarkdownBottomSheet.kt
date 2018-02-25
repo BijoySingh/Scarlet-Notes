@@ -2,10 +2,10 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.utils.ThemeColorType
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.uibasics.views.UIActionView
 import ru.noties.markwon.Markwon
 
@@ -34,7 +34,7 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
   }
 
   fun setupDialogContent(dialog: Dialog) {
-    val dataStore = DataStore.get(context)
+    val dataStore = MaterialNotes.getDataStore()
     val isMarkdownEnabled = dataStore.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
     val actionButton = dialog.findViewById<UIActionView>(R.id.action_button)
     actionButton.setOnClickListener {

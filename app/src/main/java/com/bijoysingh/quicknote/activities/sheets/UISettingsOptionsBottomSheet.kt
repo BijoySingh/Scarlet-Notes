@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.view.View
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion.getDefaultLineCount
@@ -19,7 +20,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
-    val dataStore = DataStore.get(context)
+    val dataStore = MaterialNotes.getDataStore()
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.home_option_enable_night_mode,

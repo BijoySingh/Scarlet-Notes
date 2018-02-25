@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.content.Intent
 import android.view.View
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_MODE
 import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_NOTE_ID
@@ -14,7 +15,6 @@ import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.NotificationHandler
 import com.bijoysingh.quicknote.utils.copyNote
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.RandomHelper
 
 class NoteOptionsBottomSheet() : GridBottomSheetBase() {
@@ -34,7 +34,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
   private fun getOptions(note: Note): List<OptionsItem> {
     val activity = context as MainActivity
-    val dataStore = DataStore.get(context)
+    val dataStore = MaterialNotes.getDataStore()
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.restore_note,

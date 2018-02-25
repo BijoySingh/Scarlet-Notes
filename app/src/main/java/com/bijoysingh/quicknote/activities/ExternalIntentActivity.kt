@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity.Companion.convertStreamToString
 import com.bijoysingh.quicknote.utils.ThemeColorType
@@ -39,7 +39,7 @@ class ExternalIntentActivity : ThemedActivity() {
     setContentView(R.layout.activity_external_intent)
 
     context = this
-    store = DataStore.get(context)
+    store = MaterialNotes.getDataStore()
 
     setView()
     notifyThemeChange()

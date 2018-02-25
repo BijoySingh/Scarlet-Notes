@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.view.View
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -10,7 +11,6 @@ import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.Flavor
 import com.bijoysingh.quicknote.utils.getAppFlavor
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.IntentUtils
 
 class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
@@ -65,7 +65,7 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   private fun openExportSheet() {
     val activity = context as MainActivity
-    val dataStore = DataStore.get(context)
+    val dataStore = MaterialNotes.getDataStore()
     if (!SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)) {
       ExportNotesBottomSheet.openSheet(activity)
       return

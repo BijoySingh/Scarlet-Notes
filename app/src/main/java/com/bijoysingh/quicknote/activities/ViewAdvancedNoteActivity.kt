@@ -9,6 +9,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.NoteAdvancedActivityBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteSettingsOptionsBottomSheet
@@ -58,7 +59,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_advanced_note)
     context = this
-    store = DataStore.get(context)
+    store = MaterialNotes.getDataStore()
 
     var noteId = intent.getIntExtra(INTENT_KEY_NOTE_ID, 0)
     if (noteId == 0 && savedInstanceState != null) {

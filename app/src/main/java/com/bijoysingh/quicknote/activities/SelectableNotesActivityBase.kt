@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet
@@ -19,7 +20,6 @@ import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
 import com.bijoysingh.quicknote.utils.ThemeColorType
-import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.sort
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.prefs.DataStore
@@ -34,7 +34,7 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(getLayoutUI())
-    store = DataStore.get(this)
+    store = MaterialNotes.getDataStore()
   }
 
   open fun initUI() {

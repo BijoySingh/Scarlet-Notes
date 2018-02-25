@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.view.View
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -19,7 +20,7 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
   }
 
   private fun getOptions(): List<OptionsItem> {
-    val dataStore: DataStore = DataStore.get(context)
+    val dataStore: DataStore = MaterialNotes.getDataStore()
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.security_option_set_pin_code,
@@ -88,7 +89,6 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
   }
 
   fun openCreatePasswordDialog(dialog: Dialog) {
-    val dataStore: DataStore = DataStore.get(context)
     val activity = context as ThemedActivity
     openCreateSheet(
         activity,
@@ -97,11 +97,11 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
             reset(dialog)
           }
         },
-        dataStore)
+        MaterialNotes.getDataStore())
   }
 
   fun openResetPasswordDialog(dialog: Dialog) {
-    val dataStore: DataStore = DataStore.get(context)
+    val dataStore: DataStore = MaterialNotes.getDataStore()
     val activity = context as ThemedActivity
     openVerifySheet(
         activity,
@@ -118,7 +118,7 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
   }
 
   fun openVerifyPasswordDialog(listener: EnterPincodeBottomSheet.PincodeSuccessOnlyListener) {
-    val dataStore: DataStore = DataStore.get(context)
+    val dataStore: DataStore = MaterialNotes.getDataStore()
     val activity = context as ThemedActivity
     openVerifySheet(
         activity,

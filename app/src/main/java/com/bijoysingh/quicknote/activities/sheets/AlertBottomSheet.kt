@@ -2,13 +2,13 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.ThemeColorType
-import com.github.bijoysingh.starter.prefs.DataStore
 
 
 class AlertBottomSheet : ThemedBottomSheetFragment() {
@@ -125,7 +125,7 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
         override fun getNegativeText(): Int = R.string.delete_sheet_delete_trash_no
 
         override fun getPositiveClickListener() {
-          DataStore.get(activity).put(IMAGE_SYNC_NOTICE, 1)
+          MaterialNotes.getDataStore().put(IMAGE_SYNC_NOTICE, 1)
         }
 
         override fun getNegativeClickListener() {
