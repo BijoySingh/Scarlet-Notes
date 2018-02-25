@@ -123,8 +123,8 @@
   <string name="home_option_export_subtitle">Export notes to device storage to share</string>
   <string name="home_option_import">Import Notes</string>
   <string name="home_option_import_subtitle">Import notes from the device storage</string>
-  <string name="home_option_auto_export">Export Automatically</string>
-  <string name="home_option_auto_export_subtitle">Export notes frequently to external file as backup</string>
+  <string name="home_option_auto_export" translatable="false">Export Automatically</string>
+  <string name="home_option_auto_export_subtitle" translatable="false">Export notes frequently to external file as backup</string>
   <string name="home_option_about_page">About Us</string>
   <string name="home_option_about_page_subtitle">Know more about the app and the developers</string>
   <string name="home_option_open_source_page">Open Source Project</string>
@@ -240,14 +240,14 @@
   <string name="format_action_gallery" translatable="false">Gallery</string>
   <string name="format_action_camera" translatable="false">Camera</string>
 
-  <string name="voice_sheet_title">Speak Note Aloud</string>
-  <string name="voice_action_title">Speak Aloud</string>
-  <string name="image_delete_all_devices">Deleting this item will delete the image from all the devices.</string>
-  <string name="image_not_on_current_device">Image not on this device</string>
-  <string name="image_cannot_be_loaded">Image cannot be loaded</string>
-  <string name="image_not_uploaded">Images Sync Coming Soon</string>
-  <string name="image_not_uploaded_details">Images are not yet synced across devices. We are actively working on making this happen. Hold tight!</string>
-  <string name="image_not_uploaded_i_understand">I Understand</string>
+  <string name="voice_sheet_title" translatable="false">Speak Note Aloud</string>
+  <string name="voice_action_title" translatable="false">Speak Aloud</string>
+  <string name="image_delete_all_devices" translatable="false">Deleting this item will delete the image from all the devices.</string>
+  <string name="image_not_on_current_device" translatable="false">Image not on this device</string>
+  <string name="image_cannot_be_loaded" translatable="false">Image cannot be loaded</string>
+  <string name="image_not_uploaded" translatable="false">Images are not synced</string>
+  <string name="image_not_uploaded_details" translatable="false">Images are not yet synced across devices. We are actively working on making this happen. Hold tight!</string>
+  <string name="image_not_uploaded_i_understand" translatable="false">I Understand</string>
   <!-- End Whats New -->
 
   <!-- Start Note Text Size -->
