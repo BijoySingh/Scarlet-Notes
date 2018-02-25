@@ -1,19 +1,15 @@
 package com.bijoysingh.quicknote.formats
 
-import android.util.Log
-
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.recyclerview.*
+import com.bijoysingh.quicknote.recyclerview.EmptyFormatHolder
+import com.bijoysingh.quicknote.recyclerview.FormatImageViewHolder
+import com.bijoysingh.quicknote.recyclerview.FormatListViewHolder
+import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem
-
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-
-import java.util.ArrayList
-import java.util.HashMap
-import java.util.regex.Matcher
-import java.util.regex.Pattern
+import java.util.*
 
 class Format : Comparable<Format> {
 

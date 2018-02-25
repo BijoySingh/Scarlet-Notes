@@ -6,7 +6,9 @@ import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
+import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.ThemeColorType
 
@@ -105,6 +107,27 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
         override fun getPositiveClickListener() {
           note.delete(activity)
           onDelete()
+        }
+
+        override fun getNegativeClickListener() {
+          // Ignore, nothing needs to happen
+        }
+      }
+      openSheet(activity, details)
+    }
+
+    fun openDeleteFormatDialog(activity: ViewAdvancedNoteActivity, format: Format) {
+      val details = object : AlertDetails {
+        override fun getTitle(): Int = R.string.delete_sheet_are_you_sure
+
+        override fun getDescription(): Int = R.string.image_delete_all_devices
+
+        override fun getPositiveText(): Int = R.string.delete_sheet_delete_trash_yes
+
+        override fun getNegativeText(): Int = R.string.delete_sheet_delete_trash_no
+
+        override fun getPositiveClickListener() {
+          activity.deleteFormat(format)
         }
 
         override fun getNegativeClickListener() {

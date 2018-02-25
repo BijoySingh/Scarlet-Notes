@@ -44,6 +44,9 @@ public interface NoteDao {
   @Query("SELECT * FROM note WHERE uuid = :uuid LIMIT 1")
   Note getByUUID(String uuid);
 
+  @Query("SELECT uuid FROM note")
+  String getAllUUIDs();
+
   @Query("UPDATE note SET locked=0 WHERE locked <> 0")
   void unlockAll();
 }

@@ -13,6 +13,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.sheets.FormatActionBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
@@ -62,6 +63,7 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
     val isMarkdownEnabled = (extra == null
         || extra.getBoolean(KEY_MARKDOWN_ENABLED, true)
         || data.forcedMarkdown)
+    val noteUUID: String = extra?.getString(INTENT_KEY_NOTE_ID) ?: "default"
 
     val fontSize = extra?.getInt(KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT)
         ?: TextSizeBottomSheet.TEXT_SIZE_DEFAULT
@@ -98,7 +100,7 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
 
     actionMove.visibility = visibility(editable)
     actionMove.setOnClickListener {
-      FormatActionBottomSheet.openSheet(activity, data)
+      FormatActionBottomSheet.openSheet(activity, noteUUID, data)
     }
   }
 

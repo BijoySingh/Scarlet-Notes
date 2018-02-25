@@ -2,12 +2,15 @@ package com.bijoysingh.quicknote.utils
 
 import android.content.Context
 import com.bijoysingh.quicknote.BuildConfig
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.activities.sheets.WhatsNewItemsBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.github.bijoysingh.starter.prefs.DataStore
+import java.util.*
 
 const val KEY_LAST_KNOWN_APP_VERSION = "KEY_LAST_KNOWN_APP_VERSION"
 const val KEY_LAST_SHOWN_WHATS_NEW = "KEY_LAST_SHOWN_WHATS_NEW"
+const val KEY_INSTANCE_ID = "KEY_INSTANCE_ID"
 
 fun getCurrentVersionCode(): Int {
   return BuildConfig.VERSION_CODE
@@ -42,4 +45,14 @@ fun shouldShowWhatsNewSheet(context: Context, dataStore: DataStore): Boolean {
 
   // New users don't need to see the whats new screen
   return lastUsedAppVersion != 0
+}
+
+fun getInstanceID(): String {
+  val deviceId = MaterialNotes.getDataStore().get(KEY_INSTANCE_ID, "")
+  if (deviceId.isBlank()) {
+    val newDeviceId = UUID.randomUUID().toString()
+    MaterialNotes.getDataStore().put(KEY_INSTANCE_ID, newDeviceId)
+    return newDeviceId
+  }
+  return deviceId
 }

@@ -6,9 +6,12 @@ import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
+import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.utils.deleteIfExist
+import com.bijoysingh.quicknote.utils.getFile
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import pl.aprilapps.easyphotopicker.EasyImage
@@ -16,6 +19,7 @@ import java.io.File
 
 class FormatActionBottomSheet : GridBottomSheetBase() {
 
+  var noteUUID: String = "default"
   var format: Format? = null
 
   override fun setupViewWithDialog(dialog: Dialog) {
@@ -23,11 +27,11 @@ class FormatActionBottomSheet : GridBottomSheetBase() {
       return
     }
 
-    setOptions(dialog, getOptions(format!!))
+    setOptions(dialog, getOptions(noteUUID, format!!))
     setOptionTitle(dialog, R.string.format_action_title)
   }
 
-  private fun getOptions(format: Format): List<OptionsItem> {
+  private fun getOptions(noteUUID: String, format: Format): List<OptionsItem> {
     val activity = themedActivity() as ViewAdvancedNoteActivity
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
@@ -78,7 +82,7 @@ class FormatActionBottomSheet : GridBottomSheetBase() {
         listener = View.OnClickListener {
           activity.deleteFormat(format)
           if (format.formatType === FormatType.IMAGE && !format.text.isBlank()) {
-            File(format.text).delete()
+            getFile(themedContext(), noteUUID, format).deleteIfExist()
           }
           dismiss()
         }
@@ -88,9 +92,10 @@ class FormatActionBottomSheet : GridBottomSheetBase() {
 
   companion object {
 
-    fun openSheet(activity: ThemedActivity, format: Format) {
+    fun openSheet(activity: ThemedActivity, noteUUID: String, format: Format) {
       val sheet = FormatActionBottomSheet()
       sheet.format = format
+      sheet.noteUUID = noteUUID
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }

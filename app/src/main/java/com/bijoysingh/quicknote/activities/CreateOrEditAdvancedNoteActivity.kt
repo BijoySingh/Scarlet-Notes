@@ -320,7 +320,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
 
     val formatToChange = formats[position]
     if (!formatToChange.text.isBlank()) {
-      getFile(context, note!!.uuid, formatToChange.text).delete()
+      getFile(context, note!!.uuid, formatToChange.text).deleteIfExist()
     }
     formatToChange.text = file.name
     setFormat(formatToChange)

@@ -12,9 +12,9 @@ import com.squareup.picasso.Picasso
 import java.io.File
 
 fun renameOrCopy(context: Context, note: Note, imageFile: File): File {
-  val targetFile = File(context.cacheDir, note.uuid + File.separator + RandomHelper.getRandom() + ".jpg")
+  val targetFile = getFile(context, note.uuid, RandomHelper.getRandom() + ".jpg")
   targetFile.mkdirs()
-  targetFile.delete()
+  targetFile.deleteIfExist()
   val renamed = imageFile.renameTo(targetFile)
   if (!renamed) {
     imageFile.copyTo(targetFile, true)
@@ -27,14 +27,14 @@ fun getFile(context: Context, noteUUID: String, format: Format): File {
 }
 
 fun getFile(context: Context, noteUUID: String, formatFileName: String): File {
-  return File(context.cacheDir, noteUUID + File.separator + formatFileName)
+  return File(context.cacheDir, "images" + File.separator + noteUUID + File.separator + formatFileName)
 }
 
 fun deleteAllFiles(context: Context, note: Note) {
   for (format in note.getFormats()) {
     if (format.formatType === FormatType.IMAGE) {
       val file = getFile(context, note.uuid, format)
-      file.delete()
+      file.deleteIfExist()
     }
   }
 }
@@ -46,10 +46,31 @@ fun loadFileToImageView(context: Context, image: ImageView, file: File, callback
       image.visibility = View.VISIBLE
       callback?.onSuccess()
     }
+
     override fun onError() {
-      file.delete()
+      file.deleteIfExist()
       image.visibility = View.GONE
       callback?.onError()
     }
   })
+}
+
+fun deleteAllRedundantImageFiles(context: Context) {
+  val imagesFolder = File(context.cacheDir, "images" + File.separator)
+  val availableDirectories = HashSet<String>()
+  for (file in imagesFolder.listFiles()) {
+    if (file.isDirectory) {
+      availableDirectories.add(file.name)
+    }
+  }
+  val ids = Note.db(context).allUUIDs
+  for (id in ids) {
+    availableDirectories.remove(id.toString())
+  }
+  for (uuid in availableDirectories) {
+    val noteFolder = File(imagesFolder, uuid)
+    for (file in noteFolder.listFiles()) {
+      file.deleteIfExist()
+    }
+  }
 }

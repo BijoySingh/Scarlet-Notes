@@ -76,7 +76,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
 
     setupRecyclerView()
     setListeners()
-    registerNoteReceiver()
     notifyThemeChange()
 
     val shown = WhatsNewItemsBottomSheet.maybeOpenSheet(this, store)
@@ -275,6 +274,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
   override fun onResume() {
     super.onResume()
     setupData()
+    registerNoteReceiver()
   }
 
   fun setupData() {
@@ -334,6 +334,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
   override fun onPause() {
     super.onPause()
     removeOlderClips(this)
+    unregisterReceiver(receiver)
   }
 
   override fun notifyThemeChange() {
