@@ -23,6 +23,7 @@ import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
+import java.util.*
 
 
 const val INTENT_KEY_NOTE_ID = "NOTE_ID"
@@ -271,6 +272,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     if (note!!.formats.isEmpty() && note!!.isUnsaved) {
       return
     }
+    note!!.updateTimestamp = Calendar.getInstance().timeInMillis
     if (sync)
       note!!.save(context)
     else

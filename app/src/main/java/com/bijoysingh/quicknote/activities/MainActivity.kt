@@ -336,10 +336,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
   override fun onPause() {
     super.onPause()
     removeOlderClips(this)
+    unregisterReceiver(receiver)
+  }
+
+  override fun onStop() {
+    super.onStop()
     if (getStoragePermissionManager(this).hasAllPermissions()) {
       maybeAutoExport(this)
     }
-    unregisterReceiver(receiver)
   }
 
   override fun notifyThemeChange() {

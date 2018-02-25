@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Base64
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.utils.genEmptyNote
+import com.bijoysingh.quicknote.utils.getNewNoteUUID
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
@@ -12,6 +13,7 @@ import java.io.Serializable
 
 
 class ExportableNote(
+    var uuid: String,
     var description: String,
     var displayTimestamp: String,
     var timestamp: Long,
@@ -21,6 +23,7 @@ class ExportableNote(
 ): Serializable {
 
   constructor(context: Context, note: Note) : this(
+      note.uuid,
       note.description,
       note.displayTime,
       note.timestamp,
@@ -31,6 +34,7 @@ class ExportableNote(
 
   @Deprecated("Do not use this unless no context is available, tags wont be saved")
   constructor(note: Note) : this(
+      note.uuid,
       note.description,
       note.displayTime,
       note.timestamp,
@@ -41,6 +45,7 @@ class ExportableNote(
 
   fun toJSONObject(): JSONObject {
     val map = HashMap<String, Any>()
+    map["uuid"] = uuid
     map["description"] = description
     map["displayTimestamp"] = displayTimestamp
     map["timestamp"] = timestamp
@@ -56,6 +61,7 @@ class ExportableNote(
 
     fun fromJSONObjectV2(json: JSONObject): ExportableNote {
       return ExportableNote(
+          getNewNoteUUID(),
           json["description"] as String,
           json["displayTimestamp"] as String,
           json["timestamp"] as Long,
@@ -66,6 +72,18 @@ class ExportableNote(
 
     fun fromJSONObjectV3(json: JSONObject): ExportableNote {
       return ExportableNote(
+          getNewNoteUUID(),
+          json["description"] as String,
+          json["displayTimestamp"] as String,
+          json["timestamp"] as Long,
+          json["color"] as Int,
+          json["state"] as String,
+          json["tags"] as JSONArray)
+    }
+
+    fun fromJSONObjectV4(json: JSONObject): ExportableNote {
+      return ExportableNote(
+          json["uuid"] as String,
           json["description"] as String,
           json["displayTimestamp"] as String,
           json["timestamp"] as Long,

@@ -52,6 +52,7 @@ class ImportNoteFromFileActivity : AppCompatActivity() {
                 val exportableNote = when(keyVersion) {
                   2 -> ExportableNote.fromJSONObjectV2(notes.getJSONObject(index))
                   3 -> ExportableNote.fromJSONObjectV3(notes.getJSONObject(index))
+                  4 -> ExportableNote.fromJSONObjectV4(notes.getJSONObject(index))
                   else -> ExportableNote.fromBase64String(notes.getString(index))
                 }
                 genImportedNote(activity, exportableNote)

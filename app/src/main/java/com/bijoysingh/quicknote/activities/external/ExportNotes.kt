@@ -17,7 +17,7 @@ import java.io.FileOutputStream
 const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
 const val KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
 const val KEY_AUTO_BACKUP_LAST_TIMESTAMP = "KEY_AUTO_BACKUP_LAST_TIMESTAMP"
-const val EXPORT_VERSION = 3
+const val EXPORT_VERSION = 4
 
 fun getNotesForExport(context: Context): String {
   val notes = Note.db(context).all
@@ -41,10 +41,10 @@ fun maybeAutoExport(context: Context) {
     val lastBackup = MaterialNotes.getDataStore().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
     val lastTimestamp = Note.db(context).getLastTimestamp()
     if (lastBackup >= lastTimestamp) {
-      // return@execute
+      return@execute
     }
 
-    val exportFile = getExportFile("autoBackup")
+    val exportFile = getExportFile("auto_backup")
     if (exportFile === null) {
       return@execute
     }

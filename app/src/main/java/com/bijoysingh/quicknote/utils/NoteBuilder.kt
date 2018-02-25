@@ -1,7 +1,6 @@
 package com.bijoysingh.quicknote.utils
 
 import android.content.Context
-import android.util.Log
 import com.bijoysingh.quicknote.activities.external.ExportableNote
 import com.bijoysingh.quicknote.activities.external.ExportableTag
 import com.bijoysingh.quicknote.database.Note
@@ -13,12 +12,14 @@ import org.json.JSONException
 import java.util.*
 import kotlin.collections.ArrayList
 
+fun getNewNoteUUID() = RandomHelper.getRandomString(24)
+
 /**
  * Generate blank note with default configuration
  */
 fun genEmptyNote(): Note {
   val note = Note()
-  note.uuid = RandomHelper.getRandomString(24)
+  note.uuid = getNewNoteUUID()
   note.state = NoteState.DEFAULT.name
   note.timestamp = Calendar.getInstance().timeInMillis
   note.updateTimestamp = note.timestamp
@@ -84,7 +85,9 @@ fun genImportFromKeep(description: String): List<Format> {
  * Generate blank note from imported note
  */
 fun genImportedNote(context: Context, exportableNote: ExportableNote): Note {
-  val note = genEmptyNote()
+  val existingNote = Note.db(context).getByUUID(exportableNote.uuid)
+  val note = existingNote ?: genEmptyNote()
+  note.uuid = exportableNote.uuid
   note.color = exportableNote.color
   note.description = exportableNote.description
   note.timestamp = exportableNote.timestamp
