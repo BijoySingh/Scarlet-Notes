@@ -22,6 +22,7 @@ import com.bijoysingh.quicknote.recyclerview.FormatImageViewHolder
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper
 import com.bijoysingh.quicknote.utils.*
+import com.github.bijoysingh.starter.util.RandomHelper
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
@@ -181,8 +182,10 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
         if (imageFile == null) {
           return
         }
+
+        val targetFile = renameOrCopy(context, note!!, imageFile)
         val index = getFormatIndex(type)
-        triggerImageLoaded(index, imageFile)
+        triggerImageLoaded(index, targetFile)
       }
 
       override fun onImagePickerError(e: Exception, source: EasyImage.ImageSource, type: Int) {
@@ -317,9 +320,9 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
 
     val formatToChange = formats[position]
     if (!formatToChange.text.isBlank()) {
-      File(formatToChange.text).delete()
+      getFile(context, note!!.uuid, formatToChange.text).delete()
     }
-    formatToChange.text = file.absolutePath
+    formatToChange.text = file.name
     setFormat(formatToChange)
   }
 

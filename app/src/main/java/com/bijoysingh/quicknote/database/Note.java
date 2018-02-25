@@ -38,6 +38,7 @@ import java.util.Set;
 
 import static com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivityKt.INTENT_KEY_NOTE_ID;
 import static com.bijoysingh.quicknote.activities.external.ExportNotesKt.searchInNote;
+import static com.bijoysingh.quicknote.utils.ImageNotesUtilKt.deleteAllFiles;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.removeMarkdownHeaders;
 import static com.bijoysingh.quicknote.utils.TextInputUtilsKt.renderMarkdown;
 
@@ -361,6 +362,7 @@ public class Note {
   }
 
   public void deleteWithoutSync(Context context) {
+    deleteAllFiles(context, this);
     if (isUnsaved()) {
       return;
     }

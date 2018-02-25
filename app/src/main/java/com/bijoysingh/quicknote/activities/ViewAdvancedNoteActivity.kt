@@ -113,6 +113,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     bundle.putBoolean(KEY_MARKDOWN_ENABLED, store.get(KEY_MARKDOWN_ENABLED, true))
     bundle.putBoolean(KEY_NIGHT_THEME, ThemeManager.get(this).isNightTheme())
     bundle.putInt(TextSizeBottomSheet.KEY_TEXT_SIZE, TextSizeBottomSheet.getDefaultTextSize(store))
+    bundle.putString(INTENT_KEY_NOTE_ID, note!!.uuid)
     adapter.setExtra(bundle)
   }
 

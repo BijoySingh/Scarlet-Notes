@@ -16,6 +16,8 @@ import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.utils.NoteState
+import com.bijoysingh.quicknote.utils.getFile
+import com.bijoysingh.quicknote.utils.loadFileToImageView
 import com.bijoysingh.quicknote.utils.trim
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.TextUtils
@@ -93,8 +95,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     when {
       imageFileName.isBlank() -> image.visibility = GONE
       else -> {
-        Picasso.with(context).load(File(imageFileName)).into(image)
-        image.visibility = VISIBLE
+        loadFileToImageView(context, image, getFile(context, item.note.uuid, imageFileName))
       }
     }
 

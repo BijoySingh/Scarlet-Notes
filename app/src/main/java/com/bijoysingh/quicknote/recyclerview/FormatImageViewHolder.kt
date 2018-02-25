@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.sheets.FormatActionBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet
@@ -15,11 +16,8 @@ import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.TEXT_SIZE_DEFAULT
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder.Companion.KEY_EDITABLE
-import com.bijoysingh.quicknote.utils.ThemeColorType
-import com.bijoysingh.quicknote.utils.ThemeManager
-import com.bijoysingh.quicknote.utils.visibility
+import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
-import com.squareup.picasso.Picasso
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
 
@@ -53,6 +51,7 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
         && !extra.getBoolean(KEY_EDITABLE))
     val fontSize = extra?.getInt(KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT)
         ?: TextSizeBottomSheet.TEXT_SIZE_DEFAULT
+    val noteUUID: String = extra?.getString(INTENT_KEY_NOTE_ID) ?: "default"
 
     val theme = ThemeManager.get(context)
     text.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT))
@@ -63,7 +62,7 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
 
     val fileName = data.text
     if (!fileName.isBlank()) {
-      populateFile(File(fileName))
+      populateFile(getFile(context, noteUUID, data))
     }
 
     val iconColor = theme.get(context, ThemeColorType.TOOLBAR_ICON)
@@ -83,6 +82,6 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
   }
 
   fun populateFile(file: File) {
-    Picasso.with(context).load(file).into(image)
+    loadFileToImageView(context, image, file)
   }
 }
