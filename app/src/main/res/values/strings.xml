@@ -240,6 +240,10 @@
 
   <string name="voice_sheet_title">Speak Note Aloud</string>
   <string name="voice_action_title">Speak Aloud</string>
+  <string name="image_not_on_current_device">Image not on device</string>
+  <string name="image_not_uploaded">Images Sync Coming Soon</string>
+  <string name="image_not_uploaded_details">Images are not yet synced across devices. We are actively working on making this happen. Hold tight!</string>
+  <string name="image_not_uploaded_i_understand">I Understand</string>
   <!-- End Whats New -->
 
   <!-- Start Note Text Size -->

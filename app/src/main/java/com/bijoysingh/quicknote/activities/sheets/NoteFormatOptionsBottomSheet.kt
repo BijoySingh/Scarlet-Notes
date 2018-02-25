@@ -7,6 +7,10 @@ import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.utils.Flavor
+import com.bijoysingh.quicknote.utils.getAppFlavor
+import com.bijoysingh.quicknote.utils.isLoggedIn
+import com.github.bijoysingh.starter.prefs.DataStore
 
 class NoteFormatOptionsBottomSheet : GridBottomSheetBase() {
   override fun setupViewWithDialog(dialog: Dialog) {
@@ -76,6 +80,11 @@ class NoteFormatOptionsBottomSheet : GridBottomSheetBase() {
         subtitle = R.string.format_label_image,
         icon = R.drawable.ic_image_gallery,
         listener = View.OnClickListener {
+          if (getAppFlavor() != Flavor.NONE &&
+              isLoggedIn() &&
+              DataStore.get(context).get(AlertBottomSheet.IMAGE_SYNC_NOTICE, 0) == 0) {
+            AlertBottomSheet.openImageNotSynced(activity)
+          }
           activity.addEmptyItemAtFocused(FormatType.IMAGE)
           dismiss()
         }

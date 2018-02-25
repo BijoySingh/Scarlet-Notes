@@ -39,15 +39,17 @@ fun deleteAllFiles(context: Context, note: Note) {
   }
 }
 
-fun loadFileToImageView(context: Context, image: ImageView, file: File) {
+fun loadFileToImageView(context: Context, image: ImageView, file: File, callback: Callback? = null) {
   Picasso.with(context).load(file).into(image, object : Callback {
     override fun onSuccess() {
       // Ignore successful call
       image.visibility = View.VISIBLE
+      callback?.onSuccess()
     }
     override fun onError() {
       file.delete()
       image.visibility = View.GONE
+      callback?.onError()
     }
   })
 }

@@ -15,3 +15,7 @@ fun getAppFlavor(): Flavor {
     else -> Flavor.NONE
   }
 }
+
+fun isLoggedIn(): Boolean {
+  return false
+}

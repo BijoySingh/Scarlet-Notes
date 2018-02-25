@@ -8,6 +8,7 @@ import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.ThemeColorType
+import com.github.bijoysingh.starter.prefs.DataStore
 
 
 class AlertBottomSheet : ThemedBottomSheetFragment() {
@@ -57,6 +58,8 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
   override fun getLayout(): Int = R.layout.bottom_sheet_alert
 
   companion object {
+    const val IMAGE_SYNC_NOTICE = "IMAGE_SYNC_NOTICE"
+
     fun openSheet(activity: ThemedActivity, listener: AlertDetails) {
       val sheet = AlertBottomSheet()
 
@@ -102,6 +105,27 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
         override fun getPositiveClickListener() {
           note.delete(activity)
           onDelete()
+        }
+
+        override fun getNegativeClickListener() {
+          // Ignore, nothing needs to happen
+        }
+      }
+      openSheet(activity, details)
+    }
+
+    fun openImageNotSynced(activity: ThemedActivity) {
+      val details = object : AlertDetails {
+        override fun getTitle(): Int = R.string.image_not_uploaded
+
+        override fun getDescription(): Int = R.string.image_not_uploaded_details
+
+        override fun getPositiveText(): Int = R.string.image_not_uploaded_i_understand
+
+        override fun getNegativeText(): Int = R.string.delete_sheet_delete_trash_no
+
+        override fun getPositiveClickListener() {
+          DataStore.get(activity).put(IMAGE_SYNC_NOTICE, 1)
         }
 
         override fun getNegativeClickListener() {

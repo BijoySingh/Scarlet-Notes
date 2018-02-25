@@ -18,6 +18,7 @@ import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder.Companion.KEY_EDITABLE
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
+import com.squareup.picasso.Callback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
 
@@ -82,6 +83,14 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
   }
 
   fun populateFile(file: File) {
-    loadFileToImageView(context, image, file)
+    loadFileToImageView(context, image, file, object: Callback {
+      override fun onSuccess() {
+        text.text = context.getText(R.string.format_hint_image)
+      }
+
+      override fun onError() {
+        text.text = context.getText(R.string.image_not_on_current_device)
+      }
+    })
   }
 }
