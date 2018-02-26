@@ -1,220 +1,250 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="title">标题</string>
   <string name="description">内容</string>
   <string name="save">保存</string>
-  <string name="share_using">分享使用&#8230;</string>
+  <string name="import_to_app">导入</string>
+  <string name="search_notes">搜索笔记</string>
+  <string name="share_using">分享到&#8230;</string>
+
   <string name="main_no_notes">没有笔记</string>
-  <string name="main_no_notes_hint">看来你还没有添加任何笔记。 点击添加备注。</string>
-  <string name="main_add_a_note">添加备注&#8230;</string>
+  <string name="main_no_notes_hint">您尚未添加笔记。点击以添加一条笔记。</string>
+
+  <string name="main_add_a_note">添加笔记&#8230;</string>
   <string name="main_add_a_quick_note">添加快速笔记&#8230;</string>
-  <string name="edit_note">编辑注释</string>
+
+  <string name="shortcut_add_note">添加笔记</string>
+  <string name="shortcut_add_list">添加清单项</string>
+
+  <string name="open_note_night_mode">夜间模式</string>
+  <string name="open_note_day_mode">日间模式</string>
+  <string name="edit_note">编辑笔记</string>
+  <string name="open_in_notification">创建通知</string>
   <string name="open_in_popup">在弹出窗口中打开</string>
-  <string name="delete_note">删除注释</string>
-  <string name="copy_note">复制说明</string>
-  <string name="send_note">发送注意事项</string>
-  <string name="choose_action">选择动作&#8230;</string>
+  <string name="delete_note">删除笔记</string>
+  <string name="delete_note_permanently">永久删除</string>
+  <string name="copy_note">复制笔记</string>
+  <string name="send_note">发送笔记</string>
+  <string name="unarchive_note">取消归档</string>
+  <string name="archive_note">归档</string>
+  <string name="not_favourite_note">取消收藏</string>
+  <string name="favourite_note">收藏</string>
+  <string name="restore_note">恢复笔记</string>
+  <string name="trash_note">移至回收站</string>
+  <string name="choose_note_color">更改颜色</string>
+  <string name="lock_note">锁定笔记</string>
+  <string name="change_tags">更改标签</string>
+  <string name="unlock_note">解锁笔记</string>
+  <string name="reminder">提醒</string>
+  <string name="select">选择</string>
+  <string name="duplicate">复制</string>
+  <string name="pin_note">固定笔记</string>
+  <string name="unpin_note">取消固定笔记</string>
+  <string name="choose_action">选择操作&#8230;</string>
+
+  <string name="tap_for_action_open_note_night_mode">轻触以在夜间模式下查看该笔记</string>
+  <string name="tap_for_action_open_note_day_mode">轻触以在日间模式下查看该笔记</string>
+  <string name="tap_for_action_edit">轻触以打开并编辑该笔记</string>
+  <string name="tap_for_action_copy">轻触以将该笔记的内容复制到剪贴板</string>
+  <string name="tap_for_action_share">轻触以将该笔记的内容分享到其他应用</string>
+  <string name="tap_for_action_popup">轻触以在悬浮窗中打开该笔记</string>
+  <string name="tap_for_action_delete">轻触以删除该笔记</string>
+  <string name="tap_for_action_trash">轻触以将该笔记移至回收站</string>
+  <string name="tap_for_action_not_trash">轻触以将该笔记移出回收站</string>
+  <string name="tap_for_action_favourite">轻触以收藏该笔记</string>
+  <string name="tap_for_action_not_favourite">轻触以取消收藏该笔记</string>
+  <string name="tap_for_action_archive">轻触以将该笔记归档</string>
+  <string name="tap_for_action_color">轻触以更改该笔记的背景色</string>
+  <string name="tap_for_action_not_archive">轻触以取消归档</string>
+
+  <string name="nav_sheet_title">您的笔记和其他</string>
+  <string name="nav_home">主页</string>
+  <string name="nav_home_details">您所有的普通笔记和已收藏的笔记</string>
+  <string name="nav_favourites">收藏夹</string>
+  <string name="nav_favourites_details">您所有已收藏的笔记</string>
+  <string name="nav_archived">归档</string>
+  <string name="nav_archived_details">您所有已归档的笔记</string>
+  <string name="nav_locked">已锁定</string>
+  <string name="nav_locked_details">您所有已锁定的笔记</string>
+  <string name="nav_tags">标签</string>
+  <string name="nav_tags_details">您所有的笔记标签</string>
+  <string name="nav_trash">回收站</string>
+  <string name="nav_trash_details">您所有在回收站中的笔记</string>
+
   <string name="format_hint_text">添加内容&#8230;</string>
   <string name="format_hint_heading">添加标题&#8230;</string>
-  <string name="format_hint_sub_heading">添加子标题&#8230;</string>
-  <string name="format_hint_quote">添加引号文本&#8230;</string>
-  <string name="format_hint_list">新增项目&#8230;</string>
+  <string name="format_hint_sub_heading">添加副标题&#8230;</string>
+  <string name="format_hint_quote">添加引用文本&#8230;</string>
+  <string name="format_hint_list">添加列表项&#8230;</string>
   <string name="format_hint_code">添加代码&#8230;</string>
-  <string name="search_notes">搜索笔记&#8230;</string>
-  <string name="lock_note">锁定注意</string>
-  <string name="unlock_note">解锁注意</string>
-  <string name="home_option_security">安全</string>
-  <string name="home_option_security_subtitle">锁定注释和安全选项</string>
-  <string name="security_option_title">安全选项</string>
-  <string name="security_option_set_pin_code">密码</string>
-  <string name="security_option_set_pin_code_subtitle">设置一个4位数字的PIN码来锁定音符</string>
-  <string name="security_option_fingerprint_enabled">用指纹解锁</string>
-  <string name="security_option_fingerprint_enabled_subtitle">笔记将用指纹解锁</string>
-  <string name="security_option_fingerprint_disabled">指纹被禁用</string>
-  <string name="security_option_fingerprint_disabled_subtitle">笔记不会使用指纹</string>
-  <string name="security_sheet_enter_new_pin_title">输入新的PIN码</string>
-  <string name="security_sheet_enter_pin_to_unlock_title">输入PIN码即可解锁</string>
-  <string name="security_sheet_enter_current_pin_title">输入当前的PIN码</string>
-  <string name="security_sheet_enter_pin_hint">输入代码</string>
-  <string name="security_sheet_button_verify">校验</string>
-  <string name="security_sheet_button_unlock">开锁</string>
-  <string name="security_sheet_button_set">组</string>
-  <string name="security_sheet_button_remove">去掉</string>
-  <string name="home_option_enable_list_view">启用列表布局</string>
-  <string name="home_option_enable_list_view_subtitle">在单个栏目中显示注释</string>
-  <string name="home_option_enable_grid_view">启用网格布局</string>
-  <string name="home_option_enable_grid_view_subtitle">以交错格子显示笔记</string>
 
-  <string name="open_note_day_mode">日间模式</string>
-  <string name="choose_note_color">换颜色</string>
-  <string name="tap_for_action_open_note_day_mode">点按即可在日间模式下查看笔记</string>
-  <string name="tap_for_action_color">点击改变音符的背景颜色</string>
-  <string name="home_option_enable_night_mode">启用夜间模式</string>
-  <string name="home_option_enable_night_mode_subtitle">默认启用黑色主题</string>
-  <string name="home_option_enable_day_mode">启用日间模式</string>
-  <string name="home_option_enable_day_mode_subtitle">默认启用轻量级主题</string>
+  <string name="format_sheet_option_title">块排版</string>
+  <string name="format_label_heading">标题</string>
+  <string name="format_label_sub_heading">副标题</string>
+  <string name="format_label_text">文本</string>
+  <string name="format_label_quote">引用</string>
+  <string name="format_label_code">代码</string>
+  <string name="format_label_list">清单</string>
+
+  <string name="markdown_sheet_option_title">Markdown 排版</string>
+  <string name="markdown_label_bold">加粗</string>
+  <string name="markdown_label_italics">倾斜</string>
+  <string name="markdown_label_underline">下划线</string>
+  <string name="markdown_label_strikethrough">删除线</string>
+  <string name="markdown_label_list">列表</string>
+
   <string name="home_option_sheet_title">选项和设置</string>
-  <string name="home_option_export">导出注释</string>
-  <string name="home_option_export_subtitle">将笔记导出到设备存储以便共享</string>
-  <string name="home_option_import">导入注释</string>
+  <string name="home_option_ui_experience">界面和体验</string>
+  <string name="home_option_ui_experience_subtitle">选择本应用的观感</string>
+  <string name="home_option_note_settings">笔记首选项</string>
+  <string name="home_option_note_settings_subtitle">选择笔记和其他的设置</string>
+  <string name="home_option_about">关于</string>
+  <string name="home_option_about_subtitle">了解更多关于我们和本应用的信息</string>
+  <string name="home_option_security">安全</string>
+  <string name="home_option_security_subtitle">锁定笔记和安全方面的选项</string>
+  <string name="home_option_enable_night_mode">启用夜间模式</string>
+  <string name="home_option_enable_night_mode_subtitle">将暗色主题设为默认主题</string>
+  <string name="home_option_enable_day_mode">启用日间模式</string>
+  <string name="home_option_enable_day_mode_subtitle">将亮色主题设为默认主题</string>
+  <string name="home_option_markdown_settings">Markdown 设置</string>
+  <string name="home_option_markdown_settings_subtitle">看看如何在笔记中使用 markdown</string>
+  <string name="home_option_enable_list_view">列表视图</string>
+  <string name="home_option_enable_list_view_subtitle">将笔记显示为一列</string>
+  <string name="home_option_enable_grid_view">网格视图</string>
+  <string name="home_option_enable_grid_view_subtitle">在交错的网格中显示笔记</string>
+  <string name="home_option_order_notes">笔记排序</string>
+  <string name="home_option_backup_options">备份和导入</string>
+  <string name="home_option_backup_options_subtitle">备份、导入和导出笔记的选项</string>
+  <string name="home_option_export">导出笔记</string>
+  <string name="home_option_export_subtitle">将笔记导出到设备存储以分享</string>
+  <string name="home_option_import">导入笔记</string>
   <string name="home_option_import_subtitle">从设备存储导入笔记</string>
   <string name="home_option_about_page">关于我们</string>
-  <string name="home_option_about_page_subtitle">了解更多关于应用程序和开发人员</string>
-  <string name="home_option_rate_and_review">打分和评论</string>
-  <string name="home_option_rate_and_review_subtitle">告诉我们你知道你有多喜欢这个应用程序</string>
-  <string name="permission_layout_give_permission">授予权限</string>
-  <string name="permission_layout_give_permission_details">导入和导出需要存储权限。 请求时请给予许可。</string>
+  <string name="home_option_about_page_subtitle">了解更多关于本应用及其开发者的信息</string>
+  <string name="home_option_open_source_page">开源项目</string>
+  <string name="home_option_open_source_page_subtitle">了解更多关于开源项目的信息</string>
+  <string name="home_option_rate_and_review">Rate and Review</string>
+  <string name="home_option_rate_and_review_subtitle">告诉我们您有多喜欢本应用</string>
+  <string name="home_option_fill_survey">参与调查</string>
+  <string name="home_option_fill_survey_subtitle">说说您喜欢什么，以帮助我们改善本应用</string>
+
+  <string name="security_option_title">安全选项</string>
+  <string name="security_option_set_pin_code">密码</string>
+  <string name="security_option_set_pin_code_subtitle">设置一个 4 位的 PIN 码来锁定笔记</string>
+  <string name="security_option_fingerprint_enabled">指纹解锁</string>
+  <string name="security_option_fingerprint_enabled_subtitle">笔记可通过指纹解锁</string>
+  <string name="security_option_fingerprint_disabled">指纹解锁已禁用</string>
+  <string name="security_option_fingerprint_disabled_subtitle">笔记不能通过指纹解锁</string>
+
+  <string name="security_sheet_enter_new_pin_title">输入新的 PIN 码</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">输入 PIN 码解锁</string>
+  <string name="security_sheet_enter_current_pin_title">输入当前的 PIN 码</string>
+  <string name="security_sheet_enter_pin_hint">输入密码</string>
+  <string name="security_sheet_button_verify">验证</string>
+  <string name="security_sheet_button_unlock">解锁</string>
+  <string name="security_sheet_button_set">设置</string>
+  <string name="security_sheet_button_remove">移除</string>
+
+  <string name="note_option_default_color">默认笔记颜色</string>
+  <string name="note_option_default_color_subtitle">选择笔记的默认颜色</string>
+  <string name="note_option_number_lines">笔记行数限制</string>
+
+  <string name="markdown_sheet_markdown_support">Markdown 支持</string>
+  <string name="markdown_sheet_markdown_support_subtitle">允许 markdown 支持的排版</string>
+  <string name="markdown_sheet_home_markdown_support">笔记列表中的 Markdown</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">在笔记列表中使用 Markdown 排版</string>
+  <string name="markdown_sheet_examples">示例</string>
+
+  <string name="permission_layout_give_permission">授权</string>
+  <string name="permission_layout_give_permission_details">导入和导出功能需要存储权限。请在收到请求后授权。</string>
   <string name="permission_layout_give_permission_ok">允许</string>
+
   <string name="import_export_import_file_title">从文件导入备份</string>
   <string name="import_export_import_file">导入文件</string>
-  <string name="import_export_layout_exported">导出到文件</string>
+  <string name="import_export_layout_exported">已导出到文件</string>
   <string name="import_export_layout_export_failed">导出失败</string>
-  <string name="import_export_layout_exporting">导出到文件&#8230;</string>
+  <string name="import_export_layout_exporting">正在导出到文件&#8230;</string>
   <string name="import_export_layout_exporting_done">完成</string>
   <string name="import_export_layout_exporting_share">分享</string>
-  <string name="about_page_title">关于我们和更多</string>
-  <string name="about_page_rate">Play商店的价格</string>
-  <string name="about_page_contribute">有助于</string>
-  <string name="about_page_app_version">应用程式版本</string>
-  <string name="about_page_about_app">关于应用</string>
-  <string name="open_note_night_mode">夜间模式</string>
-  <string name="delete_note_permanently">永久删除</string>
-  <string name="unarchive_note">解除注意</string>
-  <string name="archive_note">存档注意</string>
-  <string name="not_favourite_note">标记不收藏</string>
-  <string name="favourite_note">标记收藏</string>
-  <string name="restore_note">还原注意</string>
-  <string name="trash_note">移到废纸篓</string>
-  <string name="tap_for_action_open_note_night_mode">点按即可在夜间模式下查看笔记</string>
-  <string name="tap_for_action_edit">点击以打开注释进行编辑</string>
-  <string name="tap_for_action_copy">点击将音符内容复制到剪贴板</string>
-  <string name="tap_for_action_share">点按即可将笔记内容分享到其他应用</string>
-  <string name="tap_for_action_popup">点击以打开浮动弹出窗口中的音符</string>
-  <string name="tap_for_action_delete">点击删除该笔记</string>
-  <string name="tap_for_action_trash">点击将注释移动到垃圾</string>
-  <string name="tap_for_action_not_trash">点击即可将垃圾邮件移出</string>
-  <string name="tap_for_action_favourite">点击将笔记标记为收藏夹</string>
-  <string name="tap_for_action_not_favourite">点击标记注意不是最喜欢的</string>
-  <string name="tap_for_action_archive">点击归档笔记</string>
-  <string name="tap_for_action_not_archive">点击以取消存档</string>
-  <string name="nav_sheet_title">你的笔记&#8230;</string>
-  <string name="nav_home">家</string>
-  <string name="nav_home_details">所有正常和最喜欢的笔记</string>
-  <string name="nav_favourites">最爱</string>
-  <string name="nav_favourites_details">所有你最喜欢的笔记</string>
-  <string name="nav_archived">存档</string>
-  <string name="nav_archived_details">所有的归档笔记</string>
-  <string name="nav_trash">垃圾</string>
-  <string name="nav_trash_details">你在垃圾桶里的所有笔记</string>
-  <string name="markdown_sheet_markdown_support">减价支持</string>
-  <string name="markdown_sheet_markdown_support_subtitle">允许降价支持格式</string>
-  <string name="markdown_sheet_examples">例子</string>
-  <string name="home_option_markdown_settings">减价设置</string>
-  <string name="home_option_markdown_settings_subtitle">看看如何在笔记中使用降价</string>
-  <string name="open_in_notification">创建通知</string>
-  <string name="notification_channel_label">注意通知</string>
-  <string name="nav_locked">锁定</string>
-  <string name="nav_locked_details">所有锁定的笔记</string>
-  <string name="nav_tags">标签</string>
-  <string name="nav_tags_details">所有的笔记标签</string>
-  <string name="tag_sheet_create_title">添加新标签&#8230;</string>
-  <string name="tag_sheet_edit_title">编辑标签&#8230;</string>
-  <string name="tag_sheet_enter_tag_hint">输入标签</string>
-  <string name="tag_sheet_new_tag_button">创建一个新的标签</string>
-  <string name="tag_sheet_choose_tag">选择一个标签&#8230;</string>
 
-  <!-- Added in Release v3.7.9 -->
-  <string name="import_to_app">进口</string>
-  <string name="markdown_sheet_home_markdown_support">注释列表中的降价</string>
-  <string name="markdown_sheet_home_markdown_support_subtitle">在笔记列表中启用Markdown格式</string>
-  <string name="home_option_fill_survey">填写调查</string>
-  <string name="home_option_fill_survey_subtitle">通过告诉我们你喜欢什么来帮助我们改进应用程序</string>
+  <string name="about_page_title">关于我们和其他</string>
+  <string name="about_page_rate">在 Play 商店上评分</string>
+  <string name="about_page_contribute">贡献</string>
+  <string name="about_page_app_version">应用版本</string>
+  <string name="about_page_about_app">关于本应用</string>
 
-  <!-- Added in release v3.8.4 -->
-  <string name="change_tags">更改标签</string>
-  <string name="home_option_order_notes">订单注释</string>
-  <string name="home_option_open_source_page">开源项目</string>
-  <string name="home_option_open_source_page_subtitle">了解更多关于开源项目</string>
-  <string name="osp_page_libraries">图书馆</string>
+  <string name="osp_page_libraries">库</string>
   <string name="osp_page_about_osp">开源项目</string>
   <string name="osp_page_title">关于开源项目</string>
-  <string name="reminder_sheet_title">注意提醒</string>
+
+  <string name="reminder_sheet_title">笔记提醒</string>
   <string name="reminder_sheet_reminder_date">提醒日期</string>
   <string name="reminder_sheet_reminder_time">提醒时间</string>
   <string name="reminder_sheet_repeat">重复频率</string>
-  <string name="sort_sheet_title">按注释排序</string>
-  <string name="sort_sheet_newest_first">新的先来</string>
-  <string name="sort_sheet_oldest_first">最早的</string>
-  <string name="sort_sheet_last_modified">最近修改</string>
-  <string name="reminder">提醒</string>
-  <string name="pin_note">Pin Note</string>
-  <string name="unpin_note">取消固定注意</string>
 
-  <!-- Added in release v3.9.0 -->
-  <string name="home_option_ui_experience">界面和经验</string>
-  <string name="home_option_ui_experience_subtitle">选择应用程序的外观和感觉。</string>
-  <string name="home_option_note_settings">注意首选项</string>
-  <string name="home_option_note_settings_subtitle">选择笔记和其他设置。</string>
-  <string name="home_option_about">关于</string>
-  <string name="home_option_about_subtitle">了解更多关于我们和应用程序。</string>
-  <string name="note_option_default_color">默认的注意颜色</string>
-  <string name="note_option_default_color_subtitle">选择笔记的默认颜色</string>
-  <string name="note_option_number_lines">注线限制</string>
-  <string name="home_option_backup_options">备份和导入</string>
-  <string name="home_option_backup_options_subtitle">备份，导入和导出备注选项</string>
+  <string name="notification_channel_label">笔记通知</string>
 
-  <!-- Added in release v4.0.0 -->
-  <!-- Cloud Backup Hint -->
+  <string name="tag_sheet_create_title">添加新标签</string>
+  <string name="tag_sheet_edit_title">编辑标签</string>
+  <string name="tag_sheet_enter_tag_hint">输入标签</string>
+
+  <string name="tag_sheet_new_tag_button">创建新标签</string>
+  <string name="tag_sheet_choose_tag">选择一个标签</string>
+
+  <string name="sort_sheet_title">排序方式</string>
+  <string name="sort_sheet_newest_first">最近优先</string>
+  <string name="sort_sheet_oldest_first">最早优先</string>
+  <string name="sort_sheet_last_modified">最常修改</string>
+
+  <!-- Start Select Notes -->
+  <string name="select_a_note_title">选择单条笔记</string>
+  <string name="select_notes_title">选择多条笔记</string>
+  <string name="nav_settings">设置</string>
+  <string name="widget_no_valid_note">笔记已被删除或锁定</string>
+  <!-- End Select Notes -->
+
+  <!-- Start Whats New -->
+  <string name="whats_new_title">更新内容</string>
+  <string name="whats_new_subtitle">了解本应用最近更新的内容</string>
+  <string name="whats_new_translate">翻译</string>
+
+  <string name="tutorial_create_a_new_note">点击新建一条笔记</string>
+  <string name="tutorial_home_menu">点击查看主页选项</string>
+  <string name="tutorial_home_menu_subtitle">主页菜单中有您已收藏和归档的笔记，以及应用设置。您还可以在此找到您的标签。</string>
+
+  <string name="voice_sheet_title">念出笔记</string>
+  <string name="voice_action_title">语音输出</string>
+  <string name="image_not_on_current_device">图像不在设备上</string>
+  <string name="image_not_uploaded">图像同步即将到来</string>
+  <string name="image_not_uploaded_details">图像尚不能在设备间同步，但我们正努力实现此功能。请拭目以待。</string>
+  <string name="image_not_uploaded_i_understand">我了解</string>
+  <!-- End Whats New -->
+
+  <!-- Start Note Text Size -->
+  <string name="note_option_font_size">笔记字号</string>
+  <string name="note_option_font_size_example">调整笔记页面中文本使用的字号。您可在此预览效果。</string>
+  <string name="note_option_font_size_subtitle">在笔记查看器中使用的字号：%d</string>
+  <!-- End Note Text Size -->
+
+  <!-- Start Cloud Backup Hint -->
   <string name="home_option_install_from_store">从商店安装</string>
-  <string name="home_option_install_from_store_subtitle">从Google Store for Cloud Sync安装应用程序</string>
+  <string name="home_option_install_from_store_subtitle">从 Play 商店安装云同步应用</string>
+  <!-- End -->
 
-  <!-- No PinCode Sheet -->
-  <string name="no_pincode_sheet_title">没有PIN码设置</string>
-  <string name="no_pincode_sheet_details">您尚未设置PIN码。 你想现在设置它？</string>
-  <string name="no_pincode_sheet_not_now">后来</string>
-  <string name="no_pincode_sheet_dont_ask">永远不要问</string>
-  <string name="no_pincode_sheet_set_up">建立</string>
+  <!-- Start No Pincode -->
+  <string name="no_pincode_sheet_title">未设置 PIN 码</string>
+  <string name="no_pincode_sheet_details">您尚未设置 PIN 码。想要现在设置吗？</string>
+  <string name="no_pincode_sheet_not_now">稍后</string>
+  <string name="no_pincode_sheet_dont_ask">不再询问</string>
+  <string name="no_pincode_sheet_set_up">设置</string>
+  <!-- End No Pincode -->
 
-  <!-- Added for 4.1.0 -->
-  <string name="duplicate">重复</string>
-  <string name="select">选择</string>
-  <string name="delete_sheet_are_you_sure">你确定？</string>
-  <string name="delete_sheet_delete_trash">你想永久删除垃圾文件夹中的笔记吗？</string>
-  <string name="delete_sheet_delete_note_permanently">你想永久删除这个笔记吗？</string>
+  <!-- Start Delete Notes -->
+  <string name="delete_sheet_are_you_sure">您确定？</string>
+  <string name="delete_sheet_delete_trash">您想要永久删除回收站中的笔记吗？</string>
+  <string name="delete_sheet_delete_note_permanently">您想要永久删除该笔记吗？</string>
   <string name="delete_sheet_delete_trash_yes">删除</string>
   <string name="delete_sheet_delete_trash_no">取消</string>
-  <string name="trash_will_delete_automatically">注释在7天后被永久删除</string>
-
-  <!-- Added for 4.3.7 -->
-  <string name="shortcut_add_note">添加注释</string>
-  <string name="shortcut_add_list">添加清单</string>
-  <string name="format_sheet_option_title">块格式化</string>
-  <string name="format_label_heading">标题</string>
-  <string name="format_label_sub_heading">小标题</string>
-  <string name="format_label_text">文本</string>
-  <string name="format_label_quote">引用</string>
-  <string name="format_label_code">码</string>
-  <string name="format_label_list">清单</string>
-  <string name="markdown_sheet_option_title">降价格式</string>
-  <string name="markdown_label_bold">胆大</string>
-  <string name="markdown_label_italics">斜体</string>
-  <string name="markdown_label_underline">强调</string>
-  <string name="markdown_label_strikethrough">罢工</string>
-  <string name="markdown_label_list">名单</string>
-  <string name="select_a_note_title">选择一个注释</string>
-  <string name="select_notes_title">选择注释</string>
-  <string name="nav_settings">设置</string>
-  <string name="widget_no_valid_note">请注意删除或锁定</string>
-  <string name="note_option_font_size">注意字体大小</string>
-  <string name="note_option_font_size_example">调整笔记页面中文字的字体大小。 你可以看到它在这个预览中的样子。</string>
-  <string name="note_option_font_size_subtitle">笔记查看器中文本的%d大小</string>
-
-  <!-- Added for 4.3.8 -->
-  <string name="whats_new_title">什么是新的</string>
-  <string name="whats_new_subtitle">了解最近更新的应用程序中的新功能</string>
-  <string name="whats_new_translate">翻译</string>
-  <string name="tutorial_create_a_new_note">点击添加一个新的笔记</string>
-  <string name="tutorial_home_menu">点击查看家庭选项</string>
-  <string name="tutorial_home_menu_subtitle">主菜单有您最喜欢的和存档的笔记，以及应用程序设置。 你也可以在这里找到你的标签。</string>
+  <string name="trash_will_delete_automatically">笔记会在 7 天后永久删除</string>
+  <!-- End Delete Notes -->
 
 </resources>
