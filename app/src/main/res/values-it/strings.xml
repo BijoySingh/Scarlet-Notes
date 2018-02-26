@@ -3,11 +3,11 @@
   <string name="title">Titolo</string>
   <string name="description">Contenuto</string>
   <string name="save">Salva</string>
-  <string name="share_using">Condividi con &#8230;</string>
+  <string name="share_using">Condividi con&#8230;</string>
   <string name="main_no_notes">Nessuna nota</string>
   <string name="main_no_notes_hint">Sembra che non hai aggiunto alcuna nota. Fai clic per aggiungere una nota.</string>
   <string name="main_add_a_note">Aggiungi una nota&#8230;</string>
-  <string name="main_add_a_quick_note">Aggiungi nota veloce &#8230;</string>
+  <string name="main_add_a_quick_note">Aggiungi nota veloce&#8230;</string>
   <string name="edit_note">Modifica nota</string>
   <string name="open_in_popup">Apri in popup</string>
   <string name="delete_note">Elimina nota</string>
@@ -15,11 +15,11 @@
   <string name="send_note">Invia nota</string>
   <string name="choose_action">Scegli un\'azione&#8230;</string>
   <string name="format_hint_text">Aggiungi contenuto&#8230;</string>
-  <string name="format_hint_heading">Aggiungi intestazione &#8230;</string>
-  <string name="format_hint_sub_heading">Aggiungi sottotitolo &#8230;</string>
-  <string name="format_hint_quote">Aggiungi testo citato &#8230;</string>
-  <string name="format_hint_list">Aggiungi articolo&#8230;</string>
-  <string name="format_hint_code">Aggiungi codice &#8230;</string>
+  <string name="format_hint_heading">Aggiungi intestazione&#8230;</string>
+  <string name="format_hint_sub_heading">Aggiungi sottotitolo&#8230;</string>
+  <string name="format_hint_quote">Aggiungi testo citato&#8230;</string>
+  <string name="format_hint_list">Aggiungi elemento&#8230;</string>
+  <string name="format_hint_code">Aggiungi codice&#8230;</string>
   <string name="markdown_sheet_markdown_support">Markdown Support</string>
   <string name="markdown_sheet_markdown_support_subtitle">Consenti la formattazione markdown</string>
   <string name="markdown_sheet_examples">Esempi</string>
@@ -30,7 +30,7 @@
   <string name="home_option_export_subtitle">Esporta le note nella memoria del dispositivo</string>
   <string name="home_option_import">Importa note</string>
   <string name="home_option_import_subtitle">Importa note dalla memoria del dispositivo</string>
-  <string name="home_option_about_page">Informazioni</string>
+  <string name="home_option_about_page">Chi siamo</string>
   <string name="home_option_about_page_subtitle">Scopri di più sull\'app e sugli sviluppatori</string>
   <string name="home_option_rate_and_review">Valuta e recensisci</string>
   <string name="home_option_rate_and_review_subtitle">Facci sapere quanto ti è piaciuta l\'app</string>
@@ -41,22 +41,22 @@
   <string name="import_export_import_file">Importa file</string>
   <string name="import_export_layout_exported">Esportato nel file</string>
   <string name="import_export_layout_export_failed">Esportazione fallita</string>
-  <string name="import_export_layout_exporting">Esportazione nel file &#8230;</string>
-  <string name="import_export_layout_exporting_done">Fatto</string>
+  <string name="import_export_layout_exporting">Esportazione nel file&#8230;</string>
+  <string name="import_export_layout_exporting_done">Ok</string>
   <string name="import_export_layout_exporting_share">Condividi</string>
   <string name="about_page_title">Informazioni</string>
   <string name="about_page_rate">Vota su Play Store</string>
   <string name="about_page_contribute">Contribuisci</string>
   <string name="about_page_app_version">Versione dell\'app</string>
   <string name="about_page_about_app">Informazioni sull\'app</string>
-  <string name="search_notes">Cerca note &#8230;</string>
-  <string name="lock_note">Blocca nota</string>
+  <string name="search_notes">Cerca note&#8230;</string>
+  <string name="lock_note">Proteggi nota</string>
   <string name="unlock_note">Sblocca nota</string>
   <string name="home_option_security">Sicurezza</string>
-  <string name="home_option_security_subtitle">Opzioni di sicurezza e blocca note</string>
+  <string name="home_option_security_subtitle">Opzioni di sicurezza e di blocco</string>
   <string name="security_option_title">Opzioni di sicurezza</string>
   <string name="security_option_set_pin_code">Codice di accesso</string>
-  <string name="security_option_set_pin_code_subtitle">Imposta un PIN di 4 cifre per bloccare le note</string>
+  <string name="security_option_set_pin_code_subtitle">Imposta un PIN di 4 cifre per proteggere le note</string>
   <string name="security_option_fingerprint_enabled">Sblocca con Fingerprint</string>
   <string name="security_option_fingerprint_enabled_subtitle">Le note verranno sbloccate con l\'impronta digitale</string>
   <string name="security_option_fingerprint_disabled">Impronta digitale disabilitata</string>
@@ -103,7 +103,7 @@
   <string name="tap_for_action_not_favourite">Tocca per contrassegnare la nota come non preferita</string>
   <string name="tap_for_action_archive">Tocca per archiviare la nota</string>
   <string name="tap_for_action_not_archive">Tocca per annullare l\'archiviazione della nota</string>
-  <string name="nav_sheet_title">I tuoi appunti &#8230;</string>
+  <string name="nav_sheet_title">I tuoi appunti&#8230;</string>
   <string name="nav_home">Home</string>
   <string name="nav_home_details">Tutte le tue note normali e preferite</string>
   <string name="nav_favourites">Preferiti</string>
@@ -113,74 +113,74 @@
   <string name="nav_trash">Cestino</string>
   <string name="nav_trash_details">Tutte le tue note nel cestino</string>
   <string name="open_in_notification">Crea notifica</string>
-  <string name="notification_channel_label">Notare le notifiche</string>
-  <string name="nav_locked">Bloccato</string>
-  <string name="nav_locked_details">Tutte le tue note bloccate</string>
-  <string name="nav_tags">tag</string>
-  <string name="nav_tags_details">Tutti i tuoi tag delle note</string>
-  <string name="tag_sheet_create_title">Aggiungi un nuovo tag &#8230;</string>
-  <string name="tag_sheet_edit_title">Modifica tag &#8230;</string>
+  <string name="notification_channel_label">Note in notifica</string>
+  <string name="nav_locked">Protetti</string>
+  <string name="nav_locked_details">Tutte le tue note protette</string>
+  <string name="nav_tags">Tag</string>
+  <string name="nav_tags_details">Tutti i tuoi tag</string>
+  <string name="tag_sheet_create_title">Aggiungi nuovo tag&#8230;</string>
+  <string name="tag_sheet_edit_title">Modifica tag&#8230;</string>
   <string name="tag_sheet_enter_tag_hint">inserisci il tag</string>
   <string name="tag_sheet_new_tag_button">Crea un nuovo tag</string>
-  <string name="tag_sheet_choose_tag">Scegli un tag &#8230;</string>
+  <string name="tag_sheet_choose_tag">Scegli un tag&#8230;</string>
 
   <!-- Added in Release v3.7.9 -->
-  <string name="import_to_app">Importare</string>
+  <string name="import_to_app">Importa</string>
   <string name="markdown_sheet_home_markdown_support">Markdown in Elenco note</string>
-  <string name="markdown_sheet_home_markdown_support_subtitle">Abilita la formattazione di Markdown nell\'elenco delle note</string>
-  <string name="home_option_fill_survey">Riempi sondaggio</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Abilita la formattazione Markdown nell\'elenco delle note</string>
+  <string name="home_option_fill_survey">Rispondi al sondaggio</string>
   <string name="home_option_fill_survey_subtitle">Aiutaci a migliorare l\'app dicendoci cosa ti piace</string>
 
   <!-- Added in release v3.8.4 -->
   <string name="change_tags">Cambia tag</string>
-  <string name="home_option_order_notes">Note dell\'ordine</string>
+  <string name="home_option_order_notes">Ordine note</string>
   <string name="home_option_open_source_page">Progetto Open Source</string>
   <string name="home_option_open_source_page_subtitle">Scopri di più sul progetto open source</string>
-  <string name="osp_page_libraries">biblioteche</string>
+  <string name="osp_page_libraries">Librerie</string>
   <string name="osp_page_about_osp">Progetto Open Source</string>
   <string name="osp_page_title">Informazioni sul progetto Open Source</string>
-  <string name="reminder_sheet_title">Promemoria Nota</string>
+  <string name="reminder_sheet_title">Aggiungi promemoria</string>
   <string name="reminder_sheet_reminder_date">Data del promemoria</string>
-  <string name="reminder_sheet_reminder_time">Tempo di promemoria</string>
-  <string name="reminder_sheet_repeat">Ripeti frequenza</string>
+  <string name="reminder_sheet_reminder_time">Ora del promemoria</string>
+  <string name="reminder_sheet_repeat">Frequenza ripetizione</string>
   <string name="sort_sheet_title">Ordina note per</string>
   <string name="sort_sheet_newest_first">Prima i più nuovi</string>
   <string name="sort_sheet_oldest_first">Prima i più vecchi</string>
   <string name="sort_sheet_last_modified">Più recentemente modificato</string>
   <string name="reminder">Promemoria</string>
-  <string name="pin_note">Nota Pin</string>
+  <string name="pin_note">Fissa in alto</string>
   <string name="unpin_note">Sblocca nota</string>
 
   <!-- Added in release v3.9.0 -->
   <string name="home_option_ui_experience">Interfaccia ed esperienza</string>
-  <string name="home_option_ui_experience_subtitle">Scegli l\'aspetto e l\'aspetto dell\'app.</string>
-  <string name="home_option_note_settings">Nota Preferenze</string>
-  <string name="home_option_note_settings_subtitle">Scegli nota e altre impostazioni.</string>
-  <string name="home_option_about">Di</string>
+  <string name="home_option_ui_experience_subtitle">Scegli l\'aspetto dell\'app.</string>
+  <string name="home_option_note_settings">Preferenze nota</string>
+  <string name="home_option_note_settings_subtitle">Scegli preferenze e altre impostazioni.</string>
+  <string name="home_option_about">Chi siamo</string>
   <string name="home_option_about_subtitle">Scopri di più su di noi e sull\'app.</string>
   <string name="note_option_default_color">Colore nota predefinita</string>
   <string name="note_option_default_color_subtitle">Scegli il colore predefinito delle note</string>
-  <string name="note_option_number_lines">Nota Limite di linea</string>
+  <string name="note_option_number_lines">Limite lunghezza note</string>
   <string name="home_option_backup_options">Backup e importazione</string>
-  <string name="home_option_backup_options_subtitle">Backup, importazione ed esportazione delle opzioni di nota</string>
+  <string name="home_option_backup_options_subtitle">Backup, importazione ed esportazione delle note</string>
 
   <!-- Added in release v4.0.0 -->
   <!-- Cloud Backup Hint -->
-  <string name="home_option_install_from_store">Installa dal negozio</string>
+  <string name="home_option_install_from_store">Installa dallo store</string>
   <string name="home_option_install_from_store_subtitle">Installa app da Google Store per Cloud Sync</string>
 
   <!-- No PinCode Sheet -->
   <string name="no_pincode_sheet_title">Nessun PIN impostato</string>
-  <string name="no_pincode_sheet_details">Non hai impostato il PIN. Vorresti installarlo ora?</string>
+  <string name="no_pincode_sheet_details">Non hai impostato il PIN. Vuoi impostarlo ora?</string>
   <string name="no_pincode_sheet_not_now">Dopo</string>
   <string name="no_pincode_sheet_dont_ask">Non chiedere mai</string>
-  <string name="no_pincode_sheet_set_up">Impostare</string>
+  <string name="no_pincode_sheet_set_up">Imposta</string>
 
   <!-- Added for 4.1.0 -->
-  <string name="duplicate">Duplicare</string>
-  <string name="select">Selezionare</string>
+  <string name="duplicate">Duplica</string>
+  <string name="select">Seleziona</string>
   <string name="delete_sheet_are_you_sure">Sei sicuro?</string>
-  <string name="delete_sheet_delete_trash">Vorresti eliminare definitivamente le note nella cartella cestino?</string>
+  <string name="delete_sheet_delete_trash">Vuoi eliminare definitivamente le note dal cestino?</string>
   <string name="delete_sheet_delete_note_permanently">Vuoi eliminare definitivamente questa nota?</string>
   <string name="delete_sheet_delete_trash_yes">Elimina</string>
   <string name="delete_sheet_delete_trash_no">Annulla</string>
@@ -189,33 +189,33 @@
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">Aggiungi nota</string>
   <string name="shortcut_add_list">Aggiungi lista di controllo</string>
-  <string name="format_sheet_option_title">Block Formatting</string>
+  <string name="format_sheet_option_title">Formattazione</string>
   <string name="format_label_heading">Intestazione</string>
   <string name="format_label_sub_heading">Sottotitolo</string>
   <string name="format_label_text">Testo</string>
   <string name="format_label_quote">Citazione</string>
   <string name="format_label_code">Codice</string>
-  <string name="format_label_list">lista di controllo</string>
-  <string name="markdown_sheet_option_title">Markdown Formatting</string>
+  <string name="format_label_list">Lista di controllo</string>
+  <string name="markdown_sheet_option_title">Formattazione Markdown</string>
   <string name="markdown_label_bold">Grassetto</string>
   <string name="markdown_label_italics">Corsivo</string>
-  <string name="markdown_label_underline">Sottolineare</string>
-  <string name="markdown_label_strikethrough">Sciopero</string>
+  <string name="markdown_label_underline">Sottolinea</string>
+  <string name="markdown_label_strikethrough">Barrato</string>
   <string name="markdown_label_list">Elenco</string>
   <string name="select_a_note_title">Seleziona una nota</string>
   <string name="select_notes_title">Seleziona Note</string>
-  <string name="nav_settings">impostazioni</string>
-  <string name="widget_no_valid_note">Nota cancellata o bloccata</string>
-  <string name="note_option_font_size">Nota Dimensione carattere</string>
+  <string name="nav_settings">Impostazioni</string>
+  <string name="widget_no_valid_note">Nota cancellata o protetta</string>
+  <string name="note_option_font_size">Dimensione carattere</string>
   <string name="note_option_font_size_example">Regola le dimensioni del carattere del testo nella pagina delle note. Puoi vedere come sarebbe in questa anteprima.</string>
   <string name="note_option_font_size_subtitle">%d dimensioni del testo nel visualizzatore note</string>
 
   <!-- Added for 4.3.8 -->
   <string name="whats_new_title">Cosa c\'è di nuovo</string>
   <string name="whats_new_subtitle">Scopri cosa c\'è di nuovo nei recenti aggiornamenti dell\'app</string>
-  <string name="whats_new_translate">Tradurre</string>
+  <string name="whats_new_translate">Traduci</string>
   <string name="tutorial_create_a_new_note">Fai clic per aggiungere una nuova nota</string>
-  <string name="tutorial_home_menu">Clicca per vedere le opzioni di casa</string>
-  <string name="tutorial_home_menu_subtitle">Il menu principale contiene le note preferite e di archivio, nonché le impostazioni dell\'applicazione. Puoi trovare i tuoi tag anche qui.</string>
+  <string name="tutorial_home_menu">Clicca per vedere le opzioni della home</string>
+  <string name="tutorial_home_menu_subtitle">Il menu principale contiene le note preferite e archiviate, nonché le impostazioni dell\'applicazione. Puoi trovare anche i tuoi tag.</string>
 
 </resources>
