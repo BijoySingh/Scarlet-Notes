@@ -210,13 +210,6 @@
   <string name="tutorial_create_a_new_note">点击新建一条笔记</string>
   <string name="tutorial_home_menu">点击查看主页选项</string>
   <string name="tutorial_home_menu_subtitle">主页菜单中有您已收藏和归档的笔记，以及应用设置。您还可以在此找到您的标签。</string>
-
-  <string name="voice_sheet_title">念出笔记</string>
-  <string name="voice_action_title">语音输出</string>
-  <string name="image_not_on_current_device">图像不在设备上</string>
-  <string name="image_not_uploaded">图像同步即将到来</string>
-  <string name="image_not_uploaded_details">图像尚不能在设备间同步，但我们正努力实现此功能。请拭目以待。</string>
-  <string name="image_not_uploaded_i_understand">我了解</string>
   <!-- End Whats New -->
 
   <!-- Start Note Text Size -->
