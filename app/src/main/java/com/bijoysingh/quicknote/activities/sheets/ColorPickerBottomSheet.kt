@@ -37,13 +37,17 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     }
 
     val colorPicker = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout)
-    setColorsList(colorPicker, R.array.bright_colors)
-
-    val colorPickerAccent = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout_accent)
-    setColorsList(colorPickerAccent, R.array.bright_colors_accent)
+    setColorsList(colorPicker, getColorOptions())
 
     val separator = dialog.findViewById<View>(R.id.separator)
-    separator.setBackgroundColor(appTheme().get(ThemeColorType.HINT_TEXT))
+    val colorPickerAccent = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout_accent)
+    if (controller !== null) {
+      setColorsList(colorPickerAccent, resources.getIntArray(R.array.bright_colors_accent))
+      separator.setBackgroundColor(appTheme().get(ThemeColorType.HINT_TEXT))
+    } else {
+      colorPickerAccent.visibility = View.GONE
+      separator.visibility = View.GONE
+    }
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
 
@@ -55,7 +59,7 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     return R.id.container_layout
   }
 
-  private fun setColorsList(colorSelectorLayout: FlexboxLayout, colorRange: Int) {
+  private fun setColorsList(colorSelectorLayout: FlexboxLayout, colors: IntArray) {
     colorSelectorLayout.removeAllViews()
     val selectedColor: Int
     if (controller !== null) {
@@ -66,8 +70,6 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
       selectedColor = 0
     }
 
-    // val colors = resources.getIntArray(colorRange)
-    val colors = getColorOptions()
     for (color in colors) {
       val item = ColorView(context!!)
 
