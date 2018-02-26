@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -35,7 +36,13 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     }
 
     val colorPicker = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout)
-    setColorsList(colorPicker)
+    setColorsList(colorPicker, R.array.bright_colors)
+
+    val colorPickerAccent = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout_accent)
+    setColorsList(colorPickerAccent, R.array.bright_colors_accent)
+
+    val separator = dialog.findViewById<View>(R.id.separator)
+    separator.setBackgroundColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
     optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
@@ -45,7 +52,7 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     return R.id.container_layout
   }
 
-  private fun setColorsList(colorSelectorLayout: FlexboxLayout) {
+  private fun setColorsList(colorSelectorLayout: FlexboxLayout, colorRange: Int) {
     colorSelectorLayout.removeAllViews()
     val selectedColor: Int
     if (controller !== null) {
@@ -56,7 +63,7 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
       selectedColor = 0
     }
 
-    val colors = resources.getIntArray(R.array.bright_colors)
+    val colors = resources.getIntArray(colorRange)
     for (color in colors) {
       val item = ColorView(context!!)
 

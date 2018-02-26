@@ -35,10 +35,26 @@
     <item>@color/material_green_700</item>
     <item>@color/material_light_green_700</item>
     <item>@color/material_lime_800</item>
+    <item>@color/material_yellow_600</item>
     <item>@color/material_yellow_900</item>
     <item>@color/material_orange_700</item>
     <item>@color/material_deep_orange_700</item>
     <item>@color/material_pink_700</item>
     <item>@color/material_red_700</item>
+  </array>
+
+  <array name="bright_colors_accent">
+    <item>@color/material_blue_grey_200</item>
+    <item>@color/material_purple_accent_100</item>
+    <item>@color/material_indigo_accent_100</item>
+    <item>@color/material_blue_accent_100</item>
+    <item>@color/material_cyan_accent_100</item>
+    <item>@color/material_teal_accent_100</item>
+    <item>@color/material_light_green_accent_100</item>
+    <item>@color/material_lime_accent_100</item>
+    <item>@color/material_yellow_accent_100</item>
+    <item>@color/material_orange_accent_100</item>
+    <item>@color/material_pink_accent_100</item>
+    <item>@color/material_red_accent_100</item>
   </array>
 </resources>

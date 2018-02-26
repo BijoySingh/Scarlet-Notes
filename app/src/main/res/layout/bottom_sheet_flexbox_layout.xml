@@ -33,5 +33,21 @@
       app:alignItems="stretch"
       app:flexWrap="wrap"
       app:justifyContent="center" />
+
+    <View
+      android:id="@+id/separator"
+      android:layout_width="match_parent"
+      android:layout_height="0.75dp"
+      android:layout_margin="16dp"
+      android:background="@color/dark_hint_text" />
+
+    <com.google.android.flexbox.FlexboxLayout
+      android:id="@+id/flexbox_layout_accent"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:alignContent="stretch"
+      app:alignItems="stretch"
+      app:flexWrap="wrap"
+      app:justifyContent="center" />
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

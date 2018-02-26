@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.recyclerview
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v4.graphics.ColorUtils
 import android.support.v7.widget.CardView
 import android.view.View
 import android.view.View.GONE
@@ -21,9 +22,7 @@ import com.bijoysingh.quicknote.utils.loadFileToImageView
 import com.bijoysingh.quicknote.utils.trim
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.TextUtils
-import com.squareup.picasso.Picasso
 import ru.noties.markwon.Markwon
-import java.io.File
 
 open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerViewHolder<RecyclerItem>(context, view) {
 
@@ -60,21 +59,61 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
 
   override fun populate(itemData: RecyclerItem, extra: Bundle?) {
     val isMarkdownEnabled = extra == null || extra.getBoolean(KEY_MARKDOWN_ENABLED, true)
-    val lineCount = extra?.getInt(LineCountBottomSheet.KEY_LINE_COUNT, LineCountBottomSheet.LINE_COUNT_DEFAULT)
-        ?: LineCountBottomSheet.LINE_COUNT_DEFAULT
 
     val item = itemData as NoteRecyclerItem
     val data = item.note
-    val noteTitle = data.getMarkdownTitle(context, isMarkdownEnabled)
+
+    val isLightShaded = ColorUtils.calculateLuminance(data.color) > 0.35
+    setTitle(data, isMarkdownEnabled, isLightShaded)
+    setDescription(data, extra, isMarkdownEnabled, isLightShaded)
+    setImage(data)
+    setIndicators(data, isLightShaded)
+    setMetaText(data, isLightShaded)
+
+    view.setOnClickListener { viewClick(data, extra) }
+    view.setOnLongClickListener {
+      viewLongClick(data, extra)
+      false
+    }
+    view.setCardBackgroundColor(data.color)
+    setActionBar(data, extra)
+  }
+
+  private fun setTitle(note: Note, isMarkdownEnabled: Boolean, isLightShaded: Boolean) {
+    val noteTitle = note.getMarkdownTitle(context, isMarkdownEnabled)
     title.text = noteTitle
     title.visibility = if (noteTitle.isEmpty()) View.GONE else View.VISIBLE
+    when (isLightShaded) {
+      true -> title.setTextColor(ContextCompat.getColor(context, R.color.dark_tertiary_text))
+      false -> title.setTextColor(ContextCompat.getColor(context, R.color.light_primary_text))
+    }
+  }
 
-    description.text = data.getLockedText(context, isMarkdownEnabled)
+  private fun setDescription(note: Note, extra: Bundle?, isMarkdownEnabled: Boolean, isLightShaded: Boolean) {
+    val lineCount = extra?.getInt(LineCountBottomSheet.KEY_LINE_COUNT, LineCountBottomSheet.LINE_COUNT_DEFAULT)
+        ?: LineCountBottomSheet.LINE_COUNT_DEFAULT
+
+    description.text = note.getLockedText(context, isMarkdownEnabled)
     description.maxLines = lineCount
+    when (isLightShaded) {
+      true -> description.setTextColor(ContextCompat.getColor(context, R.color.dark_tertiary_text))
+      false -> description.setTextColor(ContextCompat.getColor(context, R.color.light_primary_text))
+    }
+  }
 
-    pinIndicator.visibility = if (data.pinned) View.VISIBLE else View.GONE
+  private fun setImage(note: Note) {
+    val imageFileName = note.getImageFile()
+    when {
+      imageFileName.isBlank() -> image.visibility = GONE
+      else -> {
+        loadFileToImageView(context, image, getFile(context, note.uuid, imageFileName))
+      }
+    }
+  }
 
-    when (data.noteState) {
+  private fun setIndicators(note: Note, isLightShaded: Boolean) {
+    pinIndicator.visibility = if (note.pinned) View.VISIBLE else View.GONE
+    when (note.noteState) {
       NoteState.FAVOURITE -> {
         stateIndicator.visibility = View.VISIBLE
         stateIndicator.setImageResource(R.drawable.ic_favorite_white_48dp)
@@ -91,40 +130,48 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
       else -> stateIndicator.visibility = GONE
     }
 
-    val imageFileName = data.getImageFile()
-    when {
-      imageFileName.isBlank() -> image.visibility = GONE
-      else -> {
-        loadFileToImageView(context, image, getFile(context, item.note.uuid, imageFileName))
+    when (isLightShaded) {
+      true -> {
+        pinIndicator.setColorFilter(ContextCompat.getColor(context, R.color.dark_hint_text))
+        stateIndicator.setColorFilter(ContextCompat.getColor(context, R.color.dark_hint_text))
+      }
+      false -> {
+        pinIndicator.setColorFilter(ContextCompat.getColor(context, R.color.light_hint_text))
+        stateIndicator.setColorFilter(ContextCompat.getColor(context, R.color.light_hint_text))
       }
     }
+  }
 
-    val noteTimestamp = data.displayTime
-    if (!TextUtils.isNullOrEmpty(data.tags)) {
-      tags.setTextColor(ContextCompat.getColor(context, R.color.light_secondary_text))
-      val source = Markwon.markdown(context, data.getTagString(context))
-      tags.text = trim(source)
-      tags.visibility = VISIBLE
-    } else if (!TextUtils.isNullOrEmpty(noteTimestamp)) {
-      tags.setTextColor(ContextCompat.getColor(context, R.color.light_hint_text))
-      tags.text = noteTimestamp
-      tags.visibility = VISIBLE
-    } else {
-      tags.visibility = GONE
+  private fun setMetaText(note: Note, isLightShaded: Boolean) {
+    val noteTimestamp = note.displayTime
+    when {
+      !TextUtils.isNullOrEmpty(note.tags) -> {
+        tags.setTextColor(ContextCompat.getColor(
+            context,
+            if (isLightShaded) R.color.dark_tertiary_text else R.color.light_secondary_text))
+        val source = Markwon.markdown(context, note.getTagString(context))
+        tags.text = trim(source)
+        tags.visibility = VISIBLE
+      }
+      !TextUtils.isNullOrEmpty(noteTimestamp) -> {
+        tags.setTextColor(ContextCompat.getColor(
+            context,
+            if (isLightShaded) R.color.dark_hint_text else R.color.light_hint_text))
+        tags.text = noteTimestamp
+        tags.visibility = VISIBLE
+      }
+      else -> {
+        tags.visibility = GONE
+      }
     }
+  }
 
-    view.setOnClickListener { viewClick(data, extra) }
-    view.setOnLongClickListener {
-      viewLongClick(data, extra)
-      false
-    }
-    view.setCardBackgroundColor(data.color)
-
-    delete.setOnClickListener { deleteIconClick(data, extra) }
-    share.setOnClickListener { shareIconClick(data, extra) }
-    edit.setOnClickListener { editIconClick(data, extra) }
-    copy.setOnClickListener { copyIconClick(data, extra) }
-    moreOptions.setOnClickListener { moreOptionsIconClick(data, extra) }
+  private fun setActionBar(note: Note, extra: Bundle?) {
+    delete.setOnClickListener { deleteIconClick(note, extra) }
+    share.setOnClickListener { shareIconClick(note, extra) }
+    edit.setOnClickListener { editIconClick(note, extra) }
+    copy.setOnClickListener { copyIconClick(note, extra) }
+    moreOptions.setOnClickListener { moreOptionsIconClick(note, extra) }
   }
 
   protected open fun viewClick(note: Note, extra: Bundle?) {}
