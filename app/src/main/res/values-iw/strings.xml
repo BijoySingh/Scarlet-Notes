@@ -219,4 +219,22 @@
   <string name="tutorial_home_menu">לחץ כדי לראות את אפשרויות הבית</string>
   <string name="tutorial_home_menu_subtitle">בתפריט הבית יש הערות מועדפות וארכיוניות, כמו גם הגדרות יישום. תוכל למצוא את התגים שלך גם כאן.</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">עותק</string>
+  <string name="format_action_title">לחסום פעולות טקסט</string>
+  <string name="format_action_gallery">גלריה</string>
+  <string name="format_action_camera">מַצלֵמָה</string>
+  <string name="voice_sheet_title">הערה בקול רם</string>
+  <string name="voice_action_title">לדבר בקול רם</string>
+  <string name="image_delete_all_devices">מחיקת פריט זה תמחק את התמונה מכל המכשירים.</string>
+  <string name="image_not_on_current_device">תמונה לא נמצאת במכשיר זה</string>
+  <string name="image_cannot_be_loaded">לא ניתן לטעון את התמונה</string>
+  <string name="image_not_uploaded">התמונות אינן מסונכרנות</string>
+  <string name="image_not_uploaded_details">התמונות אינן מסונכרנות בין מכשירים. התמונות שלך לא יופיעו במכשירים אחרים בעת הצגת ההערה!</string>
+  <string name="image_not_uploaded_i_understand">אני מבין</string>
+  <string name="home_option_auto_export">ייצוא אוטומטי</string>
+  <string name="home_option_auto_export_subtitle">ייצוא הערות לעתים קרובות לקובץ חיצוני כגיבוי</string>
+  <string name="format_label_image">תמונה</string>
+  <string name="format_hint_image">לחץ כדי להוסיף או לשנות את התמונה</string>
+
 </resources>

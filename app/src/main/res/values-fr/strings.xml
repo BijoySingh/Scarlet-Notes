@@ -218,4 +218,22 @@
   <string name="tutorial_home_menu">Cliquer pour voir les options de l\'accueil</string>
   <string name="tutorial_home_menu_subtitle">Le menu de l\'accueil montre vos notes préférées et archivées, ainsi que les paramètres de l\'application. Vous pouvez trouver vos tags ici aussi.</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">Copie</string>
+  <string name="format_action_title">Bloquer les actions de texte</string>
+  <string name="format_action_gallery">Galerie</string>
+  <string name="format_action_camera">Caméra</string>
+  <string name="voice_sheet_title">Parler à haute voix</string>
+  <string name="voice_action_title">Parlez à haute voix</string>
+  <string name="image_delete_all_devices">La suppression de cet élément supprimera l\'image de tous les appareils.</string>
+  <string name="image_not_on_current_device">Image non sur cet appareil</string>
+  <string name="image_cannot_be_loaded">L\'image ne peut pas être chargée</string>
+  <string name="image_not_uploaded">Les images ne sont pas synchronisées</string>
+  <string name="image_not_uploaded_details">Les images ne sont pas synchronisées entre les appareils. Vos images n\'apparaîtront pas sur d\'autres appareils tout en regardant la note!</string>
+  <string name="image_not_uploaded_i_understand">Je comprends</string>
+  <string name="home_option_auto_export">Exporter automatiquement</string>
+  <string name="home_option_auto_export_subtitle">Exporter des notes fréquemment vers un fichier externe en tant que sauvegarde</string>
+  <string name="format_label_image">Image</string>
+  <string name="format_hint_image">Cliquez pour ajouter ou modifier l\'image</string>
+
 </resources>

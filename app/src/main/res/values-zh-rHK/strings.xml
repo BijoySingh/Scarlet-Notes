@@ -217,4 +217,22 @@
   <string name="tutorial_home_menu">點擊查看家庭選項</string>
   <string name="tutorial_home_menu_subtitle">主菜單有您最喜歡的和存檔的筆記，以及應用程序設置。 你也可以在這裡找到你的標籤。</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">複製</string>
+  <string name="format_action_title">阻止文本操作</string>
+  <string name="format_action_gallery">畫廊</string>
+  <string name="format_action_camera">相機</string>
+  <string name="voice_sheet_title">大聲說出音符</string>
+  <string name="voice_action_title">大聲說話</string>
+  <string name="image_delete_all_devices">刪除此項目將從所有設備中刪除圖像。</string>
+  <string name="image_not_on_current_device">圖像不在此設備上</string>
+  <string name="image_cannot_be_loaded">圖像無法加載</string>
+  <string name="image_not_uploaded">圖像未同步</string>
+  <string name="image_not_uploaded_details">圖像不會跨設備同步。 查看筆記時，您的圖像不會顯示在其他設備上！</string>
+  <string name="image_not_uploaded_i_understand">我明白</string>
+  <string name="home_option_auto_export">自動導出</string>
+  <string name="home_option_auto_export_subtitle">頻繁導出筆記到外部文件作為備份</string>
+  <string name="format_label_image">圖片</string>
+  <string name="format_hint_image">點擊添加或更改圖像</string>
+
 </resources>

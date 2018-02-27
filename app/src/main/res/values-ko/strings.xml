@@ -201,4 +201,22 @@
   <string name="delete_sheet_delete_trash_no">취소</string>
   <string name="trash_will_delete_automatically">메모는 7 일 후 영구 삭제됩니다.</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">부</string>
+  <string name="format_action_title">텍스트 작업 차단</string>
+  <string name="format_action_gallery">갱도</string>
+  <string name="format_action_camera">카메라</string>
+  <string name="voice_sheet_title">소리내어 말하기</string>
+  <string name="voice_action_title">소리내어 말하기</string>
+  <string name="image_delete_all_devices">이 항목을 삭제하면 모든 장치에서 이미지가 삭제됩니다.</string>
+  <string name="image_not_on_current_device">이미지가이 기기에 없습니다.</string>
+  <string name="image_cannot_be_loaded">이미지를로드 할 수 없습니다.</string>
+  <string name="image_not_uploaded">이미지가 동기화되지 않음</string>
+  <string name="image_not_uploaded_details">이미지는 여러 기기에서 동기화되지 않습니다. 메모를 보면서 이미지가 다른 기기에 표시되지 않습니다.</string>
+  <string name="image_not_uploaded_i_understand">이해 했어</string>
+  <string name="home_option_auto_export">자동으로 내보내기</string>
+  <string name="home_option_auto_export_subtitle">메모를 외부 파일로 자주 내보내 백업으로 보내기</string>
+  <string name="format_label_image">영상</string>
+  <string name="format_hint_image">이미지를 추가하거나 변경하려면 클릭하십시오.</string>
+
 </resources>

@@ -221,4 +221,22 @@
   <string name="tutorial_home_menu">Нажмите, чтобы увидеть домашние параметры</string>
   <string name="tutorial_home_menu_subtitle">В главном меню есть ваши любимые и архивные заметки, а также настройки приложения. Здесь вы можете найти свои теги.</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">копия</string>
+  <string name="format_action_title">Блокировать текстовые действия</string>
+  <string name="format_action_gallery">Галерея</string>
+  <string name="format_action_camera">камера</string>
+  <string name="voice_sheet_title">Говорите вслух</string>
+  <string name="voice_action_title">Говорить вслух</string>
+  <string name="image_delete_all_devices">Удаление этого элемента приведет к удалению изображения со всех устройств.</string>
+  <string name="image_not_on_current_device">Изображение не на этом устройстве</string>
+  <string name="image_cannot_be_loaded">Изображение не может быть загружено</string>
+  <string name="image_not_uploaded">Изображения не синхронизированы</string>
+  <string name="image_not_uploaded_details">Изображения не синхронизируются между устройствами. Ваши изображения не будут отображаться на других устройствах при просмотре заметки!</string>
+  <string name="image_not_uploaded_i_understand">Я понимаю</string>
+  <string name="home_option_auto_export">Автоматически экспортировать</string>
+  <string name="home_option_auto_export_subtitle">Часто экспортировать заметки во внешний файл в качестве резервной копии</string>
+  <string name="format_label_image">Образ</string>
+  <string name="format_hint_image">Нажмите, чтобы добавить или изменить изображение</string>
+
 </resources>

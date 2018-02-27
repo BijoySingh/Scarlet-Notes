@@ -218,4 +218,22 @@
   <string name="tutorial_home_menu">होम विकल्प देखने के लिए क्लिक करें</string>
   <string name="tutorial_home_menu_subtitle">होम मेनू में आपके पसंदीदा और संग्रह नोट्स, साथ ही एप्लिकेशन सेटिंग्स हैं। आप यहां अपने टैग भी पा सकते हैं।</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">प्रतिलिपि</string>
+  <string name="format_action_title">ब्लॉक पाठ कार्यों को ब्लॉक करें</string>
+  <string name="format_action_gallery">गेलरी</string>
+  <string name="format_action_camera">कैमरा</string>
+  <string name="voice_sheet_title">स्पीक नोट जोर से</string>
+  <string name="voice_action_title">जोर से बोलो</string>
+  <string name="image_delete_all_devices">इस आइटम को हटाने से सभी डिवाइसों की छवि को हटा दिया जाएगा।</string>
+  <string name="image_not_on_current_device">इस डिवाइस पर छवि नहीं है</string>
+  <string name="image_cannot_be_loaded">छवि को लोड नहीं किया जा सकता</string>
+  <string name="image_not_uploaded">छवियां समन्वयित नहीं हैं</string>
+  <string name="image_not_uploaded_details">छवियां सभी उपकरणों पर समन्वयित नहीं की जाती हैं नोट देखते समय आपकी छवियां अन्य उपकरणों पर दिखाई नहीं देंगी!</string>
+  <string name="image_not_uploaded_i_understand">मै समझता हुँ</string>
+  <string name="home_option_auto_export">स्वचालित रूप से निर्यात करें</string>
+  <string name="home_option_auto_export_subtitle">बाह्य फ़ाइल में बार-बार बैकअप के रूप में निर्यात करें</string>
+  <string name="format_label_image">छवि</string>
+  <string name="format_hint_image">चित्र जोड़ने या बदलने के लिए क्लिक करें</string>
+
 </resources>

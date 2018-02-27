@@ -220,4 +220,22 @@
   <string name="tutorial_home_menu">হোম বিকল্প দেখতে ক্লিক করুন</string>
   <string name="tutorial_home_menu_subtitle">হোম মেনু আপনার প্রিয় এবং আর্কাইভ নোট, পাশাপাশি অ্যাপ্লিকেশন সেটিংস আছে। আপনি এখানে আপনার ট্যাগ খুঁজে পেতে পারেন।</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">কপি</string>
+  <string name="format_action_title">ব্লক টেক্সট কর্ম</string>
+  <string name="format_action_gallery">দরদালান</string>
+  <string name="format_action_camera">ক্যামেরা</string>
+  <string name="voice_sheet_title">জোরে জোরে কথা বলুন</string>
+  <string name="voice_action_title">জোরে জোরে বল</string>
+  <string name="image_delete_all_devices">এই আইটেমটি মুছে ফেলার ফলে সমস্ত ডিভাইস থেকে ছবি মুছে যাবে।</string>
+  <string name="image_not_on_current_device">চিত্র এই ডিভাইসে নয়</string>
+  <string name="image_cannot_be_loaded">চিত্র লোড করা যায় না</string>
+  <string name="image_not_uploaded">চিত্র সিঙ্ক করা হয় না</string>
+  <string name="image_not_uploaded_details">চিত্রগুলি ডিভাইসগুলির মধ্যে সিঙ্ক করা হয় না নোট দেখতে সময় আপনার ইমেজ অন্যান্য ডিভাইসে দেখা হবে না!</string>
+  <string name="image_not_uploaded_i_understand">আমি বুঝেছি</string>
+  <string name="home_option_auto_export">স্বয়ংক্রিয়ভাবে রপ্তানি করুন</string>
+  <string name="home_option_auto_export_subtitle">ব্যাকআপ হিসাবে বহিরাগত ফাইল ঘন ঘন রপ্তানি নোট</string>
+  <string name="format_label_image">ভাবমূর্তি</string>
+  <string name="format_hint_image">ইমেজ যোগ বা পরিবর্তন করতে ক্লিক করুন</string>
+
 </resources>

@@ -218,4 +218,22 @@
   <string name="tutorial_home_menu">Klik untuk melihat pilihan rumah</string>
   <string name="tutorial_home_menu_subtitle">Menu rumah mempunyai nota kegemaran dan arkib anda, serta tetapan aplikasi. Anda boleh mencari tag anda di sini juga.</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">Salinan</string>
+  <string name="format_action_title">Sekat Tindakan Teks</string>
+  <string name="format_action_gallery">Galeri</string>
+  <string name="format_action_camera">Kamera</string>
+  <string name="voice_sheet_title">Bercakap Nota Sejam</string>
+  <string name="voice_action_title">Bercakap dengan kuat</string>
+  <string name="image_delete_all_devices">Memadamkan item ini akan memadam imej dari semua peranti.</string>
+  <string name="image_not_on_current_device">Imej bukan pada peranti ini</string>
+  <string name="image_cannot_be_loaded">Imej tidak boleh dimuatkan</string>
+  <string name="image_not_uploaded">Imej tidak diselaraskan</string>
+  <string name="image_not_uploaded_details">Imej tidak disegerakkan merentas peranti. Imej anda tidak akan muncul pada peranti lain semasa melihat nota!</string>
+  <string name="image_not_uploaded_i_understand">Saya faham</string>
+  <string name="home_option_auto_export">Eksport Secara Automatik</string>
+  <string name="home_option_auto_export_subtitle">Nota eksport sering ke fail luaran sebagai sandaran</string>
+  <string name="format_label_image">Gambar</string>
+  <string name="format_hint_image">Klik untuk menambah atau menukar imej</string>
+
 </resources>

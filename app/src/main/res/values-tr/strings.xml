@@ -219,4 +219,22 @@
   <string name="tutorial_home_menu">Ev seçeneklerini görmek için tıklayın</string>
   <string name="tutorial_home_menu_subtitle">Ana menü, favori ve arşiv notların yanı sıra uygulama ayarlarına sahiptir. Etiketlerinizi de burada bulabilirsiniz.</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">kopya</string>
+  <string name="format_action_title">Metin Eylemlerini Engelleyin</string>
+  <string name="format_action_gallery">galeri</string>
+  <string name="format_action_camera">Kamera</string>
+  <string name="voice_sheet_title">Uyarıyı Yüksek sesle Konuş</string>
+  <string name="voice_action_title">Yüksek sesli konuşmak</string>
+  <string name="image_delete_all_devices">Bu öğeyi silmek, görüntüyü tüm cihazlardan silecektir.</string>
+  <string name="image_not_on_current_device">Resim bu cihazda değil</string>
+  <string name="image_cannot_be_loaded">Resim yüklenemiyor</string>
+  <string name="image_not_uploaded">Resimler senkronize edilmiyor</string>
+  <string name="image_not_uploaded_details">Resimler cihazlar arasında senkronize edilmez. Notu görüntülerken resimleriniz diğer cihazlarda görünmeyecektir!</string>
+  <string name="image_not_uploaded_i_understand">Anlıyorum</string>
+  <string name="home_option_auto_export">Otomatik Olarak Dışa Aktar</string>
+  <string name="home_option_auto_export_subtitle">Notları sık sık dış dosyaya yedekleme olarak dışa aktarın</string>
+  <string name="format_label_image">görüntü</string>
+  <string name="format_hint_image">Resmi eklemek veya değiştirmek için tıklayın</string>
+
 </resources>

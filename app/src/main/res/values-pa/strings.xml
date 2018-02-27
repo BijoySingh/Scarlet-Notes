@@ -218,4 +218,22 @@
   <string name="tutorial_home_menu">ਘਰ ਦੀਆਂ ਚੋਣਾਂ ਦੇਖਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
   <string name="tutorial_home_menu_subtitle">ਹੋਮ ਮੀਨੂ ਵਿੱਚ ਤੁਹਾਡੀ ਮਨਪਸੰਦ ਅਤੇ ਅਕਾਇਵ ਨੋਟਸ ਦੇ ਨਾਲ ਨਾਲ ਐਪਲੀਕੇਸ਼ਨ ਸੈਟਿੰਗਜ਼ ਵੀ ਹਨ. ਤੁਸੀਂ ਇੱਥੇ ਆਪਣੇ ਟੈਗ ਵੀ ਲੱਭ ਸਕਦੇ ਹੋ</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">ਕਾਪੀ ਕਰੋ</string>
+  <string name="format_action_title">ਬਲਾਕ ਪਾਠ ਐਕਸ਼ਨ</string>
+  <string name="format_action_gallery">ਗੈਲਰੀ</string>
+  <string name="format_action_camera">ਕੈਮਰਾ</string>
+  <string name="voice_sheet_title">ਉੱਚੀ ਆਵਾਜ਼ ਵਿੱਚ ਬੋਲਣਾ</string>
+  <string name="voice_action_title">ਉੱਚੀ ਬੋਲੋ</string>
+  <string name="image_delete_all_devices">ਇਸ ਆਈਟਮ ਨੂੰ ਮਿਟਾਉਣਾ ਸਾਰੀਆਂ ਡਿਵਾਈਸਾਂ ਤੋਂ ਚਿੱਤਰ ਨੂੰ ਮਿਟਾ ਦੇਵੇਗਾ</string>
+  <string name="image_not_on_current_device">ਚਿੱਤਰ ਇਸ ਡਿਵਾਈਸ ਤੇ ਨਹੀਂ ਹੈ</string>
+  <string name="image_cannot_be_loaded">ਚਿੱਤਰ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
+  <string name="image_not_uploaded">ਚਿੱਤਰ ਸਿੰਕ ਨਹੀਂ ਹੁੰਦੇ ਹਨ</string>
+  <string name="image_not_uploaded_details">ਚਿੱਤਰ ਡਿਵਾਈਸਾਂ ਵਿੱਚ ਸਿੰਕ ਨਹੀਂ ਹੁੰਦੇ ਸੂਚਨਾ ਨੂੰ ਦੇਖਦੇ ਹੋਏ ਤੁਹਾਡੀਆਂ ਤਸਵੀਰਾਂ ਨੂੰ ਹੋਰ ਡਿਵਾਈਸਾਂ ਤੇ ਨਹੀਂ ਦਿਖਾਇਆ ਜਾਵੇਗਾ!</string>
+  <string name="image_not_uploaded_i_understand">ਮੈਂ ਸੱਮਝਦਾ ਹਾਂ</string>
+  <string name="home_option_auto_export">ਆਟੋਮੈਟਿਕ ਤੌਰ ਤੇ ਨਿਰਯਾਤ ਕਰੋ</string>
+  <string name="home_option_auto_export_subtitle">ਬੈਕਅਪ ਦੇ ਤੌਰ ਤੇ ਬਾਹਰੀ ਫਾਈਲਾਂ ਤੇ ਅਕਸਰ ਨੋਟ ਐਕਸਪੋਰਟ ਕਰੋ</string>
+  <string name="format_label_image">ਚਿੱਤਰ</string>
+  <string name="format_hint_image">ਚਿੱਤਰ ਨੂੰ ਜੋੜਨ ਜਾਂ ਬਦਲਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
+
 </resources>

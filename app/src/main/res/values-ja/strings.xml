@@ -201,4 +201,22 @@
   <string name="delete_sheet_delete_trash_no">キャンセル</string>
   <string name="trash_will_delete_automatically">メモは7日後に永久に削除されます</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">コピー</string>
+  <string name="format_action_title">テキストアクションをブロックする</string>
+  <string name="format_action_gallery">ギャラリー</string>
+  <string name="format_action_camera">カメラ</string>
+  <string name="voice_sheet_title">ノートを大声で話す</string>
+  <string name="voice_action_title">大声で話す</string>
+  <string name="image_delete_all_devices">このアイテムを削除すると、すべてのデバイスからイメージが削除されます。</string>
+  <string name="image_not_on_current_device">このデバイスに画像がありません</string>
+  <string name="image_cannot_be_loaded">画像を読み込めません</string>
+  <string name="image_not_uploaded">画像が同期されていない</string>
+  <string name="image_not_uploaded_details">画像はデバイス間で同期されません。 メモを表示している間、あなたの画像は他のデバイスに表示されません！</string>
+  <string name="image_not_uploaded_i_understand">わかりました</string>
+  <string name="home_option_auto_export">自動的にエクスポート</string>
+  <string name="home_option_auto_export_subtitle">メモを頻繁にバックアップとして外部ファイルにエクスポートする</string>
+  <string name="format_label_image">画像</string>
+  <string name="format_hint_image">クリックして画像を追加または変更する</string>
+
 </resources>

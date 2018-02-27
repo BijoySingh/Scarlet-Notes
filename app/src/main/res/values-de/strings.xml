@@ -219,4 +219,22 @@
   <string name="tutorial_home_menu">Klicken Sie hier, um die Startseite anzuzeigen</string>
   <string name="tutorial_home_menu_subtitle">Das Home-Menü enthält Ihre Favoriten- und Archivnotizen sowie die Anwendungseinstellungen. Sie können Ihre Tags auch hier finden.</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">Kopieren</string>
+  <string name="format_action_title">Blocktext-Aktionen</string>
+  <string name="format_action_gallery">Galerie</string>
+  <string name="format_action_camera">Kamera</string>
+  <string name="voice_sheet_title">Sprich Notiz laut</string>
+  <string name="voice_action_title">Laut sprechen</string>
+  <string name="image_delete_all_devices">Wenn Sie dieses Element löschen, wird das Bild von allen Geräten gelöscht.</string>
+  <string name="image_not_on_current_device">Bild nicht auf diesem Gerät</string>
+  <string name="image_cannot_be_loaded">Das Bild kann nicht geladen werden</string>
+  <string name="image_not_uploaded">Bilder werden nicht synchronisiert</string>
+  <string name="image_not_uploaded_details">Bilder werden nicht über Geräte hinweg synchronisiert. Ihre Bilder werden beim Anzeigen der Notiz nicht auf anderen Geräten angezeigt.</string>
+  <string name="image_not_uploaded_i_understand">Ich verstehe</string>
+  <string name="home_option_auto_export">Automatisch exportieren</string>
+  <string name="home_option_auto_export_subtitle">Exportiert häufig Notizen in eine externe Datei als Backup</string>
+  <string name="format_label_image">Bild</string>
+  <string name="format_hint_image">Klicken Sie hier, um ein Bild hinzuzufügen oder zu ändern</string>
+
 </resources>

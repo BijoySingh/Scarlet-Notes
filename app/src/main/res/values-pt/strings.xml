@@ -219,4 +219,22 @@
   <string name="tutorial_home_menu">Clique para ver as opções de casa</string>
   <string name="tutorial_home_menu_subtitle">O menu inicial tem suas notas favoritas e de arquivo, bem como as configurações da aplicação. Você também pode encontrar suas tags aqui.</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">cópia de</string>
+  <string name="format_action_title">Bloquear ações de texto</string>
+  <string name="format_action_gallery">Galeria</string>
+  <string name="format_action_camera">Câmera</string>
+  <string name="voice_sheet_title">Fale Nota em voz alta</string>
+  <string name="voice_action_title">Fale alto</string>
+  <string name="image_delete_all_devices">A exclusão deste item eliminará a imagem de todos os dispositivos.</string>
+  <string name="image_not_on_current_device">Imagem não disponível neste dispositivo</string>
+  <string name="image_cannot_be_loaded">A imagem não pode ser carregada</string>
+  <string name="image_not_uploaded">As imagens não são sincronizadas</string>
+  <string name="image_not_uploaded_details">As imagens não são sincronizadas entre dispositivos. Suas imagens não aparecerão em outros dispositivos enquanto visualiza a nota!</string>
+  <string name="image_not_uploaded_i_understand">Compreendo</string>
+  <string name="home_option_auto_export">Exportar automaticamente</string>
+  <string name="home_option_auto_export_subtitle">Exportar notas com freqüência para arquivos externos como backup</string>
+  <string name="format_label_image">Imagem</string>
+  <string name="format_hint_image">Clique para adicionar ou alterar a imagem</string>
+
 </resources>

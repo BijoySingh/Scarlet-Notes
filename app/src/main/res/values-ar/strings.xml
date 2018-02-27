@@ -218,4 +218,22 @@
   <string name="tutorial_home_menu">انقر لرؤية خيارات المنزل</string>
   <string name="tutorial_home_menu_subtitle">القائمة الرئيسية لديها الملاحظات المفضلة لديك والأرشيف، وكذلك إعدادات التطبيق. يمكنك العثور على العلامات هنا أيضا.</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">نسخ</string>
+  <string name="format_action_title">حظر الإجراءات النصية</string>
+  <string name="format_action_gallery">صالة عرض</string>
+  <string name="format_action_camera">الة تصوير</string>
+  <string name="voice_sheet_title">الكلام ملاحظة بصوت عال</string>
+  <string name="voice_action_title">تحدث بصوت مرتفع</string>
+  <string name="image_delete_all_devices">سيؤدي حذف هذا العنصر إلى حذف الصورة من جميع الأجهزة.</string>
+  <string name="image_not_on_current_device">الصورة ليست على هذا الجهاز</string>
+  <string name="image_cannot_be_loaded">لا يمكن تحميل الصورة</string>
+  <string name="image_not_uploaded">لم تتم مزامنة الصور</string>
+  <string name="image_not_uploaded_details">لا تتم مزامنة الصور عبر الأجهزة. لن تظهر الصور على الأجهزة الأخرى أثناء عرض الملاحظة!</string>
+  <string name="image_not_uploaded_i_understand">أفهم</string>
+  <string name="home_option_auto_export">تصدير تلقائيا</string>
+  <string name="home_option_auto_export_subtitle">تصدير الملاحظات في كثير من الأحيان إلى ملف خارجي كنسخ احتياطي</string>
+  <string name="format_label_image">صورة</string>
+  <string name="format_hint_image">انقر لإضافة صورة أو تغييرها</string>
+
 </resources>

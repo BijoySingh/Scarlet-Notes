@@ -217,4 +217,22 @@
   <string name="tutorial_home_menu">मुख्यपृष्ठ पर्याय पाहण्यासाठी क्लिक करा</string>
   <string name="tutorial_home_menu_subtitle">होम मेनूमध्ये आपल्या पसंतीचे आणि संग्रहित नोट्स तसेच अनुप्रयोग सेटिंग्ज असतात. आपण येथे आपले टॅगदेखील शोधू शकता.</string>
 
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">कॉपी करा</string>
+  <string name="format_action_title">ब्लॉक मजकूर क्रिया अवरोधित करा</string>
+  <string name="format_action_gallery">गॅलरी</string>
+  <string name="format_action_camera">कॅमेरा</string>
+  <string name="voice_sheet_title">मोठ्याने बोला</string>
+  <string name="voice_action_title">मोठ्याने बोला</string>
+  <string name="image_delete_all_devices">हा आयटम हटविणे सर्व डिव्हाइसेसवरील प्रतिमा हटवेल</string>
+  <string name="image_not_on_current_device">या डिव्हाइसवर प्रतिमा नाही</string>
+  <string name="image_cannot_be_loaded">प्रतिमा लोड केली जाऊ शकत नाही</string>
+  <string name="image_not_uploaded">प्रतिमा समक्रमित नाहीत</string>
+  <string name="image_not_uploaded_details">प्रतिमा सर्व डिव्हाइसेसवर संकालित केली जात नाहीत. टीप पाहताना आपल्या प्रतिमा इतर डिव्हाइसेसवर दर्शवल्या जाणार नाहीत!</string>
+  <string name="image_not_uploaded_i_understand">मी समजून घ्या</string>
+  <string name="home_option_auto_export">स्वयंचलितरित्या निर्यात करा</string>
+  <string name="home_option_auto_export_subtitle">बॅकअप म्हणून बाह्य फायलीमध्ये वारंवार नोट्स निर्यात करा</string>
+  <string name="format_label_image">प्रतिमा</string>
+  <string name="format_hint_image">प्रतिमा जोडण्यासाठी किंवा बदलण्यासाठी क्लिक करा</string>
+
 </resources>
