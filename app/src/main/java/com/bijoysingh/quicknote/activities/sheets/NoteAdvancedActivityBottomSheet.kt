@@ -33,7 +33,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
   }
 
   private fun getOptions(note: Note): List<OptionsItem> {
-    val activity = context as ViewAdvancedNoteActivity
+    val activity = themedActivity() as ViewAdvancedNoteActivity
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.restore_note,
@@ -152,7 +152,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
               object : ColorPickerBottomSheet.ColorPickerController {
                 override fun onColorSelected(note: Note, color: Int) {
                   note.color = color
-                  note.save(context)
+                  note.save(activity)
                 }
 
                 override fun getNote(): Note {
@@ -168,7 +168,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.select,
         icon = R.drawable.ic_action_select,
         listener = View.OnClickListener {
-          val intent = Intent(context, SelectNotesActivity::class.java)
+          val intent = Intent(activity, SelectNotesActivity::class.java)
           intent.putExtra(KEY_SELECT_EXTRA_MODE, HomeNavigationState.DEFAULT.name)
           intent.putExtra(KEY_SELECT_EXTRA_NOTE_ID, note.uid)
           activity.startActivity(intent)
@@ -242,7 +242,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           val copiedNote = copyNote(note)
           copiedNote.uid = null
           copiedNote.uuid = RandomHelper.getRandomString(24)
-          copiedNote.save(context)
+          copiedNote.save(activity)
           activity.finish()
           dismiss()
         },
