@@ -8,6 +8,8 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v4.graphics.ColorUtils
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.RemoteViews
@@ -89,7 +91,13 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
       views.setTextViewText(
           R.id.description,
           note.getLockedText(context, false))
-      views.setInt(R.id.container_layout, "setBackgroundColor", note.color);
+      views.setInt(R.id.container_layout, "setBackgroundColor", note.color)
+
+      val isLightShaded = ColorUtils.calculateLuminance(note.color) > 0.35
+      val colorResource = if (isLightShaded) R.color.dark_tertiary_text else R.color.light_secondary_text
+      val textColor = ContextCompat.getColor(context, colorResource)
+      views.setInt(R.id.title, "setTextColor", textColor)
+      views.setInt(R.id.description, "setTextColor", textColor)
 
       views.setOnClickPendingIntent(R.id.title, pendingIntent)
       views.setOnClickPendingIntent(R.id.description, pendingIntent)

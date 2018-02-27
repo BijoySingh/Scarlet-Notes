@@ -106,6 +106,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     when {
       imageFileName.isBlank() -> image.visibility = GONE
       else -> {
+        image.visibility = VISIBLE
         loadFileToImageView(context, image, getFile(context, note.uuid, imageFileName))
       }
     }

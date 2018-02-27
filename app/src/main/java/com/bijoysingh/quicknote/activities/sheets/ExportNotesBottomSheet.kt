@@ -16,6 +16,7 @@ import com.bijoysingh.quicknote.utils.GenericFileProvider
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.getAppFlavor
 import com.github.bijoysingh.starter.async.MultiAsyncTask
+import java.io.File
 
 
 class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
@@ -73,6 +74,7 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
 
     exportTitle.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
     filename.setTextColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+    filename.text = (MATERIAL_NOTES_FOLDER + File.separator + FILENAME + ".txt")
     exportShare.setTextColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
     exportDone.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
   }
