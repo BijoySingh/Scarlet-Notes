@@ -2,7 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.view.View
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -51,7 +51,7 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         }
     ))
-    val autoBackupEnabled = MaterialNotes.getDataStore().get(KEY_AUTO_BACKUP_MODE, false)
+    val autoBackupEnabled = userPreferences().get(KEY_AUTO_BACKUP_MODE, false)
     options.add(OptionsItem(
         title = R.string.home_option_auto_export,
         subtitle = R.string.home_option_auto_export_subtitle,
@@ -61,11 +61,11 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           val hasAllPermissions = manager.hasAllPermissions()
           when {
             autoBackupEnabled -> {
-              MaterialNotes.getDataStore().put(KEY_AUTO_BACKUP_MODE, false)
+              userPreferences().put(KEY_AUTO_BACKUP_MODE, false)
               reset(dialog)
             }
             hasAllPermissions -> {
-              MaterialNotes.getDataStore().put(KEY_AUTO_BACKUP_MODE, true)
+              userPreferences().put(KEY_AUTO_BACKUP_MODE, true)
               reset(dialog)
             }
             else -> PermissionBottomSheet.openSheet(activity)
@@ -96,8 +96,7 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   private fun openExportSheet() {
     val activity = context as MainActivity
-    val dataStore = MaterialNotes.getDataStore()
-    if (!SecurityOptionsBottomSheet.hasPinCodeEnabled(dataStore)) {
+    if (!SecurityOptionsBottomSheet.hasPinCodeEnabled()) {
       ExportNotesBottomSheet.openSheet(activity)
       return
     }
@@ -111,8 +110,7 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           override fun onSuccess() {
             ExportNotesBottomSheet.openSheet(activity)
           }
-        },
-        dataStore)
+        })
   }
 
   override fun getLayout(): Int = R.layout.layout_options_sheet

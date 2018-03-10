@@ -3,7 +3,7 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.content.Intent
 import android.view.View
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_MODE
 import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_NOTE_ID
@@ -34,7 +34,6 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
   private fun getOptions(note: Note): List<OptionsItem> {
     val activity = context as MainActivity
-    val dataStore = MaterialNotes.getDataStore()
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.restore_note,
@@ -237,8 +236,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
                   activity.updateNote(note)
                   dismiss()
                 }
-              },
-              dataStore)
+              })
         },
         visible = note.locked
     ))

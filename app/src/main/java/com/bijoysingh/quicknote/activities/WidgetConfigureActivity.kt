@@ -18,7 +18,6 @@ import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Widget
 import com.bijoysingh.quicknote.service.NoteWidgetProvider
 import com.bijoysingh.quicknote.utils.NoteState
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.TextUtils
 
 class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActivity {

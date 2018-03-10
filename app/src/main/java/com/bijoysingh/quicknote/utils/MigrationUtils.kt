@@ -2,7 +2,7 @@ package com.bijoysingh.quicknote.utils
 
 import android.content.Context
 import android.os.AsyncTask
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.formats.Format
@@ -17,8 +17,7 @@ const val KEY_MIGRATE_CHECKED_LIST = "KEY_MIGRATE_CHECKED_LIST"
 const val KEY_MIGRATE_ZERO_NOTES = "MIGRATE_ZERO_NOTES"
 
 fun migrate(context: Context) {
-  val store = MaterialNotes.getDataStore()
-  if (!store.get(KEY_MIGRATE_UUID, false)) {
+  if (!userPreferences().get(KEY_MIGRATE_UUID, false)) {
     val tags = HashMap<Int, Tag>()
     for (tag in Tag.db(context).all) {
       if (TextUtils.isNullOrEmpty(tag.uuid)) {
@@ -49,38 +48,38 @@ fun migrate(context: Context) {
         note.saveWithoutSync(context)
       }
     }
-    store.put(KEY_MIGRATE_UUID, true)
+    userPreferences().put(KEY_MIGRATE_UUID, true)
   }
-  if (!store.get(KEY_MIGRATE_TRASH, false)) {
+  if (!userPreferences().get(KEY_MIGRATE_TRASH, false)) {
     val notes = Note.db(context).getByNoteState(arrayOf(NoteState.TRASH.name))
     for (note in notes) {
       // Updates the timestamp for the note in trash
       note.mark(context, NoteState.TRASH)
     }
-    store.put(KEY_MIGRATE_TRASH, true)
+    userPreferences().put(KEY_MIGRATE_TRASH, true)
   }
 
-  if (!store.get(KEY_MIGRATE_THEME, false)) {
-    val isNightMode = store.get(KEY_NIGHT_THEME, false)
-    store.put(KEY_APP_THEME, if (isNightMode) Theme.DARK.name else Theme.LIGHT.name)
-    store.put(KEY_MIGRATE_THEME, true)
+  if (!userPreferences().get(KEY_MIGRATE_THEME, false)) {
+    val isNightMode = userPreferences().get(KEY_NIGHT_THEME, false)
+    userPreferences().put(KEY_APP_THEME, if (isNightMode) Theme.DARK.name else Theme.LIGHT.name)
+    userPreferences().put(KEY_MIGRATE_THEME, true)
   }
 
-  if (!store.get(KEY_MIGRATE_ZERO_NOTES, false)) {
+  if (!userPreferences().get(KEY_MIGRATE_ZERO_NOTES, false)) {
     val note = Note.db(context).getByID(0)
     if (note != null) {
       Note.db(context).delete(note)
       note.uid = null
       note.save(context)
     }
-    store.put(KEY_MIGRATE_ZERO_NOTES, true)
+    userPreferences().put(KEY_MIGRATE_ZERO_NOTES, true)
   }
-  if (!store.get(KEY_MIGRATE_CHECKED_LIST, false)) {
+  if (!userPreferences().get(KEY_MIGRATE_CHECKED_LIST, false)) {
     for (note in Note.db(context).all) {
       note.description = Format.getNote(note.formats.sorted())
       note.save(context)
     }
-    store.put(KEY_MIGRATE_CHECKED_LIST, true)
+    userPreferences().put(KEY_MIGRATE_CHECKED_LIST, true)
   }
 }
 

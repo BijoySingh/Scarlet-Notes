@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
@@ -14,7 +13,6 @@ import com.bijoysingh.quicknote.utils.CircleDrawable
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.bijoysingh.quicknote.utils.shouldShowWhatsNewSheet
-import com.github.bijoysingh.starter.prefs.DataStore
 
 class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
   override fun setupView(dialog: Dialog?) {
@@ -84,8 +82,8 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 
-    fun maybeOpenSheet(activity: MainActivity, dataStore: DataStore): Boolean {
-      if (shouldShowWhatsNewSheet(activity, dataStore)) {
+    fun maybeOpenSheet(activity: MainActivity): Boolean {
+      if (shouldShowWhatsNewSheet(activity)) {
         openSheet(activity)
         return true
       }

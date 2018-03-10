@@ -9,7 +9,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.NoteAdvancedActivityBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteSettingsOptionsBottomSheet
@@ -21,19 +21,18 @@ import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.recyclerview.FormatAdapter
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.bijoysingh.quicknote.utils.*
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import java.util.*
 
 
 const val INTENT_KEY_NOTE_ID = "NOTE_ID"
+
 open class ViewAdvancedNoteActivity : ThemedActivity() {
 
   var focusedFormat: Format? = null
   protected var note: Note? = null
 
   protected lateinit var context: Context
-  protected lateinit var store: DataStore
   protected lateinit var adapter: FormatAdapter
   protected lateinit var formats: MutableList<Format>
   protected lateinit var formatsView: RecyclerView
@@ -60,7 +59,6 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_advanced_note)
     context = this
-    store = MaterialNotes.getDataStore()
 
     var noteId = intent.getIntExtra(INTENT_KEY_NOTE_ID, 0)
     if (noteId == 0 && savedInstanceState != null) {
@@ -70,7 +68,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
       note = Note.db(this).getByID(noteId)
     }
     if (note === null) {
-      note = genEmptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor(store))
+      note = genEmptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor())
     }
 
     setRecyclerView()
@@ -112,9 +110,9 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   private fun resetBundle() {
     val bundle = Bundle()
     bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, editModeValue)
-    bundle.putBoolean(KEY_MARKDOWN_ENABLED, store.get(KEY_MARKDOWN_ENABLED, true))
+    bundle.putBoolean(KEY_MARKDOWN_ENABLED, userPreferences().get(KEY_MARKDOWN_ENABLED, true))
     bundle.putBoolean(KEY_NIGHT_THEME, ThemeManager.get(this).isNightTheme())
-    bundle.putInt(TextSizeBottomSheet.KEY_TEXT_SIZE, TextSizeBottomSheet.getDefaultTextSize(store))
+    bundle.putInt(TextSizeBottomSheet.KEY_TEXT_SIZE, TextSizeBottomSheet.getDefaultTextSize())
     bundle.putString(INTENT_KEY_NOTE_ID, note!!.uuid)
     adapter.setExtra(bundle)
   }

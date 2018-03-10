@@ -2,11 +2,9 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.widget.TextView
-import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.utils.ThemeColorType
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.LocaleManager
 
 abstract class CounterBottomSheetBase : ThemedBottomSheetFragment() {
@@ -21,8 +19,7 @@ abstract class CounterBottomSheetBase : ThemedBottomSheetFragment() {
     }
 
     val mainActivity = activity as ThemedActivity
-    val dataStore = MaterialNotes.getDataStore()
-    var count = getDefaultCount(dataStore)
+    var count = getDefaultCount()
 
     val lineLimit = dialog.findViewById<TextView>(R.id.line_limit)
     val reduceLineLimit = dialog.findViewById<TextView>(R.id.reduce_line_limit)
@@ -42,20 +39,20 @@ abstract class CounterBottomSheetBase : ThemedBottomSheetFragment() {
       count = if (count <= getMinCountLimit()) getMinCountLimit() else (count - 1)
       setColor(count, reduceLineLimit, increaseLineLimit)
       setText(count, lineLimit)
-      onCountChange(dialog, mainActivity, dataStore, count)
+      onCountChange(dialog, mainActivity, count)
     }
     increaseLineLimit.setOnClickListener {
       count = if (count >= getMaxCountLimit()) getMaxCountLimit() else (count + 1)
       setColor(count, reduceLineLimit, increaseLineLimit)
       setText(count, lineLimit)
       setText(count, lineLimit)
-      onCountChange(dialog, mainActivity, dataStore, count)
+      onCountChange(dialog, mainActivity, count)
     }
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
     optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
 
-    setupFurther(dialog, dataStore)
+    setupFurther(dialog)
   }
 
   fun setColor(count: Int, reduceLineLimit: TextView, increaseLineLimit: TextView) {
@@ -69,15 +66,15 @@ abstract class CounterBottomSheetBase : ThemedBottomSheetFragment() {
     lineLimit.text = LocaleManager.toString(count)
   }
 
-  open fun setupFurther(dialog: Dialog, dataStore: DataStore) {}
+  open fun setupFurther(dialog: Dialog) {}
 
   abstract fun getMinCountLimit(): Int
 
   abstract fun getMaxCountLimit(): Int
 
-  abstract fun getDefaultCount(dataStore: DataStore): Int
+  abstract fun getDefaultCount(): Int
 
-  abstract fun onCountChange(dialog: Dialog, activity: ThemedActivity, dataStore: DataStore, count: Int)
+  abstract fun onCountChange(dialog: Dialog, activity: ThemedActivity, count: Int)
 
   override fun getLayout(): Int = R.layout.bottom_sheet_counter
 }

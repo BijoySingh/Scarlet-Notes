@@ -2,11 +2,10 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.view.View
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.items.OptionsItem
-import com.github.bijoysingh.starter.prefs.DataStore
 
 class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
@@ -16,7 +15,6 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
-    val dataStore = MaterialNotes.getDataStore()
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.note_option_default_color,
@@ -27,11 +25,11 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
               activity,
               object : ColorPickerBottomSheet.ColorPickerDefaultController {
                 override fun onColorSelected(color: Int) {
-                  dataStore.put(KEY_NOTE_DEFAULT_COLOR, color)
+                  userPreferences().put(KEY_NOTE_DEFAULT_COLOR, color)
                 }
 
                 override fun getSelectedColor(): Int {
-                  return genDefaultColor(dataStore)
+                  return genDefaultColor()
                 }
               }
           )
@@ -69,8 +67,8 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 
-    fun genDefaultColor(dataStore: DataStore): Int {
-      return dataStore.get(KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
+    fun genDefaultColor(): Int {
+      return userPreferences().get(KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
     }
   }
 }

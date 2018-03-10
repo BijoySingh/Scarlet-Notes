@@ -22,7 +22,6 @@ import com.bijoysingh.quicknote.formats.FormatType;
 import com.bijoysingh.quicknote.service.FloatingNoteService;
 import com.bijoysingh.quicknote.utils.NoteState;
 import com.bijoysingh.quicknote.utils.NotificationHandler;
-import com.github.bijoysingh.starter.prefs.DataStore;
 import com.github.bijoysingh.starter.util.DateFormatter;
 import com.github.bijoysingh.starter.util.IntentUtils;
 import com.github.bijoysingh.starter.util.TextUtils;
@@ -217,8 +216,7 @@ public class Note {
             public void onSuccess() {
               context.startActivity(getEditIntent(context));
             }
-          },
-          DataStore.get(context));
+          });
       return;
     } else if (locked) {
       return;

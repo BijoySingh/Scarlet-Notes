@@ -2,7 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.view.View
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -10,7 +10,6 @@ import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet.Compan
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet.Companion.openVerifySheet
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.github.ajalt.reprint.core.Reprint
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.TextUtils
 
 class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
@@ -20,14 +19,13 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
   }
 
   private fun getOptions(): List<OptionsItem> {
-    val dataStore: DataStore = MaterialNotes.getDataStore()
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.security_option_set_pin_code,
         subtitle = R.string.security_option_set_pin_code_subtitle,
         icon = R.drawable.ic_option_security,
         listener = View.OnClickListener {
-          val currentPinCode = dataStore.get(KEY_SECURITY_CODE, "")
+          val currentPinCode = userPreferences().get(KEY_SECURITY_CODE, "")
           val hasPinCode = !TextUtils.isNullOrEmpty(currentPinCode)
           if (hasPinCode) {
             openResetPasswordDialog(dialog)
@@ -35,7 +33,7 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
             openCreatePasswordDialog(dialog)
           }
         },
-        enabled = !TextUtils.isNullOrEmpty(dataStore.get(KEY_SECURITY_CODE, ""))
+        enabled = !TextUtils.isNullOrEmpty(userPreferences().get(KEY_SECURITY_CODE, ""))
     ))
     val hasFingerprint = Reprint.hasFingerprintRegistered()
     options.add(OptionsItem(
@@ -43,23 +41,23 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.security_option_fingerprint_enabled_subtitle,
         icon = R.drawable.ic_option_fingerprint,
         listener = View.OnClickListener {
-          val currentPinCode = dataStore.get(KEY_SECURITY_CODE, "")
+          val currentPinCode = userPreferences().get(KEY_SECURITY_CODE, "")
           val hasPinCode = !TextUtils.isNullOrEmpty(currentPinCode)
           if (hasPinCode) {
             openVerifyPasswordDialog(
                 object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
                   override fun onSuccess() {
-                    dataStore.put(KEY_FINGERPRINT_ENABLED, false)
+                    userPreferences().put(KEY_FINGERPRINT_ENABLED, false)
                     reset(dialog)
                   }
                 }
             )
           } else {
-            dataStore.put(KEY_FINGERPRINT_ENABLED, false)
+            userPreferences().put(KEY_FINGERPRINT_ENABLED, false)
             reset(dialog)
           }
         },
-        visible = dataStore.get(KEY_FINGERPRINT_ENABLED, true) && hasFingerprint,
+        visible = userPreferences().get(KEY_FINGERPRINT_ENABLED, true) && hasFingerprint,
         enabled = true
     ))
     options.add(OptionsItem(
@@ -67,23 +65,23 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.security_option_fingerprint_disabled_subtitle,
         icon = R.drawable.ic_option_fingerprint,
         listener = View.OnClickListener {
-          val currentPinCode = dataStore.get(KEY_SECURITY_CODE, "")
+          val currentPinCode = userPreferences().get(KEY_SECURITY_CODE, "")
           val hasPinCode = !TextUtils.isNullOrEmpty(currentPinCode)
           if (hasPinCode) {
             openVerifyPasswordDialog(
                 object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
                   override fun onSuccess() {
-                    dataStore.put(KEY_FINGERPRINT_ENABLED, true)
+                    userPreferences().put(KEY_FINGERPRINT_ENABLED, true)
                     reset(dialog)
                   }
                 }
             )
           } else {
-            dataStore.put(KEY_FINGERPRINT_ENABLED, true)
+            userPreferences().put(KEY_FINGERPRINT_ENABLED, true)
             reset(dialog)
           }
         },
-        visible = !dataStore.get(KEY_FINGERPRINT_ENABLED, true) && hasFingerprint
+        visible = !userPreferences().get(KEY_FINGERPRINT_ENABLED, true) && hasFingerprint
     ))
     return options
   }
@@ -96,12 +94,10 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
           override fun onSuccess() {
             reset(dialog)
           }
-        },
-        MaterialNotes.getDataStore())
+        })
   }
 
   fun openResetPasswordDialog(dialog: Dialog) {
-    val dataStore: DataStore = MaterialNotes.getDataStore()
     val activity = context as ThemedActivity
     openVerifySheet(
         activity,
@@ -113,12 +109,10 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
           override fun onSuccess() {
             openCreatePasswordDialog(dialog)
           }
-        },
-        dataStore)
+        })
   }
 
   fun openVerifyPasswordDialog(listener: EnterPincodeBottomSheet.PincodeSuccessOnlyListener) {
-    val dataStore: DataStore = MaterialNotes.getDataStore()
     val activity = context as ThemedActivity
     openVerifySheet(
         activity,
@@ -130,8 +124,7 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
           override fun onSuccess() {
             listener.onSuccess()
           }
-        },
-        dataStore)
+        })
   }
 
   override fun getLayout(): Int = R.layout.layout_options_sheet
@@ -146,8 +139,8 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 
-    fun hasPinCodeEnabled(dataStore: DataStore): Boolean {
-      val currentPinCode = dataStore.get(KEY_SECURITY_CODE, "")
+    fun hasPinCodeEnabled(): Boolean {
+      val currentPinCode = userPreferences().get(KEY_SECURITY_CODE, "")
       return !TextUtils.isNullOrEmpty(currentPinCode)
     }
   }

@@ -2,13 +2,12 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.widget.TextView
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet.Companion.openCreateSheet
 import com.bijoysingh.quicknote.activities.sheets.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
 import com.bijoysingh.quicknote.utils.ThemeColorType
-import com.github.bijoysingh.starter.prefs.DataStore
 
 
 class NoPincodeBottomSheet : ThemedBottomSheetFragment() {
@@ -46,13 +45,12 @@ class NoPincodeBottomSheet : ThemedBottomSheetFragment() {
     setUp.setOnClickListener {
       openCreateSheet(
           activity,
-          listener ?: getEmptySuccessListener(),
-          MaterialNotes.getDataStore())
+          listener ?: getEmptySuccessListener())
       dismiss()
     }
 
     neverAsk.setOnClickListener {
-      MaterialNotes.getDataStore().put(KEY_NO_PIN_ASK, true)
+      userPreferences().put(KEY_NO_PIN_ASK, true)
       listener?.onSuccess()
       dismiss()
     }
@@ -79,13 +77,12 @@ class NoPincodeBottomSheet : ThemedBottomSheetFragment() {
       }
     }
 
-    fun ignoreNoPinSheet(dataStore: DataStore): Boolean {
-      return dataStore.get(KEY_NO_PIN_ASK, false)
+    fun ignoreNoPinSheet(): Boolean {
+      return userPreferences().get(KEY_NO_PIN_ASK, false)
     }
 
     fun maybeOpenSheet(activity: ThemedActivity) {
-      val dataStore = MaterialNotes.getDataStore()
-      if (hasPinCodeEnabled(dataStore) || ignoreNoPinSheet(dataStore)) {
+      if (hasPinCodeEnabled() || ignoreNoPinSheet()) {
         return
       }
       openSheet(activity, getEmptySuccessListener())

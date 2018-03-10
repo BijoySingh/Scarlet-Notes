@@ -3,7 +3,7 @@ package com.bijoysingh.quicknote.utils
 import android.content.Context
 import android.os.Build
 import android.support.v4.content.ContextCompat
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 
 const val KEY_APP_THEME = "KEY_APP_THEME"
@@ -16,13 +16,13 @@ class ThemeManager(context: Context) {
   var theme: Theme
 
   init {
-    theme = getThemeFromDataStore(context)
+    theme = getThemeFromStore()
   }
 
   fun isNightTheme() = theme.isNightTheme
 
   fun notifyUpdate(context: Context) {
-    theme = getThemeFromDataStore(context)
+    theme = getThemeFromStore()
   }
 
   fun get(context: Context, type: ThemeColorType): Int {
@@ -49,8 +49,8 @@ class ThemeManager(context: Context) {
     return ContextCompat.getColor(context, if (isNightTheme()) darkColor else lightColor)
   }
 
-  private fun getThemeFromDataStore(context: Context): Theme {
-    val theme = MaterialNotes.getDataStore().get(KEY_APP_THEME, Theme.LIGHT.name)
+  private fun getThemeFromStore(): Theme {
+    val theme = userPreferences().get(KEY_APP_THEME, Theme.LIGHT.name)
     return Theme.valueOf(theme)
   }
 

@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.TextView
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet
@@ -22,19 +22,16 @@ import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.sort
 import com.github.bijoysingh.starter.async.MultiAsyncTask
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 
 abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActivity {
 
   lateinit var recyclerView: RecyclerView
   lateinit var adapter: NoteAppAdapter
-  lateinit var store: DataStore
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(getLayoutUI())
-    store = MaterialNotes.getDataStore()
   }
 
   open fun initUI() {
@@ -43,7 +40,7 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
 
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
       override fun run(): List<Note> {
-        val sorting = SortingOptionsBottomSheet.getSortingState(store)
+        val sorting = SortingOptionsBottomSheet.getSortingState()
         return sort(getNotes(), sorting)
       }
 
@@ -70,14 +67,14 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
   open fun getLayoutUI(): Int = R.layout.activity_select_note
 
   fun setupRecyclerView() {
-    val staggeredView = store.get(UISettingsOptionsBottomSheet.KEY_LIST_VIEW, false)
+    val staggeredView = userPreferences().get(UISettingsOptionsBottomSheet.KEY_LIST_VIEW, false)
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
-    val isMarkdownEnabled = store.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
-    val isMarkdownHomeEnabled = store.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, true)
+    val isMarkdownEnabled = userPreferences().get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
+    val isMarkdownHomeEnabled = userPreferences().get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, true)
     val adapterExtra = Bundle()
     adapterExtra.putBoolean(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
-    adapterExtra.putInt(LineCountBottomSheet.KEY_LINE_COUNT, LineCountBottomSheet.getDefaultLineCount(store))
+    adapterExtra.putInt(LineCountBottomSheet.KEY_LINE_COUNT, LineCountBottomSheet.getDefaultLineCount())
 
     adapter = NoteAppAdapter(this, RecyclerItem.getSelectableList(staggeredView, isTablet))
     adapter.setExtra(adapterExtra)

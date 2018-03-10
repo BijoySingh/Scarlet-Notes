@@ -1,13 +1,11 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.content.Context
 import android.view.View
-import com.bijoysingh.quicknote.MaterialNotes.Companion.getDataStore
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.items.OptionsItem
-import com.github.bijoysingh.starter.prefs.DataStore
 
 class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
 
@@ -19,7 +17,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
   }
 
   private fun getOptions(): List<OptionsItem> {
-    val sorting = getSortingState(themedContext())
+    val sorting = getSortingState()
     val options = ArrayList<OptionsItem>()
 
     val getIcon = fun(sortingTechnique: SortingTechnique): Int = if (sorting == sortingTechnique) R.drawable.ic_done_white_48dp else 0
@@ -29,7 +27,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         subtitle = SortingTechnique.LAST_MODIFIED.label,
         icon = getIcon(SortingTechnique.LAST_MODIFIED),
         listener = View.OnClickListener {
-          setSortingState(themedContext(), SortingTechnique.LAST_MODIFIED)
+          setSortingState(SortingTechnique.LAST_MODIFIED)
           listener()
           reset(dialog)
         },
@@ -40,7 +38,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         subtitle = SortingTechnique.NEWEST_FIRST.label,
         icon = getIcon(SortingTechnique.NEWEST_FIRST),
         listener = View.OnClickListener {
-          setSortingState(themedContext(), SortingTechnique.NEWEST_FIRST)
+          setSortingState(SortingTechnique.NEWEST_FIRST)
           listener()
           reset(dialog)
         },
@@ -51,7 +49,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         subtitle = SortingTechnique.OLDEST_FIRST.label,
         icon = getIcon(SortingTechnique.OLDEST_FIRST),
         listener = View.OnClickListener {
-          setSortingState(themedContext(), SortingTechnique.OLDEST_FIRST)
+          setSortingState(SortingTechnique.OLDEST_FIRST)
           listener()
           reset(dialog)
         },
@@ -64,16 +62,12 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
 
     const val KEY_SORTING_TECHNIQUE = "KEY_SORTING_TECHNIQUE"
 
-    fun getSortingState(store: DataStore): SortingTechnique {
-      return SortingTechnique.values()[store.get(KEY_SORTING_TECHNIQUE, SortingTechnique.NEWEST_FIRST.ordinal)]
+    fun getSortingState(): SortingTechnique {
+      return SortingTechnique.values()[userPreferences().get(KEY_SORTING_TECHNIQUE, SortingTechnique.NEWEST_FIRST.ordinal)]
     }
 
-    fun getSortingState(context: Context): SortingTechnique {
-      return getSortingState(getDataStore())
-    }
-
-    fun setSortingState(context: Context, sortingTechnique: SortingTechnique) {
-      getDataStore().put(KEY_SORTING_TECHNIQUE, sortingTechnique.ordinal)
+    fun setSortingState(sortingTechnique: SortingTechnique) {
+      userPreferences().put(KEY_SORTING_TECHNIQUE, sortingTechnique.ordinal)
     }
 
     fun openSheet(activity: MainActivity, listener: () -> Unit) {

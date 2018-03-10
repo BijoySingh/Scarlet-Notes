@@ -1,9 +1,9 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.github.bijoysingh.starter.prefs.DataStore
 
 
 class LineCountBottomSheet : CounterBottomSheetBase() {
@@ -11,11 +11,11 @@ class LineCountBottomSheet : CounterBottomSheetBase() {
 
   override fun getMaxCountLimit(): Int = LINE_COUNT_MAX
 
-  override fun getDefaultCount(dataStore: DataStore): Int = getDefaultLineCount(dataStore)
+  override fun getDefaultCount(): Int = getDefaultLineCount()
 
 
-  override fun onCountChange(dialog: Dialog, activity: ThemedActivity, dataStore: DataStore, count: Int) {
-    dataStore.put(KEY_LINE_COUNT, count)
+  override fun onCountChange(dialog: Dialog, activity: ThemedActivity, count: Int) {
+    userPreferences().put(KEY_LINE_COUNT, count)
     (activity as MainActivity).notifyAdapterExtraChanged()
   }
 
@@ -31,6 +31,6 @@ class LineCountBottomSheet : CounterBottomSheetBase() {
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 
-    fun getDefaultLineCount(dataStore: DataStore): Int = dataStore.get(KEY_LINE_COUNT, LINE_COUNT_DEFAULT)
+    fun getDefaultLineCount(): Int = userPreferences().get(KEY_LINE_COUNT, LINE_COUNT_DEFAULT)
   }
 }

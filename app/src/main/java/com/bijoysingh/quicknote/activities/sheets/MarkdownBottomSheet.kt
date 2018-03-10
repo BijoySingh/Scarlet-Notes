@@ -2,7 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.widget.TextView
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.utils.ThemeColorType
@@ -34,11 +34,10 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
   }
 
   fun setupDialogContent(dialog: Dialog) {
-    val dataStore = MaterialNotes.getDataStore()
-    val isMarkdownEnabled = dataStore.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
+    val isMarkdownEnabled = userPreferences().get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
     val actionButton = dialog.findViewById<UIActionView>(R.id.action_button)
     actionButton.setOnClickListener {
-      dataStore.put(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, !isMarkdownEnabled)
+      userPreferences().put(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, !isMarkdownEnabled)
       dismiss()
     }
     actionButton.setTitleColor(getOptionsTitleColor(isMarkdownEnabled))
@@ -48,11 +47,11 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
       actionButton.setActionResource(R.drawable.ic_check_box_white_24dp);
     }
 
-    val isMarkdownHomeEnabled = dataStore.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, true)
+    val isMarkdownHomeEnabled = userPreferences().get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, true)
     val markdownHomeButton = dialog.findViewById<UIActionView>(R.id.markdown_home_button)
     if (isMarkdownEnabled) {
       markdownHomeButton.setOnClickListener {
-        dataStore.put(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, !isMarkdownHomeEnabled)
+        userPreferences().put(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, !isMarkdownHomeEnabled)
         setupDialogContent(dialog)
       }
     }

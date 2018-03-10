@@ -14,7 +14,7 @@ import android.widget.EditText
 import android.widget.GridLayout.VERTICAL
 import android.widget.ImageView
 import android.widget.TextView
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ITutorialActivity
 import com.bijoysingh.quicknote.activities.external.createHint
@@ -33,7 +33,6 @@ import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.github.bijoysingh.starter.util.IntentUtils
 import java.util.*
@@ -46,7 +45,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
   internal var mode: HomeNavigationState = HomeNavigationState.DEFAULT
 
   internal lateinit var receiver: BroadcastReceiver
-  internal lateinit var store: DataStore
   internal lateinit var executor: SimpleThreadExecutor
 
   val homeButton: ImageView by bind(R.id.home_button)
@@ -73,14 +71,13 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
     migrate(this)
 
     mode = HomeNavigationState.DEFAULT
-    store = MaterialNotes.getDataStore()
     executor = SimpleThreadExecutor(1)
 
     setupRecyclerView()
     setListeners()
     notifyThemeChange()
 
-    val shown = WhatsNewItemsBottomSheet.maybeOpenSheet(this, store)
+    val shown = WhatsNewItemsBottomSheet.maybeOpenSheet(this)
     if (shown) {
       markHintShown(TUTORIAL_KEY_NEW_NOTE)
       markHintShown(TUTORIAL_KEY_HOME_SETTINGS)
@@ -118,14 +115,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
   }
 
   fun setupRecyclerView() {
-    val staggeredView = UISettingsOptionsBottomSheet.isGridView(store)
+    val staggeredView = UISettingsOptionsBottomSheet.isGridView()
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
-    val isMarkdownEnabled = store.get(KEY_MARKDOWN_ENABLED, true)
-    val isMarkdownHomeEnabled = store.get(KEY_MARKDOWN_HOME_ENABLED, true)
+    val isMarkdownEnabled = userPreferences().get(KEY_MARKDOWN_ENABLED, true)
+    val isMarkdownHomeEnabled = userPreferences().get(KEY_MARKDOWN_HOME_ENABLED, true)
     val adapterExtra = Bundle()
     adapterExtra.putBoolean(KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
-    adapterExtra.putInt(KEY_LINE_COUNT, LineCountBottomSheet.getDefaultLineCount(store))
+    adapterExtra.putInt(KEY_LINE_COUNT, LineCountBottomSheet.getDefaultLineCount())
 
     adapter = NoteAppAdapter(this, staggeredView, isTablet)
     adapter.setExtra(adapterExtra)
@@ -166,7 +163,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
   private fun loadNoteByStates(states: Array<String>) {
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
       override fun run(): List<Note> {
-        val sorting = SortingOptionsBottomSheet.getSortingState(store)
+        val sorting = SortingOptionsBottomSheet.getSortingState()
         return sort(Note.db(this@MainActivity).getByNoteState(states), sorting)
       }
 
@@ -207,7 +204,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
     mode = HomeNavigationState.LOCKED
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
       override fun run(): List<Note> {
-        val sorting = SortingOptionsBottomSheet.getSortingState(store)
+        val sorting = SortingOptionsBottomSheet.getSortingState()
         return sort(Note.db(this@MainActivity).getNoteByLocked(true), sorting)
       }
 
@@ -252,7 +249,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
     mode = HomeNavigationState.TAG
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
       override fun run(): List<Note> {
-        val sorting = SortingOptionsBottomSheet.getSortingState(store)
+        val sorting = SortingOptionsBottomSheet.getSortingState()
         return sort(Note.db(this@MainActivity).getNoteByTag("%" + tag.uuid + "%"), sorting)
       }
 
@@ -393,7 +390,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
   }
 
   override fun shouldShowHint(key: String): Boolean {
-    return !store.get(key, false)
+    return !userPreferences().get(key, false)
   }
 
   override fun showHint(key: String) {
@@ -409,7 +406,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
   }
 
   override fun markHintShown(key: String) {
-    store.put(key, true)
+    userPreferences().put(key, true)
   }
 
   /**

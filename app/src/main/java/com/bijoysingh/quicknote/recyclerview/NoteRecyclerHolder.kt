@@ -57,8 +57,7 @@ class NoteRecyclerHolder(context: Context, view: View) : NoteRecyclerViewHolderB
             override fun onSuccess() {
               runnable.run()
             }
-          },
-          MaterialNotes.getDataStore())
+          })
       return
     } else if (data.locked) {
       return

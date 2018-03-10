@@ -5,7 +5,7 @@ import android.content.Context
 import android.os.AsyncTask
 import android.os.Environment
 import android.support.v7.app.AppCompatActivity
-import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.activities.sheets.ExportNotesBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.github.bijoysingh.starter.json.SafeJson
@@ -34,11 +34,11 @@ fun getNotesForExport(context: Context): String {
 
 fun maybeAutoExport(context: Context) {
   AsyncTask.execute {
-    val autoBackup = MaterialNotes.getDataStore().get(KEY_AUTO_BACKUP_MODE, false)
+    val autoBackup = userPreferences().get(KEY_AUTO_BACKUP_MODE, false)
     if (!autoBackup) {
       return@execute
     }
-    val lastBackup = MaterialNotes.getDataStore().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
+    val lastBackup = userPreferences().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
     val lastTimestamp = Note.db(context).getLastTimestamp()
     if (lastBackup >= lastTimestamp) {
       return@execute

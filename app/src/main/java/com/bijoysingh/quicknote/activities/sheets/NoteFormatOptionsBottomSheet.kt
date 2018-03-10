@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.view.View
 import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -82,7 +83,7 @@ class NoteFormatOptionsBottomSheet : GridBottomSheetBase() {
         listener = View.OnClickListener {
           if (getAppFlavor() != Flavor.NONE &&
               isLoggedIn() &&
-              MaterialNotes.getDataStore().get(AlertBottomSheet.IMAGE_SYNC_NOTICE, 0) == 0) {
+              userPreferences().get(AlertBottomSheet.IMAGE_SYNC_NOTICE, 0) == 0) {
             AlertBottomSheet.openImageNotSynced(activity)
           }
           activity.addEmptyItemAtFocused(FormatType.IMAGE)

@@ -10,6 +10,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -19,7 +20,6 @@ import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.ajalt.reprint.core.AuthenticationFailureReason
 import com.github.ajalt.reprint.core.AuthenticationListener
 import com.github.ajalt.reprint.core.Reprint
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.LocaleManager
 
 
@@ -163,8 +163,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
 
     fun openCreateSheet(
         activity: ThemedActivity,
-        listener: PincodeSuccessOnlyListener,
-        dataStore: DataStore) {
+        listener: PincodeSuccessOnlyListener) {
       openSheet(activity, object : PincodeListener {
         override fun getTitle(): Int = R.string.security_sheet_enter_new_pin_title
 
@@ -175,8 +174,8 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
         override fun isRemoveButtonEnabled(): Boolean = true
 
         override fun onRemoveButtonClick() {
-          dataStore.put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
-          dataStore.put(NoPincodeBottomSheet.KEY_NO_PIN_ASK, false)
+          userPreferences().put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
+          userPreferences().put(NoPincodeBottomSheet.KEY_NO_PIN_ASK, false)
           listener.onSuccess()
 
           if (activity is MainActivity)
@@ -184,7 +183,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
         }
 
         override fun onPasswordRequested(password: String) {
-          dataStore.put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, password)
+          userPreferences().put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, password)
           listener.onSuccess()
         }
 
@@ -195,12 +194,10 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
 
     fun openVerifySheet(
         activity: ThemedActivity,
-        listener: PincodeSuccessListener,
-        dataStore: DataStore) {
+        listener: PincodeSuccessListener) {
       openUnlockSheetBase(
           activity,
           listener,
-          dataStore,
           R.string.security_sheet_enter_current_pin_title,
           R.string.security_sheet_button_verify
       )
@@ -208,10 +205,9 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
 
     fun openUnlockSheet(
         activity: ThemedActivity,
-        listener: PincodeSuccessOnlyListener,
-        dataStore: DataStore) {
-      if (!hasPinCodeEnabled(dataStore)) {
-        if (ignoreNoPinSheet(dataStore)) {
+        listener: PincodeSuccessOnlyListener) {
+      if (!hasPinCodeEnabled()) {
+        if (ignoreNoPinSheet()) {
           listener.onSuccess()
           return
         }
@@ -222,7 +218,6 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
       openUnlockSheetBase(
           activity,
           listener,
-          dataStore,
           R.string.security_sheet_enter_pin_to_unlock_title,
           R.string.security_sheet_button_unlock
       )
@@ -231,7 +226,6 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
     private fun openUnlockSheetBase(
         activity: ThemedActivity,
         listener: PincodeSuccessOnlyListener,
-        dataStore: DataStore,
         title: Int,
         actionTitle: Int) {
       openSheet(activity, object : PincodeListener {
@@ -241,11 +235,11 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
 
         override fun isFingerprintEnabled(): Boolean {
           return Reprint.hasFingerprintRegistered() &&
-              dataStore.get(SecurityOptionsBottomSheet.KEY_FINGERPRINT_ENABLED, true)
+              userPreferences().get(SecurityOptionsBottomSheet.KEY_FINGERPRINT_ENABLED, true)
         }
 
         override fun onPasswordRequested(password: String) {
-          val currentPassword = dataStore.get(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
+          val currentPassword = userPreferences().get(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
           if (currentPassword != "" && currentPassword == password) {
             listener.onSuccess()
           } else if (listener is PincodeSuccessListener) {

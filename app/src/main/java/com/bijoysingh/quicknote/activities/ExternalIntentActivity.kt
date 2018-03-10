@@ -7,21 +7,19 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity.Companion.convertStreamToString
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.bijoysingh.quicknote.utils.genImportFromKeep
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.TextUtils
 import com.github.bijoysingh.uibasics.views.UITextView
 
 const val KEEP_PACKAGE = "com.google.android.keep"
+
 class ExternalIntentActivity : ThemedActivity() {
 
   lateinit var context: Context
-  lateinit var store: DataStore
 
   var filenameText: String = ""
   var titleText: String = ""
@@ -39,7 +37,6 @@ class ExternalIntentActivity : ThemedActivity() {
     setContentView(R.layout.activity_external_intent)
 
     context = this
-    store = MaterialNotes.getDataStore()
 
     setView()
     notifyThemeChange()
@@ -74,7 +71,7 @@ class ExternalIntentActivity : ThemedActivity() {
   fun handleIntent(): Boolean {
     val hasSendIntent = handleSendText(intent)
     if (hasSendIntent) {
-      val note = when(isCallerKeep()) {
+      val note = when (isCallerKeep()) {
         true -> genEmptyNote(titleText, genImportFromKeep(contentText))
         false -> genEmptyNote(titleText, contentText)
       }
