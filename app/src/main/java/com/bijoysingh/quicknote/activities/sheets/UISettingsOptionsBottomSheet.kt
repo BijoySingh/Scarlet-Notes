@@ -10,10 +10,7 @@ import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion
 import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingState
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.getDefaultTextSize
 import com.bijoysingh.quicknote.items.OptionsItem
-import com.bijoysingh.quicknote.utils.Flavor
-import com.bijoysingh.quicknote.utils.KEY_APP_THEME
-import com.bijoysingh.quicknote.utils.Theme
-import com.bijoysingh.quicknote.utils.getAppFlavor
+import com.bijoysingh.quicknote.utils.*
 
 class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
@@ -62,7 +59,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
               override fun onColorSelected(color: Int) {
                 val theme = ThemeManager.getThemeByBackgroundColor(activity, color)
-                dataStore.put(KEY_APP_THEME, theme.name)
+                userPreferences().put(KEY_APP_THEME, theme.name)
                 theme().notifyUpdate(activity)
                 activity.notifyThemeChange()
                 reset(dialog)

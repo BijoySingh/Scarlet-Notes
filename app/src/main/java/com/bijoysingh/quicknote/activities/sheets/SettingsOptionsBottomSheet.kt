@@ -9,14 +9,13 @@ import com.bijoysingh.quicknote.database.external.removeNoteDatabaseReference
 import com.bijoysingh.quicknote.database.external.removeTagDatabaseReference
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.github.bijoysingh.starter.async.MultiAsyncTask
-import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.google.firebase.auth.FirebaseAuth
 
 class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   override fun setupViewWithDialog(dialog: Dialog) {
-    MultiAsyncTask.execute(activity, object: MultiAsyncTask.Task<List<OptionsItem>> {
+    MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<List<OptionsItem>> {
       override fun run(): List<OptionsItem> {
         return getOptions()
       }
