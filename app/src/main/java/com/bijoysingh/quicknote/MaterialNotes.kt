@@ -8,7 +8,6 @@ import com.github.bijoysingh.starter.prefs.VersionedStore
 
 class MaterialNotes : Application() {
 
-
   override fun onCreate() {
     super.onCreate()
     Reprint.initialize(this)

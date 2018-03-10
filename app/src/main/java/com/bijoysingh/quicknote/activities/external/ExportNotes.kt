@@ -9,10 +9,10 @@ import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.activities.sheets.ExportNotesBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.github.bijoysingh.starter.json.SafeJson
+import com.github.bijoysingh.starter.util.FileManager
 import com.github.bijoysingh.starter.util.PermissionManager
 import org.json.JSONObject
 import java.io.File
-import java.io.FileOutputStream
 
 const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
 const val KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
@@ -66,32 +66,14 @@ fun getStoragePermissionManager(activity: AppCompatActivity): PermissionManager 
 
 fun saveFile(text: String): Boolean {
   val file = getExportFile()
-  if (file == null) {
+  if (file === null) {
     return false
   }
   return saveFile(file, text)
 }
 
 fun saveFile(file: File, text: String): Boolean {
-  var stream: FileOutputStream? = null
-  var successful = false
-  try {
-    stream = FileOutputStream(file, false)
-    stream.write(text.toByteArray())
-    stream.flush()
-    successful = true
-  } catch (exception: Exception) {
-    // Failed
-  } finally {
-    try {
-      if (stream != null) {
-        stream.close()
-      }
-    } catch (exception: Exception) {
-      // Failed
-    }
-  }
-  return successful
+  return FileManager.writeToFile(file, text)
 }
 
 fun getExportFile(): File? {

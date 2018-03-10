@@ -8,8 +8,6 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.View
-import android.view.View.VISIBLE
-import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
@@ -28,7 +26,6 @@ import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.bijoysingh.quicknote.utils.visibility
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
-import com.github.bijoysingh.starter.util.TextUtils
 
 open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHolder<Format>(context, view), TextWatcher {
 

@@ -22,7 +22,6 @@ import com.bijoysingh.quicknote.recyclerview.FormatImageViewHolder
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper
 import com.bijoysingh.quicknote.utils.*
-import com.github.bijoysingh.starter.util.RandomHelper
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File

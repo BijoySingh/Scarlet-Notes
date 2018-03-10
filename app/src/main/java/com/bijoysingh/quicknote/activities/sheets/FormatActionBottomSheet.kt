@@ -1,12 +1,10 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
-import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.items.OptionsItem
@@ -15,7 +13,6 @@ import com.bijoysingh.quicknote.utils.getFile
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import pl.aprilapps.easyphotopicker.EasyImage
-import java.io.File
 
 class FormatActionBottomSheet : GridBottomSheetBase() {
 
