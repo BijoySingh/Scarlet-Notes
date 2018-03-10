@@ -10,10 +10,7 @@ import com.bijoysingh.quicknote.activities.SelectNotesActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.items.OptionsItem
-import com.bijoysingh.quicknote.utils.HomeNavigationState
-import com.bijoysingh.quicknote.utils.NoteState
-import com.bijoysingh.quicknote.utils.NotificationHandler
-import com.bijoysingh.quicknote.utils.copyNote
+import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.util.RandomHelper
 
 class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
@@ -274,10 +271,14 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.reminder,
         icon = R.drawable.ic_action_reminder,
         listener = View.OnClickListener {
-          ReminderBottomSheet.openSheet(activity)
-          dismiss()
+          if (getAppFlavor() == Flavor.PRO) {
+            ReminderBottomSheet.openSheet(activity, note)
+            dismiss()
+            return@OnClickListener
+          }
         },
-        visible = false
+        visible = getAppFlavor() != Flavor.NONE,
+        invalid = note.locked
     ))
     return options
   }

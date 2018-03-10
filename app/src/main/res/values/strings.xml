@@ -195,6 +195,9 @@
   <string name="reminder_sheet_reminder_date">Reminder Date</string>
   <string name="reminder_sheet_reminder_time">Reminder Time</string>
   <string name="reminder_sheet_repeat">Repeat Frequency</string>
+  <string name="reminder_frequency_once" translatable="false">Only Once</string>
+  <string name="reminder_frequency_daily" translatable="false">Daily</string>
+  <string name="reminder_frequency_custom" translatable="false">Custom</string>
 
   <string name="notification_channel_label">Note Notifications</string>
 

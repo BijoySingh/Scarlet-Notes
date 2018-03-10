@@ -22,19 +22,22 @@
       android:textSize="@dimen/font_size_large" />
 
     <com.github.bijoysingh.uibasics.views.UIActionView
-      android:id="@+id/reminder_date"
+      android:id="@+id/reminder_repeat"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
-      android:padding="@dimen/spacing_xsmall"
+      android:paddingEnd="@dimen/spacing_xsmall"
+      android:paddingStart="@dimen/spacing_xsmall"
+      android:paddingTop="@dimen/spacing_small"
+      android:paddingBottom="@dimen/spacing_small"
       app:action="@drawable/ic_edit_white_48dp"
-      app:icon="@drawable/ic_date"
+      app:icon="@drawable/ic_restore"
       app:iconSize="@dimen/icon_size_normal"
       app:iconTextGap="@dimen/spacing_small"
       app:subtitle=""
       app:subtitleColor="@color/dark_tertiary_text"
       app:subtitleSize="@dimen/font_size_normal"
-      app:title="@string/reminder_sheet_reminder_date"
+      app:title="@string/reminder_sheet_repeat"
       app:titleColor="@color/material_blue_grey_500"
       app:titleSize="@dimen/font_size_xsmall" />
 
@@ -43,7 +46,10 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
-      android:padding="@dimen/spacing_xsmall"
+      android:paddingEnd="@dimen/spacing_xsmall"
+      android:paddingStart="@dimen/spacing_xsmall"
+      android:paddingTop="@dimen/spacing_small"
+      android:paddingBottom="@dimen/spacing_small"
       app:action="@drawable/ic_edit_white_48dp"
       app:icon="@drawable/ic_time"
       app:iconSize="@dimen/icon_size_normal"
@@ -56,19 +62,22 @@
       app:titleSize="@dimen/font_size_xsmall" />
 
     <com.github.bijoysingh.uibasics.views.UIActionView
-      android:id="@+id/reminder_repeat"
+      android:id="@+id/reminder_date"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
-      android:padding="@dimen/spacing_xsmall"
+      android:paddingEnd="@dimen/spacing_xsmall"
+      android:paddingStart="@dimen/spacing_xsmall"
+      android:paddingTop="@dimen/spacing_small"
+      android:paddingBottom="@dimen/spacing_small"
       app:action="@drawable/ic_edit_white_48dp"
-      app:icon="@drawable/ic_restore"
+      app:icon="@drawable/ic_date"
       app:iconSize="@dimen/icon_size_normal"
       app:iconTextGap="@dimen/spacing_small"
       app:subtitle=""
       app:subtitleColor="@color/dark_tertiary_text"
       app:subtitleSize="@dimen/font_size_normal"
-      app:title="@string/reminder_sheet_repeat"
+      app:title="@string/reminder_sheet_reminder_date"
       app:titleColor="@color/material_blue_grey_500"
       app:titleSize="@dimen/font_size_xsmall" />
 
@@ -76,6 +85,7 @@
       android:layout_width="match_parent"
       android:layout_height="0.5dp"
       android:layout_margin="@dimen/spacing_normal"
+      android:alpha="0.5"
       android:background="@color/material_blue_grey_100" />
 
     <LinearLayout
