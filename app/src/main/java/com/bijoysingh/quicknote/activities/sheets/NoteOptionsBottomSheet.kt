@@ -305,6 +305,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
             note.viewDistractionFree(activity)
             return@OnClickListener
           }
+          InstallProUpsellBottomSheet.openSheet(activity)
         },
         visible = getAppFlavor() != Flavor.NONE,
         invalid = activity.lockedContentIsHidden() && note.locked
