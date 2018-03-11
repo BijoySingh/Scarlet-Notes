@@ -12,15 +12,16 @@ class ReminderReceiver : BroadcastReceiver() {
       return
     }
 
-    if (!intent.hasExtra(ALARM_ID)) {
+    if (!intent.hasExtra(ALARM_ID) || !intent.hasExtra(ALARM_UUID)) {
       return
     }
 
-    val noteId = intent.getStringExtra(ALARM_ID)
-    val note = Note.db().getByUUID(noteId)
+    val noteID = intent.getIntExtra(ALARM_ID, 0)
+    val noteUUID = intent.getStringExtra(ALARM_UUID)
+    val note = Note.db().getByUUID(noteUUID)
     if (note === null) {
       val scheduler = ReminderScheduler(context)
-      scheduler.remove(noteId)
+      scheduler.removeWithoutNote(noteID, noteUUID)
       return
     }
 

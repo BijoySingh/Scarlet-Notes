@@ -17,6 +17,7 @@ import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
+import com.bijoysingh.quicknote.reminders.Reminder
 import com.bijoysingh.quicknote.service.FloatingNoteService
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.util.DateFormatter
@@ -188,6 +189,18 @@ fun Note.getTags(context: Context): Set<Tag> {
     }
   }
   return tags
+}
+
+fun Note.getMeta(): NoteMeta {
+  try {
+    return Gson().fromJson<NoteMeta>(this.meta, NoteMeta::class.java) ?: NoteMeta()
+  } catch (e: Exception) {
+    return NoteMeta()
+  }
+}
+
+fun Note.getReminder(): Reminder? {
+  return getMeta().reminder
 }
 
 /**************************************************************************************

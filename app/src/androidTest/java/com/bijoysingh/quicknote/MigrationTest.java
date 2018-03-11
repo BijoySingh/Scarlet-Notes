@@ -23,6 +23,7 @@ import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_4_5;
 import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_5_6;
 import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_6_7;
 import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_7_8;
+import static com.bijoysingh.quicknote.database.AppDatabase.MIGRATION_9_10;
 
 @RunWith(AndroidJUnit4.class)
 public class MigrationTest {
@@ -31,47 +32,48 @@ public class MigrationTest {
   private static final String TABLE_NOTE = "note";
   private static final String TABLE_TAG = "tag";
 
-  private static final String NOTE_V2 =
-      "INSERT INTO note (title, description, displayTimestamp, timestamp, color) "
-          + "VALUES('RICH_NOTE', '{\"formats\":[]}', '6 August 2017', 32121312, 23123);";
+  private static final String NOTE_V2 = "INSERT INTO note (title, description, displayTimestamp, " +
+      "timestamp, color) " + "VALUES('RICH_NOTE', '{\"formats\":[]}', '6 August 2017', 32121312, " +
+      "23123);";
 
-  private static final String NOTE_V3 =
-      "INSERT INTO note (title, description, displayTimestamp, timestamp, color, state) "
-          + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT');";
+  private static final String NOTE_V3 = "INSERT INTO note (title, description, displayTimestamp, " +
+      "timestamp, color, state) " + "VALUES('Title', 'Description', '6 August 2017', 32121312, " +
+      "23123, 'DEFAULT');";
 
-  private static final String NOTE_V4 =
-      "INSERT INTO note (title, description, displayTimestamp, timestamp, color, state, locked) "
-          + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1);";
+  private static final String NOTE_V4 = "INSERT INTO note (title, description, displayTimestamp, " +
+      "timestamp, color, state, locked) " + "VALUES('Title', 'Description', '6 August 2017', " +
+      "32121312, 23123, 'DEFAULT', 1);";
 
-  private static final String NOTE_V5 =
-      "INSERT INTO note (title, description, displayTimestamp, timestamp, color, state, locked, tags) "
-          + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1,2');";
+  private static final String NOTE_V5 = "INSERT INTO note (title, description, displayTimestamp, " +
+      "timestamp, color, state, locked, tags) " + "VALUES('Title', 'Description', '6 August " +
+      "2017', 32121312, 23123, 'DEFAULT', 1, '1,2');";
 
-  private static final String NOTE_V6 =
-      "INSERT INTO note (title, description, displayTimestamp, timestamp, color," +
-          " state, locked, tags, pinned, updateTimestamp) "
-          + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1,2', 1, 213213);";
+  private static final String NOTE_V6 = "INSERT INTO note (title, description, displayTimestamp, " +
+      "timestamp, color," + " state, locked, tags, pinned, updateTimestamp) " + "VALUES('Title', " +
+      "'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1,2', 1, 213213);";
 
-  private static final String NOTE_V7 =
-      "INSERT INTO note (title, description, displayTimestamp, timestamp, color," +
-          " state, locked, tags, pinned, updateTimestamp, uuid) "
-          + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1,2', 1, 213213, 'test');";
+  private static final String NOTE_V7 = "INSERT INTO note (title, description, displayTimestamp, " +
+      "timestamp, color," + " state, locked, tags, pinned, updateTimestamp, uuid) " + "VALUES" +
+      "('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1,2', 1, 213213," +
+      " 'test');";
 
-  private static final String TAG_V5 =
-      "INSERT INTO tag (title) VALUES('Title');";
+  private static final String NOTE_V8 = "INSERT INTO note (title, description, displayTimestamp, " +
+      "timestamp, color," + " state, locked, tags, pinned, updateTimestamp, uuid, meta) " +
+      "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1,2', 1, " +
+      "213213, 'test', 'meta');";
 
-  private static final String TAG_V8 =
-      "INSERT INTO tag (uuid, title) VALUES('324adssa', 'Title');";
+  private static final String TAG_V5 = "INSERT INTO tag (title) VALUES('Title');";
+
+  private static final String TAG_V8 = "INSERT INTO tag (uuid, title) VALUES('324adssa', 'Title');";
 
 
   @Rule
   public MigrationTestHelper helper;
 
   public MigrationTest() {
-    helper = new MigrationTestHelper(
-        InstrumentationRegistry.getInstrumentation(),
-        AppDatabase.class.getCanonicalName(),
-        new FrameworkSQLiteOpenHelperFactory());
+    helper = new MigrationTestHelper(InstrumentationRegistry.getInstrumentation(),
+                                     AppDatabase.class.getCanonicalName(),
+                                     new FrameworkSQLiteOpenHelperFactory());
   }
 
   @Test
@@ -84,7 +86,7 @@ public class MigrationTest {
 
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 3, false, Companion.getMIGRATION_2_3());
+    database = helper.runMigrationsAndValidate(TEST_DB, 3, false, MIGRATION_2_3);
     validate(database, select(TABLE_NOTE, 1));
     validateNotNullOrEmpty(database, select(TABLE_NOTE, 1, "state"));
     String titleChanged = getValue(database, select(TABLE_NOTE, 1, "title"));
@@ -103,7 +105,7 @@ public class MigrationTest {
     database.execSQL(NOTE_V3);
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 4, false, Companion.getMIGRATION_3_4());
+    database = helper.runMigrationsAndValidate(TEST_DB, 4, false, MIGRATION_3_4);
     validate(database, select(TABLE_NOTE, 1));
     Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 1, "locked")) == 0);
 
@@ -119,7 +121,7 @@ public class MigrationTest {
     database.execSQL(NOTE_V4);
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 5, false, Companion.getMIGRATION_4_5());
+    database = helper.runMigrationsAndValidate(TEST_DB, 5, false, MIGRATION_4_5);
     validate(database, select(TABLE_NOTE, 1));
     Assert.assertTrue(getValue(database, select(TABLE_NOTE, 1, "tags")).isEmpty());
 
@@ -135,7 +137,7 @@ public class MigrationTest {
     database.execSQL(NOTE_V5);
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 6, false, Companion.getMIGRATION_5_6());
+    database = helper.runMigrationsAndValidate(TEST_DB, 6, false, MIGRATION_5_6);
     validate(database, select(TABLE_NOTE, 1));
     Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 1, "pinned")) == 0);
     Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 1, "updateTimestamp")) == 32121312);
@@ -150,7 +152,7 @@ public class MigrationTest {
     database.execSQL(NOTE_V6);
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 7, false, Companion.getMIGRATION_6_7());
+    database = helper.runMigrationsAndValidate(TEST_DB, 7, false, MIGRATION_6_7);
     validate(database, select(TABLE_NOTE, 1));
 
     String uuid = getValue(database, select(TABLE_NOTE, 1, "uuid"));
@@ -166,7 +168,7 @@ public class MigrationTest {
     database.execSQL(TAG_V5);
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 8, false, Companion.getMIGRATION_7_8());
+    database = helper.runMigrationsAndValidate(TEST_DB, 8, false, MIGRATION_7_8);
     validate(database, select(TABLE_TAG, 1));
 
     String uuid = getValue(database, select(TABLE_TAG, 1, "uuid"));
@@ -174,6 +176,19 @@ public class MigrationTest {
 
     database.execSQL(TAG_V8);
     validate(database, select(TABLE_TAG, 2));
+  }
+
+  @Test
+  public void migrate9To10() throws IOException {
+    SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 9);
+    database.execSQL(NOTE_V7);
+    database.close();
+
+    database = helper.runMigrationsAndValidate(TEST_DB, 10, false, MIGRATION_9_10);
+    validate(database, select(TABLE_NOTE, 1));
+
+    database.execSQL(NOTE_V8);
+    validate(database, select(TABLE_NOTE, 2));
   }
 
   private static void validate(SupportSQLiteDatabase database, String query) {

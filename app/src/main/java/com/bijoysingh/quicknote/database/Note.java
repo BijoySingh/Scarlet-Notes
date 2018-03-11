@@ -39,6 +39,8 @@ public class Note {
 
   public String uuid;
 
+  public String meta;
+
   public static NoteDao db() {
     return MaterialNotes.Companion.db().notes();
   }

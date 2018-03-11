@@ -8,9 +8,9 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.getReminder
 import com.bijoysingh.quicknote.items.SimpleOptionsItem
 import com.bijoysingh.quicknote.reminders.Reminder
-import com.bijoysingh.quicknote.reminders.Reminder.Companion.load
 import com.bijoysingh.quicknote.reminders.ReminderInterval
 import com.bijoysingh.quicknote.reminders.ReminderScheduler
 import com.bijoysingh.quicknote.utils.ThemeColorType
@@ -40,7 +40,7 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     }
 
 
-    reminder = load(themedContext(), note.uuid)
+    reminder = note.getReminder()
     val isNewReminder = reminder === null
     if (isNewReminder) {
       val calendar = Calendar.getInstance()
@@ -51,7 +51,6 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
         calendar.add(Calendar.HOUR_OF_DAY, 24)
       }
       reminder = Reminder(
-          note.uuid,
           calendar.timeInMillis,
           ReminderInterval.ONCE,
           intArrayOf())
@@ -85,14 +84,14 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
       removeAlarm.visibility = GONE
     }
     removeAlarm.setOnClickListener {
-      scheduler.remove(note.uuid)
+      scheduler.remove(note)
       dismiss()
     }
     setAlarm.setOnClickListener {
       if (!isNewReminder) {
-        scheduler.remove(note.uuid)
+        scheduler.removeWithoutNote(note.uid, note.uuid)
       }
-      scheduler.create(reminder!!)
+      scheduler.create(note, reminder!!)
       dismiss()
     }
   }

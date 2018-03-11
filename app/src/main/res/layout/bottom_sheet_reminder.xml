@@ -81,13 +81,6 @@
       app:titleColor="@color/material_blue_grey_500"
       app:titleSize="@dimen/font_size_xsmall" />
 
-    <View
-      android:layout_width="match_parent"
-      android:layout_height="0.5dp"
-      android:layout_margin="@dimen/spacing_normal"
-      android:alpha="0.5"
-      android:background="@color/material_blue_grey_100" />
-
     <LinearLayout
       android:id="@+id/results_layout"
       android:layout_width="match_parent"

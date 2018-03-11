@@ -1,12 +1,7 @@
 package com.bijoysingh.quicknote.reminders
 
-import android.content.Context
 import com.bijoysingh.quicknote.R
-import com.github.bijoysingh.starter.prefs.Store
-import com.google.gson.Gson
 import java.util.*
-
-const val REMINDER_STORE_NAME = "REMINDERS";
 
 enum class ReminderInterval(val resource: Int) {
   ONCE(R.string.reminder_frequency_once),
@@ -15,21 +10,16 @@ enum class ReminderInterval(val resource: Int) {
 }
 
 class Reminder() {
-  var uniqueID: Int = 0
-  var noteUUID: String = ""
   var alarmTimestamp: Long = 0
   var interval: ReminderInterval = ReminderInterval.ONCE
   var daysOfWeek: IntArray = intArrayOf()
 
 
   constructor(
-      noteUUID: String,
       alarmTimestamp: Long,
       interval: ReminderInterval,
       daysOfWeek: IntArray) : this() {
-    this.uniqueID = Random().nextInt(100000)
     this.alarmTimestamp = alarmTimestamp
-    this.noteUUID = noteUUID
     this.interval = interval
     this.daysOfWeek = daysOfWeek
   }
@@ -53,26 +43,5 @@ class Reminder() {
       return System.currentTimeMillis() < alarmTimestamp;
     }
     return true;
-  }
-
-  fun store(context: Context) {
-    val store = Store.get(context, REMINDER_STORE_NAME)
-    store.put(noteUUID, Gson().toJson(this))
-  }
-
-  fun delete(context: Context) {
-    val store = Store.get(context, REMINDER_STORE_NAME)
-    store.remove(noteUUID)
-  }
-
-  companion object {
-    fun load(context: Context, noteUUID: String): Reminder? {
-      val store = Store.get(context, REMINDER_STORE_NAME)
-      val json = store.get(noteUUID, "")
-      if (json.isBlank()) {
-        return null
-      }
-      return Gson().fromJson(json, Reminder::class.java)
-    }
   }
 }
