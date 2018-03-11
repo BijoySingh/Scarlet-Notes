@@ -277,13 +277,13 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.reminder,
         icon = R.drawable.ic_action_reminder,
         listener = View.OnClickListener {
-          //if (getAppFlavor() == Flavor.PRO) {
+          if (getAppFlavor() == Flavor.PRO) {
             ReminderBottomSheet.openSheet(activity, note)
             dismiss()
             return@OnClickListener
-          //}
+          }
         },
-        //visible = getAppFlavor() != Flavor.NONE,
+        visible = getAppFlavor() != Flavor.NONE,
         invalid = note.locked
     ))
     return options
