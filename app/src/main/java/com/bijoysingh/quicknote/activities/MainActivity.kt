@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.widget.EditText
@@ -27,7 +26,10 @@ import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Com
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
-import com.bijoysingh.quicknote.database.utils.*
+import com.bijoysingh.quicknote.database.utils.delete
+import com.bijoysingh.quicknote.database.utils.mark
+import com.bijoysingh.quicknote.database.utils.save
+import com.bijoysingh.quicknote.database.utils.search
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
@@ -163,13 +165,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
   }
 
   private fun loadNoteByStates(states: Array<String>) {
-    MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
-      override fun run(): List<Note> {
+    MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
+      override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
         return sort(Note.db().getByNoteState(states), sorting)
+            .map { NoteRecyclerItem(this@MainActivity, it) }
       }
 
-      override fun handle(notes: List<Note>) {
+      override fun handle(notes: List<NoteRecyclerItem>) {
         handleNewItems(notes)
       }
     })
@@ -204,13 +207,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
 
   fun onLockedClick() {
     mode = HomeNavigationState.LOCKED
-    MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
-      override fun run(): List<Note> {
+    MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
+      override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
         return sort(Note.db().getNoteByLocked(true), sorting)
+            .map { NoteRecyclerItem(this@MainActivity, it) }
       }
 
-      override fun handle(notes: List<Note>) {
+      override fun handle(notes: List<NoteRecyclerItem>) {
         handleNewItems(notes)
       }
     })
@@ -226,15 +230,15 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
    * End: Home Navigation Clicks
    */
 
-  private fun handleNewItems(notes: List<Note>) {
+  private fun handleNewItems(notes: List<NoteRecyclerItem>) {
     adapter.clearItems()
 
     if (notes.isEmpty()) {
       adapter.addItem(EmptyRecyclerItem())
     }
 
-    for (note in notes) {
-      adapter.addItem(NoteRecyclerItem(note))
+    notes.forEach {
+      adapter.addItem(it)
     }
   }
 
@@ -249,13 +253,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
 
   fun openTag(tag: Tag) {
     mode = HomeNavigationState.TAG
-    MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
-      override fun run(): List<Note> {
+    MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
+      override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
         return sort(Note.db().getNoteByTag("%" + tag.uuid + "%"), sorting)
+            .map { NoteRecyclerItem(this@MainActivity, it) }
       }
 
-      override fun handle(notes: List<Note>) {
+      override fun handle(notes: List<NoteRecyclerItem>) {
         handleNewItems(notes)
       }
     })
@@ -317,7 +322,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
     val notes = ArrayList<RecyclerItem>()
     for (note in searchNotes!!) {
       if (note.search(keyword)) {
-        notes.add(NoteRecyclerItem(note))
+        notes.add(NoteRecyclerItem(this, note))
       }
     }
     return notes

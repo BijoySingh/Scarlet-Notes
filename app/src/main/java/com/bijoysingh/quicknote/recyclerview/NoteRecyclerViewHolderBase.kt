@@ -2,26 +2,19 @@ package com.bijoysingh.quicknote.recyclerview
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.ColorUtils
 import android.support.v7.widget.CardView
-import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet
-import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.TextUtils
-import ru.noties.markwon.Markwon
 
 open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerViewHolder<RecyclerItem>(context, view) {
 
@@ -59,64 +52,46 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
   }
 
   override fun populate(itemData: RecyclerItem, extra: Bundle?) {
-    val isMarkdownEnabled = extra == null || extra.getBoolean(KEY_MARKDOWN_ENABLED, true)
-
     val item = itemData as NoteRecyclerItem
-    val data = item.note
+    setTitle(item)
+    setDescription(item)
+    setImage(item)
+    setIndicators(item)
+    setMetaText(item)
 
-    val isLightShaded = ColorUtils.calculateLuminance(data.color) > 0.35
-    setTitle(data, isMarkdownEnabled, isLightShaded)
-    setDescription(data, extra, isMarkdownEnabled, isLightShaded)
-    setImage(data)
-    setIndicators(data, isLightShaded)
-    setMetaText(data, isLightShaded)
-
-    view.setOnClickListener { viewClick(data, extra) }
+    view.setOnClickListener { viewClick(item.note, extra) }
     view.setOnLongClickListener {
-      viewLongClick(data, extra)
+      viewLongClick(item.note, extra)
       false
     }
-    view.setCardBackgroundColor(data.color)
-    setActionBar(data, isLightShaded, extra)
+    view.setCardBackgroundColor(item.note.color)
+    setActionBar(item, extra)
   }
 
-  private fun setTitle(note: Note, isMarkdownEnabled: Boolean, isLightShaded: Boolean) {
-    val noteTitle = note.getMarkdownTitle(context, isMarkdownEnabled)
-    title.text = noteTitle
-    title.visibility = if (noteTitle.isEmpty()) View.GONE else View.VISIBLE
-    when (isLightShaded) {
-      true -> title.setTextColor(ContextCompat.getColor(context, R.color.dark_tertiary_text))
-      false -> title.setTextColor(ContextCompat.getColor(context, R.color.light_primary_text))
+  private fun setTitle(note: NoteRecyclerItem) {
+    title.text = note.title
+    title.visibility = if (note.title.isEmpty()) View.GONE else View.VISIBLE
+    title.setTextColor(note.titleColor)
+  }
+
+  private fun setDescription(note: NoteRecyclerItem) {
+    description.text = note.description
+    description.maxLines = note.lineCount
+    description.setTextColor(note.descriptionColor)
+  }
+
+  private fun setImage(note: NoteRecyclerItem) {
+    val isImageAvailable = !note.imageSource.isBlank()
+    image.visibility = visibility(isImageAvailable)
+    if (isImageAvailable) {
+      loadFileToImageView(context, image, getFile(context, note.note.uuid, note.imageSource))
     }
   }
 
-  private fun setDescription(note: Note, extra: Bundle?, isMarkdownEnabled: Boolean, isLightShaded: Boolean) {
-    val lineCount = extra?.getInt(LineCountBottomSheet.KEY_LINE_COUNT, LineCountBottomSheet.LINE_COUNT_DEFAULT)
-        ?: LineCountBottomSheet.LINE_COUNT_DEFAULT
-
-    description.text = note.getLockedText(context, isMarkdownEnabled)
-    description.maxLines = lineCount
-    when (isLightShaded) {
-      true -> description.setTextColor(ContextCompat.getColor(context, R.color.dark_tertiary_text))
-      false -> description.setTextColor(ContextCompat.getColor(context, R.color.light_primary_text))
-    }
-  }
-
-  private fun setImage(note: Note) {
-    val imageFileName = note.getImageFile()
-    when {
-      imageFileName.isBlank() -> image.visibility = GONE
-      else -> {
-        image.visibility = VISIBLE
-        loadFileToImageView(context, image, getFile(context, note.uuid, imageFileName))
-      }
-    }
-  }
-
-  private fun setIndicators(note: Note, isLightShaded: Boolean) {
-    pinIndicator.visibility = visibility(note.pinned)
-    reminderIndicator.visibility = visibility(note.getReminder() !== null)
-    when (note.getNoteState()) {
+  private fun setIndicators(note: NoteRecyclerItem) {
+    pinIndicator.visibility = visibility(note.note.pinned)
+    reminderIndicator.visibility = visibility(note.hasReminder)
+    when (note.state) {
       NoteState.FAVOURITE -> {
         stateIndicator.visibility = View.VISIBLE
         stateIndicator.setImageResource(R.drawable.ic_favorite_white_48dp)
@@ -133,31 +108,22 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
       else -> stateIndicator.visibility = GONE
     }
 
-    val color = when (isLightShaded) {
-      true -> ContextCompat.getColor(context, R.color.dark_tertiary_text)
-      false -> ContextCompat.getColor(context, R.color.light_tertiary_text)
-    }
-    pinIndicator.setColorFilter(color)
-    stateIndicator.setColorFilter(color)
-    reminderIndicator.setColorFilter(color)
+    pinIndicator.setColorFilter(note.indicatorColor)
+    stateIndicator.setColorFilter(note.indicatorColor)
+    reminderIndicator.setColorFilter(note.indicatorColor)
   }
 
-  private fun setMetaText(note: Note, isLightShaded: Boolean) {
-    val noteTimestamp = note.getDisplayTime()
+  private fun setMetaText(note: NoteRecyclerItem) {
     when {
-      !TextUtils.isNullOrEmpty(note.tags) -> {
-        tags.setTextColor(ContextCompat.getColor(
-            context,
-            if (isLightShaded) R.color.dark_tertiary_text else R.color.light_secondary_text))
-        val source = Markwon.markdown(context, note.getTagString(context))
+      !TextUtils.isNullOrEmpty(note.note.tags) -> {
+        tags.setTextColor(note.tagsColor)
+        val source = note.tags
         tags.text = trim(source)
         tags.visibility = VISIBLE
       }
-      !TextUtils.isNullOrEmpty(noteTimestamp) -> {
-        tags.setTextColor(ContextCompat.getColor(
-            context,
-            if (isLightShaded) R.color.dark_hint_text else R.color.light_hint_text))
-        tags.text = noteTimestamp
+      !TextUtils.isNullOrEmpty(note.timestamp) -> {
+        tags.setTextColor(note.timestampColor)
+        tags.text = note.timestamp
         tags.visibility = VISIBLE
       }
       else -> {
@@ -166,22 +132,18 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     }
   }
 
-  private fun setActionBar(note: Note, isLightShaded: Boolean, extra: Bundle?) {
-    delete.setOnClickListener { deleteIconClick(note, extra) }
-    share.setOnClickListener { shareIconClick(note, extra) }
-    edit.setOnClickListener { editIconClick(note, extra) }
-    copy.setOnClickListener { copyIconClick(note, extra) }
-    moreOptions.setOnClickListener { moreOptionsIconClick(note, extra) }
+  private fun setActionBar(note: NoteRecyclerItem, extra: Bundle?) {
+    delete.setOnClickListener { deleteIconClick(note.note, extra) }
+    share.setOnClickListener { shareIconClick(note.note, extra) }
+    edit.setOnClickListener { editIconClick(note.note, extra) }
+    copy.setOnClickListener { copyIconClick(note.note, extra) }
+    moreOptions.setOnClickListener { moreOptionsIconClick(note.note, extra) }
 
-    val color = when (isLightShaded) {
-      true -> ContextCompat.getColor(context, R.color.dark_secondary_text)
-      false -> ContextCompat.getColor(context, R.color.light_secondary_text)
-    }
-    delete.setColorFilter(color)
-    share.setColorFilter(color)
-    edit.setColorFilter(color)
-    copy.setColorFilter(color)
-    moreOptions.setColorFilter(color)
+    delete.setColorFilter(note.actionBarIconColor)
+    share.setColorFilter(note.actionBarIconColor)
+    edit.setColorFilter(note.actionBarIconColor)
+    copy.setColorFilter(note.actionBarIconColor)
+    moreOptions.setColorFilter(note.actionBarIconColor)
   }
 
   protected open fun viewClick(note: Note, extra: Bundle?) {}

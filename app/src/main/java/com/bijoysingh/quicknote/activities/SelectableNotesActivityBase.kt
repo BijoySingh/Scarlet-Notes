@@ -38,21 +38,22 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
     notifyThemeChange()
     setupRecyclerView()
 
-    MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
-      override fun run(): List<Note> {
+    MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
+      override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
         return sort(getNotes(), sorting)
+            .map { NoteRecyclerItem(this@SelectableNotesActivityBase, it) }
       }
 
-      override fun handle(notes: List<Note>) {
+      override fun handle(notes: List<NoteRecyclerItem>) {
         adapter.clearItems()
 
         if (notes.isEmpty()) {
           adapter.addItem(EmptyRecyclerItem())
         }
 
-        for (note in notes) {
-          adapter.addItem(NoteRecyclerItem(note))
+        notes.forEach {
+          adapter.addItem(it)
         }
       }
     })
