@@ -32,7 +32,7 @@ class NotificationIntentService: IntentService("NotificationIntentService") {
       return
     }
 
-    val note = Note.db(context).getByID(noteId)
+    val note = Note.db().getByID(noteId)
     if (note === null) {
       return
     }

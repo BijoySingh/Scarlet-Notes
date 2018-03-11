@@ -166,7 +166,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
       override fun run(): List<Note> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(Note.db(this@MainActivity).getByNoteState(states), sorting)
+        return sort(Note.db().getByNoteState(states), sorting)
       }
 
       override fun handle(notes: List<Note>) {
@@ -207,7 +207,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
       override fun run(): List<Note> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(Note.db(this@MainActivity).getNoteByLocked(true), sorting)
+        return sort(Note.db().getNoteByLocked(true), sorting)
       }
 
       override fun handle(notes: List<Note>) {
@@ -252,7 +252,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<Note>> {
       override fun run(): List<Note> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(Note.db(this@MainActivity).getNoteByTag("%" + tag.uuid + "%"), sorting)
+        return sort(Note.db().getNoteByTag("%" + tag.uuid + "%"), sorting)
       }
 
       override fun handle(notes: List<Note>) {
@@ -382,7 +382,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
 
   override fun showHints(): Boolean {
     when {
-      Note.db(this).count == 0 -> showHint(TUTORIAL_KEY_NEW_NOTE)
+      Note.db().count == 0 -> showHint(TUTORIAL_KEY_NEW_NOTE)
       shouldShowHint(TUTORIAL_KEY_NEW_NOTE) -> showHint(TUTORIAL_KEY_NEW_NOTE)
       shouldShowHint(TUTORIAL_KEY_HOME_SETTINGS) -> showHint(TUTORIAL_KEY_HOME_SETTINGS)
       else -> return false

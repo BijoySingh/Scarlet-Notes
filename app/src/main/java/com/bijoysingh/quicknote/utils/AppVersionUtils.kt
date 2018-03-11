@@ -24,7 +24,7 @@ fun getLastUsedAppVersionCode(context: Context): Int {
   val appVersion = userPreferences().get(KEY_LAST_KNOWN_APP_VERSION, 0)
   return when {
     appVersion > 0 -> appVersion
-    Note.db(context).count > 0 -> -1
+    Note.db().count > 0 -> -1
     else -> 0
   }
 }

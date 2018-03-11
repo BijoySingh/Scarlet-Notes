@@ -77,7 +77,7 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
 
   fun runNoteFunction(noteFunction: (Note) -> Unit) {
     for (noteId in selectedNotes) {
-      val note = Note.db(this).getByID(noteId)
+      val note = Note.db().getByID(noteId)
       noteFunction(note)
     }
   }
@@ -107,12 +107,12 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
 
   override fun isNoteSelected(note: Note): Boolean = selectedNotes.contains(note.uid)
 
-  override fun getNotes(): List<Note> = Note.db(this).getByNoteState(getMode(mode)).filter { note -> !note.locked }
+  override fun getNotes(): List<Note> = Note.db().getByNoteState(getMode(mode)).filter { note -> !note.locked }
 
   fun getText(): String {
     val builder = StringBuilder()
     for (noteId in selectedNotes) {
-      builder.append(Note.db(this).getByID(noteId).getFullText())
+      builder.append(Note.db().getByID(noteId).getFullText())
       builder.append("\n\n---\n\n")
     }
     return builder.toString()

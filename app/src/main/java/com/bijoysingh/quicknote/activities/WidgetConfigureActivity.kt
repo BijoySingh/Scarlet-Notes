@@ -47,14 +47,14 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
   }
 
   override fun getNotes(): List<Note> {
-    return Note.db(this@WidgetConfigureActivity).getByNoteState(
+    return Note.db().getByNoteState(
         arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name, NoteState.ARCHIVED.name))
         .filter { note -> !note.locked }
   }
 
   override fun onNoteClicked(note: Note) {
     val widget = Widget(appWidgetId, note.uuid)
-    Widget.db(this).insert(widget)
+    Widget.db().insert(widget)
     createWidget(widget)
   }
 
@@ -73,7 +73,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
 
   companion object {
     fun createNoteWidget(context: Context, widget: Widget) {
-      val note = Note.db(context).getByUUID(widget.noteUUID)
+      val note = Note.db().getByUUID(widget.noteUUID)
       val appWidgetManager = AppWidgetManager.getInstance(context)
       if (note === null || note.locked) {
         val views = RemoteViews(context.getPackageName(), R.layout.widget_invalid_note)
@@ -115,7 +115,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
       val application: Application = context.applicationContext as Application
       val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(
           ComponentName(application, NoteWidgetProvider::class.java))
-      val widgets = Widget.db(context).getByNote(note.uuid)
+      val widgets = Widget.db().getByNote(note.uuid)
 
       val widgetIds = ArrayList<Int>()
       for (widget in widgets) {

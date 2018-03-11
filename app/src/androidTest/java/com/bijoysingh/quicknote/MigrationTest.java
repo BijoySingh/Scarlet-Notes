@@ -84,7 +84,7 @@ public class MigrationTest {
 
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 3, false, MIGRATION_2_3);
+    database = helper.runMigrationsAndValidate(TEST_DB, 3, false, Companion.getMIGRATION_2_3());
     validate(database, select(TABLE_NOTE, 1));
     validateNotNullOrEmpty(database, select(TABLE_NOTE, 1, "state"));
     String titleChanged = getValue(database, select(TABLE_NOTE, 1, "title"));
@@ -103,7 +103,7 @@ public class MigrationTest {
     database.execSQL(NOTE_V3);
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 4, false, MIGRATION_3_4);
+    database = helper.runMigrationsAndValidate(TEST_DB, 4, false, Companion.getMIGRATION_3_4());
     validate(database, select(TABLE_NOTE, 1));
     Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 1, "locked")) == 0);
 
@@ -119,7 +119,7 @@ public class MigrationTest {
     database.execSQL(NOTE_V4);
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 5, false, MIGRATION_4_5);
+    database = helper.runMigrationsAndValidate(TEST_DB, 5, false, Companion.getMIGRATION_4_5());
     validate(database, select(TABLE_NOTE, 1));
     Assert.assertTrue(getValue(database, select(TABLE_NOTE, 1, "tags")).isEmpty());
 
@@ -135,7 +135,7 @@ public class MigrationTest {
     database.execSQL(NOTE_V5);
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 6, false, MIGRATION_5_6);
+    database = helper.runMigrationsAndValidate(TEST_DB, 6, false, Companion.getMIGRATION_5_6());
     validate(database, select(TABLE_NOTE, 1));
     Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 1, "pinned")) == 0);
     Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 1, "updateTimestamp")) == 32121312);
@@ -150,7 +150,7 @@ public class MigrationTest {
     database.execSQL(NOTE_V6);
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 7, false, MIGRATION_6_7);
+    database = helper.runMigrationsAndValidate(TEST_DB, 7, false, Companion.getMIGRATION_6_7());
     validate(database, select(TABLE_NOTE, 1));
 
     String uuid = getValue(database, select(TABLE_NOTE, 1, "uuid"));
@@ -166,7 +166,7 @@ public class MigrationTest {
     database.execSQL(TAG_V5);
     database.close();
 
-    database = helper.runMigrationsAndValidate(TEST_DB, 8, false, MIGRATION_7_8);
+    database = helper.runMigrationsAndValidate(TEST_DB, 8, false, Companion.getMIGRATION_7_8());
     validate(database, select(TABLE_TAG, 1));
 
     String uuid = getValue(database, select(TABLE_TAG, 1, "uuid"));

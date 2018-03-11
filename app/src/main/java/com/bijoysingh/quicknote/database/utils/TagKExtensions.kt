@@ -4,7 +4,7 @@ import android.content.Context
 import com.bijoysingh.quicknote.database.Tag
 
 fun Tag.saveIfUnique(context: Context) {
-  val existing = Tag.db(context).getByTitle(title)
+  val existing = Tag.db().getByTitle(title)
   if (existing == null) {
     save(context)
     return
@@ -20,12 +20,12 @@ fun Tag.isUnsaved(): Boolean {
 
 /*Database Functions*/
 fun Tag.save(context: Context) {
-  saveWithoutSync(context)
+  saveWithoutSync()
   saveToSync()
 }
 
-fun Tag.saveWithoutSync(context: Context) {
-  val id = Tag.db(context).insertTag(this)
+fun Tag.saveWithoutSync() {
+  val id = Tag.db().insertTag(this)
   uid = if (isUnsaved()) id.toInt() else uid
 }
 
@@ -42,7 +42,7 @@ fun Tag.deleteWithoutSync(context: Context) {
   if (isUnsaved()) {
     return
   }
-  Tag.db(context).delete(this)
+  Tag.db().delete(this)
   uid = 0
 }
 

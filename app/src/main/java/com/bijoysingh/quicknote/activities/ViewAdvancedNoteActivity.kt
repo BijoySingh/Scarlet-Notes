@@ -66,7 +66,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
       noteId = savedInstanceState.getInt(INTENT_KEY_NOTE_ID, 0)
     }
     if (noteId != 0) {
-      note = Note.db(this).getByID(noteId)
+      note = Note.db().getByID(noteId)
     }
     if (note === null) {
       note = genEmptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor())
@@ -84,7 +84,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   }
 
   protected open fun onResumeAction() {
-    note = Note.db(this).getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
+    note = Note.db().getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
     if (note == null) {
       finish()
       return

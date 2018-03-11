@@ -3,7 +3,8 @@ package com.bijoysingh.quicknote.database;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
-import android.content.Context;
+
+import com.bijoysingh.quicknote.MaterialNotes;
 
 /**
  * Underlying Database, difficult to migrate to Kotlin without breaking the Database.
@@ -38,7 +39,7 @@ public class Note {
 
   public String uuid;
 
-  public static NoteDao db(Context context) {
-    return AppDatabase.getDatabase(context).notes();
+  public static NoteDao db() {
+    return MaterialNotes.Companion.db().notes();
   }
 }

@@ -20,7 +20,7 @@ const val KEY_MIGRATE_ZERO_NOTES = "MIGRATE_ZERO_NOTES"
 fun migrate(context: Context) {
   if (!userPreferences().get(KEY_MIGRATE_UUID, false)) {
     val tags = HashMap<Int, Tag>()
-    for (tag in Tag.db(context).all) {
+    for (tag in Tag.db().all) {
       if (TextUtils.isNullOrEmpty(tag.uuid)) {
         tag.uuid = RandomHelper.getRandomString(24)
         tag.save(context)
@@ -28,7 +28,7 @@ fun migrate(context: Context) {
       tags.put(tag.uid, tag)
     }
 
-    for (note in Note.db(context).all) {
+    for (note in Note.db().all) {
       var saveNote = false
       if (TextUtils.isNullOrEmpty(note.uuid)) {
         note.uuid = RandomHelper.getRandomString(24)
@@ -52,7 +52,7 @@ fun migrate(context: Context) {
     userPreferences().put(KEY_MIGRATE_UUID, true)
   }
   if (!userPreferences().get(KEY_MIGRATE_TRASH, false)) {
-    val notes = Note.db(context).getByNoteState(arrayOf(NoteState.TRASH.name))
+    val notes = Note.db().getByNoteState(arrayOf(NoteState.TRASH.name))
     for (note in notes) {
       // Updates the timestamp for the note in trash
       note.mark(context, NoteState.TRASH)
@@ -67,16 +67,16 @@ fun migrate(context: Context) {
   }
 
   if (!userPreferences().get(KEY_MIGRATE_ZERO_NOTES, false)) {
-    val note = Note.db(context).getByID(0)
+    val note = Note.db().getByID(0)
     if (note != null) {
-      Note.db(context).delete(note)
+      Note.db().delete(note)
       note.uid = null
       note.save(context)
     }
     userPreferences().put(KEY_MIGRATE_ZERO_NOTES, true)
   }
   if (!userPreferences().get(KEY_MIGRATE_CHECKED_LIST, false)) {
-    for (note in Note.db(context).all) {
+    for (note in Note.db().all) {
       note.description = Format.getNote(note.getFormats().sorted())
       note.save(context)
     }
@@ -86,7 +86,7 @@ fun migrate(context: Context) {
 
 fun removeOlderClips(context: Context) {
   AsyncTask.execute {
-    val notes = Note.db(context).getByNoteState(arrayOf(NoteState.TRASH.name))
+    val notes = Note.db().getByNoteState(arrayOf(NoteState.TRASH.name))
     val timestamp = Calendar.getInstance().timeInMillis - 1000 * 60 * 60 * 24 * 7
     for (note in notes) {
       if (note.updateTimestamp < timestamp) {

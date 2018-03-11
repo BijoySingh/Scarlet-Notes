@@ -182,7 +182,7 @@ fun Note.getNoteState(): NoteState {
 fun Note.getTags(context: Context): Set<Tag> {
   val tags = HashSet<Tag>()
   for (tagID in getTagUUIDs()) {
-    val tag = Tag.db(context).getByUUID(tagID)
+    val tag = Tag.db().getByUUID(tagID)
     if (tag != null) {
       tags.add(tag)
     }
@@ -298,7 +298,7 @@ fun Note.save(context: Context) {
 }
 
 fun Note.saveWithoutSync(context: Context) {
-  val id = Note.db(context).insertNote(this)
+  val id = Note.db().insertNote(this)
   this.uid = if (isUnsaved()) id.toInt() else this.uid
   updateAsyncContent(context)
 }
@@ -334,7 +334,7 @@ fun Note.deleteWithoutSync(context: Context) {
   if (isUnsaved()) {
     return
   }
-  Note.db(context).delete(this)
+  Note.db().delete(this)
   this.description = Format.getNote(ArrayList())
   this.uid = 0
 }

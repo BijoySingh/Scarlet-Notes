@@ -88,7 +88,7 @@ fun genImportFromKeep(description: String): List<Format> {
  * Generate blank note from imported note
  */
 fun genImportedNote(context: Context, exportableNote: ExportableNote): Note {
-  val existingNote = Note.db(context).getByUUID(exportableNote.uuid)
+  val existingNote = Note.db().getByUUID(exportableNote.uuid)
   val note = existingNote ?: genEmptyNote()
   note.uuid = exportableNote.uuid
   note.color = exportableNote.color

@@ -5,6 +5,7 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 
+import com.bijoysingh.quicknote.MaterialNotes;
 import com.bijoysingh.quicknote.activities.external.ExportableTag;
 import com.github.bijoysingh.starter.util.RandomHelper;
 
@@ -17,8 +18,8 @@ public class Tag {
 
   public String uuid;
 
-  public static TagDao db(Context context) {
-    return AppDatabase.getDatabase(context).tags();
+  public static TagDao db() {
+    return MaterialNotes.Companion.db().tags();
   }
 
   public static Tag gen() {

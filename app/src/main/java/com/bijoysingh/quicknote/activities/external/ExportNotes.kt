@@ -23,7 +23,7 @@ const val KEY_AUTO_BACKUP_LAST_TIMESTAMP = "KEY_AUTO_BACKUP_LAST_TIMESTAMP"
 const val EXPORT_VERSION = 4
 
 fun getNotesForExport(context: Context): String {
-  val notes = Note.db(context).all
+  val notes = Note.db().all
   val exportableNotes = ArrayList<JSONObject>()
   for (note in notes) {
     exportableNotes.add(ExportableNote(context, note).toJSONObject())
@@ -42,7 +42,7 @@ fun maybeAutoExport(context: Context) {
       return@execute
     }
     val lastBackup = userPreferences().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
-    val lastTimestamp = Note.db(context).getLastTimestamp()
+    val lastTimestamp = Note.db().getLastTimestamp()
     if (lastBackup >= lastTimestamp) {
       return@execute
     }

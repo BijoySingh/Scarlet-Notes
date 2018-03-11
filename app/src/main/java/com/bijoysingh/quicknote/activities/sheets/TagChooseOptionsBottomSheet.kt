@@ -44,7 +44,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
   private fun getOptions(): List<TagOptionsItem> {
     val options = ArrayList<TagOptionsItem>()
     val tags = note!!.getTagUUIDs()
-    for (tag in Tag.db(context).all) {
+    for (tag in Tag.db().all) {
       options.add(TagOptionsItem(
           tag = tag,
           listener = View.OnClickListener {

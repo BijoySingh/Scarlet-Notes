@@ -152,10 +152,10 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   fun getTagOptions(): List<TagOptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<TagOptionsItem>()
-    for (tag in Tag.db(context).all) {
+    for (tag in Tag.db().all) {
       options.add(TagOptionsItem(
           tag = tag,
-          usages = Note.db(context).getNoteCountByTag("%" + tag.uuid + "%"),
+          usages = Note.db().getNoteCountByTag("%" + tag.uuid + "%"),
           listener = View.OnClickListener {
             activity.openTag(tag)
             dismiss()

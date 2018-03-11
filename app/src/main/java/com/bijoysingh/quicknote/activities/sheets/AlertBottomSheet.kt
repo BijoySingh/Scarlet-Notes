@@ -81,7 +81,7 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
         override fun getNegativeText(): Int = R.string.delete_sheet_delete_trash_no
 
         override fun getPositiveClickListener() {
-          val notes = Note.db(activity).getByNoteState(arrayOf(NoteState.TRASH.name))
+          val notes = Note.db().getByNoteState(arrayOf(NoteState.TRASH.name))
           for (note in notes) {
             note.delete(activity)
           }

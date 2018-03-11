@@ -3,12 +3,10 @@ package com.bijoysingh.quicknote.database;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
-import android.content.Context;
 
-@Entity(
-    tableName = "widget",
-    indices = {@Index("widgetId")}
-)
+import com.bijoysingh.quicknote.MaterialNotes;
+
+@Entity(tableName = "widget", indices = {@Index("widgetId")})
 public class Widget {
 
   @PrimaryKey
@@ -24,7 +22,7 @@ public class Widget {
     this.noteUUID = noteId;
   }
 
-  public static WidgetDao db(Context context) {
-    return AppDatabase.getDatabase(context).widgets();
+  public static WidgetDao db() {
+    return MaterialNotes.Companion.db().widgets();
   }
 }
