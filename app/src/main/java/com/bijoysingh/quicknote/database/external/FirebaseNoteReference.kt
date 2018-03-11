@@ -3,6 +3,10 @@ package com.bijoysingh.quicknote.database.external
 import android.content.Context
 import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.copyNote
+import com.bijoysingh.quicknote.database.utils.deleteWithoutSync
+import com.bijoysingh.quicknote.database.utils.isEqual
+import com.bijoysingh.quicknote.database.utils.saveWithoutSync
 import com.bijoysingh.quicknote.utils.NoteBroadcast
 import com.bijoysingh.quicknote.utils.genImportedNote
 import com.bijoysingh.quicknote.utils.sendNoteBroadcast
@@ -99,7 +103,7 @@ private fun setListener(context: Context) {
         }
 
         val notifiedNote = genImportedNote(note)
-        val existingNote = Note.db(context).getByUUID(note.uuid)
+        val existingNote = Note.db().getByUUID(note.uuid)
         var isSame = false
         if (existingNote !== null) {
           isSame = notifiedNote.isEqual(existingNote)

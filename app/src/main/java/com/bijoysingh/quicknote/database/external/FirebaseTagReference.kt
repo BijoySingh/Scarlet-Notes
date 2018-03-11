@@ -4,6 +4,8 @@ import android.content.Context
 import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.utils.genFromFirebase
+import com.bijoysingh.quicknote.database.utils.deleteWithoutSync
+import com.bijoysingh.quicknote.database.utils.saveWithoutSync
 import com.bijoysingh.quicknote.utils.NoteBroadcast
 import com.bijoysingh.quicknote.utils.sendNoteBroadcast
 import com.github.bijoysingh.starter.util.TextUtils
@@ -67,13 +69,13 @@ private fun setListener(context: Context) {
     override fun onChildAdded(snapshot: DataSnapshot?, p1: String?) {
       handleTagChange(snapshot, fun(tag, existingTag, isSame) {
         if (existingTag === null) {
-          tag.saveWithoutSync(context)
+          tag.saveWithoutSync()
           sendNoteBroadcast(context, NoteBroadcast.TAG_CHANGED, tag.uuid)
           return
         }
         if (!isSame) {
           existingTag.title = tag.title
-          existingTag.saveWithoutSync(context)
+          existingTag.saveWithoutSync()
           sendNoteBroadcast(context, NoteBroadcast.TAG_CHANGED, existingTag.uuid)
         }
       })
@@ -100,8 +102,13 @@ private fun setListener(context: Context) {
           return
         }
 
+<<<<<<< HEAD
         val notifiedTag = genFromFirebase(tag)
         val existingTag = Tag.db(context).getByUUID(tag.uuid)
+=======
+        val notifiedTag = Tag.gen(tag)
+        val existingTag = Tag.db().getByUUID(tag.uuid)
+>>>>>>> Fixing changes after KExtensions change
         var isSame = false
         if (existingTag !== null) {
           isSame = TextUtils.areEqualNullIsEmpty(notifiedTag.title, existingTag.title)

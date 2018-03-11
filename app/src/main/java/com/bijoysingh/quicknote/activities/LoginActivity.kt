@@ -10,6 +10,7 @@ import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.external.noteDatabaseReference
 import com.bijoysingh.quicknote.database.external.tagDatabaseReference
+import com.bijoysingh.quicknote.database.utils.saveToSync
 import com.bijoysingh.quicknote.utils.Flavor
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.getAppFlavor
@@ -154,12 +155,12 @@ class LoginActivity : ThemedActivity() {
       return
     }
     noteDatabaseReference(context, user.uid)
-    for (note in Note.db(context).all) {
+    for (note in Note.db().all) {
       note.saveToSync()
     }
 
     tagDatabaseReference(context, user.uid)
-    for (tag in Tag.db(context).all) {
+    for (tag in Tag.db().all) {
       tag.saveToSync()
     }
     finish()
