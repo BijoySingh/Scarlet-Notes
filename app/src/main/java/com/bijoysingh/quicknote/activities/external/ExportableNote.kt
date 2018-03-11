@@ -3,6 +3,8 @@ package com.bijoysingh.quicknote.activities.external
 import android.content.Context
 import android.util.Base64
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.getDisplayTime
+import com.bijoysingh.quicknote.database.utils.getExportableTags
 import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.bijoysingh.quicknote.utils.getNewNoteUUID
 import org.json.JSONArray
@@ -25,7 +27,7 @@ class ExportableNote(
   constructor(context: Context, note: Note) : this(
       note.uuid,
       note.description,
-      note.displayTime,
+      note.getDisplayTime(),
       note.timestamp,
       note.color,
       note.state,
@@ -36,7 +38,7 @@ class ExportableNote(
   constructor(note: Note) : this(
       note.uuid,
       note.description,
-      note.displayTime,
+      note.getDisplayTime(),
       note.timestamp,
       note.color,
       note.state,

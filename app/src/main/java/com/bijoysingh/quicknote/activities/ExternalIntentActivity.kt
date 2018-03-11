@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity.Companion.convertStreamToString
+import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.bijoysingh.quicknote.utils.genImportFromKeep

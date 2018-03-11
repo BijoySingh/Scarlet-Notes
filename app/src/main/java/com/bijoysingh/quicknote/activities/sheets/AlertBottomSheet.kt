@@ -9,6 +9,7 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.delete
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.ThemeColorType

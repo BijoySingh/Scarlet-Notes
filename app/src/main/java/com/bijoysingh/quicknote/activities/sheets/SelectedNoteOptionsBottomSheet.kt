@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.SelectNotesActivity
+import com.bijoysingh.quicknote.database.utils.delete
+import com.bijoysingh.quicknote.database.utils.mark
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.bijoysingh.quicknote.utils.NoteState

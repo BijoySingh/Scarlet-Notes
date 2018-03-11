@@ -34,7 +34,7 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
   }
 
   fun setupDialogContent(dialog: Dialog) {
-    val isMarkdownEnabled = userPreferences().get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
+    val isMarkdownEnabled = isMarkdownEnabled()
     val actionButton = dialog.findViewById<UIActionView>(R.id.action_button)
     actionButton.setOnClickListener {
       userPreferences().put(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, !isMarkdownEnabled)
@@ -74,5 +74,9 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
 
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
+
+    fun isMarkdownEnabled() = userPreferences()
+        .get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
+
   }
 }

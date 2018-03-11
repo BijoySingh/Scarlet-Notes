@@ -23,16 +23,16 @@ class Format : Comparable<Format> {
 
   val markdownText: String
     get() {
-      when (formatType) {
-        FormatType.BULLET_LIST, FormatType.NUMBERED_LIST -> return "- " + text
-        FormatType.HEADING -> return "# " + text
-        FormatType.CHECKLIST_CHECKED -> return "\u2612 " + text
-        FormatType.CHECKLIST_UNCHECKED -> return "\u2610 " + text
-        FormatType.SUB_HEADING -> return "### " + text
-        FormatType.CODE -> return "```\n$text\n```"
-        FormatType.QUOTE -> return "> " + text
-        FormatType.TEXT -> return text
-        FormatType.IMAGE -> return ""
+      return when (formatType) {
+        FormatType.BULLET_LIST, FormatType.NUMBERED_LIST -> "- $text"
+        FormatType.HEADING -> "# $text"
+        FormatType.CHECKLIST_CHECKED -> "\u2612 $text"
+        FormatType.CHECKLIST_UNCHECKED -> "\u2610 $text"
+        FormatType.SUB_HEADING -> "### $text"
+        FormatType.CODE -> "```\n$text\n```"
+        FormatType.QUOTE -> "> $text"
+        FormatType.IMAGE -> ""
+        FormatType.TEXT -> text
         else -> return text
       }
     }

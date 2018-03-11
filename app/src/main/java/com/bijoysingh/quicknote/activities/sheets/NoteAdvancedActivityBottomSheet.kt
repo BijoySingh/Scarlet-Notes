@@ -9,6 +9,7 @@ import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_NOTE_ID
 import com.bijoysingh.quicknote.activities.SelectNotesActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.util.RandomHelper
@@ -40,7 +41,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           activity.markItem(note, NoteState.DEFAULT)
           dismiss()
         },
-        visible = note.noteState == NoteState.TRASH
+        visible = note.getNoteState() == NoteState.TRASH
     ))
     options.add(OptionsItem(
         title = R.string.edit_note,
@@ -60,7 +61,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           activity.markItem(note, NoteState.DEFAULT)
           dismiss()
         },
-        visible = note.noteState == NoteState.FAVOURITE && !isEditMode
+        visible = note.getNoteState() == NoteState.FAVOURITE && !isEditMode
     ))
     options.add(OptionsItem(
         title = R.string.favourite_note,
@@ -70,7 +71,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           activity.markItem(note, NoteState.FAVOURITE)
           dismiss()
         },
-        visible = note.noteState != NoteState.FAVOURITE && !isEditMode
+        visible = note.getNoteState() != NoteState.FAVOURITE && !isEditMode
     ))
     options.add(OptionsItem(
         title = R.string.unarchive_note,
@@ -80,7 +81,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           activity.markItem(note, NoteState.DEFAULT)
           dismiss()
         },
-        visible = note.noteState == NoteState.ARCHIVED && !isEditMode
+        visible = note.getNoteState() == NoteState.ARCHIVED && !isEditMode
     ))
     options.add(OptionsItem(
         title = R.string.archive_note,
@@ -90,7 +91,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           activity.markItem(note, NoteState.ARCHIVED)
           dismiss()
         },
-        visible = note.noteState != NoteState.ARCHIVED && !isEditMode
+        visible = note.getNoteState() != NoteState.ARCHIVED && !isEditMode
     ))
     options.add(OptionsItem(
         title = R.string.send_note,
@@ -118,7 +119,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           activity.moveItemToTrashOrDelete(note)
           dismiss()
         },
-        visible = note.noteState == NoteState.TRASH && !isEditMode
+        visible = note.getNoteState() == NoteState.TRASH && !isEditMode
     ))
     options.add(OptionsItem(
         title = R.string.trash_note,
@@ -128,7 +129,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           activity.moveItemToTrashOrDelete(note)
           dismiss()
         },
-        visible = note.noteState != NoteState.TRASH && !isEditMode
+        visible = note.getNoteState() != NoteState.TRASH && !isEditMode
     ))
     options.add(OptionsItem(
         title = R.string.change_tags,
@@ -182,7 +183,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           note.popup(activity)
           dismiss()
         },
-        invalid = note.locked || note.isUnsaved
+        invalid = note.locked || note.isUnsaved()
     ))
     options.add(OptionsItem(
         title = R.string.open_in_notification,
@@ -194,7 +195,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           handler.openNotification()
           dismiss()
         },
-        invalid = note.locked || note.isUnsaved
+        invalid = note.locked || note.isUnsaved()
     ))
     options.add(OptionsItem(
         title = if (note.pinned) R.string.unpin_note else R.string.pin_note,
@@ -253,7 +254,7 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
           AlertBottomSheet.openDeleteNotePermanentlySheet(activity, note, { activity.finish() })
           dismiss()
         },
-        visible = note.noteState !== NoteState.TRASH,
+        visible = note.getNoteState() !== NoteState.TRASH,
         invalid = note.locked
     ))
     options.add(OptionsItem(

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.ColorUtils
 import android.support.v7.widget.CardView
+import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -14,6 +15,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.utils.NoteState
@@ -114,7 +116,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
 
   private fun setIndicators(note: Note, isLightShaded: Boolean) {
     pinIndicator.visibility = if (note.pinned) View.VISIBLE else View.GONE
-    when (note.noteState) {
+    when (note.getNoteState()) {
       NoteState.FAVOURITE -> {
         stateIndicator.visibility = View.VISIBLE
         stateIndicator.setImageResource(R.drawable.ic_favorite_white_48dp)
@@ -144,7 +146,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
   }
 
   private fun setMetaText(note: Note, isLightShaded: Boolean) {
-    val noteTimestamp = note.displayTime
+    val noteTimestamp = note.getDisplayTime()
     when {
       !TextUtils.isNullOrEmpty(note.tags) -> {
         tags.setTextColor(ContextCompat.getColor(

@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.activities.sheets.ExportNotesBottomSheet
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.getFullText
+import com.bijoysingh.quicknote.database.utils.getText
+import com.bijoysingh.quicknote.database.utils.getTitle
 import com.github.bijoysingh.starter.json.SafeJson
 import com.github.bijoysingh.starter.util.FileManager
 import com.github.bijoysingh.starter.util.PermissionManager
@@ -53,7 +56,7 @@ fun maybeAutoExport(context: Context) {
 }
 
 fun searchInNote(note: Note, keyword: String): Boolean {
-  return note.getTitle().contains(keyword, true) || note.text.contains(keyword, true)
+  return note.getFullText().contains(keyword, true)
 }
 
 fun getStoragePermissionManager(activity: AppCompatActivity): PermissionManager {

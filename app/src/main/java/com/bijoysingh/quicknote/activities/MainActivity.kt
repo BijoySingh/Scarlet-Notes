@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.widget.EditText
@@ -26,6 +27,7 @@ import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Com
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem

@@ -5,6 +5,7 @@ import android.os.AsyncTask
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.formats.Format
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.github.bijoysingh.starter.util.TextUtils
@@ -34,7 +35,7 @@ fun migrate(context: Context) {
         saveNote = true
       }
       if (!TextUtils.isNullOrEmpty(note.tags)) {
-        val tagIDs = note.tagIDs
+        val tagIDs = note.getTagIDs()
         note.tags = ""
         for (tagID in tagIDs) {
           val tag = tags.get(tagID)
@@ -76,7 +77,7 @@ fun migrate(context: Context) {
   }
   if (!userPreferences().get(KEY_MIGRATE_CHECKED_LIST, false)) {
     for (note in Note.db(context).all) {
-      note.description = Format.getNote(note.formats.sorted())
+      note.description = Format.getNote(note.getFormats().sorted())
       note.save(context)
     }
     userPreferences().put(KEY_MIGRATE_CHECKED_LIST, true)

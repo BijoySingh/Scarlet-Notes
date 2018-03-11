@@ -19,6 +19,9 @@ import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.getDisplayTime
+import com.bijoysingh.quicknote.database.utils.getText
+import com.bijoysingh.quicknote.database.utils.getTitle
 import com.bijoysingh.quicknote.service.NotificationIntentService
 import com.bijoysingh.quicknote.service.NotificationIntentService.Companion.INTENT_KEY_ACTION
 import com.github.bijoysingh.starter.util.TextUtils
@@ -49,8 +52,8 @@ class NotificationHandler(val context: Context, val note: Note) {
     val hasTitle = !TextUtils.isNullOrEmpty(note.getTitle())
     contentView.setViewVisibility(R.id.title, if (hasTitle) VISIBLE else GONE)
     contentView.setTextViewText(R.id.title, note.getTitle())
-    contentView.setTextViewText(R.id.description, note.text)
-    contentView.setTextViewText(R.id.timestamp, note.displayTime)
+    contentView.setTextViewText(R.id.description, note.getText())
+    contentView.setTextViewText(R.id.timestamp, note.getDisplayTime())
 
     val theme = ThemeManager.get(context)
     val titleColor = theme.get(context, ThemeColorType.SECONDARY_TEXT)

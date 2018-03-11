@@ -3,7 +3,6 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.content.Intent
 import android.view.View
-import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_MODE
 import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_NOTE_ID
@@ -11,6 +10,7 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.SelectNotesActivity
 import com.bijoysingh.quicknote.activities.sheets.AlertBottomSheet.Companion.openDeleteNotePermanentlySheet
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.util.RandomHelper
@@ -41,7 +41,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.markItem(note, NoteState.DEFAULT)
           dismiss()
         },
-        visible = note.noteState == NoteState.TRASH
+        visible = note.getNoteState() == NoteState.TRASH
     ))
     options.add(OptionsItem(
         title = R.string.edit_note,
@@ -60,7 +60,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.markItem(note, NoteState.DEFAULT)
           dismiss()
         },
-        visible = note.noteState == NoteState.FAVOURITE
+        visible = note.getNoteState() == NoteState.FAVOURITE
     ))
     options.add(OptionsItem(
         title = R.string.favourite_note,
@@ -70,7 +70,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.markItem(note, NoteState.FAVOURITE)
           dismiss()
         },
-        visible = note.noteState != NoteState.FAVOURITE
+        visible = note.getNoteState() != NoteState.FAVOURITE
     ))
     options.add(OptionsItem(
         title = R.string.unarchive_note,
@@ -80,7 +80,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.markItem(note, NoteState.DEFAULT)
           dismiss()
         },
-        visible = note.noteState == NoteState.ARCHIVED
+        visible = note.getNoteState() == NoteState.ARCHIVED
     ))
     options.add(OptionsItem(
         title = R.string.archive_note,
@@ -90,7 +90,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.markItem(note, NoteState.ARCHIVED)
           dismiss()
         },
-        visible = note.noteState != NoteState.ARCHIVED
+        visible = note.getNoteState() != NoteState.ARCHIVED
     ))
     options.add(OptionsItem(
         title = R.string.send_note,
@@ -120,7 +120,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.moveItemToTrashOrDelete(note)
           dismiss()
         },
-        visible = note.noteState == NoteState.TRASH,
+        visible = note.getNoteState() == NoteState.TRASH,
         invalid = note.locked
     ))
     options.add(OptionsItem(
@@ -131,7 +131,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.moveItemToTrashOrDelete(note)
           dismiss()
         },
-        visible = note.noteState != NoteState.TRASH,
+        visible = note.getNoteState() != NoteState.TRASH,
         invalid = note.locked
     ))
     options.add(OptionsItem(
@@ -246,7 +246,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           val copiedNote = copyNote(note)
           copiedNote.uid = null
           copiedNote.uuid = RandomHelper.getRandomString(24)
-          copiedNote.save(context)
+          copiedNote.save(activity)
           activity.setupData()
           dismiss()
         },
@@ -260,7 +260,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           openDeleteNotePermanentlySheet(activity, note)
           dismiss()
         },
-        visible = note.noteState !== NoteState.TRASH,
+        visible = note.getNoteState() !== NoteState.TRASH,
         invalid = note.locked
     ))
     options.add(OptionsItem(

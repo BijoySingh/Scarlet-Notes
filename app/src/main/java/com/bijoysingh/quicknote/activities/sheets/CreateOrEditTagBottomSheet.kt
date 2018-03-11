@@ -8,6 +8,9 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.database.utils.delete
+import com.bijoysingh.quicknote.database.utils.isUnsaved
+import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.getEditorActionListener
 
@@ -44,15 +47,15 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
     enterTag.setHintTextColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
     removeBtn.setTextColor(theme().get(themedContext(), ThemeColorType.DISABLED_TEXT))
 
-    title.setText(if (tag.isUnsaved) R.string.tag_sheet_create_title else R.string.tag_sheet_edit_title)
+    title.setText(if (tag.isUnsaved()) R.string.tag_sheet_create_title else R.string.tag_sheet_edit_title)
     action.setOnClickListener {
       val updated = onActionClick(tag, enterTag.text.toString())
       sheetOnTagListener(tag, !updated)
       dismiss()
     }
-    removeBtn.visibility = if (tag.isUnsaved) GONE else VISIBLE
+    removeBtn.visibility = if (tag.isUnsaved()) GONE else VISIBLE
     removeBtn.setOnClickListener {
-      tag.delete(context)
+      tag.delete(themedContext())
       sheetOnTagListener(tag, true)
       dismiss()
     }
@@ -68,10 +71,10 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
   private fun onActionClick(tag: Tag, title: String): Boolean {
     tag.title = title
     if (tag.title.isBlank()) {
-      tag.delete(context)
+      tag.delete(themedContext())
       return false
     }
-    tag.save(context)
+    tag.save(themedContext())
     return true
   }
 

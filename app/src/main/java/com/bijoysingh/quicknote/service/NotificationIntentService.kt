@@ -6,6 +6,9 @@ import android.content.Context
 import android.content.Intent
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.copy
+import com.bijoysingh.quicknote.database.utils.deleteOrMoveToTrash
+import com.bijoysingh.quicknote.database.utils.share
 
 class NotificationIntentService: IntentService("NotificationIntentService") {
 

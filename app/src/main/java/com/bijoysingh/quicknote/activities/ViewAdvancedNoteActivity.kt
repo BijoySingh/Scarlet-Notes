@@ -16,6 +16,7 @@ import com.bijoysingh.quicknote.activities.sheets.NoteSettingsOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.recyclerview.FormatAdapter
@@ -120,7 +121,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   protected open fun setNote() {
     setNoteColor(note!!.color)
     adapter.clearItems()
-    formats = note!!.formats
+    formats = note!!.getFormats().toMutableList()
     adapter.addItems(formats)
 
     if (!editModeValue) {
@@ -130,8 +131,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   }
 
   private fun maybeAddTags() {
-    val tags = note!!.getTags(context)
-    val tagLabel = Note.getTagString(tags)
+    val tagLabel = note!!.getTagString(context)
     if (tagLabel.isEmpty()) {
       return
     }
@@ -227,7 +227,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   }
 
   fun openEditor() {
-    note!!.startEditActivity(context)
+    note!!.openEdit(context)
   }
 
   protected open fun notifyToolbarColor() {
@@ -267,7 +267,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   }
 
   protected fun maybeSaveNote(sync: Boolean) {
-    if (note!!.formats.isEmpty() && note!!.isUnsaved) {
+    if (note!!.getFormats().isEmpty() && note!!.isUnsaved()) {
       return
     }
     note!!.updateTimestamp = Calendar.getInstance().timeInMillis
@@ -284,11 +284,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   }
 
   fun moveItemToTrashOrDelete(note: Note) {
-    if (note.noteState === NoteState.TRASH) {
-      note.delete(this)
-    } else {
-      markItem(note, NoteState.TRASH)
-    }
+    note.deleteOrMoveToTrash(context)
     finish()
   }
 

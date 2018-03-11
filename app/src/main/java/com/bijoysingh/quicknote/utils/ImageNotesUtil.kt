@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.getFormats
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.github.bijoysingh.starter.util.RandomHelper

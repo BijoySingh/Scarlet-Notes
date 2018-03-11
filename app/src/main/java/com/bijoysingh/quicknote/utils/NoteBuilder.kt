@@ -4,6 +4,9 @@ import android.content.Context
 import com.bijoysingh.quicknote.activities.external.ExportableNote
 import com.bijoysingh.quicknote.activities.external.ExportableTag
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.copyNote
+import com.bijoysingh.quicknote.database.utils.save
+import com.bijoysingh.quicknote.database.utils.toggleTag
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.github.bijoysingh.starter.util.RandomHelper

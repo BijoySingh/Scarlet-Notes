@@ -16,6 +16,8 @@ import android.widget.RemoteViews
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Widget
+import com.bijoysingh.quicknote.database.utils.getLockedText
+import com.bijoysingh.quicknote.database.utils.getTitle
 import com.bijoysingh.quicknote.service.NoteWidgetProvider
 import com.bijoysingh.quicknote.utils.NoteState
 import com.github.bijoysingh.starter.util.TextUtils

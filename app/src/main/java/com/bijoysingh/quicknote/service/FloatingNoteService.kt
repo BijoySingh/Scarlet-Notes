@@ -10,10 +10,10 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.genEmptyNote
-import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions
 import com.bsk.floatingbubblelib.FloatingBubbleService
@@ -113,10 +113,10 @@ class FloatingNoteService : FloatingBubbleService() {
 
   fun setNote(note: Note) {
     val noteTitle = note.getTitle()
-    val noteDescription = renderMarkdown(context, note.text)
+    val noteDescription = note.getMarkdownText(context, true)
     title.text = noteTitle
     description.text = noteDescription
-    timestamp.text = note.displayTime
+    timestamp.text = note.getDisplayTime()
 
     title.visibility = if (TextUtils.isNullOrEmpty(noteTitle)) View.GONE else View.VISIBLE
   }

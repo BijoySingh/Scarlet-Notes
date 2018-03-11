@@ -14,6 +14,7 @@ import com.bijoysingh.quicknote.activities.sheets.ColorPickerBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteFormatOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteMarkdownOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.formats.MarkdownType
@@ -218,10 +219,10 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
   }
 
   private fun destroyIfNeeded(): Boolean {
-    if (note!!.isUnsaved) {
+    if (note!!.isUnsaved()) {
       return true
     }
-    if (note!!.formats.isEmpty()) {
+    if (note!!.getFormats().isEmpty()) {
       note!!.delete(this)
       return true
     }
@@ -229,16 +230,19 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
   }
 
   protected fun maybeUpdateNoteWithoutSync() {
-    note!!.description = Format.getNote(formats)
+    val vNote = note!!
+    val vLastNoteInstance = note!!
+
+    vNote.description = Format.getNote(formats)
 
     // Ignore update if nothing changed. It allows for one undo per few seconds
-    if (note!!.isEqual(lastNoteInstance)) {
+    if (vNote.isEqual(vLastNoteInstance)) {
       return
     }
 
-    note!!.updateTimestamp = Calendar.getInstance().timeInMillis
+    vNote.updateTimestamp = Calendar.getInstance().timeInMillis
     maybeSaveNote(false)
-    lastNoteInstance!!.copyNote(note)
+    vLastNoteInstance.copyNote(vNote)
   }
 
   private fun startHandler() {

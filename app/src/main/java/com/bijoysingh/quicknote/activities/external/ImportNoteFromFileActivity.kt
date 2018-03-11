@@ -7,6 +7,7 @@ import android.view.View
 import android.view.View.GONE
 import android.widget.ProgressBar
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.items.FileRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter

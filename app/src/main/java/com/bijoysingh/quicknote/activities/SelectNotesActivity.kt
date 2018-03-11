@@ -8,6 +8,7 @@ import android.widget.ImageView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.SelectedNoteOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.getFullText
 import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.ThemeManager
@@ -111,7 +112,7 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
   fun getText(): String {
     val builder = StringBuilder()
     for (noteId in selectedNotes) {
-      builder.append(Note.db(this).getByID(noteId).fullText)
+      builder.append(Note.db(this).getByID(noteId).getFullText())
       builder.append("\n\n---\n\n")
     }
     return builder.toString()

@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.external
 
 import android.content.Context
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.database.utils.saveIfUnique
 import org.json.JSONObject
 import java.io.Serializable
 

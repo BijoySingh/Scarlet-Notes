@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.getUnreliablyStrippedText
 import com.bijoysingh.quicknote.utils.ThemeColorType
 
 class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
@@ -53,9 +54,9 @@ class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
 
   fun speak(note: Note) {
     if (Build.VERSION.SDK_INT >= 21) {
-      textToSpeech?.speak(note.getUnreliablyStrippedText(context), TextToSpeech.QUEUE_FLUSH, null, "NOTE")
+      textToSpeech?.speak(note.getUnreliablyStrippedText(themedContext()), TextToSpeech.QUEUE_FLUSH, null, "NOTE")
     } else {
-      textToSpeech?.speak(note.getUnreliablyStrippedText(context), TextToSpeech.QUEUE_FLUSH, null)
+      textToSpeech?.speak(note.getUnreliablyStrippedText(themedContext()), TextToSpeech.QUEUE_FLUSH, null)
     }
   }
 
