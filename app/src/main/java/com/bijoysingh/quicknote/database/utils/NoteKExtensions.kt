@@ -326,9 +326,8 @@ private fun Note.updateAsyncContent(context: Context) {
   if (Build.VERSION.SDK_INT >= 23 && notificationManager != null) {
     for (notification in notificationManager.activeNotifications) {
       if (notification.id == this.uid) {
-        val handler = NotificationHandler(context, this)
-        handler.createNotificationChannel()
-        handler.openNotification()
+        val handler = NotificationHandler(context)
+        handler.openNotification(NotificationConfig(note = this))
       }
     }
   }

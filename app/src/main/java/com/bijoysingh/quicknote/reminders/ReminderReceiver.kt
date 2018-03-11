@@ -4,7 +4,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.utils.NotificationConfig
 import com.bijoysingh.quicknote.utils.NotificationHandler
+import com.bijoysingh.quicknote.utils.REMINDER_NOTIFICATION_CHANNEL_ID
 
 class ReminderReceiver : BroadcastReceiver() {
   override fun onReceive(context: Context?, intent: Intent?) {
@@ -25,8 +27,7 @@ class ReminderReceiver : BroadcastReceiver() {
       return
     }
 
-    val handler = NotificationHandler(context, note)
-    handler.createNotificationChannel()
-    handler.openNotification()
+    val handler = NotificationHandler(context)
+    handler.openNotification(NotificationConfig(note, REMINDER_NOTIFICATION_CHANNEL_ID))
   }
 }

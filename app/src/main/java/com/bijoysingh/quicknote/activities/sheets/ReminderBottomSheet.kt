@@ -91,6 +91,10 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
       if (!isNewReminder) {
         scheduler.removeWithoutNote(note.uid, note.uuid)
       }
+      if (Calendar.getInstance().after(reminder!!.getCalendar())) {
+        dismiss()
+        return@setOnClickListener
+      }
       scheduler.create(note, reminder!!)
       dismiss()
     }
@@ -117,14 +121,6 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
                   setContent(reminder!!)
                 },
                 selected = isSelected(ReminderInterval.DAILY)
-            ),
-            SimpleOptionsItem(
-                title = ReminderInterval.CUSTOM.resource,
-                listener = {
-                  reminder!!.interval = ReminderInterval.CUSTOM
-                  setContent(reminder!!)
-                },
-                selected = isSelected(ReminderInterval.CUSTOM)
             )
         ))
   }
@@ -137,10 +133,6 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
           calendar.set(Calendar.YEAR, year)
           calendar.set(Calendar.MONTH, month)
           calendar.set(Calendar.DAY_OF_MONTH, day)
-
-          if (Calendar.getInstance().after(calendar)) {
-            calendar.add(Calendar.YEAR, 1)
-          }
           reminder!!.alarmTimestamp = calendar.timeInMillis
           setContent(reminder!!)
         },
@@ -158,9 +150,6 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
           calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
           calendar.set(Calendar.MINUTE, minute)
           calendar.set(Calendar.SECOND, 0)
-          if (Calendar.getInstance().after(calendar)) {
-            calendar.add(Calendar.HOUR_OF_DAY, 24)
-          }
           reminder!!.alarmTimestamp = calendar.timeInMillis
           setContent(reminder!!)
         },

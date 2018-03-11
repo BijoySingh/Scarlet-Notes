@@ -190,9 +190,8 @@ class NoteAdvancedActivityBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.open_in_notification,
         icon = R.drawable.ic_action_notification,
         listener = View.OnClickListener {
-          val handler = NotificationHandler(themedContext(), note)
-          handler.createNotificationChannel()
-          handler.openNotification()
+          val handler = NotificationHandler(themedContext())
+          handler.openNotification(NotificationConfig(note = note))
           dismiss()
         },
         invalid = note.locked || note.isUnsaved()

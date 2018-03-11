@@ -25,6 +25,12 @@ class Reminder() {
   }
 
   fun getCalendar(): Calendar {
+    if (interval === ReminderInterval.ONCE) {
+      val calendar = Calendar.getInstance()
+      calendar.timeInMillis = alarmTimestamp
+      return calendar
+    }
+
     val minutes = alarmTimestamp / (1000 * 60)
     val calendar = Calendar.getInstance()
     calendar.set(Calendar.HOUR_OF_DAY, ((minutes / 60) % 24).toInt())

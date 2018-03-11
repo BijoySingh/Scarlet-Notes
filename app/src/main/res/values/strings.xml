@@ -200,6 +200,7 @@
   <string name="reminder_frequency_custom" translatable="false">Custom</string>
 
   <string name="notification_channel_label">Note Notifications</string>
+  <string name="notification_reminder_channel_label" translatable="false">Reminders and Alarms</string>
 
   <string name="about_page_description_os" translatable="false">
     %s is open source and anyone is open to contribute to making it better. It is currently built and maintained by %s.

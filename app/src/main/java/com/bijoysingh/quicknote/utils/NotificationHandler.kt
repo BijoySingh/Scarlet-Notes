@@ -1,15 +1,11 @@
 package com.bijoysingh.quicknote.utils
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.TaskStackBuilder
+import android.app.*
 import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.os.Build
 import android.support.v4.app.NotificationCompat
-import android.support.v4.content.ContextCompat
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.RemoteViews
@@ -29,31 +25,70 @@ import com.github.bijoysingh.starter.util.TextUtils
 const val REQUEST_CODE_BASE = 3200;
 const val REQUEST_CODE_MULTIPLIER = 250;
 const val NOTE_NOTIFICATION_CHANNEL_ID = "NOTE_NOTIFICATION_CHANNEL";
+const val REMINDER_NOTIFICATION_CHANNEL_ID = "REMINDER_NOTIFICATION_CHANNEL";
 
-class NotificationHandler(val context: Context, val note: Note) {
-  fun openNotification() {
-    val pendingIntent = getPendingActivityIntent(getNoteOpenIntent(), 1)
-    var contentView = getRemoteView()
-    val notificationBuilder = NotificationCompat.Builder(context, NOTE_NOTIFICATION_CHANNEL_ID)
+class NotificationConfig(
+    val note: Note,
+    val channel: String = NOTE_NOTIFICATION_CHANNEL_ID
+)
+
+class NotificationHandler(val context: Context) {
+
+  val notificationManager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+  init {
+    createNotificationChannel()
+  }
+
+  fun openNotification(config: NotificationConfig) {
+    val pendingIntent = getPendingActivityIntent(config, getNoteOpenIntent(config), 1)
+    var contentView = getRemoteView(config)
+    val notificationBuilder = NotificationCompat.Builder(context, config.channel)
         .setSmallIcon(R.drawable.ic_format_quote_white_48dp)
-        .setContentTitle(note.getTitle())
-        .setColor(note.color)
+        .setContentTitle(config.note.getTitle())
+        .setColor(config.note.color)
         .setCategory(NotificationCompat.CATEGORY_EVENT)
         .setContent(contentView)
         .setCustomBigContentView(contentView)
         .setContentIntent(pendingIntent)
         .setAutoCancel(false)
-    val notificationManager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-    notificationManager.notify(note.uid, notificationBuilder.build())
+
+    if (config.channel === REMINDER_NOTIFICATION_CHANNEL_ID) {
+      notificationBuilder.setDefaults(Notification.DEFAULT_SOUND)
+      notificationBuilder.setDefaults(Notification.DEFAULT_LIGHTS)
+    }
+
+    notificationManager.notify(config.note.uid, notificationBuilder.build())
   }
 
-  fun getRemoteView(): RemoteViews {
+  private fun createNotificationChannel() {
+    if (Build.VERSION.SDK_INT < 26) {
+      return
+    }
+    val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
+    if (manager === null) {
+      return
+    }
+    val channel = NotificationChannel(
+        NOTE_NOTIFICATION_CHANNEL_ID,
+        context.getString(R.string.notification_channel_label),
+        NotificationManager.IMPORTANCE_MIN)
+    manager.createNotificationChannel(channel)
+
+    val channelForReminder = NotificationChannel(
+        REMINDER_NOTIFICATION_CHANNEL_ID,
+        context.getString(R.string.notification_reminder_channel_label),
+        NotificationManager.IMPORTANCE_HIGH)
+    manager.createNotificationChannel(channelForReminder)
+  }
+
+  fun getRemoteView(config: NotificationConfig): RemoteViews {
     val contentView = RemoteViews(context.packageName, R.layout.notification_note_layout)
-    val hasTitle = !TextUtils.isNullOrEmpty(note.getTitle())
+    val hasTitle = !TextUtils.isNullOrEmpty(config.note.getTitle())
     contentView.setViewVisibility(R.id.title, if (hasTitle) VISIBLE else GONE)
-    contentView.setTextViewText(R.id.title, note.getTitle())
-    contentView.setTextViewText(R.id.description, note.getText())
-    contentView.setTextViewText(R.id.timestamp, note.getDisplayTime())
+    contentView.setTextViewText(R.id.title, config.note.getTitle())
+    contentView.setTextViewText(R.id.description, config.note.getText())
+    contentView.setTextViewText(R.id.timestamp, config.note.getDisplayTime())
 
     val theme = ThemeManager.get(context)
     val titleColor = theme.get(context, ThemeColorType.SECONDARY_TEXT)
@@ -72,63 +107,66 @@ class NotificationHandler(val context: Context, val note: Note) {
     contentView.setInt(R.id.delete_button, "setColorFilter", iconColor)
     contentView.setInt(R.id.edit_button, "setColorFilter", iconColor)
 
-    contentView.setOnClickPendingIntent(R.id.options_button, getPendingActivityIntent(getNoteOpenIntent(), 2))
-    contentView.setOnClickPendingIntent(R.id.edit_button, getPendingActivityIntent(getNoteEditIntent(), 3))
-    contentView.setOnClickPendingIntent(R.id.copy_button, getPendingServiceIntent(getNoteActionIntent(NotificationIntentService.NoteAction.COPY), 4))
-    contentView.setOnClickPendingIntent(R.id.share_button, getPendingServiceIntent(getNoteActionIntent(NotificationIntentService.NoteAction.SHARE), 5))
-    contentView.setOnClickPendingIntent(R.id.delete_button, getPendingServiceIntent(getNoteActionIntent(NotificationIntentService.NoteAction.DELETE), 6))
+    contentView.setOnClickPendingIntent(
+        R.id.options_button,
+        getPendingActivityIntent(config, getNoteOpenIntent(config), 2))
+    contentView.setOnClickPendingIntent(
+        R.id.edit_button,
+        getPendingActivityIntent(config, getNoteEditIntent(config), 3))
+    contentView.setOnClickPendingIntent(
+        R.id.copy_button,
+        getPendingServiceIntent(config, getNoteActionIntent(config, NotificationIntentService.NoteAction.COPY), 4))
+    contentView.setOnClickPendingIntent(
+        R.id.share_button,
+        getPendingServiceIntent(config, getNoteActionIntent(config, NotificationIntentService.NoteAction.SHARE), 5))
+    contentView.setOnClickPendingIntent(
+        R.id.delete_button,
+        getPendingServiceIntent(config, getNoteActionIntent(config, NotificationIntentService.NoteAction.DELETE), 6))
 
     return contentView
   }
 
-  fun getNoteOpenIntent(): Intent {
+  private fun getNoteOpenIntent(config: NotificationConfig): Intent {
     val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
-    intent.putExtra(INTENT_KEY_NOTE_ID, note.uid)
+    intent.putExtra(INTENT_KEY_NOTE_ID, config.note.uid)
     return intent
   }
 
-  fun getNoteEditIntent(): Intent {
+  private fun getNoteEditIntent(config: NotificationConfig): Intent {
     val intent = Intent(context, CreateOrEditAdvancedNoteActivity::class.java)
-    intent.putExtra(INTENT_KEY_NOTE_ID, note.uid)
+    intent.putExtra(INTENT_KEY_NOTE_ID, config.note.uid)
     return intent
   }
 
-  fun getPendingActivityIntent(intent: Intent, requestCode: Int): PendingIntent {
+  private fun getPendingActivityIntent(
+      config: NotificationConfig,
+      intent: Intent,
+      requestCode: Int): PendingIntent {
     val stackBuilder = TaskStackBuilder.create(context)
     stackBuilder.addParentStack(MainActivity::class.java)
     stackBuilder.addNextIntent(intent)
     return stackBuilder.getPendingIntent(
-        REQUEST_CODE_BASE + note.uid + requestCode * REQUEST_CODE_MULTIPLIER,
+        REQUEST_CODE_BASE + config.note.uid + requestCode * REQUEST_CODE_MULTIPLIER,
         PendingIntent.FLAG_UPDATE_CURRENT)
   }
 
-  fun getNoteActionIntent(action: NotificationIntentService.NoteAction): Intent {
+  private fun getNoteActionIntent(
+      config: NotificationConfig,
+      action: NotificationIntentService.NoteAction): Intent {
     val intent = Intent(context, NotificationIntentService::class.java)
-    intent.putExtra(INTENT_KEY_NOTE_ID, note.uid)
+    intent.putExtra(INTENT_KEY_NOTE_ID, config.note.uid)
     intent.putExtra(INTENT_KEY_ACTION, action.name)
     return intent
   }
 
-  fun getPendingServiceIntent(intent: Intent, requestCode: Int): PendingIntent {
+  private fun getPendingServiceIntent(
+      config: NotificationConfig,
+      intent: Intent,
+      requestCode: Int): PendingIntent {
     return PendingIntent.getService(
         context,
-        REQUEST_CODE_BASE + note.uid + requestCode * REQUEST_CODE_MULTIPLIER,
+        REQUEST_CODE_BASE + config.note.uid + requestCode * REQUEST_CODE_MULTIPLIER,
         intent,
         PendingIntent.FLAG_UPDATE_CURRENT)
-  }
-
-  fun createNotificationChannel() {
-    if (Build.VERSION.SDK_INT < 26) {
-      return
-    }
-    val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
-    if (manager === null) {
-      return
-    }
-    val channel = NotificationChannel(
-        NOTE_NOTIFICATION_CHANNEL_ID,
-        context.getString(R.string.notification_channel_label),
-        NotificationManager.IMPORTANCE_MIN)
-    manager.createNotificationChannel(channel)
   }
 }
