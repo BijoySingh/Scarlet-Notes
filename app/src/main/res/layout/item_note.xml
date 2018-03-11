@@ -17,8 +17,8 @@
     <ImageView
       android:id="@+id/image"
       android:layout_width="match_parent"
-      android:layout_height="96dp"
-      android:adjustViewBounds="true" />
+      android:layout_height="108dp"
+      android:scaleType="centerCrop"/>
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -67,7 +67,7 @@
         android:id="@+id/pin_icon"
         android:layout_width="@dimen/spacing_normal"
         android:layout_height="@dimen/spacing_normal"
-        android:alpha="0.5"
+        android:alpha="0.7"
         android:src="@drawable/ic_pin"
         android:visibility="gone" />
 
@@ -75,9 +75,18 @@
         android:id="@+id/state_icon"
         android:layout_width="@dimen/spacing_normal"
         android:layout_height="@dimen/spacing_normal"
-        android:alpha="0.5"
+        android:alpha="0.7"
         android:src="@drawable/ic_pin"
         android:visibility="gone" />
+
+      <ImageView
+        android:id="@+id/reminder_icon"
+        android:layout_width="@dimen/spacing_normal"
+        android:layout_height="@dimen/spacing_normal"
+        android:alpha="0.7"
+        android:src="@drawable/ic_action_reminder"
+        android:visibility="gone" />
+
     </LinearLayout>
 
     <LinearLayout

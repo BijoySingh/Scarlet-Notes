@@ -18,10 +18,7 @@ import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
-import com.bijoysingh.quicknote.utils.NoteState
-import com.bijoysingh.quicknote.utils.getFile
-import com.bijoysingh.quicknote.utils.loadFileToImageView
-import com.bijoysingh.quicknote.utils.trim
+import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.TextUtils
 import ru.noties.markwon.Markwon
@@ -41,6 +38,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
   protected val bottomLayout: View
 
   protected val pinIndicator: ImageView
+  protected val reminderIndicator: ImageView
   protected val stateIndicator: ImageView
 
   init {
@@ -54,6 +52,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     copy = view.findViewById(R.id.copy_button)
     moreOptions = view.findViewById(R.id.options_button)
     pinIndicator = view.findViewById(R.id.pin_icon)
+    reminderIndicator = view.findViewById(R.id.reminder_icon)
     edit = view.findViewById(R.id.edit_button)
     bottomLayout = view.findViewById(R.id.bottom_toolbar_layout)
     stateIndicator = view.findViewById(R.id.state_icon)
@@ -78,7 +77,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
       false
     }
     view.setCardBackgroundColor(data.color)
-    setActionBar(data, extra)
+    setActionBar(data, isLightShaded, extra)
   }
 
   private fun setTitle(note: Note, isMarkdownEnabled: Boolean, isLightShaded: Boolean) {
@@ -115,7 +114,8 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
   }
 
   private fun setIndicators(note: Note, isLightShaded: Boolean) {
-    pinIndicator.visibility = if (note.pinned) View.VISIBLE else View.GONE
+    pinIndicator.visibility = visibility(note.pinned)
+    reminderIndicator.visibility = visibility(note.getReminder() !== null)
     when (note.getNoteState()) {
       NoteState.FAVOURITE -> {
         stateIndicator.visibility = View.VISIBLE
@@ -133,16 +133,13 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
       else -> stateIndicator.visibility = GONE
     }
 
-    when (isLightShaded) {
-      true -> {
-        pinIndicator.setColorFilter(ContextCompat.getColor(context, R.color.dark_hint_text))
-        stateIndicator.setColorFilter(ContextCompat.getColor(context, R.color.dark_hint_text))
-      }
-      false -> {
-        pinIndicator.setColorFilter(ContextCompat.getColor(context, R.color.light_hint_text))
-        stateIndicator.setColorFilter(ContextCompat.getColor(context, R.color.light_hint_text))
-      }
+    val color = when (isLightShaded) {
+      true -> ContextCompat.getColor(context, R.color.dark_tertiary_text)
+      false -> ContextCompat.getColor(context, R.color.light_tertiary_text)
     }
+    pinIndicator.setColorFilter(color)
+    stateIndicator.setColorFilter(color)
+    reminderIndicator.setColorFilter(color)
   }
 
   private fun setMetaText(note: Note, isLightShaded: Boolean) {
@@ -169,12 +166,22 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     }
   }
 
-  private fun setActionBar(note: Note, extra: Bundle?) {
+  private fun setActionBar(note: Note, isLightShaded: Boolean, extra: Bundle?) {
     delete.setOnClickListener { deleteIconClick(note, extra) }
     share.setOnClickListener { shareIconClick(note, extra) }
     edit.setOnClickListener { editIconClick(note, extra) }
     copy.setOnClickListener { copyIconClick(note, extra) }
     moreOptions.setOnClickListener { moreOptionsIconClick(note, extra) }
+
+    val color = when (isLightShaded) {
+      true -> ContextCompat.getColor(context, R.color.dark_secondary_text)
+      false -> ContextCompat.getColor(context, R.color.light_secondary_text)
+    }
+    delete.setColorFilter(color)
+    share.setColorFilter(color)
+    edit.setColorFilter(color)
+    copy.setColorFilter(color)
+    moreOptions.setColorFilter(color)
   }
 
   protected open fun viewClick(note: Note, extra: Bundle?) {}
