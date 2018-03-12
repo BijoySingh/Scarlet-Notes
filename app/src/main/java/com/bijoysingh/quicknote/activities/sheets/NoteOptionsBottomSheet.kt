@@ -239,7 +239,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
                 }
               })
         },
-        visible = activity.lockedContentIsHidden() && note.locked
+        visible = note.locked
     ))
     options.add(OptionsItem(
         title = R.string.duplicate,

@@ -7,7 +7,9 @@
   <View
     android:layout_width="4dp"
     android:layout_height="match_parent"
-    android:layout_margin="4dp"
+    android:layout_marginStart="@dimen/spacing_normal"
+    android:layout_marginTop="@dimen/spacing_xxsmall"
+    android:layout_marginBottom="@dimen/spacing_xxsmall"
     android:background="@color/material_grey_400" />
 
   <TextView
@@ -21,7 +23,7 @@
 
   <EditText
     android:id="@+id/edit"
-    style="@style/FormatText"
+    style="@style/FormatEdit"
     android:hint="@string/format_hint_quote"
     android:textColor="@color/dark_hint_text"
     android:textStyle="italic" />

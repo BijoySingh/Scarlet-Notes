@@ -13,7 +13,7 @@
 
   <EditText
       android:id="@+id/edit"
-      style="@style/FormatText"
+      style="@style/FormatEdit"
       android:hint="@string/format_hint_sub_heading"
       android:textStyle="bold"/>
 </LinearLayout>
