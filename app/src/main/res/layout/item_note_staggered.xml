@@ -100,7 +100,7 @@
         android:layout_width="@dimen/spacing_normal"
         android:layout_height="@dimen/spacing_normal"
         android:alpha="0.7"
-        android:src="@drawable/ic_action_reminder"
+        android:src="@drawable/ic_action_reminder_icon"
         android:visibility="gone" />
     </LinearLayout>
 

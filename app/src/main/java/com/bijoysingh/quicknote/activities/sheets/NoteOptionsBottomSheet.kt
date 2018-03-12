@@ -4,10 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.view.View
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_MODE
-import com.bijoysingh.quicknote.activities.KEY_SELECT_EXTRA_NOTE_ID
-import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.activities.SelectNotesActivity
+import com.bijoysingh.quicknote.activities.*
 import com.bijoysingh.quicknote.activities.sheets.AlertBottomSheet.Companion.openDeleteNotePermanentlySheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.utils.*
@@ -31,7 +28,11 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
   }
 
   private fun getOptions(note: Note): List<OptionsItem> {
-    val activity = context as MainActivity
+    val activity = context as ThemedActivity
+    if (activity !is INoteOptionSheetActivity) {
+      return emptyList()
+    }
+
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.restore_note,
@@ -100,7 +101,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           note.share(activity)
           dismiss()
         },
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.copy_note,
@@ -110,7 +111,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           note.copy(activity)
           dismiss()
         },
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.delete_note_permanently,
@@ -121,7 +122,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           dismiss()
         },
         visible = note.getNoteState() == NoteState.TRASH,
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.trash_note,
@@ -132,17 +133,20 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           dismiss()
         },
         visible = note.getNoteState() != NoteState.TRASH,
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.change_tags,
         subtitle = R.string.change_tags,
         icon = R.drawable.ic_action_tags,
         listener = View.OnClickListener {
-          TagChooseOptionsBottomSheet.openSheet(activity, note, { activity.setupData() })
+          TagChooseOptionsBottomSheet.openSheet(
+              activity,
+              note,
+              { activity.notifyTagsChanged(note) })
           dismiss()
         },
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.choose_note_color,
@@ -171,12 +175,12 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         icon = R.drawable.ic_action_select,
         listener = View.OnClickListener {
           val intent = Intent(context, SelectNotesActivity::class.java)
-          intent.putExtra(KEY_SELECT_EXTRA_MODE, activity.mode.name)
+          intent.putExtra(KEY_SELECT_EXTRA_MODE, activity.getSelectMode(note))
           intent.putExtra(KEY_SELECT_EXTRA_NOTE_ID, note.uid)
           activity.startActivity(intent)
           dismiss()
         },
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.open_in_popup,
@@ -186,7 +190,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           note.popup(activity)
           dismiss()
         },
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.open_in_notification,
@@ -197,7 +201,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           handler.openNotification(NotificationConfig(note = note))
           dismiss()
         },
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = if (note.pinned) R.string.unpin_note else R.string.pin_note,
@@ -235,7 +239,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
                 }
               })
         },
-        visible = note.locked
+        visible = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.duplicate,
@@ -246,21 +250,21 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           copiedNote.uid = null
           copiedNote.uuid = RandomHelper.getRandomString(24)
           copiedNote.save(activity)
-          activity.setupData()
+          activity.notifyResetOrDismiss()
           dismiss()
         },
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.delete_note_permanently,
         subtitle = R.string.delete_note_permanently,
         icon = R.drawable.ic_delete_permanently,
         listener = View.OnClickListener {
-          openDeleteNotePermanentlySheet(activity, note)
+          openDeleteNotePermanentlySheet(activity, note, { activity.notifyResetOrDismiss() })
           dismiss()
         },
         visible = note.getNoteState() !== NoteState.TRASH,
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.voice_action_title,
@@ -270,12 +274,12 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           TextToSpeechBottomSheet.openSheet(activity, note)
           dismiss()
         },
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.reminder,
         subtitle = R.string.reminder,
-        icon = R.drawable.ic_action_reminder,
+        icon = R.drawable.ic_action_reminder_icon,
         listener = View.OnClickListener {
           if (getAppFlavor() == Flavor.PRO) {
             ReminderBottomSheet.openSheet(activity, note)
@@ -284,13 +288,13 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           }
         },
         visible = getAppFlavor() != Flavor.NONE,
-        invalid = note.locked
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     return options
   }
 
   companion object {
-    fun openSheet(activity: MainActivity, note: Note) {
+    fun openSheet(activity: ThemedActivity, note: Note) {
       val sheet = NoteOptionsBottomSheet()
       sheet.noteFn = { note }
       sheet.show(activity.supportFragmentManager, sheet.tag)

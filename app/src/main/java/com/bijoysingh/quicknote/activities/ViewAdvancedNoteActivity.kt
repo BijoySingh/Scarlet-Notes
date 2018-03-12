@@ -12,6 +12,7 @@ import android.widget.ImageView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.NoteAdvancedActivityBottomSheet
+import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteSettingsOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet
@@ -28,7 +29,7 @@ import java.util.*
 
 const val INTENT_KEY_NOTE_ID = "NOTE_ID"
 
-open class ViewAdvancedNoteActivity : ThemedActivity() {
+open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity {
 
   var focusedFormat: Format? = null
   protected var note: Note? = null
@@ -220,10 +221,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
   }
 
   fun openMoreOptions() {
-    NoteAdvancedActivityBottomSheet.openSheet(
-        this@ViewAdvancedNoteActivity,
-        note!!,
-        editModeValue)
+    NoteOptionsBottomSheet.openSheet(this@ViewAdvancedNoteActivity, note!!)
   }
 
   fun openEditor() {
@@ -279,22 +277,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     maybeSaveNote(true)
   }
 
-  fun moveItemToTrashOrDelete(note: Note) {
-    note.deleteOrMoveToTrash(context)
-    finish()
-  }
-
-
-  fun markItem(note: Note, state: NoteState) {
-    note.mark(this, state)
-  }
-
   fun notifyNoteChange() {
 
-  }
-
-  fun notifyTagsChanged() {
-    setNote()
   }
 
   protected fun getFormatIndex(format: Format): Int = getFormatIndex(format.uid)
@@ -331,4 +315,41 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
       return intent
     }
   }
+
+  /**
+   * Start : INoteOptionSheetActivity Functions
+   */
+
+  override fun updateNote(note: Note) {
+    note.save(this)
+    notifyNoteChange()
+  }
+
+  override fun markItem(note: Note, state: NoteState) {
+    note.mark(this, state)
+  }
+
+  override fun moveItemToTrashOrDelete(note: Note) {
+    note.deleteOrMoveToTrash(context)
+    finish()
+  }
+
+  override fun notifyTagsChanged(note: Note) {
+    setNote()
+  }
+
+  override fun getSelectMode(note: Note): String {
+    return NoteState.DEFAULT.name
+  }
+
+  override fun notifyResetOrDismiss() {
+    finish()
+  }
+
+  override fun lockedContentIsHidden() = false
+
+  /**
+   * End : INoteOptionSheetActivity
+   */
+
 }

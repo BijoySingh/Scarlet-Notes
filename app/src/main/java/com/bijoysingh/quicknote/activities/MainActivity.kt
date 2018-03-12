@@ -26,10 +26,7 @@ import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Com
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
-import com.bijoysingh.quicknote.database.utils.delete
-import com.bijoysingh.quicknote.database.utils.mark
-import com.bijoysingh.quicknote.database.utils.save
-import com.bijoysingh.quicknote.database.utils.search
+import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
@@ -41,7 +38,7 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.github.bijoysingh.starter.util.IntentUtils
 import java.util.*
 
-class MainActivity : ThemedActivity(), ITutorialActivity {
+class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
 
   internal lateinit var recyclerView: RecyclerView
   internal lateinit var adapter: NoteAppAdapter
@@ -242,15 +239,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
     }
   }
 
-  fun moveItemToTrashOrDelete(note: Note) {
-    if (mode === HomeNavigationState.TRASH) {
-      note.delete(this)
-      setupData()
-      return
-    }
-    markItem(note, NoteState.TRASH)
-  }
-
   fun openTag(tag: Tag) {
     mode = HomeNavigationState.TAG
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
@@ -265,16 +253,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
       }
     })
     notifyModeChange()
-  }
-
-  fun updateNote(note: Note) {
-    note.save(this)
-    setupData()
-  }
-
-  fun markItem(note: Note, state: NoteState) {
-    note.mark(this, state)
-    setupData()
   }
 
   override fun onResume() {
@@ -424,4 +402,42 @@ class MainActivity : ThemedActivity(), ITutorialActivity {
     const val TUTORIAL_KEY_NEW_NOTE = "TUTORIAL_KEY_NEW_NOTE"
     const val TUTORIAL_KEY_HOME_SETTINGS = "TUTORIAL_KEY_HOME_SETTINGS"
   }
+
+
+  /**
+   * Start : INoteOptionSheetActivity Functions
+   */
+
+  override fun updateNote(note: Note) {
+    note.save(this)
+    setupData()
+  }
+
+  override fun markItem(note: Note, state: NoteState) {
+    note.mark(this, state)
+    setupData()
+  }
+
+  override fun moveItemToTrashOrDelete(note: Note) {
+    note.deleteOrMoveToTrash(this)
+    setupData()
+  }
+
+  override fun notifyTagsChanged(note: Note) {
+    setupData()
+  }
+
+  override fun getSelectMode(note: Note): String {
+    return mode.name
+  }
+
+  override fun notifyResetOrDismiss() {
+    setupData()
+  }
+
+  override fun lockedContentIsHidden() = true
+
+  /**
+   * End : INoteOptionSheetActivity
+   */
 }

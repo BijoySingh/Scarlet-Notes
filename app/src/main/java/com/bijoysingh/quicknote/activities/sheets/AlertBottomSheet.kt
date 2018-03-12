@@ -158,10 +158,6 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
       }
       openSheet(activity, details)
     }
-
-    fun openDeleteNotePermanentlySheet(activity: MainActivity, note: Note) {
-      openDeleteNotePermanentlySheet(activity, note, { activity.setupData() })
-    }
   }
 
   interface AlertDetails {
