@@ -6,10 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity
-import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
-import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.bijoysingh.quicknote.activities.WidgetConfigureActivity
+import com.bijoysingh.quicknote.activities.*
 import com.bijoysingh.quicknote.activities.external.ExportableTag
 import com.bijoysingh.quicknote.activities.external.searchInNote
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet
@@ -294,6 +291,20 @@ fun Note.edit(context: Context) {
   }
   openEdit(context)
 }
+
+fun Note.view(context: Context) {
+  val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
+  intent.putExtra(INTENT_KEY_NOTE_ID, this.uid)
+  context.startActivity(intent)
+}
+
+fun Note.viewDistractionFree(context: Context) {
+  val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
+  intent.putExtra(INTENT_KEY_NOTE_ID, this.uid)
+  intent.putExtra(INTENT_KEY_DISTRACTION_FREE, true)
+  context.startActivity(intent)
+}
+
 
 fun Note.openEdit(context: Context) {
   val intent = Intent(context, CreateOrEditAdvancedNoteActivity::class.java)
