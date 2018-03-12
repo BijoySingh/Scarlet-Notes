@@ -110,8 +110,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
     actionDone.visibility = if (mode) VISIBLE else GONE
     toolbar.visibility = if (mode) VISIBLE else GONE
-    primaryFab.visibility = if (mode) GONE else VISIBLE
-    secondaryFab.visibility = if (mode) GONE else VISIBLE
+    primaryFab.visibility = if (mode || isDistractionFree) GONE else VISIBLE
+    secondaryFab.visibility = if (mode|| isDistractionFree) GONE else VISIBLE
     markdownToolbar.visibility = GONE
   }
 
