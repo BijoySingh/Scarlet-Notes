@@ -231,7 +231,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
 
   protected fun maybeUpdateNoteWithoutSync() {
     val vNote = note!!
-    val vLastNoteInstance = note!!
+    val vLastNoteInstance = lastNoteInstance ?: note!!
 
     vNote.description = Format.getNote(formats)
 

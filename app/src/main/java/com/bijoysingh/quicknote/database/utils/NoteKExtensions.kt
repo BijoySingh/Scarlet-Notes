@@ -43,7 +43,7 @@ fun Note.log(context: Context): String {
 }
 
 fun Note.isUnsaved(): Boolean {
-  return this.uid == null || this.uid == 0
+  return this.uid === null || this.uid == 0
 }
 
 fun Note.isEqual(note: Note): Boolean {

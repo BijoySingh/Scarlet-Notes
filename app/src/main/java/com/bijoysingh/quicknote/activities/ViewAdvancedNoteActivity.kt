@@ -262,25 +262,21 @@ open class ViewAdvancedNoteActivity : ThemedActivity() {
     colorButton.background = CircleDrawable(note!!.color)
   }
 
-  protected fun maybeSaveNoteWithSync() {
-    maybeSaveNote(true)
-  }
-
   protected fun maybeSaveNote(sync: Boolean) {
     if (note!!.getFormats().isEmpty() && note!!.isUnsaved()) {
       return
     }
     note!!.updateTimestamp = Calendar.getInstance().timeInMillis
-    if (sync)
-      note!!.save(context)
-    else
-      note!!.saveWithoutSync(context)
+    when (sync) {
+      true -> note!!.save(context)
+      false -> note!!.saveWithoutSync(context)
+    }
   }
 
   private fun updateNoteForChecked() {
     note!!.description = Format.getNote(formats.sorted())
     setNote()
-    maybeSaveNoteWithSync()
+    maybeSaveNote(true)
   }
 
   fun moveItemToTrashOrDelete(note: Note) {
