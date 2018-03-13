@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.utils
 import android.content.Context
 import android.os.AsyncTask
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
+import com.bijoysingh.quicknote.activities.sheets.UISettingsOptionsBottomSheet.Companion.KEY_LIST_VIEW
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.utils.*
@@ -14,8 +15,9 @@ import java.util.*
 const val KEY_MIGRATE_UUID = "KEY_MIGRATE_UUID"
 const val KEY_MIGRATE_TRASH = "KEY_MIGRATE_TRASH"
 const val KEY_MIGRATE_THEME = "KEY_MIGRATE_THEME"
+const val KEY_MIGRATE_DEFAULT_VALUES = "KEY_MIGRATE_DEFAULT_VALUES"
 const val KEY_MIGRATE_CHECKED_LIST = "KEY_MIGRATE_CHECKED_LIST"
-const val KEY_MIGRATE_ZERO_NOTES = "MIGRATE_ZERO_NOTES"
+const val KEY_MIGRATE_ZERO_NOTES = "KEY_MIGRATE_ZERO_NOTES.v2"
 
 fun migrate(context: Context) {
   if (!userPreferences().get(KEY_MIGRATE_UUID, false)) {
@@ -59,13 +61,11 @@ fun migrate(context: Context) {
     }
     userPreferences().put(KEY_MIGRATE_TRASH, true)
   }
-
   if (!userPreferences().get(KEY_MIGRATE_THEME, false)) {
     val isNightMode = userPreferences().get(KEY_NIGHT_THEME, false)
     userPreferences().put(KEY_APP_THEME, if (isNightMode) Theme.DARK.name else Theme.LIGHT.name)
     userPreferences().put(KEY_MIGRATE_THEME, true)
   }
-
   if (!userPreferences().get(KEY_MIGRATE_ZERO_NOTES, false)) {
     val note = Note.db().getByID(0)
     if (note != null) {
@@ -82,16 +82,19 @@ fun migrate(context: Context) {
     }
     userPreferences().put(KEY_MIGRATE_CHECKED_LIST, true)
   }
+  if (!userPreferences().get(KEY_MIGRATE_DEFAULT_VALUES, false)
+      && getLastUsedAppVersionCode() == 0) {
+    userPreferences().put(KEY_APP_THEME, Theme.DARK.name)
+    userPreferences().put(KEY_LIST_VIEW, true)
+    userPreferences().put(KEY_MIGRATE_DEFAULT_VALUES, true)
+  }
 }
 
 fun removeOlderClips(context: Context) {
   AsyncTask.execute {
-    val notes = Note.db().getByNoteState(arrayOf(NoteState.TRASH.name))
-    val timestamp = Calendar.getInstance().timeInMillis - 1000 * 60 * 60 * 24 * 7
+    val notes = Note.db().getOldTrashedNotes(Calendar.getInstance().timeInMillis - 1000 * 60 * 60 * 24 * 7)
     for (note in notes) {
-      if (note.updateTimestamp < timestamp) {
-        note.delete(context)
-      }
+      note.delete(context)
     }
   }
 }

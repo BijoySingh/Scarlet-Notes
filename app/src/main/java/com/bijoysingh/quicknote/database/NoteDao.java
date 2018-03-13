@@ -29,6 +29,9 @@ public interface NoteDao {
   @Query("SELECT * FROM note WHERE state in (:states) ORDER BY pinned DESC, timestamp DESC")
   List<Note> getByNoteState(String[] states);
 
+  @Query("SELECT * FROM note WHERE state = 'TRASH' AND updateTimestamp < :timestamp")
+  List<Note> getOldTrashedNotes(long timestamp);
+
   @Query("SELECT * FROM note WHERE locked = :locked ORDER BY pinned DESC, timestamp DESC")
   List<Note> getNoteByLocked(boolean locked);
 

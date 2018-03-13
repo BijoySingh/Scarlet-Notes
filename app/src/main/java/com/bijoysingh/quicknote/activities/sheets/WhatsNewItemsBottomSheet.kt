@@ -83,7 +83,7 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     }
 
     fun maybeOpenSheet(activity: MainActivity): Boolean {
-      if (shouldShowWhatsNewSheet(activity)) {
+      if (shouldShowWhatsNewSheet()) {
         openSheet(activity)
         return true
       }

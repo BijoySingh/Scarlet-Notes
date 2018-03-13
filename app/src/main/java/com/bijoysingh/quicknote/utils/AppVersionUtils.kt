@@ -20,7 +20,7 @@ fun getCurrentVersionCode(): Int {
  * If the user has notes it is assumed that the user was at-least at the last version. returns : -1
  * If nothing can be concluded it's 0 (assumes new user)
  */
-fun getLastUsedAppVersionCode(context: Context): Int {
+fun getLastUsedAppVersionCode(): Int {
   val appVersion = userPreferences().get(KEY_LAST_KNOWN_APP_VERSION, 0)
   return when {
     appVersion > 0 -> appVersion
@@ -29,14 +29,14 @@ fun getLastUsedAppVersionCode(context: Context): Int {
   }
 }
 
-fun shouldShowWhatsNewSheet(context: Context): Boolean {
+fun shouldShowWhatsNewSheet(): Boolean {
   val lastShownWhatsNew = userPreferences().get(KEY_LAST_SHOWN_WHATS_NEW, 0)
   if (lastShownWhatsNew >= WhatsNewItemsBottomSheet.WHATS_NEW_UID) {
     // Already shown the latest
     return false
   }
 
-  val lastUsedAppVersion = getLastUsedAppVersionCode(context)
+  val lastUsedAppVersion = getLastUsedAppVersionCode()
 
   // Update the values independent of the decision
   userPreferences().put(KEY_LAST_SHOWN_WHATS_NEW, WhatsNewItemsBottomSheet.WHATS_NEW_UID)
