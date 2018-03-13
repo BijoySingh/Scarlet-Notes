@@ -7,6 +7,7 @@
   <string name="save">Save</string>
   <string name="import_to_app">Import</string>
   <string name="search_notes">Search Notes&#8230;</string>
+  <string name="search_toolbar_text" translatable="false">Search %s</string>
   <string name="share_using">Share using&#8230;</string>
 
   <string name="main_no_notes">No Notes</string>

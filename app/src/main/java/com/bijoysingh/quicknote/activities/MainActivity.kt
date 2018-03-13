@@ -87,12 +87,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   fun setListeners() {
-    searchIcon.setOnClickListener {
+    mainToolbar.setOnClickListener {
       setSearchMode(true)
       searchBox.requestFocus()
     }
     deleteTrashIcon.setOnClickListener { AlertBottomSheet.openDeleteTrashSheet(this@MainActivity) }
-    searchBackButton.setOnClickListener { onBackPressed() }
+    searchBackButton.setOnClickListener {
+      onBackPressed()
+    }
     searchCloseIcon.setOnClickListener { searchBox.setText("") }
     searchBox.addTextChangedListener(object : TextWatcher {
       override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
@@ -287,6 +289,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
         }
       }
     } else {
+      tryClosingTheKeyboard()
       searchNotes = null
       setupData()
     }
@@ -338,18 +341,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     val toolbarIconColor = theme.get(this, ThemeColorType.TOOLBAR_ICON)
     deleteTrashIcon.setColorFilter(toolbarIconColor)
     deletesAutomatically.setTextColor(toolbarIconColor)
-    searchIcon.setColorFilter(toolbarIconColor)
-    searchBackButton.setColorFilter(toolbarIconColor)
-    searchCloseIcon.setColorFilter(toolbarIconColor)
-
-    val actionBarTitle = findViewById<TextView>(R.id.action_bar_title)
-    actionBarTitle.setTextColor(theme.get(this, ThemeColorType.TERTIARY_TEXT))
-    homeButton.setColorFilter(theme.get(this, ThemeColorType.ACCENT_TEXT))
-
-    val textColor = theme.get(this, ThemeColorType.SECONDARY_TEXT)
-    val textHintColor = theme.get(this, ThemeColorType.HINT_TEXT)
-    searchBox.setTextColor(textColor)
-    searchBox.setHintTextColor(textHintColor)
   }
 
   private fun registerNoteReceiver() {

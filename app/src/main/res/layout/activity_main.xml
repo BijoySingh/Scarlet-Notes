@@ -16,12 +16,14 @@
     <include
       layout="@layout/toolbar_main"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/spacing_xxsmall" />
 
     <include
       layout="@layout/search_toolbar_main"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_margin="@dimen/spacing_xxsmall"
       android:visibility="gone" />
 
     <include
@@ -40,11 +42,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|end"
-    android:gravity="bottom|end"
+    android:background="@drawable/home_toolbar_gradient_background"
     android:clipChildren="false"
     android:clipToPadding="false"
+    android:gravity="bottom|end"
     android:orientation="vertical"
-    android:background="@drawable/home_toolbar_gradient_background"
     android:padding="@dimen/spacing_normal">
 
     <android.support.design.widget.FloatingActionButton

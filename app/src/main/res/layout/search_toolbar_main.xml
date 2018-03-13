@@ -1,37 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/search_toolbar"
-  xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:gravity="center_vertical"
-  android:orientation="horizontal"
-  android:padding="4dp">
+  app:cardBackgroundColor="@color/light_primary_text"
+  app:cardCornerRadius="@dimen/spacing_xxsmall"
+  app:cardElevation="2dp">
 
-  <ImageView
-    android:id="@+id/search_back_button"
-    android:layout_width="@dimen/icon_size_xlarge"
-    android:layout_height="@dimen/icon_size_xlarge"
-    android:padding="@dimen/spacing_small"
-    android:src="@drawable/ic_arrow_back_white_48dp"
-    android:tint="@color/dark_tertiary_text" />
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="54dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacing_xsmall">
 
-  <EditText
-    android:id="@+id/search_box"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:background="@color/transparent"
-    android:hint="@string/search_notes"
-    android:textColor="@color/dark_tertiary_text"
-    android:textSize="@dimen/font_size_large" />
+    <ImageView
+      android:id="@+id/search_back_button"
+      android:layout_width="@dimen/icon_size_large"
+      android:layout_height="@dimen/icon_size_large"
+      android:layout_marginEnd="@dimen/spacing_xsmall"
+      android:padding="@dimen/spacing_xsmall"
+      android:src="@drawable/ic_arrow_back_white_48dp"
+      android:tint="@color/dark_tertiary_text" />
 
-  <ImageView
-    android:id="@+id/search_close_button"
-    android:layout_width="@dimen/icon_size_xlarge"
-    android:layout_height="@dimen/icon_size_xlarge"
-    android:padding="@dimen/spacing_normal"
-    android:src="@drawable/ic_close_white_48dp"
-    android:tint="@color/dark_tertiary_text" />
+    <EditText
+      android:id="@+id/search_box"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:background="@color/transparent"
+      android:hint="@string/search_notes"
+      android:textColor="@color/dark_tertiary_text"
+      android:textSize="@dimen/font_size_large" />
 
-</LinearLayout>
+    <ImageView
+      android:id="@+id/search_close_button"
+      android:layout_width="@dimen/icon_size_large"
+      android:layout_height="@dimen/icon_size_large"
+      android:padding="@dimen/spacing_xsmall"
+      android:src="@drawable/ic_close_white_48dp"
+      android:tint="@color/dark_tertiary_text" />
+
+  </LinearLayout>
+
+</android.support.v7.widget.CardView>
