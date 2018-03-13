@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.items
 import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.ColorUtils
+import android.util.Log
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.MarkdownBottomSheet
@@ -40,7 +41,8 @@ class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
     false -> ContextCompat.getColor(context, R.color.light_secondary_text)
   }
 
-  val tags = Markwon.markdown(context, note.getTagString(context))
+  val tagsSource = note.getTagString(context)
+  val tags = Markwon.markdown(context, tagsSource)
   val tagsColor = when (isLightShaded) {
     true -> ContextCompat.getColor(context, R.color.dark_tertiary_text)
     false -> ContextCompat.getColor(context, R.color.light_secondary_text)

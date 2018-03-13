@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.utils
 
 import android.graphics.*
 import android.graphics.drawable.Drawable
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 
 class CircleDrawable(color: Int, showBorder: Boolean = true) : Drawable() {
   private val paint: Paint
@@ -12,7 +13,7 @@ class CircleDrawable(color: Int, showBorder: Boolean = true) : Drawable() {
     this.paint = Paint(Paint.ANTI_ALIAS_FLAG)
     this.paint.color = color
 
-    val isNightTheme = ThemeManager.themeManager?.isNightTheme() ?: false
+    val isNightTheme = appTheme().isNightTheme()
     this.borderPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     this.borderPaint.color = when {
       !showBorder -> Color.TRANSPARENT

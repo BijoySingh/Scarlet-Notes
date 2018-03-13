@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.util.Log
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.*
 import com.bijoysingh.quicknote.activities.external.ExportableTag
@@ -35,6 +36,18 @@ fun Note.log(context: Context): String {
   log["_fullText"] = getFullText()
   log["_displayTime"] = getDisplayTime()
   log["_tag"] = getTagString(context)
+  log["_formats"] = getFormats()
+  return Gson().toJson(log)
+}
+
+fun Note.log(): String {
+  val log = HashMap<String, Any>()
+  log["note"] = this
+  log["_title"] = getTitle()
+  log["_text"] = getText()
+  log["_image"] = getImageFile()
+  log["_fullText"] = getFullText()
+  log["_displayTime"] = getDisplayTime()
   log["_formats"] = getFormats()
   return Gson().toJson(log)
 }
@@ -148,6 +161,8 @@ fun Note.getDisplayTime(): String {
     (this.timestamp != null) -> this.timestamp
     else -> 0
   }
+
+  Log.d("NOTEKEX", "uuid=" + uuid + ", time=" + time)
 
   val format = when {
     Calendar.getInstance().timeInMillis - time < 1000 * 60 * 60 * 2 -> "hh:mm aa"

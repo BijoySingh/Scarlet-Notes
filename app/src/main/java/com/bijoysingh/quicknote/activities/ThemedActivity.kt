@@ -7,6 +7,7 @@ import android.support.annotation.IdRes
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.ThemeManager
 
@@ -22,7 +23,7 @@ abstract class ThemedActivity : AppCompatActivity() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       val view = window.decorView
       var flags = view.systemUiVisibility
-      flags = when (getAppTheme().isNightTheme()) {
+      flags = when (appTheme().isNightTheme()) {
         true -> flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
         false -> flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
       }
@@ -30,11 +31,9 @@ abstract class ThemedActivity : AppCompatActivity() {
     }
   }
 
-  fun getAppTheme(): ThemeManager = ThemeManager.get(this)
+  fun getThemeColor(): Int = appTheme().get(ThemeColorType.BACKGROUND)
 
-  fun getThemeColor(): Int = getAppTheme().get(this, ThemeColorType.BACKGROUND)
-
-  fun getStatusBarColor(): Int = getAppTheme().get(this, ThemeColorType.STATUS_BAR)
+  fun getStatusBarColor(): Int = appTheme().get(ThemeColorType.STATUS_BAR)
 
   fun tryClosingTheKeyboard() {
     try {

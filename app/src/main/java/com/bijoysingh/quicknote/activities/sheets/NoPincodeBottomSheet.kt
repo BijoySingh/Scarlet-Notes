@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -31,11 +32,11 @@ class NoPincodeBottomSheet : ThemedBottomSheetFragment() {
     val notNow = dialog.findViewById<TextView>(R.id.no_pincode_not_now)
     val neverAsk = dialog.findViewById<TextView>(R.id.no_pincode_dont_ask)
 
-    sheetTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
-    sheetDescription.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
-    notNow.setTextColor(theme().get(themedContext(), ThemeColorType.DISABLED_TEXT))
-    neverAsk.setTextColor(theme().get(themedContext(), ThemeColorType.DISABLED_TEXT))
-    setUp.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
+    sheetTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
+    sheetDescription.setTextColor(appTheme().get(ThemeColorType.TERTIARY_TEXT))
+    notNow.setTextColor(appTheme().get(ThemeColorType.DISABLED_TEXT))
+    neverAsk.setTextColor(appTheme().get(ThemeColorType.DISABLED_TEXT))
+    setUp.setTextColor(appTheme().get(ThemeColorType.ACCENT_TEXT))
 
     notNow.setOnClickListener {
       listener?.onSuccess()

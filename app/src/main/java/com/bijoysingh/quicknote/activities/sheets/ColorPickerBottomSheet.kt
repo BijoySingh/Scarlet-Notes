@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.view.View
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
@@ -42,10 +43,10 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     setColorsList(colorPickerAccent, R.array.bright_colors_accent)
 
     val separator = dialog.findViewById<View>(R.id.separator)
-    separator.setBackgroundColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+    separator.setBackgroundColor(appTheme().get(ThemeColorType.HINT_TEXT))
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    optionsTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
   }
 
   override fun getBackgroundView(): Int {

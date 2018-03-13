@@ -9,6 +9,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.ColorPickerBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteFormatOptionsBottomSheet
@@ -153,11 +154,11 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
 
   override fun notifyToolbarColor() {
     super.notifyToolbarColor()
-    val theme = ThemeManager.get(this)
-    toolbar.setBackgroundColor(theme.get(this, ThemeColorType.TOOLBAR_BACKGROUND))
-    markdownToolbar.setBackgroundColor(theme.get(this, ThemeColorType.TOOLBAR_BACKGROUND))
+    val theme = appTheme()
+    toolbar.setBackgroundColor(theme.get(ThemeColorType.TOOLBAR_BACKGROUND))
+    markdownToolbar.setBackgroundColor(theme.get(ThemeColorType.TOOLBAR_BACKGROUND))
 
-    val toolbarIconColor = theme.get(this, ThemeColorType.TOOLBAR_ICON)
+    val toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
     text.setColorFilter(toolbarIconColor)
     heading.setColorFilter(toolbarIconColor)
     subHeading.setColorFilter(toolbarIconColor)
@@ -170,7 +171,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     markdownItalics.setColorFilter(toolbarIconColor)
     markdownMore.setColorFilter(toolbarIconColor)
 
-    val hintColor = theme.get(this, ThemeColorType.PRIMARY_TEXT)
+    val hintColor = theme.get(ThemeColorType.PRIMARY_TEXT)
     chevronLeft.setColorFilter(hintColor)
     chevronRight.setColorFilter(hintColor)
   }

@@ -7,6 +7,7 @@ import android.os.Handler
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.database.Note
@@ -99,10 +100,10 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
       override fun run(): List<OptionsItem> = getOptions()
       override fun handle(result: List<OptionsItem>) {
         val titleView = dialog.findViewById<TextView>(R.id.options_title)
-        titleView.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+        titleView.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
 
         val separator = dialog.findViewById<View>(R.id.separator)
-        separator.setBackgroundColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+        separator.setBackgroundColor(appTheme().get(ThemeColorType.HINT_TEXT))
 
         setOptions(dialog, result)
       }
@@ -114,7 +115,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
       override fun run(): List<TagOptionsItem> = getTagOptions()
       override fun handle(result: List<TagOptionsItem>) {
         val titleView = dialog.findViewById<TextView>(R.id.tag_options_title)
-        titleView.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+        titleView.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
 
         val layout = dialog.findViewById<LinearLayout>(R.id.options_container)
         layout.removeAllViews()
@@ -133,7 +134,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
       contentView.icon.setImageResource(option.getIcon())
 
       contentView.action.setImageResource(option.getEditIcon());
-      contentView.action.setColorFilter(theme().get(themedContext(), ThemeColorType.HINT_TEXT));
+      contentView.action.setColorFilter(appTheme().get(ThemeColorType.HINT_TEXT));
       contentView.action.setOnClickListener(option.editListener)
 
       if (option.usages > 0) {
@@ -171,8 +172,8 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
 
   fun setAddTagOption(dialog: Dialog) {
     val newTagButton = dialog.findViewById<UITextView>(R.id.new_tag_button);
-    newTagButton.setTextColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
-    newTagButton.setImageTint(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+    newTagButton.setTextColor(appTheme().get(ThemeColorType.HINT_TEXT))
+    newTagButton.setImageTint(appTheme().get(ThemeColorType.HINT_TEXT))
     newTagButton.setOnClickListener { onNewTagClick() }
     newTagButton.icon.alpha = 0.6f
   }

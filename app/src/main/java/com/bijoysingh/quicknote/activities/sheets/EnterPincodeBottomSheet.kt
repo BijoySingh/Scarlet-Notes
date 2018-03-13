@@ -10,6 +10,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
@@ -48,11 +49,11 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
     val fingerprint = dialog.findViewById<ImageView>(R.id.fingerprint)
     val removeBtn = dialog.findViewById<TextView>(R.id.action_remove_button)
 
-    title.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
-    action.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
-    enterPin.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    title.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
+    action.setTextColor(appTheme().get(ThemeColorType.ACCENT_TEXT))
+    enterPin.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
 
-    val hintColor = theme().get(themedContext(), ThemeColorType.HINT_TEXT)
+    val hintColor = appTheme().get(ThemeColorType.HINT_TEXT)
     enterPin.setHintTextColor(hintColor)
     pinLength.setTextColor(hintColor)
     fingerprint.setColorFilter(hintColor)

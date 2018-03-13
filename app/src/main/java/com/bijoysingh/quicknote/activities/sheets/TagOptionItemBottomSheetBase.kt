@@ -6,6 +6,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.items.TagOptionsItem
 import com.bijoysingh.quicknote.utils.ThemeColorType
@@ -21,7 +22,7 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     reset(dialog)
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    optionsTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
 
     setAddTagOption(dialog)
   }
@@ -41,8 +42,8 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
 
   fun setAddTagOption(dialog: Dialog) {
     val newTagButton = dialog.findViewById<UITextView>(R.id.new_tag_button);
-    newTagButton.setTextColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
-    newTagButton.setImageTint(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+    newTagButton.setTextColor(appTheme().get(ThemeColorType.HINT_TEXT))
+    newTagButton.setImageTint(appTheme().get(ThemeColorType.HINT_TEXT))
     newTagButton.setOnClickListener { onNewTagClick() }
     newTagButton.icon.alpha = 0.6f
   }
@@ -64,7 +65,7 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
 
       if (option.editable) {
         contentView.setActionResource(option.getEditIcon());
-        contentView.setActionTint(theme().get(themedContext(), ThemeColorType.HINT_TEXT));
+        contentView.setActionTint(appTheme().get(ThemeColorType.HINT_TEXT));
         contentView.setActionClickListener(option.editListener)
       }
 

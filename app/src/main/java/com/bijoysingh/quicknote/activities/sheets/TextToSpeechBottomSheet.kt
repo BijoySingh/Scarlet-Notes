@@ -5,6 +5,7 @@ import android.os.Build
 import android.speech.tts.TextToSpeech
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
@@ -24,10 +25,10 @@ class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
 
     val nonNullNote = note!!
     val title = dialog.findViewById<TextView>(R.id.options_title)
-    title.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    title.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
 
     val speakPlayPause = dialog.findViewById<ImageView>(R.id.speak_play_pause)
-    speakPlayPause.setColorFilter(theme().get(themedContext(), ThemeColorType.TOOLBAR_ICON))
+    speakPlayPause.setColorFilter(appTheme().get(ThemeColorType.TOOLBAR_ICON))
     speakPlayPause.setOnClickListener {
       val tts = textToSpeech
       if (tts === null) {

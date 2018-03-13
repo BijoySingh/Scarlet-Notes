@@ -7,6 +7,8 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
@@ -58,20 +60,20 @@ class FormatImageViewHolder(context: Context, view: View) : RecyclerViewHolder<F
         ?: TextSizeBottomSheet.TEXT_SIZE_DEFAULT
     val noteUUID: String = extra?.getString(INTENT_KEY_NOTE_ID) ?: "default"
 
-    val theme = ThemeManager.get(context)
-    text.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT))
+    val theme = appTheme()
+    text.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
     text.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize.toFloat())
     text.setOnClickListener {
       EasyImage.openGallery(context as AppCompatActivity, data.uid)
     }
 
     noImageMessage.visibility = View.GONE
-    noImageMessage.setTextColor(theme.get(context, ThemeColorType.TERTIARY_TEXT))
+    noImageMessage.setTextColor(theme.get(ThemeColorType.TERTIARY_TEXT))
     noImageMessage.setOnClickListener {
       AlertBottomSheet.openDeleteFormatDialog(activity, data)
     }
 
-    val iconColor = theme.get(context, ThemeColorType.TOOLBAR_ICON)
+    val iconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
     noImageMessage.setImageTint(iconColor)
     actionCamera.setColorFilter(iconColor)
     actionGallery.setColorFilter(iconColor)

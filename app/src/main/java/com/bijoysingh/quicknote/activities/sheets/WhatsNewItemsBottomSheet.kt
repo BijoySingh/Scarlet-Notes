@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -28,12 +29,12 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     val activity = themedActivity()
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(theme().get(activity, ThemeColorType.SECONDARY_TEXT))
+    optionsTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
     val whatsNew = "> A lot has changed in this update, here is a summary of those changes.\n" +
         "### New Features\n" +
         "- **Images on Notes :** You can now add images on your notes\n" +
         "- **Widgets :** New add note widget\n" +
-        "- **Automatic Export :** You can not setup automatic export to an external file\n" +
+        "- **Automatic Export :** You can now setup automatic export to an external file\n" +
         "- **Colors :** All new note colors, more accent sticky note colors\n" +
         "### Updates Experiences\n" +
         "- **Formatting Options :** New format blocks options\n" +
@@ -44,18 +45,18 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
         "- Even more little things which help you enjoy using this app everyday"
 
     val whatsNewView = dialog.findViewById<TextView>(R.id.whats_new_text)
-    whatsNewView.setTextColor(theme().get(activity, ThemeColorType.TERTIARY_TEXT))
+    whatsNewView.setTextColor(appTheme().get(ThemeColorType.TERTIARY_TEXT))
     whatsNewView.text = renderMarkdown(activity, whatsNew)
 
     val whatsNewIcon = dialog.findViewById<ImageView>(R.id.whats_new_icon)
     whatsNewIcon.background = CircleDrawable(Color.WHITE, false)
 
     val closeSheet = dialog.findViewById<ImageView>(R.id.close_sheet)
-    closeSheet.setColorFilter(theme().get(activity, ThemeColorType.TOOLBAR_ICON))
+    closeSheet.setColorFilter(appTheme().get(ThemeColorType.TOOLBAR_ICON))
     closeSheet.setOnClickListener { dismiss() }
 
     val translate = dialog.findViewById<TextView>(R.id.translate)
-    translate.setTextColor(theme().get(activity, ThemeColorType.DISABLED_TEXT))
+    translate.setTextColor(appTheme().get(ThemeColorType.DISABLED_TEXT))
     translate.setOnClickListener {
       val url = GOOGLE_TRANSLATE_URL + "en/" + Uri.encode(whatsNew);
       startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
@@ -63,7 +64,7 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     }
 
     val done = dialog.findViewById<TextView>(R.id.done)
-    done.setTextColor(theme().get(activity, ThemeColorType.ACCENT_TEXT))
+    done.setTextColor(appTheme().get(ThemeColorType.ACCENT_TEXT))
     done.setOnClickListener { dismiss() }
 
     return

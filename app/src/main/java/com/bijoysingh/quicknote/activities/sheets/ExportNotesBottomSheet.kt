@@ -6,6 +6,7 @@ import android.support.v4.content.FileProvider
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.external.getExportFile
@@ -72,11 +73,11 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
       dismiss()
     }
 
-    exportTitle.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
-    filename.setTextColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
+    exportTitle.setTextColor(appTheme().get(ThemeColorType.TERTIARY_TEXT))
+    filename.setTextColor(appTheme().get(ThemeColorType.HINT_TEXT))
     filename.text = (MATERIAL_NOTES_FOLDER + File.separator + FILENAME + ".txt")
-    exportShare.setTextColor(theme().get(themedContext(), ThemeColorType.HINT_TEXT))
-    exportDone.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
+    exportShare.setTextColor(appTheme().get(ThemeColorType.HINT_TEXT))
+    exportDone.setTextColor(appTheme().get(ThemeColorType.ACCENT_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_import_export

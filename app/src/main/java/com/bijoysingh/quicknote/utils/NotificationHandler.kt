@@ -9,6 +9,7 @@ import android.support.v4.app.NotificationCompat
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.RemoteViews
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
@@ -90,17 +91,17 @@ class NotificationHandler(val context: Context) {
     contentView.setTextViewText(R.id.description, config.note.getText())
     contentView.setTextViewText(R.id.timestamp, config.note.getDisplayTime())
 
-    val theme = ThemeManager.get(context)
-    val titleColor = theme.get(context, ThemeColorType.SECONDARY_TEXT)
-    val descColor = theme.get(context, ThemeColorType.TERTIARY_TEXT)
+    val theme = appTheme()
+    val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
+    val descColor = theme.get(ThemeColorType.TERTIARY_TEXT)
     contentView.setTextColor(R.id.title, titleColor)
     contentView.setTextColor(R.id.description, titleColor)
     contentView.setTextColor(R.id.timestamp, descColor)
 
-    val backgroundColor = theme.get(context, ThemeColorType.BACKGROUND)
+    val backgroundColor = theme.get(ThemeColorType.BACKGROUND)
     contentView.setInt(R.id.root_layout, "setBackgroundColor", backgroundColor)
 
-    val iconColor = theme.get(context, ThemeColorType.TOOLBAR_ICON)
+    val iconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
     contentView.setInt(R.id.options_button, "setColorFilter", iconColor)
     contentView.setInt(R.id.copy_button, "setColorFilter", iconColor)
     contentView.setInt(R.id.share_button, "setColorFilter", iconColor)

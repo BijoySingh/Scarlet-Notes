@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
@@ -37,10 +38,10 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
     val sheetYes = dialog.findViewById<TextView>(R.id.alert_yes)
     val sheetNo = dialog.findViewById<TextView>(R.id.alert_no)
 
-    sheetTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
-    sheetDescription.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
-    sheetYes.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
-    sheetNo.setTextColor(theme().get(themedContext(), ThemeColorType.DISABLED_TEXT))
+    sheetTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
+    sheetDescription.setTextColor(appTheme().get(ThemeColorType.TERTIARY_TEXT))
+    sheetYes.setTextColor(appTheme().get(ThemeColorType.ACCENT_TEXT))
+    sheetNo.setTextColor(appTheme().get(ThemeColorType.DISABLED_TEXT))
 
     sheetTitle.setText(details.getTitle())
     sheetDescription.setText(details.getDescription())

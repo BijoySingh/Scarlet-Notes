@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet
@@ -92,7 +93,7 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
     val containerLayout = findViewById<View>(R.id.container_layout)
     containerLayout.setBackgroundColor(getThemeColor())
 
-    val toolbarIconColor = getAppTheme().get(this, ThemeColorType.TOOLBAR_ICON);
+    val toolbarIconColor = appTheme().get(ThemeColorType.TOOLBAR_ICON);
     findViewById<ImageView>(R.id.back_button).setColorFilter(toolbarIconColor)
     findViewById<TextView>(R.id.toolbar_title).setTextColor(toolbarIconColor)
   }

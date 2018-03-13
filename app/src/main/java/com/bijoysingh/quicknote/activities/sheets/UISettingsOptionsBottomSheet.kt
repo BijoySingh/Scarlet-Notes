@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.view.View
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
@@ -29,7 +30,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.night_mode_white_48dp,
         listener = View.OnClickListener {
           userPreferences().put(KEY_APP_THEME, Theme.DARK.name)
-          theme().notifyUpdate(activity)
+          appTheme().notifyUpdate(activity)
           activity.notifyThemeChange()
           dismiss()
         },
@@ -41,7 +42,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_action_day_mode,
         listener = View.OnClickListener {
           userPreferences().put(KEY_APP_THEME, Theme.LIGHT.name)
-          theme().notifyUpdate(activity)
+          appTheme().notifyUpdate(activity)
           activity.notifyThemeChange()
           dismiss()
         },

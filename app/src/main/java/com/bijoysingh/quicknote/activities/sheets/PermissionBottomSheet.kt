@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.utils.ThemeColorType
@@ -17,13 +18,13 @@ class PermissionBottomSheet : ThemedBottomSheetFragment() {
     }
 
     val title = dialog.findViewById<TextView>(R.id.permissions_title)
-    title.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    title.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
 
     val details = dialog.findViewById<TextView>(R.id.permissions_details)
-    details.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
+    details.setTextColor(appTheme().get(ThemeColorType.TERTIARY_TEXT))
 
     val allowButton = dialog.findViewById<TextView>(R.id.give_permissions);
-    allowButton.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
+    allowButton.setTextColor(appTheme().get(ThemeColorType.ACCENT_TEXT))
     allowButton.setOnClickListener {
       val manager = getStoragePermissionManager(themedActivity() as AppCompatActivity)
       manager.requestPermissions()

@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.GridLayout.VERTICAL
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ITutorialActivity
@@ -56,6 +57,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   val deletesAutomatically: TextView by bind(R.id.deletes_automatically)
   val searchBox: EditText by bind(R.id.search_box)
   val mainToolbar: View by bind(R.id.main_toolbar)
+  val mainToolbarTitle: TextView by bind(R.id.action_bar_title)
   val searchToolbar: View by bind(R.id.search_toolbar)
   val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
   val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
@@ -333,14 +335,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   override fun notifyThemeChange() {
     setSystemTheme()
-    val theme = ThemeManager.get(this)
 
     val containerLayout = findViewById<View>(R.id.container_layout)
     containerLayout.setBackgroundColor(getThemeColor())
 
-    val toolbarIconColor = theme.get(this, ThemeColorType.TOOLBAR_ICON)
+    val toolbarIconColor = appTheme().get(ThemeColorType.TOOLBAR_ICON)
     deleteTrashIcon.setColorFilter(toolbarIconColor)
     deletesAutomatically.setTextColor(toolbarIconColor)
+    mainToolbarTitle.text = getString(R.string.search_toolbar_text, getString(R.string.app_name))
   }
 
   private fun registerNoteReceiver() {

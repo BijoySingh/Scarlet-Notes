@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -26,11 +27,11 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
 
     val sheetTitle = dialog.findViewById<TextView>(R.id.options_title)
     val exampleTitle = dialog.findViewById<TextView>(R.id.examples_title)
-    sheetTitle.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
-    exampleTitle.setTextColor(theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT))
+    sheetTitle.setTextColor(appTheme().get(ThemeColorType.TERTIARY_TEXT))
+    exampleTitle.setTextColor(appTheme().get(ThemeColorType.TERTIARY_TEXT))
 
-    sourceText.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
-    markdownText.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    sourceText.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
+    markdownText.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
   }
 
   fun setupDialogContent(dialog: Dialog) {

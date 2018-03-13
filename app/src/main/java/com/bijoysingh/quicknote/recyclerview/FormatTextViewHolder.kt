@@ -10,6 +10,7 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
@@ -64,7 +65,7 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
 
     val fontSize = extra?.getInt(KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT)
         ?: TextSizeBottomSheet.TEXT_SIZE_DEFAULT
-    val theme = ThemeManager.get(context)
+    val theme = appTheme()
     val backgroundColor = when (data.formatType) {
       CODE -> theme.getThemedColor(context, R.color.material_grey_200, R.color.material_grey_700)
       else -> ContextCompat.getColor(context, R.color.transparent)
@@ -76,15 +77,15 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
       else -> fontSize.toFloat()
     }
     text.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeFloat)
-    text.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT))
+    text.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
     text.setBackgroundColor(backgroundColor)
-    text.setLinkTextColor(theme.get(context, ThemeColorType.ACCENT_TEXT))
+    text.setLinkTextColor(theme.get(ThemeColorType.ACCENT_TEXT))
     text.setTextIsSelectable(true)
     text.visibility = visibility(!editable)
 
     edit.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeFloat)
-    edit.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT))
-    edit.setHintTextColor(theme.get(context, ThemeColorType.HINT_TEXT))
+    edit.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
+    edit.setHintTextColor(theme.get(ThemeColorType.HINT_TEXT))
     edit.setBackgroundColor(backgroundColor)
     edit.visibility = visibility(editable)
     edit.isEnabled = editable

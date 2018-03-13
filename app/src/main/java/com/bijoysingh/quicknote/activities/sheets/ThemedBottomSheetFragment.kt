@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.ThemeManager
@@ -44,13 +45,11 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
 
   private fun setBackgroundView(dialog: Dialog, viewId: Int) {
     val containerLayout = dialog.findViewById<View>(viewId);
-    containerLayout.setBackgroundColor(theme().get(themedContext(), ThemeColorType.BACKGROUND))
+    containerLayout.setBackgroundColor(appTheme().get(ThemeColorType.BACKGROUND))
   }
 
-  fun theme() = ThemeManager.get(themedContext())
-
   // Remove once done
-  fun isNightMode() = theme().isNightTheme()
+  fun isNightMode() = appTheme().isNightTheme()
 
   fun getOptionsTitleColor(selected: Boolean): Int {
     val colorResource = when {

@@ -9,6 +9,8 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
@@ -33,7 +35,7 @@ class FormatListViewHolder(context: Context, view: View)
         && extra.containsKey(FormatTextViewHolder.KEY_EDITABLE)
         && extra.getBoolean(FormatTextViewHolder.KEY_EDITABLE))
 
-    icon.setColorFilter(ThemeManager.get(context).get(context, ThemeColorType.TOOLBAR_ICON))
+    icon.setColorFilter(appTheme().get(ThemeColorType.TOOLBAR_ICON))
 
     when (data.formatType) {
       FormatType.CHECKLIST_CHECKED -> {

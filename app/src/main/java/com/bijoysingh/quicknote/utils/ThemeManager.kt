@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.utils
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Build
 import android.support.v4.content.ContextCompat
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
@@ -14,18 +15,23 @@ const val KEY_NIGHT_THEME: String = "KEY_NIGHT_THEME"
 class ThemeManager(context: Context) {
 
   var theme: Theme
+  var map = HashMap<ThemeColorType, Int>()
 
   init {
     theme = getThemeFromStore()
+    notifyUpdate(context)
   }
 
   fun isNightTheme() = theme.isNightTheme
 
   fun notifyUpdate(context: Context) {
     theme = getThemeFromStore()
+    for (colorType in ThemeColorType.values()) {
+      map[colorType] = load(context, colorType)
+    }
   }
 
-  fun get(context: Context, type: ThemeColorType): Int {
+  fun load(context: Context, type: ThemeColorType): Int {
     val colorResource = when (type) {
       ThemeColorType.BACKGROUND -> theme.background
       ThemeColorType.STATUS_BAR -> {
@@ -45,24 +51,15 @@ class ThemeManager(context: Context) {
     return ContextCompat.getColor(context, colorResource)
   }
 
+  fun get(type: ThemeColorType): Int = map[type] ?: Color.WHITE
+
   fun getThemedColor(context: Context, lightColor: Int, darkColor: Int): Int {
     return ContextCompat.getColor(context, if (isNightTheme()) darkColor else lightColor)
   }
 
   private fun getThemeFromStore(): Theme {
-    val theme = userPreferences().get(KEY_APP_THEME, Theme.LIGHT.name)
+    val theme = userPreferences().get(KEY_APP_THEME, Theme.DARK.name)
     return Theme.valueOf(theme)
-  }
-
-  companion object {
-    var themeManager: ThemeManager? = null
-
-    fun get(context: Context): ThemeManager {
-      if (themeManager === null) {
-        themeManager = ThemeManager(context)
-      }
-      return themeManager!!
-    }
   }
 }
 

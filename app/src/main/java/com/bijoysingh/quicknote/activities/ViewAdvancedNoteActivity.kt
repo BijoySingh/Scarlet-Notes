@@ -11,6 +11,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.WindowManager
 import android.widget.ImageView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet
@@ -101,7 +102,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
   protected open fun setEditMode() {
     setEditMode(editModeValue)
-    formatsView.setBackgroundColor(ThemeManager.get(this).get(this, ThemeColorType.BACKGROUND))
+    formatsView.setBackgroundColor(appTheme().get(ThemeColorType.BACKGROUND))
   }
 
   protected fun setEditMode(mode: Boolean) {
@@ -135,7 +136,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     val bundle = Bundle()
     bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, editModeValue)
     bundle.putBoolean(KEY_MARKDOWN_ENABLED, userPreferences().get(KEY_MARKDOWN_ENABLED, true))
-    bundle.putBoolean(KEY_NIGHT_THEME, ThemeManager.get(this).isNightTheme())
+    bundle.putBoolean(KEY_NIGHT_THEME, appTheme().isNightTheme())
     bundle.putInt(TextSizeBottomSheet.KEY_TEXT_SIZE, TextSizeBottomSheet.getDefaultTextSize())
     bundle.putString(INTENT_KEY_NOTE_ID, note!!.uuid)
     adapter.setExtra(bundle)
@@ -258,15 +259,15 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   protected open fun notifyToolbarColor() {
-    val theme = ThemeManager.get(this)
-    val toolbarIconColor = theme.get(context, ThemeColorType.TOOLBAR_ICON)
+    val theme = appTheme()
+    val toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
     backButton.setColorFilter(toolbarIconColor)
     actionCopy.setColorFilter(toolbarIconColor)
     actionDelete.setColorFilter(toolbarIconColor)
     actionShare.setColorFilter(toolbarIconColor)
     actionDone.setColorFilter(toolbarIconColor)
 
-    val backgroundColor = theme.get(context, ThemeColorType.BACKGROUND)
+    val backgroundColor = theme.get(ThemeColorType.BACKGROUND)
     rootView.setBackgroundColor(backgroundColor)
     formatsView.setBackgroundColor(backgroundColor)
 

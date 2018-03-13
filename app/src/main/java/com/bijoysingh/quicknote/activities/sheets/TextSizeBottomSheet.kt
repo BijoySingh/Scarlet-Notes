@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.util.TypedValue
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
@@ -31,8 +32,8 @@ class TextSizeBottomSheet : CounterBottomSheetBase() {
   override fun setupFurther(dialog: Dialog) {
     val example = dialog.findViewById<TextView>(R.id.options_example)
     updateExample(example, getDefaultTextSize())
-    example.setBackgroundColor(theme().getThemedColor(themedContext(), R.color.material_grey_200, R.color.material_grey_700))
-    example.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    example.setBackgroundColor(appTheme().getThemedColor(themedContext(), R.color.material_grey_200, R.color.material_grey_700))
+    example.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_text_size

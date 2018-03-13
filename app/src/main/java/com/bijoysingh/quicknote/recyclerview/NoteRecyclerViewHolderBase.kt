@@ -115,7 +115,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
 
   private fun setMetaText(note: NoteRecyclerItem) {
     when {
-      !TextUtils.isNullOrEmpty(note.note.tags) -> {
+      !TextUtils.isNullOrEmpty(note.tagsSource) -> {
         tags.setTextColor(note.tagsColor)
         val source = note.tags
         tags.text = trim(source)

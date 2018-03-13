@@ -7,12 +7,12 @@ import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.utils.ThemeColorType
-import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions
@@ -33,7 +33,7 @@ class FloatingNoteService : FloatingBubbleService() {
   private lateinit var panel: View
 
   override fun getConfig(): FloatingBubbleConfig {
-    val theme = ThemeManager.get(context)
+    val theme = appTheme()
     return FloatingBubbleConfig.Builder()
         .bubbleIcon(ContextCompat.getDrawable(context, R.drawable.app_icon))
         .removeBubbleIcon(ContextCompat.getDrawable(
@@ -44,8 +44,8 @@ class FloatingNoteService : FloatingBubbleService() {
         .paddingDp(8)
         .borderRadiusDp(4)
         .physicsEnabled(true)
-        .expandableColor(theme.get(context, ThemeColorType.BACKGROUND))
-        .triangleColor(theme.get(context, ThemeColorType.BACKGROUND))
+        .expandableColor(theme.get(ThemeColorType.BACKGROUND))
+        .triangleColor(theme.get(ThemeColorType.BACKGROUND))
         .gravity(Gravity.END)
         .expandableView(loadView())
         .removeBubbleAlpha(0.7f)
@@ -66,16 +66,15 @@ class FloatingNoteService : FloatingBubbleService() {
       stopSelf()
     }
 
-    val theme = ThemeManager.get(context)
-
+    val theme = appTheme()
     val rootView = getInflater().inflate(R.layout.layout_add_note_overlay, null)
 
     title = rootView.findViewById<View>(R.id.title) as TextView
     description = rootView.findViewById<View>(R.id.description) as TextView
     timestamp = rootView.findViewById<View>(R.id.timestamp) as TextView
 
-    title.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT))
-    description.setTextColor(theme.get(context, ThemeColorType.SECONDARY_TEXT))
+    title.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
+    description.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
 
     val noteItem = note!!
 
@@ -105,7 +104,7 @@ class FloatingNoteService : FloatingBubbleService() {
     }
 
     panel = rootView.findViewById(R.id.panel_layout)
-    panel.setBackgroundColor(theme.get(context, ThemeColorType.BACKGROUND))
+    panel.setBackgroundColor(theme.get(ThemeColorType.BACKGROUND))
 
     setNote(noteItem)
     return rootView

@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.view.View
 import android.widget.GridLayout
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.ThemeColorType
@@ -27,7 +28,7 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
 
   fun setOptionTitle(dialog: Dialog, title: Int) {
     val titleView = dialog.findViewById<TextView>(R.id.options_title)
-    titleView.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    titleView.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
     titleView.setText(title)
   }
 

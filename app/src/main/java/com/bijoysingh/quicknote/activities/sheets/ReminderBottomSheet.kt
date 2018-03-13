@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.app.TimePickerDialog
 import android.view.View.GONE
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
@@ -179,12 +180,12 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     val removeAlarm = dialog.findViewById<TextView>(R.id.remove_alarm)
     val setAlarm = dialog.findViewById<TextView>(R.id.set_alarm)
 
-    val iconColor = theme().get(themedContext(), ThemeColorType.TOOLBAR_ICON)
-    val textColor = theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT)
-    val titleColor = theme().get(themedContext(), ThemeColorType.SECTION_HEADER)
+    val iconColor = appTheme().get(ThemeColorType.TOOLBAR_ICON)
+    val textColor = appTheme().get(ThemeColorType.TERTIARY_TEXT)
+    val titleColor = appTheme().get(ThemeColorType.SECTION_HEADER)
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    optionsTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
 
     reminderDate.setTitleColor(titleColor)
     reminderDate.setSubtitleColor(textColor)
@@ -201,8 +202,8 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     reminderRepeat.setImageTint(iconColor)
     reminderRepeat.setActionTint(iconColor)
 
-    removeAlarm.setTextColor(theme().get(themedContext(), ThemeColorType.DISABLED_TEXT))
-    setAlarm.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
+    removeAlarm.setTextColor(appTheme().get(ThemeColorType.DISABLED_TEXT))
+    setAlarm.setTextColor(appTheme().get(ThemeColorType.ACCENT_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_reminder

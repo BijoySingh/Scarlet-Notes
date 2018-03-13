@@ -28,7 +28,7 @@ class ExportableNote(
       note.uuid,
       note.description,
       note.getDisplayTime(),
-      note.timestamp,
+      note.updateTimestamp,
       note.color,
       note.state,
       note.getExportableTags(context)
@@ -39,7 +39,7 @@ class ExportableNote(
       note.uuid,
       note.description,
       note.getDisplayTime(),
-      note.timestamp,
+      note.updateTimestamp,
       note.color,
       note.state,
       JSONArray()
