@@ -89,6 +89,10 @@ fun genImportFromKeep(description: String): List<Format> {
  */
 fun genImportedNote(context: Context, exportableNote: ExportableNote): Note {
   val existingNote = Note.db().getByUUID(exportableNote.uuid)
+  if (existingNote !== null && existingNote.updateTimestamp > exportableNote.updateTimestamp) {
+    return existingNote
+  }
+
   val note = existingNote ?: genEmptyNote()
   note.uuid = exportableNote.uuid
   note.description = exportableNote.description

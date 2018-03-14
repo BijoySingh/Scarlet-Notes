@@ -32,16 +32,17 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     optionsTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
     val whatsNew = "> A lot has changed in this update, here is a summary of those changes.\n" +
         "### New Features\n" +
-        "- **Images on Notes :** You can now add images on your notes\n" +
-        "- **Widgets :** New add note widget\n" +
-        "- **Automatic Export :** You can now setup automatic export to an external file\n" +
-        "- **Colors :** All new note colors, more accent sticky note colors\n" +
-        "### Updates Experiences\n" +
-        "- **Formatting Options :** New format blocks options\n" +
+        "- **Search Bar:** All new search bar for notes\n" +
+        "### Improvements\n" +
+        "- **Import and Export :** Better, more useful and reliable import and export of notes\n" +
+        "- **Scroll Performance :** Smoother scroll through notes, better handling of images\n" +
+        "### New Pro Only Features\n" +
+        "- **Distraction Free Mode :** New distraction free note viewing mode, so you can read your note comfortably\n" +
+        "- **Reminders :** Adding ability to create reminders for notes \n" +
         "- **Translations :** Improved translations for French, Italian and Chinese\n" +
         "### Bugs Fix\n" +
-        "- **Widget :** Fixing widget update on note change\n" +
-        "- **Import :** Fixing issues with importing notes\n" +
+        "- **Duplicate Notes :** Resolving some issues with duplicating notes\n" +
+        "- **Import :** Resolving invalid timestamp on notes after import\n" +
         "- Even more little things which help you enjoy using this app everyday"
 
     val whatsNewView = dialog.findViewById<TextView>(R.id.whats_new_text)
@@ -75,7 +76,7 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
   override fun getBackgroundView(): Int = R.id.options_layout
 
   companion object {
-    val WHATS_NEW_UID = 2
+    val WHATS_NEW_UID = 3
     val GOOGLE_TRANSLATE_URL = "https://translate.google.com/#auto/"
 
     fun openSheet(activity: ThemedActivity) {
