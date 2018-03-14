@@ -1,17 +1,23 @@
 package com.bijoysingh.quicknote.database.utils
 
-import android.content.Context
 import com.bijoysingh.quicknote.database.Tag
 
-fun Tag.saveIfUnique(context: Context) {
+fun Tag.saveIfUnique() {
   val existing = Tag.db().getByTitle(title)
-  if (existing == null) {
-    save(context)
+  if (existing !== null) {
+    this.uid = existing.uid
+    this.title = existing.title
+    this.uuid = existing.uuid
+  }
+
+  val existingByUUID = Tag.db().getByUUID(uuid)
+  if (existingByUUID != null) {
+    this.uid = existing.uid
+    this.title = existing.title
     return
   }
 
-  this.uid = existing.uid
-  this.title = existing.title
+  save()
 }
 
 fun Tag.isUnsaved(): Boolean {
@@ -19,7 +25,7 @@ fun Tag.isUnsaved(): Boolean {
 }
 
 /*Database Functions*/
-fun Tag.save(context: Context) {
+fun Tag.save() {
   saveWithoutSync()
   saveToSync()
 }
@@ -33,12 +39,12 @@ fun Tag.saveToSync() {
   // Notify change to online/offline sync
 }
 
-fun Tag.delete(context: Context) {
-  deleteWithoutSync(context)
+fun Tag.delete() {
+  deleteWithoutSync()
   deleteToSync()
 }
 
-fun Tag.deleteWithoutSync(context: Context) {
+fun Tag.deleteWithoutSync() {
   if (isUnsaved()) {
     return
   }

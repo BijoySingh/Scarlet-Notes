@@ -329,7 +329,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   override fun onStop() {
     super.onStop()
     if (getStoragePermissionManager(this).hasAllPermissions()) {
-      maybeAutoExport(this)
+      maybeAutoExport()
     }
   }
 

@@ -1,41 +1,37 @@
 package com.bijoysingh.quicknote.activities.external
 
 import android.Manifest
-import android.content.Context
 import android.os.AsyncTask
 import android.os.Environment
 import android.support.v7.app.AppCompatActivity
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.activities.sheets.ExportNotesBottomSheet
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.utils.getFullText
-import com.bijoysingh.quicknote.database.utils.getText
-import com.bijoysingh.quicknote.database.utils.getTitle
-import com.github.bijoysingh.starter.json.SafeJson
 import com.github.bijoysingh.starter.util.FileManager
 import com.github.bijoysingh.starter.util.PermissionManager
-import org.json.JSONObject
+import com.google.gson.Gson
 import java.io.File
 
 const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
 const val KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
 const val KEY_AUTO_BACKUP_LAST_TIMESTAMP = "KEY_AUTO_BACKUP_LAST_TIMESTAMP"
-const val EXPORT_VERSION = 4
+const val EXPORT_VERSION = 5
 
-fun getNotesForExport(context: Context): String {
-  val notes = Note.db().all
-  val exportableNotes = ArrayList<JSONObject>()
-  for (note in notes) {
-    exportableNotes.add(ExportableNote(context, note).toJSONObject())
-  }
-  val mapping = HashMap<String, Any>()
-  mapping[KEY_NOTE_VERSION] = EXPORT_VERSION
-  mapping[ExportableNote.KEY_NOTES] = exportableNotes
-  val json = SafeJson(mapping)
-  return json.toString()
+class ExportableFileFormat(
+    val version: Int,
+    val notes: List<ExportableNote>,
+    val tags: List<ExportableTag>)
+
+fun getNotesForExport(): String {
+  val notes = Note.db().all.map { ExportableNote(it) }
+  val tags = Tag.db().all.map { ExportableTag(it) }
+  val fileContent = ExportableFileFormat(EXPORT_VERSION, notes, tags)
+  return Gson().toJson(fileContent)
 }
 
-fun maybeAutoExport(context: Context) {
+fun maybeAutoExport() {
   AsyncTask.execute {
     val autoBackup = userPreferences().get(KEY_AUTO_BACKUP_MODE, false)
     if (!autoBackup) {
@@ -51,7 +47,7 @@ fun maybeAutoExport(context: Context) {
     if (exportFile === null) {
       return@execute
     }
-    saveFile(exportFile, getNotesForExport(context))
+    saveFile(exportFile, getNotesForExport())
   }
 }
 

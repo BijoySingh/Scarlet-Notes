@@ -56,7 +56,7 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
     }
     removeBtn.visibility = if (tag.isUnsaved()) GONE else VISIBLE
     removeBtn.setOnClickListener {
-      tag.delete(themedContext())
+      tag.delete()
       sheetOnTagListener(tag, true)
       dismiss()
     }
@@ -72,10 +72,10 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
   private fun onActionClick(tag: Tag, title: String): Boolean {
     tag.title = title
     if (tag.title.isBlank()) {
-      tag.delete(themedContext())
+      tag.delete()
       return false
     }
-    tag.save(themedContext())
+    tag.save()
     return true
   }
 

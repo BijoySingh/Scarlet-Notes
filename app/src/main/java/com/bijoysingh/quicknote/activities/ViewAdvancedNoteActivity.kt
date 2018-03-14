@@ -155,7 +155,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   private fun maybeAddTags() {
-    val tagLabel = note!!.getTagString(context)
+    val tagLabel = note!!.getTagString()
     if (tagLabel.isEmpty()) {
       return
     }
@@ -208,7 +208,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     // do nothing
   }
 
-  open fun moveFormat(from: Int, to: Int) {
+  open fun moveFormat(fromPosition: Int, toPosition: Int) {
     // do nothing
   }
 

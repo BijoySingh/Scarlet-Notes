@@ -11,12 +11,14 @@ import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.items.FileRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
-import com.bijoysingh.quicknote.utils.genImportedNote
 import com.bijoysingh.quicknote.utils.genEmptyNote
+import com.bijoysingh.quicknote.utils.genImportedNote
+import com.bijoysingh.quicknote.utils.genImportedTag
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.async.Parallel
 import com.github.bijoysingh.starter.json.SafeJson
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
+import com.google.gson.Gson
 import org.json.JSONArray
 import java.io.*
 
@@ -47,18 +49,35 @@ class ImportNoteFromFileActivity : AppCompatActivity() {
 
             try {
               val json = SafeJson(fileContent)
-              val keyVersion = json.getInt(KEY_NOTE_VERSION, 1)
+              val keyVersion = json.getInt(KEY_NOTE_VERSION, -1)
+              if (keyVersion == -1) {
+                // New form code
+                val fileFormat = Gson().fromJson<ExportableFileFormat>(fileContent, ExportableFileFormat::class.java)
+                if (fileFormat === null) {
+                  genEmptyNote("", fileContent).save(activity)
+                  return
+                }
+                fileFormat.tags.forEach {
+                  genImportedTag(it)
+                }
+                fileFormat.notes.forEach {
+                  genImportedNote(activity, it)
+                }
+                return
+              }
+
               val notes = json[ExportableNote.KEY_NOTES] as JSONArray
               for (index in 0 until notes.length()) {
                 val exportableNote = when(keyVersion) {
                   2 -> ExportableNote.fromJSONObjectV2(notes.getJSONObject(index))
                   3 -> ExportableNote.fromJSONObjectV3(notes.getJSONObject(index))
                   4 -> ExportableNote.fromJSONObjectV4(notes.getJSONObject(index))
-                  else -> ExportableNote.fromBase64String(notes.getString(index))
+                  else -> null
                 }
-                genImportedNote(activity, exportableNote)
+                if (exportableNote !== null) {
+                  genImportedNote(activity, exportableNote)
+                }
               }
-
             } catch (exception: Exception) {
               genEmptyNote("", fileContent).save(activity)
             }

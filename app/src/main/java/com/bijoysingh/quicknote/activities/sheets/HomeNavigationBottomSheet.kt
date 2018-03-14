@@ -16,6 +16,7 @@ import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.items.TagOptionsItem
 import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.bijoysingh.quicknote.utils.ThemeColorType
+import com.bijoysingh.quicknote.utils.genEmptyTag
 import com.bijoysingh.quicknote.views.HomeTagView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.LocaleManager
@@ -180,7 +181,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
 
   fun onNewTagClick() {
     val activity = context as MainActivity
-    CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), { _, _ -> resetTags(dialog) })
+    CreateOrEditTagBottomSheet.openSheet(activity, genEmptyTag(), { _, _ -> resetTags(dialog) })
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_home_navigation

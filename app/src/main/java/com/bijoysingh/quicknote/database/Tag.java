@@ -21,18 +21,4 @@ public class Tag {
   public static TagDao db() {
     return MaterialNotes.Companion.db().tags();
   }
-
-  public static Tag gen() {
-    Tag tag = new Tag();
-    tag.uid = 0;
-    tag.title = "";
-    tag.uuid = RandomHelper.getRandomString(24);
-    return tag;
-  }
-
-  public static Tag gen(ExportableTag exportableTag) {
-    Tag tag = Tag.gen();
-    tag.title = exportableTag.getTitle();
-    return tag;
-  }
 }

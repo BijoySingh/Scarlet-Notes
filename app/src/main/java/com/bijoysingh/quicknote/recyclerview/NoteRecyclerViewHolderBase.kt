@@ -105,7 +105,6 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
         stateIndicator.setImageResource(R.drawable.ic_delete_white_48dp)
       }
       NoteState.DEFAULT -> stateIndicator.visibility = GONE
-      else -> stateIndicator.visibility = GONE
     }
 
     pinIndicator.setColorFilter(note.indicatorColor)

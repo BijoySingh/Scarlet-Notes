@@ -41,7 +41,7 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
     val activity = themedActivity()
     MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<Boolean> {
       override fun run(): Boolean {
-        val notes = getNotesForExport(activity)
+        val notes = getNotesForExport()
         return saveFile(notes)
       }
 

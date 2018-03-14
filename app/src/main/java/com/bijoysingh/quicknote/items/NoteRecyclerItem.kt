@@ -41,7 +41,7 @@ class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
     false -> ContextCompat.getColor(context, R.color.light_secondary_text)
   }
 
-  val tagsSource = note.getTagString(context)
+  val tagsSource = note.getTagString()
   val tags = Markwon.markdown(context, tagsSource)
   val tagsColor = when (isLightShaded) {
     true -> ContextCompat.getColor(context, R.color.dark_tertiary_text)

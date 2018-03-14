@@ -91,20 +91,12 @@ fun genImportedNote(context: Context, exportableNote: ExportableNote): Note {
   val existingNote = Note.db().getByUUID(exportableNote.uuid)
   val note = existingNote ?: genEmptyNote()
   note.uuid = exportableNote.uuid
-  note.color = exportableNote.color
   note.description = exportableNote.description
   note.timestamp = exportableNote.timestamp
-  note.updateTimestamp = note.timestamp
-  for (index in 0 until exportableNote.tags.length()) {
-    try {
-      val tag = ExportableTag.getBestPossibleTagObject(
-          context,
-          exportableNote.tags.getJSONObject(index))
-      note.toggleTag(tag)
-    } catch (exception: JSONException) {
-      // Ignore this exception
-    }
-  }
+  note.updateTimestamp = exportableNote.updateTimestamp
+  note.color = exportableNote.color
+  note.state = exportableNote.state
+  note.tags = exportableNote.tags
   note.save(context)
   return note
 }

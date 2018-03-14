@@ -25,7 +25,7 @@ fun migrate(context: Context) {
     for (tag in Tag.db().all) {
       if (TextUtils.isNullOrEmpty(tag.uuid)) {
         tag.uuid = RandomHelper.getRandomString(24)
-        tag.save(context)
+        tag.save()
       }
       tags.put(tag.uid, tag)
     }

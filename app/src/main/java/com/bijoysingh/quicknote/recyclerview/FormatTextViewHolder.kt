@@ -42,7 +42,7 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
     edit = view.findViewById<View>(R.id.edit) as EditText
     activity = context as ViewAdvancedNoteActivity
     edit.addTextChangedListener(this)
-    edit.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus -> activity.focusedFormat = format }
+    edit.onFocusChangeListener = View.OnFocusChangeListener { _, _ -> activity.focusedFormat = format }
     edit.setRawInputType(
         InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
             or InputType.TYPE_TEXT_FLAG_MULTI_LINE

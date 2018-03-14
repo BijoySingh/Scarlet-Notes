@@ -8,7 +8,6 @@ import android.os.Build
 import android.util.Log
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.*
-import com.bijoysingh.quicknote.activities.external.ExportableTag
 import com.bijoysingh.quicknote.activities.external.searchInNote
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet
 import com.bijoysingh.quicknote.database.Note
@@ -22,7 +21,6 @@ import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.google.gson.Gson
-import org.json.JSONArray
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -35,7 +33,7 @@ fun Note.log(context: Context): String {
   log["_locked"] = getLockedText(context, false)
   log["_fullText"] = getFullText()
   log["_displayTime"] = getDisplayTime()
-  log["_tag"] = getTagString(context)
+  log["_tag"] = getTagString()
   log["_formats"] = getFormats()
   return Gson().toJson(log)
 }
@@ -171,8 +169,8 @@ fun Note.getDisplayTime(): String {
   return DateFormatter.getDate(format, time)
 }
 
-fun Note.getTagString(context: Context): String {
-  val tags = getTags(context)
+fun Note.getTagString(): String {
+  val tags = getTags()
   return tags.map { it -> '`' + it.title + '`' }.joinToString(separator = " ")
 }
 
@@ -192,7 +190,7 @@ fun Note.getNoteState(): NoteState {
   }
 }
 
-fun Note.getTags(context: Context): Set<Tag> {
+fun Note.getTags(): Set<Tag> {
   val tags = HashSet<Tag>()
   for (tagID in getTagUUIDs()) {
     val tag = Tag.db().getByUUID(tagID)
@@ -249,16 +247,6 @@ fun Note.toggleTag(tag: Tag) {
   }
   this.tags = tags.joinToString(separator = ",")
 }
-
-fun Note.getExportableTags(context: Context): JSONArray {
-  val tags = getTags(context)
-  val exportableTags = JSONArray()
-  for (tag in tags) {
-    exportableTags.put(ExportableTag(tag).toJSONObject())
-  }
-  return exportableTags
-}
-
 
 /**************************************************************************************
  ******************************* Note Action Functions ********************************

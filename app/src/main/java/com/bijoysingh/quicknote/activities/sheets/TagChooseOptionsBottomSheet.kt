@@ -11,6 +11,7 @@ import com.bijoysingh.quicknote.database.utils.getTagUUIDs
 import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.database.utils.toggleTag
 import com.bijoysingh.quicknote.items.TagOptionsItem
+import com.bijoysingh.quicknote.utils.genEmptyTag
 
 class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
 
@@ -29,7 +30,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
 
   override fun onNewTagClick() {
     val activity = context as ThemedActivity
-    CreateOrEditTagBottomSheet.openSheet(activity, Tag.gen(), { tag, _ ->
+    CreateOrEditTagBottomSheet.openSheet(activity, genEmptyTag(), { tag, _ ->
       note!!.toggleTag(tag)
       note!!.save(activity)
       reset(dialog)
