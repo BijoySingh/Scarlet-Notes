@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
@@ -24,20 +25,20 @@ class InstallProUpsellBottomSheet : ThemedBottomSheetFragment() {
     val whyInstallProDetails = dialog.findViewById<TextView>(R.id.why_install_pro_details)
     val installPro = dialog.findViewById<TextView>(R.id.install_pro_app)
 
-    val textColor = theme().get(themedContext(), ThemeColorType.TERTIARY_TEXT)
+    val textColor = appTheme().get(ThemeColorType.TERTIARY_TEXT)
     whyInstallProDetails.setTextColor(textColor)
 
-    val titleTextColor = theme().get(themedContext(), ThemeColorType.SECTION_HEADER)
+    val titleTextColor = appTheme().get(ThemeColorType.SECTION_HEADER)
     whyInstallPro.setTextColor(titleTextColor)
 
-    installPro.setTextColor(theme().get(themedContext(), ThemeColorType.ACCENT_TEXT))
+    installPro.setTextColor(appTheme().get(ThemeColorType.ACCENT_TEXT))
     installPro.setOnClickListener {
       IntentUtils.openAppPlayStore(context, "com.bijoysingh.quicknote.pro")
       dismiss()
     }
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(theme().get(themedContext(), ThemeColorType.SECONDARY_TEXT))
+    optionsTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_install_pro_upsell

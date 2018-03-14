@@ -60,14 +60,14 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
               override fun onColorSelected(color: Int) {
                 val theme = ThemeManager.getThemeByBackgroundColor(activity, color)
                 userPreferences().put(KEY_APP_THEME, theme.name)
-                theme().notifyUpdate(activity)
+                appTheme().notifyUpdate(activity)
                 activity.notifyThemeChange()
                 reset(dialog)
                 resetBackground(dialog)
                 resetOptionTitle(dialog)
               }
 
-              override fun getSelectedColor(): Int = theme().get(activity, ThemeColorType.BACKGROUND)
+              override fun getSelectedColor(): Int = appTheme().get(ThemeColorType.BACKGROUND)
             })
           } else {
             InstallProUpsellBottomSheet.openSheet(activity)

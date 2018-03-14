@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
@@ -173,9 +174,9 @@ class LoginActivity : ThemedActivity() {
     containerLayout.setBackgroundColor(getThemeColor());
 
     val optionsTitle = findViewById<TextView>(R.id.sign_in_title)
-    optionsTitle.setTextColor(getAppTheme().get(this, ThemeColorType.SECONDARY_TEXT))
+    optionsTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
 
-    val textColor = getAppTheme().get(this, ThemeColorType.TERTIARY_TEXT)
+    val textColor = appTheme().get(ThemeColorType.TERTIARY_TEXT)
     val installProDescription = findViewById<TextView>(R.id.install_pro_details_description)
     val cloudSyncDescription = findViewById<TextView>(R.id.cloud_sync_details_description)
     installProDescription.setTextColor(textColor)
@@ -183,7 +184,7 @@ class LoginActivity : ThemedActivity() {
 
     val installProTitle = findViewById<TextView>(R.id.install_pro_details_title)
     val cloudSyncTitle = findViewById<TextView>(R.id.cloud_sync_details_title)
-    val titleTextColor = getAppTheme().get(this, ThemeColorType.SECTION_HEADER)
+    val titleTextColor = appTheme().get(ThemeColorType.SECTION_HEADER)
     installProTitle.setTextColor(titleTextColor)
     cloudSyncTitle.setTextColor(titleTextColor)
   }
