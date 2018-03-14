@@ -84,7 +84,7 @@ private fun setListener(context: Context) {
     override fun onChildRemoved(snapshot: DataSnapshot?) {
       handleTagChange(snapshot, fun(_, existingTag, _) {
         if (existingTag !== null) {
-          existingTag.deleteWithoutSync(context)
+          existingTag.deleteWithoutSync()
           sendNoteBroadcast(context, NoteBroadcast.TAG_DELETED, existingTag.uuid)
         }
       })
@@ -102,13 +102,8 @@ private fun setListener(context: Context) {
           return
         }
 
-<<<<<<< HEAD
         val notifiedTag = genFromFirebase(tag)
-        val existingTag = Tag.db(context).getByUUID(tag.uuid)
-=======
-        val notifiedTag = Tag.gen(tag)
         val existingTag = Tag.db().getByUUID(tag.uuid)
->>>>>>> Fixing changes after KExtensions change
         var isSame = false
         if (existingTag !== null) {
           isSame = TextUtils.areEqualNullIsEmpty(notifiedTag.title, existingTag.title)
