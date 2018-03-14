@@ -1,15 +1,18 @@
 package com.bijoysingh.quicknote.recyclerview
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Environment
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
 import com.bijoysingh.quicknote.items.FileRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
+import com.bijoysingh.quicknote.utils.ThemeColorType
+import com.bijoysingh.quicknote.utils.ThemeManager
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.starter.util.LocaleManager
@@ -23,6 +26,14 @@ class FileImportViewHolder(context: Context, root: View)
   private val fileDate: TextView = findViewById<TextView>(R.id.file_date)
   private val fileSize: TextView = findViewById<TextView>(R.id.file_size)
 
+  init {
+    val theme: ThemeManager = appTheme()
+    fileName.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
+    filePath.setTextColor(theme.get(ThemeColorType.HINT_TEXT))
+    fileDate.setTextColor(theme.get(ThemeColorType.TERTIARY_TEXT))
+    fileSize.setTextColor(theme.get(ThemeColorType.TERTIARY_TEXT))
+  }
+
   override fun populate(data: RecyclerItem, extra: Bundle?) {
     val item = data as FileRecyclerItem
     fileName.text = item.name
@@ -33,10 +44,9 @@ class FileImportViewHolder(context: Context, root: View)
     root.setOnClickListener {
       (context as ImportNoteFromFileActivity).select(item)
     }
-
-    root.setBackgroundColor(ContextCompat.getColor(
-        context,
-        if (item.selected) R.color.material_grey_100 else R.color.transparent))
+    root.setBackgroundColor(
+        if (item.selected) appTheme().getThemedColor(
+            context, R.color.material_grey_100, R.color.dark_hint_text) else Color.TRANSPARENT)
   }
 
   private fun getPath(item: FileRecyclerItem): String {

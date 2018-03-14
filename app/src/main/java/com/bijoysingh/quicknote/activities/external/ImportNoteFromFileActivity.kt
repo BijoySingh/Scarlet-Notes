@@ -5,15 +5,17 @@ import android.os.Environment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.View.GONE
+import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.items.FileRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
-import com.bijoysingh.quicknote.utils.genEmptyNote
-import com.bijoysingh.quicknote.utils.genImportedNote
-import com.bijoysingh.quicknote.utils.genImportedTag
+import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.async.Parallel
 import com.github.bijoysingh.starter.json.SafeJson
@@ -23,10 +25,14 @@ import org.json.JSONArray
 import java.io.*
 
 
-class ImportNoteFromFileActivity : AppCompatActivity() {
-
+class ImportNoteFromFileActivity : ThemedActivity() {
   val adapter = NoteAppAdapter(this)
+
   var currentlySelectedFile: File? = null
+  val background: View by bind(R.id.container_layout)
+  val backButton: ImageView by bind(R.id.back_button)
+  val pageTitle: TextView by bind(R.id.page_title)
+  val importFile: TextView by bind(R.id.import_file)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -38,7 +44,8 @@ class ImportNoteFromFileActivity : AppCompatActivity() {
         .build()
 
     val activity = this
-    findViewById<View>(R.id.import_file).setOnClickListener {
+    backButton.setOnClickListener { onBackPressed() }
+    importFile.setOnClickListener {
       MultiAsyncTask.execute(activity, object: MultiAsyncTask.Task<Unit> {
         override fun handle(result: Unit?) {
           if (currentlySelectedFile != null) {
@@ -89,6 +96,8 @@ class ImportNoteFromFileActivity : AppCompatActivity() {
         }
       })
     }
+    notifyThemeChange()
+    setSystemTheme()
   }
 
   override fun onResume() {
@@ -177,6 +186,14 @@ class ImportNoteFromFileActivity : AppCompatActivity() {
     }
   }
 
+  override fun notifyThemeChange() {
+    val theme = appTheme()
+    background.setBackgroundColor(theme.get(ThemeColorType.BACKGROUND))
+    backButton.setColorFilter(theme.get(ThemeColorType.TOOLBAR_ICON))
+    pageTitle.setTextColor(theme.get(ThemeColorType.TERTIARY_TEXT))
+    importFile.setTextColor(theme.get(ThemeColorType.TERTIARY_TEXT))
+  }
+
   companion object {
     @Throws(Exception::class)
     fun convertStreamToString(inputStream: InputStream): String {
@@ -190,5 +207,6 @@ class ImportNoteFromFileActivity : AppCompatActivity() {
       reader.close()
       return sb.toString()
     }
+
   }
 }
