@@ -91,6 +91,7 @@
   <string name="format_label_code">Code</string>
   <string name="format_label_list">Checklist</string>
   <string name="format_label_image">Image</string>
+  <string name="format_label_separator" translatable="false">Separator</string>
 
   <string name="markdown_sheet_option_title">Markdown Formatting</string>
   <string name="markdown_label_bold">Bold</string>

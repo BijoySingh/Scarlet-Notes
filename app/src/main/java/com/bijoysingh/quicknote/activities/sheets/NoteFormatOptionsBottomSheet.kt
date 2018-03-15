@@ -90,6 +90,15 @@ class NoteFormatOptionsBottomSheet : GridBottomSheetBase() {
           dismiss()
         }
     ))
+    options.add(OptionsItem(
+        title = R.string.format_label_separator,
+        subtitle = R.string.format_label_separator,
+        icon = R.drawable.ic_format_separator,
+        listener = View.OnClickListener {
+          activity.addEmptyItemAtFocused(FormatType.SEPARATOR)
+          dismiss()
+        }
+    ))
     return options
   }
 

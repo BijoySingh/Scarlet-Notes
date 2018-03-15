@@ -1,10 +1,7 @@
 package com.bijoysingh.quicknote.formats
 
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.recyclerview.EmptyFormatHolder
-import com.bijoysingh.quicknote.recyclerview.FormatImageViewHolder
-import com.bijoysingh.quicknote.recyclerview.FormatListViewHolder
-import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
+import com.bijoysingh.quicknote.recyclerview.*
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem
 import org.json.JSONArray
 import org.json.JSONException
@@ -32,6 +29,7 @@ class Format : Comparable<Format> {
         FormatType.CODE -> "```\n$text\n```"
         FormatType.QUOTE -> "> $text"
         FormatType.IMAGE -> ""
+        FormatType.SEPARATOR -> "\n---\n"
         FormatType.TEXT -> text
         else -> return text
       }
@@ -41,6 +39,10 @@ class Format : Comparable<Format> {
 
   constructor(formatType: FormatType) {
     this.formatType = formatType
+
+    if (formatType == FormatType.SEPARATOR) {
+      text = "n/a"
+    }
   }
 
   constructor(formatType: FormatType, text: String) {
@@ -168,6 +170,12 @@ class Format : Comparable<Format> {
                 .viewType(FormatType.IMAGE.ordinal)
                 .layoutFile(R.layout.item_format_image)
                 .holderClass(FormatImageViewHolder::class.java)
+                .build())
+        list.add(
+            MultiRecyclerViewControllerItem.Builder<Format>()
+                .viewType(FormatType.SEPARATOR.ordinal)
+                .layoutFile(R.layout.item_format_separator)
+                .holderClass(FormatSeparatorViewHolder::class.java)
                 .build())
         list.add(
             MultiRecyclerViewControllerItem.Builder<Format>()

@@ -145,6 +145,11 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   protected open fun setNote() {
     setNoteColor(note!!.color)
     adapter.clearItems()
+
+    if (isDistractionFree) {
+      adapter.addItem(Format(FormatType.SEPARATOR))
+    }
+
     formats = note!!.getFormats().toMutableList()
     adapter.addItems(formats)
 

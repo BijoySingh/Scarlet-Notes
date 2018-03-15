@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  style="@style/FormatLayout"
+  android:gravity="center_vertical">
+
+  <include layout="@layout/layout_modify_format" />
+
+  <View
+    android:id="@+id/separator"
+    android:layout_width="0dp"
+    android:layout_height="0.5dp"
+    android:layout_margin="@dimen/spacing_normal"
+    android:layout_weight="1" />
+
+  <ImageView
+    android:id="@+id/action_remove"
+    android:layout_width="@dimen/icon_size_normal"
+    android:layout_height="@dimen/icon_size_normal"
+    android:layout_margin="@dimen/spacing_xsmall"
+    android:src="@drawable/ic_close_white_48dp"
+    style="@style/BorderlessBackgroundView"
+    android:tint="@color/material_grey_400" />
+
+</LinearLayout>

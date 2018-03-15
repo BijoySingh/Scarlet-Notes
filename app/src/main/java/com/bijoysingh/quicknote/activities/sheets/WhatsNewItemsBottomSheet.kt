@@ -39,8 +39,8 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
         "### New Pro Only Features\n" +
         "- **Distraction Free Mode :** New distraction free note viewing mode, so you can read your note comfortably\n" +
         "- **Reminders :** Adding ability to create reminders for notes \n" +
-        "- **Translations :** Improved translations for French, Italian and Chinese\n" +
         "### Bugs Fix\n" +
+        "- **Sync Notes :** Resolving major issue with note sync causing duplication\n" +
         "- **Duplicate Notes :** Resolving some issues with duplicating notes\n" +
         "- **Import :** Resolving invalid timestamp on notes after import\n" +
         "- Even more little things which help you enjoy using this app everyday"
