@@ -75,6 +75,7 @@ private fun setListener(context: Context) {
           return
         }
         if (!isSame) {
+          note.uid = existingNote.uid
           existingNote.copyNote(note).saveWithoutSync(context)
           sendNoteBroadcast(context, NoteBroadcast.NOTE_CHANGED, existingNote.uuid)
         }
