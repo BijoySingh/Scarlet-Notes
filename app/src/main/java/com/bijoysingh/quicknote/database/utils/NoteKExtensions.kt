@@ -308,7 +308,6 @@ fun Note.viewDistractionFree(context: Context) {
   context.startActivity(intent)
 }
 
-
 fun Note.openEdit(context: Context) {
   val intent = Intent(context, CreateOrEditAdvancedNoteActivity::class.java)
   intent.putExtra(INTENT_KEY_NOTE_ID, this.uid)

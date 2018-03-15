@@ -26,7 +26,7 @@ class ExportableNote(
       note.updateTimestamp,
       note.color,
       note.state,
-      note.tags,
+      note.tags ?: "",
       emptyMap()
   )
 

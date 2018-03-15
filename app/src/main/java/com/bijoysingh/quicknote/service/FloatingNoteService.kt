@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.service
 
 import android.app.Activity
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.view.View
@@ -9,7 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
+import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.utils.ThemeColorType
@@ -17,6 +20,7 @@ import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions
 import com.bsk.floatingbubblelib.FloatingBubbleService
+import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 
 /**
@@ -82,7 +86,10 @@ class FloatingNoteService : FloatingBubbleService() {
     editButton.setImageResource(R.drawable.ic_edit_white_48dp)
     editButton.setOnClickListener {
       try {
-        noteItem.edit(context)
+        val intent = Intent(context, CreateOrEditAdvancedNoteActivity::class.java)
+        intent.putExtra(INTENT_KEY_NOTE_ID, noteItem.uid)
+        intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(intent)
       } catch (exception: Exception) {
         // Some issue
       }
@@ -92,7 +99,7 @@ class FloatingNoteService : FloatingBubbleService() {
     val shareButton = rootView.findViewById<View>(R.id.panel_share_button) as ImageView
     shareButton.setImageResource(R.drawable.ic_share_white_48dp)
     shareButton.setOnClickListener {
-      noteItem.share(context)
+      getShareIntent(noteItem)
       stopSelf()
     }
 
@@ -108,6 +115,15 @@ class FloatingNoteService : FloatingBubbleService() {
 
     setNote(noteItem)
     return rootView
+  }
+
+  fun getShareIntent(note: Note) {
+    val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
+    sharingIntent.type = "text/plain"
+    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, note.getTitle())
+    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, note.getText())
+    sharingIntent.addFlags(FLAG_ACTIVITY_NEW_TASK)
+    context.startActivity(sharingIntent)
   }
 
   fun setNote(note: Note) {
