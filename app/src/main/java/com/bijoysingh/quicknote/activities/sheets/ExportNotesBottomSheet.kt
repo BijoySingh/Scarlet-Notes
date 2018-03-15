@@ -85,7 +85,7 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
   companion object {
 
     val MATERIAL_NOTES_FOLDER = if (getAppFlavor() === Flavor.NONE) "MaterialNotes" else "Scarlet"
-    val FILENAME = "BACKUP"
+    val FILENAME = "manual_backup"
 
     fun openSheet(activity: MainActivity) {
       val sheet = ExportNotesBottomSheet()

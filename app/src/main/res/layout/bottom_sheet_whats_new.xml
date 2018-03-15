@@ -24,7 +24,7 @@
         android:layout_gravity="center_vertical"
         android:padding="8dp"
         android:tint="@color/material_red_accent_700"
-        android:src="@drawable/ic_favorite_white_48dp" />
+        android:src="@drawable/ic_whats_new" />
 
       <TextView
         android:id="@+id/options_title"

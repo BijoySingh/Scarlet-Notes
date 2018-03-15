@@ -48,7 +48,7 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     options.add(OptionsItem(
         title = R.string.whats_new_title,
         subtitle = R.string.whats_new_subtitle,
-        icon = R.drawable.ic_format_quote_white_48dp,
+        icon = R.drawable.ic_whats_new,
         listener = View.OnClickListener {
           WhatsNewItemsBottomSheet.openSheet(activity)
           dismiss()

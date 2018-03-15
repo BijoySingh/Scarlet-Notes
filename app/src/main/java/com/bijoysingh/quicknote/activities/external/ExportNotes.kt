@@ -18,6 +18,7 @@ const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
 const val KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
 const val KEY_AUTO_BACKUP_LAST_TIMESTAMP = "KEY_AUTO_BACKUP_LAST_TIMESTAMP"
 const val EXPORT_VERSION = 5
+const val AUTO_BACKUP_FILENAME = "auto_backup"
 
 class ExportableFileFormat(
     val version: Int,
@@ -43,7 +44,7 @@ fun maybeAutoExport() {
       return@execute
     }
 
-    val exportFile = getExportFile("auto_backup")
+    val exportFile = getExportFile(AUTO_BACKUP_FILENAME)
     if (exportFile === null) {
       return@execute
     }

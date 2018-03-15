@@ -2,7 +2,6 @@ package com.bijoysingh.quicknote.activities.external
 
 import android.os.Bundle
 import android.os.Environment
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.View.GONE
 import android.widget.ImageView
@@ -46,7 +45,7 @@ class ImportNoteFromFileActivity : ThemedActivity() {
     val activity = this
     backButton.setOnClickListener { onBackPressed() }
     importFile.setOnClickListener {
-      MultiAsyncTask.execute(activity, object: MultiAsyncTask.Task<Unit> {
+      MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<Unit> {
         override fun handle(result: Unit?) {
           if (currentlySelectedFile != null) {
             val fileContent = getStringFromFile(currentlySelectedFile!!.absolutePath)
@@ -75,7 +74,7 @@ class ImportNoteFromFileActivity : ThemedActivity() {
 
               val notes = json[ExportableNote.KEY_NOTES] as JSONArray
               for (index in 0 until notes.length()) {
-                val exportableNote = when(keyVersion) {
+                val exportableNote = when (keyVersion) {
                   2 -> ExportableNote.fromJSONObjectV2(notes.getJSONObject(index))
                   3 -> ExportableNote.fromJSONObjectV3(notes.getJSONObject(index))
                   4 -> ExportableNote.fromJSONObjectV4(notes.getJSONObject(index))
@@ -104,16 +103,9 @@ class ImportNoteFromFileActivity : ThemedActivity() {
     super.onResume()
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<RecyclerItem>> {
       override fun run(): List<RecyclerItem> {
-        val files = getFiles(Environment.getExternalStorageDirectory())
-        val items = ArrayList<RecyclerItem>()
-        for (file in files) {
-          items.add(FileRecyclerItem(
-              file.name,
-              file.lastModified(),
-              file.absolutePath,
-              file))
-        }
-        return items
+        return getFiles(Environment.getExternalStorageDirectory())
+            .map { FileRecyclerItem(it.name, it.lastModified(), it.absolutePath, it) }
+            .sorted()
       }
 
       override fun handle(result: List<RecyclerItem>) {
