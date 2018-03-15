@@ -19,6 +19,7 @@ const val KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
 const val KEY_AUTO_BACKUP_LAST_TIMESTAMP = "KEY_AUTO_BACKUP_LAST_TIMESTAMP"
 const val EXPORT_VERSION = 5
 const val AUTO_BACKUP_FILENAME = "auto_backup"
+const val AUTO_BACKUP_INTERVAL_MS = 1000 * 60 * 60 * 6 // 6 hours update
 
 class ExportableFileFormat(
     val version: Int,
@@ -40,7 +41,7 @@ fun maybeAutoExport() {
     }
     val lastBackup = userPreferences().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
     val lastTimestamp = Note.db().getLastTimestamp()
-    if (lastBackup >= lastTimestamp) {
+    if (lastBackup + AUTO_BACKUP_INTERVAL_MS >= lastTimestamp) {
       return@execute
     }
 
@@ -49,6 +50,7 @@ fun maybeAutoExport() {
       return@execute
     }
     saveFile(exportFile, getNotesForExport())
+    userPreferences().put(KEY_AUTO_BACKUP_LAST_TIMESTAMP, System.currentTimeMillis())
   }
 }
 

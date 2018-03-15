@@ -51,6 +51,24 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         }
     ))
+    options.add(OptionsItem(
+        title = R.string.home_option_import,
+        subtitle = R.string.home_option_import_subtitle,
+        icon = R.drawable.ic_import,
+        listener = View.OnClickListener {
+          val manager = getStoragePermissionManager(activity)
+          val hasAllPermissions = manager.hasAllPermissions()
+          when (hasAllPermissions) {
+            true -> {
+              IntentUtils.startActivity(activity, ImportNoteFromFileActivity::class.java)
+              dismiss()
+            }
+            false -> {
+              PermissionBottomSheet.openSheet(activity)
+            }
+          }
+        }
+    ))
     val autoBackupEnabled = userPreferences().get(KEY_AUTO_BACKUP_MODE, false)
     options.add(OptionsItem(
         title = R.string.home_option_auto_export,
@@ -72,24 +90,6 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         },
         enabled = autoBackupEnabled
-    ))
-    options.add(OptionsItem(
-        title = R.string.home_option_import,
-        subtitle = R.string.home_option_import_subtitle,
-        icon = R.drawable.ic_import,
-        listener = View.OnClickListener {
-          val manager = getStoragePermissionManager(activity)
-          val hasAllPermissions = manager.hasAllPermissions()
-          when (hasAllPermissions) {
-            true -> {
-              IntentUtils.startActivity(activity, ImportNoteFromFileActivity::class.java)
-              dismiss()
-            }
-            false -> {
-              PermissionBottomSheet.openSheet(activity)
-            }
-          }
-        }
     ))
     return options
   }
