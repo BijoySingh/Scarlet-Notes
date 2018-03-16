@@ -23,7 +23,6 @@ import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType.*
 import com.bijoysingh.quicknote.formats.MarkdownType
 import com.bijoysingh.quicknote.utils.ThemeColorType
-import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.bijoysingh.quicknote.utils.visibility
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder

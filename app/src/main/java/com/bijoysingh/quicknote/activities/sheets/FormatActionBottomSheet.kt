@@ -42,7 +42,7 @@ class FormatActionBottomSheet : GridBottomSheetBase() {
               .share()
           dismiss()
         },
-        visible = format.formatType !== FormatType.IMAGE
+        visible = !arrayOf(FormatType.IMAGE, FormatType.SEPARATOR).contains(format.formatType)
     ))
     options.add(OptionsItem(
         title = R.string.format_action_copy,
@@ -52,7 +52,7 @@ class FormatActionBottomSheet : GridBottomSheetBase() {
           TextUtils.copyToClipboard(context, format.text)
           dismiss()
         },
-        visible = format.formatType !== FormatType.IMAGE
+        visible = !arrayOf(FormatType.IMAGE, FormatType.SEPARATOR).contains(format.formatType)
     ))
     options.add(OptionsItem(
         title = R.string.format_action_camera,
