@@ -60,7 +60,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/spacing_xsmall"
-    android:background="@drawable/circular_border_bg"
+    android:background="@drawable/dark_circular_border_bg"
     android:gravity="center"
     android:padding="@dimen/spacing_normal"
     android:text="@string/import_export_import_file"

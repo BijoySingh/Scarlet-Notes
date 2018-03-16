@@ -12,24 +12,45 @@
     android:orientation="vertical"
     android:padding="@dimen/spacing_large">
 
-    <TextView
-      android:id="@+id/options_title"
+    <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/spacing_normal"
-      android:text="@string/reminder_sheet_title"
-      android:textColor="@color/dark_tertiary_text"
-      android:textSize="@dimen/font_size_large" />
+      android:orientation="horizontal"
+      android:paddingBottom="@dimen/spacing_normal">
+
+      <TextView
+        android:id="@+id/options_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/reminder_sheet_title"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_large" />
+
+      <TextView
+        android:id="@+id/beta_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dark_circular_border_bg"
+        android:paddingBottom="@dimen/spacing_xxsmall"
+        android:paddingEnd="@dimen/spacing_xsmall"
+        android:paddingStart="@dimen/spacing_xsmall"
+        android:paddingTop="@dimen/spacing_xxsmall"
+        android:text="@string/reminder_beta_label"
+        android:textAllCaps="true"
+        android:textSize="@dimen/font_size_xsmall" />
+
+    </LinearLayout>
 
     <com.github.bijoysingh.uibasics.views.UIActionView
       android:id="@+id/reminder_repeat"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
+      android:paddingBottom="@dimen/spacing_small"
       android:paddingEnd="@dimen/spacing_xsmall"
       android:paddingStart="@dimen/spacing_xsmall"
       android:paddingTop="@dimen/spacing_small"
-      android:paddingBottom="@dimen/spacing_small"
       app:action="@drawable/ic_edit_white_48dp"
       app:icon="@drawable/ic_restore"
       app:iconSize="@dimen/icon_size_normal"
@@ -46,10 +67,10 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
+      android:paddingBottom="@dimen/spacing_small"
       android:paddingEnd="@dimen/spacing_xsmall"
       android:paddingStart="@dimen/spacing_xsmall"
       android:paddingTop="@dimen/spacing_small"
-      android:paddingBottom="@dimen/spacing_small"
       app:action="@drawable/ic_edit_white_48dp"
       app:icon="@drawable/ic_time"
       app:iconSize="@dimen/icon_size_normal"
@@ -66,10 +87,10 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
+      android:paddingBottom="@dimen/spacing_small"
       android:paddingEnd="@dimen/spacing_xsmall"
       android:paddingStart="@dimen/spacing_xsmall"
       android:paddingTop="@dimen/spacing_small"
-      android:paddingBottom="@dimen/spacing_small"
       app:action="@drawable/ic_edit_white_48dp"
       app:icon="@drawable/ic_date"
       app:iconSize="@dimen/icon_size_normal"
@@ -86,7 +107,8 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="end"
-      android:orientation="horizontal">
+      android:orientation="horizontal"
+      android:paddingTop="@dimen/spacing_normal">
 
       <TextView
         android:id="@+id/remove_alarm"

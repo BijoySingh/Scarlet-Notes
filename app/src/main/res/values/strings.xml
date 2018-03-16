@@ -201,6 +201,7 @@
   <string name="reminder_frequency_once" translatable="false">Only Once</string>
   <string name="reminder_frequency_daily" translatable="false">Daily</string>
   <string name="reminder_frequency_custom" translatable="false">Custom</string>
+  <string name="reminder_beta_label" translatable="false">Beta</string>
 
   <string name="notification_channel_label">Note Notifications</string>
   <string name="notification_reminder_channel_label" translatable="false">Reminders and Alarms</string>

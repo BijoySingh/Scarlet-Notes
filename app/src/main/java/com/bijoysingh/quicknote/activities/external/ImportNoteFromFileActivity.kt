@@ -184,6 +184,9 @@ class ImportNoteFromFileActivity : ThemedActivity() {
     backButton.setColorFilter(theme.get(ThemeColorType.TOOLBAR_ICON))
     pageTitle.setTextColor(theme.get(ThemeColorType.TERTIARY_TEXT))
     importFile.setTextColor(theme.get(ThemeColorType.TERTIARY_TEXT))
+    importFile.setBackgroundResource(
+        if (appTheme().isNightTheme()) R.drawable.light_circular_border_bg
+        else R.drawable.dark_circular_border_bg)
   }
 
   companion object {

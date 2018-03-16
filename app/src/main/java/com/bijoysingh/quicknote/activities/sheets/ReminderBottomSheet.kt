@@ -169,11 +169,11 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     reminderRepeat.setSubtitle(reminder.interval.resource)
     reminderTime.setSubtitle(DateFormatter.getDate(DateFormatter.Formats.HH_MM_A.format, date))
     reminderDate.setSubtitle(DateFormatter.getDate(DateFormatter.Formats.DD_MMM_YYYY.format, date))
-
     reminderDate.alpha = if (reminder.interval == ReminderInterval.ONCE) 1.0f else 0.5f
   }
 
   fun setColors() {
+    val betaLabel = dialog.findViewById<TextView>(R.id.beta_label)
     val reminderDate = dialog.findViewById<UIActionView>(R.id.reminder_date)
     val reminderTime = dialog.findViewById<UIActionView>(R.id.reminder_time)
     val reminderRepeat = dialog.findViewById<UIActionView>(R.id.reminder_repeat)
@@ -201,6 +201,11 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     reminderRepeat.setSubtitleColor(textColor)
     reminderRepeat.setImageTint(iconColor)
     reminderRepeat.setActionTint(iconColor)
+
+    betaLabel.setTextColor(appTheme().get(ThemeColorType.HINT_TEXT))
+    betaLabel.setBackgroundResource(
+        if (appTheme().isNightTheme()) R.drawable.light_circular_border_bg
+        else R.drawable.dark_circular_border_bg)
 
     removeAlarm.setTextColor(appTheme().get(ThemeColorType.DISABLED_TEXT))
     setAlarm.setTextColor(appTheme().get(ThemeColorType.ACCENT_TEXT))
