@@ -219,4 +219,19 @@
   <string name="format_label_image">画像</string>
   <string name="format_hint_image">クリックして画像を追加または変更する</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">1回だけ</string>
+  <string name="reminder_frequency_daily">毎日</string>
+  <string name="reminder_frequency_custom">カスタム</string>
+  <string name="reminder_beta_label">ベータ</string>
+  <string name="notification_reminder_channel_label">リマインダーとアラーム</string>
+  <string name="about_page_description_os">[[+ +]]はオープンソースで誰でもオープンになっています。 現在、%sによって構築され維持されています。</string>
+  <string name="about_page_description">%sはアプリを撮るシンプルなメモです。 体験を非常に難しくすることなく、リッチテキスト入力を素早く行うことができます。 それはマルチタスクを簡単にします。</string>
+  <string name="about_page_about_us_details">こんにちは、私たちは%sを創造したデザイナーとプログラマーのペアです。
+     私たちは美しくて慎重に設計された無償、無償、または最小限の広告アプリケーションを構築して、誰にとっても大きな有用性を提供するよう努めています。</string>
+  <string name="note_option_number_lines_subtitle">ホーム画面の%d行</string>
+  <string name="search_toolbar_text">検索%s &#8230;</string>
+  <string name="view_distraction_free">気を散らさない</string>
+  <string name="format_label_separator">セパレータ</string>
+
 </resources>

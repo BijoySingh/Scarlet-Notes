@@ -237,4 +237,19 @@
   <string name="format_label_image">Imagen</string>
   <string name="format_hint_image">Haga clic para agregar o cambiar la imagen</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">Sólo una vez</string>
+  <string name="reminder_frequency_daily">Diario</string>
+  <string name="reminder_frequency_custom">Personalizado</string>
+  <string name="reminder_beta_label">Beta</string>
+  <string name="notification_reminder_channel_label">Recordatorios y alarmas</string>
+  <string name="about_page_description_os">%s es de código abierto y cualquiera está dispuesto a contribuir para mejorarlo. Actualmente está construido y mantenido por %s.</string>
+  <string name="about_page_description">%s es una aplicación para tomar notas. Permite la entrada rápida de texto enriquecido sin hacer que la experiencia sea muy difícil de usar. Hace multitarea en un abrir y cerrar de ojos.</string>
+  <string name="about_page_about_us_details">Hola, somos un par de diseñador y programador, que creó %s.
+     ¡Nos esforzamos por crear aplicaciones publicitarias hermosas, cuidadosamente diseñadas, gratuitas, sin publicidad o mínimas que sean de gran utilidad para todos!</string>
+  <string name="note_option_number_lines_subtitle">%d líneas en la pantalla de inicio</string>
+  <string name="search_toolbar_text">Buscar %s&#8230;</string>
+  <string name="view_distraction_free">Distracción gratis</string>
+  <string name="format_label_separator">Separador</string>
+
 </resources>

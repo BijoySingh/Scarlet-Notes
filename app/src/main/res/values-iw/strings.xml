@@ -237,4 +237,19 @@
   <string name="format_label_image">תמונה</string>
   <string name="format_hint_image">לחץ כדי להוסיף או לשנות את התמונה</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">רק פעם אחת</string>
+  <string name="reminder_frequency_daily">יום יומי</string>
+  <string name="reminder_frequency_custom">המותאם אישית</string>
+  <string name="reminder_beta_label">בטא</string>
+  <string name="notification_reminder_channel_label">תזכורות ו אזעקות</string>
+  <string name="about_page_description_os">%d הוא קוד פתוח וכל אחד פתוח לתרום כדי לעשות את זה טוב יותר. הוא נבנה כעת ומתוחזק על ידי %s.</string>
+  <string name="about_page_description">%d הוא פתק פשוט לוקח יישום. זה מאפשר קלט טקסט עשיר עשיר מבלי להפוך את החוויה קשה מאוד לשימוש. זה עושה multi-tasking משב רוח.</string>
+  <string name="about_page_about_us_details">היי, אנחנו זוג מעצב ומתכנת, שיצר %s.
+     אנו משתדלים לבנות יפה, תוכנן בקפידה ללא תשלום, מודעות חינם או מודעות מינימלי אשר משרתים כלי נהדר לכולם!</string>
+  <string name="note_option_number_lines_subtitle">%d שורות במסך הבית</string>
+  <string name="search_toolbar_text">חיפוש %s &#8230;</string>
+  <string name="view_distraction_free">הסחת דעת חינם</string>
+  <string name="format_label_separator">מפריד</string>
+
 </resources>

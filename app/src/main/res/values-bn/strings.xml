@@ -238,4 +238,19 @@
   <string name="format_label_image">ভাবমূর্তি</string>
   <string name="format_hint_image">ইমেজ যোগ বা পরিবর্তন করতে ক্লিক করুন</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">শুধুমাত্র একবার</string>
+  <string name="reminder_frequency_daily">দৈনন্দিন</string>
+  <string name="reminder_frequency_custom">প্রথা</string>
+  <string name="reminder_beta_label">বিটা</string>
+  <string name="notification_reminder_channel_label">অনুস্মারক এবং এলার্ম</string>
+  <string name="about_page_description_os">%s ওপেন সোর্স এবং কেউ এটি আরও ভালো করার জন্য অবদান রাখার জন্য উন্মুক্ত। এটি বর্তমানে %s দ্বারা নির্মিত এবং রক্ষণাবেক্ষণ করা হয়।</string>
+  <string name="about_page_description">%s একটি সহজ নোট গ্রহণের অ্যাপ্লিকেশন। এটি ব্যবহার করা খুব কঠিন অভিজ্ঞতা ছাড়া দ্রুত রিচ টেক্সট ইনপুট অনুমতি দেয়। এটি বহু টাস্কিং একটি বাতাস তোলে।</string>
+  <string name="about_page_about_us_details">হাই, আমরা ডিজাইনার এবং প্রোগ্রামারের একটি জোড়া, যিনি %s তৈরি করেছেন।
+     আমরা সুন্দর, সাবধানে ডিজাইন ফ্রি, বিজ্ঞাপন-মুক্ত বা ন্যূনতম বিজ্ঞাপন অ্যাপ্লিকেশন তৈরি করতে চেষ্টা করি যা সকলের জন্য দুর্দান্ত ইউটিলিটি প্রদান করে!</string>
+  <string name="note_option_number_lines_subtitle">[[+] হোম স্ক্রিনে লাইন</string>
+  <string name="search_toolbar_text">অনুসন্ধান %s&#8230;</string>
+  <string name="view_distraction_free">বিতর্ক মুক্ত</string>
+  <string name="format_label_separator">বিভাজক</string>
+
 </resources>

@@ -258,4 +258,19 @@
   <string name="format_label_image">图片</string>
   <string name="format_hint_image">点击添加或更改图像</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">只有一次</string>
+  <string name="reminder_frequency_daily">日常</string>
+  <string name="reminder_frequency_custom">习惯</string>
+  <string name="reminder_beta_label">Beta版</string>
+  <string name="notification_reminder_channel_label">提醒和警报</string>
+  <string name="about_page_description_os">%s是开源的，任何人都可以为改善它做出贡献。 它目前由%s构建和维护。</string>
+  <string name="about_page_description">%s是一个简单的笔记应用程序。 它允许快速富文本输入，而不会让使用体验变得非常困难。 它使得多任务轻而易举。</string>
+  <string name="about_page_about_us_details">嗨，我们是一对设计师和程序员，他们创造了%s。
+     我们致力于打造漂亮，精心设计的免费，无广告或最低限度的广告应用程序，这些应用程序对每个人都非常实用！</string>
+  <string name="note_option_number_lines_subtitle">主屏幕上的%d行</string>
+  <string name="search_toolbar_text">搜索%s &#8230;</string>
+  <string name="view_distraction_free">分心免费</string>
+  <string name="format_label_separator">分隔器</string>
+
 </resources>

@@ -236,4 +236,19 @@
   <string name="format_label_image">صورة</string>
   <string name="format_hint_image">انقر لإضافة صورة أو تغييرها</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">مرة واحدة فقط</string>
+  <string name="reminder_frequency_daily">اليومي</string>
+  <string name="reminder_frequency_custom">العادة</string>
+  <string name="reminder_beta_label">بيتا</string>
+  <string name="notification_reminder_channel_label">تذكير وإنذارات</string>
+  <string name="about_page_description_os">%s مفتوح المصدر وأي شخص مفتوح للمساهمة في تحسينه. يتم بناؤه حاليًا وصيانته بواسطة %s.</string>
+  <string name="about_page_description">%s عبارة عن ملاحظة بسيطة تأخذ التطبيق. يسمح بإدخال نص سريع سريع بدون جعل التجربة صعبة الاستخدام. يجعل تعدد المهام نسيم.</string>
+  <string name="about_page_about_us_details">مرحبًا ، نحن زوج من المصممين والمبرمجين ، الذين أنشأوا %s.
+     نحن نسعى لبناء تطبيقات إعلانية مجانية ومصممة بعناية وخالية من الإعلانات أو بأقل قدر من الإعلانات والتي تخدم فائدة عظيمة للجميع!</string>
+  <string name="note_option_number_lines_subtitle">%d خطوط على الشاشة الرئيسية</string>
+  <string name="search_toolbar_text">البحث %s&#8230;</string>
+  <string name="view_distraction_free">الهاء الحرة</string>
+  <string name="format_label_separator">الفاصل</string>
+
 </resources>

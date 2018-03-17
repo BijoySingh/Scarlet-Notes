@@ -236,4 +236,19 @@
   <string name="format_label_image">Gambar</string>
   <string name="format_hint_image">Klik untuk menambah atau menukar imej</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">Hanya sekali</string>
+  <string name="reminder_frequency_daily">Harian</string>
+  <string name="reminder_frequency_custom">Custom</string>
+  <string name="reminder_beta_label">Beta</string>
+  <string name="notification_reminder_channel_label">Peringatan dan Penggera</string>
+  <string name="about_page_description_os">%s adalah sumber terbuka dan sesiapa sahaja terbuka untuk menyumbang untuk menjadikannya lebih baik. Ia kini dibina dan diselenggarakan oleh %s.</string>
+  <string name="about_page_description">%s adalah aplikasi mengambil nota ringkas. Ia membolehkan input teks kaya cepat tanpa membuat pengalaman yang sangat sukar untuk digunakan. Ia membuat pelbagai tugas dengan mudah.</string>
+  <string name="about_page_about_us_details">Hai, kami sepasang pereka dan pengaturcara, yang mencipta %s.
+     Kami berusaha untuk membina aplikasi iklan bebas, bebas iklan atau minimum yang direka dengan cermat, yang berfungsi dengan baik untuk semua orang!</string>
+  <string name="note_option_number_lines_subtitle">garis %d pada skrin utama</string>
+  <string name="search_toolbar_text">Cari %s &#8230;</string>
+  <string name="view_distraction_free">Penglibatan Percuma</string>
+  <string name="format_label_separator">Pemisah</string>
+
 </resources>

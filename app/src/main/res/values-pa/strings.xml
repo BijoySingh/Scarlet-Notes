@@ -236,4 +236,19 @@
   <string name="format_label_image">ਚਿੱਤਰ</string>
   <string name="format_hint_image">ਚਿੱਤਰ ਨੂੰ ਜੋੜਨ ਜਾਂ ਬਦਲਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">ਸਿਰਫ਼ ਇੱਕ ਵਾਰ</string>
+  <string name="reminder_frequency_daily">ਰੋਜ਼ਾਨਾ</string>
+  <string name="reminder_frequency_custom">ਕਸਟਮ</string>
+  <string name="reminder_beta_label">ਬੀਟਾ</string>
+  <string name="notification_reminder_channel_label">ਰੀਮਾਈਂਡਰਸ ਅਤੇ ਅਲਾਰਮ</string>
+  <string name="about_page_description_os">%s ਓਪਨ ਸੋਰਸ ਹੈ ਅਤੇ ਕੋਈ ਵੀ ਇਸ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਲਈ ਯੋਗਦਾਨ ਪਾਉਣ ਲਈ ਖੁੱਲ੍ਹਾ ਹੈ. ਇਹ ਵਰਤਮਾਨ ਵਿੱਚ %s ਦੁਆਰਾ ਬਣਾਇਆ ਅਤੇ ਪਰਬੰਧਨ ਕੀਤਾ ਗਿਆ ਹੈ.</string>
+  <string name="about_page_description">%s ਇੱਕ ਸਧਾਰਨ ਨੋਟ ਲੈਣਾ ਐਪ ਹੈ. ਇਹ ਤਜ਼ਰਬੇ ਨੂੰ ਬਹੁਤ ਮੁਸ਼ਕਲ ਬਣਾਉਣ ਦੇ ਬਿਨਾਂ ਤੁਰੰਤ ਰਿਚ ਟੈਕਸਟ ਇੰਪੁੱਟ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ. ਇਹ ਬਹੁਤਾ ਨਾਲ ਕੰਮ ਕਰਨ ਵਾਲੀ ਇੱਕ ਹਵਾ ਬਣਾਉਂਦਾ ਹੈ</string>
+  <string name="about_page_about_us_details">ਹੈਲੋ, ਅਸੀਂ ਡਿਜ਼ਾਇਨਰ ਅਤੇ ਪ੍ਰੋਗਰਾਮਰ ਦਾ ਇੱਕ ਜੋੜਾ ਹਾਂ, ਜਿਸਨੇ %s ਬਣਾਇਆ ਹੈ
+     ਅਸੀਂ ਸੁੰਦਰ, ਧਿਆਨ ਨਾਲ ਡਿਜ਼ਾਈਨ ਕੀਤੇ ਗਏ ਮੁਫ਼ਤ, ਵਿਗਿਆਪਨ-ਮੁਕਤ ਜਾਂ ਘੱਟੋ ਘੱਟ ਇਸ਼ਤਿਹਾਰਾਂ ਵਾਲੇ ਐਪਸ ਬਣਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਾਂ ਜੋ ਹਰ ਕਿਸੇ ਲਈ ਮਹਾਨ ਉਪਯੋਗਤਾ ਦੀ ਸੇਵਾ ਕਰਦੇ ਹਨ!</string>
+  <string name="note_option_number_lines_subtitle">%d ਹੋਮ ਸਕ੍ਰੀਨ ਤੇ ਲਾਈਨਾਂ</string>
+  <string name="search_toolbar_text">%s ਖੋਜ ਕਰੋ &#8230;</string>
+  <string name="view_distraction_free">ਵਿਵਹਾਰ ਮੁਫ਼ਤ</string>
+  <string name="format_label_separator">ਵਿਭਾਜਕ</string>
+
 </resources>

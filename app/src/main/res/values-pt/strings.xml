@@ -237,4 +237,19 @@
   <string name="format_label_image">Imagem</string>
   <string name="format_hint_image">Clique para adicionar ou alterar a imagem</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">Apenas uma vez</string>
+  <string name="reminder_frequency_daily">Diariamente</string>
+  <string name="reminder_frequency_custom">personalizadas</string>
+  <string name="reminder_beta_label">Beta</string>
+  <string name="notification_reminder_channel_label">Lembretes e alarmes</string>
+  <string name="about_page_description_os">%s é de código aberto e qualquer pessoa está aberta para contribuir para torná-lo melhor. Atualmente, ele é construído e mantido por %s.</string>
+  <string name="about_page_description">%s é um simples aplicativo de tomada de notas. Ele permite uma entrada rápida de Rich Text sem tornar a experiência muito difícil de usar. Isso torna a multitarefa uma brisa.</string>
+  <string name="about_page_about_us_details">Oi, somos um par de designers e programadores, que criaram %s.
+     Nós nos esforçamos para criar aplicativos de anúncios bonitos, cuidadosamente projetados, gratuitos, gratuitos ou mínimos, que servem uma ótima utilidade para todos!</string>
+  <string name="note_option_number_lines_subtitle">%d linhas na tela inicial</string>
+  <string name="search_toolbar_text">Pesquisar %s &#8230;</string>
+  <string name="view_distraction_free">Distração grátis</string>
+  <string name="format_label_separator">Separador</string>
+
 </resources>

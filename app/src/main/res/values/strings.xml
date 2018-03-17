@@ -7,7 +7,7 @@
   <string name="save">Save</string>
   <string name="import_to_app">Import</string>
   <string name="search_notes">Search Notes&#8230;</string>
-  <string name="search_toolbar_text" translatable="false">Search %s&#8230; </string>
+  <string name="search_toolbar_text">Search %s&#8230; </string>
   <string name="share_using">Share using&#8230;</string>
 
   <string name="main_no_notes">No Notes</string>
@@ -43,7 +43,7 @@
   <string name="duplicate">Duplicate</string>
   <string name="pin_note">Pin Note</string>
   <string name="unpin_note">Unpin Note</string>
-  <string name="view_distraction_free" translatable="false">Distraction Free</string>
+  <string name="view_distraction_free">Distraction Free</string>
   <string name="choose_action">Choose Action&#8230;</string>
 
   <string name="tap_for_action_open_note_night_mode">Tap to view the note in night mode</string>
@@ -91,7 +91,7 @@
   <string name="format_label_code">Code</string>
   <string name="format_label_list">Checklist</string>
   <string name="format_label_image">Image</string>
-  <string name="format_label_separator" translatable="false">Separator</string>
+  <string name="format_label_separator">Separator</string>
 
   <string name="markdown_sheet_option_title">Markdown Formatting</string>
   <string name="markdown_label_bold">Bold</string>
@@ -157,7 +157,7 @@
   <string name="note_option_default_color">Default Note Color</string>
   <string name="note_option_default_color_subtitle">Choose the default color of the notes</string>
   <string name="note_option_number_lines">Note Line Limit</string>
-  <string name="note_option_number_lines_subtitle" translatable="false">%d lines on home screen</string>
+  <string name="note_option_number_lines_subtitle">%d lines on home screen</string>
 
   <string name="markdown_sheet_markdown_support">Markdown Support</string>
   <string name="markdown_sheet_markdown_support_subtitle">Allow markdown supported formatting</string>
@@ -198,21 +198,21 @@
   <string name="reminder_sheet_reminder_date">Reminder Date</string>
   <string name="reminder_sheet_reminder_time">Reminder Time</string>
   <string name="reminder_sheet_repeat">Repeat Frequency</string>
-  <string name="reminder_frequency_once" translatable="false">Only Once</string>
-  <string name="reminder_frequency_daily" translatable="false">Daily</string>
-  <string name="reminder_frequency_custom" translatable="false">Custom</string>
-  <string name="reminder_beta_label" translatable="false">Beta</string>
+  <string name="reminder_frequency_once">Only Once</string>
+  <string name="reminder_frequency_daily">Daily</string>
+  <string name="reminder_frequency_custom">Custom</string>
+  <string name="reminder_beta_label">Beta</string>
 
   <string name="notification_channel_label">Note Notifications</string>
-  <string name="notification_reminder_channel_label" translatable="false">Reminders and Alarms</string>
+  <string name="notification_reminder_channel_label">Reminders and Alarms</string>
 
-  <string name="about_page_description_os" translatable="false">
+  <string name="about_page_description_os">
     %s is open source and anyone is open to contribute to making it better. It is currently built and maintained by %s.
   </string>
-  <string name="about_page_description" translatable="false">
+  <string name="about_page_description">
     %s is a simple note taking app. It allows quick Rich Text input without making the experience very difficult to use. It makes multi-tasking a breeze.
   </string>
-  <string name="about_page_about_us_details" translatable="false">Hi, we are a pair of designer and programmer, who created %s .
+  <string name="about_page_about_us_details">Hi, we are a pair of designer and programmer, who created %s .
     We endeavour to build beautiful, carefully designed free, ad-free or minimal ads apps which serve great utility to everyone!</string>
 
   <string name="tag_sheet_create_title">Add New Tag&#8230;</string>

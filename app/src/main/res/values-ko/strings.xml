@@ -219,4 +219,19 @@
   <string name="format_label_image">영상</string>
   <string name="format_hint_image">이미지를 추가하거나 변경하려면 클릭하십시오.</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">한 번만</string>
+  <string name="reminder_frequency_daily">매일</string>
+  <string name="reminder_frequency_custom">관습</string>
+  <string name="reminder_beta_label">베타</string>
+  <string name="notification_reminder_channel_label">미리 알림 및 경보</string>
+  <string name="about_page_description_os">%s는 오픈 소스이며 누구나 오픈 소스를 통해 더 잘 만들 수 있습니다. 그것은 현재 %s에 의해 만들어지고 관리되고 있습니다.</string>
+  <string name="about_page_description">%s는 앱을 복용하는 간단한 메모입니다. 경험을 사용하기가 매우 어렵지 않으면 서 빠른 서식있는 텍스트 입력이 가능합니다. 그것은 멀티 태스킹 바람을 만듭니다.</string>
+  <string name="about_page_about_us_details">안녕하세요, 우리는 [+ +]를 만든 디자이너와 프로그래머입니다.
+     우리는 아름답고 신중하게 디자인 된 무료, 광고없는 또는 최소한의 광고 응용 프로그램을 만들어 모든 사람에게 유용한 유틸리티를 제공하기 위해 노력합니다.</string>
+  <string name="note_option_number_lines_subtitle">홈 스크린의 %d 라인</string>
+  <string name="search_toolbar_text">%s 검색 &#8230;</string>
+  <string name="view_distraction_free">산만 무료</string>
+  <string name="format_label_separator">분리 기호</string>
+
 </resources>

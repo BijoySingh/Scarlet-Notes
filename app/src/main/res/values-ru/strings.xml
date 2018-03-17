@@ -239,4 +239,19 @@
   <string name="format_label_image">Образ</string>
   <string name="format_hint_image">Нажмите, чтобы добавить или изменить изображение</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">Только один раз</string>
+  <string name="reminder_frequency_daily">Ежедневно</string>
+  <string name="reminder_frequency_custom">изготовленный на заказ</string>
+  <string name="reminder_beta_label">Бета</string>
+  <string name="notification_reminder_channel_label">Напоминания и сигналы тревоги</string>
+  <string name="about_page_description_os">%s является открытым исходным кодом, и каждый может помочь сделать его лучше. В настоящее время он построен и поддерживается %s.</string>
+  <string name="about_page_description">%s - простая записка с приложением. Он позволяет быстро вводить Rich Text без особого труда. Это делает многозадачность легким.</string>
+  <string name="about_page_about_us_details">Привет, мы пара дизайнеров и программистов, которые создали %s.
+     Мы стремимся создавать красивые, тщательно разработанные бесплатные, бесплатные объявления или минимальные рекламные приложения, которые отлично обслуживают всех!</string>
+  <string name="note_option_number_lines_subtitle">%d линии на главном экране</string>
+  <string name="search_toolbar_text">Поиск %s &#8230;</string>
+  <string name="view_distraction_free">Отвлечение бесплатно</string>
+  <string name="format_label_separator">Разделитель</string>
+
 </resources>

@@ -235,4 +235,19 @@
   <string name="format_label_image">प्रतिमा</string>
   <string name="format_hint_image">प्रतिमा जोडण्यासाठी किंवा बदलण्यासाठी क्लिक करा</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">फक्त एकदाच</string>
+  <string name="reminder_frequency_daily">दैनिक</string>
+  <string name="reminder_frequency_custom">सानुकूल</string>
+  <string name="reminder_beta_label">बीटा</string>
+  <string name="notification_reminder_channel_label">स्मरणपत्रे आणि अलार्म</string>
+  <string name="about_page_description_os">%s मुक्त स्त्रोत आहे आणि कोणीही ते अधिक चांगले बनवण्यासाठी योगदान देण्यास तयार आहे. हे सध्या %s द्वारे बांधले आणि ठेवली जाते.</string>
+  <string name="about_page_description">%s ही एक सोपी टीप ठेवण्याचे अनुप्रयोग आहे. तो वापरण्यासाठी अतिशय कठीण अनुभव न जलद रिच मजकूर इनपुट परवानगी देते. हे बहु- tasking एक ब्रीझ करते</string>
+  <string name="about_page_about_us_details">हाय, आम्ही डिझायनर आणि प्रोग्रामरचा जोडीदार आहे, ज्याने %s तयार केले आहे.
+     आम्ही सुरेख, काळजीपूर्वक डिझाइन केलेले विनामूल्य, जाहिरात-मुक्त किंवा कमीत कमी जाहिरातीचे अॅप्स तयार करण्याचा प्रयत्न करतो जे प्रत्येकाला उत्कृष्ट उपयुक्तता देतात!</string>
+  <string name="note_option_number_lines_subtitle">[[]] होम स्क्रीनवरील ओळी</string>
+  <string name="search_toolbar_text">%s शोधा &#8230;</string>
+  <string name="view_distraction_free">Distraction विनामूल्य</string>
+  <string name="format_label_separator">सेपरेटर</string>
+
 </resources>

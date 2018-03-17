@@ -236,4 +236,19 @@
   <string name="format_label_image">छवि</string>
   <string name="format_hint_image">चित्र जोड़ने या बदलने के लिए क्लिक करें</string>
 
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">सिर्फ एक बार</string>
+  <string name="reminder_frequency_daily">रोज</string>
+  <string name="reminder_frequency_custom">रिवाज</string>
+  <string name="reminder_beta_label">बीटा</string>
+  <string name="notification_reminder_channel_label">अनुस्मारक और अलार्म</string>
+  <string name="about_page_description_os">%s ओपन सोर्स है और कोई इसे बेहतर बनाने के लिए योगदान करने के लिए खुला है। यह वर्तमान में %s द्वारा बनाया और रखरखाव किया गया है।</string>
+  <string name="about_page_description">%s एक साधारण नोट लेने वाला ऐप है यह प्रयोग करने में बहुत मुश्किल अनुभव किए बिना त्वरित रिच टेक्स्ट इनपुट की अनुमति देता है यह बहु-कार्य करने वाला हवा बनाता है</string>
+  <string name="about_page_about_us_details">नमस्ते, हम डिजाइनर और प्रोग्रामर की एक जोड़ी हैं, जिन्होंने %s बनाया है
+     हम सुन्दर, सावधानीपूर्वक डिज़ाइन किए गए मुक्त, विज्ञापन-मुक्त या न्यूनतम विज्ञापन एप्लिकेशन बनाने की कोशिश करते हैं जो हर किसी के लिए महान उपयोगिता प्रदान करते हैं!</string>
+  <string name="note_option_number_lines_subtitle">%d होम स्क्रीन पर लाइनें</string>
+  <string name="search_toolbar_text">खोज %s &#8230;</string>
+  <string name="view_distraction_free">व्याकुलता मुक्त</string>
+  <string name="format_label_separator">सेपरेटर</string>
+
 </resources>
