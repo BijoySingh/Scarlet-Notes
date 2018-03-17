@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.database.external
 import android.content.Context
 import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.database.utils.TagsDB
 import com.bijoysingh.quicknote.utils.genFromFirebase
 import com.bijoysingh.quicknote.database.utils.deleteWithoutSync
 import com.bijoysingh.quicknote.database.utils.saveWithoutSync
@@ -103,7 +104,7 @@ private fun setListener(context: Context) {
         }
 
         val notifiedTag = genFromFirebase(tag)
-        val existingTag = Tag.db().getByUUID(tag.uuid)
+        val existingTag = TagsDB.db.getByUUID(tag.uuid)
         var isSame = false
         if (existingTag !== null) {
           isSame = TextUtils.areEqualNullIsEmpty(notifiedTag.title, existingTag.title)
