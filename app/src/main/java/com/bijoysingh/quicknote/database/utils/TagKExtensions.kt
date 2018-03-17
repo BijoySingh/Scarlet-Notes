@@ -3,17 +3,17 @@ package com.bijoysingh.quicknote.database.utils
 import com.bijoysingh.quicknote.database.Tag
 
 fun Tag.saveIfUnique() {
-  val existing = Tag.db().getByTitle(title)
+  val existing = TagsDB.db.getByTitle(title)
   if (existing !== null) {
     this.uid = existing.uid
-    this.title = existing.title
     this.uuid = existing.uuid
+    return
   }
 
-  val existingByUUID = Tag.db().getByUUID(uuid)
+  val existingByUUID = TagsDB.db.getByUUID(uuid)
   if (existingByUUID != null) {
-    this.uid = existing.uid
-    this.title = existing.title
+    this.uid = existingByUUID.uid
+    this.title = existingByUUID.title
     return
   }
 
@@ -31,8 +31,9 @@ fun Tag.save() {
 }
 
 fun Tag.saveWithoutSync() {
-  val id = Tag.db().insertTag(this)
+  val id = TagsDB.db().insertTag(this)
   uid = if (isUnsaved()) id.toInt() else uid
+  TagsDB.db.notifyInsertTag(this)
 }
 
 fun Tag.saveToSync() {
@@ -48,7 +49,7 @@ fun Tag.deleteWithoutSync() {
   if (isUnsaved()) {
     return
   }
-  Tag.db().delete(this)
+  TagsDB.db.delete(this)
   uid = 0
 }
 

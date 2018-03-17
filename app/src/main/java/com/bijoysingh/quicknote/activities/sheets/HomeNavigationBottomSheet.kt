@@ -12,6 +12,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.database.utils.TagsDB
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.items.TagOptionsItem
 import com.bijoysingh.quicknote.utils.HomeNavigationState
@@ -154,7 +155,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   fun getTagOptions(): List<TagOptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<TagOptionsItem>()
-    for (tag in Tag.db().all) {
+    for (tag in TagsDB.db.getAll()) {
       options.add(TagOptionsItem(
           tag = tag,
           usages = Note.db().getNoteCountByTag("%" + tag.uuid + "%"),

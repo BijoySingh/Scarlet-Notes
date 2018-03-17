@@ -7,6 +7,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.database.utils.TagsDB
 import com.bijoysingh.quicknote.database.utils.getTagUUIDs
 import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.database.utils.toggleTag
@@ -45,7 +46,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
   private fun getOptions(): List<TagOptionsItem> {
     val options = ArrayList<TagOptionsItem>()
     val tags = note!!.getTagUUIDs()
-    for (tag in Tag.db().all) {
+    for (tag in TagsDB.db.getAll()) {
       options.add(TagOptionsItem(
           tag = tag,
           listener = View.OnClickListener {

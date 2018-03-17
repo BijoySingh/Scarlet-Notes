@@ -17,8 +17,4 @@ public class Tag {
   public String title;
 
   public String uuid;
-
-  public static TagDao db() {
-    return MaterialNotes.Companion.db().tags();
-  }
 }

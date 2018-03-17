@@ -160,8 +160,6 @@ fun Note.getDisplayTime(): String {
     else -> 0
   }
 
-  Log.d("NOTEKEX", "uuid=" + uuid + ", time=" + time)
-
   val format = when {
     Calendar.getInstance().timeInMillis - time < 1000 * 60 * 60 * 2 -> "hh:mm aa"
     else -> "dd MMMM"
@@ -193,7 +191,7 @@ fun Note.getNoteState(): NoteState {
 fun Note.getTags(): Set<Tag> {
   val tags = HashSet<Tag>()
   for (tagID in getTagUUIDs()) {
-    val tag = Tag.db().getByUUID(tagID)
+    val tag = TagsDB.db.getByUUID(tagID)
     if (tag != null) {
       tags.add(tag)
     }

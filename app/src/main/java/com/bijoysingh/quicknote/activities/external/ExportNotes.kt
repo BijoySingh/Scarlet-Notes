@@ -8,6 +8,7 @@ import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.activities.sheets.ExportNotesBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.database.utils.TagsDB
 import com.bijoysingh.quicknote.database.utils.getFullText
 import com.github.bijoysingh.starter.util.FileManager
 import com.github.bijoysingh.starter.util.PermissionManager
@@ -28,7 +29,7 @@ class ExportableFileFormat(
 
 fun getNotesForExport(): String {
   val notes = Note.db().all.map { ExportableNote(it) }
-  val tags = Tag.db().all.map { ExportableTag(it) }
+  val tags = TagsDB.db.getAll().map { ExportableTag(it) }
   val fileContent = ExportableFileFormat(EXPORT_VERSION, notes, tags)
   return Gson().toJson(fileContent)
 }

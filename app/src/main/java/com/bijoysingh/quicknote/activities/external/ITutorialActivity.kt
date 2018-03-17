@@ -23,7 +23,7 @@ fun createHint(activity: ThemedActivity,
       .setTarget(anchorView)
       .setPrimaryText(title)
       .setSecondaryText(subtitle)
-      .setPromptStateChangeListener(MaterialTapTargetPrompt.PromptStateChangeListener { prompt, state ->
+      .setPromptStateChangeListener(MaterialTapTargetPrompt.PromptStateChangeListener { _, state ->
         if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
           // User has pressed the prompt target
         }

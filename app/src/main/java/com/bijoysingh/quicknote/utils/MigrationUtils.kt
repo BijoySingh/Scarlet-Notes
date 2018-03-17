@@ -22,7 +22,7 @@ const val KEY_MIGRATE_ZERO_NOTES = "KEY_MIGRATE_ZERO_NOTES.v2"
 fun migrate(context: Context) {
   if (!userPreferences().get(KEY_MIGRATE_UUID, false)) {
     val tags = HashMap<Int, Tag>()
-    for (tag in Tag.db().all) {
+    for (tag in TagsDB.db.getAll()) {
       if (TextUtils.isNullOrEmpty(tag.uuid)) {
         tag.uuid = RandomHelper.getRandomString(24)
         tag.save()
