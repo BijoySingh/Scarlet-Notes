@@ -5,6 +5,7 @@ import com.bijoysingh.quicknote.BuildConfig
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.activities.sheets.WhatsNewItemsBottomSheet
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.NotesDB
 import java.util.*
 
 const val KEY_LAST_KNOWN_APP_VERSION = "KEY_LAST_KNOWN_APP_VERSION"
@@ -24,7 +25,7 @@ fun getLastUsedAppVersionCode(): Int {
   val appVersion = userPreferences().get(KEY_LAST_KNOWN_APP_VERSION, 0)
   return when {
     appVersion > 0 -> appVersion
-    Note.db().count > 0 -> -1
+    NotesDB.db.getCount() > 0 -> -1
     else -> 0
   }
 }

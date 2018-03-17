@@ -1,24 +1,22 @@
 package com.bijoysingh.quicknote.database.utils
 
-import android.util.Log
 import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.TagDao
-import com.google.gson.Gson
+import java.util.concurrent.ConcurrentHashMap
 
 class TagsDB {
 
-  val tags = HashMap<String, Tag>()
+  val tags = ConcurrentHashMap<String, Tag>()
 
   fun notifyInsertTag(tag: Tag) {
     maybeLoadFromDB()
     tags[tag.uuid] = tag
   }
 
-  fun delete(tag: Tag) {
+  fun notifyDelete(tag: Tag) {
     maybeLoadFromDB()
     tags.remove(tag.uuid)
-    db().delete(tag)
   }
 
   fun getCount(): Int {
@@ -46,6 +44,7 @@ class TagsDB {
     return tags.values.firstOrNull { it.title == title }
   }
 
+  @Synchronized
   fun maybeLoadFromDB() {
     if (tags.isNotEmpty()) {
       return

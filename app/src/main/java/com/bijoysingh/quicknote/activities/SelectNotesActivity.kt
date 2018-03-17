@@ -8,6 +8,7 @@ import android.widget.ImageView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.SelectedNoteOptionsBottomSheet
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.NotesDB
 import com.bijoysingh.quicknote.database.utils.getFullText
 import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.bijoysingh.quicknote.utils.NoteState
@@ -77,8 +78,10 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
 
   fun runNoteFunction(noteFunction: (Note) -> Unit) {
     for (noteId in selectedNotes) {
-      val note = Note.db().getByID(noteId)
-      noteFunction(note)
+      val note = NotesDB.db.getByID(noteId)
+      if (note !== null) {
+        noteFunction(note)
+      }
     }
   }
 
@@ -107,12 +110,12 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
 
   override fun isNoteSelected(note: Note): Boolean = selectedNotes.contains(note.uid)
 
-  override fun getNotes(): List<Note> = Note.db().getByNoteState(getMode(mode)).filter { note -> !note.locked }
+  override fun getNotes(): List<Note> = NotesDB.db.getByNoteState(getMode(mode)).filter { note -> !note.locked }
 
   fun getText(): String {
     val builder = StringBuilder()
     for (noteId in selectedNotes) {
-      builder.append(Note.db().getByID(noteId).getFullText())
+      builder.append(NotesDB.db.getByID(noteId)?.getFullText())
       builder.append("\n\n---\n\n")
     }
     return builder.toString()

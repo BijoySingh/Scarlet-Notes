@@ -4,6 +4,7 @@ import android.content.Context
 import com.bijoysingh.quicknote.activities.external.ExportableNote
 import com.bijoysingh.quicknote.activities.external.ExportableTag
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.NotesDB
 import com.bijoysingh.quicknote.database.utils.copyNote
 import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.database.utils.toggleTag
@@ -88,7 +89,7 @@ fun genImportFromKeep(description: String): List<Format> {
  * Generate blank note from imported note
  */
 fun genImportedNote(context: Context, exportableNote: ExportableNote): Note {
-  val existingNote = Note.db().getByUUID(exportableNote.uuid)
+  val existingNote = NotesDB.db.getByUUID(exportableNote.uuid)
   if (existingNote !== null && existingNote.updateTimestamp > exportableNote.updateTimestamp) {
     return existingNote
   }

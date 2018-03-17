@@ -169,7 +169,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(Note.db().getByNoteState(states), sorting)
+        return sort(NotesDB.db.getByNoteState(states), sorting)
             .map { NoteRecyclerItem(this@MainActivity, it) }
       }
 
@@ -211,7 +211,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(Note.db().getNoteByLocked(true), sorting)
+        return sort(NotesDB.db.getNoteByLocked(true), sorting)
             .map { NoteRecyclerItem(this@MainActivity, it) }
       }
 
@@ -248,7 +248,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(Note.db().getNoteByTag("%" + tag.uuid + "%"), sorting)
+        return sort(NotesDB.db.getNoteByTag(tag.uuid), sorting)
             .map { NoteRecyclerItem(this@MainActivity, it) }
       }
 
@@ -358,7 +358,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   override fun showHints(): Boolean {
     when {
-      Note.db().count == 0 -> showHint(TUTORIAL_KEY_NEW_NOTE)
+      NotesDB.db.getCount() == 0 -> showHint(TUTORIAL_KEY_NEW_NOTE)
       shouldShowHint(TUTORIAL_KEY_NEW_NOTE) -> showHint(TUTORIAL_KEY_NEW_NOTE)
       shouldShowHint(TUTORIAL_KEY_HOME_SETTINGS) -> showHint(TUTORIAL_KEY_HOME_SETTINGS)
       else -> return false

@@ -30,7 +30,7 @@ fun migrate(context: Context) {
       tags.put(tag.uid, tag)
     }
 
-    for (note in Note.db().all) {
+    for (note in NotesDB.db.getAll()) {
       var saveNote = false
       if (TextUtils.isNullOrEmpty(note.uuid)) {
         note.uuid = RandomHelper.getRandomString(24)
@@ -54,7 +54,7 @@ fun migrate(context: Context) {
     userPreferences().put(KEY_MIGRATE_UUID, true)
   }
   if (!userPreferences().get(KEY_MIGRATE_TRASH, false)) {
-    val notes = Note.db().getByNoteState(arrayOf(NoteState.TRASH.name))
+    val notes = NotesDB.db.getByNoteState(arrayOf(NoteState.TRASH.name))
     for (note in notes) {
       // Updates the timestamp for the note in trash
       note.mark(context, NoteState.TRASH)
@@ -67,16 +67,17 @@ fun migrate(context: Context) {
     userPreferences().put(KEY_MIGRATE_THEME, true)
   }
   if (!userPreferences().get(KEY_MIGRATE_ZERO_NOTES, false)) {
-    val note = Note.db().getByID(0)
+    val note = NotesDB.db.getByID(0)
     if (note != null) {
-      Note.db().delete(note)
+      NotesDB.db().delete(note)
+      NotesDB.db.notifyDelete(note)
       note.uid = null
       note.save(context)
     }
     userPreferences().put(KEY_MIGRATE_ZERO_NOTES, true)
   }
   if (!userPreferences().get(KEY_MIGRATE_CHECKED_LIST, false)) {
-    for (note in Note.db().all) {
+    for (note in NotesDB.db.getAll()) {
       note.description = Format.getNote(note.getFormats().sorted())
       note.save(context)
     }
@@ -92,7 +93,7 @@ fun migrate(context: Context) {
 
 fun removeOlderClips(context: Context) {
   AsyncTask.execute {
-    val notes = Note.db().getOldTrashedNotes(Calendar.getInstance().timeInMillis - 1000 * 60 * 60 * 24 * 7)
+    val notes = NotesDB.db().getOldTrashedNotes(Calendar.getInstance().timeInMillis - 1000 * 60 * 60 * 24 * 7)
     for (note in notes) {
       note.delete(context)
     }

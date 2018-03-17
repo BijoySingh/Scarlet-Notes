@@ -12,6 +12,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.database.utils.NotesDB
 import com.bijoysingh.quicknote.database.utils.TagsDB
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.items.TagOptionsItem
@@ -158,7 +159,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
     for (tag in TagsDB.db.getAll()) {
       options.add(TagOptionsItem(
           tag = tag,
-          usages = Note.db().getNoteCountByTag("%" + tag.uuid + "%"),
+          usages = NotesDB.db.getNoteCountByTag(tag.uuid),
           listener = View.OnClickListener {
             activity.openTag(tag)
             dismiss()

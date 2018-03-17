@@ -59,7 +59,7 @@ class FloatingNoteService : FloatingBubbleService() {
   override fun onGetIntent(intent: Intent): Boolean {
     note = null
     if (intent.hasExtra(INTENT_KEY_NOTE_ID)) {
-      note = Note.db().getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
+      note = NotesDB.db.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
     }
     return note != null
   }

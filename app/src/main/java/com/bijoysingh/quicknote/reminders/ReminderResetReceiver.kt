@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.NotesDB
 import com.bijoysingh.quicknote.database.utils.getReminder
 
 class ReminderResetReceiver : BroadcastReceiver() {
@@ -13,7 +14,7 @@ class ReminderResetReceiver : BroadcastReceiver() {
     }
 
     val reminderScheduler = ReminderScheduler(context)
-    val notes = Note.db().all
+    val notes = NotesDB.db.getAll()
     notes.forEach {
       if (it.getReminder() !== null) {
         reminderScheduler.reset(it)

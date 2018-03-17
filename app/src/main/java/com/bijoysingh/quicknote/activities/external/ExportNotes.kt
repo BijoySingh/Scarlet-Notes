@@ -8,6 +8,7 @@ import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.activities.sheets.ExportNotesBottomSheet
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
+import com.bijoysingh.quicknote.database.utils.NotesDB
 import com.bijoysingh.quicknote.database.utils.TagsDB
 import com.bijoysingh.quicknote.database.utils.getFullText
 import com.github.bijoysingh.starter.util.FileManager
@@ -28,7 +29,7 @@ class ExportableFileFormat(
     val tags: List<ExportableTag>)
 
 fun getNotesForExport(): String {
-  val notes = Note.db().all.map { ExportableNote(it) }
+  val notes = NotesDB.db.getAll().map { ExportableNote(it) }
   val tags = TagsDB.db.getAll().map { ExportableTag(it) }
   val fileContent = ExportableFileFormat(EXPORT_VERSION, notes, tags)
   return Gson().toJson(fileContent)
@@ -41,7 +42,7 @@ fun maybeAutoExport() {
       return@execute
     }
     val lastBackup = userPreferences().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
-    val lastTimestamp = Note.db().getLastTimestamp()
+    val lastTimestamp = NotesDB.db.getLastTimestamp()
     if (lastBackup + AUTO_BACKUP_INTERVAL_MS >= lastTimestamp) {
       return@execute
     }

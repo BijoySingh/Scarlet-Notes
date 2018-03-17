@@ -16,6 +16,7 @@ import android.widget.RemoteViews
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Widget
+import com.bijoysingh.quicknote.database.utils.NotesDB
 import com.bijoysingh.quicknote.database.utils.getLockedText
 import com.bijoysingh.quicknote.database.utils.getTitle
 import com.bijoysingh.quicknote.service.NoteWidgetProvider
@@ -47,7 +48,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
   }
 
   override fun getNotes(): List<Note> {
-    return Note.db().getByNoteState(
+    return NotesDB.db.getByNoteState(
         arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name, NoteState.ARCHIVED.name))
         .filter { note -> !note.locked }
   }
@@ -73,7 +74,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
 
   companion object {
     fun createNoteWidget(context: Context, widget: Widget) {
-      val note = Note.db().getByUUID(widget.noteUUID)
+      val note = NotesDB.db.getByUUID(widget.noteUUID)
       val appWidgetManager = AppWidgetManager.getInstance(context)
       if (note === null || note.locked) {
         val views = RemoteViews(context.getPackageName(), R.layout.widget_invalid_note)

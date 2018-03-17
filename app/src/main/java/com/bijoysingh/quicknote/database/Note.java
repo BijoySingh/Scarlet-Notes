@@ -41,7 +41,4 @@ public class Note {
 
   public String meta;
 
-  public static NoteDao db() {
-    return MaterialNotes.Companion.db().notes();
-  }
 }

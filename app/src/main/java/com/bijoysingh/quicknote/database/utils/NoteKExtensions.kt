@@ -322,8 +322,9 @@ fun Note.save(context: Context) {
 }
 
 fun Note.saveWithoutSync(context: Context) {
-  val id = Note.db().insertNote(this)
+  val id = NotesDB.db().insertNote(this)
   this.uid = if (isUnsaved()) id.toInt() else this.uid
+  NotesDB.db.notifyInsertNote(this)
   updateAsyncContent(context)
 }
 
@@ -357,7 +358,8 @@ fun Note.deleteWithoutSync(context: Context) {
   if (isUnsaved()) {
     return
   }
-  Note.db().delete(this)
+  NotesDB.db().delete(this)
+  NotesDB.db.notifyDelete(this)
   this.description = Format.getNote(ArrayList())
   this.uid = 0
 }

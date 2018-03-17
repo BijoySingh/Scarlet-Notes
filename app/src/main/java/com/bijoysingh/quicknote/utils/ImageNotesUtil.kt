@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.utils.NotesDB
 import com.bijoysingh.quicknote.database.utils.getFormats
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
@@ -64,7 +65,7 @@ fun deleteAllRedundantImageFiles(context: Context) {
       availableDirectories.add(file.name)
     }
   }
-  val ids = Note.db().allUUIDs
+  val ids = NotesDB.db.getAllUUIDs()
   for (id in ids) {
     availableDirectories.remove(id)
   }

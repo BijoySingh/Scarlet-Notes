@@ -49,7 +49,8 @@ fun Tag.deleteWithoutSync() {
   if (isUnsaved()) {
     return
   }
-  TagsDB.db.delete(this)
+  TagsDB.db().delete(this)
+  TagsDB.db.notifyDelete(this)
   uid = 0
 }
 
