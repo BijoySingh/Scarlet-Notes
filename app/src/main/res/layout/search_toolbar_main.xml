@@ -10,38 +10,60 @@
 
   <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="54dp"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="@dimen/spacing_xsmall">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <ImageView
-      android:id="@+id/search_back_button"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
-      android:layout_marginEnd="@dimen/spacing_xsmall"
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="54dp"
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:padding="@dimen/spacing_xsmall">
+
+      <ImageView
+        android:id="@+id/search_back_button"
+        android:layout_width="@dimen/icon_size_large"
+        android:layout_height="@dimen/icon_size_large"
+        android:layout_marginEnd="@dimen/spacing_xsmall"
+        android:padding="@dimen/spacing_xsmall"
+        android:src="@drawable/ic_arrow_back_white_48dp"
+        android:tint="@color/dark_tertiary_text" />
+
+      <EditText
+        android:id="@+id/search_box"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:hint="@string/search_notes"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_large" />
+
+      <ImageView
+        android:id="@+id/search_close_button"
+        android:layout_width="@dimen/icon_size_large"
+        android:layout_height="@dimen/icon_size_large"
+        android:padding="@dimen/spacing_xsmall"
+        android:src="@drawable/ic_close_white_48dp"
+        android:tint="@color/dark_tertiary_text" />
+
+    </LinearLayout>
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="0.75dp"
+      android:layout_marginStart="@dimen/spacing_normal"
+      android:layout_marginEnd="@dimen/spacing_normal"
+      android:background="@color/dark_hint_text" />
+
+    <com.google.android.flexbox.FlexboxLayout
+      android:id="@+id/tags_flexbox"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_arrow_back_white_48dp"
-      android:tint="@color/dark_tertiary_text" />
-
-    <EditText
-      android:id="@+id/search_box"
-      android:layout_width="0dp"
-      android:layout_height="match_parent"
-      android:layout_weight="1"
-      android:background="@color/transparent"
-      android:hint="@string/search_notes"
-      android:textColor="@color/dark_tertiary_text"
-      android:textSize="@dimen/font_size_large" />
-
-    <ImageView
-      android:id="@+id/search_close_button"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_close_white_48dp"
-      android:tint="@color/dark_tertiary_text" />
+      app:alignContent="stretch"
+      app:alignItems="stretch"
+      app:flexWrap="wrap"/>
 
   </LinearLayout>
-
 </android.support.v7.widget.CardView>

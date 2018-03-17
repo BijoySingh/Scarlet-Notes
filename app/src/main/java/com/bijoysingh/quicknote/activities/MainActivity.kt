@@ -33,11 +33,12 @@ import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
 import com.bijoysingh.quicknote.utils.*
+import com.bijoysingh.quicknote.views.TagPickerViewHolder
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.github.bijoysingh.starter.util.IntentUtils
-import java.util.*
+import com.google.android.flexbox.FlexboxLayout
 
 class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
 
@@ -45,9 +46,11 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   internal lateinit var adapter: NoteAppAdapter
 
   internal var mode: HomeNavigationState = HomeNavigationState.DEFAULT
+  internal var selectedTag: Tag? = null
 
   internal lateinit var receiver: BroadcastReceiver
   internal lateinit var executor: SimpleThreadExecutor
+  internal lateinit var tagPicker: TagPickerViewHolder
 
   val homeButton: ImageView by bind(R.id.home_button)
   val searchIcon: ImageView by bind(R.id.home_search_button)
@@ -61,10 +64,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   val searchToolbar: View by bind(R.id.search_toolbar)
   val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
   val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
+  val tagsFlexBox: FlexboxLayout by bind(R.id.tags_flexbox)
 
   val deleteToolbar: View by bind(R.id.bottom_delete_toolbar_layout)
   internal var isInSearchMode: Boolean = false
-  internal var searchNotes: MutableList<Note>? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -104,10 +107,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
       }
 
       override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-        executor.executeNow {
-          val items = search(charSequence.toString())
-          runOnUiThread { adapter.items = items }
-        }
+        startSearch(charSequence.toString())
       }
 
       override fun afterTextChanged(editable: Editable) {
@@ -117,6 +117,15 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     homeButton.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
     primaryFab.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateOrEditAdvancedNoteActivity::class.java) }
     secondaryFab.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
+    tagPicker = TagPickerViewHolder(this, tagsFlexBox, {
+      if (it == selectedTag && mode == HomeNavigationState.TAG) {
+        mode = HomeNavigationState.DEFAULT
+        startSearch(searchBox.text.toString())
+        return@TagPickerViewHolder
+      }
+      openTag(it)
+      tagPicker.setTags(listOf(it))
+    })
   }
 
   fun setupRecyclerView() {
@@ -245,6 +254,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   fun openTag(tag: Tag) {
     mode = HomeNavigationState.TAG
+    selectedTag = tag
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
@@ -276,6 +286,17 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     }
   }
 
+  fun getDataForMode(): List<Note> {
+    return when (mode) {
+      HomeNavigationState.FAVOURITE -> NotesDB.db.getByNoteState(arrayOf(NoteState.FAVOURITE.name))
+      HomeNavigationState.ARCHIVED -> NotesDB.db.getByNoteState(arrayOf(NoteState.ARCHIVED.name))
+      HomeNavigationState.TRASH -> NotesDB.db.getByNoteState(arrayOf(NoteState.TRASH.name))
+      HomeNavigationState.LOCKED -> NotesDB.db.getNoteByLocked(true)
+      HomeNavigationState.DEFAULT -> NotesDB.db.getByNoteState(arrayOf(NoteState.ARCHIVED.name, NoteState.FAVOURITE.name))
+      HomeNavigationState.TAG -> NotesDB.db.getNoteByTag(selectedTag!!.uuid)
+    }
+  }
+
   private fun setSearchMode(mode: Boolean) {
     isInSearchMode = mode
     mainToolbar.visibility = if (isInSearchMode) View.GONE else View.VISIBLE
@@ -284,31 +305,30 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
     if (isInSearchMode) {
       tryOpeningTheKeyboard()
-      searchNotes = ArrayList()
-      for (item in adapter.items) {
-        if (item is NoteRecyclerItem) {
-          searchNotes!!.add(item.note)
-        }
-      }
+      tagPicker.search("")
     } else {
       tryClosingTheKeyboard()
-      searchNotes = null
       setupData()
     }
   }
 
-  private fun search(keyword: String): List<RecyclerItem> {
-    if (searchNotes == null) {
-      return adapter.items
-    }
+  private fun startSearch(keyword: String) {
+    executor.executeNow {
+      val items = search(keyword)
+      val tags = if (mode != HomeNavigationState.TAG) TagsDB.db.search(keyword)
+      else listOf(selectedTag!!)
 
-    val notes = ArrayList<RecyclerItem>()
-    for (note in searchNotes!!) {
-      if (note.search(keyword)) {
-        notes.add(NoteRecyclerItem(this, note))
+      runOnUiThread {
+        adapter.items = items
+        tagPicker.setTags(tags)
       }
     }
-    return notes
+  }
+
+  private fun search(keyword: String): List<RecyclerItem> {
+    return getDataForMode()
+        .filter { return@filter it.search(keyword) }
+        .map { NoteRecyclerItem(this, it) }
   }
 
   override fun onBackPressed() {

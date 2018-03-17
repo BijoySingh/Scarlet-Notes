@@ -44,6 +44,11 @@ class TagsDB {
     return tags.values.firstOrNull { it.title == title }
   }
 
+  fun search(string: String): List<Tag> {
+    maybeLoadFromDB()
+    return tags.values.filter { it.title.contains(string, true) }
+  }
+
   @Synchronized
   fun maybeLoadFromDB() {
     if (tags.isNotEmpty()) {
