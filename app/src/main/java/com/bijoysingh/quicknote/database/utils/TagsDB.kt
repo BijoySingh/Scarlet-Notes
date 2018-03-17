@@ -46,7 +46,12 @@ class TagsDB {
 
   fun search(string: String): List<Tag> {
     maybeLoadFromDB()
-    return tags.values.filter { it.title.contains(string, true) }
+    return tags.values
+        .filter { it.title.contains(string, true) }
+        .map { Pair<Tag, Int>(it, NotesDB.db.getNoteCountByTag(it.uuid)) }
+        .filter { it.second > 0 }
+        .sortedByDescending { it.second }
+        .map { it.first }
   }
 
   @Synchronized
