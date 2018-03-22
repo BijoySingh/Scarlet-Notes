@@ -57,7 +57,7 @@ fun maybeAutoExport() {
 }
 
 fun searchInNote(note: Note, keyword: String): Boolean {
-  return note.getFullText().contains(keyword, true)
+  return keyword.isBlank() || note.getFullText().contains(keyword, true)
 }
 
 fun getStoragePermissionManager(activity: AppCompatActivity): PermissionManager {

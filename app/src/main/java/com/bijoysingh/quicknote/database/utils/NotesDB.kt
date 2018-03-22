@@ -41,12 +41,12 @@ class NotesDB {
 
   fun getNoteByTag(uuid: String): List<Note> {
     maybeLoadFromDB()
-    return notes.values.filter { it.tags.contains(uuid) }
+    return notes.values.filter { it.tags?.contains(uuid) ?: false }
   }
 
   fun getNoteCountByTag(uuid: String): Int {
     maybeLoadFromDB()
-    return notes.values.count { it.tags.contains(uuid) }
+    return notes.values.count { it.tags?.contains(uuid) ?: false }
   }
 
   fun getByID(uid: Int): Note? {

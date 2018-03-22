@@ -4,7 +4,10 @@
   android:layout_height="wrap_content"
   android:gravity="center"
   android:orientation="vertical"
-  android:padding="@dimen/spacing_xsmall">
+  android:paddingTop="@dimen/spacing_xxsmall"
+  android:paddingBottom="@dimen/spacing_xxsmall"
+  android:paddingStart="@dimen/spacing_xsmall"
+  android:paddingEnd="@dimen/spacing_xsmall">
 
   <TextView
     android:id="@+id/tag_text"

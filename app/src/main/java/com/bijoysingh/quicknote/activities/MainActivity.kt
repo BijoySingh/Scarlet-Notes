@@ -292,7 +292,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
       HomeNavigationState.ARCHIVED -> NotesDB.db.getByNoteState(arrayOf(NoteState.ARCHIVED.name))
       HomeNavigationState.TRASH -> NotesDB.db.getByNoteState(arrayOf(NoteState.TRASH.name))
       HomeNavigationState.LOCKED -> NotesDB.db.getNoteByLocked(true)
-      HomeNavigationState.DEFAULT -> NotesDB.db.getByNoteState(arrayOf(NoteState.ARCHIVED.name, NoteState.FAVOURITE.name))
+      HomeNavigationState.DEFAULT -> NotesDB.db.getByNoteState(arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name))
       HomeNavigationState.TAG -> NotesDB.db.getNoteByTag(selectedTag!!.uuid)
     }
   }
