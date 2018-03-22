@@ -287,16 +287,6 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
-        title = R.string.reminder,
-        subtitle = R.string.reminder,
-        icon = R.drawable.ic_action_reminder_icon,
-        listener = View.OnClickListener {
-          ReminderBottomSheet.openSheet(activity, note)
-          dismiss()
-        },
-        invalid = activity.lockedContentIsHidden() && note.locked
-    ))
-    options.add(OptionsItem(
         title = R.string.view_distraction_free,
         subtitle = R.string.view_distraction_free,
         icon = R.drawable.ic_action_distraction_free,
