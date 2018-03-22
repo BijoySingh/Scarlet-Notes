@@ -32,13 +32,13 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     optionsTitle.setTextColor(appTheme().get(ThemeColorType.SECONDARY_TEXT))
     val whatsNew = "> A lot has changed in this update, here is a summary of those changes.\n" +
         "### New Features\n" +
-        "- **Search Bar:** All new search bar for notes\n" +
+        "- **Search Bar:** All new search bar for notes. Search through tags, filter by tags, and improved searching experience\n" +
+        "- **Reminders (Beta):** Adding ability to create reminders for notes \n" +
         "### Improvements\n" +
         "- **Import and Export :** Better, more useful and reliable import and export of notes\n" +
         "- **Scroll Performance :** Smoother scroll through notes, better handling of images\n" +
         "### New Pro Only Features\n" +
         "- **Distraction Free Mode :** New distraction free note viewing mode, so you can read your note comfortably\n" +
-        "- **Reminders :** Adding ability to create reminders for notes \n" +
         "### Bugs Fix\n" +
         "- **Sync Notes :** Resolving major issue with note sync causing duplication\n" +
         "- **Duplicate Notes :** Resolving some issues with duplicating notes\n" +
