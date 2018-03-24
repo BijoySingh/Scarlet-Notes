@@ -219,18 +219,18 @@
   <string name="tutorial_home_menu_subtitle">Il menu principale contiene le note preferite e archiviate, nonché le impostazioni dell\'applicazione. Puoi trovare anche i tuoi tag.</string>
 
   <!-- Added for 4.5.3 -->
-  <string name="format_action_copy">copia</string>
+  <string name="format_action_copy">Copia</string>
   <string name="format_action_title">Blocca azioni di testo</string>
   <string name="format_action_gallery">Galleria</string>
-  <string name="format_action_camera">telecamera</string>
-  <string name="voice_sheet_title">Parla ad alta voce</string>
-  <string name="voice_action_title">Parlare a voce alta</string>
+  <string name="format_action_camera">Fotocamera</string>
+  <string name="voice_sheet_title">Leggi ad alta voce</string>
+  <string name="voice_action_title">Leggi ad alta voce</string>
   <string name="image_delete_all_devices">L\'eliminazione di questo elemento eliminerà l\'immagine da tutti i dispositivi.</string>
   <string name="image_not_on_current_device">Immagine non su questo dispositivo</string>
   <string name="image_cannot_be_loaded">L\'immagine non può essere caricata</string>
   <string name="image_not_uploaded">Le immagini non sono sincronizzate</string>
   <string name="image_not_uploaded_details">Le immagini non sono sincronizzate su tutti i dispositivi. Le tue immagini non verranno visualizzate su altri dispositivi durante la visualizzazione della nota!</string>
-  <string name="image_not_uploaded_i_understand">Capisco</string>
+  <string name="image_not_uploaded_i_understand">OK</string>
   <string name="home_option_auto_export">Esporta automaticamente</string>
   <string name="home_option_auto_export_subtitle">Esporta frequentemente le note in un file esterno come backup</string>
   <string name="format_label_image">Immagine</string>
@@ -239,16 +239,16 @@
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">Solo una volta</string>
   <string name="reminder_frequency_daily">Quotidiano</string>
-  <string name="reminder_frequency_custom">costume</string>
+  <string name="reminder_frequency_custom">Personalizzato</string>
   <string name="reminder_beta_label">Beta</string>
   <string name="notification_reminder_channel_label">Promemoria e allarmi</string>
-  <string name="about_page_description_os">%s è open source e chiunque è aperto a contribuire a migliorarlo. Attualmente è costruito e gestito da %s.</string>
+  <string name="about_page_description_os">%s è open source e chiunque è libero di contribuire per migliorarlo. Attualmente è sviluppato e gestito da %s.</string>
   <string name="about_page_description">%s è una semplice app per prendere appunti. Permette di inserire rapidamente Rich Text senza rendere l\'esperienza molto difficile da usare. Rende il multi-tasking un gioco da ragazzi.</string>
   <string name="about_page_about_us_details">Ciao, siamo una coppia di designer e programmatori, che ha creato %s.
-     Ci sforziamo di creare app pubblicitarie gratuite, pubblicitarie o minime, progettate con cura, che siano di grande utilità per tutti!</string>
-  <string name="note_option_number_lines_subtitle">%d linee sulla schermata iniziale</string>
-  <string name="search_toolbar_text">Cerca %s &#8230;</string>
-  <string name="view_distraction_free">Distrazione gratuita</string>
+     Ci sforziamo di creare app progettate con cura, senza o con poca pubblicità, che siano di grande utilità per tutti!</string>
+  <string name="note_option_number_lines_subtitle">%d linee sulla schermata principale</string>
+  <string name="search_toolbar_text">Cerca %s&#8230;</string>
+  <string name="view_distraction_free">Senza distrazioni</string>
   <string name="format_label_separator">Separatore</string>
 
 </resources>
