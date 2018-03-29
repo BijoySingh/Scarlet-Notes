@@ -23,7 +23,7 @@
   <string name="lock_note">Notiz sperren</string>
   <string name="unlock_note">Notiz entsperren</string>
   <string name="home_option_security">Sicherheit</string>
-  <string name="home_option_security_subtitle">Sperrvermerke und Sicherheitsoptionen</string>
+  <string name="home_option_security_subtitle">Notizen sperren und Sicherheitsoptionen</string>
   <string name="security_option_title">Sicherheitsoptionen</string>
   <string name="security_option_set_pin_code">Code eingeben</string>
   <string name="security_option_set_pin_code_subtitle">Stellen Sie eine vierstellige PIN ein, um Notizen zu sperren</string>
@@ -115,7 +115,7 @@
   <string name="nav_trash_details">Alle Ihre Notizen im Papierkorb</string>
   <string name="open_in_notification">Benachrichtigung erstellen</string>
   <string name="notification_channel_label">Hinweis Benachrichtigungen</string>
-  <string name="nav_locked">Verschlossen</string>
+  <string name="nav_locked">Gesperrt</string>
   <string name="nav_locked_details">Alle Ihre gesperrten Notizen</string>
   <string name="nav_tags">Stichworte</string>
   <string name="nav_tags_details">Alle Ihre Notiz-Tags</string>
@@ -134,7 +134,7 @@
 
   <!-- Added in release v3.8.4 -->
   <string name="change_tags">Tags ändern</string>
-  <string name="home_option_order_notes">Bestellhinweise</string>
+  <string name="home_option_order_notes">Notizen sortieren</string>
   <string name="home_option_open_source_page">Open-Source-Projekt</string>
   <string name="home_option_open_source_page_subtitle">Erfahren Sie mehr über das Open-Source-Projekt</string>
   <string name="osp_page_libraries">Bibliotheken</string>
@@ -149,8 +149,8 @@
   <string name="sort_sheet_oldest_first">Die ältesten zu erst</string>
   <string name="sort_sheet_last_modified">Zuletzt geändert</string>
   <string name="reminder">Erinnerung</string>
-  <string name="pin_note">Pin Hinweis</string>
-  <string name="unpin_note">Hinweis loslösen</string>
+  <string name="pin_note">Notiz fixieren</string>
+  <string name="unpin_note">Notiz loslösen</string>
 
   <!-- Added in release v3.9.0 -->
   <string name="home_option_ui_experience">Schnittstelle und Erfahrung</string>
@@ -161,7 +161,7 @@
   <string name="home_option_about_subtitle">Erfahren Sie mehr über uns und die App.</string>
   <string name="note_option_default_color">Standard Hinweisfarbe</string>
   <string name="note_option_default_color_subtitle">Wählen Sie die Standardfarbe der Notizen</string>
-  <string name="note_option_number_lines">Hinweis Leitungsgrenze</string>
+  <string name="note_option_number_lines">Zeilenlimit der Notizen</string>
   <string name="home_option_backup_options">Sichern und Importieren</string>
   <string name="home_option_backup_options_subtitle">Backup, Import und Export von Notizoptionen</string>
 
@@ -205,7 +205,7 @@
   <string name="markdown_label_list">Liste</string>
   <string name="select_a_note_title">Wählen Sie eine Notiz</string>
   <string name="select_notes_title">Wählen Sie Notizen</string>
-  <string name="nav_settings">die Einstellungen</string>
+  <string name="nav_settings">Einstellungen</string>
   <string name="widget_no_valid_note">Notiz entweder gelöscht oder gesperrt</string>
   <string name="note_option_font_size">Hinweis Schriftgröße</string>
   <string name="note_option_font_size_example">Passen Sie die Schriftgröße des Textes auf der Notizenseite an. Sie können sehen, wie es in dieser Vorschau aussehen würde.</string>
