@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.utils
 
 import com.bijoysingh.quicknote.BuildConfig
+import com.google.firebase.auth.FirebaseAuth
 
 enum class Flavor {
   NONE, // FDroid, Master Builds
@@ -17,5 +18,7 @@ fun getAppFlavor(): Flavor {
 }
 
 fun isLoggedIn(): Boolean {
-  return false
+  val user = FirebaseAuth.getInstance().currentUser
+  val userId = user?.uid
+  return userId !== null
 }

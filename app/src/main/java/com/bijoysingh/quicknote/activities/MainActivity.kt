@@ -17,6 +17,7 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.DataPolicyActivity.Companion.openIfNeeded
 import com.bijoysingh.quicknote.activities.external.ITutorialActivity
 import com.bijoysingh.quicknote.activities.external.createHint
 import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
@@ -271,6 +272,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   override fun onResume() {
     super.onResume()
+    openIfNeeded(this)
     setupData()
     registerNoteReceiver()
   }
