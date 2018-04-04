@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.database.Note
@@ -17,6 +18,7 @@ import com.bijoysingh.quicknote.database.utils.saveToSync
 import com.bijoysingh.quicknote.utils.Flavor
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.getAppFlavor
+import com.bijoysingh.quicknote.utils.isLoggedIn
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -52,6 +54,14 @@ class LoginActivity : ThemedActivity() {
     setupGoogleLogin()
     firebaseAuth = FirebaseAuth.getInstance()
     notifyThemeChange()
+  }
+
+  override fun onResume() {
+    super.onResume()
+    if (!MaterialNotes.userPreferences().get(DataPolicyActivity.DATA_POLICY_ACCEPTED, false)) {
+      IntentUtils.startActivity(this, DataPolicyActivity::class.java)
+      finish()
+    }
   }
 
   private fun setupSignInButton() {

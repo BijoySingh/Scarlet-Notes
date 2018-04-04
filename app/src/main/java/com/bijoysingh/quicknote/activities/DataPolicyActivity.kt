@@ -17,21 +17,23 @@ import com.bijoysingh.quicknote.utils.visibility
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.ToastHelper
 
+const val KEY_DATA_POLICY_REQUEST = "KEY_DATA_POLICY_REQUEST"
+const val KEY_DATA_POLICY_REQUEST_LOGGED_IN = "LOGGED_IN"
+
 class DataPolicyActivity : ThemedActivity() {
 
-  val pageTitle = R.id.page_title
-  val headings = intArrayOf(R.id.heading_1, R.id.heading_2, R.id.heading_3, R.id.heading_4)
-  val texts = intArrayOf(R.id.text_introduction, R.id.text_1, R.id.text_2, R.id.text_3)
+  var startState: String = ""
 
   val acceptCheckBox: CheckBox by bind(R.id.accept_policy)
   val refuseBtn: TextView by bind(R.id.btn_refuse)
   val doneBtn: TextView by bind(R.id.btn_done)
-  val pageContainer: View by bind(R.id.scroll_bg)
   val privacyPolicy: View by bind(R.id.heading_4)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_data_policy)
+
+    startState = intent.getStringExtra(KEY_DATA_POLICY_REQUEST) ?: ""
 
     notifyThemeChange()
     acceptCheckBox.setOnCheckedChangeListener { button, checked ->
@@ -45,6 +47,10 @@ class DataPolicyActivity : ThemedActivity() {
     doneBtn.setOnClickListener {
       if (acceptCheckBox.isChecked) {
         userPreferences().put(DATA_POLICY_ACCEPTED, true)
+        if (startState == "" && !isLoggedIn()) {
+          IntentUtils.startActivity(this, LoginActivity::class.java)
+        }
+
         finish()
         return@setOnClickListener
       }
@@ -53,7 +59,7 @@ class DataPolicyActivity : ThemedActivity() {
     }
 
     refuseBtn.setOnClickListener {
-
+      IntentUtils.startActivity(this, ForgetMeActivity::class.java)
     }
     refuseBtn.visibility = visibility(isLoggedIn())
 
@@ -65,19 +71,14 @@ class DataPolicyActivity : ThemedActivity() {
   }
 
   override fun notifyThemeChange() {
-    pageContainer.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
-    findViewById<TextView>(pageTitle).setTextColor(ContextCompat.getColor(this, R.color.dark_primary_text))
-    for (heading in headings) {
-      findViewById<TextView>(heading).setTextColor(ContextCompat.getColor(this, R.color.dark_secondary_text))
-    }
-    for (text in texts) {
-      findViewById<TextView>(text).setTextColor(ContextCompat.getColor(this, R.color.dark_tertiary_text))
-    }
+
   }
 
-
-  override fun onBackPressed() {
-
+  override fun onResume() {
+    super.onResume()
+    if (startState == KEY_DATA_POLICY_REQUEST_LOGGED_IN && !isLoggedIn()) {
+      finish()
+    }
   }
 
   companion object {
@@ -85,8 +86,10 @@ class DataPolicyActivity : ThemedActivity() {
     const val DATA_POLICY_ACCEPTED = "DATA_POLICY_ACCEPTED"
 
     fun openIfNeeded(activity: AppCompatActivity) {
-      if (!userPreferences().get(DATA_POLICY_ACCEPTED, false)) {
-        IntentUtils.startActivity(activity, DataPolicyActivity::class.java)
+      if (!userPreferences().get(DATA_POLICY_ACCEPTED, false) && isLoggedIn()) {
+        val intent = Intent(activity, DataPolicyActivity::class.java)
+        intent.putExtra(KEY_DATA_POLICY_REQUEST, KEY_DATA_POLICY_REQUEST_LOGGED_IN)
+        activity.startActivity(intent)
       }
     }
   }

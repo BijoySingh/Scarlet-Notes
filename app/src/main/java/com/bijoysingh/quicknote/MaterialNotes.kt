@@ -5,6 +5,8 @@ import com.bijoysingh.quicknote.database.AppDatabase
 import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.database.external.noteDatabaseReference
 import com.bijoysingh.quicknote.database.external.tagDatabaseReference
+import com.bijoysingh.quicknote.utils.firebaseReloadUser
+import com.bijoysingh.quicknote.utils.firebaseUserId
 import com.github.ajalt.reprint.core.Reprint
 import com.github.bijoysingh.starter.prefs.DataStore
 import com.github.bijoysingh.starter.prefs.Store
@@ -38,8 +40,7 @@ class MaterialNotes : Application() {
 
   private fun setupFirebase() {
     try {
-      val user = FirebaseAuth.getInstance().currentUser
-      val userId = user?.uid
+      val userId = firebaseUserId()
       if (userId === null) {
         return
       }
@@ -47,6 +48,8 @@ class MaterialNotes : Application() {
       FirebaseDatabase.getInstance()
       noteDatabaseReference(this, userId)
       tagDatabaseReference(this, userId)
+
+      firebaseReloadUser()
     } catch (exception: Exception) {
       // Don't need to do anything
     }

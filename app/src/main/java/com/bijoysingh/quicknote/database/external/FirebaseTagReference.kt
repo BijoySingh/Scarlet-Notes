@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.database.external
 
 import android.content.Context
 import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.activities.ForgetMeActivity
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.utils.TagsDB
 import com.bijoysingh.quicknote.utils.genFromFirebase
@@ -64,10 +65,16 @@ private fun setListener(context: Context) {
     }
 
     override fun onChildChanged(snapshot: DataSnapshot?, p1: String?) {
+      if (ForgetMeActivity.forgettingInProcess) {
+        return
+      }
       onChildAdded(snapshot, p1)
     }
 
     override fun onChildAdded(snapshot: DataSnapshot?, p1: String?) {
+      if (ForgetMeActivity.forgettingInProcess) {
+        return
+      }
       handleTagChange(snapshot, fun(tag, existingTag, isSame) {
         if (existingTag === null) {
           tag.saveWithoutSync()
@@ -83,6 +90,9 @@ private fun setListener(context: Context) {
     }
 
     override fun onChildRemoved(snapshot: DataSnapshot?) {
+      if (ForgetMeActivity.forgettingInProcess) {
+        return
+      }
       handleTagChange(snapshot, fun(_, existingTag, _) {
         if (existingTag !== null) {
           existingTag.deleteWithoutSync()

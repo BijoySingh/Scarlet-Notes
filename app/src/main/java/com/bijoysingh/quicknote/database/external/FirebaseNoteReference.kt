@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.database.external
 
 import android.content.Context
 import com.bijoysingh.quicknote.MaterialNotes
+import com.bijoysingh.quicknote.activities.ForgetMeActivity.Companion.forgettingInProcess
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.utils.NoteBroadcast
@@ -61,10 +62,16 @@ private fun setListener(context: Context) {
     }
 
     override fun onChildChanged(snapshot: DataSnapshot?, p1: String?) {
+      if (forgettingInProcess) {
+        return
+      }
       onChildAdded(snapshot, p1)
     }
 
     override fun onChildAdded(snapshot: DataSnapshot?, p1: String?) {
+      if (forgettingInProcess) {
+        return
+      }
       handleNoteChange(snapshot, fun(note, existingNote, isSame) {
         if (existingNote === null) {
           note.saveWithoutSync(context)
@@ -80,6 +87,9 @@ private fun setListener(context: Context) {
     }
 
     override fun onChildRemoved(snapshot: DataSnapshot?) {
+      if (forgettingInProcess) {
+        return
+      }
       handleNoteChange(snapshot, fun(_, existingNote, _) {
         if (existingNote !== null) {
           existingNote.deleteWithoutSync(context)

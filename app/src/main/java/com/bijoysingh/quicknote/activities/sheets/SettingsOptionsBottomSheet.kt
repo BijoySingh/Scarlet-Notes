@@ -8,6 +8,8 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.database.external.removeNoteDatabaseReference
 import com.bijoysingh.quicknote.database.external.removeTagDatabaseReference
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.utils.firebaseUserId
+import com.bijoysingh.quicknote.utils.logoutUser
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.google.firebase.auth.FirebaseAuth
@@ -15,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   override fun setupViewWithDialog(dialog: Dialog) {
-    MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<List<OptionsItem>> {
+    MultiAsyncTask.execute(themedActivity(), object : MultiAsyncTask.Task<List<OptionsItem>> {
       override fun run(): List<OptionsItem> {
         return getOptions()
       }
@@ -30,7 +32,7 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     val activity = context as MainActivity
     val options = ArrayList<OptionsItem>()
 
-    val firebaseUser = FirebaseAuth.getInstance().getCurrentUser()
+    val firebaseUser = firebaseUserId()
     options.add(OptionsItem(
         title = R.string.home_option_login_with_app,
         subtitle = R.string.home_option_login_with_app_subtitle,
@@ -87,9 +89,7 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.home_option_logout_of_app_subtitle,
         icon = R.drawable.ic_sign_in_options,
         listener = View.OnClickListener {
-          FirebaseAuth.getInstance().signOut()
-          removeNoteDatabaseReference()
-          removeTagDatabaseReference()
+          logoutUser()
           dismiss()
         },
         visible = firebaseUser !== null

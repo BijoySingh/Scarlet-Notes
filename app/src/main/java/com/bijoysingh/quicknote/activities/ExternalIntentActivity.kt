@@ -54,6 +54,11 @@ class ExternalIntentActivity : ThemedActivity() {
     filename.setText(filenameText)
   }
 
+  override fun onResume() {
+    super.onResume()
+    DataPolicyActivity.openIfNeeded(this)
+  }
+
   private fun setView() {
     filename = findViewById(R.id.filename)
     title = findViewById(R.id.title)

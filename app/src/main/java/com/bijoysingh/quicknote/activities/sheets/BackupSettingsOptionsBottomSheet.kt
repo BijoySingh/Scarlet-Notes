@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.view.View
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.ForgetMeActivity
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.external.ImportNoteFromFileActivity
@@ -12,6 +13,7 @@ import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.Flavor
 import com.bijoysingh.quicknote.utils.getAppFlavor
+import com.bijoysingh.quicknote.utils.isLoggedIn
 import com.github.bijoysingh.starter.util.IntentUtils
 
 class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
@@ -90,6 +92,16 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         },
         enabled = autoBackupEnabled
+    ))
+    options.add(OptionsItem(
+        title = R.string.forget_me_page_title,
+        subtitle = R.string.forget_me_page_details,
+        icon = R.drawable.ic_action_forget_me,
+        listener = View.OnClickListener {
+          IntentUtils.startActivity(context, ForgetMeActivity::class.java)
+          dismiss()
+        },
+        visible = isLoggedIn()
     ))
     return options
   }
