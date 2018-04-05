@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.DataPolicyActivity.Companion.hasAcceptedThePolicy
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.external.noteDatabaseReference
@@ -58,7 +59,7 @@ class LoginActivity : ThemedActivity() {
 
   override fun onResume() {
     super.onResume()
-    if (!MaterialNotes.userPreferences().get(DataPolicyActivity.DATA_POLICY_ACCEPTED, false)) {
+    if (!hasAcceptedThePolicy()) {
       IntentUtils.startActivity(this, DataPolicyActivity::class.java)
       finish()
     }

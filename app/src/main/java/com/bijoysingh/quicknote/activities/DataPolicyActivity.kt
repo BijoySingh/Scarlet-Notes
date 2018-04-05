@@ -46,7 +46,7 @@ class DataPolicyActivity : ThemedActivity() {
 
     doneBtn.setOnClickListener {
       if (acceptCheckBox.isChecked) {
-        userPreferences().put(DATA_POLICY_ACCEPTED, true)
+        acceptThePolicy()
         if (startState == "" && !isLoggedIn()) {
           IntentUtils.startActivity(this, LoginActivity::class.java)
         }
@@ -83,10 +83,15 @@ class DataPolicyActivity : ThemedActivity() {
 
   companion object {
 
-    const val DATA_POLICY_ACCEPTED = "DATA_POLICY_ACCEPTED"
+    const val DATA_POLICY_VERSION = 1
+    const val DATA_POLICY_ACCEPTED = "DATA_POLICY_ACCEPTED_VERSION"
+
+    fun hasAcceptedThePolicy() = userPreferences().get(DATA_POLICY_ACCEPTED, 0) == DATA_POLICY_VERSION
+
+    fun acceptThePolicy() = userPreferences().put(DATA_POLICY_ACCEPTED, DATA_POLICY_VERSION)
 
     fun openIfNeeded(activity: AppCompatActivity) {
-      if (!userPreferences().get(DATA_POLICY_ACCEPTED, false) && isLoggedIn()) {
+      if (!hasAcceptedThePolicy() && isLoggedIn()) {
         val intent = Intent(activity, DataPolicyActivity::class.java)
         intent.putExtra(KEY_DATA_POLICY_REQUEST, KEY_DATA_POLICY_REQUEST_LOGGED_IN)
         activity.startActivity(intent)
