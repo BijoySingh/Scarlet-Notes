@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.utils
 
 import android.content.Context
 import android.os.AsyncTask
+import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.activities.sheets.UISettingsOptionsBottomSheet.Companion.KEY_LIST_VIEW
 import com.bijoysingh.quicknote.database.Note
@@ -65,6 +66,7 @@ fun migrate(context: Context) {
     val isNightMode = userPreferences().get(KEY_NIGHT_THEME, false)
     userPreferences().put(KEY_APP_THEME, if (isNightMode) Theme.DARK.name else Theme.LIGHT.name)
     userPreferences().put(KEY_MIGRATE_THEME, true)
+    appTheme().notifyUpdate(context)
   }
   if (!userPreferences().get(KEY_MIGRATE_ZERO_NOTES, false)) {
     val note = NotesDB.db.getByID(0)

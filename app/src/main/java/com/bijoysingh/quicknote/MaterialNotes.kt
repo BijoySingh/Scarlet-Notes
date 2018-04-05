@@ -5,6 +5,7 @@ import com.bijoysingh.quicknote.database.AppDatabase
 import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.database.external.noteDatabaseReference
 import com.bijoysingh.quicknote.database.external.tagDatabaseReference
+import com.bijoysingh.quicknote.utils.RemoteConfigFetcher
 import com.bijoysingh.quicknote.utils.firebaseReloadUser
 import com.bijoysingh.quicknote.utils.firebaseUserId
 import com.github.ajalt.reprint.core.Reprint
@@ -36,6 +37,8 @@ class MaterialNotes : Application() {
 
     FirebaseApp.initializeApp(this)
     setupFirebase()
+
+    RemoteConfigFetcher(this).init()
   }
 
   private fun setupFirebase() {

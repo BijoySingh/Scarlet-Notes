@@ -285,6 +285,10 @@
   <string name="trash_will_delete_automatically">Notes are deleted forever after 7 days</string>
   <!-- End Delete Notes -->
 
+  <!-- Start Information -->
+  <string name="information_new_app_update" translatable="false">Tap to install the latest app version</string>
+  <!-- End Information -->
+
   <!-- Start: Firebase Login Strings -->
   <string name="home_option_login_with_app">Sign In to App</string>
   <string name="home_option_login_with_app_subtitle">Sign In for cloud backup and synchronisation</string>

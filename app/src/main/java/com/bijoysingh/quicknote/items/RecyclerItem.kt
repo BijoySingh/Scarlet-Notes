@@ -1,10 +1,7 @@
 package com.bijoysingh.quicknote.items
 
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.recyclerview.EmptyRecyclerHolder
-import com.bijoysingh.quicknote.recyclerview.FileImportViewHolder
-import com.bijoysingh.quicknote.recyclerview.NoteRecyclerHolder
-import com.bijoysingh.quicknote.recyclerview.SelectableNoteRecyclerViewHolder
+import com.bijoysingh.quicknote.recyclerview.*
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem
 import java.util.*
 
@@ -15,7 +12,8 @@ abstract class RecyclerItem {
   enum class Type {
     NOTE,
     EMPTY,
-    FILE
+    FILE,
+    INFORMATION
   }
 
   companion object {
@@ -32,6 +30,12 @@ abstract class RecyclerItem {
           .viewType(Type.EMPTY.ordinal)
           .layoutFile(R.layout.item_no_notes)
           .holderClass(EmptyRecyclerHolder::class.java)
+          .spanSize(2)
+          .build())
+      list.add(MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
+          .viewType(Type.INFORMATION.ordinal)
+          .layoutFile(R.layout.item_information)
+          .holderClass(InformationRecyclerHolder::class.java)
           .spanSize(2)
           .build())
       list.add(MultiRecyclerViewControllerItem.Builder<RecyclerItem>()

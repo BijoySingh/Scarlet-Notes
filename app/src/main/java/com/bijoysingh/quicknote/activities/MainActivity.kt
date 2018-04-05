@@ -30,10 +30,12 @@ import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem
+import com.bijoysingh.quicknote.items.InformationRecyclerItem
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
 import com.bijoysingh.quicknote.utils.*
+import com.bijoysingh.quicknote.utils.RemoteConfigFetcher.Companion.isLatestAppVersion
 import com.bijoysingh.quicknote.views.TagPickerViewHolder
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
@@ -244,8 +246,16 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   private fun handleNewItems(notes: List<NoteRecyclerItem>) {
     adapter.clearItems()
 
+    if (!isLatestAppVersion()) {
+      adapter.addItem(
+          InformationRecyclerItem(R.string.information_new_app_update, {
+            IntentUtils.openAppPlayStore(this)
+          }))
+    }
+
     if (notes.isEmpty()) {
       adapter.addItem(EmptyRecyclerItem())
+      return
     }
 
     notes.forEach {
