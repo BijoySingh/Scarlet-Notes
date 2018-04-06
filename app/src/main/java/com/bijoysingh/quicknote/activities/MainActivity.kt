@@ -29,10 +29,7 @@ import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Com
 import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.utils.*
-import com.bijoysingh.quicknote.items.EmptyRecyclerItem
-import com.bijoysingh.quicknote.items.InformationRecyclerItem
-import com.bijoysingh.quicknote.items.NoteRecyclerItem
-import com.bijoysingh.quicknote.items.RecyclerItem
+import com.bijoysingh.quicknote.items.*
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
 import com.bijoysingh.quicknote.utils.*
 import com.bijoysingh.quicknote.utils.RemoteConfigFetcher.Companion.isLatestAppVersion
@@ -246,21 +243,27 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   private fun handleNewItems(notes: List<NoteRecyclerItem>) {
     adapter.clearItems()
 
-    if (!isLatestAppVersion()) {
-      adapter.addItem(
-          InformationRecyclerItem(R.string.information_new_app_update, {
-            IntentUtils.openAppPlayStore(this)
-          }))
-    }
-
     if (notes.isEmpty()) {
       adapter.addItem(EmptyRecyclerItem())
       return
     }
-
     notes.forEach {
       adapter.addItem(it)
     }
+    addInformationItem(1)
+  }
+
+  private fun addInformationItem(index: Int) {
+    var informationItem = when {
+      !isLatestAppVersion() -> getAppUpdateInformationItem(this)
+      probability(0.1f) && !userPreferences().get(KEY_INFO_RATE_AND_REVIEW, false) -> getReviewInformationItem(this)
+      else -> null
+    }
+
+    if (informationItem === null) {
+      return
+    }
+    adapter.addItem(informationItem, index)
   }
 
   fun openTag(tag: Tag) {

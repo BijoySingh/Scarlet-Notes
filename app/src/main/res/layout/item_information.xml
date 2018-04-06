@@ -3,7 +3,7 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  app:cardBackgroundColor="@color/material_blue_grey_700"
+  app:cardBackgroundColor="@color/material_blue_grey_900"
   app:cardCornerRadius="4dp"
   app:cardUseCompatPadding="true">
 
@@ -12,14 +12,28 @@
     style="@style/BorderedBackgroundView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
+
+    <com.github.bijoysingh.uibasics.views.UITextView
+      android:id="@+id/ui_information_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:alpha="0.7"
+      app:icon="@drawable/ic_info"
+      app:iconSize="18sp"
+      app:iconTextGap="@dimen/spacing_small"
+      app:iconTint="@color/light_primary_text"
+      app:text="@string/information_card_title"
+      app:textColor="@color/light_primary_text"
+      app:textSize="@dimen/font_size_small" />
 
     <TextView
       android:id="@+id/information_text"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="@dimen/spacing_normal"
-      android:textColor="@color/light_secondary_text"
+      android:paddingTop="@dimen/spacing_small"
+      android:textColor="@color/light_primary_text"
       android:textSize="@dimen/font_size_large" />
   </LinearLayout>
 </android.support.v7.widget.CardView>

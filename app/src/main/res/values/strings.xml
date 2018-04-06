@@ -132,7 +132,7 @@
   <string name="home_option_open_source_page">Open Source Project</string>
   <string name="home_option_open_source_page_subtitle">Know more about the open source project</string>
   <string name="home_option_rate_and_review">Rate and Review</string>
-  <string name="home_option_rate_and_review_subtitle">Tell us know how much you liked the app</string>
+  <string name="home_option_rate_and_review_subtitle">Tell us how much you liked the app</string>
   <string name="home_option_fill_survey">Fill Survey</string>
   <string name="home_option_fill_survey_subtitle">Help us improve the app by telling us what you like</string>
 
@@ -286,6 +286,7 @@
   <!-- End Delete Notes -->
 
   <!-- Start Information -->
+  <string name="information_card_title" translatable="false">Information</string>
   <string name="information_new_app_update" translatable="false">Tap to install the latest app version</string>
   <!-- End Information -->
 

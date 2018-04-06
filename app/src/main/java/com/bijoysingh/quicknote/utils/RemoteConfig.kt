@@ -24,7 +24,7 @@ class RemoteConfig(
 
 class RemoteConfigFetcher(val context: Context) {
   fun init() {
-    val lastFetched = userPreferences().get(KEY_REMOTE_CONFIG_FETCH_TIME, 0)
+    val lastFetched = userPreferences().get(KEY_REMOTE_CONFIG_FETCH_TIME, 0L)
     if (System.currentTimeMillis() > lastFetched + REMOTE_CONFIG_REFETCH_TIME_MS) {
       fetchConfig()
     }
