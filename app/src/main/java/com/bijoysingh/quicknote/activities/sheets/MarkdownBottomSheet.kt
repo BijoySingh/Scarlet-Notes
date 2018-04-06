@@ -79,5 +79,8 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
     fun isMarkdownEnabled() = userPreferences()
         .get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
 
+    fun isMarkdownHomeEnabled() = userPreferences()
+        .get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, true)
+
   }
 }

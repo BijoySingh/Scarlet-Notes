@@ -3,7 +3,6 @@ package com.bijoysingh.quicknote.items
 import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.ColorUtils
-import android.util.Log
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.MarkdownBottomSheet
@@ -15,6 +14,7 @@ class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
 
   val isLightShaded = ColorUtils.calculateLuminance(note.color) > 0.35
   val isMarkdownEnabled = MarkdownBottomSheet.isMarkdownEnabled()
+      && MarkdownBottomSheet.isMarkdownHomeEnabled()
   val lineCount = LineCountBottomSheet.getDefaultLineCount()
 
   val title = note.getMarkdownTitle(context, isMarkdownEnabled)
