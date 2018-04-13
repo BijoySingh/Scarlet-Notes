@@ -254,12 +254,15 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   private fun addInformationItem(index: Int) {
-    var informationItem = when {
+    val informationItem = when {
       !isLatestAppVersion() -> getAppUpdateInformationItem(this)
-      probability(0.1f) && !userPreferences().get(KEY_INFO_RATE_AND_REVIEW, false) -> getReviewInformationItem(this)
+      probability(0.01f)
+          && !userPreferences().get(KEY_INFO_RATE_AND_REVIEW, false) -> getReviewInformationItem(this)
+      probability(0.01f)
+          && !userPreferences().get(KEY_INFO_INSTALL_PRO, false)
+          && getAppFlavor() != Flavor.PRO -> getInstallProInformationItem(this)
       else -> null
     }
-
     if (informationItem === null) {
       return
     }

@@ -83,7 +83,7 @@ class DataPolicyActivity : ThemedActivity() {
 
   companion object {
 
-    const val DATA_POLICY_VERSION = 1
+    const val DATA_POLICY_VERSION = 2
     const val DATA_POLICY_ACCEPTED = "DATA_POLICY_ACCEPTED_VERSION"
 
     fun hasAcceptedThePolicy() = userPreferences().get(DATA_POLICY_ACCEPTED, 0) == DATA_POLICY_VERSION
