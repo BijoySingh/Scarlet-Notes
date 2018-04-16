@@ -5,8 +5,10 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.ForgetMeActivity
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.bijoysingh.quicknote.utils.isLoggedIn
 import com.github.bijoysingh.starter.util.IntentUtils
 
 class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
@@ -35,6 +37,16 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           OpenSourceBottomSheet.openSheet(activity)
           dismiss()
         }
+    ))
+    options.add(OptionsItem(
+        title = R.string.forget_me_page_title,
+        subtitle = R.string.forget_me_page_details,
+        icon = R.drawable.ic_action_forget_me,
+        listener = View.OnClickListener {
+          IntentUtils.startActivity(context, ForgetMeActivity::class.java)
+          dismiss()
+        },
+        visible = isLoggedIn()
     ))
     options.add(OptionsItem(
         title = R.string.material_notes_privacy_policy,

@@ -93,16 +93,6 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         },
         enabled = autoBackupEnabled
     ))
-    options.add(OptionsItem(
-        title = R.string.forget_me_page_title,
-        subtitle = R.string.forget_me_page_details,
-        icon = R.drawable.ic_action_forget_me,
-        listener = View.OnClickListener {
-          IntentUtils.startActivity(context, ForgetMeActivity::class.java)
-          dismiss()
-        },
-        visible = isLoggedIn()
-    ))
     return options
   }
 

@@ -79,6 +79,16 @@
       android:layout_height="0.5dp"
       android:background="@color/dark_hint_text" />
 
+    <CheckBox
+      android:id="@+id/accept_policy"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/spacing_xsmall"
+      android:layout_marginStart="@dimen/spacing_xsmall"
+      android:padding="@dimen/spacing_xsmall"
+      android:text="@string/forget_me_i_understand"
+      android:textSize="@dimen/font_size_normal" />
+
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -90,19 +100,19 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/spacing_normal"
         android:text="@string/forget_me_cancel"
-        android:textAllCaps="true" />
+        android:textAllCaps="true"
+        android:textColor="@color/dark_tertiary_text" />
 
       <TextView
         android:id="@+id/btn_forget_me"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/colorAccent"
         android:gravity="end"
         android:padding="@dimen/spacing_normal"
         android:text="@string/forget_me_page_title"
         android:textAllCaps="true"
-        android:textColor="@color/light_primary_text" />
+        android:textColor="@color/dark_tertiary_text" />
     </LinearLayout>
   </LinearLayout>
 

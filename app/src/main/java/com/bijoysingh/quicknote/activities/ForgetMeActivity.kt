@@ -2,6 +2,8 @@ package com.bijoysingh.quicknote.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.widget.CheckBox
 import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
@@ -22,6 +24,7 @@ class ForgetMeActivity : ThemedActivity() {
 
   private val RC_SIGN_IN = 31245
 
+  val acceptCheckBox: CheckBox by bind(R.id.accept_policy)
   val forgetMeBtn: TextView by bind(R.id.btn_forget_me)
   val cancelBtn: TextView by bind(R.id.btn_cancel)
   lateinit var googleSignInClient: GoogleSignInClient
@@ -33,7 +36,18 @@ class ForgetMeActivity : ThemedActivity() {
 
     setupGoogleLogin()
 
+    acceptCheckBox.setOnCheckedChangeListener { button, checked ->
+      val textColor = if (checked) R.color.light_primary_text else R.color.dark_tertiary_text
+      forgetMeBtn.setTextColor(ContextCompat.getColor(this, textColor))
+
+      val backgroundColor = if (checked) R.color.colorAccent else R.color.transparent
+      forgetMeBtn.setBackgroundColor(ContextCompat.getColor(this, backgroundColor))
+    }
     forgetMeBtn.setOnClickListener {
+      if (!acceptCheckBox.isChecked) {
+        return@setOnClickListener
+      }
+
       val userId = firebaseUserId()
       if (userId === null) {
         return@setOnClickListener
