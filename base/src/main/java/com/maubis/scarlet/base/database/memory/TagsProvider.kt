@@ -1,11 +1,10 @@
-package com.bijoysingh.quicknote.database.utils
+package com.maubis.scarlet.base.database.memory
 
-import com.bijoysingh.quicknote.MaterialNotes
-import com.bijoysingh.quicknote.database.Tag
-import com.bijoysingh.quicknote.database.TagDao
+import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.database.room.tag.TagDao
 import java.util.concurrent.ConcurrentHashMap
 
-class TagsDB {
+abstract class TagsProvider {
 
   val tags = ConcurrentHashMap<String, Tag>()
 
@@ -48,10 +47,6 @@ class TagsDB {
     maybeLoadFromDB()
     return tags.values
         .filter { it.title.contains(string, true) }
-        .map { Pair<Tag, Int>(it, NotesDB.db.getNoteCountByTag(it.uuid)) }
-        .filter { it.second > 0 }
-        .sortedByDescending { it.second }
-        .map { it.first }
   }
 
   @Synchronized
@@ -59,7 +54,7 @@ class TagsDB {
     if (tags.isNotEmpty()) {
       return
     }
-    db().all.forEach {
+    database().all.forEach {
       tags[it.uuid] = it
     }
   }
@@ -68,12 +63,5 @@ class TagsDB {
     tags.clear()
   }
 
-  companion object {
-
-    val db = TagsDB()
-
-    fun db(): TagDao {
-      return MaterialNotes.db().tags()
-    }
-  }
+  abstract fun database(): TagDao
 }

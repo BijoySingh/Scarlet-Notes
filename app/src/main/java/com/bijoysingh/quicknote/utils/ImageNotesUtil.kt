@@ -3,12 +3,12 @@ package com.bijoysingh.quicknote.utils
 import android.content.Context
 import android.view.View
 import android.widget.ImageView
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.utils.NotesDB
+import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.utils.getFormats
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.github.bijoysingh.starter.util.RandomHelper
+import com.maubis.scarlet.base.database.room.note.Note
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.io.File
@@ -65,7 +65,7 @@ fun deleteAllRedundantImageFiles(context: Context) {
       availableDirectories.add(file.name)
     }
   }
-  val ids = NotesDB.db.getAllUUIDs()
+  val ids = notesDB.getAllUUIDs()
   for (id in ids) {
     availableDirectories.remove(id)
   }

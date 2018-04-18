@@ -1,7 +1,7 @@
 package com.bijoysingh.quicknote.activities.external
 
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.Tag
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.bijoysingh.quicknote.utils.getNewNoteUUID
 import org.json.JSONArray
 import org.json.JSONObject

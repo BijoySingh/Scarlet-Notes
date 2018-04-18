@@ -5,7 +5,7 @@ import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_NO_CREATE
 import android.content.Context
 import android.content.Intent
-import com.bijoysingh.quicknote.database.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.database.utils.getMeta
 import com.bijoysingh.quicknote.database.utils.getReminder
 import com.bijoysingh.quicknote.database.utils.saveWithoutSync

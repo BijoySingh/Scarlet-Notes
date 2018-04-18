@@ -15,7 +15,7 @@ import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
-import com.bijoysingh.quicknote.database.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.database.utils.getDisplayTime
 import com.bijoysingh.quicknote.database.utils.getText
 import com.bijoysingh.quicknote.database.utils.getTitle

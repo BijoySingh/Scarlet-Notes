@@ -15,7 +15,7 @@ import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.UISettingsOptionsBottomSheet
-import com.bijoysingh.quicknote.database.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.items.EmptyRecyclerItem
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem

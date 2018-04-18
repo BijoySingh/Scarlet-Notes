@@ -1,4 +1,4 @@
-package com.bijoysingh.quicknote.database;
+package com.maubis.scarlet.base.database.room.note;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;

@@ -1,10 +1,8 @@
-package com.bijoysingh.quicknote.database;
+package com.maubis.scarlet.base.database.room.note;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
-
-import com.bijoysingh.quicknote.MaterialNotes;
 
 /**
  * Underlying Database, difficult to migrate to Kotlin without breaking the Database.

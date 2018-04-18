@@ -1,19 +1,14 @@
 package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
-import android.os.AsyncTask
-import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.Tag
-import com.bijoysingh.quicknote.database.utils.NotesDB
-import com.bijoysingh.quicknote.database.utils.TagsDB
+import com.bijoysingh.quicknote.database.notesDB
+import com.bijoysingh.quicknote.database.tagsDB
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.items.TagOptionsItem
 import com.bijoysingh.quicknote.utils.HomeNavigationState
@@ -22,7 +17,6 @@ import com.bijoysingh.quicknote.utils.genEmptyTag
 import com.bijoysingh.quicknote.views.HomeTagView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.LocaleManager
-import com.github.bijoysingh.uibasics.views.UIActionView
 import com.github.bijoysingh.uibasics.views.UITextView
 
 class HomeNavigationBottomSheet : GridBottomSheetBase() {
@@ -156,10 +150,10 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   fun getTagOptions(): List<TagOptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<TagOptionsItem>()
-    for (tag in TagsDB.db.getAll()) {
+    for (tag in tagsDB.getAll()) {
       options.add(TagOptionsItem(
           tag = tag,
-          usages = NotesDB.db.getNoteCountByTag(tag.uuid),
+          usages = notesDB.getNoteCountByTag(tag.uuid),
           listener = View.OnClickListener {
             activity.openTag(tag)
             dismiss()

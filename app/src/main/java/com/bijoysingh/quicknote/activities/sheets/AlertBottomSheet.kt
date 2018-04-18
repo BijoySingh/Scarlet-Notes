@@ -2,19 +2,18 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.widget.TextView
-import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.utils.NotesDB
+import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.utils.delete
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.utils.NoteState
 import com.bijoysingh.quicknote.utils.ThemeColorType
+import com.maubis.scarlet.base.database.room.note.Note
 
 class AlertBottomSheet : ThemedBottomSheetFragment() {
 
@@ -83,7 +82,7 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
         override fun getNegativeText(): Int = R.string.delete_sheet_delete_trash_no
 
         override fun getPositiveClickListener() {
-          val notes = NotesDB.db.getByNoteState(arrayOf(NoteState.TRASH.name))
+          val notes = notesDB.getByNoteState(arrayOf(NoteState.TRASH.name))
           for (note in notes) {
             note.delete(activity)
           }

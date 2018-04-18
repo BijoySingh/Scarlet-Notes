@@ -1,19 +1,20 @@
 package com.bijoysingh.quicknote.database.utils
 
-import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.external.FirebaseTag
 import com.bijoysingh.quicknote.database.external.deleteTagFromFirebase
 import com.bijoysingh.quicknote.database.external.insertTagToFirebase
+import com.bijoysingh.quicknote.database.tagsDB
+import com.maubis.scarlet.base.database.room.tag.Tag
 
 fun Tag.saveIfUnique() {
-  val existing = TagsDB.db.getByTitle(title)
+  val existing = tagsDB.getByTitle(title)
   if (existing !== null) {
     this.uid = existing.uid
     this.uuid = existing.uuid
     return
   }
 
-  val existingByUUID = TagsDB.db.getByUUID(uuid)
+  val existingByUUID = tagsDB.getByUUID(uuid)
   if (existingByUUID != null) {
     this.uid = existingByUUID.uid
     this.title = existingByUUID.title
@@ -34,9 +35,9 @@ fun Tag.save() {
 }
 
 fun Tag.saveWithoutSync() {
-  val id = TagsDB.db().insertTag(this)
+  val id = tagsDB.database().insertTag(this)
   uid = if (isUnsaved()) id.toInt() else uid
-  TagsDB.db.notifyInsertTag(this)
+  tagsDB.notifyInsertTag(this)
 }
 
 fun Tag.saveToSync() {
@@ -53,8 +54,8 @@ fun Tag.deleteWithoutSync() {
   if (isUnsaved()) {
     return
   }
-  TagsDB.db().delete(this)
-  TagsDB.db.notifyDelete(this)
+  tagsDB.database().delete(this)
+  tagsDB.notifyDelete(this)
   uid = 0
 }
 

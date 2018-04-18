@@ -2,7 +2,7 @@ package com.bijoysingh.quicknote.items
 
 import android.view.View
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.database.Tag
+import com.maubis.scarlet.base.database.room.tag.Tag
 
 class TagOptionsItem(
     val tag: Tag,

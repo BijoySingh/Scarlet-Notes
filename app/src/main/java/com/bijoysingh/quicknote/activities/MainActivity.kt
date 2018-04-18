@@ -26,9 +26,12 @@ import com.bijoysingh.quicknote.activities.sheets.*
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion.KEY_LINE_COUNT
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.Tag
-import com.bijoysingh.quicknote.database.utils.*
+import com.bijoysingh.quicknote.database.notesDB
+import com.bijoysingh.quicknote.database.tagsDB
+import com.bijoysingh.quicknote.database.utils.deleteOrMoveToTrash
+import com.bijoysingh.quicknote.database.utils.mark
+import com.bijoysingh.quicknote.database.utils.save
+import com.bijoysingh.quicknote.database.utils.search
 import com.bijoysingh.quicknote.items.*
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
 import com.bijoysingh.quicknote.utils.*
@@ -39,6 +42,8 @@ import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.google.android.flexbox.FlexboxLayout
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.tag.Tag
 
 class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
 
@@ -178,7 +183,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(NotesDB.db.getByNoteState(states), sorting)
+        return sort(notesDB.getByNoteState(states), sorting)
             .map { NoteRecyclerItem(this@MainActivity, it) }
       }
 
@@ -220,7 +225,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(NotesDB.db.getNoteByLocked(true), sorting)
+        return sort(notesDB.getNoteByLocked(true), sorting)
             .map { NoteRecyclerItem(this@MainActivity, it) }
       }
 
@@ -275,7 +280,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(NotesDB.db.getNoteByTag(tag.uuid), sorting)
+        return sort(notesDB.getNoteByTag(tag.uuid), sorting)
             .map { NoteRecyclerItem(this@MainActivity, it) }
       }
 
@@ -306,12 +311,12 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   fun getDataForMode(): List<Note> {
     return when (mode) {
-      HomeNavigationState.FAVOURITE -> NotesDB.db.getByNoteState(arrayOf(NoteState.FAVOURITE.name))
-      HomeNavigationState.ARCHIVED -> NotesDB.db.getByNoteState(arrayOf(NoteState.ARCHIVED.name))
-      HomeNavigationState.TRASH -> NotesDB.db.getByNoteState(arrayOf(NoteState.TRASH.name))
-      HomeNavigationState.LOCKED -> NotesDB.db.getNoteByLocked(true)
-      HomeNavigationState.DEFAULT -> NotesDB.db.getByNoteState(arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name))
-      HomeNavigationState.TAG -> NotesDB.db.getNoteByTag(selectedTag!!.uuid)
+      HomeNavigationState.FAVOURITE -> notesDB.getByNoteState(arrayOf(NoteState.FAVOURITE.name))
+      HomeNavigationState.ARCHIVED -> notesDB.getByNoteState(arrayOf(NoteState.ARCHIVED.name))
+      HomeNavigationState.TRASH -> notesDB.getByNoteState(arrayOf(NoteState.TRASH.name))
+      HomeNavigationState.LOCKED -> notesDB.getNoteByLocked(true)
+      HomeNavigationState.DEFAULT -> notesDB.getByNoteState(arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name))
+      HomeNavigationState.TAG -> notesDB.getNoteByTag(selectedTag!!.uuid)
     }
   }
 
@@ -333,7 +338,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   private fun startSearch(keyword: String) {
     executor.executeNow {
       val items = search(keyword)
-      val tags = if (mode != HomeNavigationState.TAG) TagsDB.db.search(keyword)
+      val tags = if (mode != HomeNavigationState.TAG) tagsDB.search(keyword)
       else listOf(selectedTag!!)
 
       runOnUiThread {
@@ -396,7 +401,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   override fun showHints(): Boolean {
     when {
-      NotesDB.db.getCount() == 0 -> showHint(TUTORIAL_KEY_NEW_NOTE)
+      notesDB.getCount() == 0 -> showHint(TUTORIAL_KEY_NEW_NOTE)
       shouldShowHint(TUTORIAL_KEY_NEW_NOTE) -> showHint(TUTORIAL_KEY_NEW_NOTE)
       shouldShowHint(TUTORIAL_KEY_HOME_SETTINGS) -> showHint(TUTORIAL_KEY_HOME_SETTINGS)
       else -> return false

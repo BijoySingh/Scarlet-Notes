@@ -6,8 +6,8 @@ import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.*
 import com.bijoysingh.quicknote.activities.sheets.AlertBottomSheet.Companion.openDeleteNotePermanentlySheet
-import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.utils.*
+import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.util.RandomHelper

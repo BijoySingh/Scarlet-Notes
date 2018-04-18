@@ -3,7 +3,8 @@ package com.bijoysingh.quicknote.database.external
 import android.content.Context
 import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.activities.ForgetMeActivity.Companion.forgettingInProcess
-import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.notesDB
+import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.utils.NoteBroadcast
 import com.bijoysingh.quicknote.utils.genImportedNote
@@ -111,7 +112,7 @@ private fun setListener(context: Context) {
         }
 
         val notifiedNote = genImportedNote(note)
-        val existingNote = NotesDB.db.getByUUID(note.uuid)
+        val existingNote = notesDB.getByUUID(note.uuid)
         var isSame = false
         if (existingNote !== null) {
           isSame = notifiedNote.isEqual(existingNote)

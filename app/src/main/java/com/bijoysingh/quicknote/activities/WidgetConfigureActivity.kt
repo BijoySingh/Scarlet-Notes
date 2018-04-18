@@ -13,15 +13,16 @@ import android.support.v4.graphics.ColorUtils
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.RemoteViews
+import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.Widget
-import com.bijoysingh.quicknote.database.utils.NotesDB
+import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.utils.getLockedText
 import com.bijoysingh.quicknote.database.utils.getTitle
 import com.bijoysingh.quicknote.service.NoteWidgetProvider
 import com.bijoysingh.quicknote.utils.NoteState
 import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.widget.Widget
 
 class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActivity {
 
@@ -48,14 +49,14 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
   }
 
   override fun getNotes(): List<Note> {
-    return NotesDB.db.getByNoteState(
+    return notesDB.getByNoteState(
         arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name, NoteState.ARCHIVED.name))
         .filter { note -> !note.locked }
   }
 
   override fun onNoteClicked(note: Note) {
     val widget = Widget(appWidgetId, note.uuid)
-    Widget.db().insert(widget)
+    MaterialNotes.db().widgets().insert(widget)
     createWidget(widget)
   }
 
@@ -74,7 +75,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
 
   companion object {
     fun createNoteWidget(context: Context, widget: Widget) {
-      val note = NotesDB.db.getByUUID(widget.noteUUID)
+      val note = notesDB.getByUUID(widget.noteUUID)
       val appWidgetManager = AppWidgetManager.getInstance(context)
       if (note === null || note.locked) {
         val views = RemoteViews(context.getPackageName(), R.layout.widget_invalid_note)
@@ -116,7 +117,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
       val application: Application = context.applicationContext as Application
       val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(
           ComponentName(application, NoteWidgetProvider::class.java))
-      val widgets = Widget.db().getByNote(note.uuid)
+      val widgets = MaterialNotes.db().widgets().getByNote(note.uuid)
 
       val widgetIds = ArrayList<Int>()
       for (widget in widgets) {

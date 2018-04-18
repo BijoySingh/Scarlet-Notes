@@ -7,7 +7,7 @@ import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet
-import com.bijoysingh.quicknote.database.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.database.utils.copy
 import com.bijoysingh.quicknote.database.utils.edit
 import com.bijoysingh.quicknote.database.utils.share

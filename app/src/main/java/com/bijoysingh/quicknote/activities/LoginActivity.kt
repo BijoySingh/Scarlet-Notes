@@ -5,21 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.DataPolicyActivity.Companion.hasAcceptedThePolicy
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.external.noteDatabaseReference
 import com.bijoysingh.quicknote.database.external.tagDatabaseReference
-import com.bijoysingh.quicknote.database.utils.NotesDB
-import com.bijoysingh.quicknote.database.utils.TagsDB
+import com.bijoysingh.quicknote.database.notesDB
+import com.bijoysingh.quicknote.database.tagsDB
 import com.bijoysingh.quicknote.database.utils.saveToSync
 import com.bijoysingh.quicknote.utils.Flavor
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.getAppFlavor
-import com.bijoysingh.quicknote.utils.isLoggedIn
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -33,6 +29,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+
 
 class LoginActivity : ThemedActivity() {
 
@@ -169,12 +166,12 @@ class LoginActivity : ThemedActivity() {
       return
     }
     noteDatabaseReference(context, user.uid)
-    for (note in NotesDB.db.getAll()) {
+    for (note in notesDB.getAll()) {
       note.saveToSync()
     }
 
     tagDatabaseReference(context, user.uid)
-    for (tag in TagsDB.db.getAll()) {
+    for (tag in tagsDB.getAll()) {
       tag.saveToSync()
     }
     finish()

@@ -5,10 +5,10 @@ import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.database.Tag
-import com.bijoysingh.quicknote.database.utils.TagsDB
+import com.bijoysingh.quicknote.database.tagsDB
 import com.bijoysingh.quicknote.utils.HomeNavigationState
 import com.google.android.flexbox.FlexboxLayout
+import com.maubis.scarlet.base.database.room.tag.Tag
 
 class TagPickerViewHolder(
     val activity: MainActivity,
@@ -16,7 +16,7 @@ class TagPickerViewHolder(
     val onClick: (Tag) -> Unit) {
 
   fun search(search: String) {
-    setTags(TagsDB.db.search(search))
+    setTags(tagsDB.search(search))
   }
 
   @Synchronized

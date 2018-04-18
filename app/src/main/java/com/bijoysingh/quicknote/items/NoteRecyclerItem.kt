@@ -6,8 +6,8 @@ import android.support.v4.graphics.ColorUtils
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.MarkdownBottomSheet
-import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.utils.*
+import com.maubis.scarlet.base.database.room.note.Note
 import ru.noties.markwon.Markwon
 
 class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {

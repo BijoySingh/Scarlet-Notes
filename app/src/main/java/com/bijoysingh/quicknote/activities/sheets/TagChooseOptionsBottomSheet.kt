@@ -5,14 +5,13 @@ import android.content.DialogInterface
 import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.Tag
-import com.bijoysingh.quicknote.database.utils.TagsDB
+import com.bijoysingh.quicknote.database.tagsDB
 import com.bijoysingh.quicknote.database.utils.getTagUUIDs
 import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.database.utils.toggleTag
 import com.bijoysingh.quicknote.items.TagOptionsItem
 import com.bijoysingh.quicknote.utils.genEmptyTag
+import com.maubis.scarlet.base.database.room.note.Note
 
 class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
 
@@ -46,7 +45,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
   private fun getOptions(): List<TagOptionsItem> {
     val options = ArrayList<TagOptionsItem>()
     val tags = note!!.getTagUUIDs()
-    for (tag in TagsDB.db.getAll()) {
+    for (tag in tagsDB.getAll()) {
       options.add(TagOptionsItem(
           tag = tag,
           listener = View.OnClickListener {

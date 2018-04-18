@@ -3,19 +3,14 @@ package com.bijoysingh.quicknote.activities
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.RecyclerView
-import android.view.View
-import android.widget.ImageView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.SelectedNoteOptionsBottomSheet
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.utils.NotesDB
+import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.utils.getFullText
 import com.bijoysingh.quicknote.utils.HomeNavigationState
-import com.bijoysingh.quicknote.utils.NoteState
-import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.utils.bind
 import com.github.bijoysingh.starter.util.IntentUtils
-import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.scarlet.base.database.room.note.Note
 
 const val KEY_SELECT_EXTRA_MODE = "KEY_SELECT_EXTRA_MODE"
 const val KEY_SELECT_EXTRA_NOTE_ID = "KEY_SELECT_EXTRA_NOTE_ID"
@@ -59,7 +54,7 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     secondaryFab.setOnClickListener {
       SelectedNoteOptionsBottomSheet.openSheet(this, mode)
     }
-    recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+    recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
       override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)
         when (newState) {
@@ -78,7 +73,7 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
 
   fun runNoteFunction(noteFunction: (Note) -> Unit) {
     for (noteId in selectedNotes) {
-      val note = NotesDB.db.getByID(noteId)
+      val note = notesDB.getByID(noteId)
       if (note !== null) {
         noteFunction(note)
       }
@@ -110,12 +105,12 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
 
   override fun isNoteSelected(note: Note): Boolean = selectedNotes.contains(note.uid)
 
-  override fun getNotes(): List<Note> = NotesDB.db.getByNoteState(getMode(mode)).filter { note -> !note.locked }
+  override fun getNotes(): List<Note> = notesDB.getByNoteState(getMode(mode)).filter { note -> !note.locked }
 
   fun getText(): String {
     val builder = StringBuilder()
     for (noteId in selectedNotes) {
-      builder.append(NotesDB.db.getByID(noteId)?.getFullText())
+      builder.append(notesDB.getByID(noteId)?.getFullText())
       builder.append("\n\n---\n\n")
     }
     return builder.toString()

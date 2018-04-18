@@ -1,7 +1,7 @@
 package com.bijoysingh.quicknote.utils
 
 import com.bijoysingh.quicknote.activities.sheets.SortingTechnique
-import com.bijoysingh.quicknote.database.Note
+import com.maubis.scarlet.base.database.room.note.Note
 
 fun sort(notes: List<Note>, sortingTechnique: SortingTechnique): List<Note> {
   // Notes returned from DB are always sorted newest first. Reduce computational load

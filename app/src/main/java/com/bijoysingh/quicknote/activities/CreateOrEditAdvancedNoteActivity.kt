@@ -14,7 +14,6 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.sheets.ColorPickerBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteFormatOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteMarkdownOptionsBottomSheet
-import com.bijoysingh.quicknote.database.Note
 import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
@@ -24,6 +23,7 @@ import com.bijoysingh.quicknote.recyclerview.FormatImageViewHolder
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper
 import com.bijoysingh.quicknote.utils.*
+import com.maubis.scarlet.base.database.room.note.Note
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File

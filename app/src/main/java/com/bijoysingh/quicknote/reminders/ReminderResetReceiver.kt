@@ -3,8 +3,7 @@ package com.bijoysingh.quicknote.reminders
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.utils.NotesDB
+import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.utils.getReminder
 
 class ReminderResetReceiver : BroadcastReceiver() {
@@ -14,7 +13,7 @@ class ReminderResetReceiver : BroadcastReceiver() {
     }
 
     val reminderScheduler = ReminderScheduler(context)
-    val notes = NotesDB.db.getAll()
+    val notes = notesDB.getAll()
     notes.forEach {
       if (it.getReminder() !== null) {
         reminderScheduler.reset(it)

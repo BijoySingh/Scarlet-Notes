@@ -2,20 +2,15 @@ package com.bijoysingh.quicknote.utils
 
 import android.content.Context
 import com.bijoysingh.quicknote.activities.external.ExportableNote
-import com.bijoysingh.quicknote.activities.external.ExportableTag
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.utils.NotesDB
+import com.bijoysingh.quicknote.database.external.FirebaseNote
+import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.utils.copyNote
 import com.bijoysingh.quicknote.database.utils.save
-import com.bijoysingh.quicknote.database.utils.toggleTag
-import com.bijoysingh.quicknote.database.external.FirebaseNote
-import com.bijoysingh.quicknote.database.utils.saveWithoutSync
-
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.github.bijoysingh.starter.util.TextUtils
-import org.json.JSONException
+import com.maubis.scarlet.base.database.room.note.Note
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -92,7 +87,7 @@ fun genImportFromKeep(description: String): List<Format> {
  * Generate note from imported note
  */
 fun genImportedNote(context: Context, exportableNote: ExportableNote): Note {
-  val existingNote = NotesDB.db.getByUUID(exportableNote.uuid)
+  val existingNote = notesDB.getByUUID(exportableNote.uuid)
   if (existingNote !== null && existingNote.updateTimestamp > exportableNote.updateTimestamp) {
     return existingNote
   }

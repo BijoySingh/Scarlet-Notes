@@ -5,13 +5,12 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.utils.NotesDB
+import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.utils.copy
 import com.bijoysingh.quicknote.database.utils.deleteOrMoveToTrash
 import com.bijoysingh.quicknote.database.utils.share
 
-class NotificationIntentService: IntentService("NotificationIntentService") {
+class NotificationIntentService : IntentService("NotificationIntentService") {
 
   override fun onHandleIntent(intent: Intent?) {
     if (intent === null) {
@@ -33,7 +32,7 @@ class NotificationIntentService: IntentService("NotificationIntentService") {
       return
     }
 
-    val note = NotesDB.db.getByID(noteId)
+    val note = notesDB.getByID(noteId)
     if (note === null) {
       return
     }
@@ -60,7 +59,7 @@ class NotificationIntentService: IntentService("NotificationIntentService") {
       return null
     }
   }
-  
+
   companion object {
     const val INTENT_KEY_ACTION = "ACTION"
   }

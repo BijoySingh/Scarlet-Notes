@@ -5,16 +5,15 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.*
 import com.bijoysingh.quicknote.activities.external.searchInNote
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.Tag
 import com.bijoysingh.quicknote.database.external.FirebaseNote
 import com.bijoysingh.quicknote.database.external.deleteFromFirebase
 import com.bijoysingh.quicknote.database.external.insertNoteToFirebase
+import com.bijoysingh.quicknote.database.notesDB
+import com.bijoysingh.quicknote.database.tagsDB
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.reminders.Reminder
@@ -24,8 +23,9 @@ import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.google.gson.Gson
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.tag.Tag
 import java.util.*
-import kotlin.collections.HashMap
 
 fun Note.log(context: Context): String {
   val log = HashMap<String, Any>()
@@ -194,7 +194,7 @@ fun Note.getNoteState(): NoteState {
 fun Note.getTags(): Set<Tag> {
   val tags = HashSet<Tag>()
   for (tagID in getTagUUIDs()) {
-    val tag = TagsDB.db.getByUUID(tagID)
+    val tag = tagsDB.getByUUID(tagID)
     if (tag != null) {
       tags.add(tag)
     }
@@ -340,9 +340,9 @@ fun Note.save(context: Context) {
 }
 
 fun Note.saveWithoutSync(context: Context) {
-  val id = NotesDB.db().insertNote(this)
+  val id = notesDB.database().insertNote(this)
   this.uid = if (isUnsaved()) id.toInt() else this.uid
-  NotesDB.db.notifyInsertNote(this)
+  notesDB.notifyInsertNote(this)
   updateAsyncContent(context)
 }
 
@@ -377,8 +377,8 @@ fun Note.deleteWithoutSync(context: Context) {
   if (isUnsaved()) {
     return
   }
-  NotesDB.db().delete(this)
-  NotesDB.db.notifyDelete(this)
+  notesDB.database().delete(this)
+  notesDB.notifyDelete(this)
   this.description = Format.getNote(ArrayList())
   this.uid = 0
 }

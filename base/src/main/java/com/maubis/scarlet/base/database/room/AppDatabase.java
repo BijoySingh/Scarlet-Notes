@@ -1,4 +1,4 @@
-package com.bijoysingh.quicknote.database;
+package com.maubis.scarlet.base.database.room;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
@@ -6,6 +6,13 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
+
+import com.maubis.scarlet.base.database.room.note.Note;
+import com.maubis.scarlet.base.database.room.note.NoteDao;
+import com.maubis.scarlet.base.database.room.tag.Tag;
+import com.maubis.scarlet.base.database.room.tag.TagDao;
+import com.maubis.scarlet.base.database.room.widget.Widget;
+import com.maubis.scarlet.base.database.room.widget.WidgetDao;
 
 @Database(entities = {Note.class, Tag.class, Widget.class}, version = 10)
 public abstract class AppDatabase extends RoomDatabase {
@@ -25,7 +32,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                                        MIGRATION_9_10).build();
   }
 
-  static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+  public static final Migration MIGRATION_1_2 = new Migration(1, 2) {
     @Override
     public void migrate(SupportSQLiteDatabase database) {
 

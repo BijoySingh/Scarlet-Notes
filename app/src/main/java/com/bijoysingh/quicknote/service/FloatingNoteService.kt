@@ -12,15 +12,14 @@ import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
-import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
-import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.notesDB
+import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions
 import com.bsk.floatingbubblelib.FloatingBubbleService
-import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 
 /**
@@ -59,7 +58,7 @@ class FloatingNoteService : FloatingBubbleService() {
   override fun onGetIntent(intent: Intent): Boolean {
     note = null
     if (intent.hasExtra(INTENT_KEY_NOTE_ID)) {
-      note = NotesDB.db.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
+      note = notesDB.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
     }
     return note != null
   }

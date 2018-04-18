@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.view.WindowManager
 import android.widget.ImageView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
@@ -19,7 +18,7 @@ import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteSettingsOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet
-import com.bijoysingh.quicknote.database.Note
+import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.formats.Format
 import com.bijoysingh.quicknote.formats.FormatType
@@ -27,8 +26,8 @@ import com.bijoysingh.quicknote.recyclerview.FormatAdapter
 import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
 import com.bijoysingh.quicknote.utils.*
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
+import com.maubis.scarlet.base.database.room.note.Note
 import java.util.*
-import kotlin.math.roundToInt
 
 
 const val INTENT_KEY_NOTE_ID = "NOTE_ID"
@@ -74,7 +73,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       noteId = savedInstanceState.getInt(INTENT_KEY_NOTE_ID, 0)
     }
     if (noteId != 0) {
-      note = NotesDB.db.getByID(noteId)
+      note = notesDB.getByID(noteId)
     }
     if (note === null) {
       note = genEmptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor())
@@ -94,7 +93,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   protected open fun onResumeAction() {
-    note = NotesDB.db.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
+    note = notesDB.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
     if (note == null) {
       finish()
       return
@@ -114,7 +113,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     actionDone.visibility = if (mode) VISIBLE else GONE
     toolbar.visibility = if (mode) VISIBLE else GONE
     primaryFab.visibility = if (mode || isDistractionFree) GONE else VISIBLE
-    secondaryFab.visibility = if (mode|| isDistractionFree) GONE else VISIBLE
+    secondaryFab.visibility = if (mode || isDistractionFree) GONE else VISIBLE
     markdownToolbar.visibility = GONE
   }
 

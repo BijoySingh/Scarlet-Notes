@@ -9,7 +9,7 @@ import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.database.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
 import com.bijoysingh.quicknote.utils.*

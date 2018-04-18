@@ -1,6 +1,6 @@
 package com.bijoysingh.quicknote.activities
 
-import com.bijoysingh.quicknote.database.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.utils.NoteState
 
 interface INoteOptionSheetActivity {

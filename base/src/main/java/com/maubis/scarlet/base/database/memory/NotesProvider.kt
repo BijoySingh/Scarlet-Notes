@@ -1,11 +1,10 @@
-package com.bijoysingh.quicknote.database.utils
+package com.maubis.scarlet.base.database.memory
 
-import com.bijoysingh.quicknote.MaterialNotes
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.NoteDao
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.NoteDao
 import java.util.concurrent.ConcurrentHashMap
 
-class NotesDB {
+abstract class NotesProvider {
 
   val notes = ConcurrentHashMap<String, Note>()
 
@@ -78,7 +77,7 @@ class NotesDB {
     if (notes.isNotEmpty()) {
       return
     }
-    db().all.forEach {
+    database().all.forEach {
       notes[it.uuid] = it
     }
   }
@@ -87,12 +86,5 @@ class NotesDB {
     notes.clear()
   }
 
-  companion object {
-
-    val db = NotesDB()
-
-    fun db(): NoteDao {
-      return MaterialNotes.db().notes()
-    }
-  }
+  abstract fun database(): NoteDao
 }

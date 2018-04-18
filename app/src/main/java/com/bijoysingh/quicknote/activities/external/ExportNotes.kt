@@ -6,14 +6,13 @@ import android.os.Environment
 import android.support.v7.app.AppCompatActivity
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.activities.sheets.ExportNotesBottomSheet
-import com.bijoysingh.quicknote.database.Note
-import com.bijoysingh.quicknote.database.Tag
-import com.bijoysingh.quicknote.database.utils.NotesDB
-import com.bijoysingh.quicknote.database.utils.TagsDB
+import com.bijoysingh.quicknote.database.notesDB
+import com.bijoysingh.quicknote.database.tagsDB
 import com.bijoysingh.quicknote.database.utils.getFullText
 import com.github.bijoysingh.starter.util.FileManager
 import com.github.bijoysingh.starter.util.PermissionManager
 import com.google.gson.Gson
+import com.maubis.scarlet.base.database.room.note.Note
 import java.io.File
 
 const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
@@ -29,8 +28,8 @@ class ExportableFileFormat(
     val tags: List<ExportableTag>)
 
 fun getNotesForExport(): String {
-  val notes = NotesDB.db.getAll().map { ExportableNote(it) }
-  val tags = TagsDB.db.getAll().map { ExportableTag(it) }
+  val notes = notesDB.getAll().map { ExportableNote(it) }
+  val tags = tagsDB.getAll().map { ExportableTag(it) }
   val fileContent = ExportableFileFormat(EXPORT_VERSION, notes, tags)
   return Gson().toJson(fileContent)
 }
@@ -42,7 +41,7 @@ fun maybeAutoExport() {
       return@execute
     }
     val lastBackup = userPreferences().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
-    val lastTimestamp = NotesDB.db.getLastTimestamp()
+    val lastTimestamp = notesDB.getLastTimestamp()
     if (lastBackup + AUTO_BACKUP_INTERVAL_MS >= lastTimestamp) {
       return@execute
     }

@@ -6,7 +6,7 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.bijoysingh.quicknote.database.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.views.ColorView
 import com.google.android.flexbox.FlexboxLayout

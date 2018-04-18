@@ -1,13 +1,8 @@
-package com.bijoysingh.quicknote.database;
+package com.maubis.scarlet.base.database.room.tag;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
-
-import com.bijoysingh.quicknote.MaterialNotes;
-import com.bijoysingh.quicknote.activities.external.ExportableTag;
-import com.bijoysingh.quicknote.database.external.FirebaseTag;
-import com.github.bijoysingh.starter.util.RandomHelper;
 
 @Entity(tableName = "tag", indices = {@Index("uid")})
 public class Tag {
