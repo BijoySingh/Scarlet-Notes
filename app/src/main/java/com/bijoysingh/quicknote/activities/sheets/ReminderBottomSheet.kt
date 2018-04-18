@@ -147,6 +147,7 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     val calendar = reminder!!.getCalendar()
     val dialog = TimePickerDialog(
         themedContext(),
+        R.style.DialogTheme,
         TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
           calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
           calendar.set(Calendar.MINUTE, minute)

@@ -58,11 +58,11 @@ class ThemeManager(context: Context) {
   }
 
   private fun getThemeFromStore(): Theme {
-    val theme = userPreferences().get(KEY_APP_THEME, Theme.LIGHT.name)
+    val theme = userPreferences().get(KEY_APP_THEME, Theme.DARK.name)
     try {
       return Theme.valueOf(theme)
     } catch (_: Exception) {
-      return Theme.LIGHT
+      return Theme.DARK
     }
   }
 

@@ -14,6 +14,7 @@ import android.widget.ImageView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.activities.DataPolicyActivity.Companion.openIfNeeded
 import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteSettingsOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
@@ -88,6 +89,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
   override fun onResume() {
     super.onResume()
+    openIfNeeded(this)
     onResumeAction()
   }
 

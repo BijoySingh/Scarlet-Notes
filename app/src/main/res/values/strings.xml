@@ -336,7 +336,7 @@
   <string name="forget_me_what_happens_title" translatable="false">What happens when we forget you?</string>
   <string name="forget_me_what_happens_text" translatable="false">We will delete all your data stored online. We will log you out and remove your account, user information from our data.\n\nIf you are logged into other devices, once they connect to the internet and open the app, the data is removed on those devices. You can restore that by exporting the data on this device.\n\nIf you are unsure, you can always choose this option later in the app settings.</string>
   <string name="forget_me_cancel" translatable="false">Cancel</string>
-  <string name="forget_me_i_understand" translatable="false">I am understand I am about to delete all my data</string>
+  <string name="forget_me_i_understand" translatable="false">I understand I am about to delete all my data</string>
   <!-- End: Firebase Login Strings -->
 
   <!-- Start Welcome Page -->

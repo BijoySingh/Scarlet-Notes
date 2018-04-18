@@ -53,15 +53,12 @@
 
     <activity
       android:name=".activities.ViewAdvancedNoteActivity"
-      android:theme="@style/NoteTheme"
       android:windowSoftInputMode="stateAlwaysHidden" />
     <activity
       android:name=".activities.CreateOrEditAdvancedNoteActivity"
-      android:theme="@style/NoteTheme"
       android:windowSoftInputMode="stateVisible" />
     <activity
       android:name=".activities.CreateAdvancedListActivity"
-      android:theme="@style/NoteTheme"
       android:windowSoftInputMode="stateHidden" />
     <activity android:name=".activities.external.ImportNoteFromFileActivity" />
     <activity android:name=".activities.ExternalIntentActivity">

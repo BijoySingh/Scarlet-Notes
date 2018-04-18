@@ -147,7 +147,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 
-    fun isGridView(): Boolean = userPreferences().get(KEY_LIST_VIEW, false)
+    fun isGridView(): Boolean = userPreferences().get(KEY_LIST_VIEW, true)
 
     fun setGridView(isGrid: Boolean) = userPreferences().put(KEY_LIST_VIEW, isGrid)
   }
