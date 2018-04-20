@@ -7,6 +7,7 @@ import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion.getDefaultLineCount
+import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingTechniqueLabel
 import com.bijoysingh.quicknote.activities.sheets.SortingOptionsBottomSheet.Companion.getSortingState
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet.Companion.getDefaultTextSize
 import com.bijoysingh.quicknote.items.OptionsItem
@@ -102,7 +103,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     ))
     options.add(OptionsItem(
         title = R.string.home_option_order_notes,
-        subtitle = getSortingState().label,
+        subtitle = getSortingTechniqueLabel(getSortingState()),
         icon = R.drawable.ic_sort,
         listener = View.OnClickListener {
           SortingOptionsBottomSheet.openSheet(activity, { activity.setupData() })

@@ -5,9 +5,8 @@ import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.bijoysingh.quicknote.formats.FormatType
-import com.bijoysingh.quicknote.formats.MarkdownType
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.maubis.scarlet.base.format.MarkdownType
 
 class NoteMarkdownOptionsBottomSheet : GridBottomSheetBase() {
   override fun setupViewWithDialog(dialog: Dialog) {

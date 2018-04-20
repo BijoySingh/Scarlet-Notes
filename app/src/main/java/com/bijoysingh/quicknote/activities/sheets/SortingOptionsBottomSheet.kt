@@ -6,6 +6,7 @@ import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.items.OptionsItem
+import com.maubis.scarlet.base.note.SortingTechnique
 
 class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
 
@@ -23,8 +24,8 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
     val getIcon = fun(sortingTechnique: SortingTechnique): Int = if (sorting == sortingTechnique) R.drawable.ic_done_white_48dp else 0
 
     options.add(OptionsItem(
-        title = SortingTechnique.LAST_MODIFIED.label,
-        subtitle = SortingTechnique.LAST_MODIFIED.label,
+        title = getSortingTechniqueLabel(SortingTechnique.LAST_MODIFIED),
+        subtitle = getSortingTechniqueLabel(SortingTechnique.LAST_MODIFIED),
         icon = getIcon(SortingTechnique.LAST_MODIFIED),
         listener = View.OnClickListener {
           setSortingState(SortingTechnique.LAST_MODIFIED)
@@ -34,8 +35,8 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         selected = sorting == SortingTechnique.LAST_MODIFIED
     ))
     options.add(OptionsItem(
-        title = SortingTechnique.NEWEST_FIRST.label,
-        subtitle = SortingTechnique.NEWEST_FIRST.label,
+        title = getSortingTechniqueLabel(SortingTechnique.NEWEST_FIRST),
+        subtitle = getSortingTechniqueLabel(SortingTechnique.NEWEST_FIRST),
         icon = getIcon(SortingTechnique.NEWEST_FIRST),
         listener = View.OnClickListener {
           setSortingState(SortingTechnique.NEWEST_FIRST)
@@ -45,8 +46,8 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         selected = sorting == SortingTechnique.NEWEST_FIRST
     ))
     options.add(OptionsItem(
-        title = SortingTechnique.OLDEST_FIRST.label,
-        subtitle = SortingTechnique.OLDEST_FIRST.label,
+        title = getSortingTechniqueLabel(SortingTechnique.OLDEST_FIRST),
+        subtitle = getSortingTechniqueLabel(SortingTechnique.OLDEST_FIRST),
         icon = getIcon(SortingTechnique.OLDEST_FIRST),
         listener = View.OnClickListener {
           setSortingState(SortingTechnique.OLDEST_FIRST)
@@ -66,6 +67,14 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
       return SortingTechnique.values()[userPreferences().get(KEY_SORTING_TECHNIQUE, SortingTechnique.NEWEST_FIRST.ordinal)]
     }
 
+    fun getSortingTechniqueLabel(technique: SortingTechnique): Int {
+      return when (technique) {
+        SortingTechnique.LAST_MODIFIED -> R.string.sort_sheet_last_modified
+        SortingTechnique.NEWEST_FIRST -> R.string.sort_sheet_newest_first
+        SortingTechnique.OLDEST_FIRST -> R.string.sort_sheet_oldest_first
+      }
+    }
+
     fun setSortingState(sortingTechnique: SortingTechnique) {
       userPreferences().put(KEY_SORTING_TECHNIQUE, sortingTechnique.ordinal)
     }
@@ -77,10 +86,4 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }
-}
-
-enum class SortingTechnique(val label: Int) {
-  LAST_MODIFIED(R.string.sort_sheet_last_modified),
-  NEWEST_FIRST(R.string.sort_sheet_newest_first),
-  OLDEST_FIRST(R.string.sort_sheet_oldest_first),
 }

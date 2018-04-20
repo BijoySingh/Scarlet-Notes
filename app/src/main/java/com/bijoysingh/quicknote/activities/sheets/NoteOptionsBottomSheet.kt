@@ -7,10 +7,16 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.*
 import com.bijoysingh.quicknote.activities.sheets.AlertBottomSheet.Companion.openDeleteNotePermanentlySheet
 import com.bijoysingh.quicknote.database.utils.*
-import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.items.OptionsItem
-import com.bijoysingh.quicknote.utils.*
+import com.bijoysingh.quicknote.reminders.sheet.ReminderBottomSheet
+import com.bijoysingh.quicknote.utils.Flavor
+import com.bijoysingh.quicknote.utils.NotificationConfig
+import com.bijoysingh.quicknote.utils.NotificationHandler
+import com.bijoysingh.quicknote.utils.getAppFlavor
 import com.github.bijoysingh.starter.util.RandomHelper
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.note.NoteBuilder
+import com.maubis.scarlet.base.note.NoteState
 
 class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
@@ -246,7 +252,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.duplicate,
         icon = R.drawable.ic_duplicate,
         listener = View.OnClickListener {
-          val copiedNote = copyNote(note)
+          val copiedNote = NoteBuilder().copy(note)
           copiedNote.uid = null
           copiedNote.uuid = RandomHelper.getRandomString(24)
           copiedNote.save(activity)

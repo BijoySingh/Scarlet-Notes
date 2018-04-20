@@ -7,12 +7,12 @@ import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.activities.sheets.UISettingsOptionsBottomSheet.Companion.KEY_LIST_VIEW
 import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.tagsDB
-import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.database.room.tag.Tag
 import com.bijoysingh.quicknote.database.utils.*
-import com.bijoysingh.quicknote.formats.Format
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.format.FormatBuilder
+import com.maubis.scarlet.base.note.NoteState
 import java.util.*
 
 const val KEY_MIGRATE_UUID = "KEY_MIGRATE_UUID"
@@ -82,7 +82,7 @@ fun migrate(context: Context) {
   }
   if (!userPreferences().get(KEY_MIGRATE_CHECKED_LIST, false)) {
     for (note in notesDB.getAll()) {
-      note.description = Format.getNote(note.getFormats().sorted())
+      note.description = FormatBuilder().getDescription(note.getFormats().sorted())
       note.save(context)
     }
     userPreferences().put(KEY_MIGRATE_CHECKED_LIST, true)

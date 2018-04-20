@@ -1,6 +1,6 @@
 package com.bijoysingh.quicknote.activities
 
-import com.bijoysingh.quicknote.formats.FormatType
+import com.maubis.scarlet.base.format.FormatType
 
 class CreateAdvancedListActivity : CreateOrEditAdvancedNoteActivity() {
 

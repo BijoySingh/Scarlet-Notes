@@ -10,6 +10,8 @@ import com.bijoysingh.quicknote.database.utils.getMeta
 import com.bijoysingh.quicknote.database.utils.getReminder
 import com.bijoysingh.quicknote.database.utils.saveWithoutSync
 import com.google.gson.Gson
+import com.maubis.scarlet.base.note.NoteReminder
+import com.maubis.scarlet.base.note.ReminderInterval
 
 const val ALARM_ID = "ALARM_ID"
 const val ALARM_UUID = "ALARM_UUID"
@@ -22,14 +24,14 @@ class ReminderScheduler(val context: Context) {
     manager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
   }
 
-  fun setNoteReminder(note: Note, reminder: Reminder?) {
+  fun setNoteReminder(note: Note, reminder: NoteReminder?) {
     val noteMeta = note.getMeta()
     noteMeta.reminder = reminder
     note.meta = Gson().toJson(noteMeta)
     note.saveWithoutSync(context)
   }
 
-  fun create(note: Note, reminder: Reminder) {
+  fun create(note: Note, reminder: NoteReminder) {
     setNoteReminder(note, reminder)
     val pendingIntent = getPendingIntent(note, PendingIntent.FLAG_UPDATE_CURRENT)
     setReminder(reminder, pendingIntent!!)
@@ -90,7 +92,7 @@ class ReminderScheduler(val context: Context) {
     return intent
   }
 
-  private fun setReminder(reminder: Reminder, pendingIntent: PendingIntent) {
+  private fun setReminder(reminder: NoteReminder, pendingIntent: PendingIntent) {
     if (reminder.interval === ReminderInterval.ONCE) {
       manager.set(AlarmManager.RTC_WAKEUP, reminder.getCalendar().timeInMillis, pendingIntent)
     } else {

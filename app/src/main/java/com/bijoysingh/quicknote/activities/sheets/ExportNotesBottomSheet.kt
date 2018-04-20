@@ -9,9 +9,7 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.activities.external.getExportFile
-import com.bijoysingh.quicknote.activities.external.getNotesForExport
-import com.bijoysingh.quicknote.activities.external.saveFile
+import com.bijoysingh.quicknote.export.support.NoteExporter
 import com.bijoysingh.quicknote.utils.Flavor
 import com.bijoysingh.quicknote.utils.GenericFileProvider
 import com.bijoysingh.quicknote.utils.ThemeColorType
@@ -41,8 +39,8 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
     val activity = themedActivity()
     MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<Boolean> {
       override fun run(): Boolean {
-        val notes = getNotesForExport()
-        return saveFile(notes)
+        val notes = NoteExporter().getExportContent()
+        return NoteExporter().saveToManualExportFile(notes)
       }
 
       override fun handle(result: Boolean) {
@@ -58,7 +56,7 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
       dismiss()
     }
     exportShare.setOnClickListener {
-      val file = getExportFile()
+      val file = NoteExporter().getOrCreateManualExportFile()
       if (file == null || !file.exists()) {
         return@setOnClickListener
       }

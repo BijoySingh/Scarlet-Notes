@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.MainActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.github.bijoysingh.starter.util.IntentUtils

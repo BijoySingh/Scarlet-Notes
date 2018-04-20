@@ -3,8 +3,8 @@ package com.bijoysingh.quicknote
 import android.app.Application
 import com.maubis.scarlet.base.database.room.AppDatabase
 import com.bijoysingh.quicknote.utils.ThemeManager
-import com.bijoysingh.quicknote.database.external.noteDatabaseReference
-import com.bijoysingh.quicknote.database.external.tagDatabaseReference
+import com.bijoysingh.quicknote.firebase.support.noteDatabaseReference
+import com.bijoysingh.quicknote.firebase.support.tagDatabaseReference
 import com.bijoysingh.quicknote.utils.RemoteConfigFetcher
 import com.bijoysingh.quicknote.utils.firebaseReloadUser
 import com.bijoysingh.quicknote.utils.firebaseUserId

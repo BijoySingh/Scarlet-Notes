@@ -9,12 +9,16 @@ import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
-import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.items.NoteRecyclerItem
 import com.bijoysingh.quicknote.items.RecyclerItem
-import com.bijoysingh.quicknote.utils.*
+import com.bijoysingh.quicknote.utils.loadFileToImageView
+import com.bijoysingh.quicknote.utils.trim
+import com.bijoysingh.quicknote.utils.visibility
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.note.NoteImage
+import com.maubis.scarlet.base.note.NoteState
 
 open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerViewHolder<RecyclerItem>(context, view) {
 
@@ -84,7 +88,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     val isImageAvailable = !note.imageSource.isBlank()
     image.visibility = visibility(isImageAvailable)
     if (isImageAvailable) {
-      loadFileToImageView(context, image, getFile(context, note.note.uuid, note.imageSource))
+      loadFileToImageView(context, image, NoteImage(context).getFile(note.note.uuid, note.imageSource))
     }
   }
 

@@ -8,9 +8,9 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.database.utils.getUnreliablyStrippedText
 import com.bijoysingh.quicknote.utils.ThemeColorType
+import com.maubis.scarlet.base.database.room.note.Note
 
 class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
 

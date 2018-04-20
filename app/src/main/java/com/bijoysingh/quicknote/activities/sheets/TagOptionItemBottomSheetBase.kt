@@ -3,7 +3,6 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.view.View
 import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme

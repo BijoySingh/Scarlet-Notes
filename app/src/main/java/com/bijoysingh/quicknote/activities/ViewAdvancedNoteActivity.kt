@@ -13,20 +13,26 @@ import android.widget.ImageView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.DataPolicyActivity.Companion.openIfNeeded
 import com.bijoysingh.quicknote.activities.sheets.NoteOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteSettingsOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.bijoysingh.quicknote.activities.sheets.TextSizeBottomSheet
 import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.utils.*
-import com.bijoysingh.quicknote.formats.Format
-import com.bijoysingh.quicknote.formats.FormatType
-import com.bijoysingh.quicknote.recyclerview.FormatAdapter
-import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
-import com.bijoysingh.quicknote.utils.*
+import com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity.Companion.openIfNeeded
+import com.bijoysingh.quicknote.formats.FormatAdapter
+import com.bijoysingh.quicknote.formats.recycler.FormatTextViewHolder
+import com.bijoysingh.quicknote.utils.CircleDrawable
+import com.bijoysingh.quicknote.utils.KEY_NIGHT_THEME
+import com.bijoysingh.quicknote.utils.ThemeColorType
+import com.bijoysingh.quicknote.utils.bind
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.format.Format
+import com.maubis.scarlet.base.format.FormatBuilder
+import com.maubis.scarlet.base.format.FormatType
+import com.maubis.scarlet.base.note.NoteBuilder
+import com.maubis.scarlet.base.note.NoteState
 import java.util.*
 
 
@@ -76,7 +82,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       note = notesDB.getByID(noteId)
     }
     if (note === null) {
-      note = genEmptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor())
+      note = NoteBuilder().emptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor())
     }
     isDistractionFree = intent.getBooleanExtra(INTENT_KEY_DISTRACTION_FREE, false)
 
@@ -308,7 +314,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   private fun updateNoteForChecked() {
-    note!!.description = Format.getNote(formats.sorted())
+    note!!.description = FormatBuilder().getDescription(formats.sorted())
     setNote()
     maybeSaveNote(true)
   }

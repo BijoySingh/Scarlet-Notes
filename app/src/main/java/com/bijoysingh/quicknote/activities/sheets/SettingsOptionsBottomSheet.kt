@@ -3,16 +3,14 @@ package com.bijoysingh.quicknote.activities.sheets
 import android.app.Dialog
 import android.view.View
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.LoginActivity
 import com.bijoysingh.quicknote.activities.MainActivity
-import com.bijoysingh.quicknote.database.external.removeNoteDatabaseReference
-import com.bijoysingh.quicknote.database.external.removeTagDatabaseReference
+import com.bijoysingh.quicknote.export.sheet.BackupSettingsOptionsBottomSheet
+import com.bijoysingh.quicknote.firebase.activity.LoginActivity
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.firebaseUserId
 import com.bijoysingh.quicknote.utils.logoutUser
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.IntentUtils
-import com.google.firebase.auth.FirebaseAuth
 
 class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 

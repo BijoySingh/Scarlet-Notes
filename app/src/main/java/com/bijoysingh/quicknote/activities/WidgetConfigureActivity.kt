@@ -19,7 +19,7 @@ import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.utils.getLockedText
 import com.bijoysingh.quicknote.database.utils.getTitle
 import com.bijoysingh.quicknote.service.NoteWidgetProvider
-import com.bijoysingh.quicknote.utils.NoteState
+import com.maubis.scarlet.base.note.NoteState
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.widget.Widget

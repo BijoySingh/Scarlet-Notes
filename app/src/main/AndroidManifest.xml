@@ -60,8 +60,8 @@
     <activity
       android:name=".activities.CreateAdvancedListActivity"
       android:windowSoftInputMode="stateHidden" />
-    <activity android:name=".activities.external.ImportNoteFromFileActivity" />
-    <activity android:name=".activities.ExternalIntentActivity">
+    <activity android:name=".export.activity.ImportNoteActivity" />
+    <activity android:name=".activities.OpenTextIntentOrFileActivity">
       <intent-filter>
         <action android:name="android.intent.action.SEND" />
 
@@ -122,9 +122,9 @@
       </intent-filter>
     </activity>
     <activity android:name=".activities.SelectNotesActivity" />
-    <activity android:name=".activities.LoginActivity" />
-    <activity android:name=".activities.DataPolicyActivity" />
-    <activity android:name=".activities.ForgetMeActivity"></activity>
+    <activity android:name=".firebase.activity.LoginActivity" />
+    <activity android:name=".firebase.activity.DataPolicyActivity" />
+    <activity android:name=".firebase.activity.ForgetMeActivity"></activity>
   </application>
 
 </manifest>

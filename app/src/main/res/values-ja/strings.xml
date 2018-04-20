@@ -244,7 +244,7 @@
   <string name="reminder_frequency_custom">カスタム</string>
   <string name="reminder_beta_label">ベータ</string>
   <string name="notification_reminder_channel_label">リマインダーとアラーム</string>
-  <string name="about_page_description_os">[[+ +]]はオープンソースで誰でもオープンになっています。 現在、%sによって構築され維持されています。</string>
+  <string name="about_page_description_os">%s はオープンソースで誰でもオープンになっています。 現在、%sによって構築され維持されています。</string>
   <string name="about_page_description">%sはアプリを撮るシンプルなメモです。 体験を非常に難しくすることなく、リッチテキスト入力を素早く行うことができます。 それはマルチタスクを簡単にします。</string>
   <string name="about_page_about_us_details">こんにちは、私たちは%sを創造したデザイナーとプログラマーのペアです。
      私たちは美しくて慎重に設計された無償、無償、または最小限の広告アプリケーションを構築して、誰にとっても大きな有用性を提供するよう努めています。</string>

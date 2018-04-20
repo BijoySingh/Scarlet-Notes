@@ -5,13 +5,12 @@ import android.view.View
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
 import com.bijoysingh.quicknote.activities.ViewAdvancedNoteActivity
-import com.bijoysingh.quicknote.formats.Format
-import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.items.OptionsItem
-import com.bijoysingh.quicknote.utils.deleteIfExist
-import com.bijoysingh.quicknote.utils.getFile
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.scarlet.base.format.Format
+import com.maubis.scarlet.base.format.FormatType
+import com.maubis.scarlet.base.note.NoteImage
 import pl.aprilapps.easyphotopicker.EasyImage
 
 class FormatActionBottomSheet : GridBottomSheetBase() {
@@ -79,7 +78,8 @@ class FormatActionBottomSheet : GridBottomSheetBase() {
         listener = View.OnClickListener {
           activity.deleteFormat(format)
           if (format.formatType === FormatType.IMAGE && !format.text.isBlank()) {
-            getFile(themedContext(), noteUUID, format).deleteIfExist()
+            val noteImage = NoteImage(themedContext())
+            noteImage.deleteIfExist(noteImage.getFile(noteUUID, format))
           }
           dismiss()
         }

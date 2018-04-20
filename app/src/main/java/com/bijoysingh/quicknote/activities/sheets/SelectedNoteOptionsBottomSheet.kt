@@ -8,9 +8,9 @@ import com.bijoysingh.quicknote.database.utils.delete
 import com.bijoysingh.quicknote.database.utils.mark
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.HomeNavigationState
-import com.bijoysingh.quicknote.utils.NoteState
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.scarlet.base.note.NoteState
 
 class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
 

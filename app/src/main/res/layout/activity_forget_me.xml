@@ -4,7 +4,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical"
-  tools:context="com.bijoysingh.quicknote.activities.DataPolicyActivity">
+  tools:context="com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity">
 
   <ScrollView
     android:id="@+id/scroll_bg"

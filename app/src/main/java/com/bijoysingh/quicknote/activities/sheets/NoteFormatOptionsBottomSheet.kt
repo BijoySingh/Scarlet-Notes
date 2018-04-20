@@ -2,16 +2,15 @@ package com.bijoysingh.quicknote.activities.sheets
 
 import android.app.Dialog
 import android.view.View
-import com.bijoysingh.quicknote.MaterialNotes
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.bijoysingh.quicknote.formats.FormatType
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.Flavor
 import com.bijoysingh.quicknote.utils.getAppFlavor
 import com.bijoysingh.quicknote.utils.isLoggedIn
+import com.maubis.scarlet.base.format.FormatType
 
 class NoteFormatOptionsBottomSheet : GridBottomSheetBase() {
   override fun setupViewWithDialog(dialog: Dialog) {

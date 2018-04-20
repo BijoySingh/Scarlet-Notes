@@ -7,24 +7,30 @@ import android.content.Intent
 import android.os.Build
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.*
-import com.bijoysingh.quicknote.activities.external.searchInNote
 import com.bijoysingh.quicknote.activities.sheets.EnterPincodeBottomSheet
-import com.bijoysingh.quicknote.database.external.FirebaseNote
-import com.bijoysingh.quicknote.database.external.deleteFromFirebase
-import com.bijoysingh.quicknote.database.external.insertNoteToFirebase
 import com.bijoysingh.quicknote.database.notesDB
 import com.bijoysingh.quicknote.database.tagsDB
-import com.bijoysingh.quicknote.formats.Format
-import com.bijoysingh.quicknote.formats.FormatType
-import com.bijoysingh.quicknote.reminders.Reminder
+import com.bijoysingh.quicknote.firebase.data.FirebaseNote
+import com.bijoysingh.quicknote.firebase.support.deleteFromFirebase
+import com.bijoysingh.quicknote.firebase.support.insertNoteToFirebase
 import com.bijoysingh.quicknote.service.FloatingNoteService
-import com.bijoysingh.quicknote.utils.*
+import com.bijoysingh.quicknote.utils.NotificationConfig
+import com.bijoysingh.quicknote.utils.NotificationHandler
+import com.bijoysingh.quicknote.utils.removeMarkdownHeaders
+import com.bijoysingh.quicknote.utils.renderMarkdown
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.google.gson.Gson
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.format.Format
+import com.maubis.scarlet.base.format.FormatBuilder
+import com.maubis.scarlet.base.format.FormatType
+import com.maubis.scarlet.base.note.NoteImage
+import com.maubis.scarlet.base.note.NoteMeta
+import com.maubis.scarlet.base.note.NoteReminder
+import com.maubis.scarlet.base.note.NoteState
 import java.util.*
 
 fun Note.log(context: Context): String {
@@ -55,6 +61,10 @@ fun Note.log(): String {
 
 fun Note.isUnsaved(): Boolean {
   return this.uid === null || this.uid == 0
+}
+
+fun searchInNote(note: Note, keyword: String): Boolean {
+  return keyword.isBlank() || note.getFullText().contains(keyword, true)
 }
 
 fun Note.isEqual(note: Note): Boolean {
@@ -180,7 +190,7 @@ fun Note.getTagString(): String {
  **************************************************************************************/
 
 fun Note.getFormats(): List<Format> {
-  return Format.getFormats(this.description)
+  return FormatBuilder().getFormats(this.description)
 }
 
 fun Note.getNoteState(): NoteState {
@@ -210,7 +220,7 @@ fun Note.getMeta(): NoteMeta {
   }
 }
 
-fun Note.getReminder(): Reminder? {
+fun Note.getReminder(): NoteReminder? {
   return getMeta().reminder
 }
 
@@ -373,13 +383,13 @@ fun Note.delete(context: Context) {
 }
 
 fun Note.deleteWithoutSync(context: Context) {
-  deleteAllFiles(context, this)
+  NoteImage(context).deleteAllFiles(this)
   if (isUnsaved()) {
     return
   }
   notesDB.database().delete(this)
   notesDB.notifyDelete(this)
-  this.description = Format.getNote(ArrayList())
+  this.description = FormatBuilder().getDescription(ArrayList())
   this.uid = 0
 }
 

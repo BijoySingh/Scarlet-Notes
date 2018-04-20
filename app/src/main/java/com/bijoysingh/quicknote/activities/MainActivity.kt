@@ -17,11 +17,6 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.MaterialNotes.Companion.userPreferences
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.DataPolicyActivity.Companion.openIfNeeded
-import com.bijoysingh.quicknote.activities.external.ITutorialActivity
-import com.bijoysingh.quicknote.activities.external.createHint
-import com.bijoysingh.quicknote.activities.external.getStoragePermissionManager
-import com.bijoysingh.quicknote.activities.external.maybeAutoExport
 import com.bijoysingh.quicknote.activities.sheets.*
 import com.bijoysingh.quicknote.activities.sheets.LineCountBottomSheet.Companion.KEY_LINE_COUNT
 import com.bijoysingh.quicknote.activities.sheets.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
@@ -32,6 +27,9 @@ import com.bijoysingh.quicknote.database.utils.deleteOrMoveToTrash
 import com.bijoysingh.quicknote.database.utils.mark
 import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.database.utils.search
+import com.bijoysingh.quicknote.export.support.NoteExporter
+import com.bijoysingh.quicknote.export.support.PermissionUtils
+import com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity.Companion.openIfNeeded
 import com.bijoysingh.quicknote.items.*
 import com.bijoysingh.quicknote.recyclerview.NoteAppAdapter
 import com.bijoysingh.quicknote.utils.*
@@ -44,6 +42,8 @@ import com.github.bijoysingh.starter.util.IntentUtils
 import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.note.NoteState
+import com.maubis.scarlet.base.note.sort
 
 class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
 
@@ -371,8 +371,8 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   override fun onStop() {
     super.onStop()
-    if (getStoragePermissionManager(this).hasAllPermissions()) {
-      maybeAutoExport()
+    if (PermissionUtils().getStoragePermissionManager(this).hasAllPermissions()) {
+      NoteExporter().tryAutoExport()
     }
   }
 

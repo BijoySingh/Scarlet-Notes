@@ -7,12 +7,9 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.utils.ThemeColorType
-import com.bijoysingh.quicknote.utils.ThemeManager
 import com.bijoysingh.quicknote.views.BottomSheetTabletDialog
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 

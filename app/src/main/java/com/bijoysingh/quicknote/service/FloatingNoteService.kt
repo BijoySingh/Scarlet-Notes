@@ -13,14 +13,14 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity
 import com.bijoysingh.quicknote.activities.INTENT_KEY_NOTE_ID
 import com.bijoysingh.quicknote.database.notesDB
-import com.maubis.scarlet.base.database.room.note.Note
 import com.bijoysingh.quicknote.database.utils.*
 import com.bijoysingh.quicknote.utils.ThemeColorType
-import com.bijoysingh.quicknote.utils.genEmptyNote
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions
 import com.bsk.floatingbubblelib.FloatingBubbleService
 import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.note.NoteBuilder
 
 /**
  * The floating not service
@@ -65,7 +65,7 @@ class FloatingNoteService : FloatingBubbleService() {
 
   private fun loadView(): View {
     if (note == null) {
-      note = genEmptyNote()
+      note = NoteBuilder().emptyNote()
       stopSelf()
     }
 

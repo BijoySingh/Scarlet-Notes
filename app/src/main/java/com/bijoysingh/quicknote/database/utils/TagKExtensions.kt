@@ -1,8 +1,8 @@
 package com.bijoysingh.quicknote.database.utils
 
-import com.bijoysingh.quicknote.database.external.FirebaseTag
-import com.bijoysingh.quicknote.database.external.deleteTagFromFirebase
-import com.bijoysingh.quicknote.database.external.insertTagToFirebase
+import com.bijoysingh.quicknote.firebase.data.FirebaseTag
+import com.bijoysingh.quicknote.firebase.support.deleteTagFromFirebase
+import com.bijoysingh.quicknote.firebase.support.insertTagToFirebase
 import com.bijoysingh.quicknote.database.tagsDB
 import com.maubis.scarlet.base.database.room.tag.Tag
 

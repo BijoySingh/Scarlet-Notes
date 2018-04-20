@@ -8,12 +8,12 @@ import android.widget.TextView
 import com.bijoysingh.quicknote.MaterialNotes.Companion.appTheme
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.activities.ThemedActivity
-import com.maubis.scarlet.base.database.room.tag.Tag
 import com.bijoysingh.quicknote.database.utils.delete
 import com.bijoysingh.quicknote.database.utils.isUnsaved
 import com.bijoysingh.quicknote.database.utils.save
 import com.bijoysingh.quicknote.utils.ThemeColorType
 import com.bijoysingh.quicknote.utils.getEditorActionListener
+import com.maubis.scarlet.base.database.room.tag.Tag
 
 
 class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {

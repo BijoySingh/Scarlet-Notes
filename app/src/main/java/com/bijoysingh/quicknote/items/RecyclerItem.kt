@@ -1,7 +1,11 @@
 package com.bijoysingh.quicknote.items
 
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.recyclerview.*
+import com.bijoysingh.quicknote.export.recycler.FileImportViewHolder
+import com.bijoysingh.quicknote.recyclerview.EmptyRecyclerHolder
+import com.bijoysingh.quicknote.recyclerview.InformationRecyclerHolder
+import com.bijoysingh.quicknote.recyclerview.NoteRecyclerHolder
+import com.bijoysingh.quicknote.recyclerview.SelectableNoteRecyclerViewHolder
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem
 import java.util.*
 

@@ -5,8 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.activities.ForgetMeActivity
 import com.bijoysingh.quicknote.activities.MainActivity
+import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
 import com.bijoysingh.quicknote.items.OptionsItem
 import com.bijoysingh.quicknote.utils.isLoggedIn
 import com.github.bijoysingh.starter.util.IntentUtils

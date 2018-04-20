@@ -15,15 +15,16 @@ import com.bijoysingh.quicknote.activities.sheets.ColorPickerBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteFormatOptionsBottomSheet
 import com.bijoysingh.quicknote.activities.sheets.NoteMarkdownOptionsBottomSheet
 import com.bijoysingh.quicknote.database.utils.*
-import com.bijoysingh.quicknote.formats.Format
-import com.bijoysingh.quicknote.formats.FormatType
-import com.bijoysingh.quicknote.formats.MarkdownType
-import com.bijoysingh.quicknote.formats.ToolbarMode
-import com.bijoysingh.quicknote.recyclerview.FormatImageViewHolder
-import com.bijoysingh.quicknote.recyclerview.FormatTextViewHolder
+import com.bijoysingh.quicknote.formats.recycler.FormatImageViewHolder
+import com.bijoysingh.quicknote.formats.recycler.FormatTextViewHolder
 import com.bijoysingh.quicknote.recyclerview.SimpleItemTouchHelper
-import com.bijoysingh.quicknote.utils.*
+import com.bijoysingh.quicknote.utils.CircleDrawable
+import com.bijoysingh.quicknote.utils.ThemeColorType
+import com.bijoysingh.quicknote.utils.bind
 import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.format.*
+import com.maubis.scarlet.base.note.NoteBuilder
+import com.maubis.scarlet.base.note.NoteImage
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
@@ -58,7 +59,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     super.onCreate(savedInstanceState)
     setTouchListener()
     startHandler()
-    lastNoteInstance = copyNote(note!!)
+    lastNoteInstance = NoteBuilder().copy(note!!)
   }
 
   override fun setEditMode() {
@@ -184,7 +185,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
           return
         }
 
-        val targetFile = renameOrCopy(context, note!!, imageFile)
+        val targetFile = NoteImage(context).renameOrCopy(note!!, imageFile)
         val index = getFormatIndex(type)
         triggerImageLoaded(index, targetFile)
       }
@@ -234,7 +235,7 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
     val vNote = note!!
     val vLastNoteInstance = lastNoteInstance ?: note!!
 
-    vNote.description = Format.getNote(formats)
+    vNote.description = FormatBuilder().getDescription(formats)
 
     // Ignore update if nothing changed. It allows for one undo per few seconds
     if (vNote.isEqual(vLastNoteInstance)) {
@@ -324,7 +325,8 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
 
     val formatToChange = formats[position]
     if (!formatToChange.text.isBlank()) {
-      getFile(context, note!!.uuid, formatToChange.text).deleteIfExist()
+      val noteImage = NoteImage(context)
+      noteImage.deleteIfExist(noteImage.getFile(note!!.uuid, formatToChange.text))
     }
     formatToChange.text = file.name
     setFormat(formatToChange)
@@ -402,9 +404,9 @@ open class CreateOrEditAdvancedNoteActivity : ViewAdvancedNoteActivity() {
         || format.formatType === FormatType.CHECKLIST_CHECKED)
     val newPosition = position + 1
     when {
-      isCheckList -> addEmptyItemAtFocused(Format.getNextFormatType(FormatType.CHECKLIST_UNCHECKED))
+      isCheckList -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.CHECKLIST_UNCHECKED))
       newPosition < formats.size -> focus(position + 1)
-      else -> addEmptyItemAtFocused(Format.getNextFormatType(format.formatType))
+      else -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(format.formatType))
     }
   }
 }
