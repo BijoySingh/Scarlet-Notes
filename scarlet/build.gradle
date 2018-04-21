@@ -48,8 +48,6 @@ dependencies {
     implementation "com.google.firebase:firebase-auth:$firebase_version"
     implementation "com.google.android.gms:play-services-auth:$firebase_version"
     implementation "com.google.firebase:firebase-database:$firebase_version"
-
-    implementation "com.github.bijoysingh:android-basics:$android_basics"
 }
 
 apply plugin: 'kotlin-android-extensions'

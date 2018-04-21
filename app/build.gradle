@@ -35,9 +35,6 @@ android {
 
 dependencies {
     api project(':base')
-
-    implementation "com.github.bijoysingh:android-basics:$android_basics"
-    implementation "com.github.bijoysingh:ui-basics:$ui_basics"
 }
 
 apply plugin: 'kotlin-android-extensions'

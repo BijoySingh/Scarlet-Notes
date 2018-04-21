@@ -41,8 +41,8 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     ))
     val forgetMeClick = CoreConfig.instance.authenticator().openForgetMeActivity(activity)
     options.add(OptionsItem(
-        title = R.string.forget_me_page_title,
-        subtitle = R.string.forget_me_page_details,
+        title = R.string.forget_me_option_title,
+        subtitle = R.string.forget_me_option_details,
         icon = R.drawable.ic_action_forget_me,
         listener = View.OnClickListener {
           forgetMeClick?.run()

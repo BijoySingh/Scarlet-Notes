@@ -100,6 +100,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_large"
+        android:autoLink="web"
+        android:textColorLink="@color/material_grey_700"
+        android:linksClickable="true"
         android:text="@string/data_policy_what_do_text"
         android:textColor="@color/dark_tertiary_text"
         android:textSize="@dimen/font_size_normal" />

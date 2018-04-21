@@ -83,7 +83,6 @@ private fun setListener(context: Context) {
           return
         }
         if (!isSame) {
-          val note = NoteBuilder().copy(existingNote)
           note.uid = existingNote.uid
           val noteToSave = NoteBuilder().copy(note)
           noteToSave.saveWithoutSync(context)

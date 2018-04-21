@@ -38,7 +38,7 @@ class ForgetMeActivity : ThemedActivity() {
 
     setupGoogleLogin()
 
-    acceptCheckBox.setOnCheckedChangeListener { button, checked ->
+    acceptCheckBox.setOnCheckedChangeListener { _, checked ->
       val textColor = if (checked) R.color.light_primary_text else R.color.dark_tertiary_text
       forgetMeBtn.setTextColor(ContextCompat.getColor(this, textColor))
 
