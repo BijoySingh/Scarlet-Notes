@@ -9,7 +9,7 @@
     android:shortcutDisabledMessage="@string/main_no_notes">
     <intent
       android:action="android.intent.action.VIEW"
-      android:targetClass="com.bijoysingh.quicknote.activities.CreateOrEditAdvancedNoteActivity" />
+      android:targetClass="com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity" />
     <categories android:name="android.shortcut.conversation" />
   </shortcut>
 
@@ -22,7 +22,7 @@
     android:shortcutDisabledMessage="@string/main_no_notes">
     <intent
       android:action="android.intent.action.VIEW"
-      android:targetClass="com.bijoysingh.quicknote.activities.CreateAdvancedListActivity" />
+      android:targetClass="com.maubis.scarlet.base.note.creation.activity.CreateListNoteActivity" />
     <categories android:name="android.shortcut.conversation" />
   </shortcut>
   <!-- Specify more shortcuts here. -->

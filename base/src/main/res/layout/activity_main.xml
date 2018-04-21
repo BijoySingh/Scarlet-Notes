@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="com.bijoysingh.quicknote.MainActivity">
+
+  <LinearLayout
+    android:id="@+id/container_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+      layout="@layout/toolbar_main"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/spacing_xxsmall" />
+
+    <include
+      layout="@layout/search_toolbar_main"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/spacing_xxsmall"
+      android:visibility="gone" />
+
+    <include
+      layout="@layout/toolbar_trash_info"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/recycler_view"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1" />
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:background="@drawable/home_toolbar_gradient_background"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:gravity="bottom|end"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
+
+    <android.support.design.widget.FloatingActionButton
+      android:id="@+id/secondary_fab_action"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_normal"
+      android:src="@drawable/ic_apps_white_48dp"
+      android:tint="@color/dark_tertiary_text"
+      app:backgroundTint="@color/white"
+      app:elevation="8dp"
+      app:fabSize="normal"
+      app:rippleColor="@color/dark_hint_text" />
+
+    <android.support.design.widget.FloatingActionButton
+      android:id="@+id/primary_fab_action"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_add_white_48dp"
+      app:backgroundTint="@color/fabColor"
+      app:elevation="8dp"
+      app:fabSize="normal" />
+  </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

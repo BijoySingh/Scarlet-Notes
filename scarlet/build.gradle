@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.github.zellius.shortcut-helper'
+
+shortcutHelper.filePath = '../shortcuts.xml'
+
+android {
+    compileSdkVersion rootProject.ext.appconfig_compile_sdk_version
+    buildToolsVersion rootProject.ext.appconfig_build_tool_version
+
+    defaultConfig {
+        applicationId "com.bijoysingh.quicknote"
+        minSdkVersion rootProject.ext.appconfig_min_os_version
+        targetSdkVersion rootProject.ext.appconfig_target_os_version
+        versionCode rootProject.ext.appconfig_version_code
+        versionName rootProject.ext.appconfig_version
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    flavorDimensions "tier"
+    productFlavors {
+        lite {
+            dimension "tier"
+            versionNameSuffix ""
+            resValue "string", "app_name", "Scarlet"
+            resValue "string", "file_provider_name", "com.maubis.scarlet.base.export.support.GenericFileProvider"
+        }
+        full {
+            dimension "tier"
+            applicationIdSuffix ".pro"
+            versionNameSuffix "-pro"
+            resValue "string", "app_name", "Scarlet Pro"
+            resValue "string", "file_provider_name", "com.maubis.scarlet.pro.base.export.support.GenericFileProvider"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api project(':base')
+
+    implementation 'com.android.volley:volley:1.1.0'
+
+    implementation "com.google.firebase:firebase-auth:$firebase_version"
+    implementation "com.google.android.gms:play-services-auth:$firebase_version"
+    implementation "com.google.firebase:firebase-database:$firebase_version"
+
+    implementation "com.github.bijoysingh:android-basics:$android_basics"
+}
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'

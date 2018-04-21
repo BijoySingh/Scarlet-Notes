@@ -1,3 +1,354 @@
 <resources>
-  <string name="app_name">Scarlet Base</string>
+  <string name="maubis_apps" translatable="false">Maubis Apps</string>
+  <string name="timestamp" translatable="false">dd month yyyy, hh:mm aa</string>
+  <string name="title">Title</string>
+  <string name="description">Content</string>
+  <string name="save">Save</string>
+  <string name="import_to_app">Import</string>
+  <string name="search_notes">Search Notes&#8230;</string>
+  <string name="search_toolbar_text">Search %s&#8230; </string>
+  <string name="share_using">Share using&#8230;</string>
+
+  <string name="main_no_notes">No Notes</string>
+  <string name="main_no_notes_hint">It seems you have not added any notes. Click to add a note.</string>
+
+  <string name="main_add_a_note">Add a note&#8230;</string>
+  <string name="main_add_a_quick_note">Add a quick note&#8230;</string>
+
+  <string name="shortcut_add_note">Add Note</string>
+  <string name="shortcut_add_list">Add Checklist</string>
+
+  <string name="open_note_night_mode">Night Mode</string>
+  <string name="open_note_day_mode">Day Mode</string>
+  <string name="edit_note">Edit Note</string>
+  <string name="open_in_notification">Create Notification</string>
+  <string name="open_in_popup">Open In Popup</string>
+  <string name="delete_note">Delete Note</string>
+  <string name="delete_note_permanently">Delete Permanently</string>
+  <string name="copy_note">Copy Note</string>
+  <string name="send_note">Send Note</string>
+  <string name="unarchive_note">Unarchive Note</string>
+  <string name="archive_note">Archive Note</string>
+  <string name="not_favourite_note">Mark Not Favourite</string>
+  <string name="favourite_note">Mark Favourite</string>
+  <string name="restore_note">Restore Note</string>
+  <string name="trash_note">Move to Trash</string>
+  <string name="choose_note_color">Change Color</string>
+  <string name="lock_note">Lock Note</string>
+  <string name="change_tags">Change Tags</string>
+  <string name="unlock_note">Unlock Note</string>
+  <string name="reminder">Reminder</string>
+  <string name="select">Select</string>
+  <string name="duplicate">Duplicate</string>
+  <string name="pin_note">Pin Note</string>
+  <string name="unpin_note">Unpin Note</string>
+  <string name="view_distraction_free">Distraction Free</string>
+  <string name="choose_action">Choose Action&#8230;</string>
+
+  <string name="tap_for_action_open_note_night_mode">Tap to view the note in night mode</string>
+  <string name="tap_for_action_open_note_day_mode">Tap to view the note in day mode</string>
+  <string name="tap_for_action_edit">Tap to open note for editing</string>
+  <string name="tap_for_action_copy">Tap to copy note content to clipboard</string>
+  <string name="tap_for_action_share">Tap to share note content to other apps</string>
+  <string name="tap_for_action_popup">Tap to open note in floating popup</string>
+  <string name="tap_for_action_delete">Tap to delete the note</string>
+  <string name="tap_for_action_trash">Tap to move note to trash</string>
+  <string name="tap_for_action_not_trash">Tap to move note out of trash</string>
+  <string name="tap_for_action_favourite">Tap to mark note as favourite</string>
+  <string name="tap_for_action_not_favourite">Tap to mark note not as favourite</string>
+  <string name="tap_for_action_archive">Tap to archive the note</string>
+  <string name="tap_for_action_color">Tap to change the background colour of the note</string>
+  <string name="tap_for_action_not_archive">Tap to unarchive the note</string>
+
+  <string name="nav_sheet_title">Your Notes and More&#8230;</string>
+  <string name="nav_home">Home</string>
+  <string name="nav_home_details">All of your normal and favourite notes</string>
+  <string name="nav_favourites">Favourites</string>
+  <string name="nav_favourites_details">All of your favourite notes</string>
+  <string name="nav_archived">Archived</string>
+  <string name="nav_archived_details">All of your archived notes</string>
+  <string name="nav_locked">Locked</string>
+  <string name="nav_locked_details">All of your locked notes</string>
+  <string name="nav_tags">Tags</string>
+  <string name="nav_tags_details">All your note tags</string>
+  <string name="nav_trash">Trash</string>
+  <string name="nav_trash_details">All of your notes in the trash</string>
+
+  <string name="format_hint_text">Add Content&#8230;</string>
+  <string name="format_hint_heading">Add Heading&#8230;</string>
+  <string name="format_hint_sub_heading">Add Sub Heading&#8230;</string>
+  <string name="format_hint_quote">Add Quoted Text&#8230;</string>
+  <string name="format_hint_list">Add Item&#8230;</string>
+  <string name="format_hint_code">Add Code&#8230;</string>
+  <string name="format_hint_image">Click to add or change image</string>
+
+  <string name="format_sheet_option_title">Block Formatting</string>
+  <string name="format_label_heading">Heading</string>
+  <string name="format_label_sub_heading">Sub Heading</string>
+  <string name="format_label_text">Text</string>
+  <string name="format_label_quote">Quote</string>
+  <string name="format_label_code">Code</string>
+  <string name="format_label_list">Checklist</string>
+  <string name="format_label_image">Image</string>
+  <string name="format_label_separator">Separator</string>
+
+  <string name="markdown_sheet_option_title">Markdown Formatting</string>
+  <string name="markdown_label_bold">Bold</string>
+  <string name="markdown_label_italics">Italics</string>
+  <string name="markdown_label_underline">Underline</string>
+  <string name="markdown_label_strikethrough">Strike</string>
+  <string name="markdown_label_list">List</string>
+
+  <string name="home_option_sheet_title">Options and Settings</string>
+  <string name="home_option_ui_experience">Interface and Experience</string>
+  <string name="home_option_ui_experience_subtitle">Choose how the app looks and feels.</string>
+  <string name="home_option_note_settings">Note Preferences</string>
+  <string name="home_option_note_settings_subtitle">Choose note and other settings.</string>
+  <string name="home_option_about">About</string>
+  <string name="home_option_about_subtitle">Know more about us and the app.</string>
+  <string name="home_option_security">Security</string>
+  <string name="home_option_security_subtitle">Locking notes and security options</string>
+  <string name="home_option_enable_night_mode">Enable Night Mode</string>
+  <string name="home_option_enable_night_mode_subtitle">Enable dark theme as default</string>
+  <string name="home_option_enable_day_mode">Enable Day Mode</string>
+  <string name="home_option_enable_day_mode_subtitle">Enable light theme as default</string>
+  <string name="home_option_markdown_settings">Markdown Settings</string>
+  <string name="home_option_markdown_settings_subtitle">See how to use markdown in notes</string>
+  <string name="home_option_enable_list_view">Enable List Layout</string>
+  <string name="home_option_enable_list_view_subtitle">Show notes in a single column</string>
+  <string name="home_option_enable_grid_view">Enable Grid Layout</string>
+  <string name="home_option_enable_grid_view_subtitle">Show notes in a staggered grid</string>
+  <string name="home_option_order_notes">Order Notes</string>
+  <string name="home_option_backup_options">Backup and Import</string>
+  <string name="home_option_backup_options_subtitle">Backup, import and export note options</string>
+  <string name="home_option_export">Export Notes</string>
+  <string name="home_option_export_subtitle">Export notes to device storage to share</string>
+  <string name="home_option_import">Import Notes</string>
+  <string name="home_option_import_subtitle">Import notes from the device storage</string>
+  <string name="home_option_auto_export">Export Automatically</string>
+  <string name="home_option_auto_export_subtitle">Export notes frequently to external file as backup</string>
+  <string name="home_option_about_page">About Us</string>
+  <string name="home_option_about_page_subtitle">Know more about the app and the developers</string>
+  <string name="home_option_open_source_page">Open Source Project</string>
+  <string name="home_option_open_source_page_subtitle">Know more about the open source project</string>
+  <string name="home_option_rate_and_review">Rate and Review</string>
+  <string name="home_option_rate_and_review_subtitle">Tell us how much you liked the app</string>
+  <string name="home_option_fill_survey">Fill Survey</string>
+  <string name="home_option_fill_survey_subtitle">Help us improve the app by telling us what you like</string>
+
+  <string name="security_option_title">Security Options</string>
+  <string name="security_option_set_pin_code">Pass Code</string>
+  <string name="security_option_set_pin_code_subtitle">Set a 4 digit PIN to lock notes</string>
+  <string name="security_option_fingerprint_enabled">Unlock with Fingerprint</string>
+  <string name="security_option_fingerprint_enabled_subtitle">The notes will unlock with the fingerprint</string>
+  <string name="security_option_fingerprint_disabled">Fingerprint disabled</string>
+  <string name="security_option_fingerprint_disabled_subtitle">The notes will not use a fingerprint</string>
+
+  <string name="security_sheet_enter_new_pin_title">Enter new PIN</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Enter PIN to unlock</string>
+  <string name="security_sheet_enter_current_pin_title">Enter current PIN</string>
+  <string name="security_sheet_enter_pin_hint">enter code</string>
+  <string name="security_sheet_button_verify">Verify</string>
+  <string name="security_sheet_button_unlock">Unlock</string>
+  <string name="security_sheet_button_set">Set</string>
+  <string name="security_sheet_button_remove">Remove</string>
+
+  <string name="note_option_default_color">Default Note Color</string>
+  <string name="note_option_default_color_subtitle">Choose the default color of the notes</string>
+  <string name="note_option_number_lines">Note Line Limit</string>
+  <string name="note_option_number_lines_subtitle">%d lines on home screen</string>
+
+  <string name="markdown_sheet_markdown_support">Markdown Support</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Allow markdown supported formatting</string>
+  <string name="markdown_sheet_home_markdown_support">Markdown in Note List</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Enable Markdown formatting in the list of notes</string>
+  <string name="markdown_sheet_examples">Examples</string>
+  <string name="markdown_sheet_examples_list" translatable="false">
+- **bold**\n- *italics*\n- ~~strike~~\n- `code`\n\n > quote\n</string>
+
+  <string name="permission_layout_give_permission">Give Permissions</string>
+  <string name="permission_layout_give_permission_details">Import and export require storage permissions. Please give the permission when requested.</string>
+  <string name="permission_layout_give_permission_ok">Allow</string>
+
+  <string name="import_export_import_file_title">Import Backup from File</string>
+  <string name="import_export_import_file">Import File</string>
+  <string name="import_export_layout_exported">Exported to file</string>
+  <string name="import_export_layout_export_failed">Export failed</string>
+  <string name="import_export_layout_exporting">Exporting to file&#8230;</string>
+  <string name="import_export_layout_exporting_done">Done</string>
+  <string name="import_export_layout_exporting_share">Share</string>
+  <string name="import_export_layout_filename" translatable="false">MaterialNotes/BACKUP.txt</string>
+
+  <string name="file_size_kb" translatable="false">%s KB</string>
+  <string name="file_size_mb" translatable="false">%s MB</string>
+  <string name="file_size_gb" translatable="false">%s GB</string>
+
+  <string name="about_page_title">About Us and More</string>
+  <string name="about_page_rate">Rate on Play Store</string>
+  <string name="about_page_contribute">Contribute</string>
+  <string name="about_page_app_version">App Version</string>
+  <string name="about_page_about_app">About App</string>
+
+  <string name="osp_page_libraries">Libraries</string>
+  <string name="osp_page_about_osp">Open Source Project</string>
+  <string name="osp_page_title">About Open Source Project</string>
+
+  <string name="reminder_sheet_title">Note Reminder</string>
+  <string name="reminder_sheet_reminder_date">Reminder Date</string>
+  <string name="reminder_sheet_reminder_time">Reminder Time</string>
+  <string name="reminder_sheet_repeat">Repeat Frequency</string>
+  <string name="reminder_frequency_once">Only Once</string>
+  <string name="reminder_frequency_daily">Daily</string>
+  <string name="reminder_frequency_custom">Custom</string>
+  <string name="reminder_beta_label">Beta</string>
+
+  <string name="notification_channel_label">Note Notifications</string>
+  <string name="notification_reminder_channel_label">Reminders and Alarms</string>
+
+  <string name="about_page_description_os">
+    %s is open source and anyone is open to contribute to making it better. It is currently built and maintained by %s.
+  </string>
+  <string name="about_page_description">
+    %s is a simple note taking app. It allows quick Rich Text input without making the experience very difficult to use. It makes multi-tasking a breeze.
+  </string>
+  <string name="about_page_about_us_details">Hi, we are a pair of designer and programmer, who created %s .
+    We endeavour to build beautiful, carefully designed free, ad-free or minimal ads apps which serve great utility to everyone!</string>
+
+  <string name="tag_sheet_create_title">Add New Tag&#8230;</string>
+  <string name="tag_sheet_edit_title">Edit Tag&#8230;</string>
+  <string name="tag_sheet_enter_tag_hint">enter tag</string>
+
+  <string name="tag_sheet_new_tag_button">Create a New Tag</string>
+  <string name="tag_sheet_choose_tag">Choose a Tag&#8230;</string>
+
+  <string name="sort_sheet_title">Sort Notes By</string>
+  <string name="sort_sheet_newest_first">Newest First</string>
+  <string name="sort_sheet_oldest_first">Oldest First</string>
+  <string name="sort_sheet_last_modified">Most Recently Modified</string>
+
+  <!-- Start Select Notes -->
+  <string name="select_a_note_title">Select a Note</string>
+  <string name="select_notes_title">Select Notes</string>
+  <string name="nav_settings">Settings</string>
+  <string name="widget_no_valid_note">Note either deleted or locked</string>
+  <!-- End Select Notes -->
+
+  <!-- Start Whats New -->
+  <string name="whats_new_title">What\'s New</string>
+  <string name="whats_new_subtitle">Know what is new in the recent updates of the app</string>
+  <string name="whats_new_translate">Translate</string>
+
+  <string name="tutorial_create_a_new_note">Click to add a new note</string>
+  <string name="tutorial_home_menu">Click to see home options</string>
+  <string name="tutorial_home_menu_subtitle">The home menu has your favourite and archive notes, as well as application settings. You can find your tags here too.</string>
+
+  <string name="format_action_copy">Copy</string>
+  <string name="format_action_title">Block Text Actions</string>
+  <string name="format_action_gallery">Gallery</string>
+  <string name="format_action_camera">Camera</string>
+
+  <string name="voice_sheet_title">Speak Note Aloud</string>
+  <string name="voice_action_title">Speak Aloud</string>
+  <string name="image_delete_all_devices">Deleting this item will delete the image from all the devices.</string>
+  <string name="image_not_on_current_device">Image not on this device</string>
+  <string name="image_cannot_be_loaded">Image cannot be loaded</string>
+  <string name="image_not_uploaded">Images are not synced</string>
+  <string name="image_not_uploaded_details">Images are not synced across devices. Your images will not show up on other devices while viewing the note!</string>
+  <string name="image_not_uploaded_i_understand">I Understand</string>
+  <!-- End Whats New -->
+
+  <!-- Start Note Text Size -->
+  <string name="note_option_font_size">Note Font Size</string>
+  <string name="note_option_font_size_example">Adjust the font size of the text in the notes page. You can see how it would look like in this preview.</string>
+  <string name="note_option_font_size_subtitle">%d size of the text in the note viewer</string>
+  <!-- End Note Text Size -->
+
+  <!-- Start Cloud Backup Hint -->
+  <string name="home_option_install_from_store">Install from Store</string>
+  <string name="home_option_install_from_store_subtitle">Install app from Google Store for Cloud Sync</string>
+  <!-- End -->
+
+  <!-- Start No Pincode -->
+  <string name="no_pincode_sheet_title">No PIN set</string>
+  <string name="no_pincode_sheet_details">You have not set up the PIN. Would you like to set it up now?</string>
+  <string name="no_pincode_sheet_not_now">Later</string>
+  <string name="no_pincode_sheet_dont_ask">Never Ask</string>
+  <string name="no_pincode_sheet_set_up">Set Up</string>
+  <!-- End No Pincode -->
+
+  <!-- Start Delete Notes -->
+  <string name="delete_sheet_are_you_sure">Are you sure?</string>
+  <string name="delete_sheet_delete_trash">Would you like to permanently delete the notes in the trash folder?</string>
+  <string name="delete_sheet_delete_note_permanently">Would you like to permanently delete this note?</string>
+  <string name="delete_sheet_delete_trash_yes">Delete</string>
+  <string name="delete_sheet_delete_trash_no">Cancel</string>
+  <string name="trash_will_delete_automatically">Notes are deleted forever after 7 days</string>
+  <!-- End Delete Notes -->
+
+  <!-- Start Information -->
+  <string name="information_card_title" translatable="false">Information</string>
+  <string name="information_new_app_update" translatable="false">Tap to install the latest app version</string>
+  <string name="information_install_pro" translatable="false">Tap to upgrade to Scarlet Pro</string>
+  <!-- End Information -->
+
+  <!-- Start: Firebase Login Strings -->
+  <string name="home_option_login_with_app">Sign In to App</string>
+  <string name="home_option_login_with_app_subtitle">Sign In for cloud backup and synchronisation</string>
+  <string name="home_option_logout_of_app">Sign Out</string>
+  <string name="home_option_logout_of_app_subtitle">Sign Out to stop cloud backup</string>
+  <string name="login_with_google">Sign In with Google</string>
+  <string name="logging_into_app">Signing in&#8230;</string>
+  <string name="logged_into_app">You are logged in</string>
+  <string name="login_to_google_failed">Google Login Failed</string>
+
+  <string name="material_notes_privacy_policy">Privacy Policy</string>
+  <string name="material_notes_privacy_policy_subtitle">App privacy policy for the content</string>
+
+  <string name="install_pro_app">Install Pro App</string>
+  <string name="available_in_pro_only" translatable="false">Available on Scarlet Pro</string>
+
+  <string name="why_install_pro">Why Install Pro</string>
+  <string name="why_install_pro_details">
+     &#10004; Support developer for the massive server costs, to run the cloud sync \n\n&#10004; Get the latest features first \n\n&#10004; Some extra features will be available only to Pro users
+  </string>
+  <string name="why_cloud">Why enable Cloud Sync</string>
+  <string name="why_cloud_details">
+    &#10004; Upload and backup against device changes \n\n&#10004; Sync between multiple devices, and get quick updates \n\n&#10004; Securely saved on Google Firebase servers
+  </string>
+
+  <string name="data_policy_page_title" translatable="false">Message about your data safety</string>
+  <string name="data_policy_introduction" translatable="false">We care about keeping your data safe. Here is what, how and why we store your data. You always have an option to opt out.</string>
+  <string name="data_policy_what_data_title" translatable="false">What data do we store?</string>
+  <string name="data_policy_what_data_text" translatable="false">We store your notes, tags along with the content we store additional information like color, create time, update time, etc. related to the note. This information are used to make the service best for you.\n\nIf you have logged in via any device, we also store your basic Google Profile (Your public profile and your email address)</string>
+  <string name="data_policy_how_store_title" translatable="false">How do we store this data?</string>
+  <string name="data_policy_how_store_text" translatable="false">If you have never logged in, your data is only stored on your device.\n\nOnce you log in on a device, your data is synced and stored securely in Google Firebase servers as well as your local device(s).\n\nThe connection to the Google servers is encrypted.</string>
+  <string name="data_policy_what_do_title" translatable="false">What do we do with the data?</string>
+  <string name="data_policy_what_do_text" translatable="false">The data is used for making sure the app work for you. It allows you to see your notes, sync them between devices, or view them online.\n\nWe may use your Google email address, to send you an alert in case of a data loss or breach.\n\nWe do not and will not sell or share your data with third party companies.\n\nYou can always remove the data we store by choosing \'Forget Me\' from the app settings.</string>
+  <string name="data_policy_click_for_privacy" translatable="false">Click to view the privacy policy</string>
+  <string name="data_policy_i_have_read" translatable="false">I am at least 16 years old and I have read this data policy</string>
+  <string name="data_policy_refuse" translatable="false">Don\'t Agree?</string>
+  <string name="data_policy_done" translatable="false">Agree</string>
+
+  <string name="forget_me_page_title" translatable="false">Forget Me</string>
+  <string name="forget_me_page_details" translatable="false">Logout and remove all online data</string>
+  <string name="forget_me_introduction" translatable="false">We are sad you feel the need for us to forget your data. </string>
+
+  <string name="forget_me_what_happens_title" translatable="false">What happens when we forget you?</string>
+  <string name="forget_me_what_happens_text" translatable="false">We will delete all your data stored online. We will log you out and remove your account, user information from our data.\n\nIf you are logged into other devices, once they connect to the internet and open the app, the data is removed on those devices. You can restore that by exporting the data on this device.\n\nIf you are unsure, you can always choose this option later in the app settings.</string>
+  <string name="forget_me_cancel" translatable="false">Cancel</string>
+  <string name="forget_me_i_understand" translatable="false">I understand I am about to delete all my data</string>
+  <!-- End: Firebase Login Strings -->
+
+  <!-- Start Welcome Page -->
+  <string name="welcome_page_hello">Hello,</string>
+  <string name="welcome_page_app_name" translatable="false">Scarlet</string>
+  <string name="welcome_page_transfer_message">Material Notes is now Scarlet!</string>
+  <string name="welcome_page_get_started">Get Started</string>
+  <!-- End Welcome Page -->
+
+  <!-- Start Theme Color -->
+  <string name="home_option_theme_color" translatable="false">App Theme</string>
+  <string name="home_option_theme_color_subtitle" translatable="false">Select the background color for the theme</string>
+  <string name="theme_page_title" translatable="false">Select App Theme</string>
+  <!-- End Theme Color-->
 </resources>

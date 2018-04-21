@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.bijoysingh.quicknote">
+
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+  <application
+    android:name=".Scarlet"
+    android:allowBackup="true"
+    android:hardwareAccelerated="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
+    <meta-data
+      android:name="firebase_analytics_collection_enabled"
+      android:value="false" />
+    <meta-data
+      android:name="firebase_analytics_collection_deactivated"
+      android:value="true" />
+
+    <provider
+      android:name="com.maubis.scarlet.base.export.support.GenericFileProvider"
+      android:authorities="@string/file_provider_name"
+      android:exported="false"
+      android:grantUriPermissions="true">
+      <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/provider_paths" />
+    </provider>
+
+    <activity
+      android:name="com.maubis.scarlet.base.MainActivity"
+      android:windowSoftInputMode="stateHidden">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+
+      <meta-data
+        android:name="android.app.shortcuts"
+        android:resource="@xml/shortcuts" />
+    </activity>
+
+    <service android:name="com.maubis.scarlet.base.service.FloatingNoteService" />
+    <service android:name="com.maubis.scarlet.base.notification.NotificationIntentService" />
+
+    <activity
+      android:name="com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity"
+      android:windowSoftInputMode="stateAlwaysHidden" />
+    <activity
+      android:name="com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity"
+      android:windowSoftInputMode="stateVisible" />
+    <activity
+      android:name="com.maubis.scarlet.base.note.creation.activity.CreateListNoteActivity"
+      android:windowSoftInputMode="stateHidden" />
+    <activity android:name="com.maubis.scarlet.base.export.activity.ImportNoteActivity" />
+    <activity android:name="com.maubis.scarlet.base.main.activity.OpenTextIntentOrFileActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+
+        <data android:mimeType="text/plain" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+
+        <data
+          android:mimeType="text/plain"
+          android:scheme="file" />
+        <data
+          android:mimeType="text/plain"
+          android:scheme="content" />
+      </intent-filter>
+    </activity>
+
+    <receiver android:name="com.maubis.scarlet.base.service.NoteWidgetProvider">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info" />
+    </receiver>
+    <receiver android:name="com.maubis.scarlet.base.service.CreateNoteWidgetProvider">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/create_note_widget_info" />
+    </receiver>
+    <receiver
+      android:name="com.maubis.scarlet.base.note.reminders.ReminderReceiver"
+      android:exported="false" />
+    <receiver
+      android:name="com.maubis.scarlet.base.note.reminders.ReminderResetReceiver"
+      android:exported="false">
+      <intent-filter android:priority="2">
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <action android:name="android.intent.action.TIME_SET" />
+        <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+        <action android:name="android.intent.action.PACKAGE_INSTALL" />
+      </intent-filter>
+    </receiver>
+
+    <activity android:name="com.maubis.scarlet.base.main.activity.WidgetConfigureActivity">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+      </intent-filter>
+    </activity>
+    <activity android:name="com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity" />
+    <activity android:name=".firebase.activity.LoginActivity" />
+    <activity android:name=".firebase.activity.DataPolicyActivity" />
+    <activity android:name=".firebase.activity.ForgetMeActivity"></activity>
+  </application>
+
+</manifest>
