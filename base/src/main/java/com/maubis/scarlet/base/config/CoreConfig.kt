@@ -12,6 +12,7 @@ import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.core.database.room.tag.Tag
 import com.maubis.scarlet.base.note.actions.INoteActor
 import com.maubis.scarlet.base.note.actions.ITagActor
+import com.maubis.scarlet.base.support.Flavor
 import com.maubis.scarlet.base.support.ui.IThemeManager
 
 abstract class CoreConfig(context: Context) {
@@ -37,6 +38,8 @@ abstract class CoreConfig(context: Context) {
   abstract fun remoteConfigFetcher(): IRemoteConfigFetcher
 
   abstract fun startListener(activity: AppCompatActivity)
+
+  abstract fun appFlavor(): Flavor
 
   abstract fun store(): Store
 

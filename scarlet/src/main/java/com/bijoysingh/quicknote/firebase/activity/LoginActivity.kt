@@ -28,7 +28,7 @@ import com.maubis.scarlet.base.note.tag.saveToSync
 import com.maubis.scarlet.base.support.Flavor
 import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.database.tagsDB
-import com.maubis.scarlet.base.support.getAppFlavor
+
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 
@@ -82,7 +82,7 @@ class LoginActivity : ThemedActivity() {
       finish()
     }
 
-    val proInformationVisibility = if (getAppFlavor() == Flavor.PRO) View.GONE else View.VISIBLE
+    val proInformationVisibility = if (CoreConfig.instance.appFlavor() == Flavor.PRO) View.GONE else View.VISIBLE
     installPro.visibility = proInformationVisibility
     val installProTitle = findViewById<View>(R.id.install_pro_details_title)
     installProTitle.visibility = proInformationVisibility

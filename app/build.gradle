@@ -16,15 +16,6 @@ android {
         versionName rootProject.ext.appconfig_version
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    flavorDimensions "tier"
-    productFlavors {
-        opensource {
-            dimension "tier"
-            versionNameSuffix ""
-            resValue "string", "app_name", "Material Notes"
-            resValue "string", "file_provider_name", "com.maubis.scarlet.base.export.support.GenericFileProvider"
-        }
-    }
     buildTypes {
         release {
             minifyEnabled false

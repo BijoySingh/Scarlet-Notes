@@ -11,7 +11,7 @@ import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companio
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingTechniqueLabel
 import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet.Companion.getDefaultTextSize
 import com.maubis.scarlet.base.support.Flavor
-import com.maubis.scarlet.base.support.getAppFlavor
+
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
 import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
@@ -28,7 +28,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
   private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<OptionsItem>()
-    val flavor = getAppFlavor()
+    val flavor = CoreConfig.instance.appFlavor()
     options.add(OptionsItem(
         title = R.string.home_option_enable_night_mode,
         subtitle = R.string.home_option_enable_night_mode_subtitle,

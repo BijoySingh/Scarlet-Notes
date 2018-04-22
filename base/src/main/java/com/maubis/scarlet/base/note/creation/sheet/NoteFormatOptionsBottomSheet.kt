@@ -8,7 +8,7 @@ import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.support.Flavor
-import com.maubis.scarlet.base.support.getAppFlavor
+
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
@@ -81,7 +81,7 @@ class NoteFormatOptionsBottomSheet : GridBottomSheetBase() {
         subtitle = R.string.format_label_image,
         icon = R.drawable.ic_image_gallery,
         listener = View.OnClickListener {
-          if (getAppFlavor() != Flavor.NONE &&
+          if (CoreConfig.instance.appFlavor() != Flavor.NONE &&
               CoreConfig.instance.authenticator().isLoggedIn() &&
               CoreConfig.instance.store().get(AlertBottomSheet.IMAGE_SYNC_NOTICE, 0) == 0) {
             AlertBottomSheet.openImageNotSynced(activity)

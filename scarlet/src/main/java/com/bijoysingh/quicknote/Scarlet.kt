@@ -12,7 +12,7 @@ class Scarlet : Application() {
     CoreConfig.instance = ScarletConfig(this)
     CoreConfig.instance.themeController().setup(this)
     CoreConfig.instance.authenticator().setup(this)
-    CoreConfig.instance.remoteConfigFetcher().tryFetching(this)
+    CoreConfig.instance.remoteConfigFetcher().setup(this)
   }
 
   companion object {

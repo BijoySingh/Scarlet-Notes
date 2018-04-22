@@ -20,7 +20,6 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.config.isLatestAppVersion
 import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.core.database.room.tag.Tag
 import com.maubis.scarlet.base.core.note.NoteState
@@ -55,7 +54,6 @@ import com.maubis.scarlet.base.support.Flavor
 import com.maubis.scarlet.base.support.bind
 import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.database.tagsDB
-import com.maubis.scarlet.base.support.getAppFlavor
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
@@ -277,12 +275,12 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   private fun addInformationItem(index: Int) {
     val informationItem = when {
-      !isLatestAppVersion() -> getAppUpdateInformationItem(this)
+      !CoreConfig.instance.remoteConfigFetcher().isLatestVersion() -> getAppUpdateInformationItem(this)
       probability(0.01f)
           && !CoreConfig.instance.store().get(KEY_INFO_RATE_AND_REVIEW, false) -> getReviewInformationItem(this)
       probability(0.01f)
           && !CoreConfig.instance.store().get(KEY_INFO_INSTALL_PRO, false)
-          && getAppFlavor() != Flavor.PRO -> getInstallProInformationItem(this)
+          && CoreConfig.instance.appFlavor() != Flavor.PRO -> getInstallProInformationItem(this)
       else -> null
     }
     if (informationItem === null) {

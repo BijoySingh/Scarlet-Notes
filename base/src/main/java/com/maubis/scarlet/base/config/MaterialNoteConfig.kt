@@ -16,6 +16,7 @@ import com.maubis.scarlet.base.note.actions.INoteActor
 import com.maubis.scarlet.base.note.actions.ITagActor
 import com.maubis.scarlet.base.note.actions.MaterialNoteActor
 import com.maubis.scarlet.base.note.actions.MaterialTagActor
+import com.maubis.scarlet.base.support.Flavor
 import com.maubis.scarlet.base.support.database.NotesDB
 import com.maubis.scarlet.base.support.database.TagsDB
 import com.maubis.scarlet.base.support.ui.IThemeManager
@@ -28,6 +29,7 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   val db = AppDatabase.createDatabase(context)
 
   val notesDB = NotesDB()
+
   val tagsDB = TagsDB()
   val store = VersionedStore.get(context, USER_PREFERENCES_STORE_NAME, USER_PREFERENCES_VERSION)
   val appTheme = ThemeManager()
@@ -54,6 +56,8 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   override fun remoteConfigFetcher(): IRemoteConfigFetcher = NullRemoteConfigFetcher()
 
   override fun startListener(activity: AppCompatActivity) {}
+
+  override fun appFlavor(): Flavor = Flavor.NONE
 
   override fun store(): Store = store
 

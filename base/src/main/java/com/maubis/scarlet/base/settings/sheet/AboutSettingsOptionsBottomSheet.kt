@@ -9,6 +9,7 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
+import com.maubis.scarlet.base.support.Flavor
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
 
@@ -59,7 +60,9 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
               Intent.ACTION_VIEW,
               Uri.parse(PRIVACY_POLICY_LINK)))
           dismiss()
-        }
+        },
+        visible = CoreConfig.instance.appFlavor() != Flavor.NONE
+
     ))
     options.add(OptionsItem(
         title = R.string.home_option_rate_and_review,

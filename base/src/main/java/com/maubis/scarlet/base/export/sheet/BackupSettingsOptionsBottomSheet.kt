@@ -12,7 +12,7 @@ import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
 import com.maubis.scarlet.base.support.Flavor
-import com.maubis.scarlet.base.support.getAppFlavor
+
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
@@ -34,7 +34,7 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           IntentUtils.openAppPlayStore(context)
           dismiss()
         },
-        visible = getAppFlavor() == Flavor.NONE
+        visible = CoreConfig.instance.appFlavor() == Flavor.NONE
     ))
     options.add(OptionsItem(
         title = R.string.home_option_export,
@@ -98,13 +98,13 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
   }
 
   private fun openExportSheet() {
-    val activity = context as MainActivity
+    val activity = themedActivity() as MainActivity
     if (!SecurityOptionsBottomSheet.hasPinCodeEnabled()) {
       ExportNotesBottomSheet.openSheet(activity)
       return
     }
     EnterPincodeBottomSheet.openUnlockSheet(
-        context as ThemedActivity,
+        activity as ThemedActivity,
         object : EnterPincodeBottomSheet.PincodeSuccessListener {
           override fun onFailure() {
             openExportSheet()

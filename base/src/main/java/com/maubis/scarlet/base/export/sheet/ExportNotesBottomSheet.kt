@@ -13,7 +13,7 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.support.GenericFileProvider
 import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.support.Flavor
-import com.maubis.scarlet.base.support.getAppFlavor
+
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 import java.io.File
@@ -82,8 +82,11 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
   override fun getLayout(): Int = R.layout.bottom_sheet_import_export
 
   companion object {
-
-    val MATERIAL_NOTES_FOLDER = if (getAppFlavor() === Flavor.NONE) "MaterialNotes" else "Scarlet"
+    val MATERIAL_NOTES_FOLDER get() = when (CoreConfig.instance.appFlavor()) {
+      Flavor.NONE -> "MaterialNotes"
+      Flavor.LITE -> "Scarlet"
+      Flavor.PRO -> "ScarletPro"
+    }
     val FILENAME = "manual_backup"
 
     fun openSheet(activity: MainActivity) {

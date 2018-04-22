@@ -24,7 +24,7 @@ import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
 import com.maubis.scarlet.base.support.Flavor
-import com.maubis.scarlet.base.support.getAppFlavor
+
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
@@ -308,13 +308,13 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.view_distraction_free,
         icon = R.drawable.ic_action_distraction_free,
         listener = View.OnClickListener {
-          if (getAppFlavor() == Flavor.PRO) {
+          if (CoreConfig.instance.appFlavor() == Flavor.PRO) {
             note.viewDistractionFree(activity)
             return@OnClickListener
           }
           InstallProUpsellBottomSheet.openSheet(activity)
         },
-        visible = getAppFlavor() != Flavor.NONE,
+        visible = CoreConfig.instance.appFlavor() != Flavor.NONE,
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
     return options
