@@ -2,14 +2,19 @@ package com.bijoysingh.quicknote.firebase.support
 
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
 import com.bijoysingh.quicknote.firebase.activity.LoginActivity
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
+import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.maubis.scarlet.base.auth.IAuthenticator
+import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
 
 class ScarletAuthenticator() : IAuthenticator {
   override fun userId(): String? {
@@ -28,7 +33,7 @@ class ScarletAuthenticator() : IAuthenticator {
       FirebaseDatabase.getInstance()
       noteDatabaseReference(context, userId)
       tagDatabaseReference(context, userId)
-      reloadUser()
+      reloadUser(context)
     } catch (exception: Exception) {
       // Don't need to do anything
     }
@@ -52,8 +57,8 @@ class ScarletAuthenticator() : IAuthenticator {
     context.startActivity(Intent(context, ForgetMeActivity::class.java))
   }
 
-  fun reloadUser() {
-    val task = SimpleThreadExecutor.execute {
+  fun reloadUser(context: Context) {
+    SimpleThreadExecutor.execute {
       try {
         FirebaseAuth.getInstance().currentUser?.reload()?.addOnCompleteListener {
           if (it.isSuccessful) {
@@ -63,7 +68,13 @@ class ScarletAuthenticator() : IAuthenticator {
           if (exception !== null && exception is FirebaseNetworkException) {
             return@addOnCompleteListener
           }
+
           logout()
+          CoreConfig.instance.store().put(KEY_FORCE_SHOW_SIGN_IN, true)
+          val handler = Handler(Looper.getMainLooper())
+          handler.post {
+            ToastHelper.show(context, "You have been signed out of the app")
+          }
         }
       } catch (e: Exception) {
         // In case somehow it fails

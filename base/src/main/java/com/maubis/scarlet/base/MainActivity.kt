@@ -50,7 +50,6 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
-import com.maubis.scarlet.base.support.Flavor
 import com.maubis.scarlet.base.support.bind
 import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.database.tagsDB
@@ -275,12 +274,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   private fun addInformationItem(index: Int) {
     val informationItem = when {
-      !CoreConfig.instance.remoteConfigFetcher().isLatestVersion() -> getAppUpdateInformationItem(this)
-      probability(0.01f)
-          && !CoreConfig.instance.store().get(KEY_INFO_RATE_AND_REVIEW, false) -> getReviewInformationItem(this)
-      probability(0.01f)
-          && !CoreConfig.instance.store().get(KEY_INFO_INSTALL_PRO, false)
-          && CoreConfig.instance.appFlavor() != Flavor.PRO -> getInstallProInformationItem(this)
+      shouldShowSignInformationItem() -> getSignInInformationItem(this)
+      shouldShowAppUpdateInformationItem() -> getAppUpdateInformationItem(this)
+      shouldShowReviewInformationItem() -> getReviewInformationItem(this)
+      shouldShowInstallProInformationItem() -> getInstallProInformationItem(this)
       else -> null
     }
     if (informationItem === null) {

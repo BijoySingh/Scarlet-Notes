@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
 import com.maubis.scarlet.base.note.saveToSync
 import com.maubis.scarlet.base.note.tag.saveToSync
 import com.maubis.scarlet.base.support.Flavor
@@ -153,14 +154,19 @@ class LoginActivity : ThemedActivity() {
           override fun onComplete(task: Task<AuthResult>) {
             if (task.isSuccessful()) {
               val user = firebaseAuth.currentUser
-              transitionNotesToServer(user)
-              buttonTitle.setText(R.string.logged_into_app)
+              onLoginSuccess(user)
             } else {
               ToastHelper.show(context, R.string.login_to_google_failed)
               setButton(false)
             }
           }
         })
+  }
+
+  private fun onLoginSuccess(user: FirebaseUser?) {
+    CoreConfig.instance.store().put(KEY_FORCE_SHOW_SIGN_IN, true)
+    transitionNotesToServer(user)
+    buttonTitle.setText(R.string.logged_into_app)
   }
 
   private fun transitionNotesToServer(user: FirebaseUser?) {
