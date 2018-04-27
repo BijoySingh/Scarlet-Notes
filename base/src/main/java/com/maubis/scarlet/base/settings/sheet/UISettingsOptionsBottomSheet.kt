@@ -46,7 +46,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.home_option_enable_day_mode_subtitle,
         icon = R.drawable.ic_action_day_mode,
         listener = View.OnClickListener {
-          CoreConfig.instance.store().put(KEY_APP_THEME, Theme.LIGHT.name)
+          CoreConfig.instance.store().put(KEY_APP_THEME, Theme.DARK.name)
           CoreConfig.instance.themeController().notifyChange(activity)
           activity.notifyThemeChange()
           dismiss()

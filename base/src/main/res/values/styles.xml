@@ -117,4 +117,14 @@
     <item name="android:foregroundGravity">center</item>
     <item name="android:ellipsize">end</item>
   </style>
+
+  <style name="NoteOptionGridLayout">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_gravity">center_horizontal</item>
+    <item name="android:columnCount">3</item>
+    <item name="android:columnOrderPreserved">true</item>
+    <item name="android:rowOrderPreserved">true</item>
+    <item name="android:useDefaultMargins">true</item>
+  </style>
 </resources>

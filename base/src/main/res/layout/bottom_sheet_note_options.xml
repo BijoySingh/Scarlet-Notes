@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/root_layout"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/note_option_bs_gradient">
+
+  <LinearLayout
+    android:id="@+id/container_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_small">
+
+    <TextView
+      android:id="@+id/options_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_large"
+      android:text="@string/choose_note_color"
+      android:textColor="@color/dark_tertiary_text"
+      android:textSize="@dimen/font_size_large"
+      android:visibility="gone" />
+
+    <android.support.v7.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_small"
+      app:cardBackgroundColor="@color/material_blue_800"
+      app:cardCornerRadius="@dimen/spacing_xxsmall">
+
+      <GridLayout
+        android:id="@+id/quick_actions_properties"
+        style="@style/NoteOptionGridLayout"
+        android:padding="@dimen/spacing_small">
+
+      </GridLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      android:id="@+id/tag_card_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_small"
+      app:cardBackgroundColor="@color/material_teal_700"
+      app:cardCornerRadius="@dimen/spacing_xxsmall">
+
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_normal">
+
+        <ImageView
+          android:id="@+id/tags_icon"
+          android:layout_width="@dimen/icon_size_normal"
+          android:layout_height="@dimen/icon_size_normal"
+          android:layout_alignParentStart="true"
+          android:layout_centerVertical="true"
+          android:layout_margin="@dimen/spacing_xxsmall"
+          android:src="@drawable/ic_action_tags" />
+
+        <TextView
+          android:id="@+id/tags_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignStart="@+id/tags_subtitle"
+          android:text="Note Tags"
+          android:textColor="@color/light_secondary_text"
+          android:textSize="@dimen/font_size_small" />
+
+        <TextView
+          android:id="@+id/tags_subtitle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/tags_title"
+          android:layout_marginStart="@dimen/spacing_normal"
+          android:layout_toEndOf="@+id/tags_icon"
+          android:ellipsize="end"
+          android:maxLines="1"
+          android:text="Click to add or change tags"
+          android:textColor="@color/light_tertiary_text"
+          android:textSize="@dimen/font_size_small" />
+
+        <TextView
+          android:id="@+id/tags_content"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignStart="@+id/tags_subtitle"
+          android:layout_below="@+id/tags_subtitle"
+          android:layout_marginTop="@dimen/spacing_xsmall"
+          android:ellipsize="end"
+          android:maxLines="2"
+          android:textColor="@color/light_tertiary_text"
+          android:textSize="@dimen/font_size_large"
+          android:visibility="gone" />
+      </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_small"
+      app:cardBackgroundColor="@color/material_red_800"
+      app:cardCornerRadius="@dimen/spacing_xxsmall">
+
+      <GridLayout
+        android:id="@+id/note_properties"
+        style="@style/NoteOptionGridLayout"
+        android:padding="@dimen/spacing_small"></GridLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      android:id="@+id/select_notes_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_small"
+      app:cardBackgroundColor="@color/material_blue_grey_700"
+      app:cardCornerRadius="@dimen/spacing_xxsmall">
+
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_normal">
+
+        <TextView
+          android:id="@+id/select_notes_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="@dimen/icon_size_large"
+          android:text="Select Notes"
+          android:textColor="@color/light_secondary_text"
+          android:textSize="@dimen/font_size_small" />
+
+        <TextView
+          android:id="@+id/select_notes_subtitle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/select_notes_title"
+          android:layout_marginEnd="@dimen/icon_size_large"
+          android:ellipsize="end"
+          android:maxLines="2"
+          android:text="Select and perform actions on multiple notes at once"
+          android:textColor="@color/light_tertiary_text"
+          android:textSize="@dimen/font_size_small" />
+
+        <ImageView
+          android:id="@+id/select_notes_icon"
+          android:layout_width="@dimen/icon_size_normal"
+          android:layout_height="@dimen/icon_size_normal"
+          android:layout_alignParentEnd="true"
+          android:layout_centerVertical="true"
+          android:layout_margin="@dimen/spacing_xxsmall"
+          android:src="@drawable/ic_action_select" />
+
+      </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      android:id="@+id/expanding_note_actions"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/spacing_small"
+      app:cardBackgroundColor="@color/material_cyan_800"
+      app:cardCornerRadius="@dimen/spacing_xxsmall">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_small">
+
+        <GridLayout
+          android:id="@+id/grid_layout"
+          style="@style/NoteOptionGridLayout">
+
+        </GridLayout>
+
+        <GridLayout
+          android:id="@+id/hidden_grid_layout"
+          style="@style/NoteOptionGridLayout"
+          android:visibility="gone">
+
+        </GridLayout>
+
+        <LinearLayout
+          android:id="@+id/expand_note_actions"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:padding="@dimen/spacing_xxsmall">
+
+          <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show More Actions"
+            android:textColor="@color/light_hint_text"
+            android:textSize="@dimen/font_size_normal" />
+
+          <ImageView
+            android:layout_width="@dimen/icon_size_normal"
+            android:layout_height="@dimen/icon_size_normal"
+            android:alpha="0.5"
+            android:src="@drawable/ic_keyboard_arrow_down_white_48dp" />
+        </LinearLayout>
+
+      </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+  </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

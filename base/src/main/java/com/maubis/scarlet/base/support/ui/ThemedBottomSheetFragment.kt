@@ -47,7 +47,7 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
     containerLayout.setBackgroundColor(CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND))
   }
 
-  fun getOptionsTitleColor(selected: Boolean): Int {
+  open fun getOptionsTitleColor(selected: Boolean): Int {
     val colorResource = when {
       CoreConfig.instance.themeController().isNightTheme() && selected -> R.color.material_blue_300
       CoreConfig.instance.themeController().isNightTheme() -> R.color.light_secondary_text
