@@ -21,7 +21,7 @@ import com.maubis.scarlet.base.note.delete
 import com.maubis.scarlet.base.note.formats.recycler.FormatImageViewHolder
 import com.maubis.scarlet.base.note.formats.recycler.FormatTextViewHolder
 import com.maubis.scarlet.base.note.saveToSync
-import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
 import com.maubis.scarlet.base.support.bind
 import com.maubis.scarlet.base.support.recycler.SimpleItemTouchHelper
 import com.maubis.scarlet.base.support.ui.CircleDrawable
@@ -145,9 +145,9 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
     val colorButtonClicker = findViewById<View>(R.id.color_button_clicker)
     colorButtonClicker.setOnClickListener {
-      ColorPickerBottomSheet.openSheet(
+      NoteColorPickerBottomSheet.openSheet(
           this@CreateNoteActivity,
-          object : ColorPickerBottomSheet.ColorPickerController {
+          object : NoteColorPickerBottomSheet.ColorPickerController {
             override fun onColorSelected(note: Note, color: Int) = setNoteColor(color)
             override fun getNote(): Note = note!!
           })

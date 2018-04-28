@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.CardView
 import android.view.View
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 import com.maubis.scarlet.base.R
@@ -40,12 +41,13 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
   abstract fun getBackgroundView(): Int
 
   fun resetBackground(dialog: Dialog) {
-    setBackgroundView(dialog, getBackgroundView())
-  }
-
-  private fun setBackgroundView(dialog: Dialog, viewId: Int) {
-    val containerLayout = dialog.findViewById<View>(viewId);
-    containerLayout.setBackgroundColor(CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND))
+    val backgroundColor = CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND)
+    val containerLayout = dialog.findViewById<View>(getBackgroundView())
+    containerLayout.setBackgroundColor(backgroundColor)
+    for (viewId in getBackgroundCardViewIds()) {
+      val cardView = dialog.findViewById<CardView>(viewId)
+      cardView.setCardBackgroundColor(backgroundColor)
+    }
   }
 
   open fun getOptionsTitleColor(selected: Boolean): Int {
@@ -67,6 +69,8 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
     }
     return ContextCompat.getColor(themedContext(), colorResource)
   }
+
+  open fun getBackgroundCardViewIds(): Array<Int> = emptyArray()
 
   fun makeBackgroundTransparent(dialog: Dialog, rootLayoutId: Int) {
     val containerView = dialog.findViewById<View>(getBackgroundView())

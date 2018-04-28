@@ -48,9 +48,9 @@
           android:id="@+id/why_install_pro_details"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:padding="@dimen/spacing_xsmall"
           android:text="@string/why_install_pro_details"
           android:textColor="@color/light_tertiary_text"
-          android:padding="@dimen/spacing_xsmall"
           android:textSize="@dimen/font_size_normal" />
       </LinearLayout>
     </android.support.v7.widget.CardView>
@@ -62,26 +62,19 @@
       app:cardBackgroundColor="@color/material_red_800"
       app:cardCornerRadius="@dimen/spacing_xxsmall">
 
-      <LinearLayout
+      <TextView
         android:id="@+id/install_pro_app"
-        android:layout_width="match_parent"
+        style="@style/BorderedBackgroundView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_xsmall">
+        android:layout_gravity="center"
+        android:padding="@dimen/spacing_normal"
+        android:text="@string/install_pro_app"
+        android:textAllCaps="true"
+        android:textColor="@color/light_secondary_text"
+        android:textSize="@dimen/font_size_small"
+        android:textStyle="bold" />
 
-        <TextView
-          style="@style/BorderedBackgroundView"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:padding="@dimen/spacing_xsmall"
-          android:text="@string/install_pro_app"
-          android:textAllCaps="true"
-          android:textColor="@color/light_secondary_text"
-          android:textSize="@dimen/font_size_small"
-          android:textStyle="bold" />
-
-      </LinearLayout>
     </android.support.v7.widget.CardView>
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

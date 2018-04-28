@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base.main.sheets
 
 import android.app.Dialog
+import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -28,7 +29,12 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
     resetOptions(dialog)
     resetTags(dialog)
     setAddTagOption(dialog)
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
+
+  override fun getBackgroundCardViewIds() = arrayOf(
+      R.id.navigation_card_layout,
+      R.id.tag_card_layout)
 
   private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
@@ -96,22 +102,16 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   }
 
   fun resetOptions(dialog: Dialog) {
-    MultiAsyncTask.execute(themedActivity(), object : MultiAsyncTask.Task<List<OptionsItem>> {
+    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<OptionsItem>> {
       override fun run(): List<OptionsItem> = getOptions()
       override fun handle(result: List<OptionsItem>) {
-        val titleView = dialog.findViewById<TextView>(R.id.options_title)
-        titleView.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-
-        val separator = dialog.findViewById<View>(R.id.separator)
-        separator.setBackgroundColor(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
-
         setOptions(dialog, result)
       }
     })
   }
 
   fun resetTags(dialog: Dialog) {
-    MultiAsyncTask.execute(themedActivity(), object : MultiAsyncTask.Task<List<TagOptionsItem>> {
+    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<TagOptionsItem>> {
       override fun run(): List<TagOptionsItem> = getTagOptions()
       override fun handle(result: List<TagOptionsItem>) {
         val titleView = dialog.findViewById<TextView>(R.id.tag_options_title)

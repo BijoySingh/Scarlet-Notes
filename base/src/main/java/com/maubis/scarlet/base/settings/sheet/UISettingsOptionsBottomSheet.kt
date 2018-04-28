@@ -62,7 +62,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
             ColorPickerBottomSheet.openSheet(activity, object : ColorPickerBottomSheet.ColorPickerDefaultController {
               override fun getSheetTitle(): Int = R.string.theme_page_title
 
-              override fun getColorList(): IntArray? = resources.getIntArray(R.array.theme_color)
+              override fun getColorList(): IntArray = resources.getIntArray(R.array.theme_color)
 
               override fun onColorSelected(color: Int) {
                 val theme = ThemeManager.getThemeByBackgroundColor(activity, color)

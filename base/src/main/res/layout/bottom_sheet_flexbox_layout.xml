@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-  android:id="@+id/root_layout"
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/root_layout"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
@@ -18,16 +17,9 @@
     android:paddingStart="@dimen/spacing_large"
     android:paddingTop="@dimen/spacing_xlarge">
 
-    <TextView
-      android:id="@+id/options_title"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/spacing_large"
-      android:text="@string/choose_note_color"
-      android:textColor="@color/dark_tertiary_text"
-      android:textSize="@dimen/font_size_large" />
 
     <android.support.v7.widget.CardView
+      android:id="@+id/core_color_card"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="@dimen/spacing_small"
@@ -38,14 +30,15 @@
         android:id="@+id/flexbox_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_normal"
         app:alignContent="stretch"
         app:alignItems="stretch"
         app:flexWrap="wrap"
         app:justifyContent="center" />
-
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+      android:id="@+id/accent_color_card"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="@dimen/spacing_small"
@@ -56,10 +49,34 @@
         android:id="@+id/flexbox_layout_accent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_normal"
         app:alignContent="stretch"
         app:alignItems="stretch"
         app:flexWrap="wrap"
         app:justifyContent="center" />
+
     </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:cardBackgroundColor="@color/material_red_800"
+      app:cardCornerRadius="@dimen/spacing_xxsmall">
+
+      <TextView
+        android:id="@+id/options_title"
+        style="@style/BorderedBackgroundView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/spacing_normal"
+        android:text="@string/choose_note_color"
+        android:textAllCaps="true"
+        android:textColor="@color/light_secondary_text"
+        android:textSize="@dimen/font_size_small"
+        android:textStyle="bold" />
+
+    </android.support.v7.widget.CardView>
+
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

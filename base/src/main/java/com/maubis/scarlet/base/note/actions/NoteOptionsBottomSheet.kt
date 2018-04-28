@@ -2,7 +2,6 @@ package com.maubis.scarlet.base.note.actions
 
 import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.GridLayout
@@ -27,7 +26,7 @@ import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
 import com.maubis.scarlet.base.note.tag.sheet.TagChooseOptionsBottomSheet
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
-import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
 import com.maubis.scarlet.base.support.Flavor
 
 import com.maubis.scarlet.base.support.option.OptionsItem
@@ -237,9 +236,9 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.tap_for_action_color,
         icon = R.drawable.ic_action_color,
         listener = View.OnClickListener {
-          ColorPickerBottomSheet.openSheet(
+          NoteColorPickerBottomSheet.openSheet(
               activity,
-              object : ColorPickerBottomSheet.ColorPickerController {
+              object : NoteColorPickerBottomSheet.ColorPickerController {
                 override fun onColorSelected(note: Note, color: Int) {
                   note.color = color
                   activity.updateNote(note)

@@ -105,7 +105,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
       markHintShown(TUTORIAL_KEY_HOME_SETTINGS)
     }
     showHints()
-    InstallProUpsellBottomSheet.openSheet(this)
   }
 
   fun setListeners() {

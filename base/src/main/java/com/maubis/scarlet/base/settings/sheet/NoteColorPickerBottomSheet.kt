@@ -1,18 +1,19 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
-import android.view.View
 import android.widget.TextView
 import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.settings.view.ColorView
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 
-class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
+
+class NoteColorPickerBottomSheet : ThemedBottomSheetFragment() {
 
   var colorChosen: Int = 0
-  var defaultController: ColorPickerDefaultController? = null
+  var defaultController: ColorPickerController? = null
 
   override fun setupView(dialog: Dialog?) {
     super.setupView(dialog)
@@ -21,21 +22,19 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     }
 
     val controller = defaultController
-    if (controller === null) {
+    if (controller == null) {
       dismiss()
       return
     }
 
     val colorPicker = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout)
-    setColorsList(colorPicker, controller)
+    setColorsList(controller, colorPicker, resources.getIntArray(R.array.bright_colors))
 
-    val accentColorCard = dialog.findViewById<View>(R.id.accent_color_card)
-    accentColorCard.visibility = View.GONE
     val colorPickerAccent = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout_accent)
-    colorPickerAccent.visibility = View.GONE
+    setColorsList(controller, colorPickerAccent, resources.getIntArray(R.array.bright_colors_accent))
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setText(controller.getSheetTitle())
+    optionsTitle.setText(R.string.choose_note_color)
     optionsTitle.setOnClickListener {
       dismiss()
     }
@@ -51,21 +50,20 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     return R.id.container_layout
   }
 
-  private fun setColorsList(colorSelectorLayout: FlexboxLayout,
-                            controller: ColorPickerDefaultController) {
+  private fun setColorsList(controller: ColorPickerController, colorSelectorLayout: FlexboxLayout, colors: IntArray) {
     colorSelectorLayout.removeAllViews()
     colorChosen = when {
       colorChosen != 0 -> colorChosen
-      else -> controller.getSelectedColor()
+      else -> controller.getNote().color
     }
 
-    for (color in controller.getColorList()) {
-      val item = ColorView(themedContext())
+    for (color in colors) {
+      val item = ColorView(context!!)
       item.setColor(color, colorChosen == color)
       item.setOnClickListener {
         colorChosen = color
-        controller.onColorSelected(colorChosen)
-        setColorsList(colorSelectorLayout, controller)
+        controller.onColorSelected(controller.getNote(), colorChosen)
+        setColorsList(controller, colorSelectorLayout, colors)
       }
       colorSelectorLayout.addView(item)
     }
@@ -73,20 +71,16 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
 
   override fun getLayout(): Int = R.layout.bottom_sheet_flexbox_layout
 
-  interface ColorPickerDefaultController {
-    fun getSheetTitle(): Int
+  interface ColorPickerController {
+    fun onColorSelected(note: Note, color: Int)
 
-    fun getColorList(): IntArray
-
-    fun onColorSelected(color: Int)
-
-    fun getSelectedColor(): Int
+    fun getNote(): Note
   }
 
   companion object {
     fun openSheet(activity: ThemedActivity,
-                  picker: ColorPickerDefaultController) {
-      val sheet = ColorPickerBottomSheet()
+                  picker: ColorPickerController) {
+      val sheet = NoteColorPickerBottomSheet()
       sheet.defaultController = picker
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }

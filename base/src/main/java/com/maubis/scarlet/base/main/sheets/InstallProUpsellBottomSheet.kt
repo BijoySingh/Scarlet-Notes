@@ -23,9 +23,6 @@ class InstallProUpsellBottomSheet : ThemedBottomSheetFragment() {
       return
     }
 
-    val contentCard = dialog.findViewById<CardView>(R.id.content_card)
-    contentCard.setCardBackgroundColor(CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND))
-
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
     optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
 
@@ -46,6 +43,8 @@ class InstallProUpsellBottomSheet : ThemedBottomSheetFragment() {
 
     makeBackgroundTransparent(dialog, R.id.root_layout)
   }
+
+  override fun getBackgroundCardViewIds() = arrayOf(R.id.content_card)
 
   override fun getLayout(): Int = R.layout.bottom_sheet_install_pro_upsell
 
