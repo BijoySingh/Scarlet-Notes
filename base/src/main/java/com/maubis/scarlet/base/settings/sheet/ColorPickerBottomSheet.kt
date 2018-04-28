@@ -40,20 +40,17 @@ class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
     val colorPicker = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout)
     setColorsList(colorPicker, getColorOptions())
 
-    val separator = dialog.findViewById<View>(R.id.separator)
     val colorPickerAccent = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout_accent)
     if (controller !== null) {
       setColorsList(colorPickerAccent, resources.getIntArray(R.array.bright_colors_accent))
-      separator.setBackgroundColor(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
     } else {
       colorPickerAccent.visibility = View.GONE
-      separator.visibility = View.GONE
     }
 
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-
-    optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
     optionsTitle.text = getSheetTitle()
+
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   override fun getBackgroundView(): Int {
