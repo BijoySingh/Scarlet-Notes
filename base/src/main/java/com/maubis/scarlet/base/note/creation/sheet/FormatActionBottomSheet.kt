@@ -8,6 +8,7 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.NoteImage
+import com.maubis.scarlet.base.core.note.NoteImage.Companion.deleteIfExist
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
@@ -80,7 +81,7 @@ class FormatActionBottomSheet : GridBottomSheetBase() {
           activity.deleteFormat(format)
           if (format.formatType === FormatType.IMAGE && !format.text.isBlank()) {
             val noteImage = NoteImage(themedContext())
-            noteImage.deleteIfExist(noteImage.getFile(noteUUID, format))
+            deleteIfExist(noteImage.getFile(noteUUID, format))
           }
           dismiss()
         }

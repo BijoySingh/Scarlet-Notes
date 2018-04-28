@@ -3,8 +3,7 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/root_layout"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@drawable/note_option_bs_gradient">
+  android:layout_height="match_parent">
 
   <LinearLayout
     android:id="@+id/container_layout"

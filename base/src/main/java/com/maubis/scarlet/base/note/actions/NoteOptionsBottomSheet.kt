@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.GridLayout
 import android.widget.TextView
+import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
@@ -41,16 +42,13 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
   override fun setupViewWithDialog(dialog: Dialog) {
     val note = noteFn()
-    if (note == null) {
+    if (note === null) {
       dismiss()
       return
     }
 
     setOptionTitle(dialog, R.string.choose_action)
-    setOptions(dialog.findViewById<GridLayout>(R.id.quick_actions_properties), getQuickActions(note))
-    setOptions(dialog.findViewById<GridLayout>(R.id.note_properties), getNotePropertyOptions(note))
-    setOptions(dialog.findViewById<GridLayout>(R.id.grid_layout), getOptions(note))
-    setOptions(dialog.findViewById<GridLayout>(R.id.hidden_grid_layout), getHiddenOptions(note))
+    setupGrid(dialog, note)
     setupCardViews(note)
 
     val containerView = (dialog.findViewById<View>(getBackgroundView()))
@@ -59,7 +57,29 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     val rootView = dialog.findViewById<View>(R.id.root_layout)
     val parentView = rootView.parent
     if (parentView is View) {
-      parentView.setBackgroundColor(Color.TRANSPARENT)
+      parentView.setBackgroundResource(R.drawable.note_option_bs_gradient)
+    }
+  }
+
+  private fun setupGrid(dialog: Dialog, note: Note) {
+    val gridLayoutIds = arrayOf(
+        R.id.quick_actions_properties,
+        R.id.note_properties,
+        R.id.grid_layout,
+        R.id.hidden_grid_layout)
+    val gridOptionFunctions = arrayOf(
+        { noteForAction: Note -> getQuickActions(noteForAction) },
+        { noteForAction: Note -> getNotePropertyOptions(noteForAction) },
+        { noteForAction: Note -> getOptions(noteForAction) },
+        { noteForAction: Note -> getHiddenOptions(noteForAction) })
+
+    for (index in 0..gridOptionFunctions.size-1) {
+      MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<OptionsItem>> {
+        override fun run(): List<OptionsItem> = gridOptionFunctions[index](note)
+        override fun handle(result: List<OptionsItem>) {
+          setOptions(dialog.findViewById<GridLayout>(gridLayoutIds[index]), result)
+        }
+      })
     }
   }
 
@@ -100,6 +120,117 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
       dialog.findViewById<GridLayout>(R.id.hidden_grid_layout).visibility = View.VISIBLE
       expandNoteActions.visibility = View.GONE
     }
+  }
+
+  private fun getQuickActions(note: Note): List<OptionsItem> {
+    val activity = context as ThemedActivity
+    if (activity !is INoteOptionSheetActivity) {
+      return emptyList()
+    }
+
+    val options = ArrayList<OptionsItem>()
+    options.add(OptionsItem(
+        title = R.string.restore_note,
+        subtitle = R.string.tap_for_action_not_trash,
+        icon = R.drawable.ic_restore,
+        listener = View.OnClickListener {
+          activity.markItem(note, NoteState.DEFAULT)
+          dismiss()
+        },
+        visible = note.getNoteState() == NoteState.TRASH
+    ))
+    options.add(OptionsItem(
+        title = R.string.edit_note,
+        subtitle = R.string.tap_for_action_edit,
+        icon = R.drawable.ic_edit_white_48dp,
+        listener = View.OnClickListener {
+          note.edit(activity)
+          dismiss()
+        }
+    ))
+    options.add(OptionsItem(
+        title = R.string.not_favourite_note,
+        subtitle = R.string.tap_for_action_not_favourite,
+        icon = R.drawable.ic_favorite_white_48dp,
+        listener = View.OnClickListener {
+          activity.markItem(note, NoteState.DEFAULT)
+          dismiss()
+        },
+        visible = note.getNoteState() == NoteState.FAVOURITE
+    ))
+    options.add(OptionsItem(
+        title = R.string.favourite_note,
+        subtitle = R.string.tap_for_action_favourite,
+        icon = R.drawable.ic_favorite_border_white_48dp,
+        listener = View.OnClickListener {
+          activity.markItem(note, NoteState.FAVOURITE)
+          dismiss()
+        },
+        visible = note.getNoteState() != NoteState.FAVOURITE
+    ))
+    options.add(OptionsItem(
+        title = R.string.unarchive_note,
+        subtitle = R.string.tap_for_action_not_archive,
+        icon = R.drawable.ic_archive_white_48dp,
+        listener = View.OnClickListener {
+          activity.markItem(note, NoteState.DEFAULT)
+          dismiss()
+        },
+        visible = note.getNoteState() == NoteState.ARCHIVED
+    ))
+    options.add(OptionsItem(
+        title = R.string.archive_note,
+        subtitle = R.string.tap_for_action_archive,
+        icon = R.drawable.ic_archive_white_48dp,
+        listener = View.OnClickListener {
+          activity.markItem(note, NoteState.ARCHIVED)
+          dismiss()
+        },
+        visible = note.getNoteState() != NoteState.ARCHIVED
+    ))
+    options.add(OptionsItem(
+        title = R.string.send_note,
+        subtitle = R.string.tap_for_action_share,
+        icon = R.drawable.ic_share_white_48dp,
+        listener = View.OnClickListener {
+          note.share(activity)
+          dismiss()
+        },
+        invalid = activity.lockedContentIsHidden() && note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.copy_note,
+        subtitle = R.string.tap_for_action_copy,
+        icon = R.drawable.ic_content_copy_white_48dp,
+        listener = View.OnClickListener {
+          note.copy(activity)
+          dismiss()
+        },
+        invalid = activity.lockedContentIsHidden() && note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.delete_note_permanently,
+        subtitle = R.string.tap_for_action_delete,
+        icon = R.drawable.ic_delete_permanently,
+        listener = View.OnClickListener {
+          activity.moveItemToTrashOrDelete(note)
+          dismiss()
+        },
+        visible = note.getNoteState() == NoteState.TRASH,
+        invalid = activity.lockedContentIsHidden() && note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.trash_note,
+        subtitle = R.string.tap_for_action_trash,
+        icon = R.drawable.ic_delete_white_48dp,
+        listener = View.OnClickListener {
+          activity.moveItemToTrashOrDelete(note)
+          dismiss()
+        },
+        visible = note.getNoteState() != NoteState.TRASH,
+        invalid = activity.lockedContentIsHidden() && note.locked
+    ))
+    return options
   }
 
   private fun getNotePropertyOptions(note: Note): List<OptionsItem> {
@@ -167,117 +298,6 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
               })
         },
         visible = note.locked
-    ))
-    return options
-  }
-
-  private fun getQuickActions(note: Note): List<OptionsItem> {
-    val activity = context as ThemedActivity
-    if (activity !is INoteOptionSheetActivity) {
-      return emptyList()
-    }
-
-    val options = ArrayList<OptionsItem>()
-    options.add(OptionsItem(
-        title = R.string.restore_note,
-        subtitle = R.string.tap_for_action_not_trash,
-        icon = R.drawable.ic_restore,
-        listener = View.OnClickListener {
-          activity.markItem(note, NoteState.DEFAULT)
-          dismiss()
-        },
-        visible = note.getNoteState() == NoteState.TRASH
-    ))
-    options.add(OptionsItem(
-        title = R.string.edit_note,
-        subtitle = R.string.tap_for_action_edit,
-        icon = R.drawable.ic_edit_white_48dp,
-        listener = View.OnClickListener {
-          note.edit(activity)
-          dismiss()
-        }
-    ))
-    options.add(OptionsItem(
-        title = R.string.send_note,
-        subtitle = R.string.tap_for_action_share,
-        icon = R.drawable.ic_share_white_48dp,
-        listener = View.OnClickListener {
-          note.share(activity)
-          dismiss()
-        },
-        invalid = activity.lockedContentIsHidden() && note.locked
-    ))
-    options.add(OptionsItem(
-        title = R.string.copy_note,
-        subtitle = R.string.tap_for_action_copy,
-        icon = R.drawable.ic_content_copy_white_48dp,
-        listener = View.OnClickListener {
-          note.copy(activity)
-          dismiss()
-        },
-        invalid = activity.lockedContentIsHidden() && note.locked
-    ))
-    options.add(OptionsItem(
-        title = R.string.not_favourite_note,
-        subtitle = R.string.tap_for_action_not_favourite,
-        icon = R.drawable.ic_favorite_white_48dp,
-        listener = View.OnClickListener {
-          activity.markItem(note, NoteState.DEFAULT)
-          dismiss()
-        },
-        visible = note.getNoteState() == NoteState.FAVOURITE
-    ))
-    options.add(OptionsItem(
-        title = R.string.favourite_note,
-        subtitle = R.string.tap_for_action_favourite,
-        icon = R.drawable.ic_favorite_border_white_48dp,
-        listener = View.OnClickListener {
-          activity.markItem(note, NoteState.FAVOURITE)
-          dismiss()
-        },
-        visible = note.getNoteState() != NoteState.FAVOURITE
-    ))
-    options.add(OptionsItem(
-        title = R.string.unarchive_note,
-        subtitle = R.string.tap_for_action_not_archive,
-        icon = R.drawable.ic_archive_white_48dp,
-        listener = View.OnClickListener {
-          activity.markItem(note, NoteState.DEFAULT)
-          dismiss()
-        },
-        visible = note.getNoteState() == NoteState.ARCHIVED
-    ))
-    options.add(OptionsItem(
-        title = R.string.archive_note,
-        subtitle = R.string.tap_for_action_archive,
-        icon = R.drawable.ic_archive_white_48dp,
-        listener = View.OnClickListener {
-          activity.markItem(note, NoteState.ARCHIVED)
-          dismiss()
-        },
-        visible = note.getNoteState() != NoteState.ARCHIVED
-    ))
-    options.add(OptionsItem(
-        title = R.string.delete_note_permanently,
-        subtitle = R.string.tap_for_action_delete,
-        icon = R.drawable.ic_delete_permanently,
-        listener = View.OnClickListener {
-          activity.moveItemToTrashOrDelete(note)
-          dismiss()
-        },
-        visible = note.getNoteState() == NoteState.TRASH,
-        invalid = activity.lockedContentIsHidden() && note.locked
-    ))
-    options.add(OptionsItem(
-        title = R.string.trash_note,
-        subtitle = R.string.tap_for_action_trash,
-        icon = R.drawable.ic_delete_white_48dp,
-        listener = View.OnClickListener {
-          activity.moveItemToTrashOrDelete(note)
-          dismiss()
-        },
-        visible = note.getNoteState() != NoteState.TRASH,
-        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     return options
   }

@@ -51,13 +51,10 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.bind
-import com.maubis.scarlet.base.support.database.notesDB
-import com.maubis.scarlet.base.support.database.tagsDB
+import com.maubis.scarlet.base.support.database.*
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.utils.migrate
-import com.maubis.scarlet.base.utils.removeOlderClips
 
 class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
 
@@ -66,6 +63,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   internal var mode: HomeNavigationState = HomeNavigationState.DEFAULT
   internal var selectedTag: Tag? = null
+  internal var isInSearchMode: Boolean = false
 
   internal lateinit var receiver: BroadcastReceiver
   internal lateinit var executor: SimpleThreadExecutor
@@ -84,16 +82,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
   val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
   val tagsFlexBox: FlexboxLayout by bind(R.id.tags_flexbox)
-
   val deleteToolbar: View by bind(R.id.bottom_delete_toolbar_layout)
-  internal var isInSearchMode: Boolean = false
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
     // Migrate to the newer version of the tags
-    migrate(this)
+    Migrator(this).start()
 
     mode = HomeNavigationState.DEFAULT
     executor = SimpleThreadExecutor(1)
@@ -377,8 +373,8 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   override fun onPause() {
     super.onPause()
-    removeOlderClips(this)
     unregisterReceiver(receiver)
+    HouseKeeper(this).start()
   }
 
   override fun onStop() {

@@ -51,32 +51,6 @@ class NoteImage(val context: Context) {
     }
   }
 
-  fun deleteAllRedundantImageFiles(uuids: Array<String>) {
-    val imagesFolder = File(context.cacheDir, "images" + File.separator)
-    val availableDirectories = HashSet<String>()
-    for (file in imagesFolder.listFiles()) {
-      if (file.isDirectory) {
-        availableDirectories.add(file.name)
-      }
-    }
-    for (id in uuids) {
-      availableDirectories.remove(id)
-    }
-    for (uuid in availableDirectories) {
-      val noteFolder = File(imagesFolder, uuid)
-      for (file in noteFolder.listFiles()) {
-        deleteIfExist(file)
-      }
-    }
-  }
-
-  fun deleteIfExist(file: File): Boolean {
-    return when {
-      file.exists() -> file.delete()
-      else -> false
-    }
-  }
-
   fun loadFileToImageView(image: ImageView, file: File, callback: ImageLoadCallback? = null) {
     Picasso.with(context).load(file).into(image, object : Callback {
       override fun onSuccess() {
@@ -86,10 +60,19 @@ class NoteImage(val context: Context) {
       }
 
       override fun onError() {
-        NoteImage(context).deleteIfExist(file)
+        deleteIfExist(file)
         image.visibility = View.GONE
         callback?.onError()
       }
     })
+  }
+
+  companion object {
+    fun deleteIfExist(file: File): Boolean {
+      return when {
+        file.exists() -> file.delete()
+        else -> false
+      }
+    }
   }
 }
