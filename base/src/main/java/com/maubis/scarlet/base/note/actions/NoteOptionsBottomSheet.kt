@@ -50,15 +50,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     setOptionTitle(dialog, R.string.choose_action)
     setupGrid(dialog, note)
     setupCardViews(note)
-
-    val containerView = (dialog.findViewById<View>(getBackgroundView()))
-    containerView.setBackgroundColor(Color.TRANSPARENT)
-
-    val rootView = dialog.findViewById<View>(R.id.root_layout)
-    val parentView = rootView.parent
-    if (parentView is View) {
-      parentView.setBackgroundResource(R.drawable.note_option_bs_gradient)
-    }
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   private fun setupGrid(dialog: Dialog, note: Note) {

@@ -3,6 +3,7 @@ package com.maubis.scarlet.base.support.ui
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -65,5 +66,16 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
       else -> R.color.dark_tertiary_text
     }
     return ContextCompat.getColor(themedContext(), colorResource)
+  }
+
+  fun makeBackgroundTransparent(dialog: Dialog, rootLayoutId: Int) {
+    val containerView = dialog.findViewById<View>(getBackgroundView())
+    containerView.setBackgroundColor(Color.TRANSPARENT)
+
+    val rootView = dialog.findViewById<View>(rootLayoutId)
+    val parentView = rootView.parent
+    if (parentView is View) {
+      parentView.setBackgroundResource(R.drawable.note_option_bs_gradient)
+    }
   }
 }

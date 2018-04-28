@@ -32,6 +32,7 @@ import com.maubis.scarlet.base.main.activity.createHint
 import com.maubis.scarlet.base.main.recycler.*
 import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
 import com.maubis.scarlet.base.main.sheets.HomeNavigationBottomSheet
+import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity

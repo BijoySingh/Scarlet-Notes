@@ -1,11 +1,9 @@
 package com.maubis.scarlet.base.main.sheets
 
 import android.app.Dialog
-import android.widget.TextView
+import android.view.View
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 
@@ -21,24 +19,12 @@ class InstallProUpsellBottomSheet : ThemedBottomSheetFragment() {
       return
     }
 
-    val whyInstallPro = dialog.findViewById<TextView>(R.id.why_install_pro)
-    val whyInstallProDetails = dialog.findViewById<TextView>(R.id.why_install_pro_details)
-    val installPro = dialog.findViewById<TextView>(R.id.install_pro_app)
-
-    val textColor = CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)
-    whyInstallProDetails.setTextColor(textColor)
-
-    val titleTextColor = CoreConfig.instance.themeController().get(ThemeColorType.SECTION_HEADER)
-    whyInstallPro.setTextColor(titleTextColor)
-
-    installPro.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
+    val installPro = dialog.findViewById<View>(R.id.install_pro_app)
     installPro.setOnClickListener {
       IntentUtils.openAppPlayStore(context, "com.bijoysingh.quicknote.pro")
       dismiss()
     }
-
-    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_install_pro_upsell

@@ -1,62 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/root_layout"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  <LinearLayout
     android:id="@+id/container_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:orientation="vertical"
-    android:padding="@dimen/spacing_large">
-    <TextView
-      android:id="@+id/options_title"
+    android:padding="@dimen/spacing_xsmall">
+
+    <android.support.v7.widget.CardView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/spacing_xsmall"
-      android:text="@string/available_in_pro_only"
-      android:textColor="@color/dark_tertiary_text"
-      android:textSize="@dimen/font_size_large" />
+      android:layout_margin="@dimen/spacing_xsmall"
+      app:cardBackgroundColor="@color/material_blue_grey_700"
+      app:cardCornerRadius="@dimen/spacing_xxsmall">
 
-    <TextView
-      android:id="@+id/why_install_pro"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/spacing_xsmall"
-      android:text="@string/why_install_pro"
-      android:textColor="@color/material_blue_grey_500"
-      android:textSize="@dimen/font_size_normal" />
-
-    <TextView
-      android:id="@+id/why_install_pro_details"
-      style="@style/SanSerif"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/spacing_xsmall"
-      android:text="@string/why_install_pro_details"
-      android:textColor="@color/dark_tertiary_text"
-      android:textSize="@dimen/font_size_normal" />
-
-    <LinearLayout
-      android:id="@+id/results_layout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:gravity="end"
-      android:orientation="horizontal">
-
-      <TextView
-        android:id="@+id/install_pro_app"
-        style="@style/BorderedBackgroundView"
-        android:layout_width="wrap_content"
+      <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:padding="@dimen/spacing_xsmall"
-        android:text="@string/install_pro_app"
-        android:textAllCaps="true"
-        android:textColor="@color/material_blue_600"
-        android:textSize="@dimen/font_size_small"
-        android:textStyle="bold" />
-    </LinearLayout>
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_normal">
+
+        <TextView
+          android:id="@+id/options_title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/spacing_small"
+          android:text="@string/available_in_pro_only"
+          android:textColor="@color/light_primary_text"
+          android:textSize="@dimen/font_size_large" />
+
+        <TextView
+          android:id="@+id/why_install_pro"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/spacing_small"
+          android:text="@string/why_install_pro"
+          android:textColor="@color/light_secondary_text"
+          android:textSize="@dimen/font_size_normal" />
+
+        <TextView
+          android:id="@+id/why_install_pro_details"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/why_install_pro_details"
+          android:textColor="@color/light_tertiary_text"
+          android:textSize="@dimen/font_size_normal" />
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/spacing_xsmall"
+      app:cardBackgroundColor="@color/material_red_800"
+      app:cardCornerRadius="@dimen/spacing_xxsmall">
+
+      <LinearLayout
+        android:id="@+id/install_pro_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_xsmall">
+
+        <TextView
+          style="@style/BorderedBackgroundView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:padding="@dimen/spacing_xsmall"
+          android:text="@string/install_pro_app"
+          android:textAllCaps="true"
+          android:textColor="@color/light_secondary_text"
+          android:textSize="@dimen/font_size_small"
+          android:textStyle="bold" />
+
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
