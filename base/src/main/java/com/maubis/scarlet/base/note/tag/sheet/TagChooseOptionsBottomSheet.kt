@@ -12,6 +12,7 @@ import com.maubis.scarlet.base.note.tag.TagOptionsItem
 import com.maubis.scarlet.base.note.toggleTag
 import com.maubis.scarlet.base.support.database.tagsDB
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.ui.visibility
 
 class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
 
@@ -24,8 +25,9 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
       return
     }
 
+    val options = getOptions()
+    dialog.findViewById<View>(R.id.tag_card_layout).visibility = visibility(options.isNotEmpty())
     setOptions(dialog, getOptions())
-    setOptionTitle(dialog, R.string.tag_sheet_choose_tag)
   }
 
   override fun onNewTagClick() {

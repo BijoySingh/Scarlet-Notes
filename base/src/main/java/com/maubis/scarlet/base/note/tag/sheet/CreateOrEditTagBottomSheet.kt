@@ -44,10 +44,8 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
     val removeBtn = dialog.findViewById<TextView>(R.id.action_remove_button)
 
     title.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-    action.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
     enterTag.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
     enterTag.setHintTextColor(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
-    removeBtn.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.DISABLED_TEXT))
 
     title.setText(if (tag.isUnsaved()) R.string.tag_sheet_create_title else R.string.tag_sheet_edit_title)
     action.setOnClickListener {

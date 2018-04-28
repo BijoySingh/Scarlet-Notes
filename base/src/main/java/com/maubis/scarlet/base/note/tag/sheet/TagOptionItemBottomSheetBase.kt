@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.view.View
 import android.view.View.GONE
 import android.widget.LinearLayout
-import android.widget.TextView
 import com.github.bijoysingh.uibasics.views.UIActionView
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.R
@@ -20,11 +19,8 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
       return
     }
     reset(dialog)
-
-    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-
     setAddTagOption(dialog)
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   abstract fun setupViewWithDialog(dialog: Dialog)
@@ -35,15 +31,10 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     return R.id.options_layout
   }
 
-  fun setOptionTitle(dialog: Dialog, title: Int) {
-    val titleView = dialog.findViewById<TextView>(R.id.options_title);
-    titleView.setText(title)
-  }
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.tag_card_layout)
 
   fun setAddTagOption(dialog: Dialog) {
     val newTagButton = dialog.findViewById<UITextView>(R.id.new_tag_button);
-    newTagButton.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
-    newTagButton.setImageTint(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
     newTagButton.setOnClickListener { onNewTagClick() }
     newTagButton.icon.alpha = 0.6f
   }
@@ -77,5 +68,5 @@ abstract class TagOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     }
   }
 
-  override fun getLayout(): Int = R.layout.layout_tag_options_sheet
+  override fun getLayout(): Int = R.layout.bottom_sheet_tag_options
 }

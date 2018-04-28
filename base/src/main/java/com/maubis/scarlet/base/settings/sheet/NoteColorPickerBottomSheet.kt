@@ -27,19 +27,22 @@ class NoteColorPickerBottomSheet : ThemedBottomSheetFragment() {
       return
     }
 
-    val colorPicker = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout)
-    setColorsList(controller, colorPicker, resources.getIntArray(R.array.bright_colors))
-
-    val colorPickerAccent = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout_accent)
-    setColorsList(controller, colorPickerAccent, resources.getIntArray(R.array.bright_colors_accent))
-
     val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
     optionsTitle.setText(R.string.choose_note_color)
     optionsTitle.setOnClickListener {
       dismiss()
     }
 
+    reset(dialog, controller)
     makeBackgroundTransparent(dialog, R.id.root_layout)
+  }
+
+  fun reset(dialog: Dialog, controller: ColorPickerController) {
+    val colorPicker = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout)
+    setColorsList(dialog, controller, colorPicker, resources.getIntArray(R.array.bright_colors))
+
+    val colorPickerAccent = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout_accent)
+    setColorsList(dialog, controller, colorPickerAccent, resources.getIntArray(R.array.bright_colors_accent))
   }
 
   override fun getBackgroundCardViewIds() = arrayOf(
@@ -50,7 +53,7 @@ class NoteColorPickerBottomSheet : ThemedBottomSheetFragment() {
     return R.id.container_layout
   }
 
-  private fun setColorsList(controller: ColorPickerController, colorSelectorLayout: FlexboxLayout, colors: IntArray) {
+  private fun setColorsList(dialog: Dialog, controller: ColorPickerController, colorSelectorLayout: FlexboxLayout, colors: IntArray) {
     colorSelectorLayout.removeAllViews()
     colorChosen = when {
       colorChosen != 0 -> colorChosen
@@ -63,7 +66,7 @@ class NoteColorPickerBottomSheet : ThemedBottomSheetFragment() {
       item.setOnClickListener {
         colorChosen = color
         controller.onColorSelected(controller.getNote(), colorChosen)
-        setColorsList(controller, colorSelectorLayout, colors)
+        reset(dialog, controller)
       }
       colorSelectorLayout.addView(item)
     }
