@@ -18,7 +18,7 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
       return
     }
     reset(dialog)
-    resetOptionTitle(dialog)
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   abstract fun setupViewWithDialog(dialog: Dialog)
@@ -27,15 +27,7 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     return R.id.options_layout
   }
 
-  fun setOptionTitle(dialog: Dialog, title: Int) {
-    val titleView = dialog.findViewById<TextView>(R.id.options_title);
-    titleView.setText(title)
-  }
-
-  fun resetOptionTitle(dialog: Dialog) {
-    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-  }
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.card_layout)
 
   fun reset(dialog: Dialog) {
     val layout = dialog.findViewById<LinearLayout>(R.id.options_container)
@@ -73,7 +65,7 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     }
   }
 
-  override fun getLayout(): Int = R.layout.layout_options_sheet
+  override fun getLayout(): Int = R.layout.bottom_sheet_options
 
   fun getOptionsTitleColor(option: OptionsItem): Int {
     return getOptionsTitleColor(option.selected)

@@ -116,7 +116,7 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         })
   }
 
-  override fun getLayout(): Int = R.layout.layout_options_sheet
+  override fun getLayout(): Int = R.layout.bottom_sheet_options
 
   companion object {
     fun openSheet(activity: MainActivity) {

@@ -39,7 +39,7 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
     notifyThemeChange()
     setupRecyclerView()
 
-    MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
+    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
         return sort(getNotes(), sorting)

@@ -14,7 +14,7 @@ import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
 class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   override fun setupViewWithDialog(dialog: Dialog) {
-    MultiAsyncTask.execute(themedActivity(), object : MultiAsyncTask.Task<List<OptionsItem>> {
+    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<OptionsItem>> {
       override fun run(): List<OptionsItem> {
         return getOptions()
       }
@@ -95,7 +95,7 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     return options
   }
 
-  override fun getLayout(): Int = R.layout.layout_options_sheet
+  override fun getLayout(): Int = R.layout.bottom_sheet_options
 
   companion object {
 

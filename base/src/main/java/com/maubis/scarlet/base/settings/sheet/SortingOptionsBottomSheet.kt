@@ -15,7 +15,6 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
 
   override fun setupViewWithDialog(dialog: Dialog) {
     setOptions(dialog, getOptions())
-    setOptionTitle(dialog, R.string.sort_sheet_title)
   }
 
   private fun getOptions(): List<OptionsItem> {

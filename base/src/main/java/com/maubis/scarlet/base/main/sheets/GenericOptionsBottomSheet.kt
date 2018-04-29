@@ -15,7 +15,6 @@ class GenericOptionsBottomSheet : ChooseOptionBottomSheetBase() {
 
   override fun setupViewWithDialog(dialog: Dialog) {
     setOptions(dialog, getOptionItems())
-    setOptionTitle(dialog, R.string.sort_sheet_title)
   }
 
   private fun getOptionItems(): List<OptionsItem> {

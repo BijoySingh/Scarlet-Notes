@@ -42,7 +42,7 @@ class ImportNoteActivity : ThemedActivity() {
     val activity = this
     backButton.setOnClickListener { onBackPressed() }
     importFile.setOnClickListener {
-      MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<Unit> {
+      MultiAsyncTask.execute(object : MultiAsyncTask.Task<Unit> {
         override fun handle(result: Unit?) {
           finish()
         }
@@ -64,7 +64,7 @@ class ImportNoteActivity : ThemedActivity() {
 
   override fun onResume() {
     super.onResume()
-    MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<List<RecyclerItem>> {
+    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<RecyclerItem>> {
       override fun run(): List<RecyclerItem> {
         return NoteImporter().getImportableFiles()
             .map { FileRecyclerItem(it.name, it.lastModified(), it.absolutePath, it) }

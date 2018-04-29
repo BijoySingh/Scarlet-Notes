@@ -67,7 +67,7 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
   private fun setView() {
     backButton.setOnClickListener { onBackPressed() }
     actionDone.setOnClickListener {
-      MultiAsyncTask.execute(this, object : MultiAsyncTask.Task<Note> {
+      MultiAsyncTask.execute(object : MultiAsyncTask.Task<Note> {
         override fun handle(result: Note?) {
           if (result !== null) {
             startActivity(ViewAdvancedNoteActivity.getIntent(context, result))

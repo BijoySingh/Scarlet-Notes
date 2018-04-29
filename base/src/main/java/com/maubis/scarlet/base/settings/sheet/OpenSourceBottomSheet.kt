@@ -29,7 +29,7 @@ class OpenSourceBottomSheet : ThemedBottomSheetFragment() {
     val contribute = dialog.findViewById<TextView>(R.id.contribute)
 
     val activity = themedActivity()
-    MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<String> {
+    MultiAsyncTask.execute(object : MultiAsyncTask.Task<String> {
       override fun run(): String {
         try {
           val pInfo = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0)

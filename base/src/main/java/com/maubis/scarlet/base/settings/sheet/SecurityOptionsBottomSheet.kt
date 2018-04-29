@@ -17,7 +17,6 @@ import com.maubis.scarlet.base.support.ui.ThemedActivity
 class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
   override fun setupViewWithDialog(dialog: Dialog) {
     setOptions(dialog, getOptions())
-    setOptionTitle(dialog, R.string.security_option_title)
   }
 
   private fun getOptions(): List<OptionsItem> {
@@ -129,7 +128,7 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
         })
   }
 
-  override fun getLayout(): Int = R.layout.layout_options_sheet
+  override fun getLayout(): Int = R.layout.bottom_sheet_options
 
   companion object {
 

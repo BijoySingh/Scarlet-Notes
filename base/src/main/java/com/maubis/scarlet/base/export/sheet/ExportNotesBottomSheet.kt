@@ -38,7 +38,7 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
     val exportShare = dialog.findViewById<TextView>(R.id.export_share)
 
     val activity = themedActivity()
-    MultiAsyncTask.execute(activity, object : MultiAsyncTask.Task<Boolean> {
+    MultiAsyncTask.execute(object : MultiAsyncTask.Task<Boolean> {
       override fun run(): Boolean {
         val notes = NoteExporter().getExportContent()
         return NoteExporter().saveToManualExportFile(notes)
