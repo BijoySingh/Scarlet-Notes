@@ -75,11 +75,13 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
     exportTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
     filename.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
     filename.text = (MATERIAL_NOTES_FOLDER + File.separator + FILENAME + ".txt")
-    exportShare.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
-    exportDone.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
+
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_import_export
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.export_card)
 
   companion object {
     val MATERIAL_NOTES_FOLDER get() = when (CoreConfig.instance.appFlavor()) {

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+  android:id="@+id/root_layout"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
@@ -7,89 +10,109 @@
     android:id="@+id/container_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:orientation="vertical"
-    android:padding="@dimen/spacing_large">
+    android:padding="@dimen/spacing_xsmall">
 
-    <TextView
-      android:id="@+id/options_title"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/spacing_xsmall"
-      android:text="@string/about_page_title"
-      android:textColor="@color/dark_tertiary_text"
-      android:textSize="@dimen/font_size_large" />
-
-    <LinearLayout
+    <android.support.v7.widget.CardView
+      android:id="@+id/enter_code_card"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:gravity="center"
-      android:orientation="horizontal">
+      android:layout_margin="@dimen/spacing_xsmall"
+      app:cardCornerRadius="@dimen/spacing_xxsmall">
 
-      <EditText
-        android:id="@+id/enter_pin"
-        android:layout_width="0dp"
+      <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:background="@color/transparent"
-        android:fontFamily="monospace"
-        android:hint="@string/security_sheet_enter_pin_hint"
-        android:inputType="numberPassword"
-        android:maxLength="4"
-        android:padding="@dimen/spacing_normal"
-        android:textSize="24sp" />
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_small">
 
-      <TextView
-        android:id="@+id/pin_length"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0 / 4"
-        android:textColor="@color/dark_hint_text"
-        android:textSize="@dimen/font_size_xsmall" />
-    </LinearLayout>
+        <TextView
+          android:id="@+id/options_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/spacing_xsmall"
+          android:text="@string/about_page_title"
+          android:textColor="@color/dark_tertiary_text"
+          android:textSize="@dimen/font_size_large" />
 
-    <LinearLayout
-      android:layout_width="wrap_content"
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:orientation="horizontal">
+
+          <EditText
+            android:id="@+id/enter_pin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:fontFamily="monospace"
+            android:hint="@string/security_sheet_enter_pin_hint"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            android:padding="@dimen/spacing_normal"
+            android:textSize="24sp" />
+
+          <TextView
+            android:id="@+id/pin_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 / 4"
+            android:textColor="@color/dark_hint_text"
+            android:textSize="@dimen/font_size_xsmall" />
+        </LinearLayout>
+
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/spacing_xsmall"
-      android:gravity="center"
-      android:orientation="horizontal">
+      android:layout_margin="@dimen/spacing_xsmall"
+      app:cardBackgroundColor="@color/material_red_800"
+      app:cardCornerRadius="@dimen/spacing_xxsmall">
 
-      <ImageView
-        android:id="@+id/fingerprint"
-        android:layout_width="@dimen/icon_size_xlarge"
-        android:layout_height="@dimen/icon_size_xlarge"
-        android:padding="@dimen/spacing_small"
-        android:src="@drawable/ic_option_fingerprint"
-        android:tint="@color/dark_hint_text" />
-
-      <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_weight="1" />
-
-      <TextView
-        android:id="@+id/action_remove_button"
-        android:layout_width="wrap_content"
+      <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_normal"
-        android:text="@string/security_sheet_button_remove"
-        android:visibility="gone"
-        android:textAllCaps="true"
-        android:textColor="@color/material_grey_600"
-        android:textSize="@dimen/font_size_small" />
+        android:gravity="center"
+        android:orientation="horizontal">
 
-      <TextView
-        android:id="@+id/action_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_normal"
-        android:text="UNLOCK"
-        android:textAllCaps="true"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/font_size_small" />
-    </LinearLayout>
+        <TextView
+          android:id="@+id/action_remove_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:padding="@dimen/spacing_normal"
+          android:text="@string/security_sheet_button_remove"
+          android:textAllCaps="true"
+          android:textColor="@color/light_tertiary_text"
+          android:textSize="@dimen/font_size_small"
+          android:visibility="gone" />
 
+
+        <ImageView
+          android:id="@+id/fingerprint"
+          android:layout_width="@dimen/icon_size_xlarge"
+          android:layout_height="@dimen/icon_size_xlarge"
+          android:padding="@dimen/spacing_small"
+          android:src="@drawable/ic_option_fingerprint"
+          android:tint="@color/light_hint_text" />
+
+
+        <TextView
+          android:id="@+id/action_button"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:gravity="end"
+          android:padding="@dimen/spacing_normal"
+          android:text="UNLOCK"
+          android:textAllCaps="true"
+          android:textColor="@color/light_primary_text"
+          android:textSize="@dimen/font_size_small" />
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
   </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -24,6 +24,7 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     }
 
     setContent(dialog)
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   private fun setContent(dialog: Dialog) {
@@ -58,7 +59,6 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     closeSheet.setOnClickListener { dismiss() }
 
     val translate = dialog.findViewById<TextView>(R.id.translate)
-    translate.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.DISABLED_TEXT))
     translate.setOnClickListener {
       val url = GOOGLE_TRANSLATE_URL + "en/" + Uri.encode(whatsNew);
       startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
@@ -66,15 +66,15 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     }
 
     val done = dialog.findViewById<TextView>(R.id.done)
-    done.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
     done.setOnClickListener { dismiss() }
-
     return
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_whats_new
 
   override fun getBackgroundView(): Int = R.id.options_layout
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.whats_new_card)
 
   companion object {
     val WHATS_NEW_UID = 3

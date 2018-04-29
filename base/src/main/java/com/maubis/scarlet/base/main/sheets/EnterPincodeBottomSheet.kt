@@ -51,13 +51,11 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
     val removeBtn = dialog.findViewById<TextView>(R.id.action_remove_button)
 
     title.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-    action.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
     enterPin.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
 
     val hintColor = CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT)
     enterPin.setHintTextColor(hintColor)
     pinLength.setTextColor(hintColor)
-    fingerprint.setColorFilter(hintColor)
 
     title.setText(listener!!.getTitle())
     action.setText(listener!!.getActionTitle())
@@ -87,7 +85,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
       listener!!.onRemoveButtonClick()
       dismiss()
     }
-    removeBtn.visibility = if (listener!!.isRemoveButtonEnabled()) View.VISIBLE else View.INVISIBLE
+    removeBtn.visibility = if (listener!!.isRemoveButtonEnabled()) View.VISIBLE else View.GONE
 
     enterPin.setOnEditorActionListener { _, actionId, event ->
       if (event == null) {
@@ -138,6 +136,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
         }
       })
     }
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   override fun onDismiss(dialog: DialogInterface?) {
@@ -151,6 +150,8 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_pin_code
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.enter_code_card)
 
   companion object {
 
