@@ -32,7 +32,6 @@ abstract class CounterBottomSheetBase : ThemedBottomSheetFragment() {
     lineLimit.setTextColor(textColor)
     setColor(count, reduceLineLimit, increaseLineLimit)
     setText(count, lineLimit)
-    done.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
     done.setOnClickListener {
       dismiss()
     }
@@ -50,11 +49,8 @@ abstract class CounterBottomSheetBase : ThemedBottomSheetFragment() {
       setText(count, lineLimit)
       onCountChange(dialog, mainActivity, count)
     }
-
-    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-
     setupFurther(dialog)
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   fun setColor(count: Int, reduceLineLimit: TextView, increaseLineLimit: TextView) {

@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
+import android.support.v7.widget.CardView
 import android.util.TypedValue
 import android.widget.TextView
 import com.maubis.scarlet.base.MainActivity
@@ -30,13 +31,16 @@ class TextSizeBottomSheet : CounterBottomSheetBase() {
   }
 
   override fun setupFurther(dialog: Dialog) {
+    val exampleCard = dialog.findViewById<CardView>(R.id.font_size_card)
+    exampleCard.setCardBackgroundColor(CoreConfig.instance.themeController().get(themedContext(), R.color.material_grey_200, R.color.material_grey_700))
     val example = dialog.findViewById<TextView>(R.id.options_example)
     updateExample(example, getDefaultTextSize())
-    example.setBackgroundColor(CoreConfig.instance.themeController().get(themedContext(), R.color.material_grey_200, R.color.material_grey_700))
     example.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_text_size
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.counter_card, R.id.font_size_card)
 
   companion object {
     const val KEY_TEXT_SIZE = "KEY_TEXT_SIZE"

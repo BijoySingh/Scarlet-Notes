@@ -2,6 +2,7 @@ package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
 import com.maubis.scarlet.base.MainActivity
+import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.sheets.CounterBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
@@ -19,6 +20,8 @@ class LineCountBottomSheet : CounterBottomSheetBase() {
     CoreConfig.instance.store().put(KEY_LINE_COUNT, count)
     (activity as MainActivity).notifyAdapterExtraChanged()
   }
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.counter_card)
 
   companion object {
     const val KEY_LINE_COUNT = "KEY_LINE_COUNT"
