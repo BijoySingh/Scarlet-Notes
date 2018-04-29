@@ -94,6 +94,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity,
           note,
           { activity.notifyTagsChanged(note) })
+      dismiss()
     }
 
     val selectCardLayout = dialog.findViewById<View>(R.id.select_notes_layout)
@@ -342,17 +343,6 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     }
 
     val options = ArrayList<OptionsItem>()
-
-    options.add(OptionsItem(
-        title = R.string.open_in_popup,
-        subtitle = R.string.tap_for_action_popup,
-        icon = R.drawable.ic_bubble_chart_white_48dp,
-        listener = View.OnClickListener {
-          CoreConfig.instance.noteActions(note).popup(activity)
-          dismiss()
-        },
-        invalid = activity.lockedContentIsHidden() && note.locked
-    ))
     options.add(OptionsItem(
         title = R.string.duplicate,
         subtitle = R.string.duplicate,
@@ -389,6 +379,16 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           InstallProUpsellBottomSheet.openSheet(activity)
         },
         visible = CoreConfig.instance.appFlavor() != Flavor.NONE,
+        invalid = activity.lockedContentIsHidden() && note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.open_in_popup,
+        subtitle = R.string.tap_for_action_popup,
+        icon = R.drawable.ic_bubble_chart_white_48dp,
+        listener = View.OnClickListener {
+          CoreConfig.instance.noteActions(note).popup(activity)
+          dismiss()
+        },
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
     return options

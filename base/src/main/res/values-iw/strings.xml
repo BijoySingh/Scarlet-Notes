@@ -266,7 +266,7 @@
   <string name="reminder_beta_label">בטא</string>
   <string name="notification_reminder_channel_label">תזכורות ו אזעקות</string>
   <string name="about_page_description_os">%s הוא קוד פתוח וכל אחד פתוח לתרום כדי לעשות את זה טוב יותר. הוא נבנה כעת ומתוחזק על ידי %s.</string>
-  <string name="about_page_description">%d הוא פתק פשוט לוקח יישום. זה מאפשר קלט טקסט עשיר עשיר מבלי להפוך את החוויה קשה מאוד לשימוש. זה עושה multi-tasking משב רוח.</string>
+  <string name="about_page_description">%s הוא פתק פשוט לוקח יישום. זה מאפשר קלט טקסט עשיר עשיר מבלי להפוך את החוויה קשה מאוד לשימוש. זה עושה multi-tasking משב רוח.</string>
   <string name="about_page_about_us_details">היי, אנחנו זוג מעצב ומתכנת, שיצר %s.
      אנו משתדלים לבנות יפה, תוכנן בקפידה ללא תשלום, מודעות חינם או מודעות מינימלי אשר משרתים כלי נהדר לכולם!</string>
   <string name="note_option_number_lines_subtitle">%d שורות במסך הבית</string>

@@ -69,13 +69,13 @@ class AboutUsBottomSheet : ThemedBottomSheetFragment() {
     aboutAppTitle.setTextColor(titleTextColor)
     appVersionTitle.setTextColor(titleTextColor)
 
-    rateUs.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
-
-    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_about_page
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(
+      R.id.about_app_card, R.id.about_us_card, R.id.app_version_card)
 
   companion object {
     fun openSheet(activity: MainActivity) {

@@ -61,6 +61,7 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     setColors()
     setContent(reminder!!)
     setListeners(note, isNewReminder)
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   fun setListeners(note: Note, isNewReminder: Boolean) {
@@ -185,19 +186,13 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
   }
 
   fun setColors() {
-    val betaLabel = dialog.findViewById<TextView>(R.id.beta_label)
     val reminderDate = dialog.findViewById<UIActionView>(R.id.reminder_date)
     val reminderTime = dialog.findViewById<UIActionView>(R.id.reminder_time)
     val reminderRepeat = dialog.findViewById<UIActionView>(R.id.reminder_repeat)
-    val removeAlarm = dialog.findViewById<TextView>(R.id.remove_alarm)
-    val setAlarm = dialog.findViewById<TextView>(R.id.set_alarm)
 
     val iconColor = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
     val textColor = CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)
     val titleColor = CoreConfig.instance.themeController().get(ThemeColorType.SECTION_HEADER)
-
-    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
 
     reminderDate.setTitleColor(titleColor)
     reminderDate.setSubtitleColor(textColor)
@@ -213,17 +208,11 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     reminderRepeat.setSubtitleColor(textColor)
     reminderRepeat.setImageTint(iconColor)
     reminderRepeat.setActionTint(iconColor)
-
-    betaLabel.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
-    betaLabel.setBackgroundResource(
-        if (CoreConfig.instance.themeController().isNightTheme()) R.drawable.light_circular_border_bg
-        else R.drawable.dark_circular_border_bg)
-
-    removeAlarm.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.DISABLED_TEXT))
-    setAlarm.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_reminder
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.card_layout)
 
   companion object {
     fun openSheet(activity: ThemedActivity, note: Note) {

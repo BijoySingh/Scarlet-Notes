@@ -67,13 +67,13 @@ class OpenSourceBottomSheet : ThemedBottomSheetFragment() {
     aboutAppTitle.setTextColor(titleTextColor)
     libraryTitle.setTextColor(titleTextColor)
 
-    contribute.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
-
-    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_open_source
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(
+      R.id.about_app_card, R.id.library_card)
 
   companion object {
 

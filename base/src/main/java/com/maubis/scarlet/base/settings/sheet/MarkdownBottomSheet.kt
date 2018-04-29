@@ -25,14 +25,16 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
     sourceText.setText(R.string.markdown_sheet_examples_list)
     markdownText.setText(Markwon.markdown(themedContext(), getString(R.string.markdown_sheet_examples_list)))
 
-    val sheetTitle = dialog.findViewById<TextView>(R.id.options_title)
     val exampleTitle = dialog.findViewById<TextView>(R.id.examples_title)
-    sheetTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
     exampleTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
 
     sourceText.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
     markdownText.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(
+      R.id.markdown_card, R.id.markdown_example_card)
 
   fun setupDialogContent(dialog: Dialog) {
     val isMarkdownEnabled = isMarkdownEnabled()
