@@ -71,6 +71,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
                 activity.notifyThemeChange()
                 reset(dialog)
                 resetBackground(dialog)
+                makeBackgroundTransparent(dialog, R.id.root_layout)
               }
 
               override fun getSelectedColor(): Int = CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND)

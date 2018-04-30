@@ -12,5 +12,7 @@ interface IThemeManager {
 
   fun get(type: ThemeColorType): Int
 
+  fun get(context: Context, theme: Theme, type: ThemeColorType): Int
+
   fun get(context: Context, lightColor: Int, darkColor: Int): Int
 }

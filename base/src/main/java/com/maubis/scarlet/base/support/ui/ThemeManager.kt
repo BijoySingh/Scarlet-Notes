@@ -13,10 +13,9 @@ const val KEY_APP_THEME = "KEY_APP_THEME"
 const val KEY_NIGHT_THEME: String = "KEY_NIGHT_THEME"
 
 class ThemeManager() : IThemeManager {
-
   lateinit var theme: Theme
-  var map = HashMap<ThemeColorType, Int>()
 
+  var map = HashMap<ThemeColorType, Int>()
   override fun setup(context: Context) {
     theme = getThemeFromStore()
     notifyChange(context)
@@ -30,6 +29,10 @@ class ThemeManager() : IThemeManager {
     return ContextCompat.getColor(context, if (isNightTheme()) darkColor else lightColor)
   }
 
+  override fun get(context: Context, theme: Theme, type: ThemeColorType): Int {
+    return load(context, theme, type)
+  }
+
   override fun notifyChange(context: Context) {
     theme = getThemeFromStore()
     for (colorType in ThemeColorType.values()) {
@@ -38,6 +41,10 @@ class ThemeManager() : IThemeManager {
   }
 
   private fun load(context: Context, type: ThemeColorType): Int {
+    return load(context, theme, type)
+  }
+
+  private fun load(context: Context, theme: Theme, type: ThemeColorType): Int {
     val colorResource = when (type) {
       ThemeColorType.BACKGROUND -> theme.background
       ThemeColorType.STATUS_BAR -> {

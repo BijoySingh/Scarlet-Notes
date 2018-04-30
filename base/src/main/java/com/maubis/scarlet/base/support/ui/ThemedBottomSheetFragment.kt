@@ -60,7 +60,7 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
     return ContextCompat.getColor(themedContext(), colorResource)
   }
 
-  fun getOptionsSubtitleColor(selected: Boolean): Int {
+  open fun getOptionsSubtitleColor(selected: Boolean): Int {
     val colorResource = when {
       CoreConfig.instance.themeController().isNightTheme() && selected -> R.color.material_blue_200
       CoreConfig.instance.themeController().isNightTheme() -> R.color.light_tertiary_text

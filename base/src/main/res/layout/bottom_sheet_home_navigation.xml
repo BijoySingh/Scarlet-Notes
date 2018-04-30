@@ -19,7 +19,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/spacing_xsmall"
-      ui:cardBackgroundColor="@color/white"
+      ui:cardBackgroundColor="@color/material_blue_800"
       ui:cardCornerRadius="@dimen/spacing_xxsmall">
 
       <LinearLayout
@@ -46,7 +46,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/spacing_xsmall"
-      ui:cardBackgroundColor="@color/white"
+      ui:cardBackgroundColor="@color/material_teal_800"
       ui:cardCornerRadius="@dimen/spacing_xxsmall">
 
       <LinearLayout

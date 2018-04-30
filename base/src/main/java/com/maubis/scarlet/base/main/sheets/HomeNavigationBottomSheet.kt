@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base.main.sheets
 
 import android.app.Dialog
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.LinearLayout
@@ -21,6 +22,7 @@ import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.database.tagsDB
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
+import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 class HomeNavigationBottomSheet : GridBottomSheetBase() {
@@ -31,10 +33,6 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
     setAddTagOption(dialog)
     makeBackgroundTransparent(dialog, R.id.root_layout)
   }
-
-  override fun getBackgroundCardViewIds() = arrayOf(
-      R.id.navigation_card_layout,
-      R.id.tag_card_layout)
 
   private fun getOptions(): List<OptionsItem> {
     val activity = context as MainActivity
@@ -115,7 +113,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
       override fun run(): List<TagOptionsItem> = getTagOptions()
       override fun handle(result: List<TagOptionsItem>) {
         val titleView = dialog.findViewById<TextView>(R.id.tag_options_title)
-        titleView.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+        titleView.setTextColor(CoreConfig.instance.themeController().get(themedContext(), Theme.DARK, ThemeColorType.SECONDARY_TEXT))
 
         val layout = dialog.findViewById<LinearLayout>(R.id.options_container)
         layout.removeAllViews()
@@ -134,7 +132,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
       contentView.icon.setImageResource(option.getIcon())
 
       contentView.action.setImageResource(option.getEditIcon());
-      contentView.action.setColorFilter(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT));
+      contentView.action.setColorFilter(CoreConfig.instance.themeController().get(themedContext(), Theme.DARK, ThemeColorType.HINT_TEXT));
       contentView.action.setOnClickListener(option.editListener)
 
       if (option.usages > 0) {
@@ -171,9 +169,10 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   }
 
   fun setAddTagOption(dialog: Dialog) {
-    val newTagButton = dialog.findViewById<UITextView>(R.id.new_tag_button);
-    newTagButton.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
-    newTagButton.setImageTint(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
+    val hintTextColor = CoreConfig.instance.themeController().get(themedContext(), Theme.DARK, ThemeColorType.HINT_TEXT)
+    val newTagButton = dialog.findViewById<UITextView>(R.id.new_tag_button)
+    newTagButton.setTextColor(hintTextColor)
+    newTagButton.setImageTint(hintTextColor)
     newTagButton.setOnClickListener { onNewTagClick() }
     newTagButton.icon.alpha = 0.6f
   }
@@ -181,6 +180,14 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   fun onNewTagClick() {
     val activity = context as MainActivity
     CreateOrEditTagBottomSheet.openSheet(activity, TagBuilder().emptyTag(), { _, _ -> resetTags(dialog) })
+  }
+
+  override fun getOptionsTitleColor(selected: Boolean): Int {
+    return ContextCompat.getColor(themedContext(), R.color.light_primary_text)
+  }
+
+  override fun getOptionsSubtitleColor(selected: Boolean): Int {
+    return ContextCompat.getColor(themedContext(), R.color.light_secondary_text)
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_home_navigation

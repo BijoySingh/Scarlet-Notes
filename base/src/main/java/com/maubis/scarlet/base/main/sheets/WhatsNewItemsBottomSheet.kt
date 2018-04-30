@@ -34,17 +34,17 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
     val whatsNew = "> A lot has changed in this update, here is a summary of those changes.\n" +
         "### New Features\n" +
+        "- **New UI:** Introducing a new rounder and sweeter UI\n" +
+        "- **Privacy:** Adding clear policy message, forget me option for logged in users on Scarlet \n" +
+        "### New Features in Last Release\n" +
         "- **Search Bar:** All new search bar for notes. Search through tags, filter by tags, and improved searching experience\n" +
-        "- **Reminders (Beta):** Adding ability to create reminders for notes \n" +
-        "### Improvements\n" +
+        "- **Reminders:** Adding ability to create reminders for notes \n" +
         "- **Import and Export :** Better, more useful and reliable import and export of notes\n" +
         "- **Scroll Performance :** Smoother scroll through notes, better handling of images\n" +
-        "### New Pro Only Features\n" +
         "- **Distraction Free Mode :** New distraction free note viewing mode, so you can read your note comfortably\n" +
         "### Bugs Fix\n" +
-        "- **Sync Notes :** Resolving major issue with note sync causing duplication\n" +
-        "- **Duplicate Notes :** Resolving some issues with duplicating notes\n" +
-        "- **Import :** Resolving invalid timestamp on notes after import\n" +
+        "- **Markdown in Feed :** Markdown in home cannot be disabled\n" +
+        "- **Note Widget :** Fixed widget not getting added \n" +
         "- Even more little things which help you enjoy using this app everyday"
 
     val whatsNewView = dialog.findViewById<TextView>(R.id.whats_new_text)
@@ -77,7 +77,7 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
   override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.whats_new_card)
 
   companion object {
-    val WHATS_NEW_UID = 3
+    val WHATS_NEW_UID = 4
     val GOOGLE_TRANSLATE_URL = "https://translate.google.com/#auto/"
 
     fun openSheet(activity: ThemedActivity) {

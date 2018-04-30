@@ -18,7 +18,6 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
       return
     }
     reset(dialog)
-    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   abstract fun setupViewWithDialog(dialog: Dialog)
@@ -33,6 +32,7 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
     val layout = dialog.findViewById<LinearLayout>(R.id.options_container)
     layout.removeAllViews()
     setupViewWithDialog(dialog)
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   open fun setOptions(dialog: Dialog, options: List<OptionsItem>) {

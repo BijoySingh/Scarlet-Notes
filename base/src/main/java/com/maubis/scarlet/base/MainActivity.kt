@@ -358,7 +358,8 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   private fun search(keyword: String): List<RecyclerItem> {
-    return getDataForMode()
+    val sorting = SortingOptionsBottomSheet.getSortingState()
+    return sort(getDataForMode(), sorting)
         .filter { return@filter it.search(keyword) }
         .map { NoteRecyclerItem(this, it) }
   }
