@@ -52,6 +52,7 @@ class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
       speak(nonNullNote)
       speakPlayPause.setImageResource(R.drawable.ic_action_stop)
     })
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   fun speak(note: Note) {
@@ -63,6 +64,8 @@ class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
   }
 
   override fun getBackgroundView(): Int = R.id.container_layout
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.speak_note_card)
 
   override fun getLayout(): Int = R.layout.bottom_sheet_speak_note
 

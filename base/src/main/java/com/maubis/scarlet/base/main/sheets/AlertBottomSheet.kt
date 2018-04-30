@@ -40,8 +40,6 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
 
     sheetTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
     sheetDescription.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
-    sheetYes.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
-    sheetNo.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.DISABLED_TEXT))
 
     sheetTitle.setText(details.getTitle())
     sheetDescription.setText(details.getDescription())
@@ -57,9 +55,13 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
       details.getNegativeClickListener()
       dismiss()
     }
+
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_alert
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.alert_card)
 
   companion object {
     const val IMAGE_SYNC_NOTICE = "IMAGE_SYNC_NOTICE"

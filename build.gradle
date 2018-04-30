@@ -7,8 +7,8 @@ buildscript {
     ext.android_support_version = '27.1.1'
     ext.firebase_version = '15.0.0'
 
-    ext.appconfig_version_code = 85
-    ext.appconfig_version = '5.3.0'
+    ext.appconfig_version_code = 86
+    ext.appconfig_version = '5.4.0'
     ext.appconfig_min_os_version = 17
     ext.appconfig_target_os_version = 27
     ext.appconfig_build_tool_version = '27.0.3'

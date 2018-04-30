@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/root_layout"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/container_layout"
+  <android.support.v7.widget.CardView
+    android:id="@+id/speak_note_card"
+    app:cardCornerRadius="@dimen/spacing_xxsmall"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="horizontal"
-    android:padding="@dimen/spacing_large">
+    android:layout_margin="@dimen/spacing_xsmall">
 
-    <TextView
-      android:id="@+id/options_title"
-      android:layout_width="0dp"
+    <LinearLayout
+      android:id="@+id/container_layout"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="center_vertical"
-      android:layout_weight="1"
-      android:text="@string/voice_sheet_title"
-      android:textColor="@color/dark_tertiary_text"
-      android:textSize="@dimen/font_size_large" />
+      android:orientation="horizontal"
+      android:padding="@dimen/spacing_large">
 
-    <ImageView
-      android:id="@+id/speak_play_pause"
-      style="@style/BorderlessBackgroundView"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="@dimen/icon_size_xlarge"
-      android:layout_margin="8dp"
-      android:gravity="center"
-      android:src="@drawable/ic_action_play_sound"
-      android:tint="@color/dark_tertiary_text" />
+      <TextView
+        android:id="@+id/options_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:text="@string/voice_sheet_title"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_large" />
 
-  </LinearLayout>
+      <ImageView
+        android:id="@+id/speak_play_pause"
+        style="@style/BorderlessBackgroundView"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:src="@drawable/ic_action_play_sound"
+        android:tint="@color/dark_tertiary_text" />
+
+    </LinearLayout>
+  </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

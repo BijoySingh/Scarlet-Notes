@@ -34,9 +34,6 @@ class NoPincodeBottomSheet : ThemedBottomSheetFragment() {
 
     sheetTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
     sheetDescription.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
-    notNow.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.DISABLED_TEXT))
-    neverAsk.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.DISABLED_TEXT))
-    setUp.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
 
     notNow.setOnClickListener {
       listener?.onSuccess()
@@ -55,9 +52,12 @@ class NoPincodeBottomSheet : ThemedBottomSheetFragment() {
       listener?.onSuccess()
       dismiss()
     }
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_no_pincode
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.no_pin_card)
 
   companion object {
     const val KEY_NO_PIN_ASK = "KEY_NO_PIN_ASK"
