@@ -190,6 +190,8 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
     return ContextCompat.getColor(themedContext(), R.color.light_secondary_text)
   }
 
+  override fun getBackgroundCardViewIds(): Array<Int> = emptyArray()
+
   override fun getLayout(): Int = R.layout.bottom_sheet_home_navigation
 
   companion object {

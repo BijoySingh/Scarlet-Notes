@@ -37,7 +37,6 @@
           android:rowOrderPreserved="true"
           android:useDefaultMargins="true" />
 
-
       </LinearLayout>
     </android.support.v7.widget.CardView>
 

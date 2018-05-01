@@ -19,6 +19,7 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
       return
     }
     setupViewWithDialog(dialog)
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   abstract fun setupViewWithDialog(dialog: Dialog)
@@ -26,6 +27,8 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
   override fun getBackgroundView(): Int {
     return R.id.container_layout
   }
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.grid_card)
 
   fun setOptionTitle(dialog: Dialog, title: Int) {
     val titleView = dialog.findViewById<TextView>(R.id.options_title)
