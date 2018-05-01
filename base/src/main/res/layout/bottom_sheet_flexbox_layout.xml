@@ -7,24 +7,16 @@
 
   <LinearLayout
     android:id="@+id/container_layout"
+    style="@style/BottomSheetCardContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:gravity="center"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/spacing_xlarge"
-    android:paddingEnd="@dimen/spacing_large"
-    android:paddingStart="@dimen/spacing_large"
-    android:paddingTop="@dimen/spacing_xlarge">
-
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
       android:id="@+id/core_color_card"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/spacing_small"
-      app:cardBackgroundColor="@color/material_blue_grey_900"
-      app:cardCornerRadius="@dimen/spacing_xxsmall">
+      style="@style/BottomSheetCardView">
 
       <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/flexbox_layout"
@@ -39,11 +31,7 @@
 
     <android.support.v7.widget.CardView
       android:id="@+id/accent_color_card"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/spacing_small"
-      app:cardBackgroundColor="@color/material_blue_grey_900"
-      app:cardCornerRadius="@dimen/spacing_xxsmall">
+      style="@style/BottomSheetCardView">
 
       <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/flexbox_layout_accent"
@@ -58,10 +46,8 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:cardBackgroundColor="@color/material_red_800"
-      app:cardCornerRadius="@dimen/spacing_xxsmall">
+      style="@style/BottomSheetCardView"
+      app:cardBackgroundColor="@color/material_red_800">
 
       <TextView
         android:id="@+id/options_title"

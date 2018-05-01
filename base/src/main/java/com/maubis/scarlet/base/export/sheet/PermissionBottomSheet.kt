@@ -25,15 +25,18 @@ class PermissionBottomSheet : ThemedBottomSheetFragment() {
     details.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
 
     val allowButton = dialog.findViewById<TextView>(R.id.give_permissions);
-    allowButton.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.ACCENT_TEXT))
     allowButton.setOnClickListener {
       val manager = PermissionUtils().getStoragePermissionManager(themedActivity() as AppCompatActivity)
       manager.requestPermissions()
       dismiss()
     }
+
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_give_permission
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.permission_card)
 
   companion object {
     fun openSheet(activity: AppCompatActivity) {

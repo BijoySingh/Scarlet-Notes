@@ -127,4 +127,15 @@
     <item name="android:rowOrderPreserved">true</item>
     <item name="android:useDefaultMargins">true</item>
   </style>
+
+  <style name="BottomSheetCardContainer">
+    <item name="android:padding">@dimen/spacing_xxsmall</item>
+  </style>
+
+  <style name="BottomSheetCardView">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_margin">@dimen/spacing_xxsmall</item>
+    <item name="cardCornerRadius">@dimen/spacing_xxsmall</item>
+  </style>
 </resources>

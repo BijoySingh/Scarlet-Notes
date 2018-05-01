@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-  android:id="@+id/root_layout"
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:ui="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/root_layout"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
@@ -12,15 +11,12 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="@dimen/spacing_xsmall">
+    style="@style/BottomSheetCardContainer">
 
     <android.support.v7.widget.CardView
       android:id="@+id/font_size_card"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_margin="@dimen/spacing_xsmall"
-      ui:cardBackgroundColor="@color/material_grey_200"
-      ui:cardCornerRadius="@dimen/spacing_xxsmall">
+      style="@style/BottomSheetCardView"
+      ui:cardBackgroundColor="@color/material_grey_200">
 
       <TextView
         android:id="@+id/options_example"
@@ -35,10 +31,7 @@
 
     <android.support.v7.widget.CardView
       android:id="@+id/counter_card"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_margin="@dimen/spacing_xsmall"
-      ui:cardCornerRadius="@dimen/spacing_xxsmall">
+      style="@style/BottomSheetCardView">
 
       <LinearLayout
         android:layout_width="match_parent"
@@ -81,11 +74,8 @@
 
     <android.support.v7.widget.CardView
       android:id="@+id/markdown_example_card"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_margin="@dimen/spacing_xsmall"
-      ui:cardBackgroundColor="@color/material_red_800"
-      ui:cardCornerRadius="@dimen/spacing_xxsmall">
+      style="@style/BottomSheetCardView"
+      ui:cardBackgroundColor="@color/material_red_800">
 
       <LinearLayout
         android:layout_width="match_parent"
@@ -95,8 +85,8 @@
         <TextView
           android:id="@+id/action_button"
           android:layout_width="match_parent"
-          android:gravity="center"
           android:layout_height="wrap_content"
+          android:gravity="center"
           android:padding="@dimen/spacing_normal"
           android:text="@string/import_export_layout_exporting_done"
           android:textAllCaps="true"
