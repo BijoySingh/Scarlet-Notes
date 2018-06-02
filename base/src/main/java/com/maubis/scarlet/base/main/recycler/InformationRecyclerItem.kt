@@ -9,9 +9,11 @@ import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import java.util.*
 
 const val KEY_INFO_RATE_AND_REVIEW = "KEY_RATE_AND_REVIEW_INFO"
-const val KEY_INFO_INSTALL_PRO = "KEY_INFO_INSTALL_PRO"
+const val KEY_INFO_INSTALL_PRO_v2 = "KEY_INFO_INSTALL_PRO_v2"
 const val KEY_INFO_SIGN_IN = "KEY_INFO_SIGN_IN"
 const val KEY_FORCE_SHOW_SIGN_IN = "KEY_FORCE_SHOW_SIGN_IN"
+
+const val KEY_INFO_INSTALL_PRO_MAX_COUNT = 10
 
 class InformationRecyclerItem(val icon: Int, val title: Int, val source: Int, val function: () -> Unit) : RecyclerItem() {
   override val type = RecyclerItem.Type.INFORMATION
@@ -49,7 +51,7 @@ fun getReviewInformationItem(context: Context): InformationRecyclerItem {
 
 fun shouldShowInstallProInformationItem(): Boolean {
   return probability(0.01f)
-      && !CoreConfig.instance.store().get(KEY_INFO_INSTALL_PRO, false)
+      && CoreConfig.instance.store().get(KEY_INFO_INSTALL_PRO_v2, 0) < KEY_INFO_INSTALL_PRO_MAX_COUNT
       && CoreConfig.instance.appFlavor() != Flavor.PRO
 }
 
@@ -59,7 +61,7 @@ fun getInstallProInformationItem(context: Context): InformationRecyclerItem {
       R.string.install_pro_app,
       R.string.information_install_pro,
       {
-        CoreConfig.instance.store().put(KEY_INFO_INSTALL_PRO, true)
+        notifyProUpsellShown()
         IntentUtils.openAppPlayStore(context, "com.bijoysingh.quicknote.pro")
       })
 }
@@ -84,6 +86,11 @@ fun getSignInInformationItem(context: Context): InformationRecyclerItem {
       R.string.home_option_login_with_app_subtitle,
       {
         CoreConfig.instance.authenticator().openLoginActivity(context)?.run()
-        CoreConfig.instance.store().put(KEY_INFO_INSTALL_PRO, true)
+        notifyProUpsellShown()
       })
+}
+
+fun notifyProUpsellShown() {
+  val proUpsellCount = CoreConfig.instance.store().get(KEY_INFO_INSTALL_PRO_v2, 0)
+  CoreConfig.instance.store().put(KEY_INFO_INSTALL_PRO_v2, proUpsellCount + 1)
 }

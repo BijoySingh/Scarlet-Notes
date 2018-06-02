@@ -125,6 +125,10 @@
   <string name="home_option_export_subtitle">Export notes to device storage to share</string>
   <string name="home_option_import">Import Notes</string>
   <string name="home_option_import_subtitle">Import notes from the device storage</string>
+  <string name="home_option_export_markdown">Export As Markdown</string>
+  <string name="home_option_export_markdown_subtitle">Export notes in markdown format. (You cannot import these back to the app)</string>
+  <string name="home_option_auto_export_folder">Export Folder</string>
+  <string name="home_option_auto_export_folder_subtitle">Choose where all exports are stored</string>
   <string name="home_option_auto_export">Export Automatically</string>
   <string name="home_option_auto_export_subtitle">Export notes frequently to external file as backup</string>
   <string name="home_option_about_page">About Us</string>

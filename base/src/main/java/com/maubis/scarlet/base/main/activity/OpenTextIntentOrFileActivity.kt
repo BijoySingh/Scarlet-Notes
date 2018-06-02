@@ -14,13 +14,12 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.core.note.NoteBuilder
+import com.maubis.scarlet.base.export.support.NoteImporter
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.support.bind
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import java.io.BufferedReader
-import java.io.InputStream
 import java.io.InputStreamReader
 
 const val KEEP_PACKAGE = "com.google.android.keep"
@@ -116,7 +115,7 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
     val data = intent.data
     try {
       val inputStream = contentResolver.openInputStream(data)
-      contentText = convertStreamToString(inputStream)
+      contentText = NoteImporter().readFileInputStream(InputStreamReader(inputStream))
       filenameText = data.lastPathSegment
       inputStream.close()
       return true
@@ -124,20 +123,6 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
       return false
     }
   }
-
-  @Throws(Exception::class)
-  fun convertStreamToString(inputStream: InputStream): String {
-    val reader = BufferedReader(InputStreamReader(inputStream))
-    val sb = StringBuilder()
-    var line: String? = reader.readLine()
-    while (line != null) {
-      sb.append(line).append("\n")
-      line = reader.readLine()
-    }
-    reader.close()
-    return sb.toString()
-  }
-
 
   fun isCallerKeep(): Boolean {
     return when {

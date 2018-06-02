@@ -7,8 +7,7 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.activity.ImportNoteActivity
-import com.maubis.scarlet.base.export.support.KEY_AUTO_BACKUP_MODE
-import com.maubis.scarlet.base.export.support.PermissionUtils
+import com.maubis.scarlet.base.export.support.*
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
 import com.maubis.scarlet.base.support.Flavor
@@ -72,6 +71,17 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         }
     ))
+    val exportAsMarkdown = CoreConfig.instance.store().get(KEY_BACKUP_MARKDOWN, false)
+    options.add(OptionsItem(
+        title = R.string.home_option_export_markdown,
+        subtitle = R.string.home_option_export_markdown_subtitle,
+        icon = R.drawable.ic_markdown_logo,
+        listener = View.OnClickListener {
+          CoreConfig.instance.store().put(KEY_BACKUP_MARKDOWN, !exportAsMarkdown)
+          reset(dialog)
+        },
+        enabled = exportAsMarkdown
+    ))
     val autoBackupEnabled = CoreConfig.instance.store().get(KEY_AUTO_BACKUP_MODE, false)
     options.add(OptionsItem(
         title = R.string.home_option_auto_export,
@@ -94,6 +104,24 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         },
         enabled = autoBackupEnabled
     ))
+    val backupLocation = CoreConfig.instance.store().get(KEY_BACKUP_LOCATION, "")
+    options.add(OptionsItem(
+        title = R.string.home_option_auto_export,
+        subtitle = R.string.home_option_auto_export_subtitle,
+        icon = R.drawable.ic_time,
+        listener = View.OnClickListener {
+          val manager = PermissionUtils().getStoragePermissionManager(activity)
+          val hasAllPermissions = manager.hasAllPermissions()
+          when {
+            hasAllPermissions -> {
+              // Open folder choosing dialog, once built
+            }
+            else -> PermissionBottomSheet.openSheet(activity)
+          }
+        },
+        visible = false
+    ))
+
     return options
   }
 

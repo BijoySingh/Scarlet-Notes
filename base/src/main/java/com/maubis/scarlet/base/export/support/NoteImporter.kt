@@ -12,7 +12,10 @@ import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.note.tag.saveIfUnique
 import org.json.JSONArray
+import java.io.BufferedReader
 import java.io.File
+import java.io.IOException
+import java.io.InputStreamReader
 
 class NoteImporter() {
 
@@ -24,7 +27,7 @@ class NoteImporter() {
         // New form code
         val fileFormat = Gson().fromJson<ExportableFileFormat>(content, ExportableFileFormat::class.java)
         if (fileFormat === null) {
-          NoteBuilder().gen("", content).save(context)
+          importNoteFallback(content, context)
           return
         }
         fileFormat.tags.forEach {
@@ -48,8 +51,20 @@ class NoteImporter() {
         exportableNote?.saveIfNeeded(context)
       }
     } catch (exception: Exception) {
-      NoteBuilder().gen("", content).save(context)
+      importNoteFallback(content, context)
     }
+  }
+
+  private fun importNoteFallback(content: String, context: Context) {
+    content
+        .split(EXPORT_NOTE_SEPARATOR)
+        .map {
+          it.trim()
+        }
+        .filter { it.isNotBlank() }
+        .forEach {
+          NoteBuilder().gen("", it).save(context)
+        }
   }
 
   fun getImportableFiles(): List<File> {
@@ -83,6 +98,24 @@ class NoteImporter() {
     }
 
     return files
+  }
+
+
+  fun readFileInputStream(inputStreamReader: InputStreamReader): String {
+    lateinit var reader: BufferedReader
+    try {
+      reader = BufferedReader(inputStreamReader)
+      val fileContents = StringBuilder()
+      var line: String? = reader.readLine()
+      while (line != null) {
+        fileContents.append(line + "\n")
+        line = reader.readLine()
+      }
+      return fileContents.toString()
+    } catch (exception: IOException) {
+      reader.close()
+      return ""
+    }
   }
 
   private fun isValidFile(filePath: String): Boolean {

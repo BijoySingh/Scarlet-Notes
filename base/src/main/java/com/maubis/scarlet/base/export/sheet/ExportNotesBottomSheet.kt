@@ -13,10 +13,8 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.support.GenericFileProvider
 import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.support.Flavor
-
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
-import java.io.File
 
 
 class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
@@ -56,8 +54,9 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
     exportDone.setOnClickListener {
       dismiss()
     }
+
+    val file = NoteExporter().getOrCreateManualExportFile()
     exportShare.setOnClickListener {
-      val file = NoteExporter().getOrCreateManualExportFile()
       if (file == null || !file.exists()) {
         return@setOnClickListener
       }
@@ -74,7 +73,7 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
 
     exportTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
     filename.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
-    filename.text = (MATERIAL_NOTES_FOLDER + File.separator + FILENAME + ".txt")
+    filename.text = "${file?.parentFile?.name}/${file?.name}"
 
     makeBackgroundTransparent(dialog, R.id.root_layout)
   }
@@ -84,11 +83,12 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
   override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.export_card)
 
   companion object {
-    val MATERIAL_NOTES_FOLDER get() = when (CoreConfig.instance.appFlavor()) {
-      Flavor.NONE -> "MaterialNotes"
-      Flavor.LITE -> "Scarlet"
-      Flavor.PRO -> "ScarletPro"
-    }
+    val MATERIAL_NOTES_FOLDER
+      get() = when (CoreConfig.instance.appFlavor()) {
+        Flavor.NONE -> "MaterialNotes"
+        Flavor.LITE -> "Scarlet"
+        Flavor.PRO -> "ScarletPro"
+      }
     val FILENAME = "manual_backup"
 
     fun openSheet(activity: MainActivity) {

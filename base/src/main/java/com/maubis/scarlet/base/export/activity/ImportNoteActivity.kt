@@ -18,7 +18,10 @@ import com.maubis.scarlet.base.support.bind
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import java.io.BufferedReader
 import java.io.File
+import java.io.FileReader
+import java.io.IOException
 
 
 class ImportNoteActivity : ThemedActivity() {
@@ -49,7 +52,7 @@ class ImportNoteActivity : ThemedActivity() {
 
         override fun run() {
           if (currentlySelectedFile != null) {
-            val fileContent = FileManager.readFromFile(currentlySelectedFile)
+            val fileContent = NoteImporter().readFileInputStream(FileReader(currentlySelectedFile!!))
             if (fileContent.isBlank()) {
               return
             }
