@@ -166,7 +166,11 @@ fun Note.toggleTag(tag: Tag) {
  **************************************************************************************/
 
 fun Note.search(keywords: String): Boolean {
-  return keywords.isBlank() || this.getFullText().contains(keywords, true)
+  return when {
+    keywords.isBlank() -> true
+    locked -> false
+    else -> this.getFullText().contains(keywords, true)
+  }
 }
 
 fun Note.mark(context: Context, noteState: NoteState) {
