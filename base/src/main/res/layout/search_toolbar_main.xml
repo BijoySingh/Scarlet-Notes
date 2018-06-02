@@ -52,8 +52,8 @@
     <View
       android:layout_width="match_parent"
       android:layout_height="0.75dp"
-      android:layout_marginStart="@dimen/spacing_normal"
       android:layout_marginEnd="@dimen/spacing_normal"
+      android:layout_marginStart="@dimen/spacing_normal"
       android:background="@color/dark_hint_text" />
 
     <com.google.android.flexbox.FlexboxLayout
@@ -63,7 +63,7 @@
       android:padding="@dimen/spacing_xsmall"
       app:alignContent="stretch"
       app:alignItems="stretch"
-      app:flexWrap="wrap"/>
+      app:flexWrap="wrap" />
 
   </LinearLayout>
 </android.support.v7.widget.CardView>

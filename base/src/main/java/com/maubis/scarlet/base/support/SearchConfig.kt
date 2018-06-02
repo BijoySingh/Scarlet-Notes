@@ -19,7 +19,7 @@ fun unifiedSearchSynchronous(config: SearchConfig): List<Note> {
   val sorting = SortingOptionsBottomSheet.getSortingState()
   val notes = getNotesForMode(config)
       .filter { config.colors.isEmpty() || config.colors.contains(it.color) }
-      .filter { note -> config.tags.isEmpty() || config.tags.filter { note.tags.contains(it.uuid) }.isNotEmpty() }
+      .filter { note -> config.tags.isEmpty() || config.tags.filter { note.tags !== null && note.tags.contains(it.uuid) }.isNotEmpty() }
       .filter {
         when {
           config.text.isBlank() -> true

@@ -22,6 +22,11 @@ class ColorView : LinearLayout {
     init(context)
   }
 
+
+  constructor(context: Context, layout: Int) : super(context) {
+    init(context, layout)
+  }
+
   constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
     init(context)
   }
@@ -35,9 +40,9 @@ class ColorView : LinearLayout {
     init(context)
   }
 
-  fun init(context: Context) {
+  fun init(context: Context, layout: Int = R.layout.layout_color) {
     val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    root = inflater.inflate(R.layout.layout_color, null)
+    root = inflater.inflate(layout, null)
 
     val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     root.layoutParams = params

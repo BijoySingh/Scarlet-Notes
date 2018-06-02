@@ -40,7 +40,7 @@ import com.maubis.scarlet.base.note.recycler.NoteAppAdapter
 import com.maubis.scarlet.base.note.recycler.NoteRecyclerItem
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.note.softDelete
-import com.maubis.scarlet.base.note.tag.view.TagPickerViewHolder
+import com.maubis.scarlet.base.note.tag.view.TagsAndColorPickerViewHolder
 import com.maubis.scarlet.base.service.SyncedNoteBroadcastReceiver
 import com.maubis.scarlet.base.service.getNoteIntentFilter
 import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet
@@ -54,7 +54,6 @@ import com.maubis.scarlet.base.support.bind
 import com.maubis.scarlet.base.support.database.HouseKeeper
 import com.maubis.scarlet.base.support.database.Migrator
 import com.maubis.scarlet.base.support.database.notesDB
-import com.maubis.scarlet.base.support.database.tagsDB
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.unifiedSearchSynchronous
@@ -66,7 +65,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   internal lateinit var receiver: BroadcastReceiver
   internal lateinit var executor: SimpleThreadExecutor
-  internal lateinit var tagPicker: TagPickerViewHolder
+  internal lateinit var tagAndColorPicker: TagsAndColorPickerViewHolder
 
   var config: SearchConfig = SearchConfig(mode = HomeNavigationState.DEFAULT)
   var isInSearchMode: Boolean = false
@@ -117,7 +116,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     searchBackButton.setOnClickListener {
       onBackPressed()
     }
-    searchCloseIcon.setOnClickListener { searchBox.setText("") }
+    searchCloseIcon.setOnClickListener { onBackPressed() }
     searchBox.addTextChangedListener(object : TextWatcher {
       override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
 
@@ -134,15 +133,31 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     homeButton.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
     primaryFab.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateNoteActivity::class.java) }
     secondaryFab.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
-    tagPicker = TagPickerViewHolder(this, tagsFlexBox, { tag ->
-      if (config.tags.filter { it.uuid == tag.uuid }.isNotEmpty()) {
-        config.tags.removeAll { it.uuid == tag.uuid }
-        startSearch(searchBox.text.toString())
-        return@TagPickerViewHolder
-      }
-      openTag(tag)
-      tagPicker.search("")
-    })
+    tagAndColorPicker = TagsAndColorPickerViewHolder(
+        this,
+        tagsFlexBox,
+        { tag ->
+          val isTagSelected = config.tags.filter { it.uuid == tag.uuid }.isNotEmpty()
+          when (isTagSelected) {
+            true -> {
+              config.tags.removeAll { it.uuid == tag.uuid }
+              startSearch(searchBox.text.toString())
+              tagAndColorPicker.notifyChanged()
+            }
+            false -> {
+              openTag(tag)
+              tagAndColorPicker.notifyChanged()
+            }
+          }
+        },
+        { color ->
+          when (config.colors.contains(color)) {
+            true -> config.colors.remove(color)
+            false -> config.colors.add(color)
+          }
+          tagAndColorPicker.notifyChanged()
+          startSearch(searchBox.text.toString())
+        })
   }
 
   fun setupRecyclerView() {
@@ -315,7 +330,15 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
     if (isInSearchMode) {
       tryOpeningTheKeyboard()
-      tagPicker.search("")
+      MultiAsyncTask.execute(object : MultiAsyncTask.Task<Unit> {
+        override fun run() {
+          tagAndColorPicker.reset()
+        }
+
+        override fun handle(result: Unit) {
+          tagAndColorPicker.notifyChanged()
+        }
+      })
     } else {
       tryClosingTheKeyboard()
       setupData()
@@ -326,15 +349,8 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     executor.executeNow {
       config.text = keyword
       val items = unifiedSearchSynchronous(config).map { NoteRecyclerItem(this, it) }
-      val tags = tagsDB.search(keyword).toMutableList()
-      config.tags.forEach {
-        if (!tags.contains(it)) {
-          tags.add(it)
-        }
-      }
       runOnUiThread {
         adapter.items = items
-        tagPicker.setTags(tags)
       }
     }
   }
