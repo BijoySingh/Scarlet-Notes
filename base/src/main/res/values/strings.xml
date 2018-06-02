@@ -225,6 +225,7 @@
   <string name="sort_sheet_newest_first">Newest First</string>
   <string name="sort_sheet_oldest_first">Oldest First</string>
   <string name="sort_sheet_last_modified">Most Recently Modified</string>
+  <string name="sort_sheet_alphabetical" translatable="false">Alphabetical</string>
 
   <!-- Start Select Notes -->
   <string name="select_a_note_title">Select a Note</string>

@@ -56,6 +56,17 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         },
         selected = sorting == SortingTechnique.OLDEST_FIRST
     ))
+    options.add(OptionsItem(
+        title = getSortingTechniqueLabel(SortingTechnique.ALPHABETICAL),
+        subtitle = getSortingTechniqueLabel(SortingTechnique.ALPHABETICAL),
+        icon = getIcon(SortingTechnique.ALPHABETICAL),
+        listener = View.OnClickListener {
+          setSortingState(SortingTechnique.ALPHABETICAL)
+          listener()
+          reset(dialog)
+        },
+        selected = sorting == SortingTechnique.ALPHABETICAL
+    ))
     return options
   }
 
@@ -72,6 +83,7 @@ class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
         SortingTechnique.LAST_MODIFIED -> R.string.sort_sheet_last_modified
         SortingTechnique.NEWEST_FIRST -> R.string.sort_sheet_newest_first
         SortingTechnique.OLDEST_FIRST -> R.string.sort_sheet_oldest_first
+        SortingTechnique.ALPHABETICAL -> R.string.sort_sheet_alphabetical
       }
     }
 
