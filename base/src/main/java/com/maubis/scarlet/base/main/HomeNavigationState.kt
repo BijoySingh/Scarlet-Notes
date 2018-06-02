@@ -5,7 +5,6 @@ package com.maubis.scarlet.base.main
  */
 enum class HomeNavigationState {
   DEFAULT,
-  TAG,
   TRASH,
   FAVOURITE,
   ARCHIVED,

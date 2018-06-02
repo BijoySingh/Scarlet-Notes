@@ -32,7 +32,6 @@ import com.maubis.scarlet.base.main.activity.createHint
 import com.maubis.scarlet.base.main.recycler.*
 import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
 import com.maubis.scarlet.base.main.sheets.HomeNavigationBottomSheet
-import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
@@ -40,7 +39,6 @@ import com.maubis.scarlet.base.note.mark
 import com.maubis.scarlet.base.note.recycler.NoteAppAdapter
 import com.maubis.scarlet.base.note.recycler.NoteRecyclerItem
 import com.maubis.scarlet.base.note.save
-import com.maubis.scarlet.base.note.search
 import com.maubis.scarlet.base.note.softDelete
 import com.maubis.scarlet.base.note.tag.view.TagPickerViewHolder
 import com.maubis.scarlet.base.service.SyncedNoteBroadcastReceiver
@@ -51,24 +49,27 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
+import com.maubis.scarlet.base.support.SearchConfig
 import com.maubis.scarlet.base.support.bind
-import com.maubis.scarlet.base.support.database.*
-import com.maubis.scarlet.base.support.recycler.RecyclerItem
+import com.maubis.scarlet.base.support.database.HouseKeeper
+import com.maubis.scarlet.base.support.database.Migrator
+import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.support.database.tagsDB
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.unifiedSearchSynchronous
 
 class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
 
   internal lateinit var recyclerView: RecyclerView
   internal lateinit var adapter: NoteAppAdapter
 
-  internal var mode: HomeNavigationState = HomeNavigationState.DEFAULT
-  internal var selectedTag: Tag? = null
-  internal var isInSearchMode: Boolean = false
-
   internal lateinit var receiver: BroadcastReceiver
   internal lateinit var executor: SimpleThreadExecutor
   internal lateinit var tagPicker: TagPickerViewHolder
+
+  var config: SearchConfig = SearchConfig(mode = HomeNavigationState.DEFAULT)
+  var isInSearchMode: Boolean = false
 
   val homeButton: ImageView by bind(R.id.home_button)
   val searchIcon: ImageView by bind(R.id.home_search_button)
@@ -92,7 +93,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     // Migrate to the newer version of the tags
     Migrator(this).start()
 
-    mode = HomeNavigationState.DEFAULT
+    config.mode = HomeNavigationState.DEFAULT
     executor = SimpleThreadExecutor(1)
 
     setupRecyclerView()
@@ -133,14 +134,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     homeButton.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
     primaryFab.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateNoteActivity::class.java) }
     secondaryFab.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
-    tagPicker = TagPickerViewHolder(this, tagsFlexBox, {
-      if (it == selectedTag && mode == HomeNavigationState.TAG) {
-        mode = HomeNavigationState.DEFAULT
+    tagPicker = TagPickerViewHolder(this, tagsFlexBox, { tag ->
+      if (config.tags.filter { it.uuid == tag.uuid }.isNotEmpty()) {
+        config.tags.removeAll { it.uuid == tag.uuid }
         startSearch(searchBox.text.toString())
         return@TagPickerViewHolder
       }
-      openTag(it)
-      tagPicker.setTags(listOf(it))
+      openTag(tag)
+      tagPicker.search("")
     })
   }
 
@@ -190,49 +191,35 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     setupData()
   }
 
-  private fun loadNoteByStates(states: Array<String>) {
-    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
-      override fun run(): List<NoteRecyclerItem> {
-        val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(notesDB.getByNoteState(states), sorting)
-            .map { NoteRecyclerItem(this@MainActivity, it) }
-      }
-
-      override fun handle(notes: List<NoteRecyclerItem>) {
-        handleNewItems(notes)
-      }
-    })
-  }
-
   /**
    * Start: Home Navigation Clicks
    */
   fun onHomeClick() {
-    mode = HomeNavigationState.DEFAULT
-    loadNoteByStates(arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name))
+    config = SearchConfig(mode = HomeNavigationState.DEFAULT)
+    unifiedSearch()
     notifyModeChange()
   }
 
   fun onFavouritesClick() {
-    mode = HomeNavigationState.FAVOURITE
-    loadNoteByStates(arrayOf(NoteState.FAVOURITE.name))
+    config = SearchConfig(mode = HomeNavigationState.FAVOURITE)
+    unifiedSearch()
     notifyModeChange()
   }
 
   fun onArchivedClick() {
-    mode = HomeNavigationState.ARCHIVED
-    loadNoteByStates(arrayOf(NoteState.ARCHIVED.name))
+    config = SearchConfig(mode = HomeNavigationState.ARCHIVED)
+    unifiedSearch()
     notifyModeChange()
   }
 
   fun onTrashClick() {
-    mode = HomeNavigationState.TRASH
-    loadNoteByStates(arrayOf(NoteState.TRASH.name))
+    config = SearchConfig(mode = HomeNavigationState.TRASH)
+    unifiedSearch()
     notifyModeChange()
   }
 
   fun onLockedClick() {
-    mode = HomeNavigationState.LOCKED
+    config = SearchConfig(mode = HomeNavigationState.LOCKED)
     MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
@@ -248,7 +235,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   private fun notifyModeChange() {
-    val isTrash = mode === HomeNavigationState.TRASH
+    val isTrash = config.mode === HomeNavigationState.TRASH
     deleteToolbar.visibility = if (isTrash) View.VISIBLE else GONE
   }
 
@@ -258,7 +245,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   private fun handleNewItems(notes: List<NoteRecyclerItem>) {
     adapter.clearItems()
-
     if (notes.isEmpty()) {
       adapter.addItem(EmptyRecyclerItem())
       return
@@ -283,13 +269,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     adapter.addItem(informationItem, index)
   }
 
-  fun openTag(tag: Tag) {
-    mode = HomeNavigationState.TAG
-    selectedTag = tag
+  private fun unifiedSearch() {
     MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
-        val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(notesDB.getNoteByTag(tag.uuid), sorting)
+        return unifiedSearchSynchronous(config)
             .map { NoteRecyclerItem(this@MainActivity, it) }
       }
 
@@ -297,6 +280,12 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
         handleNewItems(notes)
       }
     })
+  }
+
+  fun openTag(tag: Tag) {
+    config.mode = if (config.mode == HomeNavigationState.LOCKED) HomeNavigationState.DEFAULT else config.mode
+    config.tags.add(tag)
+    unifiedSearch()
     notifyModeChange()
   }
 
@@ -308,24 +297,13 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   fun setupData() {
-    return when (mode) {
+    return when (config.mode) {
       HomeNavigationState.FAVOURITE -> onFavouritesClick()
       HomeNavigationState.ARCHIVED -> onArchivedClick()
       HomeNavigationState.TRASH -> onTrashClick()
       HomeNavigationState.LOCKED -> onLockedClick()
       HomeNavigationState.DEFAULT -> onHomeClick()
       else -> onHomeClick()
-    }
-  }
-
-  fun getDataForMode(): List<Note> {
-    return when (mode) {
-      HomeNavigationState.FAVOURITE -> notesDB.getByNoteState(arrayOf(NoteState.FAVOURITE.name))
-      HomeNavigationState.ARCHIVED -> notesDB.getByNoteState(arrayOf(NoteState.ARCHIVED.name))
-      HomeNavigationState.TRASH -> notesDB.getByNoteState(arrayOf(NoteState.TRASH.name))
-      HomeNavigationState.LOCKED -> notesDB.getNoteByLocked(true)
-      HomeNavigationState.DEFAULT -> notesDB.getByNoteState(arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name))
-      HomeNavigationState.TAG -> notesDB.getNoteByTag(selectedTag!!.uuid)
     }
   }
 
@@ -346,10 +324,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   private fun startSearch(keyword: String) {
     executor.executeNow {
-      val items = search(keyword)
-      val tags = if (mode != HomeNavigationState.TAG) tagsDB.search(keyword)
-      else listOf(selectedTag!!)
-
+      config.text = keyword
+      val items = unifiedSearchSynchronous(config).map { NoteRecyclerItem(this, it) }
+      val tags = tagsDB.search(keyword).toMutableList()
+      config.tags.forEach {
+        if (!tags.contains(it)) {
+          tags.add(it)
+        }
+      }
       runOnUiThread {
         adapter.items = items
         tagPicker.setTags(tags)
@@ -357,18 +339,11 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     }
   }
 
-  private fun search(keyword: String): List<RecyclerItem> {
-    val sorting = SortingOptionsBottomSheet.getSortingState()
-    return sort(getDataForMode(), sorting)
-        .filter { return@filter it.search(keyword) }
-        .map { NoteRecyclerItem(this, it) }
-  }
-
   override fun onBackPressed() {
     when {
       isInSearchMode && searchBox.text.toString().isBlank() -> setSearchMode(false)
       isInSearchMode -> searchBox.setText("")
-      mode !== HomeNavigationState.DEFAULT -> onHomeClick()
+      config.mode !== HomeNavigationState.DEFAULT -> onHomeClick()
       else -> super.onBackPressed()
     }
   }
@@ -443,17 +418,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   /**
    * End : Tutorial
    */
-
   companion object {
     const val TUTORIAL_KEY_NEW_NOTE = "TUTORIAL_KEY_NEW_NOTE"
     const val TUTORIAL_KEY_HOME_SETTINGS = "TUTORIAL_KEY_HOME_SETTINGS"
   }
 
-
   /**
    * Start : INoteOptionSheetActivity Functions
    */
-
   override fun updateNote(note: Note) {
     note.save(this)
     setupData()
@@ -474,7 +446,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   override fun getSelectMode(note: Note): String {
-    return mode.name
+    return config.mode.name
   }
 
   override fun notifyResetOrDismiss() {

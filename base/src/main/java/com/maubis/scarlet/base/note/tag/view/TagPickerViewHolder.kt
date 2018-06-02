@@ -8,6 +8,7 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.database.room.tag.Tag
 import com.maubis.scarlet.base.main.HomeNavigationState
+import com.maubis.scarlet.base.support.SearchConfig
 import com.maubis.scarlet.base.support.database.tagsDB
 
 class TagPickerViewHolder(
@@ -29,7 +30,7 @@ class TagPickerViewHolder(
           val tagView = View.inflate(activity, R.layout.layout_flexbox_tag_item, null) as View
           val text = tagView.findViewById<TextView>(R.id.tag_text)
 
-          if (activity.mode == HomeNavigationState.TAG && activity.selectedTag == tag) {
+          if (activity.config.tags.filter { it.uuid == tag.uuid }.isNotEmpty()) {
             text.setBackgroundResource(R.drawable.flexbox_selected_tag_item_bg)
             text.setTextColor(ContextCompat.getColor(activity, R.color.colorAccent))
           }

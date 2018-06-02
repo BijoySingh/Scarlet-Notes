@@ -18,6 +18,7 @@ import com.maubis.scarlet.base.note.tag.TagOptionsItem
 import com.maubis.scarlet.base.note.tag.sheet.CreateOrEditTagBottomSheet
 import com.maubis.scarlet.base.note.tag.view.HomeTagView
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
+import com.maubis.scarlet.base.support.SearchConfig
 import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.database.tagsDB
 import com.maubis.scarlet.base.support.option.OptionsItem
@@ -41,7 +42,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
         title = R.string.nav_home,
         subtitle = R.string.nav_home_details,
         icon = R.drawable.ic_home_white_48dp,
-        selected = activity.mode == HomeNavigationState.DEFAULT,
+        selected = activity.config.mode == HomeNavigationState.DEFAULT,
         listener = View.OnClickListener {
           activity.onHomeClick();
           dismiss();
@@ -51,7 +52,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
         title = R.string.nav_favourites,
         subtitle = R.string.nav_favourites_details,
         icon = R.drawable.ic_favorite_white_48dp,
-        selected = activity.mode == HomeNavigationState.FAVOURITE,
+        selected = activity.config.mode == HomeNavigationState.FAVOURITE,
         listener = View.OnClickListener {
           activity.onFavouritesClick();
           dismiss();
@@ -61,7 +62,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
         title = R.string.nav_archived,
         subtitle = R.string.nav_archived_details,
         icon = R.drawable.ic_archive_white_48dp,
-        selected = activity.mode == HomeNavigationState.ARCHIVED,
+        selected = activity.config.mode == HomeNavigationState.ARCHIVED,
         listener = View.OnClickListener {
           activity.onArchivedClick();
           dismiss();
@@ -71,7 +72,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
         title = R.string.nav_locked,
         subtitle = R.string.nav_locked_details,
         icon = R.drawable.ic_action_lock,
-        selected = activity.mode == HomeNavigationState.LOCKED,
+        selected = activity.config.mode == HomeNavigationState.LOCKED,
         listener = View.OnClickListener {
           activity.onLockedClick();
           dismiss();
@@ -81,7 +82,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
         title = R.string.nav_trash,
         subtitle = R.string.nav_trash_details,
         icon = R.drawable.ic_delete_white_48dp,
-        selected = activity.mode == HomeNavigationState.TRASH,
+        selected = activity.config.mode == HomeNavigationState.TRASH,
         listener = View.OnClickListener {
           activity.onTrashClick();
           dismiss();
@@ -156,6 +157,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
           tag = tag,
           usages = notesDB.getNoteCountByTag(tag.uuid),
           listener = View.OnClickListener {
+            activity.config = SearchConfig(mode = HomeNavigationState.DEFAULT)
             activity.openTag(tag)
             dismiss()
           },
