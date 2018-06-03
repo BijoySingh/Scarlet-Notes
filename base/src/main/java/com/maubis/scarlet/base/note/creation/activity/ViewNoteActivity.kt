@@ -28,7 +28,6 @@ import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
 import com.maubis.scarlet.base.note.formats.FormatAdapter
 import com.maubis.scarlet.base.note.formats.IFormatRecyclerViewActivity
 import com.maubis.scarlet.base.note.formats.getFormatControllerItems
-import com.maubis.scarlet.base.note.formats.recycler.FormatTextViewHolder
 import com.maubis.scarlet.base.note.formats.recycler.KEY_EDITABLE
 import com.maubis.scarlet.base.note.formats.recycler.KEY_NOTE_COLOR
 import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet
@@ -37,10 +36,8 @@ import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
 import com.maubis.scarlet.base.support.bind
 import com.maubis.scarlet.base.support.database.notesDB
-import com.maubis.scarlet.base.support.ui.CircleDrawable
-import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
-import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.ui.*
+import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
 import java.util.*
 
 
@@ -104,6 +101,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     super.onResume()
     CoreConfig.instance.startListener(this)
     onResumeAction()
+    notifyThemeChange()
   }
 
   protected open fun onResumeAction() {
@@ -274,28 +272,35 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
   protected open fun notifyToolbarColor() {
     val theme = CoreConfig.instance.themeController()
-    val toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
+
+    val backgroundColor: Int
+    val toolbarIconColor: Int
+    val statusBarColor: Int
+    when {
+      !useNoteColorAsBackground -> {
+        backgroundColor = theme.get(ThemeColorType.BACKGROUND)
+        toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
+        statusBarColor = backgroundColor
+      }
+      ColorUtil.isLightColored(note!!.color) -> {
+        backgroundColor = note!!.color
+        toolbarIconColor = theme.get(context, Theme.LIGHT, ThemeColorType.TOOLBAR_ICON)
+        statusBarColor = darkerColor(note!!.color)
+      }
+      else -> {
+        backgroundColor = note!!.color
+        toolbarIconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
+        statusBarColor = darkerColor(note!!.color)
+      }
+    }
+
     backButton.setColorFilter(toolbarIconColor)
     actionCopy.setColorFilter(toolbarIconColor)
     actionDelete.setColorFilter(toolbarIconColor)
     actionShare.setColorFilter(toolbarIconColor)
     actionDone.setColorFilter(toolbarIconColor)
 
-    var backgroundColor = theme.get(ThemeColorType.BACKGROUND)
-    when (useNoteColorAsBackground) {
-      true -> {
-        /*val hsl = floatArrayOf(0.0f, 0.0f, 0.0f)
-        val color = note!!.color
-        ColorUtils.RGBToHSL(Color.red(color), Color.green(color), Color.blue(color), hsl)
-        hsl[2] = 0.2f
-        backgroundColor = ColorUtils.HSLToColor(hsl)*/
-        backgroundColor = note!!.color
-        setSystemTheme(backgroundColor)
-      }
-      false -> {
-        setSystemTheme()
-      }
-    }
+    setSystemTheme(statusBarColor)
     rootView.setBackgroundColor(backgroundColor)
     formatsView.setBackgroundColor(backgroundColor)
 

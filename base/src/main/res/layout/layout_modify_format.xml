@@ -9,6 +9,7 @@
   android:orientation="horizontal">
 
   <ImageView
+    android:id="@+id/left_icon"
     android:layout_width="6dp"
     android:layout_height="@dimen/icon_size_normal"
     android:scaleType="centerCrop"
@@ -16,6 +17,7 @@
     android:tint="@color/material_grey_400" />
 
   <ImageView
+    android:id="@+id/right_icon"
     android:layout_width="6dp"
     android:layout_height="@dimen/icon_size_normal"
     android:scaleType="centerCrop"

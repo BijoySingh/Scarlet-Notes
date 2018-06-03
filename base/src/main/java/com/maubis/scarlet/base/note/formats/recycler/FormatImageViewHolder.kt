@@ -24,7 +24,7 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
 
   protected val actionCamera: ImageView = root.findViewById(R.id.action_camera)
   protected val actionGallery: ImageView = root.findViewById(R.id.action_gallery)
-  protected val actionMove: ImageView = root.findViewById(R.id.action_move)
+  protected val actionMove = ActionMoveIcon(root.findViewById(R.id.action_move))
   protected val imageToolbar: View = root.findViewById(R.id.image_toolbar)
   protected val noImageMessage: UITextView = root.findViewById(R.id.no_image_message)
 
@@ -56,7 +56,7 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
       EasyImage.openGallery(context as AppCompatActivity, data.uid)
     }
     actionMove.setColorFilter(config.iconColor)
-    actionMove.setOnClickListener {
+    actionMove.view.setOnClickListener {
       FormatActionBottomSheet.openSheet(activity, config.noteUUID, data)
     }
     imageToolbar.visibility = visibility(config.editable)

@@ -21,7 +21,7 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
 
   protected val text: TextView = root.findViewById(R.id.text)
   protected val edit: EditText = root.findViewById(R.id.edit)
-  protected val actionMove: ImageView = root.findViewById(R.id.action_move)
+  protected val actionMove = ActionMoveIcon(root.findViewById(R.id.action_move))
 
   protected var format: Format? = null
 
@@ -59,9 +59,9 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
       else -> text.text = data.text
     }
 
-    actionMove.visibility = visibility(config.editable)
     actionMove.setColorFilter(config.iconColor)
-    actionMove.setOnClickListener {
+    actionMove.view.visibility = visibility(config.editable)
+    actionMove.view.setOnClickListener {
       FormatActionBottomSheet.openSheet(activity, config.noteUUID, data)
     }
   }

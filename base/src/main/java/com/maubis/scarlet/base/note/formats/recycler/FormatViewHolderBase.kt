@@ -3,8 +3,8 @@ package com.maubis.scarlet.base.note.formats.recycler
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.ColorUtils
 import android.view.View
+import android.widget.ImageView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
@@ -16,6 +16,7 @@ import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet.Com
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
+import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
@@ -34,6 +35,16 @@ data class FormatViewHolderConfig(
     val accentColor: Int,
     val noteUUID: String)
 
+class ActionMoveIcon(val view: View) {
+  private val leftIcon : ImageView = view.findViewById(R.id.left_icon)
+  private val rightIcon : ImageView = view.findViewById(R.id.right_icon)
+
+  fun setColorFilter(color: Int) {
+    leftIcon.setColorFilter(color)
+    rightIcon.setColorFilter(color)
+  }
+}
+
 abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerViewHolder<Format>(context, view) {
 
   protected val activity: ViewAdvancedNoteActivity = context as ViewAdvancedNoteActivity
@@ -45,7 +56,7 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
     val iconColor: Int
     val hintTextColor: Int
     val theme = CoreConfig.instance.themeController()
-    val isLightBackground = ColorUtils.calculateLuminance(noteColor) > 0.35
+    val isLightBackground = ColorUtil.isLightColored(noteColor)
     when {
       !useNoteColorAsBackground -> {
         secondaryTextColor = theme.get(ThemeColorType.SECONDARY_TEXT)

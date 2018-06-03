@@ -2,6 +2,7 @@ package com.maubis.scarlet.base.note
 
 import android.content.Context
 import android.content.Intent
+import android.support.v4.graphics.ColorUtils
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.CoreConfig
@@ -164,14 +165,6 @@ fun Note.toggleTag(tag: Tag) {
 /**************************************************************************************
  ******************************* Note Action Functions ********************************
  **************************************************************************************/
-
-fun Note.search(keywords: String): Boolean {
-  return when {
-    keywords.isBlank() -> true
-    locked -> false
-    else -> this.getFullText().contains(keywords, true)
-  }
-}
 
 fun Note.mark(context: Context, noteState: NoteState) {
   this.state = noteState.name

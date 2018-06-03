@@ -9,7 +9,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.ColorUtils
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.RemoteViews
@@ -26,6 +25,7 @@ import com.maubis.scarlet.base.note.selection.activity.INoteSelectorActivity
 import com.maubis.scarlet.base.note.selection.activity.SelectableNotesActivityBase
 import com.maubis.scarlet.base.service.NoteWidgetProvider
 import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.support.ui.ColorUtil
 
 class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActivity {
 
@@ -99,7 +99,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
           note.getLockedText(context, false))
       views.setInt(R.id.container_layout, "setBackgroundColor", note.color)
 
-      val isLightShaded = ColorUtils.calculateLuminance(note.color) > 0.35
+      val isLightShaded = ColorUtil.isLightColored(note.color)
       val colorResource = if (isLightShaded) R.color.dark_tertiary_text else R.color.light_secondary_text
       val textColor = ContextCompat.getColor(context, colorResource)
       views.setInt(R.id.title, "setTextColor", textColor)

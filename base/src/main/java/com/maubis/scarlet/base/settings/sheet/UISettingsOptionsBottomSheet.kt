@@ -150,10 +150,16 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         },
         icon = R.drawable.ic_action_color,
         listener = View.OnClickListener {
+          if (flavor != Flavor.PRO) {
+            InstallProUpsellBottomSheet.openSheet(activity)
+            return@OnClickListener
+          }
+
           useNoteColorAsBackground = !useNoteColorAsBackground
           reset(dialog)
-          dismiss()
-        }
+        },
+        visible = flavor != Flavor.NONE,
+        actionIcon = if (flavor == Flavor.PRO) 0 else R.drawable.ic_rating
     ))
     return options
   }

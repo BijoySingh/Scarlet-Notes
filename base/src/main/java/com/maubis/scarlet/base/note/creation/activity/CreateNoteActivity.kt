@@ -22,9 +22,14 @@ import com.maubis.scarlet.base.note.formats.recycler.FormatImageViewHolder
 import com.maubis.scarlet.base.note.formats.recycler.FormatTextViewHolder
 import com.maubis.scarlet.base.note.saveToSync
 import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.bind
 import com.maubis.scarlet.base.support.recycler.SimpleItemTouchHelper
 import com.maubis.scarlet.base.support.ui.CircleDrawable
+import com.maubis.scarlet.base.support.ui.ColorUtil
+import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
+import com.maubis.scarlet.base.support.ui.ColorUtil.luminantColor
+import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
@@ -157,10 +162,27 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   override fun notifyToolbarColor() {
     super.notifyToolbarColor()
     val theme = CoreConfig.instance.themeController()
-    toolbar.setBackgroundColor(theme.get(ThemeColorType.TOOLBAR_BACKGROUND))
-    markdownToolbar.setBackgroundColor(theme.get(ThemeColorType.TOOLBAR_BACKGROUND))
 
-    val toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
+    val toolbarIconColor: Int
+    val toolbarBackgroundColor: Int
+    when {
+      !UISettingsOptionsBottomSheet.useNoteColorAsBackground -> {
+        toolbarBackgroundColor = theme.get(ThemeColorType.TOOLBAR_BACKGROUND)
+        toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
+      }
+      ColorUtil.isLightColored(note!!.color) -> {
+        toolbarBackgroundColor = luminantColor(note!!.color, 0.35f)
+        toolbarIconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
+      }
+      else -> {
+        toolbarBackgroundColor = darkerColor(note!!.color)
+        toolbarIconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
+      }
+    }
+
+    toolbar.setBackgroundColor(toolbarBackgroundColor)
+    markdownToolbar.setBackgroundColor(toolbarBackgroundColor)
+
     text.setColorFilter(toolbarIconColor)
     heading.setColorFilter(toolbarIconColor)
     subHeading.setColorFilter(toolbarIconColor)
@@ -173,9 +195,10 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     markdownItalics.setColorFilter(toolbarIconColor)
     markdownMore.setColorFilter(toolbarIconColor)
 
-    val hintColor = theme.get(ThemeColorType.PRIMARY_TEXT)
-    chevronLeft.setColorFilter(hintColor)
-    chevronRight.setColorFilter(hintColor)
+    chevronLeft.alpha = 0.7f
+    chevronLeft.setColorFilter(toolbarIconColor)
+    chevronRight.alpha = 0.7f
+    chevronRight.setColorFilter(toolbarIconColor)
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -357,6 +380,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   override fun setNoteColor(color: Int) {
     note!!.color = color
     colorButton.background = CircleDrawable(note!!.color)
+    notifyToolbarColor()
   }
 
   override fun setFormat(format: Format) {
