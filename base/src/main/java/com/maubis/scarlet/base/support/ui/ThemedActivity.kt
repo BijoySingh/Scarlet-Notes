@@ -11,8 +11,8 @@ abstract class ThemedActivity : AppCompatActivity() {
 
   abstract fun notifyThemeChange()
 
-  fun setSystemTheme() {
-    setStatusBarColor(getStatusBarColor())
+  fun setSystemTheme(color: Int = getStatusBarColor()) {
+    setStatusBarColor(color)
     setStatusBarTextColor()
   }
 

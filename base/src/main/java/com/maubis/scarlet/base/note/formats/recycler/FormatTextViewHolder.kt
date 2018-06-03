@@ -2,44 +2,30 @@ package com.maubis.scarlet.base.note.formats.recycler
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
-import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.format.Format
-import com.maubis.scarlet.base.core.format.FormatType.*
 import com.maubis.scarlet.base.core.format.MarkdownType
-import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
-import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.creation.sheet.FormatActionBottomSheet
-import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
-import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet
-import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet.Companion.KEY_TEXT_SIZE
-import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet.Companion.TEXT_SIZE_DEFAULT
-import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.visibility
 import com.maubis.scarlet.base.utils.renderMarkdown
 
-open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHolder<Format>(context, view), TextWatcher {
+open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolderBase(context, view), TextWatcher {
 
-  protected val activity: ViewAdvancedNoteActivity
-  protected val text: TextView
-  protected val edit: EditText
-  private val actionMove: View
+  protected val text: TextView = root.findViewById(R.id.text)
+  protected val edit: EditText = root.findViewById(R.id.edit)
+  protected val actionMove: ImageView = root.findViewById(R.id.action_move)
 
   protected var format: Format? = null
 
   init {
-    text = view.findViewById<View>(R.id.text) as TextView
-    edit = view.findViewById<View>(R.id.edit) as EditText
-    activity = context as ViewAdvancedNoteActivity
     edit.addTextChangedListener(this)
     edit.onFocusChangeListener = View.OnFocusChangeListener { _, _ -> activity.focusedFormat = format }
     edit.setRawInputType(
@@ -48,56 +34,35 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
             or InputType.TYPE_CLASS_TEXT
             or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE
     )
-    actionMove = view.findViewById(R.id.action_move)
   }
 
-  override fun populate(data: Format, extra: Bundle?) {
+  override fun populate(data: Format, config: FormatViewHolderConfig) {
     format = data
 
-    val editable = !(extra != null
-        && extra.containsKey(KEY_EDITABLE)
-        && !extra.getBoolean(KEY_EDITABLE))
-    val isMarkdownEnabled = (extra == null
-        || extra.getBoolean(KEY_MARKDOWN_ENABLED, true)
-        || data.forcedMarkdown)
-    val noteUUID: String = extra?.getString(INTENT_KEY_NOTE_ID) ?: "default"
-
-    val fontSize = extra?.getInt(KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT)
-        ?: TextSizeBottomSheet.TEXT_SIZE_DEFAULT
-    val theme = CoreConfig.instance.themeController()
-    val backgroundColor = when (data.formatType) {
-      CODE -> theme.get(context, R.color.material_grey_200, R.color.material_grey_700)
-      else -> ContextCompat.getColor(context, R.color.transparent)
-    }
-
-    val fontSizeFloat = when (data.formatType) {
-      HEADING -> fontSize.toFloat() + 4
-      SUB_HEADING -> fontSize.toFloat() + 2
-      else -> fontSize.toFloat()
-    }
-    text.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeFloat)
-    text.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
-    text.setBackgroundColor(backgroundColor)
-    text.setLinkTextColor(theme.get(ThemeColorType.ACCENT_TEXT))
+    text.setTextSize(TypedValue.COMPLEX_UNIT_SP, config.fontSize)
+    text.setTextColor(config.secondaryTextColor)
+    text.setBackgroundColor(config.backgroundColor)
+    text.setLinkTextColor(config.accentColor)
     text.setTextIsSelectable(true)
-    text.visibility = visibility(!editable)
+    text.visibility = visibility(!config.editable)
 
-    edit.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeFloat)
-    edit.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
-    edit.setHintTextColor(theme.get(ThemeColorType.HINT_TEXT))
-    edit.setBackgroundColor(backgroundColor)
-    edit.visibility = visibility(editable)
-    edit.isEnabled = editable
+    edit.setTextSize(TypedValue.COMPLEX_UNIT_SP, config.fontSize)
+    edit.setTextColor(config.secondaryTextColor)
+    edit.setHintTextColor(config.hintTextColor)
+    edit.setBackgroundColor(config.backgroundColor)
+    edit.visibility = visibility(config.editable)
+    edit.isEnabled = config.editable
 
     when {
-      editable -> edit.setText(data.text)
-      isMarkdownEnabled -> text.text = renderMarkdown(context, data.text)
+      config.editable -> edit.setText(data.text)
+      config.isMarkdownEnabled -> text.text = renderMarkdown(context, data.text)
       else -> text.text = data.text
     }
 
-    actionMove.visibility = visibility(editable)
+    actionMove.visibility = visibility(config.editable)
+    actionMove.setColorFilter(config.iconColor)
     actionMove.setOnClickListener {
-      FormatActionBottomSheet.openSheet(activity, noteUUID, data)
+      FormatActionBottomSheet.openSheet(activity, config.noteUUID, data)
     }
   }
 
@@ -146,9 +111,5 @@ open class FormatTextViewHolder(context: Context, view: View) : RecyclerViewHold
     } catch (_: Exception) {
       // Ignore the exception
     }
-  }
-
-  companion object {
-    val KEY_EDITABLE = "KEY_EDITABLE"
   }
 }

@@ -161,7 +161,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   fun setupRecyclerView() {
-    val staggeredView = UISettingsOptionsBottomSheet.isGridView()
+    val staggeredView = UISettingsOptionsBottomSheet.useGridView
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
     val isMarkdownEnabled = CoreConfig.instance.store().get(KEY_MARKDOWN_ENABLED, true)

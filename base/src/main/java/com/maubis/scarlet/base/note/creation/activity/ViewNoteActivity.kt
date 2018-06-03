@@ -29,9 +29,12 @@ import com.maubis.scarlet.base.note.formats.FormatAdapter
 import com.maubis.scarlet.base.note.formats.IFormatRecyclerViewActivity
 import com.maubis.scarlet.base.note.formats.getFormatControllerItems
 import com.maubis.scarlet.base.note.formats.recycler.FormatTextViewHolder
+import com.maubis.scarlet.base.note.formats.recycler.KEY_EDITABLE
+import com.maubis.scarlet.base.note.formats.recycler.KEY_NOTE_COLOR
 import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet
+import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
 import com.maubis.scarlet.base.support.bind
 import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.ui.CircleDrawable
@@ -146,10 +149,11 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
   private fun resetBundle() {
     val bundle = Bundle()
-    bundle.putBoolean(FormatTextViewHolder.KEY_EDITABLE, editModeValue)
+    bundle.putBoolean(KEY_EDITABLE, editModeValue)
     bundle.putBoolean(KEY_MARKDOWN_ENABLED, CoreConfig.instance.store().get(KEY_MARKDOWN_ENABLED, true))
     bundle.putBoolean(KEY_NIGHT_THEME, CoreConfig.instance.themeController().isNightTheme())
     bundle.putInt(TextSizeBottomSheet.KEY_TEXT_SIZE, TextSizeBottomSheet.getDefaultTextSize())
+    bundle.putInt(KEY_NOTE_COLOR, note!!.color)
     bundle.putString(INTENT_KEY_NOTE_ID, note!!.uuid)
     adapter.setExtra(bundle)
   }
@@ -277,13 +281,26 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     actionShare.setColorFilter(toolbarIconColor)
     actionDone.setColorFilter(toolbarIconColor)
 
-    val backgroundColor = theme.get(ThemeColorType.BACKGROUND)
+    var backgroundColor = theme.get(ThemeColorType.BACKGROUND)
+    when (useNoteColorAsBackground) {
+      true -> {
+        /*val hsl = floatArrayOf(0.0f, 0.0f, 0.0f)
+        val color = note!!.color
+        ColorUtils.RGBToHSL(Color.red(color), Color.green(color), Color.blue(color), hsl)
+        hsl[2] = 0.2f
+        backgroundColor = ColorUtils.HSLToColor(hsl)*/
+        backgroundColor = note!!.color
+        setSystemTheme(backgroundColor)
+      }
+      false -> {
+        setSystemTheme()
+      }
+    }
     rootView.setBackgroundColor(backgroundColor)
     formatsView.setBackgroundColor(backgroundColor)
 
     resetBundle()
     adapter.notifyDataSetChanged()
-    setSystemTheme()
   }
 
   protected open fun setBottomToolbar() {

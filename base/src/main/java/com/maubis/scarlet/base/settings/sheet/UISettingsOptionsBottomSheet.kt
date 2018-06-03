@@ -90,22 +90,22 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.home_option_enable_list_view_subtitle,
         icon = R.drawable.ic_action_list,
         listener = View.OnClickListener {
-          setGridView(false)
+          useGridView = false
           activity.notifyAdapterExtraChanged()
           dismiss()
         },
-        visible = !isTablet && isGridView()
+        visible = !isTablet && useGridView
     ))
     options.add(OptionsItem(
         title = R.string.home_option_enable_grid_view,
         subtitle = R.string.home_option_enable_grid_view_subtitle,
         icon = R.drawable.ic_action_grid,
         listener = View.OnClickListener {
-          setGridView(true)
+          useGridView = true
           activity.notifyAdapterExtraChanged()
           dismiss()
         },
-        visible = !isTablet && !isGridView()
+        visible = !isTablet && !useGridView
     ))
     options.add(OptionsItem(
         title = R.string.home_option_order_notes,
@@ -142,20 +142,38 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           dismiss()
         }
     ))
+    options.add(OptionsItem(
+        title = R.string.ui_options_note_background_color,
+        subtitle = when (useNoteColorAsBackground) {
+          true -> R.string.ui_options_note_background_color_settings_note
+          false -> R.string.ui_options_note_background_color_settings_theme
+        },
+        icon = R.drawable.ic_action_color,
+        listener = View.OnClickListener {
+          useNoteColorAsBackground = !useNoteColorAsBackground
+          reset(dialog)
+          dismiss()
+        }
+    ))
     return options
   }
 
   companion object {
 
     const val KEY_LIST_VIEW = "KEY_LIST_VIEW"
+    const val KEY_NOTE_VIEWER_BG_COLOR = "KEY_NOTE_VIEWER_BG_COLOR"
 
     fun openSheet(activity: MainActivity) {
       val sheet = UISettingsOptionsBottomSheet()
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 
-    fun isGridView(): Boolean = CoreConfig.instance.store().get(KEY_LIST_VIEW, true)
+    var useGridView: Boolean
+      get() = CoreConfig.instance.store().get(KEY_LIST_VIEW, true)
+      set(isGrid) = CoreConfig.instance.store().put(KEY_LIST_VIEW, isGrid)
 
-    fun setGridView(isGrid: Boolean) = CoreConfig.instance.store().put(KEY_LIST_VIEW, isGrid)
+    var useNoteColorAsBackground: Boolean
+      get() = CoreConfig.instance.store().get(KEY_NOTE_VIEWER_BG_COLOR, false)
+      set(value) = CoreConfig.instance.store().put(KEY_NOTE_VIEWER_BG_COLOR, value)
   }
 }

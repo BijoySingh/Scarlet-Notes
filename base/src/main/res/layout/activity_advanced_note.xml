@@ -70,7 +70,7 @@
     <ImageView
       android:id="@+id/toolbar_chevron_left"
       style="@style/FormatButtonIcon"
-      android:layout_width="@dimen/icon_size_normal"
+      android:layout_width="@dimen/icon_size_xlarge"
       android:layout_height="match_parent"
       android:alpha="0.6"
       android:layout_margin="0dp"
@@ -98,7 +98,7 @@
     <ImageView
       android:id="@+id/toolbar_chevron_right"
       style="@style/FormatButtonIcon"
-      android:layout_width="@dimen/icon_size_normal"
+      android:layout_width="@dimen/icon_size_xlarge"
       android:layout_height="match_parent"
       android:alpha="0.6"
       android:layout_margin="0dp"

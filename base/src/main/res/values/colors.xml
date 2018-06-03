@@ -27,6 +27,9 @@
   <color name="login_button_active">@color/material_blue_800</color>
   <color name="login_button_disabled">@color/material_grey_600</color>
 
+  <color name="code_light">#22000000</color>
+  <color name="code_dark">#22FFFFFF</color>
+
   <color name="bg_rose">#FFEBEE</color>
   <color name="bg_rose_dark">#e8ccd0</color>
   <color name="bg_rose_darkest">#d8a9af</color>

@@ -140,6 +140,10 @@
   <string name="home_option_fill_survey">Fill Survey</string>
   <string name="home_option_fill_survey_subtitle">Help us improve the app by telling us what you like</string>
 
+  <string name="ui_options_note_background_color">Note Viewer Background</string>
+  <string name="ui_options_note_background_color_settings_theme">Use theme color for background</string>
+  <string name="ui_options_note_background_color_settings_note">Use note color for background</string>
+
   <string name="security_option_title">Security Options</string>
   <string name="security_option_set_pin_code">Pass Code</string>
   <string name="security_option_set_pin_code_subtitle">Set a 4 digit PIN to lock notes</string>

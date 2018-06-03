@@ -2,7 +2,6 @@ package com.maubis.scarlet.base.note.formats.recycler
 
 import android.content.Context
 import android.graphics.Paint
-import android.os.Bundle
 import android.text.InputType
 import android.view.KeyEvent
 import android.view.View
@@ -10,30 +9,23 @@ import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
 import android.widget.TextView
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
-import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 class FormatListViewHolder(context: Context, view: View)
   : FormatTextViewHolder(context, view), TextView.OnEditorActionListener {
 
-  private val icon: ImageView
+  private val icon: ImageView = root.findViewById(R.id.icon)
 
   init {
-    icon = view.findViewById<View>(R.id.icon) as ImageView
     edit.setOnEditorActionListener(this)
     edit.imeOptions = EditorInfo.IME_ACTION_DONE
     edit.setRawInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE)
   }
 
-  override fun populate(data: Format, extra: Bundle?) {
-    super.populate(data, extra)
-    val editable = (extra != null
-        && extra.containsKey(KEY_EDITABLE)
-        && extra.getBoolean(KEY_EDITABLE))
-
-    icon.setColorFilter(CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON))
+  override fun populate(data: Format, config: FormatViewHolderConfig) {
+    super.populate(data, config)
+    icon.setColorFilter(config.iconColor)
 
     when (data.formatType) {
       FormatType.CHECKLIST_CHECKED -> {
@@ -51,7 +43,7 @@ class FormatListViewHolder(context: Context, view: View)
     }
 
     itemView.setOnClickListener {
-      if (!editable) {
+      if (!config.editable) {
         activity.setFormatChecked(data, data.formatType != FormatType.CHECKLIST_CHECKED)
       }
     }
