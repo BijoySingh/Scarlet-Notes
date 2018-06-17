@@ -5,11 +5,16 @@ import android.view.View
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.core.format.Format
+import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.note.NoteState
+import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.main.HomeNavigationState
 import com.maubis.scarlet.base.note.delete
 import com.maubis.scarlet.base.note.mark
+import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
+import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 
@@ -127,6 +132,37 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
             it.delete(activity)
             activity.finish()
           }
+        }
+    ))
+    options.add(OptionsItem(
+        title = R.string.merge_notes,
+        subtitle = R.string.merge_notes,
+        icon = R.drawable.ic_merge_note,
+        listener = View.OnClickListener {
+          val selectedNotes = activity.selectedNotes
+          if (selectedNotes.isEmpty()) {
+            return@OnClickListener
+          }
+
+          val noteId = selectedNotes.first()
+          val note = notesDB.getByID(noteId)
+          if (note === null) {
+            return@OnClickListener
+          }
+
+          val formats = note.getFormats().toMutableList()
+          selectedNotes.removeAt(0)
+          for (noteToAddId in selectedNotes) {
+            val noteToAdd = notesDB.getByID(noteToAddId)
+            if (noteToAdd === null) {
+              continue
+            }
+            formats.addAll(noteToAdd.getFormats())
+            noteToAdd.delete(activity)
+          }
+          note.description = FormatBuilder().getDescription(formats.sorted())
+          note.save(activity)
+          activity.finish()
         }
     ))
     return options
