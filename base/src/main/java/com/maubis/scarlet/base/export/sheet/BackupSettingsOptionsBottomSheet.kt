@@ -82,6 +82,16 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         },
         enabled = exportAsMarkdown
     ))
+    options.add(OptionsItem(
+        title = R.string.import_export_locked,
+        subtitle = R.string.import_export_locked_details,
+        icon = R.drawable.ic_action_lock,
+        listener = View.OnClickListener {
+          exportLockedNotes = !exportLockedNotes
+          reset(dialog)
+        },
+        enabled = exportLockedNotes
+    ))
     val autoBackupEnabled = CoreConfig.instance.store().get(KEY_AUTO_BACKUP_MODE, false)
     options.add(OptionsItem(
         title = R.string.home_option_auto_export,
@@ -152,5 +162,9 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
+
+    var exportLockedNotes: Boolean
+      get() = CoreConfig.instance.store().get(KEY_BACKUP_LOCKED, true)
+      set(value) = CoreConfig.instance.store().put(KEY_BACKUP_LOCKED, value)
   }
 }

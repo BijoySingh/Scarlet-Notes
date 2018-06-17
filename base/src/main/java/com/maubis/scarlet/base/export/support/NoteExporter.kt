@@ -9,6 +9,7 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.data.ExportableFileFormat
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
+import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.export.sheet.ExportNotesBottomSheet
 import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.support.database.notesDB
@@ -17,6 +18,7 @@ import java.io.File
 import java.util.*
 
 const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
+const val KEY_BACKUP_LOCKED = "KEY_BACKUP_LOCKED"
 const val KEY_BACKUP_MARKDOWN = "KEY_BACKUP_MARKDOWN"
 const val KEY_BACKUP_LOCATION = "KEY_BACKUP_LOCATION"
 const val KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
@@ -35,7 +37,12 @@ class NoteExporter() {
       return getMarkdownExportContent()
     }
 
-    val notes = notesDB.getAll().map { ExportableNote(it) }
+    val exportLocked = BackupSettingsOptionsBottomSheet.exportLockedNotes
+
+    val notes = notesDB
+        .getAll()
+        .filter { exportLocked || !it.locked }
+        .map { ExportableNote(it) }
     val tags = tagsDB.getAll().map { ExportableTag(it) }
     val fileContent = ExportableFileFormat(EXPORT_VERSION, notes, tags)
     return Gson().toJson(fileContent)

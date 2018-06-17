@@ -276,6 +276,8 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
       shouldShowAppUpdateInformationItem() -> getAppUpdateInformationItem(this)
       shouldShowReviewInformationItem() -> getReviewInformationItem(this)
       shouldShowInstallProInformationItem() -> getInstallProInformationItem(this)
+      shouldShowThemeInformationItem() -> getThemeInformationItem(this)
+      shouldShowBackupInformationItem() -> getBackupInformationItem(this)
       else -> null
     }
     if (informationItem === null) {

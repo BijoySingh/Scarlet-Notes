@@ -187,6 +187,8 @@
   <string name="import_export_layout_exporting_done">Done</string>
   <string name="import_export_layout_exporting_share">Share</string>
   <string name="import_export_layout_filename" translatable="false">MaterialNotes/BACKUP.txt</string>
+  <string name="import_export_locked" translatable="false">Export locked notes</string>
+  <string name="import_export_locked_details" translatable="false">Also backup the notes which are locked</string>
 
   <string name="file_size_kb" translatable="false">%s KB</string>
   <string name="file_size_mb" translatable="false">%s MB</string>
