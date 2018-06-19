@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/top_toolbar_layout"
-  xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:gravity="center_vertical"
@@ -13,44 +12,40 @@
 
   <ImageView
     android:id="@+id/back_button"
-    style="@style/BorderlessBackgroundView"
-    android:layout_width="@dimen/icon_size_large"
-    android:layout_height="@dimen/icon_size_large"
-    android:padding="@dimen/spacing_xsmall"
-    android:src="@drawable/ic_close_white_48dp"
-    android:tint="@color/material_grey_600" />
+    style="@style/NoteCreatorToolbarIcon"
+    android:src="@drawable/ic_close_white_48dp" />
 
   <View
     android:layout_width="0dp"
     android:layout_height="1dp"
     android:layout_weight="1" />
 
+
+  <ImageView
+    android:id="@+id/undo_button"
+    style="@style/NoteCreatorToolbarIcon"
+    android:src="@drawable/ic_undo_history" />
+
+  <ImageView
+    android:id="@+id/redo_button"
+    style="@style/NoteCreatorToolbarIcon"
+    android:src="@drawable/ic_redo_history" />
+
   <ImageView
     android:id="@+id/delete_button"
-    style="@style/BorderlessBackgroundView"
-    android:layout_width="@dimen/icon_size_large"
-    android:layout_height="@dimen/icon_size_large"
-    android:padding="@dimen/spacing_xsmall"
-    android:src="@drawable/ic_delete_white_48dp"
-    android:tint="@color/material_grey_600" />
+    style="@style/NoteCreatorToolbarIcon"
+    android:src="@drawable/ic_delete_white_48dp" />
 
   <ImageView
     android:id="@+id/copy_button"
-    style="@style/BorderlessBackgroundView"
-    android:layout_width="@dimen/icon_size_large"
-    android:layout_height="@dimen/icon_size_large"
+    style="@style/NoteCreatorToolbarIcon"
     android:padding="9dp"
-    android:src="@drawable/ic_content_copy_white_48dp"
-    android:tint="@color/material_grey_600" />
+    android:src="@drawable/ic_content_copy_white_48dp" />
 
   <ImageView
     android:id="@+id/share_button"
-    style="@style/BorderlessBackgroundView"
-    android:layout_width="@dimen/icon_size_large"
-    android:layout_height="@dimen/icon_size_large"
-    android:padding="@dimen/spacing_xsmall"
-    android:src="@drawable/ic_share_white_48dp"
-    android:tint="@color/material_grey_600" />
+    style="@style/NoteCreatorToolbarIcon"
+    android:src="@drawable/ic_share_white_48dp" />
 
   <LinearLayout
     android:id="@+id/color_button_clicker"
@@ -69,10 +64,6 @@
 
   <ImageView
     android:id="@+id/done_button"
-    style="@style/BorderlessBackgroundView"
-    android:layout_width="@dimen/icon_size_large"
-    android:layout_height="@dimen/icon_size_large"
-    android:padding="@dimen/spacing_xsmall"
-    android:src="@drawable/ic_done_white_48dp"
-    android:tint="@color/material_grey_600" />
+    style="@style/NoteCreatorToolbarIcon"
+    android:src="@drawable/ic_done_white_48dp" />
 </LinearLayout>

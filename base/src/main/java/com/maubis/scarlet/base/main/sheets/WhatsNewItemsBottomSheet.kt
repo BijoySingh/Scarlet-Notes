@@ -34,10 +34,12 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
     val whatsNew = "> A lot has changed in this update, here is a summary of those changes.\n" +
         "### New Features\n" +
+        "- **History:** Adding undo / redo options for notes\n" +
+        "- **Merge Notes:** Adding option to merge multiple notes into one\n" +
         "- **Search Tags:** Choose multiple tags to filter notes\n" +
         "- **Search Colors:** Choose colors to filter notes by color of the note\n" +
         "- **Sorting Mode:** Sort the notes in alphabetical order\n" +
-        "- **Markdown Export:** Export in Markdown format\n" +
+        "- **Markdown Export:** Export in Markdown format, Optionally not export locked notes \n" +
         "- **Multiple Exports:** Export files now contain time, date information, allowing multiple backups\n" +
         "- **Note Background Color:** Set the note viewer background as the note color (Pro Only)\n" +
         "### Bugs Fix\n" +
@@ -74,7 +76,7 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
   override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.whats_new_card)
 
   companion object {
-    val WHATS_NEW_UID = 5
+    val WHATS_NEW_UID = 6
     val GOOGLE_TRANSLATE_URL = "https://translate.google.com/#auto/"
 
     fun openSheet(activity: ThemedActivity) {

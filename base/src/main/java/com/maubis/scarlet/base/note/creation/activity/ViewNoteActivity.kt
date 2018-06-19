@@ -62,6 +62,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
   val rootView: View by bind(R.id.root_layout)
   val backButton: ImageView by bind(R.id.back_button)
+  val actionUndo: ImageView by bind(R.id.undo_button)
+  val actionRedo: ImageView by bind(R.id.redo_button)
   val actionCopy: ImageView by bind(R.id.copy_button)
   val actionDelete: ImageView by bind(R.id.delete_button)
   val actionShare: ImageView by bind(R.id.share_button)
@@ -122,10 +124,15 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     resetBundle()
     setNote()
 
-    actionDone.visibility = if (mode) VISIBLE else GONE
-    toolbar.visibility = if (mode) VISIBLE else GONE
-    primaryFab.visibility = if (mode || isDistractionFree) GONE else VISIBLE
-    secondaryFab.visibility = if (mode || isDistractionFree) GONE else VISIBLE
+    val visibleInEditMode = if (mode) VISIBLE else GONE
+    actionDone.visibility = visibleInEditMode
+    actionUndo.visibility = visibleInEditMode
+    actionRedo.visibility = visibleInEditMode
+    toolbar.visibility = visibleInEditMode
+
+    val visibleInNormalMode = if (mode || isDistractionFree) GONE else VISIBLE
+    primaryFab.visibility = visibleInNormalMode
+    secondaryFab.visibility = visibleInNormalMode
     markdownToolbar.visibility = GONE
   }
 
@@ -295,6 +302,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     }
 
     backButton.setColorFilter(toolbarIconColor)
+    actionRedo.setColorFilter(toolbarIconColor)
+    actionUndo.setColorFilter(toolbarIconColor)
     actionCopy.setColorFilter(toolbarIconColor)
     actionDelete.setColorFilter(toolbarIconColor)
     actionShare.setColorFilter(toolbarIconColor)

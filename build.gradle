@@ -1,15 +1,15 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.41'
+    ext.kotlin_version = '1.2.50'
     ext.android_basics = '4.4.1'
     ext.room_version = '1.0.0'
     ext.ui_basics = '0.6.1'
     ext.android_support_version = '27.1.1'
     ext.firebase_version = '15.0.0'
 
-    ext.appconfig_version_code = 92
-    ext.appconfig_version = '5.8.2'
+    ext.appconfig_version_code = 95
+    ext.appconfig_version = '5.9.7'
     ext.appconfig_min_os_version = 17
     ext.appconfig_target_os_version = 27
     ext.appconfig_build_tool_version = '27.0.3'
@@ -20,7 +20,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.1.3'
         classpath 'com.google.gms:google-services:3.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.github.zellius:android-shortcut-gradle-plugin:0.1.2'

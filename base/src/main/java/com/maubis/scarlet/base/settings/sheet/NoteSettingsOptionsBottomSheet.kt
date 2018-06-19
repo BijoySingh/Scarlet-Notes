@@ -27,7 +27,7 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
               object : ColorPickerBottomSheet.ColorPickerDefaultController {
                 override fun getSheetTitle(): Int = R.string.choose_note_color
 
-                override fun getColorList(): IntArray = resources.getIntArray(R.array.bright_colors)
+                override fun getColorList(): IntArray = activity.resources.getIntArray(R.array.bright_colors)
 
                 override fun onColorSelected(color: Int) {
                   CoreConfig.instance.store().put(KEY_NOTE_DEFAULT_COLOR, color)

@@ -40,9 +40,11 @@ import java.util.*
 open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
   private var active = false
-  private var lastNoteInstance: Note? = null
   private var maxUid = 0
   private var toolbarMode: ToolbarMode = ToolbarMode.FORMAT
+
+  private var historyIndex = 0
+  private var historySize = 0L
 
   val text: ImageView by bind(R.id.format_text)
   val heading: ImageView by bind(R.id.format_heading)
@@ -59,13 +61,16 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   val chevronLeft: ImageView by bind(R.id.toolbar_chevron_left)
   val chevronRight: ImageView by bind(R.id.toolbar_chevron_right)
 
+  val history: MutableList<Note> = emptyList<Note>().toMutableList()
+
   override val editModeValue: Boolean get() = true
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setTouchListener()
     startHandler()
-    lastNoteInstance = NoteBuilder().copy(note!!)
+    history.add(NoteBuilder().copy(note!!))
+    notifyHistoryIcons()
   }
 
   override fun setEditMode() {
@@ -144,6 +149,19 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   }
 
   override fun setTopToolbar() {
+    actionUndo.setOnClickListener {
+      historyIndex = if (historyIndex == 0) 0 else (historyIndex - 1)
+      note = NoteBuilder().copy(history.get(historyIndex))
+      notifyHistoryIcons()
+      setNote()
+    }
+    actionRedo.setOnClickListener {
+      val maxHistoryIndex = history.size - 1
+      historyIndex = if (historyIndex == maxHistoryIndex) maxHistoryIndex else (historyIndex + 1)
+      note = NoteBuilder().copy(history.get(historyIndex))
+      notifyHistoryIcons()
+      setNote()
+    }
     actionDelete.visibility = GONE
     actionShare.visibility = GONE
     actionCopy.visibility = GONE
@@ -257,7 +275,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
   protected fun maybeUpdateNoteWithoutSync() {
     val vNote = note!!
-    val vLastNoteInstance = lastNoteInstance ?: note!!
+    val vLastNoteInstance = history.getOrNull(historyIndex) ?: note!!
 
     vNote.description = FormatBuilder().getDescription(formats)
 
@@ -266,9 +284,39 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
       return
     }
 
+    addNoteToHistory(NoteBuilder().copy(vNote))
     vNote.updateTimestamp = Calendar.getInstance().timeInMillis
     maybeSaveNote(false)
-    lastNoteInstance = NoteBuilder().copy(vNote)
+  }
+
+  @Synchronized
+  private fun addNoteToHistory(note: Note) {
+    while (historyIndex != history.size - 1) {
+      history.removeAt(historyIndex)
+    }
+
+    history.add(note)
+    historySize += note.description.length
+    historyIndex += 1
+
+    // 0.5MB limit on history
+    if (historySize >= 1024 * 512 || history.size >= 15) {
+      val item = history.removeAt(0)
+      historySize -= item.description.length
+      historyIndex -= 1
+    }
+    notifyHistoryIcons()
+  }
+
+  private fun notifyHistoryIcons() {
+    actionRedo.alpha = when (historyIndex != history.size - 1) {
+      true -> 1.0f
+      false -> 0.4f
+    }
+    actionUndo.alpha = when (historyIndex == 0) {
+      true -> 0.4f
+      false -> 1.0f
+    }
   }
 
   private fun startHandler() {
