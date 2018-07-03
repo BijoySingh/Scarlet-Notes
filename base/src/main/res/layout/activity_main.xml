@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
@@ -68,6 +67,36 @@
       app:backgroundTint="@color/fabColor"
       app:elevation="8dp"
       app:fabSize="normal" />
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/bottom_snackbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@color/material_blue_grey_900"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:visibility="gone">
+
+    <TextView
+      android:id="@+id/bottom_snackbar_title"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_weight="1"
+      android:text="@string/recent_to_trash_message"
+      android:textColor="@color/light_tertiary_text" />
+
+    <TextView
+      android:id="@+id/bottom_snackbar_action"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="8dp"
+      android:text="@string/recent_to_trash_undo"
+      android:textAllCaps="true"
+      android:textColor="@color/colorAccentDark" />
+
   </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

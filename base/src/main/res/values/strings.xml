@@ -344,4 +344,9 @@
   <string name="home_option_theme_color_subtitle" translatable="false">Select the background color for the theme</string>
   <string name="theme_page_title" translatable="false">Select App Theme</string>
   <!-- End Theme Color-->
+
+  <string name="recent_to_trash_message" translatable="false">The note was moved to trash</string>
+  <string name="recent_to_delete_message" translatable="false">The note was deleted</string>
+  <string name="recent_to_trash_undo" translatable="false">Undo</string>
+
 </resources>

@@ -13,6 +13,7 @@ import android.view.View.GONE
 import android.widget.EditText
 import android.widget.GridLayout.VERTICAL
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
@@ -23,6 +24,7 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.core.database.room.tag.Tag
 import com.maubis.scarlet.base.core.note.NoteState
+import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.export.support.PermissionUtils
@@ -33,6 +35,7 @@ import com.maubis.scarlet.base.main.recycler.*
 import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
 import com.maubis.scarlet.base.main.sheets.HomeNavigationBottomSheet
 import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
+import com.maubis.scarlet.base.main.utils.MainSnackbar
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.mark
@@ -62,6 +65,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   internal lateinit var recyclerView: RecyclerView
   internal lateinit var adapter: NoteAppAdapter
+  internal lateinit var snackbar: MainSnackbar
 
   internal lateinit var receiver: BroadcastReceiver
   internal lateinit var executor: SimpleThreadExecutor
@@ -84,6 +88,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
   val tagsFlexBox: FlexboxLayout by bind(R.id.tags_flexbox)
   val deleteToolbar: View by bind(R.id.bottom_delete_toolbar_layout)
+  val bottomSnackbar: LinearLayout by bind(R.id.bottom_snackbar)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -108,6 +113,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   fun setListeners() {
+    snackbar = MainSnackbar(bottomSnackbar, { setupData() })
     mainToolbar.setOnClickListener {
       setSearchMode(true)
       searchBox.requestFocus()
@@ -455,6 +461,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   override fun moveItemToTrashOrDelete(note: Note) {
+    snackbar.softUndo(this, note)
     note.softDelete(this)
     setupData()
   }
