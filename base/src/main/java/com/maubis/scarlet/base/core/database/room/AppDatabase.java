@@ -7,6 +7,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 
+import com.maubis.scarlet.base.core.database.room.folder.Folder;
 import com.maubis.scarlet.base.core.database.room.note.Note;
 import com.maubis.scarlet.base.core.database.room.note.NoteDao;
 import com.maubis.scarlet.base.core.database.room.tag.Tag;
@@ -14,7 +15,7 @@ import com.maubis.scarlet.base.core.database.room.tag.TagDao;
 import com.maubis.scarlet.base.core.database.room.widget.Widget;
 import com.maubis.scarlet.base.core.database.room.widget.WidgetDao;
 
-@Database(entities = {Note.class, Tag.class, Widget.class}, version = 11)
+@Database(entities = {Note.class, Tag.class, Widget.class, Folder.class}, version = 12)
 public abstract class AppDatabase extends RoomDatabase {
 
   public static final Migration MIGRATION_1_2 = new Migration(1, 2) {
@@ -87,6 +88,13 @@ public abstract class AppDatabase extends RoomDatabase {
       database.execSQL("ALTER TABLE note ADD COLUMN disableBackup INTEGER NOT NULL DEFAULT 0");
     }
   };
+  public static final Migration MIGRATION_11_12 = new Migration(11, 12) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+      database.execSQL("CREATE TABLE IF NOT EXISTS folder (`uid` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `timestamp` INTEGER, `updateTimestamp` INTEGER NOT NULL, `color` INTEGER, `uuid` TEXT)");
+      database.execSQL("CREATE  INDEX `index_folder_uid` ON `folder` (`uid`)");
+    }
+  };
 
   public static AppDatabase createDatabase(Context context) {
     return Room.databaseBuilder(context, AppDatabase.class, "note-database")
@@ -94,7 +102,8 @@ public abstract class AppDatabase extends RoomDatabase {
                                                        MIGRATION_3_4, MIGRATION_4_5,
                                                        MIGRATION_5_6, MIGRATION_6_7,
                                                        MIGRATION_7_8, MIGRATION_8_9,
-                                                       MIGRATION_9_10, MIGRATION_10_11).build();
+                                                       MIGRATION_9_10, MIGRATION_10_11,
+                                                       MIGRATION_11_12).build();
   }
 
   public abstract NoteDao notes();

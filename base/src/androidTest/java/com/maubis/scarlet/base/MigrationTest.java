@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 import java.io.IOException;
 
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_10_11;
+import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_11_12;
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_2_3;
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_3_4;
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_4_5;
@@ -32,6 +33,7 @@ public class MigrationTest {
 
   private static final String TABLE_NOTE = "note";
   private static final String TABLE_TAG = "tag";
+  private static final String TABLE_FOLDER = "folder";
 
   private static final String NOTE_V2 = "INSERT INTO note (title, description, displayTimestamp, " +
       "" + "" + "timestamp, color) " + "VALUES('RICH_NOTE', '{\"formats\":[]}', '6 August 2017', " +
@@ -73,6 +75,8 @@ public class MigrationTest {
 
   private static final String TAG_V8 = "INSERT INTO tag (uuid, title) VALUES('324adssa', 'Title');";
 
+  private static final String FOLDER_V12 = "INSERT INTO folder (uuid, title, color, timestamp, updateTimestamp)" +
+      " VALUES('324adssa', 'Title', 23123, 4234324, 423424);";
 
   @Rule
   public MigrationTestHelper helper;
@@ -210,6 +214,19 @@ public class MigrationTest {
     database.execSQL(NOTE_V9);
     validate(database, select(TABLE_NOTE, 2));
     Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 2, "disableBackup")) == 1);
+  }
+
+  @Test
+  public void migrate11To12() throws IOException {
+    SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 11);
+    database.execSQL(NOTE_V9);
+    database.close();
+
+    database = helper.runMigrationsAndValidate(TEST_DB, 12, false, MIGRATION_11_12);
+    validate(database, select(TABLE_NOTE, 1));
+
+    database.execSQL(FOLDER_V12);
+    validate(database, select(TABLE_FOLDER, 1));
   }
 
   private static void validate(SupportSQLiteDatabase database, String query) {
