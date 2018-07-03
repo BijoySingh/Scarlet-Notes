@@ -350,6 +350,6 @@
   <string name="recent_to_trash_undo" translatable="false">Undo</string>
 
   <string name="backup_note_disable" translatable="false">Disable Backup</string>
-  <string name="backup_note_enable" translatable="false">Disable Backup</string>
+  <string name="backup_note_enable" translatable="false">Enable Backup</string>
 
 </resources>

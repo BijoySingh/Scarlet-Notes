@@ -35,6 +35,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
   protected val pinIndicator: ImageView
   protected val reminderIndicator: ImageView
   protected val stateIndicator: ImageView
+  protected val backupIndicator: ImageView
 
   init {
     this.view = view as CardView
@@ -51,6 +52,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     edit = view.findViewById(R.id.edit_button)
     bottomLayout = view.findViewById(R.id.bottom_toolbar_layout)
     stateIndicator = view.findViewById(R.id.state_icon)
+    backupIndicator = view.findViewById(R.id.backup_icon)
   }
 
   override fun populate(itemData: RecyclerItem, extra: Bundle?) {
@@ -93,6 +95,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
   private fun setIndicators(note: NoteRecyclerItem) {
     pinIndicator.visibility = visibility(note.note.pinned)
     reminderIndicator.visibility = visibility(note.hasReminder)
+    backupIndicator.visibility = visibility(note.disableBackup)
     when (note.state) {
       NoteState.FAVOURITE -> {
         stateIndicator.visibility = View.VISIBLE
@@ -112,6 +115,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     pinIndicator.setColorFilter(note.indicatorColor)
     stateIndicator.setColorFilter(note.indicatorColor)
     reminderIndicator.setColorFilter(note.indicatorColor)
+    backupIndicator.setColorFilter(note.indicatorColor)
   }
 
   private fun setMetaText(note: NoteRecyclerItem) {

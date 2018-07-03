@@ -102,6 +102,14 @@
         android:alpha="0.7"
         android:src="@drawable/ic_action_reminder_icon"
         android:visibility="gone" />
+
+      <ImageView
+        android:id="@+id/backup_icon"
+        android:layout_width="@dimen/spacing_normal"
+        android:layout_height="@dimen/spacing_normal"
+        android:alpha="0.7"
+        android:src="@drawable/ic_action_backup_no"
+        android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout

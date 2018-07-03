@@ -175,6 +175,9 @@ class LoginActivity : ThemedActivity() {
     }
     noteDatabaseReference(context, user.uid)
     for (note in notesDB.getAll()) {
+      if (note.disableBackup) {
+        continue
+      }
       note.saveToSync(context)
     }
 

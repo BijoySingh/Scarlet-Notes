@@ -243,7 +243,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     active = false
     maybeUpdateNoteWithoutSync()
     val destroyed = destroyIfNeeded()
-    if (!destroyed) {
+    if (!destroyed && !note!!.disableBackup) {
       note!!.saveToSync(this)
     }
   }

@@ -397,6 +397,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         icon = R.drawable.ic_action_backup,
         listener = View.OnClickListener {
           CoreConfig.instance.noteActions(note).enableBackup(activity)
+          activity.updateNote(note)
           dismiss()
         },
         visible = note.disableBackup && CoreConfig.instance.appFlavor() != Flavor.NONE,
@@ -408,6 +409,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         icon = R.drawable.ic_action_backup_no,
         listener = View.OnClickListener {
           CoreConfig.instance.noteActions(note).disableBackup(activity)
+          activity.updateNote(note)
           dismiss()
         },
         visible = !note.disableBackup && CoreConfig.instance.appFlavor() != Flavor.NONE,
