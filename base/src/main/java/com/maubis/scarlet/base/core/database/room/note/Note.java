@@ -39,4 +39,6 @@ public class Note {
 
   public String meta;
 
+  public boolean disableBackup;
+
 }

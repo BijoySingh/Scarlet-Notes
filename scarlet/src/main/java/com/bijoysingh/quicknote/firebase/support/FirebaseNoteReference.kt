@@ -96,7 +96,7 @@ private fun setListener(context: Context) {
         return
       }
       handleNoteChange(snapshot, fun(_, existingNote, _) {
-        if (existingNote !== null) {
+        if (existingNote !== null && !existingNote.disableBackup) {
           existingNote.deleteWithoutSync(context)
           sendNoteBroadcast(context, NoteBroadcast.NOTE_DELETED, existingNote.uuid)
         }

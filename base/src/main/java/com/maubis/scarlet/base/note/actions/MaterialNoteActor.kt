@@ -15,10 +15,7 @@ import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.core.note.isUnsaved
 import com.maubis.scarlet.base.main.activity.WidgetConfigureActivity
-import com.maubis.scarlet.base.note.getFullText
-import com.maubis.scarlet.base.note.getText
-import com.maubis.scarlet.base.note.getTitle
-import com.maubis.scarlet.base.note.mark
+import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.service.FloatingNoteService
@@ -75,6 +72,18 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     note.uid = 0
     onNoteDestroyed(context)
   }
+
+  override fun disableBackup(activity: AppCompatActivity) {
+    note.disableBackup = true
+    note.saveWithoutSync(activity)
+    note.deleteToSync(activity)
+  }
+
+  override fun enableBackup(activity: AppCompatActivity) {
+    note.disableBackup = false
+    note.save(activity)
+  }
+
 
   override fun onlineDelete(context: Context) {
 

@@ -349,4 +349,7 @@
   <string name="recent_to_delete_message" translatable="false">The note was deleted</string>
   <string name="recent_to_trash_undo" translatable="false">Undo</string>
 
+  <string name="backup_note_disable" translatable="false">Disable Backup</string>
+  <string name="backup_note_enable" translatable="false">Disable Backup</string>
+
 </resources>

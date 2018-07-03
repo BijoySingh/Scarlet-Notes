@@ -17,6 +17,7 @@ import org.junit.runner.RunWith;
 
 import java.io.IOException;
 
+import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_10_11;
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_2_3;
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_3_4;
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_4_5;
@@ -62,6 +63,11 @@ public class MigrationTest {
       "" + "" + "timestamp, color," + " state, locked, tags, pinned, updateTimestamp, uuid, meta)" +
       " " + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1," +
       "2', 1, " + "213213, 'test', 'meta');";
+
+  private static final String NOTE_V9 = "INSERT INTO note (title, description, displayTimestamp, " +
+      "" + "" + "timestamp, color," + " state, locked, tags, pinned, updateTimestamp, uuid, meta, disableBackup)" +
+      " " + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1," +
+      "2', 1, " + "213213, 'test', 'meta', 1);";
 
   private static final String TAG_V5 = "INSERT INTO tag (title) VALUES('Title');";
 
@@ -189,6 +195,21 @@ public class MigrationTest {
 
     database.execSQL(NOTE_V8);
     validate(database, select(TABLE_NOTE, 2));
+  }
+
+  @Test
+  public void migrate10To11() throws IOException {
+    SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 10);
+    database.execSQL(NOTE_V8);
+    database.close();
+
+    database = helper.runMigrationsAndValidate(TEST_DB, 11, false, MIGRATION_10_11);
+    validate(database, select(TABLE_NOTE, 1));
+    Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 1, "disableBackup")) == 0);
+
+    database.execSQL(NOTE_V9);
+    validate(database, select(TABLE_NOTE, 2));
+    Assert.assertTrue(getIntValue(database, select(TABLE_NOTE, 2, "disableBackup")) == 1);
   }
 
   private static void validate(SupportSQLiteDatabase database, String query) {

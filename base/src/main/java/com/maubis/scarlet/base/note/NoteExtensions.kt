@@ -223,6 +223,10 @@ fun Note.copy(context: Context) {
  **************************************************************************************/
 
 fun Note.save(context: Context) {
+  if (disableBackup) {
+    saveWithoutSync(context)
+    return
+  }
   CoreConfig.instance.noteActions(this).save(context)
 }
 
@@ -235,11 +239,19 @@ fun Note.saveToSync(context: Context) {
 }
 
 fun Note.delete(context: Context) {
+  if (disableBackup) {
+    deleteWithoutSync(context)
+    return
+  }
   CoreConfig.instance.noteActions(this).delete(context)
 }
 
 fun Note.deleteWithoutSync(context: Context) {
   CoreConfig.instance.noteActions(this).offlineDelete(context)
+}
+
+fun Note.deleteToSync(context: Context) {
+  CoreConfig.instance.noteActions(this).onlineDelete(context)
 }
 
 fun Note.softDelete(context: Context) {

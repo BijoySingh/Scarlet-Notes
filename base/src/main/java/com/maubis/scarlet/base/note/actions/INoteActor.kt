@@ -11,6 +11,10 @@ interface INoteActor {
 
   fun popup(activity: AppCompatActivity)
 
+  fun disableBackup(activity: AppCompatActivity)
+
+  fun enableBackup(activity: AppCompatActivity)
+
   fun offlineSave(context: Context)
 
   fun onlineSave(context: Context)

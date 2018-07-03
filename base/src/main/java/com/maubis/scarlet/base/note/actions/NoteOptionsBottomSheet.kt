@@ -391,6 +391,28 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         },
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
+    options.add(OptionsItem(
+        title = R.string.backup_note_enable,
+        subtitle = R.string.backup_note_enable,
+        icon = R.drawable.ic_action_backup,
+        listener = View.OnClickListener {
+          CoreConfig.instance.noteActions(note).enableBackup(activity)
+          dismiss()
+        },
+        visible = note.disableBackup && CoreConfig.instance.appFlavor() != Flavor.NONE,
+        invalid = activity.lockedContentIsHidden() && note.locked
+    ))
+    options.add(OptionsItem(
+        title = R.string.backup_note_disable,
+        subtitle = R.string.backup_note_disable,
+        icon = R.drawable.ic_action_backup_no,
+        listener = View.OnClickListener {
+          CoreConfig.instance.noteActions(note).disableBackup(activity)
+          dismiss()
+        },
+        visible = !note.disableBackup && CoreConfig.instance.appFlavor() != Flavor.NONE,
+        invalid = activity.lockedContentIsHidden() && note.locked
+    ))
     return options
   }
 
