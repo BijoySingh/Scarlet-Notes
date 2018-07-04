@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity.Companion.hasAcceptedThePolicy
+import com.bijoysingh.quicknote.firebase.support.folderDatabaseReference
 import com.bijoysingh.quicknote.firebase.support.noteDatabaseReference
 import com.bijoysingh.quicknote.firebase.support.tagDatabaseReference
 import com.github.bijoysingh.starter.util.IntentUtils
@@ -24,9 +25,11 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
+import com.maubis.scarlet.base.note.folder.saveToSync
 import com.maubis.scarlet.base.note.saveToSync
 import com.maubis.scarlet.base.note.tag.saveToSync
 import com.maubis.scarlet.base.support.Flavor
+import com.maubis.scarlet.base.support.database.foldersDB
 import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.database.tagsDB
 
@@ -184,6 +187,11 @@ class LoginActivity : ThemedActivity() {
     tagDatabaseReference(context, user.uid)
     for (tag in tagsDB.getAll()) {
       tag.saveToSync()
+    }
+
+    folderDatabaseReference(context, user.uid)
+    for (folder in foldersDB.getAll()) {
+      folder.saveToSync()
     }
     finish()
   }

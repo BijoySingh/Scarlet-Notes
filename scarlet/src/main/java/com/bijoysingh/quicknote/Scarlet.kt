@@ -18,5 +18,6 @@ class Scarlet : Application() {
   companion object {
     var firebaseNote: DatabaseReference? = null
     var firebaseTag: DatabaseReference? = null
+    var firebaseFolder: DatabaseReference? = null
   }
 }

@@ -7,18 +7,18 @@ import com.github.bijoysingh.starter.prefs.Store
 import com.github.bijoysingh.starter.prefs.VersionedStore
 import com.maubis.scarlet.base.auth.IAuthenticator
 import com.maubis.scarlet.base.auth.NullAuthenticator
+import com.maubis.scarlet.base.core.database.FoldersProvider
 import com.maubis.scarlet.base.core.database.NotesProvider
 import com.maubis.scarlet.base.core.database.TagsProvider
 import com.maubis.scarlet.base.core.database.room.AppDatabase
+import com.maubis.scarlet.base.core.database.room.folder.Folder
 import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.core.database.room.tag.Tag
-import com.maubis.scarlet.base.note.actions.INoteActor
-import com.maubis.scarlet.base.note.actions.ITagActor
-import com.maubis.scarlet.base.note.actions.MaterialNoteActor
-import com.maubis.scarlet.base.note.actions.MaterialTagActor
+import com.maubis.scarlet.base.note.actions.*
 import com.maubis.scarlet.base.support.Flavor
 import com.maubis.scarlet.base.support.database.NotesDB
 import com.maubis.scarlet.base.support.database.TagsDB
+import com.maubis.scarlet.base.support.database.foldersDB
 import com.maubis.scarlet.base.support.ui.IThemeManager
 import com.maubis.scarlet.base.support.ui.ThemeManager
 
@@ -50,6 +50,10 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   override fun noteActions(note: Note): INoteActor = MaterialNoteActor(note)
 
   override fun tagActions(tag: Tag): ITagActor = MaterialTagActor(tag)
+
+  override fun foldersDatabase(): FoldersProvider = foldersDB
+
+  override fun folderActions(folder: Folder): IFolderActor = MaterialFolderActor(folder)
 
   override fun themeController(): IThemeManager = appTheme
 

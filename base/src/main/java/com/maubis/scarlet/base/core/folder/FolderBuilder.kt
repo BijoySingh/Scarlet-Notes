@@ -9,6 +9,18 @@ class FolderBuilder() {
     folder.uid = 0
     folder.title = ""
     folder.uuid = RandomHelper.getRandomString(24)
+    folder.timestamp = System.currentTimeMillis()
+    folder.updateTimestamp = System.currentTimeMillis()
+    return folder
+  }
+
+  fun copy(folderContainer: IFolderContainer): Folder {
+    val folder = emptyFolder()
+    folder.uuid = folderContainer.uuid()
+    folder.title = folderContainer.title()
+    folder.timestamp = folderContainer.timestamp()
+    folder.updateTimestamp = folderContainer.updateTimestamp()
+    folder.color = folderContainer.color()
     return folder
   }
 }

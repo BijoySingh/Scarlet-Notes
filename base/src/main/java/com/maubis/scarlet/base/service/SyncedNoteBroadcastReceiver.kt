@@ -13,6 +13,8 @@ enum class NoteBroadcast {
   NOTE_DELETED,
   TAG_CHANGED,
   TAG_DELETED,
+  FOLDER_CHANGED,
+  FOLDER_DELETED,
 }
 
 fun getNoteIntentFilter(): IntentFilter {

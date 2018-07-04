@@ -8,6 +8,7 @@ import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 
 import com.maubis.scarlet.base.core.database.room.folder.Folder;
+import com.maubis.scarlet.base.core.database.room.folder.FolderDao;
 import com.maubis.scarlet.base.core.database.room.note.Note;
 import com.maubis.scarlet.base.core.database.room.note.NoteDao;
 import com.maubis.scarlet.base.core.database.room.tag.Tag;
@@ -109,6 +110,8 @@ public abstract class AppDatabase extends RoomDatabase {
   public abstract NoteDao notes();
 
   public abstract TagDao tags();
+
+  public abstract FolderDao folders();
 
   public abstract WidgetDao widgets();
 }

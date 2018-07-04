@@ -8,6 +8,7 @@ abstract class RecyclerItem {
     NOTE,
     EMPTY,
     FILE,
+    FOLDER,
     INFORMATION
   }
 }

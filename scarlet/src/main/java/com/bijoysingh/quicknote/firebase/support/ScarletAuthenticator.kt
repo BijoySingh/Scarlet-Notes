@@ -33,6 +33,7 @@ class ScarletAuthenticator() : IAuthenticator {
       FirebaseDatabase.getInstance()
       noteDatabaseReference(context, userId)
       tagDatabaseReference(context, userId)
+      folderDatabaseReference(context, userId)
       reloadUser(context)
     } catch (exception: Exception) {
       // Don't need to do anything
@@ -47,6 +48,7 @@ class ScarletAuthenticator() : IAuthenticator {
     FirebaseAuth.getInstance().signOut()
     removeNoteDatabaseReference()
     removeTagDatabaseReference()
+    removeFolderDatabaseReference()
   }
 
   override fun openLoginActivity(context: Context) = Runnable {

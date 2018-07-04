@@ -352,4 +352,6 @@
   <string name="backup_note_disable" translatable="false">Disable Backup</string>
   <string name="backup_note_enable" translatable="false">Enable Backup</string>
 
+  <string name="folder_card_title" translatable="false">Notebook</string>
+
 </resources>

@@ -3,6 +3,7 @@ package com.maubis.scarlet.base
 import android.content.BroadcastReceiver
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.v7.widget.CardView
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -24,7 +25,6 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.core.database.room.tag.Tag
 import com.maubis.scarlet.base.core.note.NoteState
-import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.export.support.PermissionUtils
@@ -75,14 +75,17 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   var isInSearchMode: Boolean = false
 
   val homeButton: ImageView by bind(R.id.home_button)
-  val searchIcon: ImageView by bind(R.id.home_search_button)
   val searchBackButton: ImageView by bind(R.id.search_back_button)
   val searchCloseIcon: ImageView by bind(R.id.search_close_button)
   val deleteTrashIcon: ImageView by bind(R.id.menu_delete_everything)
   val deletesAutomatically: TextView by bind(R.id.deletes_automatically)
   val searchBox: EditText by bind(R.id.search_box)
-  val mainToolbar: View by bind(R.id.main_toolbar)
-  val mainToolbarTitle: TextView by bind(R.id.action_bar_title)
+  val mainSearchToolbar: CardView by bind(R.id.main_toolbar)
+  val mainSearchToolbarTitle: TextView by bind(R.id.action_bar_title)
+  val toolbarTitle: TextView by bind(R.id.toolbar_title)
+  val toolbarIconNewFolder: ImageView by bind(R.id.toolbar_icon_new_folder)
+  val toolbarIconNewNote: ImageView by bind(R.id.toolbar_icon_new_note)
+  val toolbarIconSearch: ImageView by bind(R.id.toolbar_icon_search)
   val searchToolbar: View by bind(R.id.search_toolbar)
   val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
   val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
@@ -114,7 +117,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   fun setListeners() {
     snackbar = MainSnackbar(bottomSnackbar, { setupData() })
-    mainToolbar.setOnClickListener {
+    mainSearchToolbar.setOnClickListener {
       setSearchMode(true)
       searchBox.requestFocus()
     }
@@ -164,6 +167,16 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
           tagAndColorPicker.notifyChanged()
           startSearch(searchBox.text.toString())
         })
+    toolbarIconNewFolder.setOnClickListener { }
+    toolbarIconNewNote.setOnClickListener {
+      IntentUtils.startActivity(this@MainActivity, CreateNoteActivity::class.java)
+    }
+    toolbarIconSearch.setOnClickListener {
+      mainSearchToolbar.visibility = when (mainSearchToolbar.visibility) {
+        View.VISIBLE -> View.GONE
+        else -> View.VISIBLE
+      }
+    }
   }
 
   fun setupRecyclerView() {
@@ -332,7 +345,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   private fun setSearchMode(mode: Boolean) {
     isInSearchMode = mode
-    mainToolbar.visibility = if (isInSearchMode) View.GONE else View.VISIBLE
+    mainSearchToolbar.visibility = if (isInSearchMode) View.GONE else View.VISIBLE
     searchToolbar.visibility = if (isInSearchMode) View.VISIBLE else View.GONE
     searchBox.setText("")
 
@@ -394,7 +407,18 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
     deleteTrashIcon.setColorFilter(toolbarIconColor)
     deletesAutomatically.setTextColor(toolbarIconColor)
-    mainToolbarTitle.text = getString(R.string.search_toolbar_text, getString(R.string.app_name))
+
+    mainSearchToolbar.setCardBackgroundColor(CoreConfig.instance.themeController().get(
+        this, R.color.code_light, R.color.code_dark))
+    mainSearchToolbarTitle.text = getString(R.string.search_toolbar_text, getString(R.string.app_name))
+
+    val hintTextColor = CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT)
+    mainSearchToolbarTitle.setTextColor(hintTextColor)
+
+    toolbarTitle.setTextColor(toolbarIconColor)
+    toolbarIconNewFolder.setColorFilter(toolbarIconColor)
+    toolbarIconNewNote.setColorFilter(toolbarIconColor)
+    toolbarIconSearch.setColorFilter(toolbarIconColor)
   }
 
   private fun registerNoteReceiver() {

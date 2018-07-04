@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:id="@+id/main_toolbar"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  app:cardBackgroundColor="@color/light_primary_text"
-  app:cardCornerRadius="@dimen/spacing_xxsmall"
-  app:cardElevation="2dp">
+  android:orientation="vertical"
+  android:padding="@dimen/spacing_xxsmall">
 
   <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="54dp"
+    android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="@dimen/spacing_xsmall">
@@ -19,13 +17,12 @@
       android:id="@+id/home_button"
       android:layout_width="@dimen/icon_size_large"
       android:layout_height="@dimen/icon_size_large"
-      android:padding="@dimen/spacing_xxsmall"
       android:layout_marginEnd="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_scarlet_logo"
-      android:tint="@color/colorAccent" />
+      android:padding="@dimen/spacing_xxsmall"
+      android:src="@drawable/app_icon_round" />
 
     <TextView
-      android:id="@+id/action_bar_title"
+      android:id="@+id/toolbar_title"
       android:layout_width="0dp"
       android:layout_height="match_parent"
       android:layout_weight="1"
@@ -34,16 +31,67 @@
       android:gravity="center_vertical"
       android:maxLines="1"
       android:text="@string/app_name"
-      android:textColor="@color/dark_tertiary_text"
-      android:textSize="@dimen/font_size_large" />
+      android:textColor="@color/light_secondary_text"
+      android:textSize="@dimen/font_size_large"
+      android:textStyle="bold" />
 
     <ImageView
-      android:id="@+id/home_search_button"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
+      android:id="@+id/toolbar_icon_new_note"
+      android:layout_width="@dimen/icon_size_xlarge"
+      android:layout_height="@dimen/icon_size_xlarge"
       android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_action_search"
-      android:tint="@color/dark_tertiary_text" />
+      android:src="@drawable/ic_add_new_note"
+      android:tint="@color/light_primary_text" />
+
+    <ImageView
+      android:id="@+id/toolbar_icon_new_folder"
+      android:layout_width="@dimen/icon_size_xlarge"
+      android:layout_height="@dimen/icon_size_xlarge"
+      android:padding="@dimen/spacing_xsmall"
+      android:src="@drawable/ic_add_folder"
+      android:tint="@color/light_primary_text" />
+
+    <ImageView
+      android:id="@+id/toolbar_icon_search"
+      android:layout_width="@dimen/icon_size_xlarge"
+      android:layout_height="@dimen/icon_size_xlarge"
+      android:padding="@dimen/spacing_xsmall"
+      android:src="@drawable/ic_add_search"
+      android:tint="@color/light_primary_text" />
 
   </LinearLayout>
-</android.support.v7.widget.CardView>
+
+  <android.support.v7.widget.CardView
+    android:id="@+id/main_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_xxsmall"
+    android:visibility="gone"
+    app:cardBackgroundColor="@color/code_dark"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:padding="@dimen/spacing_small">
+
+      <TextView
+        android:id="@+id/action_bar_title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:text="@string/app_name"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_large" />
+
+    </LinearLayout>
+  </android.support.v7.widget.CardView>
+</LinearLayout>
