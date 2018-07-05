@@ -18,7 +18,8 @@ import ru.noties.markwon.Markwon
 
 class FolderRecyclerItem(context: Context,
                          val folder: Folder,
-                         val click: () -> Unit = {}) : RecyclerItem() {
+                         val click: () -> Unit = {},
+                         val longClick: () -> Unit = {}) : RecyclerItem() {
 
   val isLightShaded = ColorUtil.isLightColored(folder.color)
   val title = folder.title

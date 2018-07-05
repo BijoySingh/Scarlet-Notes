@@ -320,6 +320,8 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
                 config.folders.clear()
                 config.folders.add(it)
                 unifiedSearch()
+              }, {
+                CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> setupData() })
               })
             })
         allItems.addAll(unifiedSearchSynchronous(config)

@@ -5,7 +5,7 @@
   <string name="data_policy_page_title" translatable="false">Message about your data safety</string>
   <string name="data_policy_introduction" translatable="false">We care about keeping your data safe. Here is what, how and why we store your data. You always have an option to opt out.</string>
   <string name="data_policy_what_data_title" translatable="false">What data do we store?</string>
-  <string name="data_policy_what_data_text" translatable="false">We store your notes, tags along with the content we store additional information like color, create time, update time, etc. related to the note. This information are used to make the service best for you.\n\nIf you have logged in via any device, we also store your basic Google Profile (Your public profile and your email address)</string>
+  <string name="data_policy_what_data_text" translatable="false">We store your notes, tags and notebooks. Along with the content we store additional information like color, create time, update time, etc. related to the note. This information is used to make the service best for you.\n\nIf you have logged in via any device, we also store your basic Google Profile (Your public profile and your email address)</string>
   <string name="data_policy_how_store_title" translatable="false">How do we store this data?</string>
   <string name="data_policy_how_store_text" translatable="false">If you have never logged in, your data is only stored on your device(s).\n\nOnce you log in via Google on the app, your data is synced and stored securely in Google Firebase servers as well as your local device(s).\n\nThe connection to the Google servers is encrypted.</string>
   <string name="data_policy_what_do_title" translatable="false">What do we do with the data?</string>

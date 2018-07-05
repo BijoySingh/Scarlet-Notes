@@ -92,7 +92,7 @@ public abstract class AppDatabase extends RoomDatabase {
   public static final Migration MIGRATION_11_12 = new Migration(11, 12) {
     @Override
     public void migrate(SupportSQLiteDatabase database) {
-      database.execSQL("CREATE TABLE IF NOT EXISTS folder (`uid` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `timestamp` INTEGER, `updateTimestamp` INTEGER NOT NULL, `color` INTEGER, `uuid` TEXT)");
+      database.execSQL("CREATE TABLE IF NOT EXISTS folder (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `timestamp` INTEGER, `updateTimestamp` INTEGER NOT NULL, `color` INTEGER, `uuid` TEXT)");
       database.execSQL("CREATE  INDEX `index_folder_uid` ON `folder` (`uid`)");
     }
   };

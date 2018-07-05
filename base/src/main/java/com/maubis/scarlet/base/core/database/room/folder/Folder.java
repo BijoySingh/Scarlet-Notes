@@ -11,7 +11,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "folder", indices = {@Index("uid")})
 public class Folder {
   @PrimaryKey(autoGenerate = true)
-  public Integer uid;
+  public int uid;
 
   public String title;
 

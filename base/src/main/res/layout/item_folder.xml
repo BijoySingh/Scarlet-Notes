@@ -12,48 +12,81 @@
     style="@style/BorderedBackgroundView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
-    <com.github.bijoysingh.uibasics.views.UITextView
-      android:id="@+id/ui_information_title"
-      android:layout_width="match_parent"
+    <LinearLayout
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:padding="@dimen/default_padding"
-      app:icon="@drawable/ic_folder"
-      app:iconSize="18sp"
-      app:iconTextGap="@dimen/spacing_small"
-      app:iconTint="@color/light_secondary_text"
-      app:text="@string/folder_card_title"
-      app:textColor="@color/light_secondary_text"
-      app:textSize="@dimen/font_size_small" />
+      android:layout_weight="1"
+      android:orientation="vertical">
 
-    <TextView
-      android:id="@+id/title"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@android:color/transparent"
-      android:ellipsize="end"
-      android:gravity="bottom"
-      android:lines="3"
-      android:padding="@dimen/spacing_small"
-      android:textColor="@color/light_primary_text"
-      android:textColorHint="@color/light_tertiary_text"
-      android:textSize="@dimen/font_size_xlarge"
-      android:textStyle="bold" />
+      <com.github.bijoysingh.uibasics.views.UITextView
+        android:id="@+id/ui_information_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        app:icon="@drawable/ic_folder"
+        app:iconSize="18sp"
+        app:iconTextGap="@dimen/spacing_small"
+        app:iconTint="@color/light_secondary_text"
+        app:text="@string/folder_card_title"
+        app:textColor="@color/light_secondary_text"
+        app:textSize="@dimen/font_size_small" />
 
-    <TextView
-      android:id="@+id/timestamp"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@drawable/gradient_background"
-      android:ellipsize="end"
-      android:fontFamily="monospace"
-      android:gravity="start"
-      android:hint="@string/timestamp"
-      android:lines="1"
-      android:padding="@dimen/default_small_padding"
-      android:textColor="@color/light_tertiary_text"
-      android:textSize="@dimen/font_size_xsmall" />
+      <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:ellipsize="end"
+        android:gravity="bottom"
+        android:minLines="2"
+        android:maxLines="4"
+        android:padding="@dimen/spacing_small"
+        android:textColor="@color/light_primary_text"
+        android:textColorHint="@color/light_tertiary_text"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
+      <TextView
+        android:id="@+id/timestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="monospace"
+        android:gravity="start"
+        android:hint="@string/timestamp"
+        android:lines="1"
+        android:padding="@dimen/default_small_padding"
+        android:textColor="@color/light_tertiary_text"
+        android:textSize="@dimen/font_size_xsmall" />
+
+    </LinearLayout>
+
+
+    <View
+      android:layout_height="match_parent"
+      android:layout_width="2.5dp"
+      android:background="@color/light_hint_text" />
+
+    <View
+      android:layout_height="match_parent"
+      android:layout_width="0.75dp"
+      android:background="@color/code_light" />
+
+    <View
+      android:layout_height="match_parent"
+      android:layout_width="2.5dp"
+      android:background="@color/light_hint_text" />
+
+    <View
+      android:layout_height="match_parent"
+      android:layout_width="0.75dp"
+      android:background="@color/code_light" />
+
+    <View
+      android:layout_height="match_parent"
+      android:layout_width="2.5dp"
+      android:background="@color/light_hint_text" />
   </LinearLayout>
 </android.support.v7.widget.CardView>

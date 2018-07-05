@@ -44,6 +44,7 @@ class FolderRecyclerHolder(context: Context, view: View) : RecyclerViewHolder<Re
       item.click()
     }
     view.setOnLongClickListener {
+      item.longClick()
       return@setOnLongClickListener false
     }
   }
