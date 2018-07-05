@@ -14,7 +14,8 @@ class FirebaseNote(
     val state: String,
     val tags: String,
     val locked: Boolean,
-    val pinned: Boolean) : INoteContainer {
+    val pinned: Boolean,
+    val folder: String) : INoteContainer {
 
   @Exclude
   override fun uuid(): String = uuid
@@ -46,6 +47,9 @@ class FirebaseNote(
   @Exclude
   override fun pinned(): Boolean = pinned
 
+  @Exclude
+  override fun folder(): String = folder
+
   constructor() : this(
       "invalid",
       "",
@@ -55,5 +59,6 @@ class FirebaseNote(
       NoteState.DEFAULT.name,
       "",
       false,
-      false)
+      false,
+      "")
 }

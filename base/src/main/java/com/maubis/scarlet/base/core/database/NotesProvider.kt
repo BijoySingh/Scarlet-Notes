@@ -49,6 +49,11 @@ abstract class NotesProvider {
     return notes.values.count { it.tags?.contains(uuid) ?: false }
   }
 
+  fun getNoteCountByFolder(uuid: String): Int {
+    maybeLoadFromDB()
+    return notes.values.count { it.folder == uuid }
+  }
+
   fun getByID(uid: Int): Note? {
     maybeLoadFromDB()
     return notes.values.firstOrNull { it.uid == uid }

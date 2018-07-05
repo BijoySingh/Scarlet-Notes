@@ -353,5 +353,13 @@
   <string name="backup_note_enable" translatable="false">Enable Backup</string>
 
   <string name="folder_card_title" translatable="false">Notebook</string>
+  <string name="folder_card_title_single_note" translatable="false">Notebook · 1 Note</string>
+  <string name="folder_card_title_notes" translatable="false">Notebook · % Notes</string>
+  <string name="folder_sheet_add_note" translatable="false">Create New Notebook</string>
+  <string name="folder_sheet_edit_note" translatable="false">Edit Notebook</string>
+  <string name="folder_sheet_add_note_detail" translatable="false">Add Notebook</string>
+
+  <string name="folder_option_add_to_notebook" translatable="false">Add to Notebook</string>
+  <string name="folder_option_change_notebook" translatable="false">Modify Notebook</string>
 
 </resources>

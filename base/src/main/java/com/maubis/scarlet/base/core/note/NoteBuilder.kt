@@ -22,6 +22,7 @@ class NoteBuilder {
     note.timestamp = Calendar.getInstance().timeInMillis
     note.updateTimestamp = note.timestamp
     note.color = -0xff8695
+    note.folder = ""
     return note
   }
 
@@ -91,6 +92,7 @@ class NoteBuilder {
     note.pinned = noteContainer.pinned()
     note.tags = noteContainer.tags()
     note.meta = Gson().toJson(noteContainer.meta())
+    note.folder = noteContainer.folder()
     return note
   }
 
@@ -107,6 +109,7 @@ class NoteBuilder {
     note.pinned = reference.pinned
     note.locked = reference.locked
     note.meta = reference.meta
+    note.folder = reference.folder
     return note
   }
 }

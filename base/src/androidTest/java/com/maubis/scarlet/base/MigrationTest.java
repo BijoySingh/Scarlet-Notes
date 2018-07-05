@@ -19,6 +19,7 @@ import java.io.IOException;
 
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_10_11;
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_11_12;
+import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_12_13;
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_2_3;
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_3_4;
 import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_4_5;
@@ -70,6 +71,11 @@ public class MigrationTest {
       "" + "" + "timestamp, color," + " state, locked, tags, pinned, updateTimestamp, uuid, meta, disableBackup)" +
       " " + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1," +
       "2', 1, " + "213213, 'test', 'meta', 1);";
+
+  private static final String NOTE_V10 = "INSERT INTO note (title, description, displayTimestamp, " +
+      "" + "" + "timestamp, color," + " state, locked, tags, pinned, updateTimestamp, uuid, meta, disableBackup, folder)" +
+      " " + "VALUES('Title', 'Description', '6 August 2017', 32121312, 23123, 'DEFAULT', 1, '1," +
+      "2', 1, " + "213213, 'test', 'meta', 1, '32123124');";
 
   private static final String TAG_V5 = "INSERT INTO tag (title) VALUES('Title');";
 
@@ -227,6 +233,20 @@ public class MigrationTest {
 
     database.execSQL(FOLDER_V12);
     validate(database, select(TABLE_FOLDER, 1));
+  }
+
+  @Test
+  public void migrate12To13() throws IOException {
+    SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 12);
+    database.execSQL(NOTE_V9);
+    database.close();
+
+    database = helper.runMigrationsAndValidate(TEST_DB, 13, false, MIGRATION_12_13);
+    validate(database, select(TABLE_NOTE, 1));
+
+    database.execSQL(NOTE_V10);
+    validate(database, select(TABLE_NOTE, 2));
+    Assert.assertTrue(getValue(database, select(TABLE_NOTE, 2, "folder")).equals("32123124"));
   }
 
   private static void validate(SupportSQLiteDatabase database, String query) {

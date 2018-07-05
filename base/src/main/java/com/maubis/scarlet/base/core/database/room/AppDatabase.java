@@ -16,7 +16,7 @@ import com.maubis.scarlet.base.core.database.room.tag.TagDao;
 import com.maubis.scarlet.base.core.database.room.widget.Widget;
 import com.maubis.scarlet.base.core.database.room.widget.WidgetDao;
 
-@Database(entities = {Note.class, Tag.class, Widget.class, Folder.class}, version = 12)
+@Database(entities = {Note.class, Tag.class, Widget.class, Folder.class}, version = 13)
 public abstract class AppDatabase extends RoomDatabase {
 
   public static final Migration MIGRATION_1_2 = new Migration(1, 2) {
@@ -96,6 +96,12 @@ public abstract class AppDatabase extends RoomDatabase {
       database.execSQL("CREATE  INDEX `index_folder_uid` ON `folder` (`uid`)");
     }
   };
+  public static final Migration MIGRATION_12_13 = new Migration(12, 13) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+      database.execSQL("ALTER TABLE note ADD COLUMN folder TEXT DEFAULT ''");
+    }
+  };
 
   public static AppDatabase createDatabase(Context context) {
     return Room.databaseBuilder(context, AppDatabase.class, "note-database")
@@ -104,7 +110,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                                        MIGRATION_5_6, MIGRATION_6_7,
                                                        MIGRATION_7_8, MIGRATION_8_9,
                                                        MIGRATION_9_10, MIGRATION_10_11,
-                                                       MIGRATION_11_12).build();
+                                                       MIGRATION_11_12, MIGRATION_12_13).build();
   }
 
   public abstract NoteDao notes();

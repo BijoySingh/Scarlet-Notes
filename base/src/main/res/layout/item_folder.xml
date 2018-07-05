@@ -18,7 +18,7 @@
       android:id="@+id/ui_information_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="@dimen/default_small_padding"
+      android:padding="@dimen/default_padding"
       app:icon="@drawable/ic_folder"
       app:iconSize="18sp"
       app:iconTextGap="@dimen/spacing_small"
@@ -51,7 +51,7 @@
       android:gravity="start"
       android:hint="@string/timestamp"
       android:lines="1"
-      android:padding="4dp"
+      android:padding="@dimen/default_small_padding"
       android:textColor="@color/light_tertiary_text"
       android:textSize="@dimen/font_size_xsmall" />
 

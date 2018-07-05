@@ -24,6 +24,7 @@ import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.core.database.room.tag.Tag
+import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.export.support.NoteExporter
@@ -38,6 +39,8 @@ import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
 import com.maubis.scarlet.base.main.utils.MainSnackbar
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
+import com.maubis.scarlet.base.note.folder.FolderRecyclerItem
+import com.maubis.scarlet.base.note.folder.sheet.CreateOrEditFolderBottomSheet
 import com.maubis.scarlet.base.note.mark
 import com.maubis.scarlet.base.note.recycler.NoteAppAdapter
 import com.maubis.scarlet.base.note.recycler.NoteRecyclerItem
@@ -48,18 +51,18 @@ import com.maubis.scarlet.base.service.SyncedNoteBroadcastReceiver
 import com.maubis.scarlet.base.service.getNoteIntentFilter
 import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet
 import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet.Companion.KEY_LINE_COUNT
+import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
-import com.maubis.scarlet.base.support.SearchConfig
-import com.maubis.scarlet.base.support.bind
+import com.maubis.scarlet.base.support.*
 import com.maubis.scarlet.base.support.database.HouseKeeper
 import com.maubis.scarlet.base.support.database.Migrator
 import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.unifiedSearchSynchronous
 
 class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
 
@@ -167,7 +170,9 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
           tagAndColorPicker.notifyChanged()
           startSearch(searchBox.text.toString())
         })
-    toolbarIconNewFolder.setOnClickListener { }
+    toolbarIconNewFolder.setOnClickListener {
+      CreateOrEditFolderBottomSheet.openSheet(this, FolderBuilder().emptyFolder(NoteSettingsOptionsBottomSheet.genDefaultColor()), { _, _ -> setupData() })
+    }
     toolbarIconNewNote.setOnClickListener {
       IntentUtils.startActivity(this@MainActivity, CreateNoteActivity::class.java)
     }
@@ -277,7 +282,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
    * End: Home Navigation Clicks
    */
 
-  private fun handleNewItems(notes: List<NoteRecyclerItem>) {
+  private fun handleNewItems(notes: List<RecyclerItem>) {
     adapter.clearItems()
     if (notes.isEmpty()) {
       adapter.addItem(EmptyRecyclerItem())
@@ -306,13 +311,23 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   private fun unifiedSearch() {
-    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
-      override fun run(): List<NoteRecyclerItem> {
-        return unifiedSearchSynchronous(config)
-            .map { NoteRecyclerItem(this@MainActivity, it) }
+    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<RecyclerItem>> {
+      override fun run(): List<RecyclerItem> {
+        val allItems = emptyList<RecyclerItem>().toMutableList()
+        allItems.addAll(unifiedFolderSearchSynchronous(config)
+            .map {
+              FolderRecyclerItem(this@MainActivity, it, {
+                config.folders.clear()
+                config.folders.add(it)
+                unifiedSearch()
+              })
+            })
+        allItems.addAll(unifiedSearchSynchronous(config)
+            .map { NoteRecyclerItem(this@MainActivity, it) })
+        return allItems
       }
 
-      override fun handle(notes: List<NoteRecyclerItem>) {
+      override fun handle(notes: List<RecyclerItem>) {
         handleNewItems(notes)
       }
     })
@@ -380,7 +395,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     when {
       isInSearchMode && searchBox.text.toString().isBlank() -> setSearchMode(false)
       isInSearchMode -> searchBox.setText("")
-      config.mode !== HomeNavigationState.DEFAULT -> onHomeClick()
+      isConfigFiltering(config) -> onHomeClick()
       else -> super.onBackPressed()
     }
   }

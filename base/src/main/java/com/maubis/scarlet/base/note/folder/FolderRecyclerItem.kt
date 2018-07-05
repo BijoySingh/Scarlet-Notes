@@ -10,11 +10,15 @@ import com.maubis.scarlet.base.core.note.getReminder
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet
 import com.maubis.scarlet.base.settings.sheet.MarkdownBottomSheet
+import com.maubis.scarlet.base.support.database.foldersDB
+import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import ru.noties.markwon.Markwon
 
-class FolderRecyclerItem(context: Context, val folder: Folder) : RecyclerItem() {
+class FolderRecyclerItem(context: Context,
+                         val folder: Folder,
+                         val click: () -> Unit = {}) : RecyclerItem() {
 
   val isLightShaded = ColorUtil.isLightColored(folder.color)
   val title = folder.title
@@ -28,6 +32,8 @@ class FolderRecyclerItem(context: Context, val folder: Folder) : RecyclerItem() 
     true -> ContextCompat.getColor(context, R.color.dark_hint_text)
     false -> ContextCompat.getColor(context, R.color.light_hint_text)
   }
+
+  val usage = notesDB.getNoteCountByFolder(folder.uuid)
 
   override val type = RecyclerItem.Type.FOLDER
 }

@@ -21,7 +21,8 @@ class ExportableNote(
     var color: Int,
     var state: String,
     var tags: String,
-    var meta: Map<String, Any>
+    var meta: Map<String, Any>,
+    var folder: String
 ) : Serializable, INoteContainer {
 
   override fun uuid(): String = uuid
@@ -44,6 +45,8 @@ class ExportableNote(
 
   override fun pinned(): Boolean = false
 
+  override fun folder(): String = folder
+
   constructor(note: Note) : this(
       note.uuid,
       note.description,
@@ -52,7 +55,8 @@ class ExportableNote(
       note.color,
       note.state,
       note.tags ?: "",
-      emptyMap()
+      emptyMap(),
+      note.folder
   )
 
   fun saveIfNeeded(context: Context) {
@@ -78,7 +82,8 @@ class ExportableNote(
           json["color"] as Int,
           "",
           "",
-          emptyMap())
+          emptyMap(),
+          "")
     }
 
     fun fromJSONObjectV3(json: JSONObject): ExportableNote {
@@ -90,7 +95,8 @@ class ExportableNote(
           json["color"] as Int,
           json["state"] as String,
           convertTagsJSONArrayToString(json["tags"] as JSONArray),
-          emptyMap())
+          emptyMap(),
+          "")
     }
 
     fun fromJSONObjectV4(json: JSONObject): ExportableNote {
@@ -102,7 +108,8 @@ class ExportableNote(
           json["color"] as Int,
           json["state"] as String,
           convertTagsJSONArrayToString(json["tags"] as JSONArray),
-          emptyMap())
+          emptyMap(),
+          "")
     }
 
     private fun convertTagsJSONArrayToString(tags: JSONArray): String {

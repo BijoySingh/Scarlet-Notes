@@ -1,0 +1,261 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 13,
+    "identityHash": "de12b0bb4ecb92634225ee49a64b3d41",
+    "entities": [
+      {
+        "tableName": "note",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `description` TEXT, `displayTimestamp` TEXT, `timestamp` INTEGER, `color` INTEGER, `state` TEXT, `locked` INTEGER NOT NULL, `tags` TEXT, `updateTimestamp` INTEGER NOT NULL, `pinned` INTEGER NOT NULL, `uuid` TEXT, `meta` TEXT, `disableBackup` INTEGER NOT NULL, `folder` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "displayTimestamp",
+            "columnName": "displayTimestamp",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "color",
+            "columnName": "color",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "state",
+            "columnName": "state",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "locked",
+            "columnName": "locked",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tags",
+            "columnName": "tags",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "updateTimestamp",
+            "columnName": "updateTimestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pinned",
+            "columnName": "pinned",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uuid",
+            "columnName": "uuid",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "meta",
+            "columnName": "meta",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "disableBackup",
+            "columnName": "disableBackup",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "folder",
+            "columnName": "folder",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_note_uid",
+            "unique": false,
+            "columnNames": [
+              "uid"
+            ],
+            "createSql": "CREATE  INDEX `index_note_uid` ON `${TABLE_NAME}` (`uid`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "tag",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `uuid` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "uuid",
+            "columnName": "uuid",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_tag_uid",
+            "unique": false,
+            "columnNames": [
+              "uid"
+            ],
+            "createSql": "CREATE  INDEX `index_tag_uid` ON `${TABLE_NAME}` (`uid`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "widget",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`widgetId` INTEGER NOT NULL, `noteUUID` TEXT, PRIMARY KEY(`widgetId`))",
+        "fields": [
+          {
+            "fieldPath": "widgetId",
+            "columnName": "widgetId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "noteUUID",
+            "columnName": "noteUUID",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "widgetId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_widget_widgetId",
+            "unique": false,
+            "columnNames": [
+              "widgetId"
+            ],
+            "createSql": "CREATE  INDEX `index_widget_widgetId` ON `${TABLE_NAME}` (`widgetId`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "folder",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `timestamp` INTEGER, `updateTimestamp` INTEGER NOT NULL, `color` INTEGER, `uuid` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "updateTimestamp",
+            "columnName": "updateTimestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "color",
+            "columnName": "color",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "uuid",
+            "columnName": "uuid",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_folder_uid",
+            "unique": false,
+            "columnNames": [
+              "uid"
+            ],
+            "createSql": "CREATE  INDEX `index_folder_uid` ON `${TABLE_NAME}` (`uid`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"de12b0bb4ecb92634225ee49a64b3d41\")"
+    ]
+  }
+}

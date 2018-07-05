@@ -41,4 +41,6 @@ public class Note {
 
   public boolean disableBackup;
 
+  public String folder = "";
+
 }

@@ -20,4 +20,7 @@ interface INoteContainer {
   fun locked(): Boolean
 
   fun pinned(): Boolean
+
+  fun folder(): String
+
 }

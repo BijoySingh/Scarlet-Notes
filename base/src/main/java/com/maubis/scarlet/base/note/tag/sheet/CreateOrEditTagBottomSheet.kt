@@ -66,6 +66,7 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
       dismiss()
       return@getEditorActionListener true
     })
+    makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
   private fun onActionClick(tag: Tag, title: String): Boolean {
@@ -79,6 +80,8 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
   }
 
   override fun getLayout(): Int = R.layout.bottom_sheet_create_or_edit_tag
+
+  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.content_card)
 
   companion object {
     fun openSheet(activity: ThemedActivity, tag: Tag, listener: (tag: Tag, deleted: Boolean) -> Unit) {

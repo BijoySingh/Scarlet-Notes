@@ -29,12 +29,19 @@ class FolderRecyclerHolder(context: Context, view: View) : RecyclerViewHolder<Re
     title.text = item.title
     title.setTextColor(item.titleColor)
 
+    val usageText = when {
+      item.usage == 0 -> context.getString(R.string.folder_card_title)
+      item.usage == 1 -> context.getString(R.string.folder_card_title_single_note)
+      else ->context.getString(R.string.folder_card_title_notes, item.usage)
+    }
+    label.setText(usageText)
+
     timestamp.text = item.timestamp
     timestamp.setTextColor(item.timestampColor)
 
     view.setCardBackgroundColor(item.folder.color)
     view.setOnClickListener {
-
+      item.click()
     }
     view.setOnLongClickListener {
       return@setOnLongClickListener false

@@ -16,6 +16,7 @@ import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.core.database.room.tag.Tag
 import com.maubis.scarlet.base.note.actions.*
 import com.maubis.scarlet.base.support.Flavor
+import com.maubis.scarlet.base.support.database.FoldersDB
 import com.maubis.scarlet.base.support.database.NotesDB
 import com.maubis.scarlet.base.support.database.TagsDB
 import com.maubis.scarlet.base.support.database.foldersDB
@@ -29,8 +30,8 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   val db = AppDatabase.createDatabase(context)
 
   val notesDB = NotesDB()
-
   val tagsDB = TagsDB()
+  val foldersDB = FoldersDB()
   val store = VersionedStore.get(context, USER_PREFERENCES_STORE_NAME, USER_PREFERENCES_VERSION)
   val appTheme = ThemeManager()
 

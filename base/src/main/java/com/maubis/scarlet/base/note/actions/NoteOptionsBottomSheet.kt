@@ -19,6 +19,7 @@ import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
+import com.maubis.scarlet.base.note.folder.sheet.FolderChooseOptionsBottomSheet
 import com.maubis.scarlet.base.note.reminders.sheet.ReminderBottomSheet
 import com.maubis.scarlet.base.note.selection.activity.KEY_SELECT_EXTRA_MODE
 import com.maubis.scarlet.base.note.selection.activity.KEY_SELECT_EXTRA_NOTE_ID
@@ -64,7 +65,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         { noteForAction: Note -> getOptions(noteForAction) },
         { noteForAction: Note -> getHiddenOptions(noteForAction) })
 
-    for (index in 0..gridOptionFunctions.size-1) {
+    for (index in 0..gridOptionFunctions.size - 1) {
       MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<OptionsItem>> {
         override fun run(): List<OptionsItem> = gridOptionFunctions[index](note)
         override fun handle(result: List<OptionsItem>) {
@@ -302,11 +303,13 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
-        title = R.string.reminder,
-        subtitle = R.string.reminder,
-        icon = R.drawable.ic_action_reminder_icon,
+        title = if (note.folder.isBlank()) R.string.folder_option_add_to_notebook else R.string.folder_option_change_notebook,
+        subtitle = R.string.folder_option_add_to_notebook,
+        icon = R.drawable.ic_folder,
         listener = View.OnClickListener {
-          ReminderBottomSheet.openSheet(activity, note)
+          FolderChooseOptionsBottomSheet.openSheet(activity, note, {
+            activity.notifyResetOrDismiss()
+          })
           dismiss()
         },
         invalid = activity.lockedContentIsHidden() && note.locked
@@ -343,6 +346,16 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     }
 
     val options = ArrayList<OptionsItem>()
+    options.add(OptionsItem(
+        title = R.string.reminder,
+        subtitle = R.string.reminder,
+        icon = R.drawable.ic_action_reminder_icon,
+        listener = View.OnClickListener {
+          ReminderBottomSheet.openSheet(activity, note)
+          dismiss()
+        },
+        invalid = activity.lockedContentIsHidden() && note.locked
+    ))
     options.add(OptionsItem(
         title = R.string.duplicate,
         subtitle = R.string.duplicate,

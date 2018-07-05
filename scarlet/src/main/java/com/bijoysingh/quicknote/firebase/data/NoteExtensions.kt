@@ -12,6 +12,7 @@ fun Note.getFirebaseNote(): FirebaseNote {
       state,
       if (tags == null) "" else tags,
       locked,
-      pinned
+      pinned,
+      folder
   )
 }
