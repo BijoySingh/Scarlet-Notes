@@ -19,26 +19,46 @@ class SearchConfig(
     var folders: MutableList<Folder> = emptyList<Folder>().toMutableList()) {
 
   fun hasFolder(folder: Folder) = folders.firstOrNull { it.uuid == folder.uuid } !== null
-}
 
-fun isConfigFiltering(config: SearchConfig): Boolean {
-  return config.folders.isNotEmpty()
-      || config.tags.isNotEmpty()
-      || config.colors.isNotEmpty()
-      || config.mode !== HomeNavigationState.DEFAULT;
+  fun hasFilter(): Boolean {
+    return folders.isNotEmpty()
+        || tags.isNotEmpty()
+        || colors.isNotEmpty()
+        || text.isNotBlank()
+        || mode !== HomeNavigationState.DEFAULT;
+  }
+
+  fun clear(): SearchConfig {
+    mode = HomeNavigationState.DEFAULT
+    text = ""
+    colors.clear()
+    tags.clear()
+    folders.clear()
+    return this
+  }
+
+  fun resetMode(state: HomeNavigationState): SearchConfig {
+    mode = state
+    return this
+  }
 }
 
 fun unifiedSearchSynchronous(config: SearchConfig): List<Note> {
   val sorting = SortingOptionsBottomSheet.getSortingState()
-  val notes = getNotesForMode(config)
-      .filter { config.colors.isEmpty() || config.colors.contains(it.color) }
-      .filter { note -> config.tags.isEmpty() || config.tags.filter { note.tags !== null && note.tags.contains(it.uuid) }.isNotEmpty() }
+  val notes = filterSearchWithoutFolder(config)
       .filter {
         when (config.folders.isEmpty()) {
           true -> it.folder.isBlank()
           false -> config.folders.map { it.uuid }.contains(it.folder)
         }
       }
+  return sort(notes, sorting)
+}
+
+private fun filterSearchWithoutFolder(config: SearchConfig): List<Note> {
+  return getNotesForMode(config)
+      .filter { config.colors.isEmpty() || config.colors.contains(it.color) }
+      .filter { note -> config.tags.isEmpty() || config.tags.filter { note.tags !== null && note.tags.contains(it.uuid) }.isNotEmpty() }
       .filter {
         when {
           config.text.isBlank() -> true
@@ -46,12 +66,28 @@ fun unifiedSearchSynchronous(config: SearchConfig): List<Note> {
           else -> it.getFullText().contains(config.text, true)
         }
       }
-  return sort(notes, sorting)
 }
 
 fun unifiedFolderSearchSynchronous(config: SearchConfig): List<Folder> {
   if (!config.folders.isEmpty()) {
     return config.folders
+  }
+  if (config.text.isNotBlank() || config.tags.isNotEmpty()) {
+    val folders = HashSet<Folder>()
+    if (config.text.isNotBlank()) {
+      folders.addAll(
+          foldersDB.getAll()
+              .filter { config.colors.isEmpty() || config.colors.contains(it.color) }
+              .filter { it.title.contains(config.text, true) })
+    }
+    folders.addAll(
+        filterSearchWithoutFolder(config)
+            .filter { it.folder.isNotBlank() }
+            .map { it.folder }
+            .distinct()
+            .map { foldersDB.getByUUID(it) }
+            .filterNotNull())
+    return folders.toList()
   }
   return foldersDB.getAll()
       .filter { config.colors.isEmpty() || config.colors.contains(it.color) }

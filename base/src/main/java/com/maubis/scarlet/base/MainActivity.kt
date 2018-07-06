@@ -55,13 +55,16 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
-import com.maubis.scarlet.base.support.*
+import com.maubis.scarlet.base.support.SearchConfig
+import com.maubis.scarlet.base.support.bind
 import com.maubis.scarlet.base.support.database.HouseKeeper
 import com.maubis.scarlet.base.support.database.Migrator
 import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.unifiedFolderSearchSynchronous
+import com.maubis.scarlet.base.support.unifiedSearchSynchronous
 
 class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
 
@@ -219,38 +222,38 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   fun notifyAdapterExtraChanged() {
     setupRecyclerView()
-    setupData()
+    resetAndSetupData()
   }
 
   /**
    * Start: Home Navigation Clicks
    */
   fun onHomeClick() {
-    config = SearchConfig(mode = HomeNavigationState.DEFAULT)
+    config.resetMode(HomeNavigationState.DEFAULT)
     unifiedSearch()
     notifyModeChange()
   }
 
   fun onFavouritesClick() {
-    config = SearchConfig(mode = HomeNavigationState.FAVOURITE)
+    config.resetMode(HomeNavigationState.FAVOURITE)
     unifiedSearch()
     notifyModeChange()
   }
 
   fun onArchivedClick() {
-    config = SearchConfig(mode = HomeNavigationState.ARCHIVED)
+    config.resetMode(HomeNavigationState.ARCHIVED)
     unifiedSearch()
     notifyModeChange()
   }
 
   fun onTrashClick() {
-    config = SearchConfig(mode = HomeNavigationState.TRASH)
+    config.resetMode(HomeNavigationState.TRASH)
     unifiedSearch()
     notifyModeChange()
   }
 
   fun onLockedClick() {
-    config = SearchConfig(mode = HomeNavigationState.LOCKED)
+    config.resetMode(HomeNavigationState.LOCKED)
     MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
@@ -302,33 +305,38 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     adapter.addItem(informationItem, index)
   }
 
+  private fun unifiedSearchSynchronous(): List<RecyclerItem> {
+    val allItems = emptyList<RecyclerItem>().toMutableList()
+    allItems.addAll(unifiedFolderSearchSynchronous(config)
+        .map {
+          FolderRecyclerItem(
+              context = this@MainActivity,
+              folder = it,
+              click = {
+                if (config.hasFolder(it)) {
+                  config.folders.clear()
+                  unifiedSearch()
+                  return@FolderRecyclerItem
+                }
+
+                config.folders.clear()
+                config.folders.add(it)
+                unifiedSearch()
+              },
+              longClick = {
+                CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> setupData() })
+              },
+              selected = config.hasFolder(it))
+        })
+    allItems.addAll(unifiedSearchSynchronous(config)
+        .map { NoteRecyclerItem(this@MainActivity, it) })
+    return allItems
+  }
+
   private fun unifiedSearch() {
     MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<RecyclerItem>> {
       override fun run(): List<RecyclerItem> {
-        val allItems = emptyList<RecyclerItem>().toMutableList()
-        allItems.addAll(unifiedFolderSearchSynchronous(config)
-            .map {
-              FolderRecyclerItem(
-                  this@MainActivity,
-                  it,
-                  {
-                    if (config.hasFolder(it)) {
-                      config.folders.clear()
-                      unifiedSearch()
-                      return@FolderRecyclerItem
-                    }
-
-                    config.folders.clear()
-                    config.folders.add(it)
-                    unifiedSearch()
-                  },
-                  {
-                    CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> setupData() })
-                  })
-            })
-        allItems.addAll(unifiedSearchSynchronous(config)
-            .map { NoteRecyclerItem(this@MainActivity, it) })
-        return allItems
+        return unifiedSearchSynchronous()
       }
 
       override fun handle(notes: List<RecyclerItem>) {
@@ -351,6 +359,11 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     registerNoteReceiver()
   }
 
+  fun resetAndSetupData() {
+    config.clear()
+    setupData()
+  }
+
   fun setupData() {
     return when (config.mode) {
       HomeNavigationState.FAVOURITE -> onFavouritesClick()
@@ -369,7 +382,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     searchBox.setText("")
 
     if (isInSearchMode) {
-
       tryOpeningTheKeyboard()
       MultiAsyncTask.execute(object : MultiAsyncTask.Task<Unit> {
         override fun run() {
@@ -382,14 +394,14 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
       })
     } else {
       tryClosingTheKeyboard()
-      setupData()
+      resetAndSetupData()
     }
   }
 
   private fun startSearch(keyword: String) {
     executor.executeNow {
       config.text = keyword
-      val items = unifiedSearchSynchronous(config).map { NoteRecyclerItem(this, it) }
+      val items = unifiedSearchSynchronous()
       runOnUiThread {
         adapter.items = items
       }
@@ -400,7 +412,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     when {
       isInSearchMode && searchBox.text.toString().isBlank() -> setSearchMode(false)
       isInSearchMode -> searchBox.setText("")
-      isConfigFiltering(config) -> onHomeClick()
+      config.hasFilter() -> {
+        config.clear()
+        onHomeClick()
+      }
       else -> super.onBackPressed()
     }
   }

@@ -9,6 +9,7 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
+import kotlinx.android.synthetic.main.item_note_staggered.view.*
 
 class FolderRecyclerHolder(context: Context, view: View) : RecyclerViewHolder<RecyclerItem>(context, view) {
 
@@ -47,5 +48,21 @@ class FolderRecyclerHolder(context: Context, view: View) : RecyclerViewHolder<Re
       item.longClick()
       return@setOnLongClickListener false
     }
+
+    when (item.selected) {
+      true -> {
+        view.alpha = 0.5f
+        label.visibility = View.GONE
+        timestamp.visibility = View.GONE
+        title.minLines = 1
+      }
+      false -> {
+        view.alpha = 1.0f
+        label.visibility = View.VISIBLE
+        timestamp.visibility = View.VISIBLE
+        title.minLines = 2
+      }
+    }
+    view.alpha = if (item.selected) 0.5f else 1.0f
   }
 }
