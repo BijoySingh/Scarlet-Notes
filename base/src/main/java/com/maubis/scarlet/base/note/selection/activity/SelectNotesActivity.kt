@@ -17,8 +17,8 @@ const val KEY_SELECT_EXTRA_NOTE_ID = "KEY_SELECT_EXTRA_NOTE_ID"
 
 class SelectNotesActivity : SelectableNotesActivityBase() {
 
-  val selectedNotes = ArrayList<Int>()
-  var mode = ""
+  val selectedNotes = HashMap<Int, Note>()
+  val orderingNoteIds = ArrayList<Int>()
 
   val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
   val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
@@ -30,11 +30,13 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     val intent = intent
     val extras = intent.extras
     if (extras != null) {
-      mode = extras.getString(KEY_SELECT_EXTRA_MODE, "")
-
       val noteId = getIntent().getIntExtra(KEY_SELECT_EXTRA_NOTE_ID, 0)
       if (noteId != 0) {
-        selectedNotes.add(noteId)
+        val note = notesDB.getByID(noteId)
+        if (note !== null) {
+          orderingNoteIds.add(noteId)
+          selectedNotes.put(noteId, note)
+        }
       }
     }
 
@@ -52,7 +54,7 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
       }
     }
     secondaryFab.setOnClickListener {
-      SelectedNoteOptionsBottomSheet.openSheet(this, mode)
+      SelectedNoteOptionsBottomSheet.openSheet(this)
     }
     recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
       override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
@@ -72,11 +74,8 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
   }
 
   fun runNoteFunction(noteFunction: (Note) -> Unit) {
-    for (noteId in selectedNotes) {
-      val note = notesDB.getByID(noteId)
-      if (note !== null) {
-        noteFunction(note)
-      }
+    for (note in selectedNotes.values) {
+      noteFunction(note)
     }
   }
 
@@ -84,13 +83,17 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     textFunction(getText())
   }
 
+  fun getAllSelectedNotes() = selectedNotes.values
+
   override fun getLayoutUI() = R.layout.activity_select_notes
 
   override fun onNoteClicked(note: Note) {
     if (isNoteSelected(note)) {
       selectedNotes.remove(note.uid)
+      orderingNoteIds.remove(note.uid)
     } else {
-      selectedNotes.add(note.uid)
+      selectedNotes.put(note.uid, note)
+      orderingNoteIds.add(note.uid)
     }
     adapter.notifyDataSetChanged()
 
@@ -103,14 +106,26 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     super.notifyThemeChange()
   }
 
-  override fun isNoteSelected(note: Note): Boolean = selectedNotes.contains(note.uid)
+  override fun isNoteSelected(note: Note): Boolean = orderingNoteIds.contains(note.uid)
 
-  override fun getNotes(): List<Note> = notesDB.getByNoteState(getMode(mode)).filter { note -> !note.locked }
+  override fun getNotes(): List<Note> = notesDB.getAll()
+
+  fun getOrderedSelectedNotes(): List<Note> {
+    val notes = ArrayList<Note>()
+    for (noteId in orderingNoteIds) {
+      val note = selectedNotes[noteId]
+      if (note === null) {
+        continue
+      }
+      notes.add(note)
+    }
+    return notes
+  }
 
   fun getText(): String {
     val builder = StringBuilder()
-    for (noteId in selectedNotes) {
-      builder.append(notesDB.getByID(noteId)?.getFullText())
+    for (note in getOrderedSelectedNotes()) {
+      builder.append(note.getFullText())
       builder.append("\n\n---\n\n")
     }
     return builder.toString()

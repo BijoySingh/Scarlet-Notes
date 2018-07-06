@@ -106,7 +106,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
       activity.startActivity(intent)
       dismiss()
     }
-    selectCardLayout.visibility = visibility(!(activity.lockedContentIsHidden() && note.locked))
+    selectCardLayout.visibility = View.VISIBLE
 
     val expandNoteActions = dialog.findViewById<View>(R.id.expand_note_actions)
     expandNoteActions.setOnClickListener {
