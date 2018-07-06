@@ -11,12 +11,15 @@ import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.support.database.foldersDB
 import com.maubis.scarlet.base.support.database.notesDB
 
-data class SearchConfig(
+class SearchConfig(
     var text: String = "",
     var mode: HomeNavigationState = HomeNavigationState.DEFAULT,
     var colors: MutableList<Int> = emptyList<Int>().toMutableList(),
     var tags: MutableList<Tag> = emptyList<Tag>().toMutableList(),
-    var folders: MutableList<Folder> = emptyList<Folder>().toMutableList())
+    var folders: MutableList<Folder> = emptyList<Folder>().toMutableList()) {
+
+  fun hasFolder(folder: Folder) = folders.firstOrNull { it.uuid == folder.uuid } !== null
+}
 
 fun isConfigFiltering(config: SearchConfig): Boolean {
   return config.folders.isNotEmpty()
@@ -48,7 +51,7 @@ fun unifiedSearchSynchronous(config: SearchConfig): List<Note> {
 
 fun unifiedFolderSearchSynchronous(config: SearchConfig): List<Folder> {
   if (!config.folders.isEmpty()) {
-    return emptyList()
+    return config.folders
   }
   return foldersDB.getAll()
       .filter { config.colors.isEmpty() || config.colors.contains(it.color) }

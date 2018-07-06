@@ -3,7 +3,6 @@ package com.maubis.scarlet.base
 import android.content.BroadcastReceiver
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
-import android.support.v7.widget.CardView
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -309,13 +308,23 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
         val allItems = emptyList<RecyclerItem>().toMutableList()
         allItems.addAll(unifiedFolderSearchSynchronous(config)
             .map {
-              FolderRecyclerItem(this@MainActivity, it, {
-                config.folders.clear()
-                config.folders.add(it)
-                unifiedSearch()
-              }, {
-                CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> setupData() })
-              })
+              FolderRecyclerItem(
+                  this@MainActivity,
+                  it,
+                  {
+                    if (config.hasFolder(it)) {
+                      config.folders.clear()
+                      unifiedSearch()
+                      return@FolderRecyclerItem
+                    }
+
+                    config.folders.clear()
+                    config.folders.add(it)
+                    unifiedSearch()
+                  },
+                  {
+                    CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> setupData() })
+                  })
             })
         allItems.addAll(unifiedSearchSynchronous(config)
             .map { NoteRecyclerItem(this@MainActivity, it) })
