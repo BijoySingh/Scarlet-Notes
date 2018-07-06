@@ -25,7 +25,7 @@ class SelectedTagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
   override fun onNewTagClick() {
     val activity = context as ThemedActivity
     CreateOrEditTagBottomSheet.openSheet(activity, TagBuilder().emptyTag(), { tag, _ ->
-      onActionListener(tag, false)
+      onActionListener(tag, true)
       reset(dialog)
     })
   }

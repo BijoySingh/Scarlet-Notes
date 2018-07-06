@@ -35,9 +35,10 @@ abstract class FolderOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
   override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.tag_card_layout)
 
   fun setAddFolderOption(dialog: Dialog) {
-    val newTagButton = dialog.findViewById<UITextView>(R.id.new_tag_button);
-    newTagButton.setOnClickListener { onNewFolderClick() }
-    newTagButton.icon.alpha = 0.6f
+    val newFolderButton = dialog.findViewById<UITextView>(R.id.new_tag_button);
+    newFolderButton.setText(R.string.folder_sheet_add_note)
+    newFolderButton.setOnClickListener { onNewFolderClick() }
+    newFolderButton.icon.alpha = 0.6f
   }
 
   fun reset(dialog: Dialog) {

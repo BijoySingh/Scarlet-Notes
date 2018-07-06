@@ -10,6 +10,7 @@ import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.note.*
+import com.maubis.scarlet.base.note.folder.sheet.SelectedFolderChooseOptionsBottomSheet
 import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
 import com.maubis.scarlet.base.note.tag.sheet.SelectedTagChooseOptionsBottomSheet
 import com.maubis.scarlet.base.support.option.OptionsItem
@@ -113,22 +114,6 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
         })
     ))
     options.add(OptionsItem(
-        title = R.string.change_tags,
-        subtitle = R.string.change_tags,
-        icon = R.drawable.ic_action_tags,
-        listener = lockAwareFunctionRunner(activity, {
-          SelectedTagChooseOptionsBottomSheet.openSheet(activity, {
-            tag, selectTag ->
-            activity.runNoteFunction {
-              when (selectTag) {
-                true -> it.addTag(tag)
-                false -> it.removeTag(tag)
-              }
-            }
-          })
-        })
-    ))
-    options.add(OptionsItem(
         title = R.string.trash_note,
         subtitle = R.string.tap_for_action_trash,
         icon = R.drawable.ic_delete_white_48dp,
@@ -149,6 +134,40 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
             it.delete(activity)
           }
           activity.finish()
+        })
+    ))
+    options.add(OptionsItem(
+        title = R.string.change_tags,
+        subtitle = R.string.change_tags,
+        icon = R.drawable.ic_action_tags,
+        listener = lockAwareFunctionRunner(activity, {
+          SelectedTagChooseOptionsBottomSheet.openSheet(activity, {
+            tag, selectTag ->
+            activity.runNoteFunction {
+              when (selectTag) {
+                true -> it.addTag(tag)
+                false -> it.removeTag(tag)
+              }
+              it.save(activity)
+            }
+          })
+        })
+    ))
+    options.add(OptionsItem(
+        title = R.string.folder_option_change_notebook,
+        subtitle = R.string.folder_option_change_notebook,
+        icon = R.drawable.ic_folder,
+        listener = lockAwareFunctionRunner(activity, {
+          SelectedFolderChooseOptionsBottomSheet.openSheet(activity, {
+            folder, selectFolder ->
+            activity.runNoteFunction {
+              when (selectFolder) {
+                true -> it.folder = folder.uuid
+                false -> it.folder = ""
+              }
+              it.save(activity)
+            }
+          })
         })
     ))
     options.add(OptionsItem(
