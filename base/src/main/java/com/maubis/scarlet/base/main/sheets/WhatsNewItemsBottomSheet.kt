@@ -34,16 +34,12 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
     val whatsNew = "> A lot has changed in this update, here is a summary of those changes.\n" +
         "### New Features\n" +
-        "- **History:** Adding undo / redo options for notes\n" +
-        "- **Merge Notes:** Adding option to merge multiple notes into one\n" +
-        "- **Search Tags:** Choose multiple tags to filter notes\n" +
-        "- **Search Colors:** Choose colors to filter notes by color of the note\n" +
-        "- **Sorting Mode:** Sort the notes in alphabetical order\n" +
-        "- **Markdown Export:** Export in Markdown format, Optionally not export locked notes \n" +
-        "- **Multiple Exports:** Export files now contain time, date information, allowing multiple backups\n" +
-        "- **Note Background Color:** Set the note viewer background as the note color (Pro Only)\n" +
-        "### Bugs Fix\n" +
-        "- **Improved Search Privacy:** Search does not search locked notes\n" +
+        "- **Notebooks:** Adding the ability to add or remove notebooks. You can add multiple notes to the notebook.\n" +
+        "- **Privacy:** You can now choose to disable online-backup of some notes. Choose 'Disable Backup' on the note.\n" +
+        "- **Undo Deletion:** Adding the option to Undo a deletion after a note is moved to trash.\n" +
+        "- **Better Search:** Search now retains information across clicks. You can filter with folders and more.\n" +
+        "- **Better Select Options:** You can now perform many more group actions on Note. Choose 'Select Notes' option on the note.\n" +
+        "- **New UI and Icon:** New Search and Top Actionbar UI and icon\n" +
         "- Even more little things which help you enjoy using this app everyday"
 
     val whatsNewView = dialog.findViewById<TextView>(R.id.whats_new_text)
@@ -76,7 +72,7 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
   override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.whats_new_card)
 
   companion object {
-    val WHATS_NEW_UID = 6
+    val WHATS_NEW_UID = 7
     val GOOGLE_TRANSLATE_URL = "https://translate.google.com/#auto/"
 
     fun openSheet(activity: ThemedActivity) {
