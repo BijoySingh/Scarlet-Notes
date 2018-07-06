@@ -14,8 +14,9 @@ import com.maubis.scarlet.base.core.database.room.folder.Folder
 import com.maubis.scarlet.base.core.folder.isUnsaved
 import com.maubis.scarlet.base.note.folder.delete
 import com.maubis.scarlet.base.note.folder.save
-import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
+import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.settings.view.ColorView
+import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
@@ -63,6 +64,11 @@ class CreateOrEditFolderBottomSheet : ThemedBottomSheetFragment() {
     removeBtn.visibility = if (folder.isUnsaved()) GONE else VISIBLE
     removeBtn.setOnClickListener {
       folder.delete()
+      notesDB.getAll().filter { it.folder == folder.uuid }.forEach {
+        it.folder = ""
+        it.save(themedContext())
+      }
+
       sheetOnFolderListener(folder, true)
       dismiss()
     }
@@ -102,6 +108,7 @@ class CreateOrEditFolderBottomSheet : ThemedBottomSheetFragment() {
       colorSelectorLayout.addView(item)
     }
   }
+
   override fun getLayout(): Int = R.layout.bottom_sheet_create_folder
 
   override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.content_card, R.id.core_color_card)

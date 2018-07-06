@@ -13,9 +13,11 @@ import com.maubis.scarlet.base.core.database.room.folder.Folder
 import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.note.folder.deleteWithoutSync
 import com.maubis.scarlet.base.note.folder.saveWithoutSync
+import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.service.NoteBroadcast
 import com.maubis.scarlet.base.service.sendNoteBroadcast
 import com.maubis.scarlet.base.support.database.foldersDB
+import com.maubis.scarlet.base.support.database.notesDB
 
 
 /**
@@ -97,6 +99,10 @@ private fun setListener(context: Context) {
       handleFolderChange(snapshot, fun(_, existingFolder, _) {
         if (existingFolder !== null) {
           existingFolder.deleteWithoutSync()
+          notesDB.getAll().filter { it.folder == existingFolder.uuid }.forEach {
+            it.folder = ""
+            it.save(context)
+          }
           sendNoteBroadcast(context, NoteBroadcast.FOLDER_DELETED, existingFolder.uuid)
         }
       })

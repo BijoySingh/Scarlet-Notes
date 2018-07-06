@@ -4,6 +4,7 @@ import android.content.Context
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.maubis.scarlet.base.core.note.NoteImage.Companion.deleteIfExist
 import com.maubis.scarlet.base.note.delete
+import com.maubis.scarlet.base.note.save
 import java.io.File
 import java.util.*
 
@@ -11,6 +12,7 @@ class HouseKeeper(val context: Context) {
 
   private val houseKeeperTasks: Array<() -> Unit> = arrayOf(
       { removeOlderClips() },
+      { removeDecoupledFolders() },
       { deleteRedundantImageFiles() }
   )
 
@@ -28,6 +30,18 @@ class HouseKeeper(val context: Context) {
     for (note in notes) {
       note.delete(context)
     }
+  }
+
+  private fun removeDecoupledFolders() {
+    val folders = foldersDB.getAll().map { it.uuid }
+    notesDB.getAll()
+        .filter { it.folder.isNotBlank() }
+        .forEach {
+          if (!folders.contains(it.folder)) {
+            it.folder = ""
+            it.save(context)
+          }
+        }
   }
 
   private fun deleteRedundantImageFiles() {

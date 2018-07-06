@@ -170,6 +170,35 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
           })
         })
     ))
+
+    val allLocked = !activity.getAllSelectedNotes().any { !it.locked }
+    options.add(OptionsItem(
+        title = R.string.lock_note,
+        subtitle = R.string.lock_note,
+        icon = R.drawable.ic_action_lock,
+        listener = lockAwareFunctionRunner(activity, {
+          activity.runNoteFunction {
+            it.locked = true
+            it.save(activity)
+          }
+          activity.finish()
+        }),
+        visible = !allLocked
+    ))
+    options.add(OptionsItem(
+        title = R.string.unlock_note,
+        subtitle = R.string.unlock_note,
+        icon = R.drawable.ic_action_unlock,
+        listener = lockAwareFunctionRunner(activity, {
+          activity.runNoteFunction {
+            it.locked = false
+            it.save(activity)
+          }
+          activity.finish()
+        }),
+        visible = allLocked
+    ))
+
     options.add(OptionsItem(
         title = R.string.merge_notes,
         subtitle = R.string.merge_notes,
@@ -223,34 +252,6 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.finish()
         }),
         visible = !allBackupDisabled
-    ))
-
-    val allLocked = !activity.getAllSelectedNotes().any { !it.locked }
-    options.add(OptionsItem(
-        title = R.string.lock_note,
-        subtitle = R.string.lock_note,
-        icon = R.drawable.ic_action_lock,
-        listener = lockAwareFunctionRunner(activity, {
-          activity.runNoteFunction {
-            it.locked = true
-            it.save(activity)
-          }
-          activity.finish()
-        }),
-        visible = !allLocked
-    ))
-    options.add(OptionsItem(
-        title = R.string.unlock_note,
-        subtitle = R.string.unlock_note,
-        icon = R.drawable.ic_action_unlock,
-        listener = lockAwareFunctionRunner(activity, {
-          activity.runNoteFunction {
-            it.locked = false
-            it.save(activity)
-          }
-          activity.finish()
-        }),
-        visible = allLocked
     ))
     return options
   }
