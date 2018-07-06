@@ -311,8 +311,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
             activity.notifyResetOrDismiss()
           })
           dismiss()
-        },
-        invalid = activity.lockedContentIsHidden() && note.locked
+        }
     ))
     options.add(OptionsItem(
         title = R.string.open_in_notification,

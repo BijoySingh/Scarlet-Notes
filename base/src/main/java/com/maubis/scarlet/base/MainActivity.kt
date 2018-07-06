@@ -83,8 +83,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   val deleteTrashIcon: ImageView by bind(R.id.menu_delete_everything)
   val deletesAutomatically: TextView by bind(R.id.deletes_automatically)
   val searchBox: EditText by bind(R.id.search_box)
-  val mainSearchToolbar: CardView by bind(R.id.main_toolbar)
-  val mainSearchToolbarTitle: TextView by bind(R.id.action_bar_title)
+  val actionToolbar: View by bind(R.id.action_toolbar)
   val toolbarTitle: TextView by bind(R.id.toolbar_title)
   val toolbarIconNewFolder: ImageView by bind(R.id.toolbar_icon_new_folder)
   val toolbarIconNewNote: ImageView by bind(R.id.toolbar_icon_new_note)
@@ -120,10 +119,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   fun setListeners() {
     snackbar = MainSnackbar(bottomSnackbar, { setupData() })
-    mainSearchToolbar.setOnClickListener {
-      setSearchMode(true)
-      searchBox.requestFocus()
-    }
     deleteTrashIcon.setOnClickListener { AlertBottomSheet.openDeleteTrashSheet(this@MainActivity) }
     searchBackButton.setOnClickListener {
       onBackPressed()
@@ -177,10 +172,8 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
       IntentUtils.startActivity(this@MainActivity, CreateNoteActivity::class.java)
     }
     toolbarIconSearch.setOnClickListener {
-      mainSearchToolbar.visibility = when (mainSearchToolbar.visibility) {
-        View.VISIBLE -> View.GONE
-        else -> View.VISIBLE
-      }
+      setSearchMode(true)
+      searchBox.requestFocus()
     }
   }
 
@@ -362,11 +355,12 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   private fun setSearchMode(mode: Boolean) {
     isInSearchMode = mode
-    mainSearchToolbar.visibility = if (isInSearchMode) View.GONE else View.VISIBLE
     searchToolbar.visibility = if (isInSearchMode) View.VISIBLE else View.GONE
+    actionToolbar.visibility = if (isInSearchMode) View.GONE else View.VISIBLE
     searchBox.setText("")
 
     if (isInSearchMode) {
+
       tryOpeningTheKeyboard()
       MultiAsyncTask.execute(object : MultiAsyncTask.Task<Unit> {
         override fun run() {
@@ -424,13 +418,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
     deleteTrashIcon.setColorFilter(toolbarIconColor)
     deletesAutomatically.setTextColor(toolbarIconColor)
-
-    mainSearchToolbar.setCardBackgroundColor(CoreConfig.instance.themeController().get(
-        this, R.color.code_light, R.color.code_dark))
-    mainSearchToolbarTitle.text = getString(R.string.search_toolbar_text, getString(R.string.app_name))
-
-    val hintTextColor = CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT)
-    mainSearchToolbarTitle.setTextColor(hintTextColor)
 
     toolbarTitle.setTextColor(toolbarIconColor)
     toolbarIconNewFolder.setColorFilter(toolbarIconColor)

@@ -1,97 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/action_toolbar"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:orientation="vertical"
-  android:padding="@dimen/spacing_xxsmall">
+  android:gravity="center_vertical"
+  android:orientation="horizontal"
+  android:padding="@dimen/spacing_small">
 
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+  <ImageView
+    android:id="@+id/home_button"
+    android:layout_width="@dimen/icon_size_large"
+    android:layout_height="@dimen/icon_size_large"
+    android:layout_marginEnd="@dimen/spacing_xsmall"
+    android:padding="@dimen/spacing_xxsmall"
+    android:src="@drawable/app_icon_round" />
+
+  <TextView
+    android:id="@+id/toolbar_title"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@color/transparent"
+    android:ellipsize="end"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="@dimen/spacing_xsmall">
+    android:maxLines="1"
+    android:text="@string/app_name"
+    android:textColor="@color/light_secondary_text"
+    android:textSize="@dimen/font_size_large"
+    android:textStyle="bold" />
 
-    <ImageView
-      android:id="@+id/home_button"
-      android:layout_width="@dimen/icon_size_large"
-      android:layout_height="@dimen/icon_size_large"
-      android:layout_marginEnd="@dimen/spacing_xsmall"
-      android:padding="@dimen/spacing_xxsmall"
-      android:src="@drawable/app_icon_round" />
+  <ImageView
+    android:id="@+id/toolbar_icon_new_note"
+    android:layout_width="@dimen/icon_size_xlarge"
+    android:layout_height="@dimen/icon_size_xlarge"
+    android:padding="@dimen/spacing_xsmall"
+    android:src="@drawable/ic_add_new_note"
+    android:tint="@color/light_primary_text" />
 
-    <TextView
-      android:id="@+id/toolbar_title"
-      android:layout_width="0dp"
-      android:layout_height="match_parent"
-      android:layout_weight="1"
-      android:background="@color/transparent"
-      android:ellipsize="end"
-      android:gravity="center_vertical"
-      android:maxLines="1"
-      android:text="@string/app_name"
-      android:textColor="@color/light_secondary_text"
-      android:textSize="@dimen/font_size_large"
-      android:textStyle="bold" />
+  <ImageView
+    android:id="@+id/toolbar_icon_new_folder"
+    android:layout_width="@dimen/icon_size_xlarge"
+    android:layout_height="@dimen/icon_size_xlarge"
+    android:padding="@dimen/spacing_xsmall"
+    android:src="@drawable/ic_add_folder"
+    android:tint="@color/light_primary_text" />
 
-    <ImageView
-      android:id="@+id/toolbar_icon_new_note"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="@dimen/icon_size_xlarge"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_add_new_note"
-      android:tint="@color/light_primary_text" />
+  <ImageView
+    android:id="@+id/toolbar_icon_search"
+    android:layout_width="@dimen/icon_size_xlarge"
+    android:layout_height="@dimen/icon_size_xlarge"
+    android:padding="@dimen/spacing_xsmall"
+    android:src="@drawable/ic_add_search"
+    android:tint="@color/light_primary_text" />
 
-    <ImageView
-      android:id="@+id/toolbar_icon_new_folder"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="@dimen/icon_size_xlarge"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_add_folder"
-      android:tint="@color/light_primary_text" />
-
-    <ImageView
-      android:id="@+id/toolbar_icon_search"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="@dimen/icon_size_xlarge"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_add_search"
-      android:tint="@color/light_primary_text" />
-
-  </LinearLayout>
-
-  <android.support.v7.widget.CardView
-    android:id="@+id/main_toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/spacing_xxsmall"
-    android:visibility="gone"
-    app:cardBackgroundColor="@color/code_dark"
-    app:cardCornerRadius="24dp"
-    app:cardElevation="0dp">
-
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:gravity="center_vertical"
-      android:orientation="horizontal"
-      android:padding="@dimen/spacing_small">
-
-      <TextView
-        android:id="@+id/action_bar_title"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/spacing_small"
-        android:layout_weight="1"
-        android:background="@color/transparent"
-        android:ellipsize="end"
-        android:gravity="center_vertical"
-        android:maxLines="1"
-        android:text="@string/app_name"
-        android:textColor="@color/dark_tertiary_text"
-        android:textSize="@dimen/font_size_large" />
-
-    </LinearLayout>
-  </android.support.v7.widget.CardView>
 </LinearLayout>

@@ -4,6 +4,7 @@
   android:id="@+id/search_toolbar"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
+  android:layout_marginTop="@dimen/spacing_small"
   app:cardBackgroundColor="@color/light_primary_text"
   app:cardCornerRadius="@dimen/spacing_xxsmall"
   app:cardElevation="2dp">
