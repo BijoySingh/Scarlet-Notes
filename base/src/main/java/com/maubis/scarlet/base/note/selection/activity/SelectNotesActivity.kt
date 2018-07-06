@@ -83,6 +83,17 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     textFunction(getText())
   }
 
+  fun refreshSelectedNotes() {
+    for (key in selectedNotes.keys.toList()) {
+      val note = notesDB.getByID(key)
+      if (note === null) {
+        selectedNotes.remove(key)
+        continue
+      }
+      selectedNotes[key] = note
+    }
+  }
+
   fun getAllSelectedNotes() = selectedNotes.values
 
   override fun getLayoutUI() = R.layout.activity_select_notes

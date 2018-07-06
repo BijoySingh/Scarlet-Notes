@@ -162,6 +162,24 @@ fun Note.toggleTag(tag: Tag) {
   this.tags = tags.joinToString(separator = ",")
 }
 
+fun Note.addTag(tag: Tag) {
+  val tags = getTagUUIDs()
+  when (tags.contains(tag.uuid)) {
+    true -> return
+    false -> tags.add(tag.uuid)
+  }
+  this.tags = tags.joinToString(separator = ",")
+}
+
+fun Note.removeTag(tag: Tag) {
+  val tags = getTagUUIDs()
+  when (tags.contains(tag.uuid)) {
+    true -> tags.remove(tag.uuid)
+    false -> return
+  }
+  this.tags = tags.joinToString(separator = ",")
+}
+
 /**************************************************************************************
  ******************************* Note Action Functions ********************************
  **************************************************************************************/

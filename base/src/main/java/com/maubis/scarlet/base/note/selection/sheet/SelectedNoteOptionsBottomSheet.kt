@@ -9,10 +9,9 @@ import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
-import com.maubis.scarlet.base.note.delete
-import com.maubis.scarlet.base.note.mark
-import com.maubis.scarlet.base.note.save
+import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
+import com.maubis.scarlet.base.note.tag.sheet.SelectedTagChooseOptionsBottomSheet
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 
@@ -111,6 +110,22 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
             TextUtils.copyToClipboard(activity, it)
           }
           activity.finish()
+        })
+    ))
+    options.add(OptionsItem(
+        title = R.string.change_tags,
+        subtitle = R.string.change_tags,
+        icon = R.drawable.ic_action_tags,
+        listener = lockAwareFunctionRunner(activity, {
+          SelectedTagChooseOptionsBottomSheet.openSheet(activity, {
+            tag, selectTag ->
+            activity.runNoteFunction {
+              when (selectTag) {
+                true -> it.addTag(tag)
+                false -> it.removeTag(tag)
+              }
+            }
+          })
         })
     ))
     options.add(OptionsItem(
