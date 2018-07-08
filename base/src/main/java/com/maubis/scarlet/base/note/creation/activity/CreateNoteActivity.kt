@@ -1,5 +1,6 @@
 package com.maubis.scarlet.base.note.creation.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -24,6 +25,7 @@ import com.maubis.scarlet.base.note.saveToSync
 import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.bind
+import com.maubis.scarlet.base.support.database.foldersDB
 import com.maubis.scarlet.base.support.recycler.SimpleItemTouchHelper
 import com.maubis.scarlet.base.support.ui.CircleDrawable
 import com.maubis.scarlet.base.support.ui.ColorUtil
@@ -35,7 +37,6 @@ import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
 import java.util.*
-
 
 open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
@@ -70,11 +71,27 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     setTouchListener()
     startHandler()
     history.add(NoteBuilder().copy(note!!))
+    setFolderFromIntent()
     notifyHistoryIcons()
   }
 
   override fun setEditMode() {
     setEditMode(editModeValue)
+  }
+
+  private fun setFolderFromIntent() {
+    if (intent === null) {
+      return
+    }
+    val folderUuid = intent.getStringExtra(INTENT_KEY_FOLDER)
+    if (folderUuid === null || folderUuid.isBlank()) {
+      return
+    }
+    val folder = foldersDB.getByUUID(folderUuid)
+    if (folder === null) {
+      return
+    }
+    note!!.folder = folder.uuid
   }
 
   private fun setTouchListener() {
@@ -480,6 +497,18 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
       isCheckList -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.CHECKLIST_UNCHECKED))
       newPosition < formats.size -> focus(position + 1)
       else -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(format.formatType))
+    }
+  }
+
+  companion object {
+    private const val INTENT_KEY_FOLDER = "key_folder"
+
+    fun getNewNoteIntent(
+        context: Context,
+        folder: String = ""): Intent {
+      val intent = Intent(context, CreateNoteActivity::class.java)
+      intent.putExtra(INTENT_KEY_FOLDER, folder)
+      return intent
     }
   }
 }

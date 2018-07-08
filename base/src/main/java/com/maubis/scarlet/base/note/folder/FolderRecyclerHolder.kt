@@ -9,7 +9,6 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
-import kotlinx.android.synthetic.main.item_note_staggered.view.*
 
 class FolderRecyclerHolder(context: Context, view: View) : RecyclerViewHolder<RecyclerItem>(context, view) {
 
@@ -30,12 +29,9 @@ class FolderRecyclerHolder(context: Context, view: View) : RecyclerViewHolder<Re
     title.text = item.title
     title.setTextColor(item.titleColor)
 
-    val usageText = when {
-      item.usage == 0 -> context.getString(R.string.folder_card_title)
-      item.usage == 1 -> context.getString(R.string.folder_card_title_single_note)
-      else ->context.getString(R.string.folder_card_title_notes, item.usage)
-    }
-    label.setText(usageText)
+    label.setText(item.label)
+    label.setImageTint(item.labelColor)
+    label.setTextColor(item.labelColor)
 
     timestamp.text = item.timestamp
     timestamp.setTextColor(item.timestampColor)

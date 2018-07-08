@@ -18,7 +18,6 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
-import com.github.bijoysingh.starter.util.IntentUtils
 import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.database.room.note.Note
@@ -140,7 +139,12 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
       }
     })
     homeButton.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
-    primaryFab.setOnClickListener { IntentUtils.startActivity(this@MainActivity, CreateNoteActivity::class.java) }
+    primaryFab.setOnClickListener {
+      val intent = CreateNoteActivity.getNewNoteIntent(
+          this@MainActivity,
+          config.folders.firstOrNull()?.uuid ?: "")
+      this@MainActivity.startActivity(intent)
+    }
     secondaryFab.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
     tagAndColorPicker = TagsAndColorPickerViewHolder(
         this,
@@ -171,7 +175,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
       CreateOrEditFolderBottomSheet.openSheet(this, FolderBuilder().emptyFolder(NoteSettingsOptionsBottomSheet.genDefaultColor()), { _, _ -> setupData() })
     }
     toolbarIconNewNote.setOnClickListener {
-      IntentUtils.startActivity(this@MainActivity, CreateNoteActivity::class.java)
+      val intent = CreateNoteActivity.getNewNoteIntent(
+          this@MainActivity,
+          config.folders.firstOrNull()?.uuid ?: "")
+      this@MainActivity.startActivity(intent)
     }
     toolbarIconSearch.setOnClickListener {
       setSearchMode(true)
