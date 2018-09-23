@@ -38,11 +38,11 @@
           ui:subtitle="@string/markdown_sheet_markdown_support_subtitle"
           ui:subtitleColor="@color/dark_tertiary_text"
           ui:subtitleSize="@dimen/font_size_small"
-          ui:subtitleStyle="@style/SanSerif"
+          ui:subtitleStyle="@style/FontText"
           ui:title="@string/markdown_sheet_markdown_support"
           ui:titleColor="@color/dark_secondary_text"
           ui:titleSize="@dimen/font_size_normal"
-          ui:titleStyle="@style/SanSerif" />
+          ui:titleStyle="@style/FontText" />
 
         <com.github.bijoysingh.uibasics.views.UIActionView
           android:id="@+id/markdown_home_button"
@@ -60,11 +60,11 @@
           ui:subtitle="@string/markdown_sheet_home_markdown_support_subtitle"
           ui:subtitleColor="@color/dark_tertiary_text"
           ui:subtitleSize="@dimen/font_size_small"
-          ui:subtitleStyle="@style/SanSerif"
+          ui:subtitleStyle="@style/FontText"
           ui:title="@string/markdown_sheet_home_markdown_support"
           ui:titleColor="@color/dark_secondary_text"
           ui:titleSize="@dimen/font_size_normal"
-          ui:titleStyle="@style/SanSerif" />
+          ui:titleStyle="@style/FontText" />
       </LinearLayout>
     </android.support.v7.widget.CardView>
 

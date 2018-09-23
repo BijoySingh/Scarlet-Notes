@@ -8,7 +8,7 @@
     <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
     <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
     <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>
-    <item name="android:fontFamily" tools:targetApi="16">monospace</item>
+    <item name="android:fontFamily">@font/open_sans</item>
   </style>
 
   <style name="AppTheme" parent="AppThemeBase">
@@ -24,20 +24,25 @@
   </style>
 
   <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
-    <item name="android:fontFamily" tools:targetApi="16">monospace</item>
+    <item name="android:fontFamily">@font/open_sans</item>
   </style>
 
   <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
-    <item name="android:fontFamily" tools:targetApi="16">monospace</item>
+    <item name="android:fontFamily">@font/open_sans</item>
   </style>
 
   <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
-    <item name="android:fontFamily" tools:targetApi="16">monospace</item>
+    <item name="android:fontFamily">@font/open_sans</item>
   </style>
 
-  <style name="SanSerif">
-    <item name="android:fontFamily">sans-serif</item>
+  <style name="FontText">
+    <item name="android:fontFamily">@font/open_sans</item>
   </style>
+
+  <style name="FontTitle">
+    <item name="android:fontFamily">@font/monserrat</item>
+  </style>
+
 
   <style name="NoteItemActionIcon" parent="BorderlessBackgroundView">
     <item name="android:layout_width">@dimen/icon_size_large</item>
@@ -87,14 +92,13 @@
     <item name="android:layout_marginEnd">8dp</item>
   </style>
 
-  <style name="FormatText">
+  <style name="FormatText" parent="FontText">
     <item name="android:layout_width">0dp</item>
     <item name="android:layout_weight">1</item>
     <item name="android:layout_height">wrap_content</item>
     <item name="android:gravity">top</item>
     <item name="android:layout_gravity">center</item>
     <item name="android:background">@color/transparent</item>
-    <item name="android:fontFamily">monospace</item>
     <item name="android:lineSpacingExtra">@dimen/extra_text_line_spacing</item>
     <item name="android:padding">@dimen/spacing_small</item>
     <item name="android:layout_marginStart">@dimen/spacing_normal</item>
@@ -110,7 +114,7 @@
     <item name="android:layout_marginEnd">@dimen/spacing_xsmall</item>
   </style>
 
-  <style name="GridText" parent="SanSerif">
+  <style name="GridText" parent="FontText">
     <item name="android:gravity">center</item>
     <item name="android:layout_gravity">center</item>
     <item name="android:foregroundGravity">center</item>

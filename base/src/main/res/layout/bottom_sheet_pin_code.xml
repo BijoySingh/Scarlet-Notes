@@ -45,7 +45,6 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/transparent"
-            android:fontFamily="monospace"
             android:hint="@string/security_sheet_enter_pin_hint"
             android:inputType="numberPassword"
             android:maxLength="4"

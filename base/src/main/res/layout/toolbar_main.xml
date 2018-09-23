@@ -5,7 +5,11 @@
   android:layout_height="wrap_content"
   android:gravity="center_vertical"
   android:orientation="horizontal"
-  android:padding="@dimen/spacing_small">
+  android:paddingTop="@dimen/spacing_xxsmall"
+  android:paddingStart="@dimen/spacing_xsmall"
+  android:paddingEnd="@dimen/spacing_xsmall"
+  android:paddingBottom="@dimen/spacing_xxsmall"
+  >
 
   <ImageView
     android:id="@+id/home_button"
@@ -24,6 +28,7 @@
     android:ellipsize="end"
     android:gravity="center_vertical"
     android:maxLines="1"
+    style="@style/FontTitle"
     android:text="@string/app_name"
     android:textColor="@color/light_secondary_text"
     android:textSize="@dimen/font_size_large"

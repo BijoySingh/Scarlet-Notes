@@ -113,7 +113,6 @@
         android:layout_marginStart="4dp"
         android:layout_weight="1"
         android:ellipsize="end"
-        android:fontFamily="monospace"
         android:hint="@string/timestamp"
         android:lines="1"
         android:textColor="@color/light_tertiary_text"

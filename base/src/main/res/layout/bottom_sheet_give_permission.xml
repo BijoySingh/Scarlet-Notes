@@ -34,7 +34,7 @@
 
         <TextView
           android:id="@+id/permissions_details"
-          style="@style/SanSerif"
+          style="@style/FontText"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginBottom="@dimen/spacing_xsmall"

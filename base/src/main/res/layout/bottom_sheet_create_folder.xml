@@ -40,7 +40,6 @@
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:background="@color/transparent"
-          android:fontFamily="monospace"
           android:hint="@string/folder_sheet_add_note_detail"
           android:inputType="text"
           android:padding="@dimen/spacing_normal"

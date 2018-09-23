@@ -72,7 +72,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ellipsize="end"
-        android:fontFamily="monospace"
         android:gravity="start"
         android:hint="@string/timestamp"
         android:lines="1"

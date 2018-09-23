@@ -39,7 +39,6 @@
           android:layout_width="96dp"
           android:layout_height="wrap_content"
           android:background="@color/transparent"
-          android:fontFamily="monospace"
           android:gravity="center"
           android:padding="@dimen/spacing_normal"
           android:textSize="24sp" />
