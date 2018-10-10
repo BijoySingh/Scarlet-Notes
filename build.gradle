@@ -2,14 +2,14 @@
 
 buildscript {
     ext.kotlin_version = '1.2.51'
-    ext.android_basics = '4.4.1'
+    ext.android_basics = '4.4.3'
     ext.room_version = '1.0.0'
     ext.ui_basics = '0.6.1'
     ext.android_support_version = '27.1.1'
     ext.firebase_version = '15.0.0'
 
-    ext.appconfig_version_code = 99
-    ext.appconfig_version = '6.1.1'
+    ext.appconfig_version_code = 100
+    ext.appconfig_version = '6.2.0'
     ext.appconfig_min_os_version = 17
     ext.appconfig_target_os_version = 27
     ext.appconfig_build_tool_version = '27.0.3'

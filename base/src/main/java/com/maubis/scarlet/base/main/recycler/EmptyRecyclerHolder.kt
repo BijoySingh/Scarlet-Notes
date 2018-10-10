@@ -11,6 +11,7 @@ import com.maubis.scarlet.base.support.recycler.RecyclerItem
 class EmptyRecyclerHolder(context: Context, itemView: View) : RecyclerViewHolder<RecyclerItem>(context, itemView) {
 
   override fun populate(data: RecyclerItem, extra: Bundle) {
+    setFullSpan()
     itemView.setOnClickListener {
       IntentUtils.startActivity(context, CreateNoteActivity::class.java)
     }

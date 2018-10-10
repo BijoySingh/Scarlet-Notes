@@ -2,7 +2,6 @@ package com.maubis.scarlet.base
 
 import android.content.BroadcastReceiver
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -78,23 +77,20 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   var config: SearchConfig = SearchConfig(mode = HomeNavigationState.DEFAULT)
   var isInSearchMode: Boolean = false
 
-  val homeButton: ImageView by bind(R.id.home_button)
   val searchBackButton: ImageView by bind(R.id.search_back_button)
   val searchCloseIcon: ImageView by bind(R.id.search_close_button)
   val deleteTrashIcon: ImageView by bind(R.id.menu_delete_everything)
   val deletesAutomatically: TextView by bind(R.id.deletes_automatically)
   val searchBox: EditText by bind(R.id.search_box)
-  val actionToolbar: View by bind(R.id.action_toolbar)
-  val toolbarTitle: TextView by bind(R.id.toolbar_title)
+  val toolbarMenu: ImageView by bind(R.id.toolbar_icon_options)
   val toolbarIconNewFolder: ImageView by bind(R.id.toolbar_icon_new_folder)
+  val toolbarIconNewChecklist: ImageView by bind(R.id.toolbar_icon_new_checklist)
   val toolbarIconNewNote: ImageView by bind(R.id.toolbar_icon_new_note)
-  val toolbarIconSearch: ImageView by bind(R.id.toolbar_icon_search)
   val searchToolbar: View by bind(R.id.search_toolbar)
-  val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
-  val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
   val tagsFlexBox: FlexboxLayout by bind(R.id.tags_flexbox)
   val deleteToolbar: View by bind(R.id.bottom_delete_toolbar_layout)
   val bottomSnackbar: LinearLayout by bind(R.id.bottom_snackbar)
+  val bottomToolbar: LinearLayout by bind(R.id.toolbar_bottom)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -138,14 +134,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
       }
     })
-    homeButton.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
-    primaryFab.setOnClickListener {
-      val intent = CreateNoteActivity.getNewNoteIntent(
-          this@MainActivity,
-          config.folders.firstOrNull()?.uuid ?: "")
-      this@MainActivity.startActivity(intent)
-    }
-    secondaryFab.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
+    toolbarMenu.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
     tagAndColorPicker = TagsAndColorPickerViewHolder(
         this,
         tagsFlexBox,
@@ -180,10 +169,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
           config.folders.firstOrNull()?.uuid ?: "")
       this@MainActivity.startActivity(intent)
     }
-    toolbarIconSearch.setOnClickListener {
-      setSearchMode(true)
-      searchBox.requestFocus()
-    }
   }
 
   fun setupRecyclerView() {
@@ -203,21 +188,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
         .setAdapter(adapter)
         .setLayoutManager(getLayoutManager(staggeredView, isTablet))
         .build()
-    recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-      override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-        super.onScrollStateChanged(recyclerView, newState)
-        when (newState) {
-          RecyclerView.SCROLL_STATE_DRAGGING -> {
-            primaryFab.hide()
-            secondaryFab.hide()
-          }
-          RecyclerView.SCROLL_STATE_IDLE -> {
-            primaryFab.show()
-            secondaryFab.show()
-          }
-        }
-      }
-    })
   }
 
   private fun getLayoutManager(isStaggeredView: Boolean, isTabletView: Boolean): RecyclerView.LayoutManager {
@@ -286,6 +256,9 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   private fun handleNewItems(notes: List<RecyclerItem>) {
     adapter.clearItems()
+    if (!isInSearchMode) {
+      adapter.addItem(GenericRecyclerItem(RecyclerItem.Type.TOOLBAR))
+    }
     if (notes.isEmpty()) {
       adapter.addItem(EmptyRecyclerItem())
       return
@@ -382,10 +355,9 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     }
   }
 
-  private fun setSearchMode(mode: Boolean) {
+  fun setSearchMode(mode: Boolean) {
     isInSearchMode = mode
     searchToolbar.visibility = if (isInSearchMode) View.VISIBLE else View.GONE
-    actionToolbar.visibility = if (isInSearchMode) View.GONE else View.VISIBLE
     searchBox.setText("")
 
     if (isInSearchMode) {
@@ -399,6 +371,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
           tagAndColorPicker.notifyChanged()
         }
       })
+      searchBox.requestFocus()
     } else {
       tryClosingTheKeyboard()
       resetAndSetupData()
@@ -450,10 +423,12 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     deleteTrashIcon.setColorFilter(toolbarIconColor)
     deletesAutomatically.setTextColor(toolbarIconColor)
 
-    toolbarTitle.setTextColor(toolbarIconColor)
+    toolbarMenu.setColorFilter(toolbarIconColor)
     toolbarIconNewFolder.setColorFilter(toolbarIconColor)
     toolbarIconNewNote.setColorFilter(toolbarIconColor)
-    toolbarIconSearch.setColorFilter(toolbarIconColor)
+    toolbarIconNewChecklist.setColorFilter(toolbarIconColor)
+
+    bottomToolbar.setBackgroundColor(getThemeColor())
   }
 
   private fun registerNoteReceiver() {
@@ -484,10 +459,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   override fun showHint(key: String) {
     when (key) {
-      TUTORIAL_KEY_NEW_NOTE -> createHint(this, primaryFab,
+      TUTORIAL_KEY_NEW_NOTE -> createHint(this, toolbarIconNewNote,
           getString(R.string.tutorial_create_a_new_note),
           getString(R.string.main_no_notes_hint))
-      TUTORIAL_KEY_HOME_SETTINGS -> createHint(this, secondaryFab,
+      TUTORIAL_KEY_HOME_SETTINGS -> createHint(this, toolbarMenu,
           getString(R.string.tutorial_home_menu),
           getString(R.string.tutorial_home_menu_subtitle))
     }

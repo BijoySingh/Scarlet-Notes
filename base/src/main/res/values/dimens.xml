@@ -2,6 +2,8 @@
 <resources>
   <dimen name="extra_text_line_spacing">4dp</dimen>
 
+  <dimen name="toolbar_size">44dp</dimen>
+
   <dimen name="icon_size_xlarge">36dp</dimen>
   <dimen name="icon_size_large">32dp</dimen>
   <dimen name="icon_size_slarge">32dp</dimen>
@@ -9,6 +11,8 @@
   <dimen name="icon_size_normal">20dp</dimen>
   <dimen name="icon_size_small">16dp</dimen>
 
+  <dimen name="font_size_xxxlarge">24sp</dimen>
+  <dimen name="font_size_xxlarge">21sp</dimen>
   <dimen name="font_size_xlarge">18sp</dimen>
   <dimen name="font_size_large">16sp</dimen>
   <dimen name="font_size_normal">14sp</dimen>

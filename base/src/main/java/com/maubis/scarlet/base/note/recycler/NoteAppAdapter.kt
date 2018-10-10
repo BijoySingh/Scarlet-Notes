@@ -7,6 +7,7 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.export.recycler.FileImportViewHolder
 import com.maubis.scarlet.base.main.recycler.EmptyRecyclerHolder
 import com.maubis.scarlet.base.main.recycler.InformationRecyclerHolder
+import com.maubis.scarlet.base.main.recycler.ToolbarMainRecyclerHolder
 import com.maubis.scarlet.base.note.folder.FolderRecyclerHolder
 import com.maubis.scarlet.base.note.selection.recycler.SelectableNoteRecyclerViewHolder
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
@@ -36,13 +37,11 @@ fun getRecyclerItemControllerList(
       .viewType(RecyclerItem.Type.EMPTY.ordinal)
       .layoutFile(R.layout.item_no_notes)
       .holderClass(EmptyRecyclerHolder::class.java)
-      .spanSize(2)
       .build())
   list.add(MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
       .viewType(RecyclerItem.Type.INFORMATION.ordinal)
       .layoutFile(R.layout.item_information)
       .holderClass(InformationRecyclerHolder::class.java)
-      .spanSize(2)
       .build())
   list.add(MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
       .viewType(RecyclerItem.Type.FILE.ordinal)
@@ -53,7 +52,12 @@ fun getRecyclerItemControllerList(
       .viewType(RecyclerItem.Type.FOLDER.ordinal)
       .layoutFile(R.layout.item_folder)
       .holderClass(FolderRecyclerHolder::class.java)
-      .spanSize(2)
+      .build())
+  list.add(MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
+      .viewType(RecyclerItem.Type.TOOLBAR.ordinal)
+      .layoutFile(R.layout.toolbar_main)
+      .holderClass(ToolbarMainRecyclerHolder::class.java)
+      .fullSpan(true)
       .build())
   return list
 }
