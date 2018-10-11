@@ -163,6 +163,12 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     toolbarIconNewFolder.setOnClickListener {
       CreateOrEditFolderBottomSheet.openSheet(this, FolderBuilder().emptyFolder(NoteSettingsOptionsBottomSheet.genDefaultColor()), { _, _ -> setupData() })
     }
+    toolbarIconNewChecklist.setOnClickListener {
+      val intent = CreateNoteActivity.getNewChecklistNoteIntent(
+          this@MainActivity,
+          config.folders.firstOrNull()?.uuid ?: "")
+      this@MainActivity.startActivity(intent)
+    }
     toolbarIconNewNote.setOnClickListener {
       val intent = CreateNoteActivity.getNewNoteIntent(
           this@MainActivity,
@@ -383,7 +389,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
       config.text = keyword
       val items = unifiedSearchSynchronous()
       runOnUiThread {
-        adapter.items = items
+        handleNewItems(items)
       }
     }
   }
@@ -416,10 +422,11 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   override fun notifyThemeChange() {
     setSystemTheme()
 
+    val theme = CoreConfig.instance.themeController()
     val containerLayout = findViewById<View>(R.id.container_layout)
     containerLayout.setBackgroundColor(getThemeColor())
 
-    val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
+    val toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
     deleteTrashIcon.setColorFilter(toolbarIconColor)
     deletesAutomatically.setTextColor(toolbarIconColor)
 
@@ -428,7 +435,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     toolbarIconNewNote.setColorFilter(toolbarIconColor)
     toolbarIconNewChecklist.setColorFilter(toolbarIconColor)
 
-    bottomToolbar.setBackgroundColor(getThemeColor())
+    bottomToolbar.setBackgroundColor(theme.get(ThemeColorType.TOOLBAR_BACKGROUND))
   }
 
   private fun registerNoteReceiver() {

@@ -10,6 +10,14 @@
   android:paddingStart="@dimen/spacing_normal"
   android:paddingTop="@dimen/spacing_xlarge">
 
+
+  <ImageView
+    android:id="@+id/app_icon"
+    android:layout_width="@dimen/icon_size_xlarge"
+    android:layout_height="@dimen/icon_size_xlarge"
+    android:padding="@dimen/spacing_xsmall"
+    android:src="@drawable/app_icon_round" />
+
   <TextView
     android:id="@+id/toolbar_title"
     style="@style/FontTitle"

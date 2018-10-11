@@ -10,6 +10,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
+import android.widget.TextView
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.R
@@ -70,8 +71,10 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   val actionDone: ImageView by bind(R.id.done_button)
   val colorButton: ImageView by bind(R.id.color_button)
 
-  val primaryFab: FloatingActionButton by bind(R.id.primary_fab_action)
-  val secondaryFab: FloatingActionButton by bind(R.id.secondary_fab_action)
+  val toolbarBottom: View by bind(R.id.toolbar_bottom)
+  val toolbarOption: ImageView by bind(R.id.toolbar_icon_options)
+  val toolbarEdit: ImageView by bind(R.id.toolbar_icon_edit_note)
+  val toolbarTimestamp: TextView by bind(R.id.toolbar_timestamp)
 
   protected open val editModeValue: Boolean
     get() = false
@@ -131,15 +134,13 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     toolbar.visibility = visibleInEditMode
 
     val visibleInNormalMode = if (mode || isDistractionFree) GONE else VISIBLE
-    primaryFab.visibility = visibleInNormalMode
-    secondaryFab.visibility = visibleInNormalMode
+    toolbarBottom.visibility = visibleInNormalMode
     markdownToolbar.visibility = GONE
   }
 
   private fun startDistractionFreeMode() {
-    primaryFab.hide()
-    secondaryFab.hide()
     topToolbar.visibility = GONE
+    toolbarBottom.visibility = GONE
 
     var uiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -178,6 +179,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       maybeAddTags()
       maybeAddEmptySpace()
     }
+
+    toolbarTimestamp.setText(note!!.getDisplayTime())
   }
 
   private fun maybeAddTags() {
@@ -200,34 +203,6 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
         .setAdapter(adapter)
         .setView(this, R.id.advanced_note_recycler)
         .build()
-    if (!editModeValue) {
-      formatsView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-        private fun onShow() {
-          if (isDistractionFree) {
-            return
-          }
-          primaryFab.show()
-          secondaryFab.show()
-        }
-
-        private fun onHide() {
-          primaryFab.hide()
-          secondaryFab.hide()
-        }
-
-        override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-          super.onScrollStateChanged(recyclerView, newState)
-          when (newState) {
-            RecyclerView.SCROLL_STATE_DRAGGING -> {
-              onHide()
-            }
-            RecyclerView.SCROLL_STATE_IDLE -> {
-              onShow()
-            }
-          }
-        }
-      })
-    }
   }
 
   open fun setFormat(format: Format) {
@@ -259,8 +234,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     backButton.setOnClickListener { onBackPressed() }
     actionShare.setOnClickListener { currentNote.share(context) }
     actionDone.setOnClickListener { onBackPressed() }
-    primaryFab.setOnClickListener { openEditor() }
-    secondaryFab.setOnClickListener { openMoreOptions() }
+    toolbarOption.setOnClickListener { openMoreOptions() }
+    toolbarEdit.setOnClickListener { openEditor() }
     setTopToolbar()
     notifyToolbarColor()
 
@@ -312,6 +287,11 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     setSystemTheme(statusBarColor)
     rootView.setBackgroundColor(backgroundColor)
     formatsView.setBackgroundColor(backgroundColor)
+
+    toolbarEdit.setColorFilter(toolbarIconColor)
+    toolbarOption.setColorFilter(toolbarIconColor)
+    toolbarTimestamp.setTextColor(theme.get(ThemeColorType.HINT_TEXT))
+    toolbarBottom.setBackgroundColor(theme.get(ThemeColorType.TOOLBAR_BACKGROUND))
 
     resetBundle()
     adapter.notifyDataSetChanged()

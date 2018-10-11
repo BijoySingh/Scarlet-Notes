@@ -58,6 +58,7 @@ class ForgetMeActivity : ThemedActivity() {
       forgettingInProcess = true
       Scarlet.firebaseNote?.removeValue { _, _ -> }
       Scarlet.firebaseTag?.removeValue { _, _ -> }
+      Scarlet.firebaseFolder?.removeValue { _, _ -> }
 
       FirebaseAuth.getInstance().currentUser
           ?.delete()

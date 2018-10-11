@@ -24,7 +24,7 @@ class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerView
       (context as MainActivity).setSearchMode(true)
     }
 
-    val titleColor = CoreConfig.instance.themeController().get(ThemeColorType.PRIMARY_TEXT)
+    val titleColor = CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
     title.setTextColor(titleColor)
     val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
     searchButton.setColorFilter(toolbarIconColor)

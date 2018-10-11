@@ -215,7 +215,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
       }
     }
 
-    toolbar.setBackgroundColor(toolbarBackgroundColor)
+    toolbar.setBackgroundColor(theme.get(ThemeColorType.TOOLBAR_BACKGROUND))
     markdownToolbar.setBackgroundColor(toolbarBackgroundColor)
 
     text.setColorFilter(toolbarIconColor)
@@ -507,6 +507,14 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
         context: Context,
         folder: String = ""): Intent {
       val intent = Intent(context, CreateNoteActivity::class.java)
+      intent.putExtra(INTENT_KEY_FOLDER, folder)
+      return intent
+    }
+
+    fun getNewChecklistNoteIntent(
+        context: Context,
+        folder: String = ""): Intent {
+      val intent = Intent(context, CreateListNoteActivity::class.java)
       intent.putExtra(INTENT_KEY_FOLDER, folder)
       return intent
     }

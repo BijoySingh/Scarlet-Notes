@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/root_layout"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
@@ -21,38 +20,6 @@
       android:id="@+id/advanced_note_recycler"
       android:layout_width="match_parent"
       android:layout_height="match_parent" />
-
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|end"
-      android:clipChildren="false"
-      android:clipToPadding="false"
-      android:gravity="end"
-      android:orientation="vertical"
-      android:padding="@dimen/spacing_normal">
-
-      <android.support.design.widget.FloatingActionButton
-        android:id="@+id/secondary_fab_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_normal"
-        android:src="@drawable/ic_more_horiz_white_48dp"
-        android:tint="@color/dark_tertiary_text"
-        app:backgroundTint="@color/white"
-        app:elevation="8dp"
-        app:fabSize="normal"
-        app:rippleColor="@color/dark_hint_text" />
-
-      <android.support.design.widget.FloatingActionButton
-        android:id="@+id/primary_fab_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_edit_white_48dp"
-        app:backgroundTint="@color/fabColor"
-        app:elevation="8dp"
-        app:fabSize="normal" />
-    </LinearLayout>
   </FrameLayout>
 
   <View
@@ -60,50 +27,7 @@
     android:layout_height="0.5dp"
     android:background="@color/dark_hint_text" />
 
-  <LinearLayout
-    android:id="@+id/toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
+  <include layout="@layout/toolbar_create_note_bottom" />
 
-    <ImageView
-      android:id="@+id/toolbar_chevron_left"
-      style="@style/FormatButtonIcon"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="match_parent"
-      android:alpha="0.6"
-      android:layout_margin="0dp"
-      android:scaleType="centerCrop"
-      android:src="@drawable/ic_chevron_left" />
-
-    <HorizontalScrollView
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_weight="1">
-
-      <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <include layout="@layout/bottom_toolbar_formats" />
-
-        <include layout="@layout/bottom_toolbar_markdown" />
-
-      </LinearLayout>
-    </HorizontalScrollView>
-
-    <ImageView
-      android:id="@+id/toolbar_chevron_right"
-      style="@style/FormatButtonIcon"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="match_parent"
-      android:alpha="0.6"
-      android:layout_margin="0dp"
-      android:scaleType="centerCrop"
-      android:src="@drawable/ic_chevron_right" />
-
-  </LinearLayout>
+  <include layout="@layout/toolbar_note_bottom" />
 </LinearLayout>
