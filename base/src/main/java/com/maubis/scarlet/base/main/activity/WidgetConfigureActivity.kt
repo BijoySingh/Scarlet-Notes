@@ -88,7 +88,6 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
 
       val intent = ViewAdvancedNoteActivity.getIntent(context, note)
       val pendingIntent = PendingIntent.getActivity(context, 5000 + note.uid, intent, 0)
-
       val views = RemoteViews(context.getPackageName(), R.layout.widget_layout)
 
       val noteTitle = note.getTitle()
@@ -112,11 +111,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
       appWidgetManager.updateAppWidget(widget.widgetId, views)
     }
 
-    fun notifyNoteChange(context: Context?, note: Note?) {
-      if (context === null || note === null) {
-        return
-      }
-
+    private fun notifyNoteChangeBroadcast(context: Context, note: Note): Intent? {
       val application: Application = context.applicationContext as Application
       val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(
           ComponentName(application, NoteWidgetProvider::class.java))
@@ -130,7 +125,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
       }
 
       if (widgetIds.isEmpty()) {
-        return
+        return null
       }
 
       val intentIds = IntArray(widgetIds.size, { index -> widgetIds[index] })
@@ -138,6 +133,18 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
       val intent = Intent(application, NoteWidgetProvider::class.java)
       intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
       intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intentIds);
+      return intent
+    }
+
+    fun notifyNoteChange(context: Context?, note: Note?) {
+      if (context === null || note === null) {
+        return
+      }
+
+      val intent = notifyNoteChangeBroadcast(context, note)
+      if (intent === null) {
+        return
+      }
       context.sendBroadcast(intent);
     }
   }

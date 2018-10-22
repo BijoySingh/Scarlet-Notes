@@ -2,8 +2,10 @@ package com.maubis.scarlet.base.note.actions
 
 import android.app.NotificationManager
 import android.content.Context
+import android.os.AsyncTask
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
+import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
@@ -18,6 +20,7 @@ import com.maubis.scarlet.base.main.activity.WidgetConfigureActivity
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
+import com.maubis.scarlet.base.service.AllNotesWidgetProvider.Companion.notifyAllChanged
 import com.maubis.scarlet.base.service.FloatingNoteService
 import java.util.*
 
@@ -42,6 +45,10 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     val id = CoreConfig.instance.notesDatabase().database().insertNote(note)
     note.uid = if (note.isUnsaved()) id.toInt() else note.uid
     CoreConfig.instance.notesDatabase().notifyInsertNote(note)
+    AsyncTask.execute {
+      onNoteUpdated(context)
+      notifyAllChanged(context)
+    }
   }
 
   override fun onlineSave(context: Context) {
@@ -70,7 +77,10 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     CoreConfig.instance.notesDatabase().notifyDelete(note)
     note.description = FormatBuilder().getDescription(ArrayList())
     note.uid = 0
-    onNoteDestroyed(context)
+    AsyncTask.execute {
+      onNoteDestroyed(context)
+      notifyAllChanged(context)
+    }
   }
 
   override fun disableBackup(activity: AppCompatActivity) {
