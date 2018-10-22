@@ -290,8 +290,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
     toolbarEdit.setColorFilter(toolbarIconColor)
     toolbarOption.setColorFilter(toolbarIconColor)
-    toolbarTimestamp.setTextColor(theme.get(ThemeColorType.HINT_TEXT))
-    toolbarBottom.setBackgroundColor(theme.get(ThemeColorType.TOOLBAR_BACKGROUND))
+    toolbarTimestamp.setTextColor(toolbarIconColor)
+    toolbarBottom.setBackgroundColor(backgroundColor)
 
     resetBundle()
     adapter.notifyDataSetChanged()

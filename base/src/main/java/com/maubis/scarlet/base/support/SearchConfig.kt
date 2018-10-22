@@ -70,7 +70,7 @@ private fun filterSearchWithoutFolder(config: SearchConfig): List<Note> {
 
 fun unifiedFolderSearchSynchronous(config: SearchConfig): List<Folder> {
   if (!config.folders.isEmpty()) {
-    return config.folders
+    return emptyList()
   }
   if (config.text.isNotBlank() || config.tags.isNotEmpty()) {
     val folders = HashSet<Folder>()

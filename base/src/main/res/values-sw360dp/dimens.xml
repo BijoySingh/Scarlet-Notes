@@ -3,6 +3,7 @@
   <dimen name="extra_text_line_spacing">6dp</dimen>
 
   <dimen name="toolbar_size">56dp</dimen>
+  <dimen name="app_name_size">24sp</dimen>
 
   <dimen name="icon_size_xlarge">48dp</dimen>
   <dimen name="icon_size_large">40dp</dimen>

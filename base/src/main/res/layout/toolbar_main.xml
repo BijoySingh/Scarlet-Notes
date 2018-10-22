@@ -30,7 +30,7 @@
     android:maxLines="1"
     android:text="@string/app_name"
     android:textColor="@color/light_secondary_text"
-    android:textSize="@dimen/font_size_xxxlarge"
+    android:textSize="@dimen/app_name_size"
     android:textStyle="bold" />
 
 

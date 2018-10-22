@@ -1,56 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="@dimen/toolbar_size">
+  android:layout_height="wrap_content">
 
   <LinearLayout
     android:id="@+id/toolbar_bottom"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/toolbar_size"
+    android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <ImageView
-      android:id="@+id/toolbar_icon_options"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="@dimen/icon_size_xlarge"
-      android:layout_margin="@dimen/spacing_xxsmall"
-      android:padding="@dimen/spacing_small"
-      android:src="@drawable/ic_apps_white_48dp" />
+    <LinearLayout
+      android:id="@+id/folder_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/toolbar_size"
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:visibility="gone">
 
-    <View
-      android:layout_width="0dp"
-      android:layout_height="1dp"
-      android:layout_weight="1" />
+      <ImageView
+        android:id="@+id/folder_toolbar_close"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:layout_margin="@dimen/spacing_xxsmall"
+        android:padding="@dimen/spacing_small"
+        android:src="@drawable/ic_close_white_48dp" />
 
-    <ImageView
-      android:id="@+id/toolbar_icon_new_folder"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="@dimen/icon_size_xlarge"
-      android:layout_margin="@dimen/spacing_xxsmall"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_add_folder" />
+      <TextView
+        android:id="@+id/folder_toolbar_name"
+        style="@style/FontTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/light_secondary_text"
+        android:textSize="16sp" />
 
-    <ImageView
-      android:id="@+id/toolbar_icon_new_checklist"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="@dimen/icon_size_xlarge"
-      android:layout_margin="@dimen/spacing_xxsmall"
-      android:padding="@dimen/spacing_small"
-      android:src="@drawable/ic_format_list_bulleted_white_48dp" />
+      <ImageView
+        android:id="@+id/folder_toolbar_options"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:layout_margin="@dimen/spacing_xxsmall"
+        android:padding="@dimen/spacing_xsmall"
+        android:src="@drawable/ic_more_horiz_white_48dp" />
 
-    <ImageView
-      android:id="@+id/toolbar_icon_new_note"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="@dimen/icon_size_xlarge"
-      android:layout_margin="@dimen/spacing_xxsmall"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_add_new_note" />
+    </LinearLayout>
 
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/toolbar_size"
+      android:gravity="center_vertical"
+      android:orientation="horizontal">
+
+      <ImageView
+        android:id="@+id/toolbar_icon_options"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:layout_margin="@dimen/spacing_xxsmall"
+        android:padding="@dimen/spacing_small"
+        android:src="@drawable/ic_apps_white_48dp" />
+
+      <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" />
+
+      <ImageView
+        android:id="@+id/toolbar_icon_new_folder"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:layout_margin="@dimen/spacing_xxsmall"
+        android:padding="@dimen/spacing_xsmall"
+        android:src="@drawable/ic_add_folder" />
+
+      <ImageView
+        android:id="@+id/toolbar_icon_new_checklist"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:layout_margin="@dimen/spacing_xxsmall"
+        android:padding="@dimen/spacing_small"
+        android:src="@drawable/ic_format_list_bulleted_white_48dp" />
+
+      <ImageView
+        android:id="@+id/toolbar_icon_new_note"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:layout_margin="@dimen/spacing_xxsmall"
+        android:padding="@dimen/spacing_xsmall"
+        android:src="@drawable/ic_add_new_note" />
+
+    </LinearLayout>
   </LinearLayout>
 
   <View
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/toolbar_size"
     android:background="@drawable/bottom_toolbar_bg" />
 </FrameLayout>

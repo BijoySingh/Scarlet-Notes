@@ -40,12 +40,12 @@
         android:background="@android:color/transparent"
         android:ellipsize="end"
         android:gravity="bottom"
-        android:minLines="2"
+        android:minLines="1"
         android:maxLines="4"
         android:padding="@dimen/spacing_small"
         android:textColor="@color/light_primary_text"
         android:textColorHint="@color/light_tertiary_text"
-        android:textSize="24sp"
+        android:textSize="@dimen/font_size_xlarge"
         android:textStyle="bold" />
 
       <TextView

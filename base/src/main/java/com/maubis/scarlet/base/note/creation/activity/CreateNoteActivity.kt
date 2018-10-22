@@ -215,7 +215,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
       }
     }
 
-    toolbar.setBackgroundColor(theme.get(ThemeColorType.TOOLBAR_BACKGROUND))
+    toolbar.setBackgroundColor(toolbarBackgroundColor)
     markdownToolbar.setBackgroundColor(toolbarBackgroundColor)
 
     text.setColorFilter(toolbarIconColor)

@@ -56,7 +56,7 @@ class FolderRecyclerHolder(context: Context, view: View) : RecyclerViewHolder<Re
         view.alpha = 1.0f
         label.visibility = View.VISIBLE
         timestamp.visibility = View.VISIBLE
-        title.minLines = 2
+        title.minLines = 1
       }
     }
     view.alpha = if (item.selected) 0.5f else 1.0f

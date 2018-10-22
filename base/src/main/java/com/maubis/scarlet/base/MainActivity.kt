@@ -2,6 +2,7 @@ package com.maubis.scarlet.base
 
 import android.content.BroadcastReceiver
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -59,6 +60,7 @@ import com.maubis.scarlet.base.support.database.HouseKeeper
 import com.maubis.scarlet.base.support.database.Migrator
 import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
+import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.unifiedFolderSearchSynchronous
@@ -91,6 +93,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   val deleteToolbar: View by bind(R.id.bottom_delete_toolbar_layout)
   val bottomSnackbar: LinearLayout by bind(R.id.bottom_snackbar)
   val bottomToolbar: LinearLayout by bind(R.id.toolbar_bottom)
+  val folderToolbar: LinearLayout by bind(R.id.folder_toolbar)
+  val folderIconClose: ImageView by bind(R.id.folder_toolbar_close)
+  val folderName: TextView by bind(R.id.folder_toolbar_name)
+  val folderIconOptions: ImageView by bind(R.id.folder_toolbar_options)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -299,15 +305,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
               context = this@MainActivity,
               folder = it,
               click = {
-                if (config.hasFolder(it)) {
-                  config.folders.clear()
-                  unifiedSearch()
-                  return@FolderRecyclerItem
-                }
-
                 config.folders.clear()
                 config.folders.add(it)
                 unifiedSearch()
+                notifyFolderChange()
               },
               longClick = {
                 CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> setupData() })
@@ -317,6 +318,37 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     allItems.addAll(unifiedSearchSynchronous(config)
         .map { NoteRecyclerItem(this@MainActivity, it) })
     return allItems
+  }
+
+  private fun notifyFolderChange() {
+    if (config.folders.isEmpty()) {
+      folderToolbar.visibility = View.GONE
+      return
+    }
+    val folder = config.folders.first()
+    folderToolbar.visibility = View.VISIBLE
+    folderToolbar.setBackgroundColor(folder.color)
+    folderIconClose.setOnClickListener {
+      config.folders.clear()
+      unifiedSearch()
+      notifyFolderChange()
+    }
+    folderIconOptions.setOnClickListener {
+      if (config.folders.isEmpty()) {
+        return@setOnClickListener
+      }
+      CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, folder, { _, _ -> setupData() })
+    }
+    folderName.setText(folder.title)
+
+    val isLightShaded = ColorUtil.isLightColored(folder.color)
+    val color = when (isLightShaded) {
+      true -> ContextCompat.getColor(this, R.color.dark_tertiary_text)
+      false -> ContextCompat.getColor(this, R.color.light_secondary_text)
+    }
+    folderName.setTextColor(color)
+    folderIconClose.setColorFilter(color)
+    folderIconOptions.setColorFilter(color)
   }
 
   private fun unifiedSearch() {
@@ -401,6 +433,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
       config.hasFilter() -> {
         config.clear()
         onHomeClick()
+        notifyFolderChange()
       }
       else -> super.onBackPressed()
     }
