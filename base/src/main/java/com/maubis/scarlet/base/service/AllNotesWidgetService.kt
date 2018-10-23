@@ -14,12 +14,16 @@ import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.support.database.notesDB
 import android.widget.AdapterView
+import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.getLockedText
 import com.maubis.scarlet.base.note.getTitle
 import com.maubis.scarlet.base.support.ui.ColorUtil
+import android.os.Bundle
+import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 
 
 class AllNotesWidgetService : RemoteViewsService() {
@@ -81,9 +85,15 @@ class AllNotesRemoteViewsFactory(val context: Context) : RemoteViewsService.Remo
     views.setInt(R.id.title, "setTextColor", textColor)
     views.setInt(R.id.description, "setTextColor", textColor)
 
-    views.setOnClickPendingIntent(R.id.title, pendingIntent)
-    views.setOnClickPendingIntent(R.id.description, pendingIntent)
-    views.setOnClickPendingIntent(R.id.container_layout, pendingIntent)
+    val extras = Bundle()
+    extras.putInt(INTENT_KEY_NOTE_ID, note.uid)
+    val fillInIntent = Intent()
+    fillInIntent.putExtra(INTENT_KEY_NOTE_ID, note.uid)
+    fillInIntent.putExtras(extras)
+
+    views.setOnClickFillInIntent(R.id.title, fillInIntent)
+    views.setOnClickFillInIntent(R.id.description, fillInIntent)
+    views.setOnClickFillInIntent(R.id.container_layout, fillInIntent)
 
     return views
   }

@@ -36,7 +36,7 @@
       android:hint="@string/description"
       android:lineSpacingExtra="6dp"
       android:padding="@dimen/spacing_small"
-      android:maxLines="5"
+      android:maxLines="6"
       android:ellipsize="end"
       android:textColor="@color/light_secondary_text"
       android:textIsSelectable="true"

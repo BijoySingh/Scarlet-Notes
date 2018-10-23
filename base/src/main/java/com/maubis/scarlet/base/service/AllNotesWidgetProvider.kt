@@ -5,9 +5,13 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.widget.RemoteViews
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
+import android.app.PendingIntent
+import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
+
 
 const val STORE_KEY_ALL_NOTE_WIDGET = "all_note_widget"
 
@@ -32,7 +36,14 @@ class AllNotesWidgetProvider : AppWidgetProvider() {
           R.layout.widget_layout_all_notes
       )
       val intent = Intent(context, AllNotesWidgetService::class.java)
+      intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i])
+      intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME))
       views.setRemoteAdapter(R.id.list, intent)
+
+      val noteIntent = Intent(context, ViewAdvancedNoteActivity::class.java)
+      noteIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i])
+      val notePendingIntent = PendingIntent.getActivity(context, 0, noteIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+      views.setPendingIntentTemplate(R.id.list, notePendingIntent)
 
       appWidgetManager.updateAppWidget(appWidgetId, views)
 
