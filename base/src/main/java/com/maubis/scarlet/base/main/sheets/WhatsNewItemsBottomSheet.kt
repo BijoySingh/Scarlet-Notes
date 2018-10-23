@@ -34,12 +34,14 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
     optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
     val whatsNew = "> A lot has changed in this update, here is a summary of those changes.\n" +
         "### New Features\n" +
+        "- **New UI and Icon:** New Search and Top Actionbar UI and icon\n" +
+        "- **Widgets:** Added a new list of notes widget. Also fixed widget not updating bug.\n" +
+        "### Last Release\n" +
         "- **Notebooks:** Adding the ability to add or remove notebooks. You can add multiple notes to the notebook.\n" +
         "- **Privacy:** You can now choose to disable online-backup of some notes. Choose 'Disable Backup' on the note.\n" +
         "- **Undo Deletion:** Adding the option to Undo a deletion after a note is moved to trash.\n" +
         "- **Better Search:** Search now retains information across clicks. You can filter with folders and more.\n" +
         "- **Better Select Options:** You can now perform many more group actions on Note. Choose 'Select Notes' option on the note.\n" +
-        "- **New UI and Icon:** New Search and Top Actionbar UI and icon\n" +
         "- Even more little things which help you enjoy using this app everyday"
 
     val whatsNewView = dialog.findViewById<TextView>(R.id.whats_new_text)
@@ -72,7 +74,7 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
   override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.whats_new_card)
 
   companion object {
-    val WHATS_NEW_UID = 7
+    val WHATS_NEW_UID = 8
     val GOOGLE_TRANSLATE_URL = "https://translate.google.com/#auto/"
 
     fun openSheet(activity: ThemedActivity) {

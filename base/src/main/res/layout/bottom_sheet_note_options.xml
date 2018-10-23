@@ -163,35 +163,6 @@
 
         </GridLayout>
 
-        <GridLayout
-          android:id="@+id/hidden_grid_layout"
-          style="@style/NoteOptionGridLayout"
-          android:visibility="gone">
-
-        </GridLayout>
-
-        <LinearLayout
-          android:id="@+id/expand_note_actions"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="horizontal"
-          android:padding="@dimen/spacing_xxsmall">
-
-          <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/show_more_actions"
-            android:textColor="@color/light_hint_text"
-            android:textSize="@dimen/font_size_normal" />
-
-          <ImageView
-            android:layout_width="@dimen/icon_size_normal"
-            android:layout_height="@dimen/icon_size_normal"
-            android:alpha="0.5"
-            android:src="@drawable/ic_keyboard_arrow_down_white_48dp" />
-        </LinearLayout>
-
       </LinearLayout>
 
     </android.support.v7.widget.CardView>

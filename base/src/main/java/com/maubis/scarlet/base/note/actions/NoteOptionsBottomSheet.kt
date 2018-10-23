@@ -57,13 +57,11 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     val gridLayoutIds = arrayOf(
         R.id.quick_actions_properties,
         R.id.note_properties,
-        R.id.grid_layout,
-        R.id.hidden_grid_layout)
+        R.id.grid_layout)
     val gridOptionFunctions = arrayOf(
         { noteForAction: Note -> getQuickActions(noteForAction) },
         { noteForAction: Note -> getNotePropertyOptions(noteForAction) },
-        { noteForAction: Note -> getOptions(noteForAction) },
-        { noteForAction: Note -> getHiddenOptions(noteForAction) })
+        { noteForAction: Note -> getOptions(noteForAction) })
 
     for (index in 0..gridOptionFunctions.size - 1) {
       MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<OptionsItem>> {
@@ -107,12 +105,6 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
       dismiss()
     }
     selectCardLayout.visibility = View.VISIBLE
-
-    val expandNoteActions = dialog.findViewById<View>(R.id.expand_note_actions)
-    expandNoteActions.setOnClickListener {
-      dialog.findViewById<GridLayout>(R.id.hidden_grid_layout).visibility = View.VISIBLE
-      expandNoteActions.visibility = View.GONE
-    }
   }
 
   private fun getQuickActions(note: Note): List<OptionsItem> {
@@ -335,16 +327,6 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         visible = note.getNoteState() !== NoteState.TRASH,
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
-    return options
-  }
-
-  private fun getHiddenOptions(note: Note): List<OptionsItem> {
-    val activity = context as ThemedActivity
-    if (activity !is INoteOptionSheetActivity) {
-      return emptyList()
-    }
-
-    val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
         title = R.string.reminder,
         subtitle = R.string.reminder,
