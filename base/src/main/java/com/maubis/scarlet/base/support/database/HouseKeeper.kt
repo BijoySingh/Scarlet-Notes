@@ -24,6 +24,10 @@ class HouseKeeper(val context: Context) {
     }
   }
 
+  private fun removeOlderReminders() {
+
+  }
+
   private fun removeOlderClips() {
     val notes = notesDB.database().getOldTrashedNotes(
         Calendar.getInstance().timeInMillis - 1000 * 60 * 60 * 24 * 7)

@@ -1,10 +1,16 @@
 package com.maubis.scarlet.base.support.database
 
 import android.content.Context
+import com.google.gson.Gson
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.core.note.NoteMeta
 import com.maubis.scarlet.base.core.note.NoteState
+import com.maubis.scarlet.base.core.note.Reminder
+import com.maubis.scarlet.base.core.note.getReminder
 import com.maubis.scarlet.base.note.mark
+import com.maubis.scarlet.base.note.reminders.ReminderJob
 import com.maubis.scarlet.base.note.save
+import com.maubis.scarlet.base.note.saveWithoutSync
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.KEY_LIST_VIEW
 import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
 import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
@@ -15,6 +21,7 @@ const val KEY_MIGRATE_TRASH = "KEY_MIGRATE_TRASH"
 const val KEY_MIGRATE_THEME = "KEY_MIGRATE_THEME"
 const val KEY_MIGRATE_DEFAULT_VALUES = "KEY_MIGRATE_DEFAULT_VALUES"
 const val KEY_MIGRATE_ZERO_NOTES = "KEY_MIGRATE_ZERO_NOTES.v2"
+const val KEY_MIGRATE_REMINDERS = "KEY_MIGRATE_REMINDERS"
 
 class Migrator(val context: Context) {
 
@@ -38,6 +45,26 @@ class Migrator(val context: Context) {
         notesDB.notifyDelete(note)
         note.uid = null
         note.save(context)
+      }
+    })
+    runTask(KEY_MIGRATE_REMINDERS, {
+      val notes = notesDB.getAll()
+      notes.forEach {
+        val legacyReminder = it.getReminder()
+        if (legacyReminder !== null) {
+          val reminder = Reminder(0, legacyReminder.alarmTimestamp, legacyReminder.interval)
+
+          val meta = NoteMeta()
+          val uid = ReminderJob.scheduleJob(it.uuid, reminder)
+          reminder.uid = uid
+          if (uid == -1) {
+            return@forEach
+          }
+
+          meta.reminderV2 = reminder
+          it.meta = Gson().toJson(meta)
+          it.saveWithoutSync(context)
+        }
       }
     })
     runTaskIf(

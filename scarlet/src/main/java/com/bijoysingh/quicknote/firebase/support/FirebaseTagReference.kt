@@ -57,22 +57,22 @@ private fun setListener(context: Context) {
     return
   }
   Scarlet.firebaseTag!!.addChildEventListener(object : ChildEventListener {
-    override fun onCancelled(p0: DatabaseError?) {
+    override fun onCancelled(p0: DatabaseError) {
       // Ignore cancelled
     }
 
-    override fun onChildMoved(snapshot: DataSnapshot?, p1: String?) {
+    override fun onChildMoved(snapshot: DataSnapshot, p1: String?) {
       // Ignore moved child
     }
 
-    override fun onChildChanged(snapshot: DataSnapshot?, p1: String?) {
+    override fun onChildChanged(snapshot: DataSnapshot, p1: String?) {
       if (ForgetMeActivity.forgettingInProcess) {
         return
       }
       onChildAdded(snapshot, p1)
     }
 
-    override fun onChildAdded(snapshot: DataSnapshot?, p1: String?) {
+    override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
       if (ForgetMeActivity.forgettingInProcess) {
         return
       }
@@ -90,7 +90,7 @@ private fun setListener(context: Context) {
       })
     }
 
-    override fun onChildRemoved(snapshot: DataSnapshot?) {
+    override fun onChildRemoved(snapshot: DataSnapshot) {
       if (ForgetMeActivity.forgettingInProcess) {
         return
       }
@@ -103,11 +103,8 @@ private fun setListener(context: Context) {
     }
 
     fun handleTagChange(
-        snapshot: DataSnapshot?,
+        snapshot: DataSnapshot,
         listener: (Tag, Tag?, Boolean) -> Unit) {
-      if (snapshot === null) {
-        return
-      }
       try {
         val tag = snapshot.getValue(FirebaseTag::class.java)
         if (tag === null) {

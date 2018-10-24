@@ -95,21 +95,6 @@
         android:resource="@xml/create_note_widget_info" />
     </receiver>
 
-    <receiver
-      android:name="com.maubis.scarlet.base.note.reminders.ReminderReceiver"
-      android:exported="false" />
-
-    <receiver
-      android:name="com.maubis.scarlet.base.note.reminders.ReminderResetReceiver"
-      android:exported="false">
-      <intent-filter android:priority="2">
-        <action android:name="android.intent.action.BOOT_COMPLETED" />
-        <action android:name="android.intent.action.TIME_SET" />
-        <action android:name="android.intent.action.TIMEZONE_CHANGED" />
-        <action android:name="android.intent.action.PACKAGE_INSTALL" />
-      </intent-filter>
-    </receiver>
-
     <activity android:name="com.maubis.scarlet.base.main.activity.WidgetConfigureActivity">
       <intent-filter>
         <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />

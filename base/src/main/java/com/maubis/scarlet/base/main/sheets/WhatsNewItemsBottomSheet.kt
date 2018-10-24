@@ -36,6 +36,7 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
         "### New Features\n" +
         "- **New UI and Icon:** New Search and Top Actionbar UI and icon\n" +
         "- **Widgets:** Added a new list of notes widget. Also fixed widget not updating bug.\n" +
+        "- **Reminder:** Improved reminders to be more reliable.\n" +
         "### Last Release\n" +
         "- **Notebooks:** Adding the ability to add or remove notebooks. You can add multiple notes to the notebook.\n" +
         "- **Privacy:** You can now choose to disable online-backup of some notes. Choose 'Disable Backup' on the note.\n" +

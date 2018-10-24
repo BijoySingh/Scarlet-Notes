@@ -368,4 +368,6 @@
   <string name="folder_option_add_to_notebook" translatable="false">Add to Notebook</string>
   <string name="folder_option_change_notebook" translatable="false">Modify Notebook</string>
 
+  <string name="recent_notes" translatable="false">Recent Notes</string>
+
 </resources>

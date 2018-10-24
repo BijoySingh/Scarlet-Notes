@@ -10,6 +10,9 @@ import android.widget.RemoteViews
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import android.app.PendingIntent
+import com.maubis.scarlet.base.MainActivity
+import com.maubis.scarlet.base.note.creation.activity.CreateListNoteActivity
+import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 
 
@@ -44,6 +47,18 @@ class AllNotesWidgetProvider : AppWidgetProvider() {
       noteIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i])
       val notePendingIntent = PendingIntent.getActivity(context, 0, noteIntent, PendingIntent.FLAG_UPDATE_CURRENT)
       views.setPendingIntentTemplate(R.id.list, notePendingIntent)
+
+      val createNoteIntent = Intent(context, CreateNoteActivity::class.java)
+      val createNotePendingIntent = PendingIntent.getActivity(context, 23214, createNoteIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+      views.setOnClickPendingIntent(R.id.add_note, createNotePendingIntent)
+
+      val createListNoteIntent = Intent(context, CreateListNoteActivity::class.java)
+      val createListNotePendingIntent = PendingIntent.getActivity(context, 13123, createListNoteIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+      views.setOnClickPendingIntent(R.id.add_list, createListNotePendingIntent)
+
+      val mainIntent = Intent(context, MainActivity::class.java)
+      val mainPendingIntent = PendingIntent.getActivity(context, 13124, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+      views.setOnClickPendingIntent(R.id.app_icon, mainPendingIntent)
 
       appWidgetManager.updateAppWidget(appWidgetId, views)
 

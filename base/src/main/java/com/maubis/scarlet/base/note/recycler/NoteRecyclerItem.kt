@@ -6,6 +6,7 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.core.note.getReminder
+import com.maubis.scarlet.base.core.note.getReminderV2
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet
 import com.maubis.scarlet.base.settings.sheet.MarkdownBottomSheet
@@ -38,7 +39,7 @@ class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
     false -> ContextCompat.getColor(context, R.color.light_tertiary_text)
   }
 
-  val hasReminder = note.getReminder() !== null
+  val hasReminder = note.getReminderV2() !== null
   val actionBarIconColor = when (isLightShaded) {
     true -> ContextCompat.getColor(context, R.color.dark_secondary_text)
     false -> ContextCompat.getColor(context, R.color.light_secondary_text)

@@ -6,7 +6,7 @@ buildscript {
     ext.android_support_version = '27.1.1'
 
     ext.appconfig_version_code = 105
-    ext.appconfig_version = '6.4.1'
+    ext.appconfig_version = '6.4.2'
     ext.appconfig_min_os_version = 17
     ext.appconfig_target_os_version = 27
     ext.appconfig_build_tool_version = '27.0.3'

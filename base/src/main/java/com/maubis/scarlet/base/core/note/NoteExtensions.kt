@@ -50,6 +50,10 @@ fun Note.getReminder(): NoteReminder? {
   return getMeta().reminder
 }
 
+fun Note.getReminderV2(): Reminder? {
+  return getMeta().reminderV2
+}
+
 fun Note.getTagUUIDs(): MutableSet<String> {
   val tags = if (this.tags == null) "" else this.tags
   val split = tags.split(",")
