@@ -3,27 +3,25 @@ package com.maubis.scarlet.base.service
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.AdapterView
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
+import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.sort
-import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
-import com.maubis.scarlet.base.support.database.notesDB
-import android.widget.AdapterView
-import com.github.bijoysingh.starter.util.IntentUtils
-import com.github.bijoysingh.starter.util.TextUtils
-import com.maubis.scarlet.base.MainActivity
-import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.getLockedText
 import com.maubis.scarlet.base.note.getTitle
+import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
+import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.ui.ColorUtil
-import android.os.Bundle
-import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 
 
 class AllNotesWidgetService : RemoteViewsService() {
@@ -37,11 +35,6 @@ class AllNotesRemoteViewsFactory(val context: Context) : RemoteViewsService.Remo
   var notes = emptyList<Note>()
 
   override fun onCreate() {
-    val sorting = SortingOptionsBottomSheet.getSortingState()
-    notes = sort(notesDB.getByNoteState(
-        arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name, NoteState.ARCHIVED.name))
-        .filter { note -> !note.locked }, sorting)
-        .take(15)
   }
 
   override fun getLoadingView(): RemoteViews? {
@@ -53,7 +46,11 @@ class AllNotesRemoteViewsFactory(val context: Context) : RemoteViewsService.Remo
   }
 
   override fun onDataSetChanged() {
-
+    val sorting = SortingOptionsBottomSheet.getSortingState()
+    notes = sort(notesDB.getByNoteState(
+        arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name, NoteState.ARCHIVED.name))
+        .filter { note -> !note.locked }, sorting)
+        .take(15)
   }
 
   override fun hasStableIds(): Boolean {

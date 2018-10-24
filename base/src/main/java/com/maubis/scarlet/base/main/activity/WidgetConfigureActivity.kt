@@ -131,8 +131,8 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
       val intentIds = IntArray(widgetIds.size, { index -> widgetIds[index] })
 
       val intent = Intent(application, NoteWidgetProvider::class.java)
-      intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-      intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intentIds);
+      intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE)
+      intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intentIds)
       return intent
     }
 

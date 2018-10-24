@@ -47,7 +47,6 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     CoreConfig.instance.notesDatabase().notifyInsertNote(note)
     AsyncTask.execute {
       onNoteUpdated(context)
-      notifyAllChanged(context)
     }
   }
 
@@ -79,7 +78,6 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     note.uid = 0
     AsyncTask.execute {
       onNoteDestroyed(context)
-      notifyAllChanged(context)
     }
   }
 
@@ -106,12 +104,14 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
 
   protected fun onNoteDestroyed(context: Context) {
     WidgetConfigureActivity.notifyNoteChange(context, note)
+    notifyAllChanged(context)
     val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
     notificationManager?.cancel(note.uid)
   }
 
   protected fun onNoteUpdated(context: Context) {
     WidgetConfigureActivity.notifyNoteChange(context, note)
+    notifyAllChanged(context)
     val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
     if (Build.VERSION.SDK_INT >= 23 && notificationManager != null) {
       for (notification in notificationManager.activeNotifications) {

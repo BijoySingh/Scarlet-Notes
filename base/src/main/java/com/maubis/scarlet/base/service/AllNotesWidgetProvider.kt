@@ -10,6 +10,7 @@ import android.widget.RemoteViews
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import android.app.PendingIntent
+import android.content.ComponentName
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.note.creation.activity.CreateListNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
@@ -20,19 +21,10 @@ const val STORE_KEY_ALL_NOTE_WIDGET = "all_note_widget"
 
 class AllNotesWidgetProvider : AppWidgetProvider() {
 
-  override fun onDeleted(context: Context?, appWidgetIds: IntArray?) {
-    super.onDeleted(context, appWidgetIds)
-    if (appWidgetIds === null) {
-      return
-    }
-    appWidgetIds.forEach { removeWidget(it) }
-  }
-
   override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
     val N = appWidgetIds.size
     for (i in 0 until N) {
       val appWidgetId = appWidgetIds[i]
-      addWidget(appWidgetId)
 
       val views = RemoteViews(
           context.packageName,
@@ -61,53 +53,19 @@ class AllNotesWidgetProvider : AppWidgetProvider() {
       views.setOnClickPendingIntent(R.id.app_icon, mainPendingIntent)
 
       appWidgetManager.updateAppWidget(appWidgetId, views)
-
     }
   }
 
   companion object {
     fun notifyAllChanged(context: Context) {
       val application: Application = context.applicationContext as Application
-
-      val widgetIds = allNoteWidgets()
-      val intentIds = IntArray(widgetIds.size, { index -> widgetIds[index] })
-
-      val intent = Intent(application, NoteWidgetProvider::class.java)
-      intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-      intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intentIds);
-
-      application.sendBroadcast(intent)
-    }
-
-    @Synchronized
-    fun allNoteWidgets(): List<Int> {
-      val widgets = CoreConfig.instance.store().get(STORE_KEY_ALL_NOTE_WIDGET, "").split(",")
-      return widgets.filter { it.isNotBlank() }.map { it.toInt() }
-    }
-
-    @Synchronized
-    fun storeAllNoteWidgets(list: List<Int>) {
-      CoreConfig.instance.store().put(STORE_KEY_ALL_NOTE_WIDGET, list.joinToString(","))
-    }
-
-    @Synchronized
-    fun addWidget(widgetId: Int) {
-      val widgets = allNoteWidgets()
-      if (widgets.contains(widgetId)) {
+      val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(
+          ComponentName(application, AllNotesWidgetProvider::class.java))
+      if (ids.isEmpty()) {
         return
       }
-      widgets.toMutableList().add(widgetId)
-      storeAllNoteWidgets(widgets)
-    }
 
-    @Synchronized
-    fun removeWidget(widgetId: Int) {
-      val widgets = allNoteWidgets()
-      if (!widgets.contains(widgetId)) {
-        return
-      }
-      widgets.toMutableList().remove(widgetId)
-      storeAllNoteWidgets(widgets)
+      AppWidgetManager.getInstance(application).notifyAppWidgetViewDataChanged(ids, R.id.list)
     }
   }
 }
