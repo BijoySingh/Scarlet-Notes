@@ -55,6 +55,8 @@ class NotificationHandler(val context: Context) {
         .setAutoCancel(false)
 
     if (config.channel === REMINDER_NOTIFICATION_CHANNEL_ID) {
+      notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH)
+      notificationBuilder.setCategory(NotificationCompat.CATEGORY_ALARM)
       notificationBuilder.setDefaults(Notification.DEFAULT_SOUND)
       notificationBuilder.setDefaults(Notification.DEFAULT_LIGHTS)
     }

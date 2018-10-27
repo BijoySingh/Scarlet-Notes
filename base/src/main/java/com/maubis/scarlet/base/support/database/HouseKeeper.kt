@@ -3,16 +3,24 @@ package com.maubis.scarlet.base.support.database
 import android.content.Context
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.maubis.scarlet.base.core.note.NoteImage.Companion.deleteIfExist
+import com.maubis.scarlet.base.core.note.ReminderInterval
+import com.maubis.scarlet.base.core.note.getReminderV2
+import com.maubis.scarlet.base.core.note.setReminderV2
 import com.maubis.scarlet.base.note.delete
+import com.maubis.scarlet.base.note.reminders.ReminderJob.Companion.nextJobTimestamp
+import com.maubis.scarlet.base.note.reminders.ReminderJob.Companion.scheduleJob
 import com.maubis.scarlet.base.note.save
+import com.maubis.scarlet.base.note.saveWithoutSync
 import java.io.File
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class HouseKeeper(val context: Context) {
 
   private val houseKeeperTasks: Array<() -> Unit> = arrayOf(
       { removeOlderClips() },
       { removeDecoupledFolders() },
+      { removeOldReminders() },
       { deleteRedundantImageFiles() }
   )
 
@@ -46,6 +54,31 @@ class HouseKeeper(val context: Context) {
             it.save(context)
           }
         }
+  }
+
+  private fun removeOldReminders() {
+    notesDB.getAll().forEach {
+      val reminder = it.getReminderV2()
+      if (reminder === null) {
+        return@forEach
+      }
+
+      // Some gap to allow delays in alarm
+      if (reminder.timestamp >= System.currentTimeMillis() - TimeUnit.MINUTES.toMillis(30)) {
+        return@forEach
+      }
+
+      if (reminder.interval == ReminderInterval.ONCE) {
+        it.meta = ""
+        it.saveWithoutSync(context)
+        return@forEach
+      }
+
+      reminder.timestamp = nextJobTimestamp(reminder.timestamp, System.currentTimeMillis())
+      reminder.uid = scheduleJob(it.uuid, reminder)
+      it.setReminderV2(reminder)
+      it.saveWithoutSync(context)
+    }
   }
 
   private fun deleteRedundantImageFiles() {

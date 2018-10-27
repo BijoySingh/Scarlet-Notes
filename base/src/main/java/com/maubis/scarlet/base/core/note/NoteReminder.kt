@@ -55,22 +55,8 @@ class Reminder(var uid: Int = 0,
                var interval: ReminderInterval = ReminderInterval.ONCE) {
 
   fun toCalendar(): Calendar {
-    if (interval === ReminderInterval.ONCE) {
-      val calendar = Calendar.getInstance()
-      calendar.timeInMillis = timestamp
-      return calendar
-    }
-
-    val minutes = timestamp / (1000 * 60)
     val calendar = Calendar.getInstance()
-    calendar.set(Calendar.HOUR_OF_DAY, ((minutes / 60) % 24).toInt())
-    calendar.set(Calendar.MINUTE, (minutes % 60).toInt())
-    calendar.set(Calendar.SECOND, 0)
-
-    val nowCalendar = Calendar.getInstance()
-    if (nowCalendar.after(calendar)) {
-      calendar.add(Calendar.HOUR_OF_DAY, 24)
-    }
+    calendar.timeInMillis = timestamp
     return calendar
   }
 }

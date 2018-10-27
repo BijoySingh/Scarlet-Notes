@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.maubis.scarlet.base.core.database.room.note.Note
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
+import com.maubis.scarlet.base.note.saveWithoutSync
 import java.util.*
 
 fun Note.isUnsaved(): Boolean {
@@ -52,6 +53,12 @@ fun Note.getReminder(): NoteReminder? {
 
 fun Note.getReminderV2(): Reminder? {
   return getMeta().reminderV2
+}
+
+fun Note.setReminderV2(reminder: Reminder) {
+  val noteMeta = NoteMeta()
+  noteMeta.reminderV2 = reminder
+  meta = Gson().toJson(noteMeta)
 }
 
 fun Note.getTagUUIDs(): MutableSet<String> {

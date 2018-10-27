@@ -167,7 +167,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
           startSearch(searchBox.text.toString())
         })
     toolbarIconNewFolder.setOnClickListener {
-      CreateOrEditFolderBottomSheet.openSheet(this, FolderBuilder().emptyFolder(NoteSettingsOptionsBottomSheet.genDefaultColor()), { _, _ -> setupData() })
+      CreateOrEditFolderBottomSheet.openSheet(
+          this,
+          FolderBuilder().emptyFolder(NoteSettingsOptionsBottomSheet.genDefaultColor()),
+          { _, _ -> setupData() })
     }
     toolbarIconNewChecklist.setOnClickListener {
       val intent = CreateNoteActivity.getNewChecklistNoteIntent(
@@ -442,7 +445,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   override fun onPause() {
     super.onPause()
     unregisterReceiver(receiver)
-    HouseKeeper(this).start()
+    HouseKeeper(this.applicationContext).start()
   }
 
   override fun onStop() {

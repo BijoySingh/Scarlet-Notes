@@ -11,10 +11,7 @@ import com.google.gson.Gson
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.database.room.note.Note
-import com.maubis.scarlet.base.core.note.Reminder
-import com.maubis.scarlet.base.core.note.ReminderInterval
-import com.maubis.scarlet.base.core.note.getMeta
-import com.maubis.scarlet.base.core.note.getReminderV2
+import com.maubis.scarlet.base.core.note.*
 import com.maubis.scarlet.base.main.sheets.GenericOptionsBottomSheet
 import com.maubis.scarlet.base.note.reminders.ReminderJob
 import com.maubis.scarlet.base.note.saveWithoutSync
@@ -95,8 +92,7 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     removeAlarm.setOnClickListener {
       ReminderJob.cancelJob(reminder.uid)
 
-      val noteMeta = note.getMeta()
-      note.meta = Gson().toJson(noteMeta)
+      note.meta = ""
       note.saveWithoutSync(themedContext())
 
       dismiss()
@@ -115,9 +111,7 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
 
       reminder.uid = uid
 
-      val noteMeta = note.getMeta()
-      noteMeta.reminderV2 = reminder
-      note.meta = Gson().toJson(noteMeta)
+      note.setReminderV2(reminder)
       note.saveWithoutSync(themedContext())
 
       dismiss()
