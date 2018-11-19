@@ -8,20 +8,17 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
-import com.github.bijoysingh.starter.util.FileManager
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.recycler.FileRecyclerItem
 import com.maubis.scarlet.base.export.support.NoteImporter
 import com.maubis.scarlet.base.note.recycler.NoteAppAdapter
-import com.maubis.scarlet.base.support.bind
+import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
-import java.io.IOException
 
 
 class ImportNoteActivity : ThemedActivity() {

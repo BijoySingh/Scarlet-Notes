@@ -1,7 +1,7 @@
-package com.maubis.scarlet.base.core.database
+package com.maubis.scarlet.base.database
 
-import com.maubis.scarlet.base.core.database.room.note.Note
-import com.maubis.scarlet.base.core.database.room.note.NoteDao
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.NoteDao
 import com.maubis.scarlet.base.core.note.INoteContainer
 import java.util.concurrent.ConcurrentHashMap
 

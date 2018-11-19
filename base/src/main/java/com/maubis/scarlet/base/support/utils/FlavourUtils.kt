@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.support
+package com.maubis.scarlet.base.support.utils
 
 enum class Flavor {
   NONE, // FDroid, Master Builds

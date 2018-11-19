@@ -12,7 +12,7 @@ import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.main.recycler.EmptyRecyclerItem
 import com.maubis.scarlet.base.note.recycler.NoteAppAdapter

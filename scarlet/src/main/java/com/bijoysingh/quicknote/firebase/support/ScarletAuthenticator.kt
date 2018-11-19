@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
+import com.bijoysingh.quicknote.Scarlet.Companion.firebase
 import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
 import com.bijoysingh.quicknote.firebase.activity.LoginActivity
+import com.bijoysingh.quicknote.firebase.initFirebaseDatabase
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.firebase.FirebaseApp
@@ -31,9 +33,7 @@ class ScarletAuthenticator() : IAuthenticator {
       }
 
       FirebaseDatabase.getInstance()
-      noteDatabaseReference(context, userId)
-      tagDatabaseReference(context, userId)
-      folderDatabaseReference(context, userId)
+      initFirebaseDatabase(context, userId)
       reloadUser(context)
     } catch (exception: Exception) {
       // Don't need to do anything
@@ -46,9 +46,7 @@ class ScarletAuthenticator() : IAuthenticator {
 
   override fun logout() {
     FirebaseAuth.getInstance().signOut()
-    removeNoteDatabaseReference()
-    removeTagDatabaseReference()
-    removeFolderDatabaseReference()
+    firebase?.logout()
   }
 
   override fun openLoginActivity(context: Context) = Runnable {

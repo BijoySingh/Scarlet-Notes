@@ -12,7 +12,7 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.support.GenericFileProvider
 import com.maubis.scarlet.base.export.support.NoteExporter
-import com.maubis.scarlet.base.support.Flavor
+import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 

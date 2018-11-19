@@ -10,7 +10,7 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
-import com.maubis.scarlet.base.utils.renderMarkdown
+import com.maubis.scarlet.base.support.utils.renderMarkdown
 
 
 class OpenSourceBottomSheet : ThemedBottomSheetFragment() {

@@ -15,8 +15,8 @@ import android.widget.RemoteViews
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.note.Note
-import com.maubis.scarlet.base.core.database.room.widget.Widget
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.widget.Widget
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.getLockedText

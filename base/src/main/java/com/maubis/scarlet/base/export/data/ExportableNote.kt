@@ -1,8 +1,8 @@
 package com.maubis.scarlet.base.export.data
 
 import android.content.Context
-import com.maubis.scarlet.base.core.database.room.note.Note
-import com.maubis.scarlet.base.core.database.room.tag.Tag
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.core.note.INoteContainer
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.generateUUID

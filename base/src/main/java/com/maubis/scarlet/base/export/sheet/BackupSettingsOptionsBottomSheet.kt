@@ -10,7 +10,7 @@ import com.maubis.scarlet.base.export.activity.ImportNoteActivity
 import com.maubis.scarlet.base.export.support.*
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
-import com.maubis.scarlet.base.support.Flavor
+import com.maubis.scarlet.base.support.utils.Flavor
 
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase

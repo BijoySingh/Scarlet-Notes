@@ -12,7 +12,7 @@ import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID

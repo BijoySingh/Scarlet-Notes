@@ -8,7 +8,7 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.github.bijoysingh.starter.util.TextUtils;
-import com.maubis.scarlet.base.core.database.room.AppDatabase;
+import com.maubis.scarlet.base.database.room.AppDatabase;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -17,16 +17,16 @@ import org.junit.runner.RunWith;
 
 import java.io.IOException;
 
-import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_10_11;
-import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_11_12;
-import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_12_13;
-import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_2_3;
-import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_3_4;
-import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_4_5;
-import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_5_6;
-import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_6_7;
-import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_7_8;
-import static com.maubis.scarlet.base.core.database.room.AppDatabase.MIGRATION_9_10;
+import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_10_11;
+import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_11_12;
+import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_12_13;
+import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_2_3;
+import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_3_4;
+import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_4_5;
+import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_5_6;
+import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_6_7;
+import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_7_8;
+import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_9_10;
 
 @RunWith(AndroidJUnit4.class)
 public class MigrationTest {

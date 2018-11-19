@@ -2,12 +2,11 @@ package com.maubis.scarlet.base.note
 
 import android.content.Context
 import android.content.Intent
-import android.support.v4.graphics.ColorUtils
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.note.Note
-import com.maubis.scarlet.base.core.database.room.tag.Tag
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getFormats
@@ -19,8 +18,8 @@ import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.support.database.tagsDB
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.utils.removeMarkdownHeaders
-import com.maubis.scarlet.base.utils.renderMarkdown
+import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
+import com.maubis.scarlet.base.support.utils.renderMarkdown
 import java.util.*
 
 fun Note.log(context: Context): String {

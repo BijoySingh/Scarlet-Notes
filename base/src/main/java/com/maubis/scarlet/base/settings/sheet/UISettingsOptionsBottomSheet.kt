@@ -10,7 +10,7 @@ import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet.Companion.get
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingState
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingTechniqueLabel
 import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet.Companion.getDefaultTextSize
-import com.maubis.scarlet.base.support.Flavor
+import com.maubis.scarlet.base.support.utils.Flavor
 
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase

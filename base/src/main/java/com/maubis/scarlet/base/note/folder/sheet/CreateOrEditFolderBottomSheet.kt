@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.folder.Folder
+import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.core.folder.isUnsaved
 import com.maubis.scarlet.base.note.folder.delete
 import com.maubis.scarlet.base.note.folder.save
@@ -20,7 +20,7 @@ import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
-import com.maubis.scarlet.base.utils.getEditorActionListener
+import com.maubis.scarlet.base.support.utils.getEditorActionListener
 
 
 class CreateOrEditFolderBottomSheet : ThemedBottomSheetFragment() {

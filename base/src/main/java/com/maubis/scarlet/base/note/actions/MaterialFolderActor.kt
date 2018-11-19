@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.note.actions
 
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.folder.Folder
+import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.core.folder.isUnsaved
 
 open class MaterialFolderActor(val folder: Folder) : IFolderActor {

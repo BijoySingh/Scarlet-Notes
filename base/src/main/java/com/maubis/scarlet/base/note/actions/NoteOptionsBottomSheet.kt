@@ -10,7 +10,7 @@ import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getNoteState
@@ -28,12 +28,11 @@ import com.maubis.scarlet.base.note.tag.sheet.TagChooseOptionsBottomSheet
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
-import com.maubis.scarlet.base.support.Flavor
+import com.maubis.scarlet.base.support.utils.Flavor
 
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.ui.visibility
 import ru.noties.markwon.Markwon
 
 class NoteOptionsBottomSheet() : GridBottomSheetBase() {

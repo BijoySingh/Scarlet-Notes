@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.utils
+package com.maubis.scarlet.base.support.utils
 
 import android.content.Context
 import android.view.KeyEvent

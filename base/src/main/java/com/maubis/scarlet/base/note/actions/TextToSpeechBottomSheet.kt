@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.getUnreliablyStrippedText
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity

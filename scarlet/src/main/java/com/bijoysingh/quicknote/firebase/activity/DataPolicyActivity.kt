@@ -13,7 +13,7 @@ import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.settings.sheet.AboutSettingsOptionsBottomSheet
-import com.maubis.scarlet.base.support.bind
+import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.visibility
 

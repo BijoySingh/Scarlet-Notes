@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.utils
+package com.maubis.scarlet.base.support.utils
 
 import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.config.CoreConfig

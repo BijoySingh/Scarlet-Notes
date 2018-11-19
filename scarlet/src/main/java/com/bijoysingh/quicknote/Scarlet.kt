@@ -1,9 +1,9 @@
 package com.bijoysingh.quicknote
 
 import android.app.Application
+import com.bijoysingh.quicknote.firebase.FirebaseRemoteDatabase
 import com.bijoysingh.quicknote.scarlet.ScarletConfig
 import com.evernote.android.job.JobManager
-import com.google.firebase.database.DatabaseReference
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.note.reminders.ReminderJobCreator
 
@@ -19,8 +19,6 @@ class Scarlet : Application() {
   }
 
   companion object {
-    var firebaseNote: DatabaseReference? = null
-    var firebaseTag: DatabaseReference? = null
-    var firebaseFolder: DatabaseReference? = null
+    var firebase: FirebaseRemoteDatabase? = null
   }
 }

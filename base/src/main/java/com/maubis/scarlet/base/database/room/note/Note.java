@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.core.database.room.note;
+package com.maubis.scarlet.base.database.room.note;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;

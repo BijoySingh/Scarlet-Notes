@@ -3,7 +3,7 @@ package com.maubis.scarlet.base.note.tag.sheet
 import android.app.Dialog
 import android.view.View
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.core.database.room.tag.Tag
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.core.note.getTagUUIDs
 import com.maubis.scarlet.base.core.tag.TagBuilder
 import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity

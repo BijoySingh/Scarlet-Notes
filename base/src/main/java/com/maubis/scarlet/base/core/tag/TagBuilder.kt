@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.core.tag
 
 import com.github.bijoysingh.starter.util.RandomHelper
-import com.maubis.scarlet.base.core.database.room.tag.Tag
+import com.maubis.scarlet.base.database.room.tag.Tag
 
 class TagBuilder() {
   fun emptyTag(): Tag {

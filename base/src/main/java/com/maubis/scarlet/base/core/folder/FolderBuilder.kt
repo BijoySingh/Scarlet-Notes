@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.core.folder
 
 import com.github.bijoysingh.starter.util.RandomHelper
-import com.maubis.scarlet.base.core.database.room.folder.Folder
+import com.maubis.scarlet.base.database.room.folder.Folder
 
 class FolderBuilder() {
   fun emptyFolder(): Folder {

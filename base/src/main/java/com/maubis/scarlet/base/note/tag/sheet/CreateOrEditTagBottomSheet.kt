@@ -7,14 +7,14 @@ import android.widget.EditText
 import android.widget.TextView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.tag.Tag
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.core.tag.isUnsaved
 import com.maubis.scarlet.base.note.tag.delete
 import com.maubis.scarlet.base.note.tag.save
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
-import com.maubis.scarlet.base.utils.getEditorActionListener
+import com.maubis.scarlet.base.support.utils.getEditorActionListener
 
 
 class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {

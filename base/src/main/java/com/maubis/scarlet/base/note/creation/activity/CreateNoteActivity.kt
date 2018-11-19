@@ -12,7 +12,7 @@ import android.view.View.VISIBLE
 import android.widget.ImageView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.format.*
 import com.maubis.scarlet.base.core.note.*
 import com.maubis.scarlet.base.core.note.NoteImage.Companion.deleteIfExist
@@ -24,7 +24,7 @@ import com.maubis.scarlet.base.note.formats.recycler.FormatTextViewHolder
 import com.maubis.scarlet.base.note.saveToSync
 import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
-import com.maubis.scarlet.base.support.bind
+import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.database.foldersDB
 import com.maubis.scarlet.base.support.recycler.SimpleItemTouchHelper
 import com.maubis.scarlet.base.support.ui.CircleDrawable

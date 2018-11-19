@@ -3,7 +3,7 @@ package com.maubis.scarlet.base.note.recycler
 import android.content.Context
 import android.support.v4.content.ContextCompat
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.core.note.getReminder
 import com.maubis.scarlet.base.core.note.getReminderV2

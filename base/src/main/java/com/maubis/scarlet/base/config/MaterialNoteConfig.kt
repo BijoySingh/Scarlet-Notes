@@ -7,19 +7,18 @@ import com.github.bijoysingh.starter.prefs.Store
 import com.github.bijoysingh.starter.prefs.VersionedStore
 import com.maubis.scarlet.base.auth.IAuthenticator
 import com.maubis.scarlet.base.auth.NullAuthenticator
-import com.maubis.scarlet.base.core.database.FoldersProvider
-import com.maubis.scarlet.base.core.database.NotesProvider
-import com.maubis.scarlet.base.core.database.TagsProvider
-import com.maubis.scarlet.base.core.database.room.AppDatabase
-import com.maubis.scarlet.base.core.database.room.folder.Folder
-import com.maubis.scarlet.base.core.database.room.note.Note
-import com.maubis.scarlet.base.core.database.room.tag.Tag
+import com.maubis.scarlet.base.database.FoldersProvider
+import com.maubis.scarlet.base.database.NotesProvider
+import com.maubis.scarlet.base.database.TagsProvider
+import com.maubis.scarlet.base.database.room.AppDatabase
+import com.maubis.scarlet.base.database.room.folder.Folder
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.note.actions.*
-import com.maubis.scarlet.base.support.Flavor
+import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.database.FoldersDB
 import com.maubis.scarlet.base.support.database.NotesDB
 import com.maubis.scarlet.base.support.database.TagsDB
-import com.maubis.scarlet.base.support.database.foldersDB
 import com.maubis.scarlet.base.support.ui.IThemeManager
 import com.maubis.scarlet.base.support.ui.ThemeManager
 

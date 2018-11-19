@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.core.database.room.folder;
+package com.maubis.scarlet.base.database.room.folder;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
-import com.maubis.scarlet.base.core.database.room.note.Note;
+import com.maubis.scarlet.base.database.room.note.Note;
 
 import java.util.List;
 

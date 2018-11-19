@@ -7,7 +7,7 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
-import com.maubis.scarlet.base.support.Flavor
+import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import java.util.*
 

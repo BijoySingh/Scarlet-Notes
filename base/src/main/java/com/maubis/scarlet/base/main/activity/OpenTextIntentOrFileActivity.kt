@@ -12,12 +12,12 @@ import com.github.bijoysingh.starter.util.TextUtils
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.export.support.NoteImporter
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.save
-import com.maubis.scarlet.base.support.bind
+import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import java.io.InputStreamReader

@@ -1,6 +1,6 @@
 package com.maubis.scarlet.base.export.data
 
-import com.maubis.scarlet.base.core.database.room.tag.Tag
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.core.note.generateUUID
 import com.maubis.scarlet.base.core.tag.ITagContainer
 import com.maubis.scarlet.base.core.tag.TagBuilder

@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.support
+package com.maubis.scarlet.base.support.utils
 
 import android.app.Activity
 import android.support.annotation.IdRes

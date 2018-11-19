@@ -1,9 +1,9 @@
-package com.maubis.scarlet.base.core.database
+package com.maubis.scarlet.base.database
 
-import com.maubis.scarlet.base.core.database.room.folder.Folder
-import com.maubis.scarlet.base.core.database.room.folder.FolderDao
-import com.maubis.scarlet.base.core.database.room.tag.Tag
-import com.maubis.scarlet.base.core.database.room.tag.TagDao
+import com.maubis.scarlet.base.database.room.folder.Folder
+import com.maubis.scarlet.base.database.room.folder.FolderDao
+import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.database.room.tag.TagDao
 import java.util.concurrent.ConcurrentHashMap
 
 abstract class FoldersProvider {

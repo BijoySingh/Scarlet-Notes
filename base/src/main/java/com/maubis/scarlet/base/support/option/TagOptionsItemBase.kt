@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.support.option
 
 import android.view.View
-import com.maubis.scarlet.base.core.database.room.tag.Tag
+import com.maubis.scarlet.base.database.room.tag.Tag
 
 abstract class TagOptionsItemBase(
     val tag: Tag,

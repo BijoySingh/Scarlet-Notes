@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.note.folder
 
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.core.database.room.folder.Folder
+import com.maubis.scarlet.base.database.room.folder.Folder
 
 class FolderOptionsItem(
     val folder: Folder,

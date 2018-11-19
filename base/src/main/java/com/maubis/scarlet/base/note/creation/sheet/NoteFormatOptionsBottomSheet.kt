@@ -7,7 +7,7 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
-import com.maubis.scarlet.base.support.Flavor
+import com.maubis.scarlet.base.support.utils.Flavor
 
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase

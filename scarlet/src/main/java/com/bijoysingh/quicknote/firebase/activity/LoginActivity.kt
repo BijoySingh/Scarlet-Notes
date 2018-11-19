@@ -7,9 +7,7 @@ import android.view.View
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity.Companion.hasAcceptedThePolicy
-import com.bijoysingh.quicknote.firebase.support.folderDatabaseReference
-import com.bijoysingh.quicknote.firebase.support.noteDatabaseReference
-import com.bijoysingh.quicknote.firebase.support.tagDatabaseReference
+import com.bijoysingh.quicknote.firebase.initFirebaseDatabase
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -28,13 +26,12 @@ import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
 import com.maubis.scarlet.base.note.folder.saveToSync
 import com.maubis.scarlet.base.note.saveToSync
 import com.maubis.scarlet.base.note.tag.saveToSync
-import com.maubis.scarlet.base.support.Flavor
 import com.maubis.scarlet.base.support.database.foldersDB
 import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.database.tagsDB
-
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.utils.Flavor
 
 
 class LoginActivity : ThemedActivity() {
@@ -176,20 +173,17 @@ class LoginActivity : ThemedActivity() {
     if (user === null || user.uid.isEmpty()) {
       return
     }
-    noteDatabaseReference(context, user.uid)
+
+    initFirebaseDatabase(context, user.uid)
     for (note in notesDB.getAll()) {
       if (note.disableBackup) {
         continue
       }
       note.saveToSync(context)
     }
-
-    tagDatabaseReference(context, user.uid)
     for (tag in tagsDB.getAll()) {
       tag.saveToSync()
     }
-
-    folderDatabaseReference(context, user.uid)
     for (folder in foldersDB.getAll()) {
       folder.saveToSync()
     }

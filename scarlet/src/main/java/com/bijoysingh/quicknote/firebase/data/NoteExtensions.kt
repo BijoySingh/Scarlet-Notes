@@ -1,6 +1,6 @@
 package com.bijoysingh.quicknote.firebase.data
 
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 
 fun Note.getFirebaseNote(): FirebaseNote {
   return FirebaseNote(

@@ -5,7 +5,7 @@ import android.widget.TextView
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity

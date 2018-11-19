@@ -1,21 +1,19 @@
 package com.maubis.scarlet.base.note.formats.recycler
 
 import android.content.Context
-import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.MarkdownType
 import com.maubis.scarlet.base.note.creation.sheet.FormatActionBottomSheet
 import com.maubis.scarlet.base.support.ui.visibility
-import com.maubis.scarlet.base.utils.renderMarkdown
+import com.maubis.scarlet.base.support.utils.renderMarkdown
 
 open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolderBase(context, view), TextWatcher {
 

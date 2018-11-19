@@ -5,11 +5,11 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.RecyclerView
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.main.HomeNavigationState
 import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.note.selection.sheet.SelectedNoteOptionsBottomSheet
-import com.maubis.scarlet.base.support.bind
+import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.database.notesDB
 
 const val KEY_SELECT_EXTRA_MODE = "KEY_SELECT_EXTRA_MODE"

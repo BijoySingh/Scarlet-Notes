@@ -2,7 +2,7 @@ package com.maubis.scarlet.base.note.folder
 
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.folder.Folder
+import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.support.database.foldersDB
 import java.util.*
 

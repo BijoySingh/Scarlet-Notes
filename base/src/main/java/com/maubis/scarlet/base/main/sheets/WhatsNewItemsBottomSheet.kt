@@ -13,8 +13,8 @@ import com.maubis.scarlet.base.support.ui.CircleDrawable
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
-import com.maubis.scarlet.base.utils.renderMarkdown
-import com.maubis.scarlet.base.utils.shouldShowWhatsNewSheet
+import com.maubis.scarlet.base.support.utils.renderMarkdown
+import com.maubis.scarlet.base.support.utils.shouldShowWhatsNewSheet
 
 class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
   override fun setupView(dialog: Dialog?) {

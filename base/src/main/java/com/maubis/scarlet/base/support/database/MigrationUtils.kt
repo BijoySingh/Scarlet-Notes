@@ -15,7 +15,7 @@ import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Compa
 import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
 import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
 import com.maubis.scarlet.base.support.ui.Theme
-import com.maubis.scarlet.base.utils.getLastUsedAppVersionCode
+import com.maubis.scarlet.base.support.utils.getLastUsedAppVersionCode
 
 const val KEY_MIGRATE_TRASH = "KEY_MIGRATE_TRASH"
 const val KEY_MIGRATE_THEME = "KEY_MIGRATE_THEME"

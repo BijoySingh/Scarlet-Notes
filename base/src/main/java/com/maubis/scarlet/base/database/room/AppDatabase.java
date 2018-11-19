@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.core.database.room;
+package com.maubis.scarlet.base.database.room;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
@@ -7,14 +7,14 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 
-import com.maubis.scarlet.base.core.database.room.folder.Folder;
-import com.maubis.scarlet.base.core.database.room.folder.FolderDao;
-import com.maubis.scarlet.base.core.database.room.note.Note;
-import com.maubis.scarlet.base.core.database.room.note.NoteDao;
-import com.maubis.scarlet.base.core.database.room.tag.Tag;
-import com.maubis.scarlet.base.core.database.room.tag.TagDao;
-import com.maubis.scarlet.base.core.database.room.widget.Widget;
-import com.maubis.scarlet.base.core.database.room.widget.WidgetDao;
+import com.maubis.scarlet.base.database.room.folder.Folder;
+import com.maubis.scarlet.base.database.room.folder.FolderDao;
+import com.maubis.scarlet.base.database.room.note.Note;
+import com.maubis.scarlet.base.database.room.note.NoteDao;
+import com.maubis.scarlet.base.database.room.tag.Tag;
+import com.maubis.scarlet.base.database.room.tag.TagDao;
+import com.maubis.scarlet.base.database.room.widget.Widget;
+import com.maubis.scarlet.base.database.room.widget.WidgetDao;
 
 @Database(entities = {Note.class, Tag.class, Widget.class, Folder.class}, version = 13)
 public abstract class AppDatabase extends RoomDatabase {

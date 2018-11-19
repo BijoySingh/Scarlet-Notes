@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.widget.TextView
 import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.settings.view.ColorView
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment

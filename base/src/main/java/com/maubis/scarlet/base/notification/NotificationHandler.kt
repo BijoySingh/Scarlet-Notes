@@ -13,7 +13,7 @@ import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.room.note.Note
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity

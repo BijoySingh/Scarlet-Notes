@@ -7,6 +7,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.Scarlet
+import com.bijoysingh.quicknote.Scarlet.Companion.firebase
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -18,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.support.bind
+import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 
 class ForgetMeActivity : ThemedActivity() {
@@ -56,9 +57,7 @@ class ForgetMeActivity : ThemedActivity() {
       }
 
       forgettingInProcess = true
-      Scarlet.firebaseNote?.removeValue { _, _ -> }
-      Scarlet.firebaseTag?.removeValue { _, _ -> }
-      Scarlet.firebaseFolder?.removeValue { _, _ -> }
+      firebase?.deleteEverything()
 
       FirebaseAuth.getInstance().currentUser
           ?.delete()

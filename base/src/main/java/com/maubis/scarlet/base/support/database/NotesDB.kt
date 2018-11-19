@@ -1,8 +1,8 @@
 package com.maubis.scarlet.base.support.database
 
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.core.database.NotesProvider
-import com.maubis.scarlet.base.core.database.room.note.NoteDao
+import com.maubis.scarlet.base.database.NotesProvider
+import com.maubis.scarlet.base.database.room.note.NoteDao
 
 val notesDB: NotesProvider get() = CoreConfig.instance.notesDatabase()
 

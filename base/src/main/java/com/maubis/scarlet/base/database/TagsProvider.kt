@@ -1,7 +1,7 @@
-package com.maubis.scarlet.base.core.database
+package com.maubis.scarlet.base.database
 
-import com.maubis.scarlet.base.core.database.room.tag.Tag
-import com.maubis.scarlet.base.core.database.room.tag.TagDao
+import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.database.room.tag.TagDao
 import java.util.concurrent.ConcurrentHashMap
 
 abstract class TagsProvider {

@@ -1,8 +1,8 @@
 package com.maubis.scarlet.base.support
 
-import com.maubis.scarlet.base.core.database.room.folder.Folder
-import com.maubis.scarlet.base.core.database.room.note.Note
-import com.maubis.scarlet.base.core.database.room.tag.Tag
+import com.maubis.scarlet.base.database.room.folder.Folder
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.main.HomeNavigationState
