@@ -1,8 +1,7 @@
-package com.maubis.scarlet.base.note.actions
+package com.maubis.scarlet.base.core.tag
 
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.database.room.tag.Tag
-import com.maubis.scarlet.base.core.tag.isUnsaved
 
 open class MaterialTagActor(val tag: Tag) : ITagActor {
   override fun offlineSave() {

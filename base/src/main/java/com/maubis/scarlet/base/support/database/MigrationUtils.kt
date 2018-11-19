@@ -3,6 +3,7 @@ package com.maubis.scarlet.base.support.database
 import android.content.Context
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteMeta
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.Reminder
@@ -27,7 +28,7 @@ class Migrator(val context: Context) {
 
   fun start() {
     runTask(KEY_MIGRATE_TRASH, {
-      val notes = notesDB.getByNoteState(arrayOf(NoteState.TRASH.name))
+      val notes = notesDb.getByNoteState(arrayOf(NoteState.TRASH.name))
       for (note in notes) {
         // Updates the timestamp for the note in trash
         note.mark(context, NoteState.TRASH)
@@ -39,16 +40,16 @@ class Migrator(val context: Context) {
       CoreConfig.instance.themeController().notifyChange(context)
     })
     runTask(KEY_MIGRATE_ZERO_NOTES, {
-      val note = notesDB.getByID(0)
+      val note = notesDb.getByID(0)
       if (note != null) {
-        notesDB.database().delete(note)
-        notesDB.notifyDelete(note)
+        notesDb.database().delete(note)
+        notesDb.notifyDelete(note)
         note.uid = null
         note.save(context)
       }
     })
     runTask(KEY_MIGRATE_REMINDERS, {
-      val notes = notesDB.getAll()
+      val notes = notesDb.getAll()
       notes.forEach {
         val legacyReminder = it.getReminder()
         if (legacyReminder !== null) {

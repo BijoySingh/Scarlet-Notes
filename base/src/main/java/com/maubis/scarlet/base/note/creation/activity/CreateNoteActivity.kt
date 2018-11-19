@@ -25,7 +25,7 @@ import com.maubis.scarlet.base.note.saveToSync
 import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.utils.bind
-import com.maubis.scarlet.base.support.database.foldersDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.support.recycler.SimpleItemTouchHelper
 import com.maubis.scarlet.base.support.ui.CircleDrawable
 import com.maubis.scarlet.base.support.ui.ColorUtil
@@ -87,7 +87,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     if (folderUuid === null || folderUuid.isBlank()) {
       return
     }
-    val folder = foldersDB.getByUUID(folderUuid)
+    val folder = foldersDb.getByUUID(folderUuid)
     if (folder === null) {
       return
     }

@@ -10,7 +10,7 @@ import com.maubis.scarlet.base.core.tag.TagBuilder
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.note.tag.TagOptionsItem
 import com.maubis.scarlet.base.note.toggleTag
-import com.maubis.scarlet.base.support.database.tagsDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.visibility
 
@@ -47,7 +47,7 @@ class TagChooseOptionsBottomSheet : TagOptionItemBottomSheetBase() {
   private fun getOptions(): List<TagOptionsItem> {
     val options = ArrayList<TagOptionsItem>()
     val tags = note!!.getTagUUIDs()
-    for (tag in tagsDB.getAll()) {
+    for (tag in tagsDb.getAll()) {
       options.add(TagOptionsItem(
           tag = tag,
           listener = View.OnClickListener {

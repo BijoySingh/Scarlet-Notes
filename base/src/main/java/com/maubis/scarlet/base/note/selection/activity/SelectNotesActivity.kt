@@ -10,7 +10,7 @@ import com.maubis.scarlet.base.main.HomeNavigationState
 import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.note.selection.sheet.SelectedNoteOptionsBottomSheet
 import com.maubis.scarlet.base.support.utils.bind
-import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 
 const val KEY_SELECT_EXTRA_MODE = "KEY_SELECT_EXTRA_MODE"
 const val KEY_SELECT_EXTRA_NOTE_ID = "KEY_SELECT_EXTRA_NOTE_ID"
@@ -32,7 +32,7 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     if (extras != null) {
       val noteId = getIntent().getIntExtra(KEY_SELECT_EXTRA_NOTE_ID, 0)
       if (noteId != 0) {
-        val note = notesDB.getByID(noteId)
+        val note = notesDb.getByID(noteId)
         if (note !== null) {
           orderingNoteIds.add(noteId)
           selectedNotes.put(noteId, note)
@@ -85,7 +85,7 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
 
   fun refreshSelectedNotes() {
     for (key in selectedNotes.keys.toList()) {
-      val note = notesDB.getByID(key)
+      val note = notesDb.getByID(key)
       if (note === null) {
         selectedNotes.remove(key)
         continue
@@ -119,7 +119,7 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
 
   override fun isNoteSelected(note: Note): Boolean = orderingNoteIds.contains(note.uid)
 
-  override fun getNotes(): List<Note> = notesDB.getAll()
+  override fun getNotes(): List<Note> = notesDb.getAll()
 
   fun getOrderedSelectedNotes(): List<Note> {
     val notes = ArrayList<Note>()

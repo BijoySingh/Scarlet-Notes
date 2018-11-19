@@ -8,8 +8,8 @@ import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.main.HomeNavigationState
 import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
-import com.maubis.scarlet.base.support.database.foldersDB
-import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 
 class SearchConfig(
     var text: String = "",
@@ -76,7 +76,7 @@ fun unifiedFolderSearchSynchronous(config: SearchConfig): List<Folder> {
     val folders = HashSet<Folder>()
     if (config.text.isNotBlank()) {
       folders.addAll(
-          foldersDB.getAll()
+          foldersDb.getAll()
               .filter { config.colors.isEmpty() || config.colors.contains(it.color) }
               .filter { it.title.contains(config.text, true) })
     }
@@ -85,11 +85,11 @@ fun unifiedFolderSearchSynchronous(config: SearchConfig): List<Folder> {
             .filter { it.folder.isNotBlank() }
             .map { it.folder }
             .distinct()
-            .map { foldersDB.getByUUID(it) }
+            .map { foldersDb.getByUUID(it) }
             .filterNotNull())
     return folders.toList()
   }
-  return foldersDB.getAll()
+  return foldersDb.getAll()
       .filter { config.colors.isEmpty() || config.colors.contains(it.color) }
       .filter {
         when {
@@ -101,10 +101,10 @@ fun unifiedFolderSearchSynchronous(config: SearchConfig): List<Folder> {
 
 fun getNotesForMode(config: SearchConfig): List<Note> {
   return when (config.mode) {
-    HomeNavigationState.FAVOURITE -> notesDB.getByNoteState(arrayOf(NoteState.FAVOURITE.name))
-    HomeNavigationState.ARCHIVED -> notesDB.getByNoteState(arrayOf(NoteState.ARCHIVED.name))
-    HomeNavigationState.TRASH -> notesDB.getByNoteState(arrayOf(NoteState.TRASH.name))
-    HomeNavigationState.DEFAULT -> notesDB.getByNoteState(arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name))
+    HomeNavigationState.FAVOURITE -> notesDb.getByNoteState(arrayOf(NoteState.FAVOURITE.name))
+    HomeNavigationState.ARCHIVED -> notesDb.getByNoteState(arrayOf(NoteState.ARCHIVED.name))
+    HomeNavigationState.TRASH -> notesDb.getByNoteState(arrayOf(NoteState.TRASH.name))
+    HomeNavigationState.DEFAULT -> notesDb.getByNoteState(arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name))
     else -> throw Exception("Invalid Search Mode")
   }
 }

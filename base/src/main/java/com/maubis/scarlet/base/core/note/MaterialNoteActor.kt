@@ -1,26 +1,22 @@
-package com.maubis.scarlet.base.note.actions
+package com.maubis.scarlet.base.core.note
 
 import android.app.NotificationManager
 import android.content.Context
 import android.os.AsyncTask
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
-import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.format.FormatBuilder
-import com.maubis.scarlet.base.core.note.NoteImage
-import com.maubis.scarlet.base.core.note.NoteState
-import com.maubis.scarlet.base.core.note.getNoteState
-import com.maubis.scarlet.base.core.note.isUnsaved
 import com.maubis.scarlet.base.main.activity.WidgetConfigureActivity
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
-import com.maubis.scarlet.base.service.AllNotesWidgetProvider.Companion.notifyAllChanged
+import com.maubis.scarlet.base.widget.AllNotesWidgetProvider.Companion.notifyAllChanged
 import com.maubis.scarlet.base.service.FloatingNoteService
 import java.util.*
 
@@ -42,9 +38,9 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
   }
 
   override fun offlineSave(context: Context) {
-    val id = CoreConfig.instance.notesDatabase().database().insertNote(note)
+    val id = notesDb.database().insertNote(note)
     note.uid = if (note.isUnsaved()) id.toInt() else note.uid
-    CoreConfig.instance.notesDatabase().notifyInsertNote(note)
+    notesDb.notifyInsertNote(note)
     AsyncTask.execute {
       onNoteUpdated(context)
     }
@@ -72,8 +68,8 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     if (note.isUnsaved()) {
       return
     }
-    CoreConfig.instance.notesDatabase().database().delete(note)
-    CoreConfig.instance.notesDatabase().notifyDelete(note)
+    notesDb.database().delete(note)
+    notesDb.notifyDelete(note)
     note.description = FormatBuilder().getDescription(ArrayList())
     note.uid = 0
     AsyncTask.execute {

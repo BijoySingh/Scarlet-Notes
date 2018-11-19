@@ -10,6 +10,9 @@ import com.bijoysingh.quicknote.firebase.support.initNoteReference
 import com.bijoysingh.quicknote.firebase.support.initTagReference
 import com.github.bijoysingh.starter.util.TextUtils
 import com.google.firebase.database.DatabaseReference
+import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.core.folder.IFolderContainer
 import com.maubis.scarlet.base.core.note.INoteContainer
@@ -27,9 +30,6 @@ import com.maubis.scarlet.base.note.tag.deleteWithoutSync
 import com.maubis.scarlet.base.note.tag.saveWithoutSync
 import com.maubis.scarlet.base.service.NoteBroadcast
 import com.maubis.scarlet.base.service.sendNoteBroadcast
-import com.maubis.scarlet.base.support.database.foldersDB
-import com.maubis.scarlet.base.support.database.notesDB
-import com.maubis.scarlet.base.support.database.tagsDB
 import java.lang.ref.WeakReference
 
 fun initFirebaseDatabase(context: Context, userId: String) {
@@ -129,8 +129,8 @@ class FirebaseRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteD
     }
 
     val notifiedNote = NoteBuilder().copy(note)
-    val existingNote = notesDB.existingMatch(note)
-    var isSameAsExisting = existingNote !== null && notifiedNote.isEqual(existingNote)
+    val existingNote = notesDb.existingMatch(note)
+    val isSameAsExisting = existingNote !== null && notifiedNote.isEqual(existingNote)
 
     if (existingNote === null) {
       notifiedNote.saveWithoutSync(context)
@@ -156,7 +156,7 @@ class FirebaseRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteD
       return
     }
 
-    val existingNote = notesDB.existingMatch(note)
+    val existingNote = notesDb.existingMatch(note)
     if (existingNote !== null && !existingNote.disableBackup) {
       existingNote.deleteWithoutSync(context)
       sendNoteBroadcast(context, NoteBroadcast.NOTE_DELETED, existingNote.uuid)
@@ -174,7 +174,7 @@ class FirebaseRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteD
     }
 
     val notifiedTag = TagBuilder().copy(tag)
-    val existingTag = tagsDB.getByUUID(tag.uuid)
+    val existingTag = tagsDb.getByUUID(tag.uuid)
     var isSameAsExisting = existingTag !== null
         && TextUtils.areEqualNullIsEmpty(notifiedTag.title, existingTag.title)
 
@@ -200,7 +200,7 @@ class FirebaseRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteD
       return
     }
 
-    val existingTag = tagsDB.getByUUID(tag.uuid)
+    val existingTag = tagsDb.getByUUID(tag.uuid)
     if (existingTag !== null) {
       existingTag.deleteWithoutSync()
       sendNoteBroadcast(context, NoteBroadcast.TAG_DELETED, existingTag.uuid)
@@ -218,7 +218,7 @@ class FirebaseRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteD
     }
 
     val notifiedFolder = FolderBuilder().copy(folder)
-    val existingFolder = foldersDB.getByUUID(folder.uuid)
+    val existingFolder = foldersDb.getByUUID(folder.uuid)
     var isSameAsExisting = existingFolder !== null
         && TextUtils.areEqualNullIsEmpty(notifiedFolder.title, existingFolder.title)
         && (notifiedFolder.color == existingFolder.color)
@@ -247,10 +247,10 @@ class FirebaseRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteD
       return
     }
 
-    val existingFolder = foldersDB.getByUUID(folder.uuid)
+    val existingFolder = foldersDb.getByUUID(folder.uuid)
     if (existingFolder !== null) {
       existingFolder.deleteWithoutSync()
-      notesDB.getAll().filter { it.folder == existingFolder.uuid }.forEach {
+      notesDb.getAll().filter { it.folder == existingFolder.uuid }.forEach {
         it.folder = ""
         it.save(context)
       }

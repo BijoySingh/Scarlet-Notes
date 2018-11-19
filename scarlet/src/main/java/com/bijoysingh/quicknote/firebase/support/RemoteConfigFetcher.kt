@@ -9,8 +9,8 @@ import com.android.volley.toolbox.Volley
 import com.bijoysingh.quicknote.BuildConfig
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.config.IRemoteConfigFetcher
-import com.maubis.scarlet.base.config.RemoteConfig
+import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher
+import com.maubis.scarlet.base.config.remote.RemoteConfig
 import com.maubis.scarlet.base.support.utils.Flavor
 
 const val REMOTE_CONFIG_URL = "https://material-notes-63563.firebaseapp.com/config/config.txt"

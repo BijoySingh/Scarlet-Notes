@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.service
+package com.maubis.scarlet.base.widget
 
 import android.app.PendingIntent
 import android.content.Context
@@ -20,7 +20,7 @@ import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.getLockedText
 import com.maubis.scarlet.base.note.getTitle
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
-import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.support.ui.ColorUtil
 
 
@@ -47,7 +47,7 @@ class AllNotesRemoteViewsFactory(val context: Context) : RemoteViewsService.Remo
 
   override fun onDataSetChanged() {
     val sorting = SortingOptionsBottomSheet.getSortingState()
-    notes = sort(notesDB.getByNoteState(
+    notes = sort(notesDb.getByNoteState(
         arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name, NoteState.ARCHIVED.name))
         .filter { note -> !note.locked }, sorting)
         .take(15)

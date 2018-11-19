@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.auth
+package com.maubis.scarlet.base.config.auth
 
 import android.content.Context
 

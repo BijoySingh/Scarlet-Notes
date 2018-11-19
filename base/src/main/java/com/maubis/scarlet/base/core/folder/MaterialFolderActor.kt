@@ -1,8 +1,7 @@
-package com.maubis.scarlet.base.note.actions
+package com.maubis.scarlet.base.core.folder
 
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.database.room.folder.Folder
-import com.maubis.scarlet.base.core.folder.isUnsaved
 
 open class MaterialFolderActor(val folder: Folder) : IFolderActor {
   override fun offlineSave() {

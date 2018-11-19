@@ -16,7 +16,7 @@ import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FREE
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
-import com.maubis.scarlet.base.support.database.tagsDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
 import com.maubis.scarlet.base.support.utils.renderMarkdown
@@ -144,7 +144,7 @@ fun Note.getTagString(): String {
 fun Note.getTags(): Set<Tag> {
   val tags = HashSet<Tag>()
   for (tagID in getTagUUIDs()) {
-    val tag = tagsDB.getByUUID(tagID)
+    val tag = tagsDb.getByUUID(tagID)
     if (tag != null) {
       tags.add(tag)
     }

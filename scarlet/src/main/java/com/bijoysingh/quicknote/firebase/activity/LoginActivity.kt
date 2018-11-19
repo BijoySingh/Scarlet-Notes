@@ -26,9 +26,9 @@ import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
 import com.maubis.scarlet.base.note.folder.saveToSync
 import com.maubis.scarlet.base.note.saveToSync
 import com.maubis.scarlet.base.note.tag.saveToSync
-import com.maubis.scarlet.base.support.database.foldersDB
-import com.maubis.scarlet.base.support.database.notesDB
-import com.maubis.scarlet.base.support.database.tagsDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.Flavor
@@ -175,16 +175,16 @@ class LoginActivity : ThemedActivity() {
     }
 
     initFirebaseDatabase(context, user.uid)
-    for (note in notesDB.getAll()) {
+    for (note in notesDb.getAll()) {
       if (note.disableBackup) {
         continue
       }
       note.saveToSync(context)
     }
-    for (tag in tagsDB.getAll()) {
+    for (tag in tagsDb.getAll()) {
       tag.saveToSync()
     }
-    for (folder in foldersDB.getAll()) {
+    for (folder in foldersDb.getAll()) {
       folder.saveToSync()
     }
     finish()

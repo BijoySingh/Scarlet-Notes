@@ -1,10 +1,11 @@
 package com.maubis.scarlet.base.database
 
+import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.database.room.tag.TagDao
 import java.util.concurrent.ConcurrentHashMap
 
-abstract class TagsProvider {
+class TagsProvider {
 
   val tags = ConcurrentHashMap<String, Tag>()
 
@@ -63,5 +64,7 @@ abstract class TagsProvider {
     tags.clear()
   }
 
-  abstract fun database(): TagDao
+  fun database(): TagDao {
+    return CoreConfig.instance.database().tags()
+  }
 }

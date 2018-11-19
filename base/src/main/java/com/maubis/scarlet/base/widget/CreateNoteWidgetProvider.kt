@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.service
+package com.maubis.scarlet.base.widget
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager

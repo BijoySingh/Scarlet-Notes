@@ -84,7 +84,7 @@
       </intent-filter>
     </activity>
 
-    <receiver android:name="com.maubis.scarlet.base.service.NoteWidgetProvider">
+    <receiver android:name="com.maubis.scarlet.base.widget.NoteWidgetProvider">
       <intent-filter>
         <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
       </intent-filter>
@@ -93,7 +93,7 @@
         android:name="android.appwidget.provider"
         android:resource="@xml/widget_info" />
     </receiver>
-    <receiver android:name="com.maubis.scarlet.base.service.CreateNoteWidgetProvider">
+    <receiver android:name="com.maubis.scarlet.base.widget.CreateNoteWidgetProvider">
       <intent-filter>
         <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
       </intent-filter>
@@ -114,9 +114,9 @@
     <activity android:name=".firebase.activity.ForgetMeActivity"></activity>
 
     <service
-      android:name="com.maubis.scarlet.base.service.AllNotesWidgetService"
+      android:name="com.maubis.scarlet.base.widget.AllNotesWidgetService"
       android:permission="android.permission.BIND_REMOTEVIEWS" />
-    <receiver android:name="com.maubis.scarlet.base.service.AllNotesWidgetProvider">
+    <receiver android:name="com.maubis.scarlet.base.widget.AllNotesWidgetProvider">
       <intent-filter>
         <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
       </intent-filter>

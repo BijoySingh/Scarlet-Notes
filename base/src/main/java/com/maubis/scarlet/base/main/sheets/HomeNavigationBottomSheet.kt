@@ -19,8 +19,8 @@ import com.maubis.scarlet.base.note.tag.sheet.CreateOrEditTagBottomSheet
 import com.maubis.scarlet.base.note.tag.view.HomeTagView
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.SearchConfig
-import com.maubis.scarlet.base.support.database.notesDB
-import com.maubis.scarlet.base.support.database.tagsDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.Theme
@@ -152,10 +152,10 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   fun getTagOptions(): List<TagOptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<TagOptionsItem>()
-    for (tag in tagsDB.getAll()) {
+    for (tag in tagsDb.getAll()) {
       options.add(TagOptionsItem(
           tag = tag,
-          usages = notesDB.getNoteCountByTag(tag.uuid),
+          usages = notesDb.getNoteCountByTag(tag.uuid),
           listener = View.OnClickListener {
             activity.config = SearchConfig(mode = HomeNavigationState.DEFAULT)
             activity.openTag(tag)

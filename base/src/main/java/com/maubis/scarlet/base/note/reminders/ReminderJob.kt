@@ -12,7 +12,7 @@ import com.maubis.scarlet.base.note.saveWithoutSync
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.notification.REMINDER_NOTIFICATION_CHANNEL_ID
-import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -21,7 +21,7 @@ class ReminderJob : Job() {
 
   override fun onRunJob(params: Params): Job.Result {
     val noteUUID = params.extras.getString(EXTRA_KEY_NOTE_UUID, "")
-    val note = notesDB.getByUUID(noteUUID)
+    val note = notesDb.getByUUID(noteUUID)
     if (note === null) {
       return Job.Result.SUCCESS
     }

@@ -6,14 +6,14 @@ import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.starter.util.FileManager
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.export.data.ExportableFileFormat
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
 import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.export.sheet.ExportNotesBottomSheet
 import com.maubis.scarlet.base.note.getFullText
-import com.maubis.scarlet.base.support.database.notesDB
-import com.maubis.scarlet.base.support.database.tagsDB
 import java.io.File
 import java.util.*
 
@@ -39,18 +39,18 @@ class NoteExporter() {
 
     val exportLocked = BackupSettingsOptionsBottomSheet.exportLockedNotes
 
-    val notes = notesDB
+    val notes = notesDb
         .getAll()
         .filter { exportLocked || !it.locked }
         .map { ExportableNote(it) }
-    val tags = tagsDB.getAll().map { ExportableTag(it) }
+    val tags = tagsDb.getAll().map { ExportableTag(it) }
     val fileContent = ExportableFileFormat(EXPORT_VERSION, notes, tags)
     return Gson().toJson(fileContent)
   }
 
   private fun getMarkdownExportContent(): String {
     var totalText = "$EXPORT_NOTE_SEPARATOR\n\n"
-    notesDB.getAll()
+    notesDb.getAll()
         .map { it.getFullText() }
         .forEach {
           totalText += it
@@ -66,7 +66,7 @@ class NoteExporter() {
         return@execute
       }
       val lastBackup = CoreConfig.instance.store().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
-      val lastTimestamp = notesDB.getLastTimestamp()
+      val lastTimestamp = notesDb.getLastTimestamp()
       if (lastBackup + AUTO_BACKUP_INTERVAL_MS >= lastTimestamp) {
         return@execute
       }

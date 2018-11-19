@@ -8,7 +8,7 @@ import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.generateUUID
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.note.tag.save
-import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.Serializable
@@ -60,7 +60,7 @@ class ExportableNote(
   )
 
   fun saveIfNeeded(context: Context) {
-    val existingNote = notesDB.existingMatch(this)
+    val existingNote = notesDb.existingMatch(this)
     if (existingNote !== null && existingNote.updateTimestamp > this.updateTimestamp) {
       return
     }

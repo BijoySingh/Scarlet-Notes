@@ -3,7 +3,7 @@ package com.maubis.scarlet.base.support.utils
 import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
-import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import java.util.*
 
 const val KEY_LAST_KNOWN_APP_VERSION = "KEY_LAST_KNOWN_APP_VERSION"
@@ -23,7 +23,7 @@ fun getLastUsedAppVersionCode(): Int {
   val appVersion = CoreConfig.instance.store().get(KEY_LAST_KNOWN_APP_VERSION, 0)
   return when {
     appVersion > 0 -> appVersion
-    notesDB.getCount() > 0 -> -1
+    notesDb.getCount() > 0 -> -1
     else -> 0
   }
 }

@@ -35,7 +35,7 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
 import com.maubis.scarlet.base.support.utils.bind
-import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.support.ui.*
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
 import java.util.*
@@ -88,7 +88,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       noteId = savedInstanceState.getInt(INTENT_KEY_NOTE_ID, 0)
     }
     if (noteId != 0) {
-      note = notesDB.getByID(noteId)
+      note = notesDb.getByID(noteId)
     }
     if (note === null) {
       note = NoteBuilder().emptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor())
@@ -109,7 +109,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   protected open fun onResumeAction() {
-    note = notesDB.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
+    note = notesDb.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
     if (note == null) {
       finish()
       return

@@ -8,8 +8,8 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.settings.view.ColorView
-import com.maubis.scarlet.base.support.database.notesDB
-import com.maubis.scarlet.base.support.database.tagsDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 
 class TagsAndColorPickerViewHolder(
     val activity: MainActivity,
@@ -22,10 +22,10 @@ class TagsAndColorPickerViewHolder(
 
   fun reset() {
     tags.clear()
-    tags.addAll(tagsDB.search(""))
+    tags.addAll(tagsDb.search(""))
 
     colors.clear()
-    colors.addAll(notesDB.getAll().map { it.color })
+    colors.addAll(notesDb.getAll().map { it.color })
   }
 
   fun notifyChanged() {

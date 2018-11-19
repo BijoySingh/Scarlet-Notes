@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.note.actions
+package com.maubis.scarlet.base.core.note
 
 import android.content.Context
 import android.support.v7.app.AppCompatActivity

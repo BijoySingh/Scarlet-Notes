@@ -14,7 +14,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.maubis.scarlet.base.auth.IAuthenticator
+import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
 

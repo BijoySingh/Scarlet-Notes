@@ -16,7 +16,7 @@ import com.maubis.scarlet.base.note.folder.delete
 import com.maubis.scarlet.base.note.folder.save
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.settings.view.ColorView
-import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
@@ -64,7 +64,7 @@ class CreateOrEditFolderBottomSheet : ThemedBottomSheetFragment() {
     removeBtn.visibility = if (folder.isUnsaved()) GONE else VISIBLE
     removeBtn.setOnClickListener {
       folder.delete()
-      notesDB.getAll().filter { it.folder == folder.uuid }.forEach {
+      notesDb.getAll().filter { it.folder == folder.uuid }.forEach {
         it.folder = ""
         it.save(themedContext())
       }

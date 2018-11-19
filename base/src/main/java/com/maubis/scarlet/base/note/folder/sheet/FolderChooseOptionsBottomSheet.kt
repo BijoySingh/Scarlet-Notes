@@ -10,8 +10,8 @@ import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.note.folder.FolderOptionsItem
 import com.maubis.scarlet.base.note.save
-import com.maubis.scarlet.base.support.database.foldersDB
-import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.visibility
 
@@ -57,10 +57,10 @@ class FolderChooseOptionsBottomSheet : FolderOptionItemBottomSheetBase() {
     val activity = themedContext() as ThemedActivity
     val options = ArrayList<FolderOptionsItem>()
     val selectedFolder = note!!.folder
-    for (folder in foldersDB.getAll()) {
+    for (folder in foldersDb.getAll()) {
       options.add(FolderOptionsItem(
           folder = folder,
-          usages = notesDB.getNoteCountByFolder(folder.uuid),
+          usages = notesDb.getNoteCountByFolder(folder.uuid),
           listener = {
             toggleFolder(activity, note, folder)
             reset(dialog)

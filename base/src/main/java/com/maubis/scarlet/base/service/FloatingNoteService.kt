@@ -14,12 +14,12 @@ import com.bsk.floatingbubblelib.FloatingBubbleService
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteBuilder
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
-import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 /**
@@ -58,7 +58,7 @@ class FloatingNoteService : FloatingBubbleService() {
   override fun onGetIntent(intent: Intent): Boolean {
     note = null
     if (intent.hasExtra(INTENT_KEY_NOTE_ID)) {
-      note = notesDB.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
+      note = notesDb.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
     }
     return note != null
   }

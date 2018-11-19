@@ -1,11 +1,12 @@
 package com.maubis.scarlet.base.database
 
+import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.core.note.INoteContainer
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.note.NoteDao
-import com.maubis.scarlet.base.core.note.INoteContainer
 import java.util.concurrent.ConcurrentHashMap
 
-abstract class NotesProvider {
+class NotesProvider {
 
   val notes = ConcurrentHashMap<String, Note>()
 
@@ -97,5 +98,7 @@ abstract class NotesProvider {
     notes.clear()
   }
 
-  abstract fun database(): NoteDao
+  fun database(): NoteDao {
+    return CoreConfig.instance.database().notes()
+  }
 }

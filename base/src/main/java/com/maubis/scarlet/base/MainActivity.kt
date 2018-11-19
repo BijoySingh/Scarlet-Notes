@@ -58,7 +58,7 @@ import com.maubis.scarlet.base.support.SearchConfig
 import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.database.HouseKeeper
 import com.maubis.scarlet.base.support.database.Migrator
-import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -249,7 +249,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
       override fun run(): List<NoteRecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(notesDB.getNoteByLocked(true), sorting)
+        return sort(notesDb.getNoteByLocked(true), sorting)
             .map { NoteRecyclerItem(this@MainActivity, it) }
       }
 
@@ -487,7 +487,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   override fun showHints(): Boolean {
     when {
-      notesDB.getCount() == 0 -> showHint(TUTORIAL_KEY_NEW_NOTE)
+      notesDb.getCount() == 0 -> showHint(TUTORIAL_KEY_NEW_NOTE)
       shouldShowHint(TUTORIAL_KEY_NEW_NOTE) -> showHint(TUTORIAL_KEY_NEW_NOTE)
       shouldShowHint(TUTORIAL_KEY_HOME_SETTINGS) -> showHint(TUTORIAL_KEY_HOME_SETTINGS)
       else -> return false

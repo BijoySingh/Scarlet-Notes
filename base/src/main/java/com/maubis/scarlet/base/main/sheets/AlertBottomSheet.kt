@@ -10,7 +10,7 @@ import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.delete
-import com.maubis.scarlet.base.support.database.notesDB
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
@@ -84,7 +84,7 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
         override fun getNegativeText(): Int = R.string.delete_sheet_delete_trash_no
 
         override fun getPositiveClickListener() {
-          val notes = notesDB.getByNoteState(arrayOf(NoteState.TRASH.name))
+          val notes = notesDb.getByNoteState(arrayOf(NoteState.TRASH.name))
           for (note in notes) {
             note.delete(activity)
           }

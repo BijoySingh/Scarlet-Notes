@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.config
+package com.maubis.scarlet.base.config.remote
 
 import android.content.Context
 

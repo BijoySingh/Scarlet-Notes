@@ -15,17 +15,17 @@ import android.widget.RemoteViews
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.widget.Widget
-import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.getLockedText
 import com.maubis.scarlet.base.note.getTitle
 import com.maubis.scarlet.base.note.selection.activity.INoteSelectorActivity
 import com.maubis.scarlet.base.note.selection.activity.SelectableNotesActivityBase
-import com.maubis.scarlet.base.service.NoteWidgetProvider
-import com.maubis.scarlet.base.support.database.notesDB
 import com.maubis.scarlet.base.support.ui.ColorUtil
+import com.maubis.scarlet.base.widget.NoteWidgetProvider
 
 class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActivity {
 
@@ -52,7 +52,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
   }
 
   override fun getNotes(): List<Note> {
-    return notesDB.getByNoteState(
+    return notesDb.getByNoteState(
         arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name, NoteState.ARCHIVED.name))
         .filter { note -> !note.locked }
   }
@@ -78,7 +78,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
 
   companion object {
     fun createNoteWidget(context: Context, widget: Widget) {
-      val note = notesDB.getByUUID(widget.noteUUID)
+      val note = notesDb.getByUUID(widget.noteUUID)
       val appWidgetManager = AppWidgetManager.getInstance(context)
       if (note === null || note.locked) {
         val views = RemoteViews(context.getPackageName(), R.layout.widget_invalid_note)

@@ -4,7 +4,7 @@ import android.content.Context
 import com.bijoysingh.quicknote.Scarlet.Companion.firebase
 import com.bijoysingh.quicknote.firebase.data.getFirebaseNote
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.note.actions.MaterialNoteActor
+import com.maubis.scarlet.base.core.note.MaterialNoteActor
 
 class ScarletNoteActor(note: Note) : MaterialNoteActor(note) {
 

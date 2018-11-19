@@ -1,6 +1,6 @@
-package com.maubis.scarlet.base.note.actions
+package com.maubis.scarlet.base.core.tag
 
-interface IFolderActor {
+interface ITagActor {
 
   fun offlineSave()
 
