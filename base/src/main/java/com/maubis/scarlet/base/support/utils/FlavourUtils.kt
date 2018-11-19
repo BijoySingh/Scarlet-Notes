@@ -5,3 +5,10 @@ enum class Flavor {
   LITE, // Play Store Version
   PRO, // Play Store Pro Version
 }
+
+object FlavourUtils {
+  fun hasProAppInstalled(): Boolean {
+    // TODO: Implement this properly
+    return false
+  }
+}

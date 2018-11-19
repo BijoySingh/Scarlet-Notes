@@ -140,6 +140,10 @@
   <string name="home_option_rate_and_review_subtitle">Tell us how much you liked the app</string>
   <string name="home_option_fill_survey">Fill Survey</string>
   <string name="home_option_fill_survey_subtitle">Help us improve the app by telling us what you like</string>
+  <string name="home_option_install_pro_app" translatable="false">Install Pro App</string>
+  <string name="home_option_install_pro_app_details" translatable="false">Install the Pro App to unlock features and support developer</string>
+  <string name="home_option_migrate_to_pro" translatable="false">Migrate Notes to Pro App</string>
+  <string name="home_option_migrate_to_pro_details" translatable="false">Automatically migrate notes to the Pro App</string>
 
   <string name="ui_options_note_background_color">Note Viewer Background</string>
   <string name="ui_options_note_background_color_settings_theme">Use theme color for background</string>

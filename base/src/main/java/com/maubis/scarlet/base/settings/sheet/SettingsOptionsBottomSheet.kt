@@ -10,6 +10,8 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
+import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.FlavourUtils.hasProAppInstalled
 
 class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
@@ -31,6 +33,15 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
     val loginClick = CoreConfig.instance.authenticator().openLoginActivity(activity)
     val firebaseUser = CoreConfig.instance.authenticator().userId()
+    options.add(OptionsItem(
+        title = R.string.home_option_migrate_to_pro,
+        subtitle = R.string.home_option_migrate_to_pro_details,
+        icon = R.drawable.ic_import,
+        listener = View.OnClickListener {
+          // TODO: Migrate to the pro app
+        },
+        visible = CoreConfig.instance.appFlavor() == Flavor.LITE && hasProAppInstalled()
+    ))
     options.add(OptionsItem(
         title = R.string.home_option_login_with_app,
         subtitle = R.string.home_option_login_with_app_subtitle,
@@ -72,6 +83,16 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         listener = View.OnClickListener {
           AboutSettingsOptionsBottomSheet.openSheet(activity)
         }
+    ))
+    options.add(OptionsItem(
+        title = R.string.home_option_install_pro_app,
+        subtitle = R.string.home_option_install_pro_app_details,
+        icon = R.drawable.ic_favorite_white_48dp,
+        listener = View.OnClickListener {
+          IntentUtils.openAppPlayStore(context, "com.bijoysingh.quicknote.pro")
+          dismiss()
+        },
+        visible = CoreConfig.instance.appFlavor() == Flavor.LITE && !hasProAppInstalled()
     ))
     options.add(OptionsItem(
         title = R.string.home_option_rate_and_review,
