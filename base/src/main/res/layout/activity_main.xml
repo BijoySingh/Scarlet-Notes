@@ -20,16 +20,16 @@
       android:layout_marginTop="@dimen/default_padding"
       android:visibility="gone" />
 
-    <include
-      layout="@layout/toolbar_trash_info"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
-
     <android.support.v7.widget.RecyclerView
       android:id="@+id/recycler_view"
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="1" />
+
+    <include
+      layout="@layout/toolbar_trash_info"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
 
     <include layout="@layout/toolbar_bottom" />
   </LinearLayout>

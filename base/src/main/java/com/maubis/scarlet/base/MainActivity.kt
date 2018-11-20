@@ -275,6 +275,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   private fun addInformationItem(index: Int) {
     val informationItem = when {
+      shouldShowMigrateToProAppInformationItem(this) -> getMigrateToProAppInformationItem(this)
       shouldShowSignInformationItem() -> getSignInInformationItem(this)
       shouldShowAppUpdateInformationItem() -> getAppUpdateInformationItem(this)
       shouldShowReviewInformationItem() -> getReviewInformationItem(this)

@@ -23,6 +23,7 @@ import com.maubis.scarlet.base.support.ui.ThemedActivity
 import java.io.InputStreamReader
 
 const val KEEP_PACKAGE = "com.google.android.keep"
+const val INTENT_KEY_DIRECT_NOTES_TRANSFER = "direct_notes_transfer"
 
 class OpenTextIntentOrFileActivity : ThemedActivity() {
 
@@ -40,17 +41,16 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_external_intent)
-
     context = this
-
-    setView()
-    notifyThemeChange()
     val shouldHandleIntent = handleIntent()
     if (!shouldHandleIntent) {
       finish()
       return
     }
+
+    setContentView(R.layout.activity_external_intent)
+    setView()
+    notifyThemeChange()
 
     content.setText(contentText)
     title.setText(titleText)
@@ -84,6 +84,11 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
   }
 
   fun handleIntent(): Boolean {
+    val hasDirectIntent = handleDirectSendText(intent)
+    if (hasDirectIntent) {
+      return false
+    }
+
     val hasSendIntent = handleSendText(intent)
     if (hasSendIntent) {
       val note = when (isCallerKeep()) {
@@ -109,6 +114,15 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
     titleText = sharedSubject ?: sharedTitle ?: ""
     contentText = sharedText ?: ""
     return sharedText != null
+  }
+
+  fun handleDirectSendText(intent: Intent): Boolean {
+    val sharedText = intent.getStringExtra(INTENT_KEY_DIRECT_NOTES_TRANSFER)
+    if (sharedText === null || sharedText.isBlank()) {
+      return false
+    }
+    NoteImporter().gen(this, sharedText)
+    return true
   }
 
   fun handleFileIntent(intent: Intent): Boolean {

@@ -6,9 +6,11 @@ import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.starter.util.FileManager
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.export.data.ExportableFileFormat
+import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
 import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
@@ -25,7 +27,7 @@ const val KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
 const val KEY_AUTO_BACKUP_LAST_TIMESTAMP = "KEY_AUTO_BACKUP_LAST_TIMESTAMP"
 
 const val EXPORT_NOTE_SEPARATOR = ">S>C>A>R>L>E>T>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>N>O>T>E>S>"
-const val EXPORT_VERSION = 5
+const val EXPORT_VERSION = 6
 
 const val AUTO_BACKUP_FILENAME = "auto_backup"
 const val AUTO_BACKUP_INTERVAL_MS = 1000 * 60 * 60 * 6 // 6 hours update
@@ -38,13 +40,13 @@ class NoteExporter() {
     }
 
     val exportLocked = BackupSettingsOptionsBottomSheet.exportLockedNotes
-
     val notes = notesDb
         .getAll()
         .filter { exportLocked || !it.locked }
         .map { ExportableNote(it) }
     val tags = tagsDb.getAll().map { ExportableTag(it) }
-    val fileContent = ExportableFileFormat(EXPORT_VERSION, notes, tags)
+    val folders = foldersDb.getAll().map { ExportableFolder(it) }
+    val fileContent = ExportableFileFormat(EXPORT_VERSION, notes, tags, folders)
     return Gson().toJson(fileContent)
   }
 

@@ -5,10 +5,12 @@ import android.os.Environment
 import com.github.bijoysingh.starter.async.Parallel
 import com.github.bijoysingh.starter.json.SafeJson
 import com.google.gson.Gson
+import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.tag.TagBuilder
 import com.maubis.scarlet.base.export.data.ExportableFileFormat
 import com.maubis.scarlet.base.export.data.ExportableNote
+import com.maubis.scarlet.base.note.folder.saveIfUnique
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.note.tag.saveIfUnique
 import org.json.JSONArray
@@ -36,6 +38,10 @@ class NoteImporter() {
         }
         fileFormat.notes.forEach {
           it.saveIfNeeded(context)
+        }
+        fileFormat.folders?.forEach {
+          val folder = FolderBuilder().copy(it)
+          folder.saveIfUnique()
         }
         return
       }
