@@ -2,16 +2,16 @@ package com.maubis.scarlet.base.main.sheets
 
 import android.app.Dialog
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.LocaleManager
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.core.tag.TagBuilder
 import com.maubis.scarlet.base.main.HomeNavigationState
 import com.maubis.scarlet.base.note.tag.TagOptionsItem
@@ -19,12 +19,14 @@ import com.maubis.scarlet.base.note.tag.sheet.CreateOrEditTagBottomSheet
 import com.maubis.scarlet.base.note.tag.view.HomeTagView
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.SearchConfig
-import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
-import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 
 class HomeNavigationBottomSheet : GridBottomSheetBase() {
 
@@ -101,29 +103,28 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   }
 
   fun resetOptions(dialog: Dialog) {
-    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<OptionsItem>> {
-      override fun run(): List<OptionsItem> = getOptions()
-      override fun handle(result: List<OptionsItem>) {
-        setOptions(dialog, result)
-      }
-    })
+    launch(UI) {
+      val items = async(CommonPool) { getOptions() }
+      setOptions(dialog, items.await())
+    }
   }
 
   fun resetTags(dialog: Dialog) {
-    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<TagOptionsItem>> {
-      override fun run(): List<TagOptionsItem> = getTagOptions()
-      override fun handle(result: List<TagOptionsItem>) {
-        val titleView = dialog.findViewById<TextView>(R.id.tag_options_title)
-        titleView.setTextColor(CoreConfig.instance.themeController().get(themedContext(), Theme.DARK, ThemeColorType.SECONDARY_TEXT))
+    launch(UI) {
+      val tags = async(CommonPool) { getTagOptions() }
 
-        val layout = dialog.findViewById<LinearLayout>(R.id.options_container)
-        layout.removeAllViews()
-        setTagOptions(dialog, result)
-      }
-    })
+      val titleView = dialog.findViewById<TextView>(R.id.tag_options_title)
+      titleView.setTextColor(
+          CoreConfig.instance.themeController().get(themedContext(),
+              Theme.DARK, ThemeColorType.SECONDARY_TEXT))
+
+      val layout = dialog.findViewById<LinearLayout>(R.id.options_container)
+      layout.removeAllViews()
+      setTagOptions(dialog, tags.await())
+    }
   }
 
-  fun setTagOptions(dialog: Dialog, options: List<TagOptionsItem>) {
+  private fun setTagOptions(dialog: Dialog, options: List<TagOptionsItem>) {
     val layout = dialog.findViewById<LinearLayout>(R.id.options_container);
     for (option in options.sorted()) {
       val contentView = HomeTagView(View.inflate(context, R.layout.layout_home_tag_item, null))
@@ -149,7 +150,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
     }
   }
 
-  fun getTagOptions(): List<TagOptionsItem> {
+  private fun getTagOptions(): List<TagOptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<TagOptionsItem>()
     for (tag in tagsDb.getAll()) {
@@ -170,7 +171,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
     return options
   }
 
-  fun setAddTagOption(dialog: Dialog) {
+  private fun setAddTagOption(dialog: Dialog) {
     val hintTextColor = CoreConfig.instance.themeController().get(themedContext(), Theme.DARK, ThemeColorType.HINT_TEXT)
     val newTagButton = dialog.findViewById<UITextView>(R.id.new_tag_button)
     newTagButton.setTextColor(hintTextColor)
@@ -179,7 +180,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
     newTagButton.icon.alpha = 0.6f
   }
 
-  fun onNewTagClick() {
+  private fun onNewTagClick() {
     val activity = context as MainActivity
     CreateOrEditTagBottomSheet.openSheet(activity, TagBuilder().emptyTag(), { _, _ -> resetTags(dialog) })
   }

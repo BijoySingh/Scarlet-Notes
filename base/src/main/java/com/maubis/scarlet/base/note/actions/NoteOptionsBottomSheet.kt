@@ -6,14 +6,13 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.GridLayout
 import android.widget.TextView
-import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getNoteState
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.main.sheets.AlertBottomSheet.Companion.openDeleteNotePermanentlySheet
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
@@ -28,11 +27,14 @@ import com.maubis.scarlet.base.note.tag.sheet.TagChooseOptionsBottomSheet
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
-import com.maubis.scarlet.base.support.utils.Flavor
-
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.utils.Flavor
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 import ru.noties.markwon.Markwon
 
 class NoteOptionsBottomSheet() : GridBottomSheetBase() {
@@ -57,18 +59,16 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         R.id.quick_actions_properties,
         R.id.note_properties,
         R.id.grid_layout)
+
     val gridOptionFunctions = arrayOf(
         { noteForAction: Note -> getQuickActions(noteForAction) },
         { noteForAction: Note -> getNotePropertyOptions(noteForAction) },
         { noteForAction: Note -> getOptions(noteForAction) })
-
-    for (index in 0..gridOptionFunctions.size - 1) {
-      MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<OptionsItem>> {
-        override fun run(): List<OptionsItem> = gridOptionFunctions[index](note)
-        override fun handle(result: List<OptionsItem>) {
-          setOptions(dialog.findViewById<GridLayout>(gridLayoutIds[index]), result)
-        }
-      })
+    gridOptionFunctions.forEachIndexed { index, function ->
+      launch(UI) {
+        val items = async(CommonPool) { function(note) }
+        setOptions(dialog.findViewById<GridLayout>(gridLayoutIds[index]), items.await())
+      }
     }
   }
 

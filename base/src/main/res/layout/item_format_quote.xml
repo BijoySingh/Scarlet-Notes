@@ -9,8 +9,7 @@
     android:layout_height="match_parent"
     android:layout_marginStart="@dimen/spacing_normal"
     android:layout_marginTop="@dimen/spacing_xxsmall"
-    android:layout_marginBottom="@dimen/spacing_xxsmall"
-    android:background="@color/material_grey_400" />
+    android:layout_marginBottom="@dimen/spacing_xxsmall" />
 
   <TextView
     android:id="@+id/text"
@@ -18,14 +17,12 @@
     android:autoLink="web"
     android:hint="@string/format_hint_quote"
     android:linksClickable="true"
-    android:textColor="@color/dark_hint_text"
     android:textStyle="italic" />
 
   <EditText
     android:id="@+id/edit"
     style="@style/FormatEdit"
     android:hint="@string/format_hint_quote"
-    android:textColor="@color/dark_hint_text"
     android:textStyle="italic" />
 
 </LinearLayout>

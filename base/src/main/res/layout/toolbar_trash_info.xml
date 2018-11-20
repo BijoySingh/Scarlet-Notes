@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/bottom_delete_toolbar_layout"
+  android:id="@+id/deleteToolbar"
   style="@style/BorderlessBackgroundView"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
@@ -9,7 +9,7 @@
   android:visibility="gone">
 
   <TextView
-    android:id="@+id/deletes_automatically"
+    android:id="@+id/deletesAutomatically"
     style="@style/BorderlessBackgroundView"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
     android:textSize="@dimen/font_size_small" />
 
   <ImageView
-    android:id="@+id/menu_delete_everything"
+    android:id="@+id/deleteTrashIcon"
     style="@style/BorderlessBackgroundView"
     android:layout_width="@dimen/icon_size_xlarge"
     android:layout_height="@dimen/icon_size_xlarge"

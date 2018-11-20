@@ -10,21 +10,16 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.View.GONE
-import android.widget.EditText
 import android.widget.GridLayout.VERTICAL
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
-import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.sort
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.HomeNavigationState
@@ -55,48 +50,35 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.SearchConfig
-import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.database.HouseKeeper
 import com.maubis.scarlet.base.support.database.Migrator
-import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.unifiedFolderSearchSynchronous
 import com.maubis.scarlet.base.support.unifiedSearchSynchronous
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.search_toolbar_main.*
+import kotlinx.android.synthetic.main.toolbar_bottom.*
+import kotlinx.android.synthetic.main.toolbar_trash_info.*
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 
 class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
 
-  internal lateinit var recyclerView: RecyclerView
-  internal lateinit var adapter: NoteAppAdapter
-  internal lateinit var snackbar: MainSnackbar
+  private lateinit var recyclerView: RecyclerView
+  private lateinit var adapter: NoteAppAdapter
+  private lateinit var snackbar: MainSnackbar
 
-  internal lateinit var receiver: BroadcastReceiver
-  internal lateinit var executor: SimpleThreadExecutor
-  internal lateinit var tagAndColorPicker: TagsAndColorPickerViewHolder
+  private lateinit var receiver: BroadcastReceiver
+  private lateinit var executor: SimpleThreadExecutor
+  private lateinit var tagAndColorPicker: TagsAndColorPickerViewHolder
 
   var config: SearchConfig = SearchConfig(mode = HomeNavigationState.DEFAULT)
   var isInSearchMode: Boolean = false
-
-  val searchBackButton: ImageView by bind(R.id.search_back_button)
-  val searchCloseIcon: ImageView by bind(R.id.search_close_button)
-  val deleteTrashIcon: ImageView by bind(R.id.menu_delete_everything)
-  val deletesAutomatically: TextView by bind(R.id.deletes_automatically)
-  val searchBox: EditText by bind(R.id.search_box)
-  val toolbarMenu: ImageView by bind(R.id.toolbar_icon_options)
-  val toolbarIconNewFolder: ImageView by bind(R.id.toolbar_icon_new_folder)
-  val toolbarIconNewChecklist: ImageView by bind(R.id.toolbar_icon_new_checklist)
-  val toolbarIconNewNote: ImageView by bind(R.id.toolbar_icon_new_note)
-  val searchToolbar: View by bind(R.id.search_toolbar)
-  val tagsFlexBox: FlexboxLayout by bind(R.id.tags_flexbox)
-  val deleteToolbar: View by bind(R.id.bottom_delete_toolbar_layout)
-  val bottomSnackbar: LinearLayout by bind(R.id.bottom_snackbar)
-  val bottomToolbar: LinearLayout by bind(R.id.toolbar_bottom)
-  val folderToolbar: LinearLayout by bind(R.id.folder_toolbar)
-  val folderIconClose: ImageView by bind(R.id.folder_toolbar_close)
-  val folderName: TextView by bind(R.id.folder_toolbar_name)
-  val folderIconOptions: ImageView by bind(R.id.folder_toolbar_options)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -113,9 +95,11 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     notifyThemeChange()
 
     val shown = WhatsNewItemsBottomSheet.maybeOpenSheet(this)
-    if (shown) {
-      markHintShown(TUTORIAL_KEY_NEW_NOTE)
-      markHintShown(TUTORIAL_KEY_HOME_SETTINGS)
+    launch(CommonPool) {
+      if (shown) {
+        markHintShown(TUTORIAL_KEY_NEW_NOTE)
+        markHintShown(TUTORIAL_KEY_HOME_SETTINGS)
+      }
     }
     showHints()
   }
@@ -221,42 +205,47 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
    * Start: Home Navigation Clicks
    */
   fun onHomeClick() {
-    config.resetMode(HomeNavigationState.DEFAULT)
-    unifiedSearch()
-    notifyModeChange()
+    launch(UI) {
+      config.resetMode(HomeNavigationState.DEFAULT)
+      unifiedSearch()
+      notifyModeChange()
+    }
   }
 
   fun onFavouritesClick() {
-    config.resetMode(HomeNavigationState.FAVOURITE)
-    unifiedSearch()
-    notifyModeChange()
+    launch(UI) {
+      config.resetMode(HomeNavigationState.FAVOURITE)
+      unifiedSearch()
+      notifyModeChange()
+    }
   }
 
   fun onArchivedClick() {
-    config.resetMode(HomeNavigationState.ARCHIVED)
-    unifiedSearch()
-    notifyModeChange()
+    launch(UI) {
+      config.resetMode(HomeNavigationState.ARCHIVED)
+      unifiedSearch()
+      notifyModeChange()
+    }
   }
 
   fun onTrashClick() {
-    config.resetMode(HomeNavigationState.TRASH)
-    unifiedSearch()
-    notifyModeChange()
+    launch(UI) {
+      config.resetMode(HomeNavigationState.TRASH)
+      unifiedSearch()
+      notifyModeChange()
+    }
   }
 
   fun onLockedClick() {
     config.resetMode(HomeNavigationState.LOCKED)
-    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
-      override fun run(): List<NoteRecyclerItem> {
+    launch(UI) {
+      val items = async(CommonPool) {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(notesDb.getNoteByLocked(true), sorting)
+        sort(notesDb.getNoteByLocked(true), sorting)
             .map { NoteRecyclerItem(this@MainActivity, it) }
       }
-
-      override fun handle(notes: List<NoteRecyclerItem>) {
-        handleNewItems(notes)
-      }
-    })
+      handleNewItems(items.await())
+    }
     notifyModeChange()
   }
 
@@ -355,15 +344,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   private fun unifiedSearch() {
-    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<RecyclerItem>> {
-      override fun run(): List<RecyclerItem> {
-        return unifiedSearchSynchronous()
-      }
-
-      override fun handle(notes: List<RecyclerItem>) {
-        handleNewItems(notes)
-      }
-    })
+    launch(UI) {
+      val items = async(CommonPool) { unifiedSearchSynchronous() }
+      handleNewItems(items.await())
+    }
   }
 
   fun openTag(tag: Tag) {
@@ -403,15 +387,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
     if (isInSearchMode) {
       tryOpeningTheKeyboard()
-      MultiAsyncTask.execute(object : MultiAsyncTask.Task<Unit> {
-        override fun run() {
-          tagAndColorPicker.reset()
-        }
-
-        override fun handle(result: Unit) {
-          tagAndColorPicker.notifyChanged()
-        }
-      })
+      launch(UI) {
+        async(CommonPool) { tagAndColorPicker.reset() }.await()
+        tagAndColorPicker.notifyChanged()
+      }
       searchBox.requestFocus()
     } else {
       tryClosingTheKeyboard()
@@ -459,8 +438,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     setSystemTheme()
 
     val theme = CoreConfig.instance.themeController()
-    val containerLayout = findViewById<View>(R.id.container_layout)
-    containerLayout.setBackgroundColor(getThemeColor())
+    containerLayoutMain.setBackgroundColor(getThemeColor())
 
     val toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
     deleteTrashIcon.setColorFilter(toolbarIconColor)

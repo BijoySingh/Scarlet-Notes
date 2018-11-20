@@ -36,8 +36,8 @@ data class FormatViewHolderConfig(
     val noteUUID: String)
 
 class ActionMoveIcon(val view: View) {
-  private val leftIcon : ImageView = view.findViewById(R.id.left_icon)
-  private val rightIcon : ImageView = view.findViewById(R.id.right_icon)
+  private val leftIcon: ImageView = view.findViewById(R.id.left_icon)
+  private val rightIcon: ImageView = view.findViewById(R.id.right_icon)
 
   fun setColorFilter(color: Int) {
     leftIcon.setColorFilter(color)
@@ -77,7 +77,8 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
         hintTextColor = theme.get(context, Theme.DARK, ThemeColorType.HINT_TEXT)
       }
     }
-    populate(data, FormatViewHolderConfig(
+    val
+        config = FormatViewHolderConfig(
         editable = !(extra != null
             && extra.containsKey(KEY_EDITABLE)
             && !extra.getBoolean(KEY_EDITABLE)),
@@ -102,7 +103,10 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
         iconColor = iconColor,
         hintTextColor = hintTextColor,
         accentColor = theme.get(ThemeColorType.ACCENT_TEXT),
-        noteUUID = extra?.getString(INTENT_KEY_NOTE_ID) ?: "default"))
+        noteUUID = extra?.getString(INTENT_KEY_NOTE_ID) ?: "default")
+
+    populate(data, config)
+
   }
 
   abstract fun populate(data: Format, config: FormatViewHolderConfig)

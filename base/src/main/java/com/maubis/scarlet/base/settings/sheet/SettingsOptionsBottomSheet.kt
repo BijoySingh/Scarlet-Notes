@@ -2,7 +2,6 @@ package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
 import android.view.View
-import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
@@ -12,19 +11,18 @@ import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
 import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.utils.FlavourUtils.hasProAppInstalled
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 
 class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   override fun setupViewWithDialog(dialog: Dialog) {
-    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<OptionsItem>> {
-      override fun run(): List<OptionsItem> {
-        return getOptions()
-      }
-
-      override fun handle(result: List<OptionsItem>) {
-        setOptions(dialog, result)
-      }
-    })
+    launch(UI) {
+      val options = async(CommonPool) { getOptions() }
+      setOptions(dialog, options.await())
+    }
   }
 
   private fun getOptions(): List<OptionsItem> {
