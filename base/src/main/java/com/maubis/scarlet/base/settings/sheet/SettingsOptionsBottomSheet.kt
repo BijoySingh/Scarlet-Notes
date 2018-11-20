@@ -7,9 +7,13 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
+import com.maubis.scarlet.base.main.recycler.getMigrateToProAppInformationItem
+import com.maubis.scarlet.base.main.recycler.shouldShowMigrateToProAppInformationItem
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
 import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.FlavourUtils
+import com.maubis.scarlet.base.support.utils.FlavourUtils.PRO_APP_PACKAGE_NAME
 import com.maubis.scarlet.base.support.utils.FlavourUtils.hasProAppInstalled
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
@@ -31,14 +35,18 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
     val loginClick = CoreConfig.instance.authenticator().openLoginActivity(activity)
     val firebaseUser = CoreConfig.instance.authenticator().userId()
+
+    val migrateToPro = getMigrateToProAppInformationItem(activity)
     options.add(OptionsItem(
-        title = R.string.home_option_migrate_to_pro,
-        subtitle = R.string.home_option_migrate_to_pro_details,
-        icon = R.drawable.ic_import,
+        title = migrateToPro.title,
+        subtitle = migrateToPro.source,
+        icon = migrateToPro.icon,
         listener = View.OnClickListener {
-          // TODO: Migrate to the pro app
+          migrateToPro.function()
+          dismiss()
         },
-        visible = CoreConfig.instance.appFlavor() == Flavor.LITE && hasProAppInstalled()
+        visible = CoreConfig.instance.appFlavor() == Flavor.LITE && FlavourUtils.hasProAppInstalled(activity),
+        selected = true
     ))
     options.add(OptionsItem(
         title = R.string.home_option_login_with_app,
@@ -87,10 +95,10 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         subtitle = R.string.home_option_install_pro_app_details,
         icon = R.drawable.ic_favorite_white_48dp,
         listener = View.OnClickListener {
-          IntentUtils.openAppPlayStore(context, "com.bijoysingh.quicknote.pro")
+          IntentUtils.openAppPlayStore(context, PRO_APP_PACKAGE_NAME)
           dismiss()
         },
-        visible = CoreConfig.instance.appFlavor() == Flavor.LITE && !hasProAppInstalled()
+        visible = CoreConfig.instance.appFlavor() == Flavor.LITE && !hasProAppInstalled(activity)
     ))
     options.add(OptionsItem(
         title = R.string.home_option_rate_and_review,
