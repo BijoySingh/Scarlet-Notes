@@ -5,6 +5,10 @@
   <dimen name="toolbar_size">44dp</dimen>
   <dimen name="app_name_size">22sp</dimen>
 
+  <dimen name="main_toolbar_top_padding">16dp</dimen>
+  <dimen name="main_toolbar_bottom_padding">6dp</dimen>
+  <dimen name="main_toolbar_icon_size">32dp</dimen>
+
   <dimen name="icon_size_xlarge">36dp</dimen>
   <dimen name="icon_size_large">32dp</dimen>
   <dimen name="icon_size_slarge">32dp</dimen>

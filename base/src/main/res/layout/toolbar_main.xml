@@ -5,16 +5,15 @@
   android:layout_height="wrap_content"
   android:gravity="center_vertical"
   android:orientation="horizontal"
-  android:paddingBottom="@dimen/spacing_small"
+  android:paddingBottom="@dimen/main_toolbar_bottom_padding"
   android:paddingEnd="@dimen/spacing_normal"
   android:paddingStart="@dimen/spacing_normal"
-  android:paddingTop="@dimen/spacing_xlarge">
-
+  android:paddingTop="@dimen/main_toolbar_top_padding">
 
   <ImageView
     android:id="@+id/app_icon"
-    android:layout_width="@dimen/icon_size_xlarge"
-    android:layout_height="@dimen/icon_size_xlarge"
+    android:layout_width="@dimen/main_toolbar_icon_size"
+    android:layout_height="@dimen/main_toolbar_icon_size"
     android:padding="@dimen/spacing_xsmall"
     android:src="@drawable/app_icon_round" />
 
@@ -36,8 +35,8 @@
 
   <ImageView
     android:id="@+id/toolbar_icon_search"
-    android:layout_width="@dimen/icon_size_xlarge"
-    android:layout_height="@dimen/icon_size_xlarge"
+    android:layout_width="@dimen/main_toolbar_icon_size"
+    android:layout_height="@dimen/main_toolbar_icon_size"
     android:padding="@dimen/spacing_xsmall"
     android:src="@drawable/ic_add_search" />
 
