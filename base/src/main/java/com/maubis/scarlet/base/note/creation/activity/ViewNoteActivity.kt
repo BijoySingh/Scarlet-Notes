@@ -328,7 +328,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   fun notifyNoteChange() {
-
+    notifyToolbarColor()
   }
 
   protected fun getFormatIndex(format: Format): Int = getFormatIndex(format.uid)
