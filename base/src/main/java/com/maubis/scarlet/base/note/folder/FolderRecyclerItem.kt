@@ -12,7 +12,8 @@ class FolderRecyclerItem(context: Context,
                          val folder: Folder,
                          val click: () -> Unit = {},
                          val longClick: () -> Unit = {},
-                         val selected: Boolean = false) : RecyclerItem() {
+                         val selected: Boolean = false,
+                         contents: Int = -1) : RecyclerItem() {
 
   val isLightShaded = ColorUtil.isLightColored(folder.color)
   val title = folder.title
@@ -27,7 +28,7 @@ class FolderRecyclerItem(context: Context,
     false -> ContextCompat.getColor(context, R.color.light_hint_text)
   }
 
-  val usage = notesDb.getNoteCountByFolder(folder.uuid)
+  val usage = if (contents == -1) notesDb.getNoteCountByFolder(folder.uuid) else contents
   val label = when {
     usage == 0 -> context.getString(R.string.folder_card_title)
     usage == 1 -> context.getString(R.string.folder_card_title_single_note)

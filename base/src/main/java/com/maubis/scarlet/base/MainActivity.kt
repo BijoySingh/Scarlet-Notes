@@ -11,7 +11,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.View.GONE
 import android.widget.GridLayout.VERTICAL
-import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
@@ -66,15 +65,16 @@ import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.newSingleThreadContext
 
 class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
+  private val singleThreadDispatcher = newSingleThreadContext("singleThreadDispatcher")
 
   private lateinit var recyclerView: RecyclerView
   private lateinit var adapter: NoteAppAdapter
   private lateinit var snackbar: MainSnackbar
 
   private lateinit var receiver: BroadcastReceiver
-  private lateinit var executor: SimpleThreadExecutor
   private lateinit var tagAndColorPicker: TagsAndColorPickerViewHolder
 
   var config: SearchConfig = SearchConfig(mode = HomeNavigationState.DEFAULT)
@@ -88,7 +88,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     Migrator(this).start()
 
     config.mode = HomeNavigationState.DEFAULT
-    executor = SimpleThreadExecutor(1)
 
     setupRecyclerView()
     setListeners()
@@ -290,26 +289,43 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     adapter.addItem(informationItem, index)
   }
 
-  private fun unifiedSearchSynchronous(): List<RecyclerItem> {
+  private suspend fun unifiedSearchSynchronous(): List<RecyclerItem> {
     val allItems = emptyList<RecyclerItem>().toMutableList()
     allItems.addAll(unifiedFolderSearchSynchronous(config)
         .map {
-          FolderRecyclerItem(
-              context = this@MainActivity,
-              folder = it,
-              click = {
-                config.folders.clear()
-                config.folders.add(it)
-                unifiedSearch()
-                notifyFolderChange()
-              },
-              longClick = {
-                CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> setupData() })
-              },
-              selected = config.hasFolder(it))
-        })
+          async(CommonPool) {
+            var notesCount = -1
+            if (config.hasFilter()) {
+              val folderConfig = config.copy()
+              folderConfig.folders.clear()
+              folderConfig.folders.add(it)
+              notesCount = unifiedSearchSynchronous(folderConfig).size
+              if (notesCount == 0) {
+                return@async null
+              }
+              folderConfig.folders.clear()
+            }
+            FolderRecyclerItem(
+                context = this@MainActivity,
+                folder = it,
+                click = {
+                  config.folders.clear()
+                  config.folders.add(it)
+                  unifiedSearch()
+                  notifyFolderChange()
+                },
+                longClick = {
+                  CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> setupData() })
+                },
+                selected = config.hasFolder(it),
+                contents = notesCount)
+          }
+        }
+        .map { it.await() }
+        .filterNotNull())
     allItems.addAll(unifiedSearchSynchronous(config)
-        .map { NoteRecyclerItem(this@MainActivity, it) })
+        .map { async(CommonPool) { NoteRecyclerItem(this@MainActivity, it) } }
+        .map { it.await() })
     return allItems
   }
 
@@ -400,11 +416,11 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   private fun startSearch(keyword: String) {
-    executor.executeNow {
+    launch(singleThreadDispatcher) {
       config.text = keyword
-      val items = unifiedSearchSynchronous()
-      runOnUiThread {
-        handleNewItems(items)
+      val items = async(CommonPool) { unifiedSearchSynchronous() }
+      launch(UI) {
+        handleNewItems(items.await())
       }
     }
   }

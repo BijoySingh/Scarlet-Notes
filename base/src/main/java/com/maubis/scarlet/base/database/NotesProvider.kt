@@ -2,6 +2,7 @@ package com.maubis.scarlet.base.database
 
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.note.INoteContainer
+import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.note.NoteDao
 import java.util.concurrent.ConcurrentHashMap
@@ -53,6 +54,11 @@ class NotesProvider {
   fun getNoteCountByFolder(uuid: String): Int {
     maybeLoadFromDB()
     return notes.values.count { it.folder == uuid }
+  }
+
+  fun getNotesByFolder(uuid: String): List<Note> {
+    maybeLoadFromDB()
+    return notes.values.filter { it.folder == uuid }
   }
 
   fun getByID(uid: Int): Note? {

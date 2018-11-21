@@ -1,15 +1,15 @@
 package com.maubis.scarlet.base.support
 
+import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.core.note.NoteState
+import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
-import com.maubis.scarlet.base.core.note.NoteState
-import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.main.HomeNavigationState
 import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
-import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
-import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 
 class SearchConfig(
     var text: String = "",
@@ -40,6 +40,15 @@ class SearchConfig(
   fun resetMode(state: HomeNavigationState): SearchConfig {
     mode = state
     return this
+  }
+
+  fun copy(): SearchConfig {
+    return SearchConfig(
+        text,
+        mode,
+        colors.filter { true }.toMutableList(),
+        tags.filter { true }.toMutableList(),
+        folders.filter { true }.toMutableList())
   }
 }
 
@@ -90,7 +99,11 @@ fun unifiedFolderSearchSynchronous(config: SearchConfig): List<Folder> {
     return folders.toList()
   }
   return foldersDb.getAll()
-      .filter { config.colors.isEmpty() || config.colors.contains(it.color) }
+      .filter {
+        config.colors.isEmpty()
+            || config.colors.contains(it.color)
+            || notesDb.getNotesByFolder(it.uuid).filter { config.colors.contains(it.color) }.isNotEmpty()
+      }
       .filter {
         when {
           config.text.isBlank() -> true
