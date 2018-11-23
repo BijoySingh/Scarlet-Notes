@@ -10,9 +10,6 @@ import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.database.room.note.Note
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
 import java.io.File
 
 interface ImageLoadCallback {
@@ -55,25 +52,20 @@ class NoteImage(val context: Context) {
   }
 
   fun loadFileToImageView(image: ImageView, file: File, callback: ImageLoadCallback? = null) {
-    launch(CommonPool) {
-      Picasso.with(context).load(file).into(image, object : Callback {
-        override fun onSuccess() {
-          launch(UI) {
-            // Ignore successful call
-            image.visibility = View.VISIBLE
-            callback?.onSuccess()
-          }
-        }
+    Picasso.with(context).load(file).into(image, object : Callback {
+      override fun onSuccess() {
+        // Ignore successful call
+        image.visibility = View.VISIBLE
+        callback?.onSuccess()
 
-        override fun onError() {
-          deleteIfExist(file)
-          launch(UI) {
-            image.visibility = View.GONE
-            callback?.onError()
-          }
-        }
-      })
-    }
+      }
+
+      override fun onError() {
+        deleteIfExist(file)
+        image.visibility = View.GONE
+        callback?.onError()
+      }
+    })
   }
 
   companion object {

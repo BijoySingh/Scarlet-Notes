@@ -6,6 +6,7 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.github.bijoysingh.starter.util.ToastHelper
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.format.Format
@@ -50,10 +51,18 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
     actionCamera.setColorFilter(iconColor)
     actionGallery.setColorFilter(iconColor)
     actionCamera.setOnClickListener {
-      EasyImage.openCamera(context as AppCompatActivity, data.uid)
+      try {
+        EasyImage.openCamera(context as AppCompatActivity, data.uid)
+      } catch (e: Exception) {
+        ToastHelper.show(context, "No camera app installed")
+      }
     }
     actionGallery.setOnClickListener {
-      EasyImage.openGallery(context as AppCompatActivity, data.uid)
+      try {
+        EasyImage.openGallery(context as AppCompatActivity, data.uid)
+      } catch (e: Exception) {
+        ToastHelper.show(context, "No photo picker app installed")
+      }
     }
     actionMove.setColorFilter(config.iconColor)
     actionMove.view.setOnClickListener {
