@@ -140,22 +140,22 @@
   <string name="home_option_rate_and_review_subtitle">Tell us how much you liked the app</string>
   <string name="home_option_fill_survey">Fill Survey</string>
   <string name="home_option_fill_survey_subtitle">Help us improve the app by telling us what you like</string>
-  <string name="home_option_install_pro_app" translatable="false">Install Pro App</string>
-  <string name="home_option_install_pro_app_details" translatable="false">Install the Pro App to unlock features and support developer</string>
-  <string name="home_option_migrate_to_pro" translatable="false">Migrate Notes to Scarlet Pro</string>
-  <string name="home_option_migrate_to_pro_details" translatable="false">Migrate all your notes to the pro app</string>
-  <string name="home_option_delete_notes_and_more" translatable="false">Delete Notes and More</string>
-  <string name="home_option_delete_notes_and_more_details" translatable="false">Delete notes, tags and other data in the app</string>
-  <string name="home_option_delete_all_notes" translatable="false">Delete All Notes</string>
-  <string name="home_option_delete_all_notes_details" translatable="false">Delete all the notes in the app</string>
-  <string name="home_option_delete_all_folders" translatable="false">Delete All Folders</string>
-  <string name="home_option_delete_all_folders_details" translatable="false">Delete all the folders in the app</string>
-  <string name="home_option_delete_all_tags" translatable="false">Delete All Tags</string>
-  <string name="home_option_delete_all_tags_details" translatable="false">Delete all the tags in the app</string>
-  <string name="home_option_delete_everything" translatable="false">Delete Everything</string>
-  <string name="home_option_delete_everything_details" translatable="false">Delete notes, tags and folders in the app</string>
+  <string name="home_option_install_pro_app">Install Pro App</string>
+  <string name="home_option_install_pro_app_details">Install the Pro App to unlock features and support developer</string>
+  <string name="home_option_migrate_to_pro">Migrate Notes to Scarlet Pro</string>
+  <string name="home_option_migrate_to_pro_details">Migrate all your notes to the pro app</string>
+  <string name="home_option_delete_notes_and_more">Delete Notes and More</string>
+  <string name="home_option_delete_notes_and_more_details">Delete notes, tags and other data in the app</string>
+  <string name="home_option_delete_all_notes">Delete All Notes</string>
+  <string name="home_option_delete_all_notes_details">Delete all the notes in the app</string>
+  <string name="home_option_delete_all_folders">Delete All Folders</string>
+  <string name="home_option_delete_all_folders_details">Delete all the folders in the app</string>
+  <string name="home_option_delete_all_tags">Delete All Tags</string>
+  <string name="home_option_delete_all_tags_details">Delete all the tags in the app</string>
+  <string name="home_option_delete_everything">Delete Everything</string>
+  <string name="home_option_delete_everything_details">Delete notes, tags and folders in the app</string>
 
-  <string name="ui_options_note_background_color" translatable="false">Note Viewer Background</string>
+  <string name="ui_options_note_background_color">Note Viewer Background</string>
   <string name="ui_options_note_background_color_settings_theme" translatable="false">Use theme color for background</string>
   <string name="ui_options_note_background_color_settings_note" translatable="false">Use note color for background</string>
 
@@ -312,9 +312,9 @@
   <!-- End Delete Notes -->
 
   <!-- Start Information -->
-  <string name="information_card_title" translatable="false">Information</string>
-  <string name="information_new_app_update" translatable="false">Tap to install the latest app version</string>
-  <string name="information_install_pro" translatable="false">Tap to upgrade to Scarlet Pro</string>
+  <string name="information_card_title">Information</string>
+  <string name="information_new_app_update">Tap to install the latest app version</string>
+  <string name="information_install_pro">Tap to upgrade to Scarlet Pro</string>
   <!-- End Information -->
 
   <!-- Start: Firebase Login Strings -->
@@ -354,34 +354,34 @@
   <!-- End Welcome Page -->
 
   <!-- Start Theme Color -->
-  <string name="home_option_theme_color" translatable="false">App Theme</string>
-  <string name="home_option_theme_color_subtitle" translatable="false">Select the background color for the theme</string>
-  <string name="theme_page_title" translatable="false">Select App Theme</string>
+  <string name="home_option_theme_color">App Theme</string>
+  <string name="home_option_theme_color_subtitle">Select the background color for the theme</string>
+  <string name="theme_page_title">Select App Theme</string>
   <!-- End Theme Color-->
 
-  <string name="click_to_add_tags" translatable="false">Click to add or change tags</string>
+  <string name="click_to_add_tags">Click to add or change tags</string>
 
-  <string name="show_more_actions" translatable="false">Show More Actions</string>
-  <string name="select_notes" translatable="false">Select Notes</string>
-  <string name="select_notes_details" translatable="false">Select and perform actions on multiple notes at once</string>
+  <string name="show_more_actions">Show More Actions</string>
+  <string name="select_notes">Select Notes</string>
+  <string name="select_notes_details">Select and perform actions on multiple notes at once</string>
 
-  <string name="recent_to_trash_message" translatable="false">The note was moved to trash</string>
-  <string name="recent_to_delete_message" translatable="false">The note was deleted</string>
-  <string name="recent_to_trash_undo" translatable="false">Undo</string>
+  <string name="recent_to_trash_message">The note was moved to trash</string>
+  <string name="recent_to_delete_message">The note was deleted</string>
+  <string name="recent_to_trash_undo">Undo</string>
 
-  <string name="backup_note_disable" translatable="false">Disable Backup</string>
-  <string name="backup_note_enable" translatable="false">Enable Backup</string>
+  <string name="backup_note_disable">Disable Backup</string>
+  <string name="backup_note_enable">Enable Backup</string>
 
-  <string name="folder_card_title" translatable="false">Empty Notebook</string>
-  <string name="folder_card_title_single_note" translatable="false">1 Note</string>
-  <string name="folder_card_title_notes" translatable="false">%d Notes</string>
-  <string name="folder_sheet_add_note" translatable="false">Create New Notebook</string>
-  <string name="folder_sheet_edit_note" translatable="false">Edit Notebook</string>
-  <string name="folder_sheet_add_note_detail" translatable="false">Add Notebook</string>
+  <string name="folder_card_title">Empty Notebook</string>
+  <string name="folder_card_title_single_note">1 Note</string>
+  <string name="folder_card_title_notes">%d Notes</string>
+  <string name="folder_sheet_add_note">Create New Notebook</string>
+  <string name="folder_sheet_edit_note">Edit Notebook</string>
+  <string name="folder_sheet_add_note_detail">Add Notebook</string>
 
-  <string name="folder_option_add_to_notebook" translatable="false">Add to Notebook</string>
-  <string name="folder_option_change_notebook" translatable="false">Modify Notebook</string>
+  <string name="folder_option_add_to_notebook">Add to Notebook</string>
+  <string name="folder_option_change_notebook">Modify Notebook</string>
 
-  <string name="recent_notes" translatable="false">Recent Notes</string>
+  <string name="recent_notes">Recent Notes</string>
 
 </resources>

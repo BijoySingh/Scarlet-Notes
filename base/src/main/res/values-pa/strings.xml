@@ -275,8 +275,45 @@
   <string name="welcome_page_transfer_message">ਮੈਟੀਰੀਅਲ ਨੋਟਸ ਹੁਣ ਸਵਾਨੇ ਹਨ!</string>
   <string name="welcome_page_get_started">ਸ਼ੁਰੂਆਤ ਕਰੋ</string>
 
-
-
-
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">ਐਪ ਥੀਮ</string>
+  <string name="home_option_theme_color_subtitle">ਥੀਮ ਲਈ ਬੈਕਗਰਾਊਂਡ ਰੰਗ ਚੁਣੋ</string>
+  <string name="theme_page_title">ਐਪ ਥੀਮ ਚੁਣੋ</string>
+  <string name="click_to_add_tags">ਟੈਗਸ ਨੂੰ ਜੋੜਨ ਜਾਂ ਬਦਲਣ ਲਈ ਕਲਿਕ ਕਰੋ</string>
+  <string name="show_more_actions">ਹੋਰ ਕਾਰਵਾਈਆਂ ਦਿਖਾਓ</string>
+  <string name="select_notes">ਨੋਟਸ ਚੁਣੋ</string>
+  <string name="select_notes_details">ਇੱਕ ਵਾਰ ਵਿੱਚ ਕਈ ਨੋਟਿਸਾਂ ਉੱਤੇ ਕਾਰਵਾਈ ਚੁਣੋ ਅਤੇ ਕਾਰਵਾਈ ਕਰੋ</string>
+  <string name="recent_to_trash_message">ਨੋਟ ਨੂੰ ਰੱਦੀ \'ਚ ਭੇਜਿਆ ਗਿਆ ਸੀ</string>
+  <string name="recent_to_delete_message">ਨੋਟ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਸੀ</string>
+  <string name="recent_to_trash_undo">ਵਾਪਿਸ</string>
+  <string name="backup_note_disable">ਬੈਕਅਪ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="backup_note_enable">ਬੈਕਅਪ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="folder_card_title">ਖਾਲੀ ਨੋਟਬੁੱਕ</string>
+  <string name="folder_card_title_single_note">1 ਨੋਟ</string>
+  <string name="folder_card_title_notes">%d ਨੋਟਸ</string>
+  <string name="folder_sheet_add_note">ਨਵੀਂ ਨੋਟਬੁੱਕ ਬਣਾਓ</string>
+  <string name="folder_sheet_edit_note">ਨੋਟਬੁੱਕ ਸੰਪਾਦਿਤ ਕਰੋ</string>
+  <string name="folder_sheet_add_note_detail">ਨੋਟਬੁੱਕ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="folder_option_add_to_notebook">ਨੋਟਬੁੱਕ ਵਿੱਚ ਜੋੜੋ</string>
+  <string name="folder_option_change_notebook">ਨੋਟਬੁੱਕ ਸੰਸ਼ੋਧਿਤ ਕਰੋ</string>
+  <string name="recent_notes">ਤਾਜ਼ਾ ਨੋਟਸ</string>
+  <string name="information_card_title">ਜਾਣਕਾਰੀ</string>
+  <string name="information_new_app_update">ਨਵੀਨਤਮ ਐਪ ਸੰਸਕਰਣ ਨੂੰ ਸਥਾਪਿਤ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="information_install_pro">ਸਕਾਰਲੇਟ ਪ੍ਰੋ ਤੇ ਅਪਗ੍ਰੇਡ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <string name="home_option_install_pro_app">ਪ੍ਰੋ ਐੱਸ ਇੰਸਟਾਲ ਕਰੋ</string>
+  <string name="home_option_install_pro_app_details">ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਅਤੇ ਸਹਾਇਤਾ ਡਿਵੈਲਪਰ ਨੂੰ ਅਨਲੌਕ ਕਰਨ ਲਈ ਪ੍ਰੋ ਐਪ ਨੂੰ ਸਥਾਪਿਤ ਕਰੋ</string>
+  <string name="home_option_migrate_to_pro">ਸਕਾਰਲੇਟ ਪ੍ਰੋ ਨੂੰ ਨੋਟਸ ਮਾਈਗਰੇਟ ਕਰੋ</string>
+  <string name="home_option_migrate_to_pro_details">ਆਪਣੇ ਸਾਰੇ ਨੋਟਾਂ ਨੂੰ ਪ੍ਰੋ ਏਪ ਤੇ ਮਾਈਗਰੇਟ ਕਰੋ</string>
+  <string name="home_option_delete_notes_and_more">ਨੋਟਿਸ ਮਿਟਾਓ ਅਤੇ ਹੋਰ</string>
+  <string name="home_option_delete_notes_and_more_details">ਐਪ ਵਿੱਚ ਨੋਟਸ, ਟੈਗਾਂ ਅਤੇ ਹੋਰ ਡਾਟਾ ਮਿਟਾਓ</string>
+  <string name="home_option_delete_all_notes">ਸਭ ਨੋਟਿਸ ਮਿਟਾਓ</string>
+  <string name="home_option_delete_all_notes_details">ਐਪ ਵਿੱਚ ਸਾਰੇ ਨੋਟਸ ਮਿਟਾਓ</string>
+  <string name="home_option_delete_all_folders">ਸਭ ਫੋਲਡਰ ਮਿਟਾਓ</string>
+  <string name="home_option_delete_all_folders_details">ਐਪ ਵਿਚ ਸਾਰੇ ਫੋਲਡਰ ਮਿਟਾਓ</string>
+  <string name="home_option_delete_all_tags">ਸਭ ਟੈਗ ਹਟਾਓ</string>
+  <string name="home_option_delete_all_tags_details">ਐਪ ਵਿੱਚ ਸਾਰੇ ਟੈਗਸ ਮਿਟਾਓ</string>
+  <string name="home_option_delete_everything">ਹਰ ਚੀਜ਼ ਮਿਟਾਓ</string>
+  <string name="home_option_delete_everything_details">ਐਪ ਵਿੱਚ ਨੋਟਸ, ਟੈਗਸ ਅਤੇ ਫੋਲਡਰ ਮਿਟਾਓ</string>
+  <string name="ui_options_note_background_color">ਨੋਟ ਵਿਊਅਰ ਬੈਕਗਰਾਊਂਡ</string>
 
 </resources>

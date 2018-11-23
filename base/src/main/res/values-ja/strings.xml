@@ -253,4 +253,45 @@
   <string name="view_distraction_free">気を散らさない</string>
   <string name="format_label_separator">セパレータ</string>
 
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">アプリのテーマ</string>
+  <string name="home_option_theme_color_subtitle">テーマの背景色を選択する</string>
+  <string name="theme_page_title">アプリケーションテーマを選択</string>
+  <string name="click_to_add_tags">クリックしてタグを追加または変更する</string>
+  <string name="show_more_actions">その他のアクションを表示</string>
+  <string name="select_notes">ノートを選択</string>
+  <string name="select_notes_details">一度に複数のノートでアクションを選択して実行する</string>
+  <string name="recent_to_trash_message">メモはゴミ箱に移動されました</string>
+  <string name="recent_to_delete_message">メモが削除されました</string>
+  <string name="recent_to_trash_undo">元に戻す</string>
+  <string name="backup_note_disable">バックアップを無効にする</string>
+  <string name="backup_note_enable">バックアップを有効にする</string>
+  <string name="folder_card_title">空のノート</string>
+  <string name="folder_card_title_single_note">1ノート</string>
+  <string name="folder_card_title_notes">%dノート</string>
+  <string name="folder_sheet_add_note">新しいノートブックを作成する</string>
+  <string name="folder_sheet_edit_note">ノートブックを編集する</string>
+  <string name="folder_sheet_add_note_detail">ノートブックを追加</string>
+  <string name="folder_option_add_to_notebook">ノートブックに追加</string>
+  <string name="folder_option_change_notebook">ノートブックを修正する</string>
+  <string name="recent_notes">最近のメモ</string>
+  <string name="information_card_title">情報</string>
+  <string name="information_new_app_update">タップして最新のアプリバージョンをインストールする</string>
+  <string name="information_install_pro">TapをScarlet Proにアップグレードする</string>
+  <string name="home_option_install_pro_app">プロアプリのインストール</string>
+  <string name="home_option_install_pro_app_details">Pro Appをインストールして機能をアンロックし、開発者をサポートする</string>
+  <string name="home_option_migrate_to_pro">NotesをScarlet Proに移行する</string>
+  <string name="home_option_migrate_to_pro_details">すべてのノートをプロアプリに移行する</string>
+  <string name="home_option_delete_notes_and_more">メモの削除など</string>
+  <string name="home_option_delete_notes_and_more_details">アプリ内のメモ、タグ、その他のデータを削除する</string>
+  <string name="home_option_delete_all_notes">すべてのメモを削除</string>
+  <string name="home_option_delete_all_notes_details">アプリ内のすべてのメモを削除する</string>
+  <string name="home_option_delete_all_folders">すべてのフォルダを削除</string>
+  <string name="home_option_delete_all_folders_details">アプリ内のすべてのフォルダを削除する</string>
+  <string name="home_option_delete_all_tags">すべてのタグを削除</string>
+  <string name="home_option_delete_all_tags_details">アプリ内のすべてのタグを削除する</string>
+  <string name="home_option_delete_everything">すべて削除</string>
+  <string name="home_option_delete_everything_details">アプリ内のメモ、タグ、フォルダを削除する</string>
+  <string name="ui_options_note_background_color">ビューアの背景</string>
+
 </resources>

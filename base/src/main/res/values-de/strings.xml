@@ -273,5 +273,45 @@
   <string name="view_distraction_free">Ablenkung frei</string>
   <string name="format_label_separator">Separator</string>
 
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">App-Thema</string>
+  <string name="home_option_theme_color_subtitle">Wählen Sie die Hintergrundfarbe für das Thema</string>
+  <string name="theme_page_title">Wählen Sie App Theme</string>
+  <string name="click_to_add_tags">Klicken Sie hier, um Tags hinzuzufügen oder zu ändern</string>
+  <string name="show_more_actions">Mehr Aktionen anzeigen</string>
+  <string name="select_notes">Wählen Sie Notizen aus</string>
+  <string name="select_notes_details">Wählen Sie mehrere Notizen gleichzeitig aus und führen Sie sie aus</string>
+  <string name="recent_to_trash_message">Die Notiz wurde in den Papierkorb verschoben</string>
+  <string name="recent_to_delete_message">Die Notiz wurde gelöscht</string>
+  <string name="recent_to_trash_undo">Rückgängig machen</string>
+  <string name="backup_note_disable">Sicherung deaktivieren</string>
+  <string name="backup_note_enable">Sicherung aktivieren</string>
+  <string name="folder_card_title">Leeres Notizbuch</string>
+  <string name="folder_card_title_single_note">1 Hinweis</string>
+  <string name="folder_card_title_notes">%d Hinweise</string>
+  <string name="folder_sheet_add_note">Neues Notizbuch erstellen</string>
+  <string name="folder_sheet_edit_note">Notizbuch bearbeiten</string>
+  <string name="folder_sheet_add_note_detail">Notizbuch hinzufügen</string>
+  <string name="folder_option_add_to_notebook">Zum Notizbuch hinzufügen</string>
+  <string name="folder_option_change_notebook">Notizbuch ändern</string>
+  <string name="recent_notes">Letzte Notizen</string>
+  <string name="information_card_title">Information</string>
+  <string name="information_new_app_update">Tippen Sie hier, um die neueste App-Version zu installieren</string>
+  <string name="information_install_pro">Tippen Sie hier, um auf Scarlet Pro zu aktualisieren</string>
+  <string name="home_option_install_pro_app">Installieren Sie die Pro App</string>
+  <string name="home_option_install_pro_app_details">Installieren Sie die Pro App, um Funktionen freizuschalten und Entwickler zu unterstützen</string>
+  <string name="home_option_migrate_to_pro">Migrieren Sie Notes zu Scarlet Pro</string>
+  <string name="home_option_migrate_to_pro_details">Migrieren Sie alle Ihre Notizen in die Pro-App</string>
+  <string name="home_option_delete_notes_and_more">Notizen und mehr löschen</string>
+  <string name="home_option_delete_notes_and_more_details">Löschen Sie Notizen, Tags und andere Daten in der App</string>
+  <string name="home_option_delete_all_notes">Alle Notizen löschen</string>
+  <string name="home_option_delete_all_notes_details">Löschen Sie alle Notizen in der App</string>
+  <string name="home_option_delete_all_folders">Alle Ordner löschen</string>
+  <string name="home_option_delete_all_folders_details">Löschen Sie alle Ordner in der App</string>
+  <string name="home_option_delete_all_tags">Alle Tags löschen</string>
+  <string name="home_option_delete_all_tags_details">Löschen Sie alle Tags in der App</string>
+  <string name="home_option_delete_everything">Alles löschen</string>
+  <string name="home_option_delete_everything_details">Löschen Sie Notizen, Tags und Ordner in der App</string>
+  <string name="ui_options_note_background_color">Hinweis Viewer-Hintergrund</string>
 
 </resources>

@@ -2,6 +2,6 @@
 <resources>
 
   <string name="app_name">Scarlet FDroid</string>
-  <string name="file_provider_name">com.maubis.scarlet.base.export.support.GenericFileProvider</string>
+  <string name="file_provider_name" translatable="false">com.maubis.scarlet.base.export.support.GenericFileProvider</string>
 
 </resources>

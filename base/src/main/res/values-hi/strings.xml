@@ -273,4 +273,45 @@
   <string name="view_distraction_free">व्याकुलता मुक्त</string>
   <string name="format_label_separator">सेपरेटर</string>
 
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">ऐप थीम</string>
+  <string name="home_option_theme_color_subtitle">विषय के लिए पृष्ठभूमि रंग का चयन करें</string>
+  <string name="theme_page_title">ऐप थीम का चयन करें</string>
+  <string name="click_to_add_tags">टैग जोड़ने या बदलने के लिए क्लिक करें</string>
+  <string name="show_more_actions">अधिक क्रियाएं दिखाएं</string>
+  <string name="select_notes">नोट्स का चयन करें</string>
+  <string name="select_notes_details">एक साथ कई नोट्स पर क्रियाएं चुनें और निष्पादित करें</string>
+  <string name="recent_to_trash_message">नोट ट्रैश में ले जाया गया था</string>
+  <string name="recent_to_delete_message">नोट हटा दिया गया था</string>
+  <string name="recent_to_trash_undo">पूर्ववत करें</string>
+  <string name="backup_note_disable">बैकअप अक्षम करें</string>
+  <string name="backup_note_enable">बैकअप सक्षम करें</string>
+  <string name="folder_card_title">खाली नोटबुक</string>
+  <string name="folder_card_title_single_note">1 नोट</string>
+  <string name="folder_card_title_notes">%d नोट्स</string>
+  <string name="folder_sheet_add_note">नई नोटबुक बनाएं</string>
+  <string name="folder_sheet_edit_note">नोटबुक संपादित करें</string>
+  <string name="folder_sheet_add_note_detail">नोटबुक जोड़ें</string>
+  <string name="folder_option_add_to_notebook">नोटबुक में जोड़ें</string>
+  <string name="folder_option_change_notebook">नोटबुक संशोधित करें</string>
+  <string name="recent_notes">हाल के नोट्स</string>
+  <string name="information_card_title">जानकारी</string>
+  <string name="information_new_app_update">नवीनतम ऐप संस्करण स्थापित करने के लिए टैप करें</string>
+  <string name="information_install_pro">स्कारलेट प्रो में अपग्रेड करने के लिए टैप करें</string>
+  <string name="home_option_install_pro_app">प्रो ऐप इंस्टॉल करें</string>
+  <string name="home_option_install_pro_app_details">सुविधाओं को अनलॉक करने और डेवलपर का समर्थन करने के लिए प्रो ऐप इंस्टॉल करें</string>
+  <string name="home_option_migrate_to_pro">स्कारलेट प्रो को नोट्स माइग्रेट करें</string>
+  <string name="home_option_migrate_to_pro_details">अपने सभी नोट्स प्रो ऐप पर माइग्रेट करें</string>
+  <string name="home_option_delete_notes_and_more">नोट्स और अधिक हटाएं</string>
+  <string name="home_option_delete_notes_and_more_details">ऐप में नोट्स, टैग और अन्य डेटा हटाएं</string>
+  <string name="home_option_delete_all_notes">सभी नोट्स हटाएं</string>
+  <string name="home_option_delete_all_notes_details">ऐप में सभी नोट्स हटाएं</string>
+  <string name="home_option_delete_all_folders">सभी फ़ोल्डर्स हटाएं</string>
+  <string name="home_option_delete_all_folders_details">ऐप में सभी फ़ोल्डर्स हटाएं</string>
+  <string name="home_option_delete_all_tags">सभी टैग हटाएं</string>
+  <string name="home_option_delete_all_tags_details">ऐप में सभी टैग हटाएं</string>
+  <string name="home_option_delete_everything">सब कुछ हटाएं</string>
+  <string name="home_option_delete_everything_details">ऐप में नोट्स, टैग और फ़ोल्डर्स हटाएं</string>
+  <string name="ui_options_note_background_color">नोट दर्शक पृष्ठभूमि</string>
+
 </resources>

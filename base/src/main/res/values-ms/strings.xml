@@ -273,4 +273,45 @@
   <string name="view_distraction_free">Penglibatan Percuma</string>
   <string name="format_label_separator">Pemisah</string>
 
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">Tema App</string>
+  <string name="home_option_theme_color_subtitle">Pilih warna latar belakang untuk tema</string>
+  <string name="theme_page_title">Pilih Tema App</string>
+  <string name="click_to_add_tags">Klik untuk menambah atau tukar tag</string>
+  <string name="show_more_actions">Tunjukkan Lagi Tindakan</string>
+  <string name="select_notes">Pilih Nota</string>
+  <string name="select_notes_details">Pilih dan lakukan tindakan pada beberapa nota serentak</string>
+  <string name="recent_to_trash_message">Nota itu dipindahkan ke sampah</string>
+  <string name="recent_to_delete_message">Nota telah dipadamkan</string>
+  <string name="recent_to_trash_undo">Undo</string>
+  <string name="backup_note_disable">Lumpuhkan Sandaran</string>
+  <string name="backup_note_enable">Dayakan Backup</string>
+  <string name="folder_card_title">Buku Nota Kosong</string>
+  <string name="folder_card_title_single_note">1 Nota</string>
+  <string name="folder_card_title_notes">%d Nota</string>
+  <string name="folder_sheet_add_note">Buat Notebook Baru</string>
+  <string name="folder_sheet_edit_note">Edit Notebook</string>
+  <string name="folder_sheet_add_note_detail">Tambah Notebook</string>
+  <string name="folder_option_add_to_notebook">Tambah ke Notebook</string>
+  <string name="folder_option_change_notebook">Ubah Suai Notebook</string>
+  <string name="recent_notes">Nota Terkini</string>
+  <string name="information_card_title">Maklumat</string>
+  <string name="information_new_app_update">Ketik untuk memasang versi aplikasi terkini</string>
+  <string name="information_install_pro">Ketik untuk naik taraf ke Scarlet Pro</string>
+  <string name="home_option_install_pro_app">Pasang Pro App</string>
+  <string name="home_option_install_pro_app_details">Pasang Pro App untuk membuka kunci ciri dan pemaju sokongan</string>
+  <string name="home_option_migrate_to_pro">Pindahkan Nota kepada Scarlet Pro</string>
+  <string name="home_option_migrate_to_pro_details">Alih semua nota anda ke aplikasi pro</string>
+  <string name="home_option_delete_notes_and_more">Padam Nota dan Lagi</string>
+  <string name="home_option_delete_notes_and_more_details">Padamkan nota, teg dan data lain dalam aplikasi</string>
+  <string name="home_option_delete_all_notes">Padamkan Semua Nota</string>
+  <string name="home_option_delete_all_notes_details">Padamkan semua nota dalam aplikasinya</string>
+  <string name="home_option_delete_all_folders">Padam Semua Folder</string>
+  <string name="home_option_delete_all_folders_details">Padamkan semua folder dalam aplikasi</string>
+  <string name="home_option_delete_all_tags">Padamkan Semua Tag</string>
+  <string name="home_option_delete_all_tags_details">Padamkan semua teg dalam aplikasi</string>
+  <string name="home_option_delete_everything">Padam Semuanya</string>
+  <string name="home_option_delete_everything_details">Padamkan nota, teg dan folder dalam aplikasi</string>
+  <string name="ui_options_note_background_color">Latar Belakang Pencari Nota</string>
+
 </resources>

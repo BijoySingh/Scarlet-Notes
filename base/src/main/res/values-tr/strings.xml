@@ -277,7 +277,45 @@
   <string name="welcome_page_transfer_message">Malzeme Notları artık Scarlet!</string>
   <string name="welcome_page_get_started">Başlamak</string>
 
-
-
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">Uygulama Teması</string>
+  <string name="home_option_theme_color_subtitle">Temanın arka plan rengini seçin</string>
+  <string name="theme_page_title">Uygulama Temasını Seç</string>
+  <string name="click_to_add_tags">Etiket eklemek veya değiştirmek için tıklayın</string>
+  <string name="show_more_actions">Diğer İşlemleri Göster</string>
+  <string name="select_notes">Notlar Seç</string>
+  <string name="select_notes_details">Tek seferde birden fazla notta eylemleri seçip gerçekleştirin</string>
+  <string name="recent_to_trash_message">Not çöp kutusuna taşındı</string>
+  <string name="recent_to_delete_message">Not silindi</string>
+  <string name="recent_to_trash_undo">Geri alma</string>
+  <string name="backup_note_disable">Yedeklemeyi Devre Dışı Bırak</string>
+  <string name="backup_note_enable">Yedeklemeyi Etkinleştir</string>
+  <string name="folder_card_title">Boş defter</string>
+  <string name="folder_card_title_single_note">1 Not</string>
+  <string name="folder_card_title_notes">%d Notlar</string>
+  <string name="folder_sheet_add_note">Yeni Not Defteri Oluştur</string>
+  <string name="folder_sheet_edit_note">Defter Düzenle</string>
+  <string name="folder_sheet_add_note_detail">Defter ekle</string>
+  <string name="folder_option_add_to_notebook">Defter\'e ekle</string>
+  <string name="folder_option_change_notebook">Defter Değiştir</string>
+  <string name="recent_notes">Son Notlar</string>
+  <string name="information_card_title">Bilgi</string>
+  <string name="information_new_app_update">En son uygulama sürümünü yüklemek için dokunun</string>
+  <string name="information_install_pro">Scarlet Pro\'ya yükseltmek için dokunun</string>
+  <string name="home_option_install_pro_app">Pro Uygulamasını Yükle</string>
+  <string name="home_option_install_pro_app_details">Özellikleri kilidini açmak ve geliştiriciyi desteklemek için Pro Uygulamasını yükleyin</string>
+  <string name="home_option_migrate_to_pro">Scarlet Pro\'ya Geçiş Notları</string>
+  <string name="home_option_migrate_to_pro_details">Tüm notlarınızı profesyonel uygulamaya geçirin</string>
+  <string name="home_option_delete_notes_and_more">Notları Sil ve Daha Fazlası</string>
+  <string name="home_option_delete_notes_and_more_details">Uygulamadaki notları, etiketleri ve diğer verileri silin</string>
+  <string name="home_option_delete_all_notes">Tüm Notları Sil</string>
+  <string name="home_option_delete_all_notes_details">Uygulamadaki tüm notları sil</string>
+  <string name="home_option_delete_all_folders">Tüm Klasörleri Sil</string>
+  <string name="home_option_delete_all_folders_details">Uygulamadaki tüm klasörleri sil</string>
+  <string name="home_option_delete_all_tags">Tüm Etiketleri Sil</string>
+  <string name="home_option_delete_all_tags_details">Uygulamadaki tüm etiketleri sil</string>
+  <string name="home_option_delete_everything">Hepsini sil</string>
+  <string name="home_option_delete_everything_details">Uygulamadaki notları, etiketleri ve klasörleri silin</string>
+  <string name="ui_options_note_background_color">Not Görüntüleyici Arka Planı</string>
 
 </resources>

@@ -274,4 +274,45 @@
   <string name="view_distraction_free">Distracción gratis</string>
   <string name="format_label_separator">Separador</string>
 
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">Tema de la aplicación</string>
+  <string name="home_option_theme_color_subtitle">Seleccione el color de fondo para el tema</string>
+  <string name="theme_page_title">Seleccione el tema de la aplicación</string>
+  <string name="click_to_add_tags">Haga clic para agregar o cambiar etiquetas</string>
+  <string name="show_more_actions">Mostrar más acciones</string>
+  <string name="select_notes">Seleccione notas</string>
+  <string name="select_notes_details">Selecciona y realiza acciones en múltiples notas a la vez.</string>
+  <string name="recent_to_trash_message">La nota fue movida a la basura.</string>
+  <string name="recent_to_delete_message">La nota fue borrada</string>
+  <string name="recent_to_trash_undo">Deshacer</string>
+  <string name="backup_note_disable">Desactivar copia de seguridad</string>
+  <string name="backup_note_enable">Habilitar copia de seguridad</string>
+  <string name="folder_card_title">Cuaderno vacío</string>
+  <string name="folder_card_title_single_note">1 nota</string>
+  <string name="folder_card_title_notes">%d Notas</string>
+  <string name="folder_sheet_add_note">Crear nuevo cuaderno</string>
+  <string name="folder_sheet_edit_note">Editar cuaderno</string>
+  <string name="folder_sheet_add_note_detail">Añadir cuaderno</string>
+  <string name="folder_option_add_to_notebook">Añadir al cuaderno</string>
+  <string name="folder_option_change_notebook">Modificar cuaderno</string>
+  <string name="recent_notes">Notas recientes</string>
+  <string name="information_card_title">Información</string>
+  <string name="information_new_app_update">Toca para instalar la última versión de la aplicación</string>
+  <string name="information_install_pro">Toque para actualizar a Scarlet Pro</string>
+  <string name="home_option_install_pro_app">Instalar la aplicación Pro</string>
+  <string name="home_option_install_pro_app_details">Instala la aplicación Pro para desbloquear funciones y apoyar al desarrollador</string>
+  <string name="home_option_migrate_to_pro">Migrar notas a Scarlet Pro</string>
+  <string name="home_option_migrate_to_pro_details">Migra todas tus notas a la aplicación pro</string>
+  <string name="home_option_delete_notes_and_more">Eliminar notas y más</string>
+  <string name="home_option_delete_notes_and_more_details">Eliminar notas, etiquetas y otros datos en la aplicación</string>
+  <string name="home_option_delete_all_notes">Borrar todas las notas</string>
+  <string name="home_option_delete_all_notes_details">Eliminar todas las notas en la aplicación.</string>
+  <string name="home_option_delete_all_folders">Eliminar todas las carpetas</string>
+  <string name="home_option_delete_all_folders_details">Eliminar todas las carpetas en la aplicación</string>
+  <string name="home_option_delete_all_tags">Eliminar todas las etiquetas</string>
+  <string name="home_option_delete_all_tags_details">Eliminar todas las etiquetas en la aplicación</string>
+  <string name="home_option_delete_everything">Elimina todo</string>
+  <string name="home_option_delete_everything_details">Eliminar notas, etiquetas y carpetas en la aplicación</string>
+  <string name="ui_options_note_background_color">Fondo del visor de notas</string>
+
 </resources>

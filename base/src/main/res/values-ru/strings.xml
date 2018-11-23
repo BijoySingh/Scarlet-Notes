@@ -278,8 +278,45 @@
   <string name="welcome_page_transfer_message">Материал Notes теперь Scarlet!</string>
   <string name="welcome_page_get_started">Начать</string>
 
-
-
-
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">Тема приложения</string>
+  <string name="home_option_theme_color_subtitle">Выберите цвет фона для темы</string>
+  <string name="theme_page_title">Выберите тему приложения</string>
+  <string name="click_to_add_tags">Нажмите, чтобы добавить или изменить теги</string>
+  <string name="show_more_actions">Показать другие действия</string>
+  <string name="select_notes">Выберите заметки</string>
+  <string name="select_notes_details">Выбирайте и выполняйте действия сразу по нескольким нотам</string>
+  <string name="recent_to_trash_message">Примечание было перемещено в корзину</string>
+  <string name="recent_to_delete_message">Примечание было удалено</string>
+  <string name="recent_to_trash_undo">расстегивать</string>
+  <string name="backup_note_disable">Отключение резервного копирования</string>
+  <string name="backup_note_enable">Включить резервное копирование</string>
+  <string name="folder_card_title">Пустой блокнот</string>
+  <string name="folder_card_title_single_note">1 Примечание</string>
+  <string name="folder_card_title_notes">%d Примечания</string>
+  <string name="folder_sheet_add_note">Создать новый блокнот</string>
+  <string name="folder_sheet_edit_note">Редактировать блокнот</string>
+  <string name="folder_sheet_add_note_detail">Добавить ноутбук</string>
+  <string name="folder_option_add_to_notebook">Добавить в блокнот</string>
+  <string name="folder_option_change_notebook">Изменить блокнот</string>
+  <string name="recent_notes">Последние примечания</string>
+  <string name="information_card_title">Информация</string>
+  <string name="information_new_app_update">Нажмите, чтобы установить последнюю версию приложения.</string>
+  <string name="information_install_pro">Нажмите, чтобы перейти на Scarlet Pro</string>
+  <string name="home_option_install_pro_app">Установить Pro App</string>
+  <string name="home_option_install_pro_app_details">Установите приложение Pro для разблокировки функций и поддержки разработчика</string>
+  <string name="home_option_migrate_to_pro">Перенос заметок в Scarlet Pro</string>
+  <string name="home_option_migrate_to_pro_details">Перенос всех ваших заметок в приложение pro</string>
+  <string name="home_option_delete_notes_and_more">Удалить заметки и многое другое</string>
+  <string name="home_option_delete_notes_and_more_details">Удаление заметок, тегов и других данных в приложении</string>
+  <string name="home_option_delete_all_notes">Удалить все заметки</string>
+  <string name="home_option_delete_all_notes_details">Удалить все заметки в приложении</string>
+  <string name="home_option_delete_all_folders">Удалить все папки</string>
+  <string name="home_option_delete_all_folders_details">Удаление всех папок в приложении</string>
+  <string name="home_option_delete_all_tags">Удалить все теги</string>
+  <string name="home_option_delete_all_tags_details">Удалить все теги в приложении</string>
+  <string name="home_option_delete_everything">Удалить все</string>
+  <string name="home_option_delete_everything_details">Удаление заметок, тегов и папок в приложении</string>
+  <string name="ui_options_note_background_color">Примечание.</string>
 
 </resources>

@@ -272,4 +272,45 @@
   <string name="view_distraction_free">Distraction विनामूल्य</string>
   <string name="format_label_separator">सेपरेटर</string>
 
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">अॅप थीम</string>
+  <string name="home_option_theme_color_subtitle">थीमसाठी पार्श्वभूमी रंग निवडा</string>
+  <string name="theme_page_title">अॅप थीम निवडा</string>
+  <string name="click_to_add_tags">टॅग जोडण्यासाठी किंवा बदलण्यासाठी क्लिक करा</string>
+  <string name="show_more_actions">अधिक क्रिया दर्शवा</string>
+  <string name="select_notes">नोट्स निवडा</string>
+  <string name="select_notes_details">एकाच वेळी एकाधिक नोट्सवर क्रिया निवडा आणि करा</string>
+  <string name="recent_to_trash_message">टीप कचर्यात हलविली गेली</string>
+  <string name="recent_to_delete_message">टीप हटविली गेली</string>
+  <string name="recent_to_trash_undo">पूर्ववत करा</string>
+  <string name="backup_note_disable">बॅकअप अक्षम करा</string>
+  <string name="backup_note_enable">बॅकअप सक्षम करा</string>
+  <string name="folder_card_title">रिक्त नोटबुक</string>
+  <string name="folder_card_title_single_note">1 टीप</string>
+  <string name="folder_card_title_notes">%d नोट्स</string>
+  <string name="folder_sheet_add_note">नवीन नोटबुक तयार करा</string>
+  <string name="folder_sheet_edit_note">नोटबुक संपादित करा</string>
+  <string name="folder_sheet_add_note_detail">नोटबुक जोडा</string>
+  <string name="folder_option_add_to_notebook">नोटबुकमध्ये जोडा</string>
+  <string name="folder_option_change_notebook">नोटबुक सुधारित करा</string>
+  <string name="recent_notes">अलीकडील नोट्स</string>
+  <string name="information_card_title">माहिती</string>
+  <string name="information_new_app_update">नवीनतम अॅप आवृत्ती स्थापित करण्यासाठी टॅप करा</string>
+  <string name="information_install_pro">स्कार्लेट प्रो मध्ये अपग्रेड करण्यासाठी टॅप करा</string>
+  <string name="home_option_install_pro_app">प्रो अॅप स्थापित करा</string>
+  <string name="home_option_install_pro_app_details">वैशिष्ट्ये अनलॉक करण्यासाठी आणि विकासकास समर्थन देण्यासाठी प्रो अॅप स्थापित करा</string>
+  <string name="home_option_migrate_to_pro">स्कार्लेट प्रो कडे नोट्स माइग्रेट</string>
+  <string name="home_option_migrate_to_pro_details">आपल्या सर्व नोट्स प्रो अॅपवर स्थलांतरित करा</string>
+  <string name="home_option_delete_notes_and_more">नोट्स आणि बरेच काही हटवा</string>
+  <string name="home_option_delete_notes_and_more_details">अॅप मधील नोट्स, टॅग आणि इतर डेटा हटवा</string>
+  <string name="home_option_delete_all_notes">सर्व नोट्स हटवा</string>
+  <string name="home_option_delete_all_notes_details">अॅप मधील सर्व टिपा हटवा</string>
+  <string name="home_option_delete_all_folders">सर्व फोल्डर हटवा</string>
+  <string name="home_option_delete_all_folders_details">अॅप मधील सर्व फोल्डर हटवा</string>
+  <string name="home_option_delete_all_tags">सर्व टॅग हटवा</string>
+  <string name="home_option_delete_all_tags_details">अॅप मधील सर्व टॅग हटवा</string>
+  <string name="home_option_delete_everything">सर्वकाही हटवा</string>
+  <string name="home_option_delete_everything_details">अॅप मधील नोट्स, टॅग आणि फोल्डर हटवा</string>
+  <string name="ui_options_note_background_color">नोट दर्शक पहा</string>
+
 </resources>

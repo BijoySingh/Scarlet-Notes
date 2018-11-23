@@ -273,4 +273,45 @@
   <string name="view_distraction_free">الهاء الحرة</string>
   <string name="format_label_separator">الفاصل</string>
 
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">موضوع التطبيق</string>
+  <string name="home_option_theme_color_subtitle">حدد لون الخلفية للموضوع</string>
+  <string name="theme_page_title">حدد موضوع التطبيق</string>
+  <string name="click_to_add_tags">انقر لإضافة أو تغيير العلامات</string>
+  <string name="show_more_actions">عرض المزيد من الإجراءات</string>
+  <string name="select_notes">حدد ملاحظات</string>
+  <string name="select_notes_details">حدد إجراءات وتنفيذها على ملاحظات متعددة في وقت واحد</string>
+  <string name="recent_to_trash_message">تم نقل الملاحظة إلى سلة المهملات</string>
+  <string name="recent_to_delete_message">تم حذف الملاحظة</string>
+  <string name="recent_to_trash_undo">فك</string>
+  <string name="backup_note_disable">تعطيل النسخ الاحتياطي</string>
+  <string name="backup_note_enable">تمكين النسخ الاحتياطي</string>
+  <string name="folder_card_title">مفكرة فارغة</string>
+  <string name="folder_card_title_single_note">1 ملاحظة</string>
+  <string name="folder_card_title_notes">%d ملاحظات</string>
+  <string name="folder_sheet_add_note">قم بإنشاء مفكرة جديدة</string>
+  <string name="folder_sheet_edit_note">تعديل مفكرة</string>
+  <string name="folder_sheet_add_note_detail">إضافة مفكرة</string>
+  <string name="folder_option_add_to_notebook">أضف إلى دفتر الملاحظات</string>
+  <string name="folder_option_change_notebook">تعديل نوت بوك</string>
+  <string name="recent_notes">ملاحظات حديثة</string>
+  <string name="information_card_title">معلومات</string>
+  <string name="information_new_app_update">انقر لتثبيت أحدث إصدار من التطبيق</string>
+  <string name="information_install_pro">انقر للترقية إلى Scarlet Pro</string>
+  <string name="home_option_install_pro_app">تثبيت برو التطبيق</string>
+  <string name="home_option_install_pro_app_details">ثبِّت Pro Pro لإلغاء قفل الميزات ومطور الدعم</string>
+  <string name="home_option_migrate_to_pro">تهاجر ملاحظات على القرمزي برو</string>
+  <string name="home_option_migrate_to_pro_details">ترحيل جميع الملاحظات الخاصة بك إلى التطبيق الموالية</string>
+  <string name="home_option_delete_notes_and_more">حذف الملاحظات والمزيد</string>
+  <string name="home_option_delete_notes_and_more_details">حذف الملاحظات والعلامات والبيانات الأخرى في التطبيق</string>
+  <string name="home_option_delete_all_notes">حذف كل الملاحظات</string>
+  <string name="home_option_delete_all_notes_details">حذف جميع الملاحظات في التطبيق</string>
+  <string name="home_option_delete_all_folders">حذف جميع المجلدات</string>
+  <string name="home_option_delete_all_folders_details">حذف جميع المجلدات في التطبيق</string>
+  <string name="home_option_delete_all_tags">حذف كل العلامات</string>
+  <string name="home_option_delete_all_tags_details">احذف جميع العلامات في التطبيق</string>
+  <string name="home_option_delete_everything">حذف كل شيء</string>
+  <string name="home_option_delete_everything_details">حذف الملاحظات والعلامات والمجلدات في التطبيق</string>
+  <string name="ui_options_note_background_color">ملاحظة عارض الخلفية</string>
+
 </resources>

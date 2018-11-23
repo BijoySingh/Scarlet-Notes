@@ -275,4 +275,45 @@
   <string name="view_distraction_free">বিতর্ক মুক্ত</string>
   <string name="format_label_separator">বিভাজক</string>
 
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">অ্যাপ থিম</string>
+  <string name="home_option_theme_color_subtitle">থিম জন্য পটভূমি রঙ নির্বাচন করুন</string>
+  <string name="theme_page_title">অ্যাপ থিম নির্বাচন করুন</string>
+  <string name="click_to_add_tags">ট্যাগ যোগ বা পরিবর্তন করতে ক্লিক করুন</string>
+  <string name="show_more_actions">আরো কর্ম দেখান</string>
+  <string name="select_notes">নোট নির্বাচন করুন</string>
+  <string name="select_notes_details">নির্বাচন করুন এবং একযোগে একাধিক নোট কর্ম সঞ্চালন</string>
+  <string name="recent_to_trash_message">নোট ট্র্যাশে সরানো হয়</string>
+  <string name="recent_to_delete_message">নোট মুছে ফেলা হয়েছে</string>
+  <string name="recent_to_trash_undo">বাতিল করা</string>
+  <string name="backup_note_disable">ব্যাকআপ নিষ্ক্রিয় করুন</string>
+  <string name="backup_note_enable">ব্যাকআপ সক্রিয় করুন</string>
+  <string name="folder_card_title">খালি নোটবুক</string>
+  <string name="folder_card_title_single_note">1 নোট</string>
+  <string name="folder_card_title_notes">%d নোট</string>
+  <string name="folder_sheet_add_note">নতুন নোটবুক তৈরি করুন</string>
+  <string name="folder_sheet_edit_note">নোটবুক সম্পাদনা করুন</string>
+  <string name="folder_sheet_add_note_detail">নোটবুক যোগ করুন</string>
+  <string name="folder_option_add_to_notebook">নোটবুক যোগ করুন</string>
+  <string name="folder_option_change_notebook">নোটবুক সংশোধন করুন</string>
+  <string name="recent_notes">সাম্প্রতিক নোট</string>
+  <string name="information_card_title">তথ্য</string>
+  <string name="information_new_app_update">সর্বশেষ অ্যাপ্লিকেশন সংস্করণ ইনস্টল করতে আলতো চাপুন</string>
+  <string name="information_install_pro">স্কারলেট প্রো আপগ্রেড করতে আলতো চাপুন</string>
+  <string name="home_option_install_pro_app">প্রো অ্যাপ ইনস্টল করুন</string>
+  <string name="home_option_install_pro_app_details">বৈশিষ্ট্য আনলক এবং বিকাশকারী সমর্থন করতে প্রো অ্যাপ ইনস্টল করুন</string>
+  <string name="home_option_migrate_to_pro">Scarlet প্রো নোট মাইগ্রেট করুন</string>
+  <string name="home_option_migrate_to_pro_details">প্রো অ্যাপ্লিকেশন আপনার সব নোট মাইগ্রেট করুন</string>
+  <string name="home_option_delete_notes_and_more">নোট এবং আরও মুছে দিন</string>
+  <string name="home_option_delete_notes_and_more_details">অ্যাপ্লিকেশন নোট, ট্যাগ এবং অন্যান্য তথ্য মুছুন</string>
+  <string name="home_option_delete_all_notes">সব নোট মুছে দিন</string>
+  <string name="home_option_delete_all_notes_details">অ্যাপ্লিকেশন সব নোট মুছে দিন</string>
+  <string name="home_option_delete_all_folders">সব ফোল্ডার মুছে দিন</string>
+  <string name="home_option_delete_all_folders_details">অ্যাপ্লিকেশন সব ফোল্ডার মুছে দিন</string>
+  <string name="home_option_delete_all_tags">সব ট্যাগ মুছে দিন</string>
+  <string name="home_option_delete_all_tags_details">অ্যাপ্লিকেশন সব ট্যাগ মুছুন</string>
+  <string name="home_option_delete_everything">সবকিছু মুছে ফেলুন</string>
+  <string name="home_option_delete_everything_details">অ্যাপ্লিকেশন নোট, ট্যাগ এবং ফোল্ডার মুছে দিন</string>
+  <string name="ui_options_note_background_color">নোট ভিউয়ার ব্যাকগ্রাউন্ড</string>
+
 </resources>

@@ -274,8 +274,45 @@
   <string name="welcome_page_transfer_message">材料的筆記現在是猩紅色！</string>
   <string name="welcome_page_get_started">開始使用</string>
 
-
-
-
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">應用主題</string>
+  <string name="home_option_theme_color_subtitle">選擇主題的背景顏色</string>
+  <string name="theme_page_title">選擇應用主題</string>
+  <string name="click_to_add_tags">單擊以添加或更改標籤</string>
+  <string name="show_more_actions">顯示更多操作</string>
+  <string name="select_notes">選擇備註</string>
+  <string name="select_notes_details">一次選擇並對多個音符執行操作</string>
+  <string name="recent_to_trash_message">這張紙條被移到了垃圾桶裡</string>
+  <string name="recent_to_delete_message">該說明已刪除</string>
+  <string name="recent_to_trash_undo">解開</string>
+  <string name="backup_note_disable">禁用備份</string>
+  <string name="backup_note_enable">啟用備份</string>
+  <string name="folder_card_title">空筆記本</string>
+  <string name="folder_card_title_single_note">1注意</string>
+  <string name="folder_card_title_notes">%d備註</string>
+  <string name="folder_sheet_add_note">創建新筆記本</string>
+  <string name="folder_sheet_edit_note">編輯筆記本</string>
+  <string name="folder_sheet_add_note_detail">添加筆記本</string>
+  <string name="folder_option_add_to_notebook">添加到筆記本</string>
+  <string name="folder_option_change_notebook">修改筆記本</string>
+  <string name="recent_notes">最近的筆記</string>
+  <string name="information_card_title">信息</string>
+  <string name="information_new_app_update">點按即可安裝最新的應用版本</string>
+  <string name="information_install_pro">點按即可升級到Scarlet Pro</string>
+  <string name="home_option_install_pro_app">安裝Pro App</string>
+  <string name="home_option_install_pro_app_details">安裝Pro App以解鎖功能並支持開發人員</string>
+  <string name="home_option_migrate_to_pro">將筆記遷移到Scarlet Pro</string>
+  <string name="home_option_migrate_to_pro_details">將所有筆記遷移到專業應用程序</string>
+  <string name="home_option_delete_notes_and_more">刪除備註等</string>
+  <string name="home_option_delete_notes_and_more_details">刪除應用中的註釋，標籤和其他數據</string>
+  <string name="home_option_delete_all_notes">刪除所有筆記</string>
+  <string name="home_option_delete_all_notes_details">刪除應用中的所有備註</string>
+  <string name="home_option_delete_all_folders">刪除所有文件夾</string>
+  <string name="home_option_delete_all_folders_details">刪除應用中的所有文件夾</string>
+  <string name="home_option_delete_all_tags">刪除所有標籤</string>
+  <string name="home_option_delete_all_tags_details">刪除應用中的所有標記</string>
+  <string name="home_option_delete_everything">刪除所有內容</string>
+  <string name="home_option_delete_everything_details">刪除應用中的註釋，標籤和文件夾</string>
+  <string name="ui_options_note_background_color">注意查看器背景</string>
 
 </resources>

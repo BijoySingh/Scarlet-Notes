@@ -274,4 +274,45 @@
   <string name="view_distraction_free">הסחת דעת חינם</string>
   <string name="format_label_separator">מפריד</string>
 
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">נושא</string>
+  <string name="home_option_theme_color_subtitle">בחר את צבע הרקע עבור ערכת הנושא</string>
+  <string name="theme_page_title">בחר ערכת נושא של אפליקציות</string>
+  <string name="click_to_add_tags">לחץ כדי להוסיף או לשנות תגים</string>
+  <string name="show_more_actions">הצג פעולות נוספות</string>
+  <string name="select_notes">בחר הערות</string>
+  <string name="select_notes_details">בחר וביצע פעולות במספר הערות בבת אחת</string>
+  <string name="recent_to_trash_message">הפתק הועבר לאשפה</string>
+  <string name="recent_to_delete_message">ההערה נמחקה</string>
+  <string name="recent_to_trash_undo">לבטל</string>
+  <string name="backup_note_disable">השבת גיבוי</string>
+  <string name="backup_note_enable">הפעל גיבוי</string>
+  <string name="folder_card_title">מחברת ריקה</string>
+  <string name="folder_card_title_single_note">1 הערה</string>
+  <string name="folder_card_title_notes">%d הערות</string>
+  <string name="folder_sheet_add_note">צור מחברת חדשה</string>
+  <string name="folder_sheet_edit_note">ערוך את המחברת</string>
+  <string name="folder_sheet_add_note_detail">הוסף מחשב נייד</string>
+  <string name="folder_option_add_to_notebook">הוסף למחברת</string>
+  <string name="folder_option_change_notebook">שנה את המחשב הנייד</string>
+  <string name="recent_notes">הערות אחרונות</string>
+  <string name="information_card_title">מידע</string>
+  <string name="information_new_app_update">הקש כדי להתקין את גרסת האפליקציה העדכנית ביותר</string>
+  <string name="information_install_pro">הקש כדי לשדרג ל Scarlet Pro</string>
+  <string name="home_option_install_pro_app">התקן Pro App</string>
+  <string name="home_option_install_pro_app_details">התקן את Pro App כדי לפתוח תכונות מפתח תמיכה</string>
+  <string name="home_option_migrate_to_pro">להעביר הערות ל Scarlet Pro</string>
+  <string name="home_option_migrate_to_pro_details">העבר את כל ההערות שלך לאפליקציה המקצועית</string>
+  <string name="home_option_delete_notes_and_more">מחק הערות ועוד</string>
+  <string name="home_option_delete_notes_and_more_details">מחק הערות, תגים ונתונים אחרים באפליקציה</string>
+  <string name="home_option_delete_all_notes">מחק את כל ההערות</string>
+  <string name="home_option_delete_all_notes_details">מחק את כל ההערות באפליקציה</string>
+  <string name="home_option_delete_all_folders">מחק את כל התיקיות</string>
+  <string name="home_option_delete_all_folders_details">מחק את כל התיקיות באפליקציה</string>
+  <string name="home_option_delete_all_tags">מחק את כל התגים</string>
+  <string name="home_option_delete_all_tags_details">מחק את כל התגים באפליקציה</string>
+  <string name="home_option_delete_everything">מחק הכל</string>
+  <string name="home_option_delete_everything_details">מחק הערות, תגים ותיקיות באפליקציה</string>
+  <string name="ui_options_note_background_color">הערה מציג רקע</string>
+
 </resources>

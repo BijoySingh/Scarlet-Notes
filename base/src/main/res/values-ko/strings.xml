@@ -253,4 +253,45 @@
   <string name="view_distraction_free">산만 무료</string>
   <string name="format_label_separator">분리 기호</string>
 
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">앱 테마</string>
+  <string name="home_option_theme_color_subtitle">테마의 배경색 선택</string>
+  <string name="theme_page_title">앱 테마 선택</string>
+  <string name="click_to_add_tags">태그를 추가하거나 변경하려면 클릭하십시오.</string>
+  <string name="show_more_actions">추가 작업 표시</string>
+  <string name="select_notes">메모 선택</string>
+  <string name="select_notes_details">한 번에 여러 음표에 대한 작업 선택 및 수행</string>
+  <string name="recent_to_trash_message">메모가 휴지통으로 이동되었습니다.</string>
+  <string name="recent_to_delete_message">메모가 삭제되었습니다.</string>
+  <string name="recent_to_trash_undo">끄르다</string>
+  <string name="backup_note_disable">백업 사용 중지</string>
+  <string name="backup_note_enable">백업 사용</string>
+  <string name="folder_card_title">빈 노트</string>
+  <string name="folder_card_title_single_note">1 참고</string>
+  <string name="folder_card_title_notes">%d 메모</string>
+  <string name="folder_sheet_add_note">새 노트 만들기</string>
+  <string name="folder_sheet_edit_note">노트 편집</string>
+  <string name="folder_sheet_add_note_detail">노트 추가</string>
+  <string name="folder_option_add_to_notebook">노트에 추가</string>
+  <string name="folder_option_change_notebook">노트 수정</string>
+  <string name="recent_notes">최근 노트</string>
+  <string name="information_card_title">정보</string>
+  <string name="information_new_app_update">탭하여 최신 앱 버전 설치</string>
+  <string name="information_install_pro">Scarlet Pro로 업그레이드하려면 살짝 누르십시오.</string>
+  <string name="home_option_install_pro_app">프로 앱 설치</string>
+  <string name="home_option_install_pro_app_details">Pro 앱을 설치하여 기능을 잠금 해제하고 개발자를 지원하십시오.</string>
+  <string name="home_option_migrate_to_pro">Notes를 Scarlet Pro로 마이그레이션</string>
+  <string name="home_option_migrate_to_pro_details">모든 메모를 프로 앱으로 이전</string>
+  <string name="home_option_delete_notes_and_more">메모 삭제 등</string>
+  <string name="home_option_delete_notes_and_more_details">앱에서 메모, 태그 및 기타 데이터 삭제</string>
+  <string name="home_option_delete_all_notes">모든 메모 삭제</string>
+  <string name="home_option_delete_all_notes_details">앱의 모든 메모 삭제</string>
+  <string name="home_option_delete_all_folders">모든 폴더 삭제</string>
+  <string name="home_option_delete_all_folders_details">앱의 모든 폴더 삭제</string>
+  <string name="home_option_delete_all_tags">모든 태그 삭제</string>
+  <string name="home_option_delete_all_tags_details">앱의 모든 태그 삭제</string>
+  <string name="home_option_delete_everything">모든 항목 삭제</string>
+  <string name="home_option_delete_everything_details">앱의 메모, 태그 및 폴더 삭제</string>
+  <string name="ui_options_note_background_color">뷰어 배경 참고</string>
+
 </resources>
