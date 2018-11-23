@@ -110,6 +110,14 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
+        title = R.string.home_option_delete_notes_and_more,
+        subtitle = R.string.home_option_delete_notes_and_more_details,
+        icon = R.drawable.ic_delete_permanently,
+        listener = View.OnClickListener {
+          DeleteAndMoreOptionsBottomSheet.openSheet(activity)
+        }
+    ))
+    options.add(OptionsItem(
         title = R.string.home_option_logout_of_app,
         subtitle = R.string.home_option_logout_of_app_subtitle,
         icon = R.drawable.ic_sign_in_options,

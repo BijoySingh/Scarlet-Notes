@@ -42,7 +42,11 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
     sheetDescription.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
 
     sheetTitle.setText(details.getTitle())
-    sheetDescription.setText(details.getDescription())
+
+    val description = details.getDescription()
+    if (description != 0) {
+      sheetDescription.setText(details.getDescription())
+    }
     sheetYes.setText(details.getPositiveText())
     sheetNo.setText(details.getNegativeText())
 
@@ -111,6 +115,29 @@ class AlertBottomSheet : ThemedBottomSheetFragment() {
         override fun getPositiveClickListener() {
           note.delete(activity)
           onDelete()
+        }
+
+        override fun getNegativeClickListener() {
+          // Ignore, nothing needs to happen
+        }
+      }
+      openSheet(activity, details)
+    }
+
+
+
+    fun openDeleteAllXSheet(activity: MainActivity, subtitle: Int, onSuccess: () -> Unit) {
+      val details = object : AlertDetails {
+        override fun getTitle(): Int = R.string.delete_sheet_are_you_sure
+
+        override fun getDescription(): Int = subtitle
+
+        override fun getPositiveText(): Int = R.string.delete_sheet_delete_trash_yes
+
+        override fun getNegativeText(): Int = R.string.delete_sheet_delete_trash_no
+
+        override fun getPositiveClickListener() {
+          onSuccess()
         }
 
         override fun getNegativeClickListener() {

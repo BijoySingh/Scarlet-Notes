@@ -40,17 +40,6 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           dismiss()
         }
     ))
-    val forgetMeClick = CoreConfig.instance.authenticator().openForgetMeActivity(activity)
-    options.add(OptionsItem(
-        title = R.string.forget_me_option_title,
-        subtitle = R.string.forget_me_option_details,
-        icon = R.drawable.ic_action_forget_me,
-        listener = View.OnClickListener {
-          forgetMeClick?.run()
-          dismiss()
-        },
-        visible = forgetMeClick !== null && CoreConfig.instance.authenticator().isLoggedIn()
-    ))
     options.add(OptionsItem(
         title = R.string.material_notes_privacy_policy,
         subtitle = R.string.material_notes_privacy_policy_subtitle,

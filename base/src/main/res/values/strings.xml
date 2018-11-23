@@ -126,10 +126,10 @@
   <string name="home_option_export_subtitle">Export notes to device storage to share</string>
   <string name="home_option_import">Import Notes</string>
   <string name="home_option_import_subtitle">Import notes from the device storage</string>
-  <string name="home_option_export_markdown">Export As Markdown</string>
-  <string name="home_option_export_markdown_subtitle">Export notes in markdown format. (You cannot import these back to the app)</string>
-  <string name="home_option_auto_export_folder">Export Folder</string>
-  <string name="home_option_auto_export_folder_subtitle">Choose where all exports are stored</string>
+  <string name="home_option_export_markdown" translatable="false">Export As Markdown</string>
+  <string name="home_option_export_markdown_subtitle" translatable="false">Export notes in markdown format. (You cannot import these back to the app)</string>
+  <string name="home_option_auto_export_folder" translatable="false">Export Folder</string>
+  <string name="home_option_auto_export_folder_subtitle" translatable="false">Choose where all exports are stored</string>
   <string name="home_option_auto_export">Export Automatically</string>
   <string name="home_option_auto_export_subtitle">Export notes frequently to external file as backup</string>
   <string name="home_option_about_page">About Us</string>
@@ -144,10 +144,20 @@
   <string name="home_option_install_pro_app_details" translatable="false">Install the Pro App to unlock features and support developer</string>
   <string name="home_option_migrate_to_pro" translatable="false">Migrate Notes to Scarlet Pro</string>
   <string name="home_option_migrate_to_pro_details" translatable="false">Migrate all your notes to the pro app</string>
+  <string name="home_option_delete_notes_and_more" translatable="false">Delete Notes and More</string>
+  <string name="home_option_delete_notes_and_more_details" translatable="false">Delete notes, tags and other data in the app</string>
+  <string name="home_option_delete_all_notes" translatable="false">Delete All Notes</string>
+  <string name="home_option_delete_all_notes_details" translatable="false">Delete all the notes in the app</string>
+  <string name="home_option_delete_all_folders" translatable="false">Delete All Folders</string>
+  <string name="home_option_delete_all_folders_details" translatable="false">Delete all the folders in the app</string>
+  <string name="home_option_delete_all_tags" translatable="false">Delete All Tags</string>
+  <string name="home_option_delete_all_tags_details" translatable="false">Delete all the tags in the app</string>
+  <string name="home_option_delete_everything" translatable="false">Delete Everything</string>
+  <string name="home_option_delete_everything_details" translatable="false">Delete notes, tags and folders in the app</string>
 
-  <string name="ui_options_note_background_color">Note Viewer Background</string>
-  <string name="ui_options_note_background_color_settings_theme">Use theme color for background</string>
-  <string name="ui_options_note_background_color_settings_note">Use note color for background</string>
+  <string name="ui_options_note_background_color" translatable="false">Note Viewer Background</string>
+  <string name="ui_options_note_background_color_settings_theme" translatable="false">Use theme color for background</string>
+  <string name="ui_options_note_background_color_settings_note" translatable="false">Use note color for background</string>
 
   <string name="security_option_title">Security Options</string>
   <string name="security_option_set_pin_code">Pass Code</string>
