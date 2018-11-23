@@ -232,6 +232,9 @@ class FirebaseRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteD
     }
     if (!isSameAsExisting) {
       existingFolder.title = folder.title
+      existingFolder.color = folder.color
+      existingFolder.timestamp = folder.timestamp
+      existingFolder.updateTimestamp = folder.updateTimestamp
       existingFolder.saveWithoutSync()
       sendNoteBroadcast(context, NoteBroadcast.FOLDER_CHANGED, existingFolder.uuid)
     }
