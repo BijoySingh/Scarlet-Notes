@@ -18,27 +18,33 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
 
   private var isValidController: Boolean = true
 
-  private val rootFolder: File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
-  private var notesRemoteFolder: FolderRemote<ExportableNote>? = null
-  private var tagsRemoteFolder: FolderRemote<ExportableTag>? = null
-  private var foldersRemoteFolder: FolderRemote<ExportableFolder>? = null
+  private var rootFolder: File? = null
+  private var notesRemoteFolder: RemoteFolder<ExportableNote>? = null
+  private var tagsRemoteFolder: RemoteFolder<ExportableTag>? = null
+  private var foldersRemoteFolder: RemoteFolder<ExportableFolder>? = null
 
-  override fun init(userId: String) {
-    notesRemoteFolder = FolderRemote(
+  override fun init(userId: String) {}
+
+  fun init(onNotesInit: () -> Unit = {}, onTagsInit: () -> Unit = {}, onFoldersInit: () -> Unit = {}) {
+    rootFolder = File(Environment.getExternalStorageDirectory(), "Scarlet Sync/")
+    notesRemoteFolder = RemoteFolder(
         File(rootFolder, "notes"),
         ExportableNote::class.java,
         { it -> onRemoteInsert(it) },
-        { it -> onRemoteRemove(ExportableNote(it, "", 0L, 0L, 0, NoteState.DEFAULT.name, "", emptyMap(), "")) })
-    tagsRemoteFolder = FolderRemote(
+        { it -> onRemoteRemove(ExportableNote(it, "", 0L, 0L, 0, NoteState.DEFAULT.name, "", emptyMap(), "")) },
+        onNotesInit)
+    tagsRemoteFolder = RemoteFolder(
         File(rootFolder, "tags"),
         ExportableTag::class.java,
         { it -> onRemoteInsert(it) },
-        { it -> onRemoteRemove(ExportableTag(it, "")) })
-    foldersRemoteFolder = FolderRemote(
+        { it -> onRemoteRemove(ExportableTag(it, "")) },
+        onTagsInit)
+    foldersRemoteFolder = RemoteFolder(
         File(rootFolder, "folders"),
         ExportableFolder::class.java,
         { it -> onRemoteInsert(it) },
-        { it -> onRemoteRemove(ExportableFolder(it, "", 0L, 0L, 0)) })
+        { it -> onRemoteRemove(ExportableFolder(it, "", 0L, 0L, 0)) },
+        onFoldersInit)
   }
 
   override fun reset() {

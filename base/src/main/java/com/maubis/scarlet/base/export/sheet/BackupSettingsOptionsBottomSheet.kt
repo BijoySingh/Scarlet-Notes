@@ -71,67 +71,6 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         }
     ))
-    val exportAsMarkdown = CoreConfig.instance.store().get(KEY_BACKUP_MARKDOWN, false)
-    options.add(OptionsItem(
-        title = R.string.home_option_export_markdown,
-        subtitle = R.string.home_option_export_markdown_subtitle,
-        icon = R.drawable.ic_markdown_logo,
-        listener = View.OnClickListener {
-          CoreConfig.instance.store().put(KEY_BACKUP_MARKDOWN, !exportAsMarkdown)
-          reset(dialog)
-        },
-        enabled = exportAsMarkdown
-    ))
-    options.add(OptionsItem(
-        title = R.string.import_export_locked,
-        subtitle = R.string.import_export_locked_details,
-        icon = R.drawable.ic_action_lock,
-        listener = View.OnClickListener {
-          exportLockedNotes = !exportLockedNotes
-          reset(dialog)
-        },
-        enabled = exportLockedNotes
-    ))
-    val autoBackupEnabled = CoreConfig.instance.store().get(KEY_AUTO_BACKUP_MODE, false)
-    options.add(OptionsItem(
-        title = R.string.home_option_auto_export,
-        subtitle = R.string.home_option_auto_export_subtitle,
-        icon = R.drawable.ic_time,
-        listener = View.OnClickListener {
-          val manager = PermissionUtils().getStoragePermissionManager(activity)
-          val hasAllPermissions = manager.hasAllPermissions()
-          when {
-            autoBackupEnabled -> {
-              CoreConfig.instance.store().put(KEY_AUTO_BACKUP_MODE, false)
-              reset(dialog)
-            }
-            hasAllPermissions -> {
-              CoreConfig.instance.store().put(KEY_AUTO_BACKUP_MODE, true)
-              reset(dialog)
-            }
-            else -> PermissionBottomSheet.openSheet(activity)
-          }
-        },
-        enabled = autoBackupEnabled
-    ))
-    val backupLocation = CoreConfig.instance.store().get(KEY_BACKUP_LOCATION, "")
-    options.add(OptionsItem(
-        title = R.string.home_option_auto_export,
-        subtitle = R.string.home_option_auto_export_subtitle,
-        icon = R.drawable.ic_time,
-        listener = View.OnClickListener {
-          val manager = PermissionUtils().getStoragePermissionManager(activity)
-          val hasAllPermissions = manager.hasAllPermissions()
-          when {
-            hasAllPermissions -> {
-              // Open folder choosing dialog, once built
-            }
-            else -> PermissionBottomSheet.openSheet(activity)
-          }
-        },
-        visible = false
-    ))
-
     return options
   }
 

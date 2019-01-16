@@ -16,6 +16,7 @@ import com.maubis.scarlet.base.database.room.AppDatabase
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.export.remote.FolderRemoteDatabase
 import com.maubis.scarlet.base.support.ui.IThemeManager
 import com.maubis.scarlet.base.support.utils.Flavor
 
@@ -50,6 +51,8 @@ abstract class CoreConfig(context: Context) {
   abstract fun appFlavor(): Flavor
 
   abstract fun store(): Store
+
+  abstract fun externalFolderSync(): FolderRemoteDatabase
 
   companion object {
     lateinit var instance: CoreConfig

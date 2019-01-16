@@ -7,10 +7,10 @@
 
   <LinearLayout
     android:id="@+id/container_layout"
+    style="@style/BottomSheetCardContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    style="@style/BottomSheetCardContainer">
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
       android:id="@+id/export_card"
@@ -35,8 +35,8 @@
           android:id="@+id/filename"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="@dimen/spacing_xsmall"
           android:layout_marginTop="@dimen/spacing_xsmall"
+          android:layout_marginBottom="@dimen/spacing_xsmall"
           android:text="@string/import_export_layout_filename"
           android:textColor="@color/dark_hint_text"
           android:textSize="@dimen/font_size_normal" />
@@ -49,6 +49,18 @@
           android:layout_marginBottom="@dimen/spacing_xsmall"
           android:indeterminate="true" />
       </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      android:id="@+id/options_card_layout"
+      style="@style/BottomSheetCardView">
+
+      <LinearLayout
+        android:id="@+id/options_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -68,8 +80,8 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="end"
-          android:layout_marginEnd="@dimen/spacing_xsmall"
           android:layout_marginStart="@dimen/spacing_xsmall"
+          android:layout_marginEnd="@dimen/spacing_xsmall"
           android:padding="@dimen/spacing_xsmall"
           android:text="@string/import_export_layout_exporting_share"
           android:textAllCaps="true"

@@ -21,9 +21,12 @@ import com.maubis.scarlet.base.database.room.AppDatabase
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.export.remote.FolderRemoteDatabase
+import com.maubis.scarlet.base.export.support.ExternalFolderSync
 import com.maubis.scarlet.base.support.ui.IThemeManager
 import com.maubis.scarlet.base.support.ui.ThemeManager
 import com.maubis.scarlet.base.support.utils.Flavor
+import java.lang.ref.WeakReference
 
 const val USER_PREFERENCES_STORE_NAME = "USER_PREFERENCES";
 const val USER_PREFERENCES_VERSION = 1;
@@ -36,6 +39,7 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   val foldersProvider = FoldersProvider()
   val store = VersionedStore.get(context, USER_PREFERENCES_STORE_NAME, USER_PREFERENCES_VERSION)
   val appTheme = ThemeManager()
+  val externalFolderSync = FolderRemoteDatabase(WeakReference(context))
 
   override fun database(): AppDatabase = db
 
@@ -62,5 +66,7 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   override fun appFlavor(): Flavor = Flavor.NONE
 
   override fun store(): Store = store
+
+  override fun externalFolderSync(): FolderRemoteDatabase = externalFolderSync
 
 }

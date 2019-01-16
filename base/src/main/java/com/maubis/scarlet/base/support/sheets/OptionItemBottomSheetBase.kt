@@ -1,15 +1,35 @@
 package com.maubis.scarlet.base.support.sheets
 
 import android.app.Dialog
+import android.content.Context
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.TextView
 import com.github.bijoysingh.uibasics.views.UIActionView
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.option.OptionsItem
-import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
+
+fun getViewForOption(context: Context, option: OptionsItem, titleColor: Int, subtitleColor: Int): UIActionView {
+  val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIActionView
+  contentView.setTitle(option.title)
+  when (option.subtitle) {
+    0 -> contentView.setSubtitle(option.content)
+    else -> contentView.setSubtitle(option.subtitle)
+  }
+  contentView.setOnClickListener(option.listener)
+  contentView.setImageResource(option.icon)
+
+  contentView.setTitleColor(titleColor)
+  contentView.setSubtitleColor(subtitleColor)
+  contentView.setImageTint(titleColor)
+
+  if (option.enabled) {
+    contentView.setActionResource(R.drawable.ic_check_box_white_24dp)
+  } else if (option.actionIcon != 0) {
+    contentView.setActionResource(option.actionIcon)
+  }
+  return contentView
+}
 
 abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
   override fun setupView(dialog: Dialog?) {
@@ -42,25 +62,8 @@ abstract class OptionItemBottomSheetBase : ThemedBottomSheetFragment() {
         continue
       }
 
-      val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIActionView
-      contentView.setTitle(option.title)
-      when (option.subtitle) {
-        0 -> contentView.setSubtitle(option.content)
-        else -> contentView.setSubtitle(option.subtitle)
-      }
-      contentView.setOnClickListener(option.listener)
-      contentView.setImageResource(option.icon)
-
-      contentView.setTitleColor(getOptionsTitleColor(option))
-      contentView.setSubtitleColor(getOptionsSubtitleColor(option))
-      contentView.setImageTint(getOptionsTitleColor(option))
-
-      if (option.enabled) {
-        contentView.setActionResource(R.drawable.ic_check_box_white_24dp)
-      } else if (option.actionIcon != 0) {
-        contentView.setActionResource(option.actionIcon)
-      }
-
+      val contentView = getViewForOption(
+          themedContext(), option, getOptionsTitleColor(option), getOptionsSubtitleColor(option))
       layout.addView(contentView)
     }
   }
