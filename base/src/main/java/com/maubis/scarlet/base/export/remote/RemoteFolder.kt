@@ -7,6 +7,7 @@ import com.maubis.scarlet.base.export.support.KEY_EXTERNAL_FOLDER_SYNC_LAST_SCAN
 import kotlinx.coroutines.experimental.launch
 import java.io.File
 
+const val LAST_MODIFIED_ERROR_MARGIN = 7 * 1000 * 60 * 60 * 24L
 class RemoteFolder<T>(val folder: File,
                       val klass: Class<T>,
                       val onRemoteInsert: (T) -> Unit,
@@ -25,7 +26,7 @@ class RemoteFolder<T>(val folder: File,
       deletedFolder.mkdirs()
       val files = folder.listFiles() ?: emptyArray()
       files.forEach {
-        if (it.lastModified() > lastScan) {
+        if (it.lastModified() > lastScan - LAST_MODIFIED_ERROR_MARGIN) {
           uuids.add(it.name)
           try {
             val item = Gson().fromJson(FileManager.readFromFile(it), klass)
@@ -39,7 +40,7 @@ class RemoteFolder<T>(val folder: File,
 
       val deletedFiles = deletedFolder.listFiles() ?: emptyArray()
       deletedFiles.forEach {
-        if (it.lastModified() > lastScan) {
+        if (it.lastModified() > lastScan - LAST_MODIFIED_ERROR_MARGIN) {
           deletedUuids.add(it.name)
           onRemoteDelete(it.name)
         }

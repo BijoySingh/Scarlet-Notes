@@ -11,6 +11,7 @@ import com.maubis.scarlet.base.database.remote.IRemoteDatabaseUtils
 import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
+import com.maubis.scarlet.base.export.sheet.ExternalFolderSyncBottomSheet.Companion.folderSyncPath
 import java.io.File
 import java.lang.ref.WeakReference
 
@@ -26,7 +27,8 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
   override fun init(userId: String) {}
 
   fun init(onNotesInit: () -> Unit = {}, onTagsInit: () -> Unit = {}, onFoldersInit: () -> Unit = {}) {
-    rootFolder = File(Environment.getExternalStorageDirectory(), "Scarlet Sync/")
+    isValidController = true
+    rootFolder = File(Environment.getExternalStorageDirectory(), folderSyncPath)
     notesRemoteFolder = RemoteFolder(
         File(rootFolder, "notes"),
         ExportableNote::class.java,

@@ -7,14 +7,16 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.activity.ImportNoteActivity
-import com.maubis.scarlet.base.export.support.*
+import com.maubis.scarlet.base.export.support.ExternalFolderSync
+import com.maubis.scarlet.base.export.support.KEY_BACKUP_LOCKED
+import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
-import com.maubis.scarlet.base.support.utils.Flavor
-
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
+import com.maubis.scarlet.base.support.utils.Flavor
 
 class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
@@ -71,6 +73,21 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         }
     ))
+    options.add(OptionsItem(
+        title = R.string.import_export_layout_folder_sync,
+        subtitle = R.string.import_export_layout_folder_sync_details,
+        icon = R.drawable.icon_folder_sync,
+        listener = View.OnClickListener {
+          val manager = PermissionUtils().getStoragePermissionManager(activity)
+          val hasAllPermissions = manager.hasAllPermissions()
+          when (hasAllPermissions) {
+            true -> {
+              ThemedBottomSheetFragment.openSheet(activity, ExternalFolderSyncBottomSheet())
+            }
+            false -> PermissionBottomSheet.openSheet(activity)
+          }
+        }
+    ))
     return options
   }
 
@@ -98,7 +115,6 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
   companion object {
     fun openSheet(activity: MainActivity) {
       val sheet = BackupSettingsOptionsBottomSheet()
-
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 

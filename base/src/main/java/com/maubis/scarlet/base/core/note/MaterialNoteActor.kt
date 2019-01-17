@@ -12,6 +12,7 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.format.FormatBuilder
+import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.main.activity.WidgetConfigureActivity
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.notification.NotificationConfig
@@ -47,7 +48,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
   }
 
   override fun onlineSave(context: Context) {
-
+    CoreConfig.instance.externalFolderSync().insert(ExportableNote(note))
   }
 
   override fun save(context: Context) {
@@ -90,7 +91,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
 
 
   override fun onlineDelete(context: Context) {
-
+    CoreConfig.instance.externalFolderSync().remove(ExportableNote(note))
   }
 
   override fun delete(context: Context) {
