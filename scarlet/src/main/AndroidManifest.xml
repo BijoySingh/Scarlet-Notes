@@ -111,7 +111,8 @@
     <activity android:name="com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity" />
     <activity android:name=".firebase.activity.LoginActivity" />
     <activity android:name=".firebase.activity.DataPolicyActivity" />
-    <activity android:name=".firebase.activity.ForgetMeActivity"></activity>
+    <activity android:name=".firebase.activity.ForgetMeActivity" />
+    <activity android:name=".drive.GDriveLoginActivity" />
 
     <service
       android:name="com.maubis.scarlet.base.widget.AllNotesWidgetService"

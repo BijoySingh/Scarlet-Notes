@@ -25,4 +25,10 @@
   <string name="forget_me_i_understand" translatable="false">I understand I am about to delete all my data</string>
 
   <!-- End: Firebase Login Strings -->
+
+  <!-- Start: Google Login Strings -->
+  <string name="google_drive_page_connection_failed" translatable="false">Connection Failed</string>
+  <string name="google_drive_page_login_title" translatable="false">Sync on Google Drive</string>
+  <string name="google_drive_page_login_details" translatable="false">Google Drive allows you to sync your notes between devices using your own Google Drive account.</string>
+
 </resources>
