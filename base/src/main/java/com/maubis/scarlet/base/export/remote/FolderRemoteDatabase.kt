@@ -11,6 +11,7 @@ import com.maubis.scarlet.base.database.remote.IRemoteDatabaseUtils
 import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
+import com.maubis.scarlet.base.export.sheet.ExternalFolderSyncBottomSheet.Companion.folderSyncBackupLocked
 import com.maubis.scarlet.base.export.sheet.ExternalFolderSyncBottomSheet.Companion.folderSyncPath
 import java.io.File
 import java.lang.ref.WeakReference
@@ -64,11 +65,17 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
     if (!isValidController) {
       return
     }
+    notesRemoteFolder?.deleteEverything()
+    tagsRemoteFolder?.deleteEverything()
+    foldersRemoteFolder?.deleteEverything()
   }
 
   override fun insert(note: INoteContainer) {
     if (!isValidController || note !is ExportableNote) {
       return
+    }
+    if (note.locked() && folderSyncBackupLocked) {
+      notesRemoteFolder?.lock(note.uuid())
     }
     notesRemoteFolder?.insert(note.uuid(), note)
   }

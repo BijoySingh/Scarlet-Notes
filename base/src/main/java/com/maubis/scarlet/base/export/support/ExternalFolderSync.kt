@@ -11,7 +11,6 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
-import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet.Companion.exportLockedNotes
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 
@@ -69,7 +68,7 @@ object ExternalFolderSync {
     }
 
     if (!hasPermission(context)) {
-      exportLockedNotes = false
+      externalFolderSync = false
       return
     }
     CoreConfig.instance.externalFolderSync().init()

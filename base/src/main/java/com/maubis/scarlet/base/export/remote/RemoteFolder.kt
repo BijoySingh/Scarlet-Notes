@@ -8,6 +8,7 @@ import kotlinx.coroutines.experimental.launch
 import java.io.File
 
 const val LAST_MODIFIED_ERROR_MARGIN = 7 * 1000 * 60 * 60 * 24L
+
 class RemoteFolder<T>(val folder: File,
                       val klass: Class<T>,
                       val onRemoteInsert: (T) -> Unit,
@@ -51,9 +52,9 @@ class RemoteFolder<T>(val folder: File,
     }
   }
 
-  fun file(uuid: String): File = File(folder, uuid)
+  private fun file(uuid: String): File = File(folder, uuid)
 
-  fun deletedFile(uuid: String): File = File(deletedFolder, uuid)
+  private fun deletedFile(uuid: String): File = File(deletedFolder, uuid)
 
   fun insert(uuid: String, item: T) {
     try {
@@ -64,10 +65,19 @@ class RemoteFolder<T>(val folder: File,
     }
   }
 
+  fun deleteEverything() {
+    uuids.forEach { delete(it) }
+  }
+
   fun delete(uuid: String) {
     uuids.remove(uuid)
     deletedUuids.add(uuid)
     file(uuid).delete()
     FileManager.writeToFile(deletedFile(uuid), "${System.currentTimeMillis()}")
+  }
+
+  fun lock(uuid: String) {
+    uuids.remove(uuid)
+    file(uuid).delete()
   }
 }
