@@ -49,7 +49,7 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.SearchConfig
-import com.maubis.scarlet.base.support.database.HouseKeeper
+import com.maubis.scarlet.base.support.database.HouseKeeperJob
 import com.maubis.scarlet.base.support.database.Migrator
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ColorUtil
@@ -441,7 +441,11 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   override fun onPause() {
     super.onPause()
     unregisterReceiver(receiver)
-    HouseKeeper(this.applicationContext).start()
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    HouseKeeperJob.schedule()
   }
 
   override fun onStop() {
