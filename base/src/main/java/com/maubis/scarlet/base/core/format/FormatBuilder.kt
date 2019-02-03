@@ -48,7 +48,6 @@ class FormatBuilder {
 
   fun getNextFormatType(type: FormatType): FormatType {
     when (type) {
-      FormatType.BULLET_LIST -> return FormatType.BULLET_LIST
       FormatType.NUMBERED_LIST -> return FormatType.NUMBERED_LIST
       FormatType.HEADING -> return FormatType.SUB_HEADING
       FormatType.CHECKLIST_CHECKED, FormatType.CHECKLIST_UNCHECKED -> return FormatType.CHECKLIST_UNCHECKED

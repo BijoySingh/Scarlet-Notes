@@ -71,6 +71,24 @@ fun getFormatControllerItems(): List<MultiRecyclerViewControllerItem<Format>> {
           .build())
   list.add(
       MultiRecyclerViewControllerItem.Builder<Format>()
+          .viewType(FormatType.BULLET_1.ordinal)
+          .layoutFile(R.layout.item_format_bullet)
+          .holderClass(FormatBulletViewHolder::class.java)
+          .build())
+  list.add(
+      MultiRecyclerViewControllerItem.Builder<Format>()
+          .viewType(FormatType.BULLET_2.ordinal)
+          .layoutFile(R.layout.item_format_bullet)
+          .holderClass(FormatBulletViewHolder::class.java)
+          .build())
+  list.add(
+      MultiRecyclerViewControllerItem.Builder<Format>()
+          .viewType(FormatType.BULLET_3.ordinal)
+          .layoutFile(R.layout.item_format_bullet)
+          .holderClass(FormatBulletViewHolder::class.java)
+          .build())
+  list.add(
+      MultiRecyclerViewControllerItem.Builder<Format>()
           .viewType(FormatType.EMPTY.ordinal)
           .layoutFile(R.layout.item_format_fab_space)
           .holderClass(NullFormatHolder::class.java)

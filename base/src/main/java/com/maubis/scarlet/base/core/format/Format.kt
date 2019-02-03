@@ -16,11 +16,11 @@ class Format : Comparable<Format> {
   val markdownText: String
     get() {
       return when (formatType) {
-        FormatType.BULLET_LIST, FormatType.NUMBERED_LIST -> "- $text"
+        FormatType.BULLET_1, FormatType.BULLET_2, FormatType.BULLET_3, FormatType.NUMBERED_LIST -> "- $text"
         FormatType.HEADING -> "# $text"
         FormatType.CHECKLIST_CHECKED -> "\u2612 $text"
         FormatType.CHECKLIST_UNCHECKED -> "\u2610 $text"
-        FormatType.SUB_HEADING -> "### $text"
+        FormatType.SUB_HEADING -> "## $text"
         FormatType.CODE -> "```\n$text\n```"
         FormatType.QUOTE -> "> $text"
         FormatType.IMAGE -> ""

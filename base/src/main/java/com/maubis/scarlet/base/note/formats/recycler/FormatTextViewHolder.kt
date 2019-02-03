@@ -1,15 +1,16 @@
 package com.maubis.scarlet.base.note.formats.recycler
 
 import android.content.Context
-import android.text.Editable
-import android.text.InputType
-import android.text.TextWatcher
+import android.text.*
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import com.maubis.markdown.Markdown
+import com.maubis.markdown.spannable.setFormats
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.format.Format
+import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.format.MarkdownType
 import com.maubis.scarlet.base.note.creation.sheet.FormatActionBottomSheet
 import com.maubis.scarlet.base.support.ui.visibility
@@ -37,14 +38,20 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
   override fun populate(data: Format, config: FormatViewHolderConfig) {
     format = data
 
-    text.setTextSize(TypedValue.COMPLEX_UNIT_SP, config.fontSize)
+    val fontSize = when (data.formatType) {
+      FormatType.HEADING -> config.fontSize * 1.5f
+      FormatType.SUB_HEADING -> config.fontSize * 1.2f
+      else -> config.fontSize
+    }
+
+    text.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize)
     text.setTextColor(config.secondaryTextColor)
     text.setBackgroundColor(config.backgroundColor)
     text.setLinkTextColor(config.accentColor)
     text.setTextIsSelectable(true)
     text.visibility = visibility(!config.editable)
 
-    edit.setTextSize(TypedValue.COMPLEX_UNIT_SP, config.fontSize)
+    edit.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize)
     edit.setTextColor(config.secondaryTextColor)
     edit.setHintTextColor(config.hintTextColor)
     edit.setBackgroundColor(config.backgroundColor)
@@ -77,7 +84,8 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
   }
 
   override fun afterTextChanged(s: Editable) {
-
+    // s.clearSpans()
+    // s.setFormats(Markdown.getSpanInfo(format!!.text))
   }
 
   fun requestEditTextFocus() {

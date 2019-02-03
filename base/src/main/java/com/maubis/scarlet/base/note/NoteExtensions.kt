@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
+import com.maubis.markdown.segmenter.TextSegmenter
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
@@ -17,10 +18,12 @@ import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FRE
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
+import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
 import com.maubis.scarlet.base.support.utils.renderMarkdown
 import java.util.*
+import kotlin.collections.ArrayList
 
 fun Note.log(context: Context): String {
   val log = HashMap<String, Any>()
@@ -79,6 +82,20 @@ fun Note.getText(): String {
       .map { it.markdownText }
       .joinToString(separator = "\n")
       .trim()
+}
+
+fun Note.getSmartFormats(): List<Format> {
+  val formats = getFormats()
+  val smartFormats = ArrayList<Format>()
+  formats.forEach {
+    if (it.formatType == FormatType.TEXT) {
+      val moreFormats = TextSegmenter(it.text).get().map { it.toFormat() }
+      smartFormats.addAll(moreFormats)
+    } else {
+      smartFormats.add(it)
+    }
+  }
+  return smartFormats
 }
 
 fun Note.getImageFile(): String {

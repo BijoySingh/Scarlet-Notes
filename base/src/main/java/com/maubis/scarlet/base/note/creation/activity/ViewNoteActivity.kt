@@ -171,7 +171,10 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       adapter.addItem(Format(FormatType.SEPARATOR))
     }
 
-    formats = note!!.getFormats().toMutableList()
+    formats = when (editModeValue) {
+      true -> note!!.getSmartFormats()
+      false -> note!!.getSmartFormats()
+    }.toMutableList()
     adapter.addItems(formats)
 
     if (!editModeValue) {

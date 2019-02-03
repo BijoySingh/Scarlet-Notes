@@ -3,7 +3,9 @@ package com.maubis.scarlet.base.core.format
 enum class FormatType {
   TAG,
   TEXT,
-  BULLET_LIST,
+  BULLET_1,
+  BULLET_2,
+  BULLET_3,
   NUMBERED_LIST,
   IMAGE,
   HEADING,
