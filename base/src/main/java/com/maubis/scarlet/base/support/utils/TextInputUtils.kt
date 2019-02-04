@@ -7,14 +7,20 @@ import android.widget.TextView
 import com.maubis.markdown.Markdown
 import ru.noties.markwon.Markwon
 
-fun getEditorActionListener(runnable: () -> Boolean): TextView.OnEditorActionListener {
+fun getEditorActionListener(
+    runnable: () -> Boolean,
+    preConditions: () -> Boolean = { false }): TextView.OnEditorActionListener {
   return TextView.OnEditorActionListener { _: TextView, actionId: Int, event: KeyEvent? ->
+    if (preConditions()) {
+      return@OnEditorActionListener false
+    }
+
     if (event == null) {
       if (actionId != EditorInfo.IME_ACTION_DONE && actionId != EditorInfo.IME_ACTION_NEXT) {
         return@OnEditorActionListener false
       }
     } else if (actionId == EditorInfo.IME_NULL || actionId == KeyEvent.KEYCODE_ENTER) {
-      if (event.getAction() != KeyEvent.ACTION_DOWN) {
+      if (event.action != KeyEvent.ACTION_DOWN) {
         return@OnEditorActionListener true
       }
     } else {

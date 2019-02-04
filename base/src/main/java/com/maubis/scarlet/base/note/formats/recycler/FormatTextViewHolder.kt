@@ -1,12 +1,15 @@
 package com.maubis.scarlet.base.note.formats.recycler
 
 import android.content.Context
-import android.text.*
+import android.text.Editable
+import android.text.InputType
+import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import com.maubis.markdown.Markdown
+import com.maubis.markdown.spannable.clearMarkdownSpans
 import com.maubis.markdown.spannable.setFormats
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.format.Format
@@ -83,9 +86,9 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     activity.setFormat(format!!)
   }
 
-  override fun afterTextChanged(s: Editable) {
-    // s.clearSpans()
-    // s.setFormats(Markdown.getSpanInfo(format!!.text))
+  override fun afterTextChanged(text: Editable) {
+    text.clearMarkdownSpans()
+    text.setFormats(Markdown.getSpanInfo(format!!.text))
   }
 
   fun requestEditTextFocus() {

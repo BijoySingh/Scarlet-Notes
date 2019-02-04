@@ -490,11 +490,15 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
       return
     }
 
-    val isCheckList = (format.formatType === FormatType.CHECKLIST_UNCHECKED
+    val isCheckList =
+        (format.formatType === FormatType.CHECKLIST_UNCHECKED
         || format.formatType === FormatType.CHECKLIST_CHECKED)
     val newPosition = position + 1
     when {
       isCheckList -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.CHECKLIST_UNCHECKED))
+      format.formatType == FormatType.BULLET_1 -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.BULLET_1))
+      format.formatType == FormatType.BULLET_2 -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.BULLET_2))
+      format.formatType == FormatType.BULLET_3 -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.BULLET_3))
       newPosition < formats.size -> focus(position + 1)
       else -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(format.formatType))
     }

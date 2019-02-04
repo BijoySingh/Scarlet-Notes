@@ -2,9 +2,25 @@ package com.maubis.markdown.spannable
 
 import android.graphics.Color
 import android.graphics.Typeface
+import android.text.Editable
 import android.text.Spannable
 import android.text.Spanned
 import android.text.style.*
+
+fun Editable.clearMarkdownSpans() {
+  val spans = getSpans(0, length, Any::class.java)
+  for (span in spans) {
+    if (span is RelativeSizeSpan
+        || span is QuoteSpan
+        || span is StyleSpan
+        || span is TypefaceSpan
+        || span is UnderlineSpan
+        || span is ForegroundColorSpan
+        || span is BackgroundColorSpan) {
+      removeSpan(span)
+    }
+  }
+}
 
 fun Spannable.color(color: String, start: Int, end: Int): Spannable {
   this.setSpan(ForegroundColorSpan(Color.parseColor(color)), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -37,7 +53,7 @@ fun Spannable.background(color: Int, start: Int, end: Int): Spannable {
 }
 
 fun Spannable.relativeSize(relativeSize: Float, start: Int, end: Int): Spannable {
-  this.setSpan(RelativeSizeSpan(relativeSize), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+  this.setSpan(RelativeSizeSpan(relativeSize), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
   return this
 }
 

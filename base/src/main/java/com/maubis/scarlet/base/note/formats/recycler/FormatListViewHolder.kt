@@ -3,22 +3,26 @@ package com.maubis.scarlet.base.note.formats.recycler
 import android.content.Context
 import android.graphics.Paint
 import android.text.InputType
-import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
-import android.widget.TextView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
+import com.maubis.scarlet.base.support.utils.getEditorActionListener
 
-class FormatListViewHolder(context: Context, view: View)
-  : FormatTextViewHolder(context, view), TextView.OnEditorActionListener {
+class FormatListViewHolder(context: Context, view: View) : FormatTextViewHolder(context, view) {
 
   private val icon: ImageView = root.findViewById(R.id.icon)
 
   init {
-    edit.setOnEditorActionListener(this)
+    edit.setOnEditorActionListener(getEditorActionListener(
+        runnable = {
+          activity.createOrChangeToNextFormat(format!!)
+          true
+        },
+        preConditions = { format === null || !edit.isFocused }
+    ))
     edit.imeOptions = EditorInfo.IME_ACTION_DONE
     edit.setRawInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE)
   }
@@ -47,29 +51,5 @@ class FormatListViewHolder(context: Context, view: View)
         activity.setFormatChecked(data, data.formatType != FormatType.CHECKLIST_CHECKED)
       }
     }
-  }
-
-
-  override fun onEditorAction(textView: TextView, actionId: Int, event: KeyEvent?): Boolean {
-    if (format === null || !edit.isFocused) {
-      return false
-    }
-
-    // Ref: https://stackoverflow.com/questions/1489852/android-handle-enter-in-an-edittext
-    if (event == null) {
-      if (actionId != EditorInfo.IME_ACTION_DONE && actionId != EditorInfo.IME_ACTION_NEXT) {
-        return false
-      }
-    } else if (actionId == EditorInfo.IME_NULL || actionId == KeyEvent.KEYCODE_ENTER) {
-      if (event.action != KeyEvent.ACTION_DOWN) {
-        return true
-      }
-    } else {
-      return false
-    }
-
-    // Enter clicked
-    activity.createOrChangeToNextFormat(format!!)
-    return true
   }
 }
