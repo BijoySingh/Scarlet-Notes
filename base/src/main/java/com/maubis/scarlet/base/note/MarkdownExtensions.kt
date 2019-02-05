@@ -22,5 +22,7 @@ fun MarkdownSegmentType.toFormatType(): FormatType {
     MarkdownSegmentType.BULLET_3 -> FormatType.BULLET_3
     MarkdownSegmentType.QUOTE -> FormatType.QUOTE
     MarkdownSegmentType.SEPARATOR -> FormatType.SEPARATOR
+    MarkdownSegmentType.CHECKLIST_UNCHECKED -> FormatType.CHECKLIST_UNCHECKED
+    MarkdownSegmentType.CHECKLIST_CHECKED -> FormatType.CHECKLIST_CHECKED
   }
 }

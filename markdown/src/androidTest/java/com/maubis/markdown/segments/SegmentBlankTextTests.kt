@@ -1,7 +1,7 @@
 package com.maubis.markdown.segments
 
 import android.support.test.runner.AndroidJUnit4
-import com.maubis.markdown.segmenter.NormalSegment
+import com.maubis.markdown.segmenter.MarkdownSegmentType
 import com.maubis.markdown.segmenter.TextSegmenter
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -12,7 +12,7 @@ class SegmentBlankTextTests : MarkdownTextSegmenterTestBase() {
   fun testEmptyText() {
     val text = ""
     val processed = TextSegmenter(text).get()
-    assert(listOf(NormalSegment(text)), processed)
+    assert(listOf(getTestSegment(MarkdownSegmentType.NORMAL, text)), processed)
     assert(text, processed)
   }
 
@@ -20,7 +20,7 @@ class SegmentBlankTextTests : MarkdownTextSegmenterTestBase() {
   fun testBlankText() {
     val text = "     "
     val processed = TextSegmenter(text).get()
-    assert(listOf(NormalSegment(text)), processed)
+    assert(listOf(getTestSegment(MarkdownSegmentType.NORMAL, text)), processed)
     assert(text, processed)
   }
 
@@ -29,11 +29,7 @@ class SegmentBlankTextTests : MarkdownTextSegmenterTestBase() {
     val text = "\n\n\n"
     val processed = TextSegmenter(text).get()
     assert(
-        listOf(
-            NormalSegment(""),
-            NormalSegment(""),
-            NormalSegment(""),
-            NormalSegment("")),
+        listOf(getTestSegment(MarkdownSegmentType.NORMAL, "\n\n\n")),
         processed)
     assert(text, processed)
   }
@@ -43,7 +39,7 @@ class SegmentBlankTextTests : MarkdownTextSegmenterTestBase() {
     val text = "   \n  \n \n    "
     val processed = TextSegmenter(text).get()
     assert(
-        listOf(NormalSegment(text)),
+        listOf(getTestSegment(MarkdownSegmentType.NORMAL, text)),
         processed)
     assert(text, processed)
   }

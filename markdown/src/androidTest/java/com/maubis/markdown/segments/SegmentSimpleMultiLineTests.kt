@@ -1,7 +1,8 @@
 package com.maubis.markdown.segments
 
 import android.support.test.runner.AndroidJUnit4
-import com.maubis.markdown.segmenter.*
+import com.maubis.markdown.segmenter.MarkdownSegmentType
+import com.maubis.markdown.segmenter.TextSegmenter
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -15,8 +16,7 @@ class SegmentSimpleMultiLineTests : MarkdownTextSegmenterTestBase() {
         "text"
     val processed = TextSegmenter(text).get()
     assert(listOf(
-        NormalSegment("text\n text"),
-        NormalSegment("\ntext")),
+        getTestSegment(MarkdownSegmentType.NORMAL, "text\n text\n\ntext")),
         processed)
     assert(text, processed)
   }
@@ -29,11 +29,10 @@ class SegmentSimpleMultiLineTests : MarkdownTextSegmenterTestBase() {
         "text\n"
     val processed = TextSegmenter(text).get()
     assert(listOf(
-        Heading1Segment("# text"),
-        Heading2Segment("## text"),
-        Heading3Segment("### text"),
-        NormalSegment("text"),
-        NormalSegment("")),
+        getTestSegment(MarkdownSegmentType.HEADING_1, "# text"),
+        getTestSegment(MarkdownSegmentType.HEADING_2, "## text"),
+        getTestSegment(MarkdownSegmentType.HEADING_3, "### text"),
+        getTestSegment(MarkdownSegmentType.NORMAL, "text\n")),
         processed)
     assert(text, processed)
   }
@@ -47,12 +46,11 @@ class SegmentSimpleMultiLineTests : MarkdownTextSegmenterTestBase() {
         "text\n"
     val processed = TextSegmenter(text).get()
     assert(listOf(
-        Bullet1Segment("- text"),
-        Bullet1Segment("- text"),
-        Bullet2Segment("  - text"),
-        Bullet3Segment("    - text"),
-        NormalSegment("text"),
-        NormalSegment("")),
+        getTestSegment(MarkdownSegmentType.BULLET_1, "- text"),
+        getTestSegment(MarkdownSegmentType.BULLET_1, "- text"),
+        getTestSegment(MarkdownSegmentType.BULLET_2, "  - text"),
+        getTestSegment(MarkdownSegmentType.BULLET_3, "    - text"),
+        getTestSegment(MarkdownSegmentType.NORMAL, "text\n")),
         processed)
     assert(text, processed)
   }
@@ -65,10 +63,10 @@ class SegmentSimpleMultiLineTests : MarkdownTextSegmenterTestBase() {
         "> text"
     val processed = TextSegmenter(text).get()
     assert(listOf(
-        QuoteSegment("> text\ntext"),
-        QuoteSegment("> text"),
-        NormalSegment(""),
-        QuoteSegment("> text")),
+        getTestSegment(MarkdownSegmentType.QUOTE, "> text\ntext"),
+        getTestSegment(MarkdownSegmentType.QUOTE, "> text"),
+        getTestSegment(MarkdownSegmentType.NORMAL, ""),
+        getTestSegment(MarkdownSegmentType.QUOTE, "> text")),
         processed)
     assert(text, processed)
   }
@@ -84,7 +82,7 @@ class SegmentSimpleMultiLineTests : MarkdownTextSegmenterTestBase() {
         "\n" +
         "```"
     val processed = TextSegmenter(text).get()
-    assert(listOf(CodeSegment(text)), processed)
+    assert(listOf(getTestSegment(MarkdownSegmentType.CODE, text)), processed)
     assert(text, processed)
   }
 
@@ -96,7 +94,10 @@ class SegmentSimpleMultiLineTests : MarkdownTextSegmenterTestBase() {
         "---\n" +
         "## heading"
     val processed = TextSegmenter(text).get()
-    assert(listOf(CodeSegment("```\ncode\n```"), SeparatorSegment("---"), Heading2Segment("## heading")), processed)
+    assert(listOf(
+        getTestSegment(MarkdownSegmentType.CODE, "```\ncode\n```"),
+        getTestSegment(MarkdownSegmentType.SEPARATOR, "---"),
+        getTestSegment(MarkdownSegmentType.HEADING_2, "## heading")), processed)
     assert(text, processed)
   }
 

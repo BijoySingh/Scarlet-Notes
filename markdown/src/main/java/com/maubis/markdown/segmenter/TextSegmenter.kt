@@ -1,19 +1,8 @@
 package com.maubis.markdown.segmenter
 
-import android.util.Log
+val config = TextSegmentConfig(TextSegmentConfig.Builder())
 
 class TextSegmenter(val text: String) {
-
-  object Delimiters {
-    const val HEADING_1 = "# "
-    const val HEADING_2 = "## "
-    const val HEADING_3 = "### "
-    const val CODE = "```"
-    const val BULLET = "- "
-    const val QUOTE = "> "
-    const val SEPARATOR = "---"
-  }
-
   private var currentSegment = MarkdownSegmentBuilder()
   private val processedSegments = ArrayList<MarkdownSegment>()
 
@@ -22,97 +11,93 @@ class TextSegmenter(val text: String) {
     return processedSegments
   }
 
-  fun processSegments() {
+  private fun processSegments() {
     processedSegments.clear()
+    val allMultilineSegments = config.configuration.filter { it is MultilineDelimiterSegment }
+    val allFullLineSegments = config.configuration.filter { it is FullLineSegment }
+    val allMultilineStartSegments = config.configuration.filter { it is MultilineStartSegment }
+    val allSingleLineSegments = config.configuration.filter { it is LineStartSegment || it is LineDelimiterSegment }
 
     val segments = text.split("\n")
     for (segment in segments) {
-      if (segment.trim() == Delimiters.CODE) {
-        if (currentSegment.markdownType == MarkdownSegmentType.CODE) {
-          currentSegment.builder.append("\n")
-          currentSegment.builder.append(segment)
-          maybeAddCurrentSegment()
-          continue
-        }
+      val startCurrentConfig = currentSegment
 
-        maybeAddCurrentSegment()
-        currentSegment.markdownType = MarkdownSegmentType.CODE
+      // Multiline Code is finishing
+      if (startCurrentConfig.config is MultilineDelimiterSegment
+          && startCurrentConfig.config.isEnd(segment)) {
+        currentSegment.builder.append("\n")
         currentSegment.builder.append(segment)
-        continue
+        maybeAddCurrentSegment()
       }
 
-      if (currentSegment.markdownType == MarkdownSegmentType.CODE) {
+      // Continuing the multiline code
+      if (startCurrentConfig.config is MultilineDelimiterSegment) {
         currentSegment.builder.append("\n")
         currentSegment.builder.append(segment)
         continue
       }
 
-      if (segment.startsWith(Delimiters.CODE)) {
+      // Check if full line segment
+      val fullLineSegment = allFullLineSegments.firstOrNull { it.isValid(segment) }
+      if (fullLineSegment !== null) {
         maybeAddCurrentSegment()
-        currentSegment.markdownType = MarkdownSegmentType.CODE
-        currentSegment.builder.append(segment)
-        continue
-      }
-
-      if (segment == Delimiters.SEPARATOR) {
-        maybeAddCurrentSegment()
-        currentSegment.markdownType = MarkdownSegmentType.SEPARATOR
-        currentSegment.builder.append(segment)
-        continue
-      }
-
-      if (segment.startsWith(Delimiters.HEADING_1)
-          || segment.startsWith(Delimiters.HEADING_2)
-          || segment.startsWith(Delimiters.HEADING_3)) {
-        maybeAddCurrentSegment()
-        currentSegment.markdownType = when {
-          segment.startsWith(Delimiters.HEADING_3) -> MarkdownSegmentType.HEADING_3
-          segment.startsWith(Delimiters.HEADING_2) -> MarkdownSegmentType.HEADING_2
-          else -> MarkdownSegmentType.HEADING_1
-        }
+        currentSegment.config = fullLineSegment
         currentSegment.builder.append(segment)
         maybeAddCurrentSegment()
         continue
       }
 
-      if (segment.startsWith(Delimiters.QUOTE)) {
+      // Check if multiline segment start
+      val multilineSegment = allMultilineSegments.firstOrNull { it.isStart(segment) }
+      if (multilineSegment !== null) {
         maybeAddCurrentSegment()
-        currentSegment.markdownType = MarkdownSegmentType.QUOTE
+        currentSegment.config = multilineSegment
         currentSegment.builder.append(segment)
         continue
       }
 
-      if (segment.trim().startsWith(Delimiters.BULLET)) {
+      // Check if start of multiline start segment
+      val multilineStartSegment = allMultilineStartSegments.firstOrNull { it.isStart(segment) }
+      if (multilineStartSegment !== null) {
         maybeAddCurrentSegment()
-        val index = segment.indexOf(Delimiters.BULLET)
-        currentSegment.markdownType = when {
-          index <= 0 -> MarkdownSegmentType.BULLET_1
-          index <= 2 -> MarkdownSegmentType.BULLET_2
-          else -> MarkdownSegmentType.BULLET_3
-        }
+        currentSegment.config = multilineStartSegment
+        currentSegment.builder.append(segment)
+        continue
+      }
+
+      // Check if single line segments
+      val singleLineSegment = allSingleLineSegments.firstOrNull { it.isValid(segment) }
+      if (singleLineSegment !== null) {
+        maybeAddCurrentSegment()
+        currentSegment.config = singleLineSegment
         currentSegment.builder.append(segment)
         maybeAddCurrentSegment()
         continue
       }
 
-      // Either extension or new Normal
-      if (currentSegment.markdownType != MarkdownSegmentType.INVALID && segment.isEmpty()) {
+      // Multiline start segment in progress, end if double new line
+      if (currentSegment.config is MultilineStartSegment && segment.isEmpty()) {
         maybeAddCurrentSegment()
-        currentSegment.markdownType = MarkdownSegmentType.NORMAL
+        currentSegment.config = InvalidSegment(MarkdownSegmentType.NORMAL)
         currentSegment.builder.append(segment)
-      } else if (currentSegment.markdownType != MarkdownSegmentType.INVALID) {
-        currentSegment.builder.append("\n")
-        currentSegment.builder.append(segment)
-      } else {
-        currentSegment.markdownType = MarkdownSegmentType.NORMAL
-        currentSegment.builder.append(segment)
+        continue
       }
+
+      if (currentSegment.config.type() == MarkdownSegmentType.INVALID) {
+        currentSegment.config = InvalidSegment(MarkdownSegmentType.NORMAL)
+        currentSegment.builder.append(segment)
+        continue
+      }
+
+      // Normal or multiline start segment
+      currentSegment.builder.append("\n")
+      currentSegment.builder.append(segment)
     }
     maybeAddCurrentSegment()
   }
 
   private fun maybeAddCurrentSegment() {
-    if (currentSegment.markdownType == MarkdownSegmentType.INVALID) {
+    if (currentSegment.config.type() == MarkdownSegmentType.INVALID) {
       currentSegment = MarkdownSegmentBuilder()
       return
     }

@@ -1,7 +1,9 @@
 package com.maubis.markdown.segments
 
+import com.maubis.markdown.segmenter.InvalidSegment
 import com.maubis.markdown.segmenter.MarkdownSegment
 import com.maubis.markdown.segmenter.MarkdownSegmentType
+import com.maubis.markdown.segmenter.NormalMarkdownSegment
 import org.junit.Assert
 
 /**
@@ -24,7 +26,7 @@ abstract class MarkdownTextSegmenterTestBase {
       Assert.assertEquals(
           "Error: Text must be the same\n" +
               "${toString(expectedSegments)} vs ${toString(processedSegments)}",
-          markdownSegment.text, processedSegment.text)
+          markdownSegment.text(), processedSegment.text())
       Assert.assertNotEquals(
           "Error: Type should never be INVALID\n" +
               "${toString(expectedSegments)} vs ${toString(processedSegments)}",
@@ -35,13 +37,17 @@ abstract class MarkdownTextSegmenterTestBase {
   protected fun assert(text: String, processedSegments: List<MarkdownSegment>) {
     val string = StringBuilder()
     processedSegments.forEachIndexed { index, markdownSegment ->
-      string.append(markdownSegment.text)
+      string.append(markdownSegment.text())
       if (index != processedSegments.size - 1) {
         string.append("\n")
       }
     }
 
     Assert.assertEquals(text, string.toString())
+  }
+
+  protected fun getTestSegment(type: MarkdownSegmentType, text: String): MarkdownSegment {
+    return NormalMarkdownSegment(InvalidSegment(type), text)
   }
 
   private fun toString(segments: List<MarkdownSegment>): String {
@@ -51,7 +57,7 @@ abstract class MarkdownTextSegmenterTestBase {
       builder.append("(")
       builder.append(it.type().name)
       builder.append(",")
-      builder.append(it.text)
+      builder.append(it.text())
       builder.append(")")
     }
     builder.append("}")

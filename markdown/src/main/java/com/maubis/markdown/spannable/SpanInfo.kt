@@ -20,6 +20,8 @@ enum class MarkdownType {
   INLINE_CODE,
   STRIKE,
   SEPARATOR,
+  CHECKLIST_UNCHECKED,
+  CHECKLIST_CHECKED,
 }
 
 data class SpanInfo(val markdownType: MarkdownType, val start: Int, val end: Int)
@@ -37,6 +39,8 @@ fun map(type: MarkdownSegmentType): MarkdownType {
     MarkdownSegmentType.BULLET_3 -> MarkdownType.BULLET_3
     MarkdownSegmentType.QUOTE -> MarkdownType.QUOTE
     MarkdownSegmentType.SEPARATOR -> MarkdownType.SEPARATOR
+    MarkdownSegmentType.CHECKLIST_UNCHECKED -> MarkdownType.CHECKLIST_UNCHECKED
+    MarkdownSegmentType.CHECKLIST_CHECKED -> MarkdownType.CHECKLIST_CHECKED
   }
 }
 

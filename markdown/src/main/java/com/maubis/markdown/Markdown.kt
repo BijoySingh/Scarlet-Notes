@@ -13,7 +13,7 @@ object Markdown {
 
     val spannable = SpannableStringBuilder()
     segments.forEach {
-      spannable.append(it.spannable(strip))
+      // spannable.append(it.spannable(strip))
       spannable.append("\n")
     }
     return spannable
@@ -24,9 +24,9 @@ object Markdown {
     var currentIndex = 0
     val formats = ArrayList<SpanInfo>()
     segments.forEach {
-      val finalIndex = currentIndex + it.text.length
+      val finalIndex = currentIndex + it.text().length
       formats.add(SpanInfo(map(it.type()), currentIndex, finalIndex))
-      formats.addAll(TextInliner(it.text).get().spans(currentIndex))
+      formats.addAll(TextInliner(it.text()).get().spans(currentIndex))
       currentIndex = finalIndex + 1
     }
     return formats
@@ -35,7 +35,7 @@ object Markdown {
   fun debug(text: String): String {
     val segments = TextSegmenter(text).get()
     val string = StringBuilder()
-    segments.map { string.append(TextInliner(it.text).get().debug()) }
+    segments.map { string.append(TextInliner(it.text()).get().debug()) }
     return string.toString()
   }
 }

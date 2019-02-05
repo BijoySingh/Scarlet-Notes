@@ -12,4 +12,6 @@ enum class MarkdownSegmentType {
   BULLET_3,
   QUOTE,
   SEPARATOR,
+  CHECKLIST_UNCHECKED,
+  CHECKLIST_CHECKED,
 }
