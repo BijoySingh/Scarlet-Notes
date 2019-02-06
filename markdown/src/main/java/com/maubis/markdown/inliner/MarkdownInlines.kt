@@ -1,52 +1,61 @@
 package com.maubis.markdown.inliner
 
-import android.graphics.Color
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.TextUtils
-import com.maubis.markdown.spannable.*
+import com.maubis.markdown.spannable.MarkdownType
+import com.maubis.markdown.spannable.SpanInfo
+import com.maubis.markdown.spannable.map
 
 interface IMarkdownInlineBuilder {}
 
 class NormalInlineBuilder : IMarkdownInlineBuilder {
   val builder: StringBuilder = StringBuilder()
-  fun build(): NormalInlineSegment {
-    return NormalInlineSegment(builder.toString())
+  fun build(): NormalInlineMarkdownSegment {
+    return NormalInlineMarkdownSegment(builder.toString())
   }
 }
 
 class MarkdownInlineBuilder : IMarkdownInlineBuilder {
   val children = ArrayList<MarkdownInline>()
-  var markdownType: MarkdownInlineType = MarkdownInlineType.INVALID
+  var config: IInlineConfig = InvalidInline(MarkdownInlineType.INVALID)
   var paired: Boolean = false
 
   fun build(): MarkdownInline {
-    return when (markdownType) {
-      MarkdownInlineType.NORMAL, MarkdownInlineType.INVALID -> DefaultMarkdownInline(children)
-      MarkdownInlineType.BOLD -> BoldMarkdownInline(children)
-      MarkdownInlineType.INLINE_CODE -> CodeMarkdownInline(children)
-      MarkdownInlineType.ITALICS -> ItalicsMarkdownInline(children)
-      MarkdownInlineType.UNDERLINE -> UnderlineMarkdownInline(children)
-      MarkdownInlineType.STRIKE -> StrikeMarkdownInline(children)
-    }
+    return PhraseDelimiterMarkdownInline(config, children)
   }
 }
 
-abstract class MarkdownInline() {
+abstract class MarkdownInline {
   abstract fun type(): MarkdownInlineType
 
-  abstract fun original(): String
+  abstract fun config(): IInlineConfig
 
-  abstract fun fullText(): Spannable
+  /**
+   * The original text inside an inline,
+   * e.g. for the BOLD in this example "a **b _c_ d** e" is "**b _c_ d**"
+   */
+  abstract fun originalText(): String
 
-  abstract fun spannable(strip: Boolean = false): SpannableString
+  /**
+   * The list of spans that make up this block.
+   * This can be overlapping information, which is needed for rendering
+   */
+  abstract fun allSpans(startPosition: Int): List<SpanInfo>
 
-  abstract fun spans(startPosition: Int): List<SpanInfo>
+  /**
+   * The text inside an inline without any of the delimiters
+   * e.g. for the BOLD in this example "a **b _c_ d** e" is "b c d"
+   */
+  abstract fun strippedText(): String
+
+  /**
+   * The list of spans that make up the stripped portion of this block
+   * This can be overlapping information, which is needed for rendering
+   */
+  abstract fun allStrippedSpans(startPosition: Int): List<SpanInfo>
+
 
   fun debug(): String {
-    if (this !is ComplexMarkdownInline) {
-      return original()
+    if (this !is PhraseDelimiterMarkdownInline) {
+      return originalText()
     }
 
     val string = StringBuilder()
@@ -59,167 +68,66 @@ abstract class MarkdownInline() {
   }
 }
 
-class NormalInlineSegment(val text: String) : MarkdownInline() {
+class NormalInlineMarkdownSegment(val text: String) : MarkdownInline() {
   override fun type() = MarkdownInlineType.NORMAL
 
-  override fun original(): String {
+  override fun config(): IInlineConfig = InvalidInline(MarkdownInlineType.NORMAL)
+
+  override fun originalText(): String {
     return text
   }
 
-  override fun fullText(): Spannable {
-    return SpannableString(text)
+  override fun allSpans(startPosition: Int): List<SpanInfo> {
+    return listOf(SpanInfo(MarkdownType.NORMAL, startPosition, startPosition + originalText().length))
   }
 
-  override fun spannable(strip: Boolean): SpannableString {
-    return SpannableString(text)
-  }
-
-  override fun spans(startPosition: Int): List<SpanInfo> {
-    return listOf(SpanInfo(MarkdownType.NORMAL, startPosition, startPosition + original().length))
-  }
+  override fun strippedText(): String = originalText()
+  override fun allStrippedSpans(startPosition: Int): List<SpanInfo> = allSpans(startPosition)
 }
 
-abstract class ComplexMarkdownInline(val children: List<MarkdownInline>) : MarkdownInline() {
-  fun text(): CharSequence {
-    val list = children.map { it.fullText() }
-    return TextUtils.concat(*list.toTypedArray())
-  }
+class PhraseDelimiterMarkdownInline(val config: IInlineConfig, val children: List<MarkdownInline>) : MarkdownInline() {
 
-  override fun original(): String {
+  override fun type() = config.type()
+
+  override fun config(): IInlineConfig = config
+
+  override fun originalText(): String = contentText(false)
+
+  override fun allSpans(startPosition: Int): List<SpanInfo> = allContentSpans(false, startPosition)
+
+  override fun strippedText(): String = contentText(true)
+
+  override fun allStrippedSpans(startPosition: Int): List<SpanInfo> = allContentSpans(true, startPosition)
+
+  private fun contentText(stripDelimiters: Boolean): String {
     val builder = StringBuilder()
-    children.forEach { builder.append(it.original()) }
+    if (!stripDelimiters && config is PhraseDelimiterInline) {
+      builder.append(config.startDelimiter)
+    }
+    children.forEach { builder.append(it.originalText()) }
+    if (!stripDelimiters && config is PhraseDelimiterInline) {
+      builder.append(config.endDelimiter)
+    }
     return builder.toString()
   }
 
-  override fun spans(startPosition: Int): List<SpanInfo> {
+  private fun allContentSpans(stripDelimiters: Boolean, startPosition: Int): List<SpanInfo> {
     val childrenSpans = ArrayList<SpanInfo>()
     var currentIndex = startPosition
     children.forEach {
-      childrenSpans.addAll(it.spans(currentIndex))
-      currentIndex += it.original().length
+      when (stripDelimiters) {
+        true -> {
+          childrenSpans.addAll(it.allStrippedSpans(currentIndex))
+          currentIndex += it.strippedText().length
+        }
+        false -> {
+          childrenSpans.addAll(it.allSpans(currentIndex))
+          currentIndex += it.originalText().length
+        }
+      }
     }
-    childrenSpans.add(SpanInfo(map(type()), startPosition, startPosition + original().length))
+    childrenSpans.add(SpanInfo(map(type()), startPosition, startPosition + contentText(stripDelimiters).length))
     return childrenSpans
   }
-}
 
-class DefaultMarkdownInline(children: List<MarkdownInline>) : ComplexMarkdownInline(children) {
-  override fun type(): MarkdownInlineType = MarkdownInlineType.INVALID
-
-  override fun fullText(): Spannable {
-    return SpannableString(text())
-  }
-
-  override fun spannable(strip: Boolean): SpannableString {
-    val list = children.map { it.spannable(strip) }
-    return SpannableString(TextUtils.concat(*list.toTypedArray()))
-  }
-}
-
-
-class BoldMarkdownInline(children: List<MarkdownInline>) : ComplexMarkdownInline(children) {
-  override fun type(): MarkdownInlineType = MarkdownInlineType.BOLD
-
-  override fun original(): String {
-    return "**${super.original()}**"
-  }
-
-  override fun fullText(): Spannable {
-    val builder = SpannableStringBuilder()
-    builder.append(TextInliner.Delimiters.BOLD)
-    builder.append(text())
-    builder.append(TextInliner.Delimiters.BOLD)
-    return builder
-  }
-
-  override fun spannable(strip: Boolean): SpannableString {
-    val text = if (strip) text() else fullText()
-    return SpannableString(text).bold(0, text.length)
-  }
-}
-
-class CodeMarkdownInline(children: List<MarkdownInline>) : ComplexMarkdownInline(children) {
-  override fun type(): MarkdownInlineType = MarkdownInlineType.INLINE_CODE
-
-  override fun original(): String {
-    return "`${super.original()}`"
-  }
-
-  override fun fullText(): Spannable {
-    val builder = SpannableStringBuilder()
-    builder.append(TextInliner.Delimiters.INLINE_CODE)
-    builder.append(text())
-    builder.append(TextInliner.Delimiters.INLINE_CODE)
-    return builder
-  }
-
-  override fun spannable(strip: Boolean): SpannableString {
-    val text = if (strip) text() else fullText()
-    return SpannableString(text)
-        .monospace(0, text.length)
-        .background(Color.GRAY, 0, text.length)
-  }
-}
-
-class ItalicsMarkdownInline(children: List<MarkdownInline>) : ComplexMarkdownInline(children) {
-  override fun type(): MarkdownInlineType = MarkdownInlineType.ITALICS
-
-  override fun original(): String {
-    return "_${super.original()}_"
-  }
-
-  override fun fullText(): Spannable {
-    val builder = SpannableStringBuilder()
-    builder.append(TextInliner.Delimiters.ITALICS)
-    builder.append(text())
-    builder.append(TextInliner.Delimiters.ITALICS)
-    return builder
-  }
-
-  override fun spannable(strip: Boolean): SpannableString {
-    val text = if (strip) text() else fullText()
-    return SpannableString(text).italic(0, text.length)
-  }
-}
-
-class UnderlineMarkdownInline(children: List<MarkdownInline>) : ComplexMarkdownInline(children) {
-  override fun type(): MarkdownInlineType = MarkdownInlineType.UNDERLINE
-
-  override fun original(): String {
-    return "*${super.original()}*"
-  }
-
-  override fun fullText(): Spannable {
-    val builder = SpannableStringBuilder()
-    builder.append(TextInliner.Delimiters.UNDERLINE)
-    builder.append(text())
-    builder.append(TextInliner.Delimiters.UNDERLINE)
-    return builder
-  }
-
-  override fun spannable(strip: Boolean): SpannableString {
-    val text = if (strip) text() else fullText()
-    return SpannableString(text).underline(0, text.length)
-  }
-}
-
-class StrikeMarkdownInline(children: List<MarkdownInline>) : ComplexMarkdownInline(children) {
-  override fun type(): MarkdownInlineType = MarkdownInlineType.STRIKE
-
-  override fun original(): String {
-    return "~${super.original()}~"
-  }
-
-  override fun fullText(): Spannable {
-    val builder = SpannableStringBuilder()
-    builder.append(TextInliner.Delimiters.STRIKE)
-    builder.append(text())
-    builder.append(TextInliner.Delimiters.STRIKE)
-    return builder
-  }
-
-  override fun spannable(strip: Boolean): SpannableString {
-    val text = if (strip) text() else fullText()
-    return SpannableString(text).strike(0, text.length)
-  }
 }

@@ -26,7 +26,7 @@ object Markdown {
     segments.forEach {
       val finalIndex = currentIndex + it.text().length
       formats.add(SpanInfo(map(it.type()), currentIndex, finalIndex))
-      formats.addAll(TextInliner(it.text()).get().spans(currentIndex))
+      formats.addAll(TextInliner(it.text()).get().allSpans(currentIndex))
       currentIndex = finalIndex + 1
     }
     return formats

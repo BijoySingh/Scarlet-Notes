@@ -1,9 +1,7 @@
 package com.maubis.markdown.inliners
 
 import android.support.test.runner.AndroidJUnit4
-import com.maubis.markdown.inliner.DefaultMarkdownInline
-import com.maubis.markdown.inliner.NormalInlineSegment
-import com.maubis.markdown.inliner.TextInliner
+import com.maubis.markdown.inliner.*
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -13,20 +11,20 @@ class InlineBlankTextTests : MarkdownTextInlinerTestBase() {
   fun testEmptyText() {
     val text = ""
     val processed = TextInliner(text).get()
-    assert(DefaultMarkdownInline(listOf()), processed)
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INVALID), listOf()), processed)
   }
 
   @Test
   fun testMultilineText() {
     val text = "\n\n"
     val processed = TextInliner(text).get()
-    assert(NormalInlineSegment(text), processed)
+    assert(NormalInlineMarkdownSegment(text), processed)
   }
 
   @Test
   fun testBlankText() {
     val text = "  "
     val processed = TextInliner(text).get()
-    assert(NormalInlineSegment(text), processed)
+    assert(NormalInlineMarkdownSegment(text), processed)
   }
 }

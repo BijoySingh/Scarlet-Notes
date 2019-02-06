@@ -11,17 +11,17 @@ class InlineMultipleTextTests : MarkdownTextInlinerTestBase() {
   fun testSimpleText() {
     val text = "t1 **t2** *t3* _t4_ ~t5~ `t6`"
     val processed = TextInliner(text).get()
-    assert(DefaultMarkdownInline(listOf(
-        NormalInlineSegment("t1 "),
-        BoldMarkdownInline(listOf(NormalInlineSegment("t2"))),
-        NormalInlineSegment(" "),
-        UnderlineMarkdownInline(listOf(NormalInlineSegment("t3"))),
-        NormalInlineSegment(" "),
-        ItalicsMarkdownInline(listOf(NormalInlineSegment("t4"))),
-        NormalInlineSegment(" "),
-        StrikeMarkdownInline(listOf(NormalInlineSegment("t5"))),
-        NormalInlineSegment(" "),
-        CodeMarkdownInline(listOf(NormalInlineSegment("t6"))))), processed)
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INVALID), listOf(
+        NormalInlineMarkdownSegment("t1 "),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.BOLD), listOf(NormalInlineMarkdownSegment("t2"))),
+        NormalInlineMarkdownSegment(" "),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE), listOf(NormalInlineMarkdownSegment("t3"))),
+        NormalInlineMarkdownSegment(" "),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS), listOf(NormalInlineMarkdownSegment("t4"))),
+        NormalInlineMarkdownSegment(" "),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.STRIKE), listOf(NormalInlineMarkdownSegment("t5"))),
+        NormalInlineMarkdownSegment(" "),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INLINE_CODE), listOf(NormalInlineMarkdownSegment("t6"))))), processed)
   }
 
 
@@ -29,12 +29,12 @@ class InlineMultipleTextTests : MarkdownTextInlinerTestBase() {
   fun testStickingTogether() {
     val text = "t1**t2***t3*_t4_~t5~`t6`"
     val processed = TextInliner(text).get()
-    assert(DefaultMarkdownInline(listOf(
-        NormalInlineSegment("t1"),
-        BoldMarkdownInline(listOf(NormalInlineSegment("t2"))),
-        UnderlineMarkdownInline(listOf(NormalInlineSegment("t3"))),
-        ItalicsMarkdownInline(listOf(NormalInlineSegment("t4"))),
-        StrikeMarkdownInline(listOf(NormalInlineSegment("t5"))),
-        CodeMarkdownInline(listOf(NormalInlineSegment("t6"))))), processed)
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INVALID), listOf(
+        NormalInlineMarkdownSegment("t1"),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.BOLD), listOf(NormalInlineMarkdownSegment("t2"))),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE), listOf(NormalInlineMarkdownSegment("t3"))),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS), listOf(NormalInlineMarkdownSegment("t4"))),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.STRIKE), listOf(NormalInlineMarkdownSegment("t5"))),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INLINE_CODE), listOf(NormalInlineMarkdownSegment("t6"))))), processed)
   }
 }

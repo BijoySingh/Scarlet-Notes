@@ -11,7 +11,7 @@ class InlineSimpleTextTests : MarkdownTextInlinerTestBase() {
   fun testSimpleText() {
     val text = "Hello World"
     val processed = TextInliner(text).get()
-    assert(NormalInlineSegment(text), processed)
+    assert(NormalInlineMarkdownSegment(text), processed)
   }
 
   @Test
@@ -19,7 +19,7 @@ class InlineSimpleTextTests : MarkdownTextInlinerTestBase() {
     val text = "Hello World"
     val textToTest = "**$text**"
     val processed = TextInliner(textToTest).get()
-    assert(BoldMarkdownInline(listOf(NormalInlineSegment(text))), processed)
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.BOLD),listOf(NormalInlineMarkdownSegment(text))), processed)
   }
 
   @Test
@@ -27,14 +27,14 @@ class InlineSimpleTextTests : MarkdownTextInlinerTestBase() {
     val text = "Hello World"
     val textToTest = "_${text}_"
     val processed = TextInliner(textToTest).get()
-    assert(ItalicsMarkdownInline(listOf(NormalInlineSegment(text))), processed)
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS),listOf(NormalInlineMarkdownSegment(text))), processed)
   }
   @Test
   fun testStrikeThroughText() {
     val text = "Hello World"
     val textToTest = "~$text~"
     val processed = TextInliner(textToTest).get()
-    assert(StrikeMarkdownInline(listOf(NormalInlineSegment(text))), processed)
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.STRIKE),listOf(NormalInlineMarkdownSegment(text))), processed)
   }
 
   @Test
@@ -42,7 +42,7 @@ class InlineSimpleTextTests : MarkdownTextInlinerTestBase() {
     val text = "Hello World"
     val textToTest = "*$text*"
     val processed = TextInliner(textToTest).get()
-    assert(UnderlineMarkdownInline(listOf(NormalInlineSegment(text))), processed)
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE),listOf(NormalInlineMarkdownSegment(text))), processed)
   }
 
   @Test
@@ -50,6 +50,6 @@ class InlineSimpleTextTests : MarkdownTextInlinerTestBase() {
     val text = "Hello World"
     val textToTest = "`$text`"
     val processed = TextInliner(textToTest).get()
-    assert(CodeMarkdownInline(listOf(NormalInlineSegment(text))), processed)
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INLINE_CODE),listOf(NormalInlineMarkdownSegment(text))), processed)
   }
 }

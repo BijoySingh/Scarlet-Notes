@@ -4,86 +4,55 @@ import android.util.Log
 
 class TextInliner(val text: String) {
 
-  object Delimiters {
-    const val BOLD = "**"
-    const val ITALICS = '_'
-    const val UNDERLINE = '*'
-    const val STRIKE = '~'
-    const val INLINE_CODE = '`'
-  }
+  val inlineConfig = TextInlineConfig(TextInlineConfig.Builder())
 
   private var textSegment = NormalInlineBuilder()
-  private var currentSegment = MarkdownInlineBuilder()
+  private var currentInline = MarkdownInlineBuilder()
   private val processedSegments = ArrayList<MarkdownInlineBuilder>()
 
   fun get(): MarkdownInline {
-    processSegments()
-    val result = removeInvalids(currentSegment.build())
-    if (result is ComplexMarkdownInline && result.children.size == 1) {
-      return result.children.first()
-    }
-    return result
+    return processSegments()
   }
 
-  private fun processSegments() {
+  private fun processSegments(): MarkdownInline {
     processedSegments.clear()
     processedSegments.add(MarkdownInlineBuilder())
 
-    val textToProcess = text
-        .replace("<i>", "_")
-        .replace("</i>", "_")
-        .replace("<u>", "*")
-        .replace("</u>", "*")
+    val allConfigurations = ArrayList<IInlineConfig>()
+    inlineConfig.configuration.forEach {
+      if (it.type() !== MarkdownInlineType.INVALID && it.type() !== MarkdownInlineType.NORMAL) {
+        allConfigurations.add(it)
+      }
+    }
+    allConfigurations.sortByDescending { it.startIncrement() }
 
     var index = 0
-    while (index < textToProcess.length) {
-      val char = textToProcess.get(index)
-      val nextChar = if (index + 1 < textToProcess.length) textToProcess.get(index + 1) else null
+    while (index < text.length) {
+      val char = text.get(index)
 
-      if (char != Delimiters.INLINE_CODE && currentSegment.markdownType == MarkdownInlineType.INLINE_CODE) {
+
+      if (currentInline.config.type() == MarkdownInlineType.INLINE_CODE
+          && !currentInline.config.isEnd(text, index)) {
         textSegment.builder.append(char)
         index += 1
         continue
       }
 
-      if (char == Delimiters.UNDERLINE
-          && textSegment.builder.isEmpty()
-          && (currentSegment.markdownType == MarkdownInlineType.UNDERLINE)
-          && currentSegment.children.isEmpty()) {
-        currentSegment.markdownType = MarkdownInlineType.BOLD
-        index += 1
-        continue
-      }
-
-      if ((char == Delimiters.UNDERLINE && currentSegment.markdownType == MarkdownInlineType.UNDERLINE)
-          || (char == Delimiters.ITALICS && currentSegment.markdownType == MarkdownInlineType.ITALICS)
-          || (char == Delimiters.INLINE_CODE && currentSegment.markdownType == MarkdownInlineType.INLINE_CODE)
-          || (char == Delimiters.STRIKE && currentSegment.markdownType == MarkdownInlineType.STRIKE)) {
+      if (currentInline.config.type() != MarkdownInlineType.INVALID
+          && currentInline.config.isEnd(text, index)) {
         addTextComponent()
-        currentSegment.paired = true
+        currentInline.paired = true
+        index += currentInline.config.endIncrement()
         unshelveSegment()
-        index += 1
         continue
       }
 
-      if (char == Delimiters.UNDERLINE && nextChar == Delimiters.UNDERLINE && currentSegment.markdownType == MarkdownInlineType.BOLD) {
-        addTextComponent()
-        unshelveSegment()
-        index += 2
-        continue
-      }
-
-      if (char == Delimiters.UNDERLINE || char == Delimiters.ITALICS || char == Delimiters.INLINE_CODE || char == Delimiters.STRIKE) {
+      val match = allConfigurations.firstOrNull { it.isStart(text, index) }
+      if (match !== null) {
         addTextComponent()
         shelveSegment()
-        currentSegment.markdownType = when (char) {
-          Delimiters.UNDERLINE -> MarkdownInlineType.UNDERLINE
-          Delimiters.ITALICS -> MarkdownInlineType.ITALICS
-          Delimiters.INLINE_CODE -> MarkdownInlineType.INLINE_CODE
-          Delimiters.STRIKE -> MarkdownInlineType.STRIKE
-          else -> MarkdownInlineType.INVALID
-        }
-        index += 1
+        currentInline.config = match
+        index += match.startIncrement()
         continue
       }
 
@@ -95,88 +64,43 @@ class TextInliner(val text: String) {
     debug()
 
     // Now we can have multiple unfinished left if the user did something stupid ;)
-    while (dedup(MarkdownInlineType.BOLD)) {
-    }
-    while (dedup(MarkdownInlineType.ITALICS)) {
-    }
-    while (dedup(MarkdownInlineType.UNDERLINE)) {
-    }
-    while (dedup(MarkdownInlineType.STRIKE)) {
-    }
-    while (dedup(MarkdownInlineType.INLINE_CODE)) {
-    }
-    dedupInvalids()
-  }
-
-  private fun dedupInvalids() {
-    debug()
-    currentSegment = MarkdownInlineBuilder()
-    processedSegments.forEach {
-      val inline = getSegmentForType(it.markdownType)
-      if (inline is NormalInlineSegment && !it.paired) {
-        it.children.add(inline)
-      }
-      if (!it.paired || it.markdownType == MarkdownInlineType.INVALID) {
-        currentSegment.children.addAll(it.children)
-      } else {
-        currentSegment.children.add(it.build())
+    allConfigurations.forEach {
+      while (pairPoorlyPairedConfigs(it)) {
       }
     }
-    Log.d("Inliner", currentSegment.build().debug())
-    processedSegments.clear()
+    pairInvalids()
+
+    val result = removeInvalids(currentInline.build())
+    if (result is PhraseDelimiterMarkdownInline && result.children.size == 1) {
+      return result.children.first()
+    }
+    return result
   }
 
-  private fun getSegmentForType(type: MarkdownInlineType): MarkdownInline {
-    return when (type) {
-      MarkdownInlineType.INLINE_CODE -> NormalInlineSegment("`")
-      MarkdownInlineType.BOLD -> NormalInlineSegment("**")
-      MarkdownInlineType.ITALICS -> NormalInlineSegment("_")
-      MarkdownInlineType.UNDERLINE -> NormalInlineSegment("*")
-      MarkdownInlineType.STRIKE -> NormalInlineSegment("~")
-      else -> return DefaultMarkdownInline(emptyList())
-    }
-  }
-
-  private fun removeInvalids(markdown: MarkdownInline): MarkdownInline {
-    if (markdown !is ComplexMarkdownInline) {
-      return markdown
-    }
-
-    val builder = MarkdownInlineBuilder()
-    builder.markdownType = markdown.type()
-    markdown.children.forEach {
-      val child = removeInvalids(it)
-      if (child.type() == MarkdownInlineType.INVALID && child is ComplexMarkdownInline) {
-        builder.children.addAll(child.children)
-      } else {
-        builder.children.add(child)
-      }
-    }
-    return builder.build()
-  }
-
-  private fun dedup(type: MarkdownInlineType): Boolean {
-    val count = processedSegments.count { it.markdownType == type }
+  /**
+   * It can be something is not paired because of a user fault like "** something `something **"
+   * the ` in the middle will fuck it up
+   */
+  private fun pairPoorlyPairedConfigs(config: IInlineConfig): Boolean {
+    val count = processedSegments.count { it.config.identifier() == config.identifier() }
     if (count <= 1) {
       return false
     }
-
-    debug()
 
     var state = 0
     val before = ArrayList<MarkdownInlineBuilder>()
     val between = ArrayList<MarkdownInlineBuilder>()
     val after = ArrayList<MarkdownInlineBuilder>()
     for (segment in processedSegments) {
-      if (segment.markdownType == type && state == 0) {
+      if (segment.config.identifier() == config.identifier() && state == 0) {
         state = 1
-        segment.markdownType = MarkdownInlineType.INVALID
+        segment.config = InvalidInline(MarkdownInlineType.INVALID)
         between.add(segment)
         continue
       }
 
-      if (segment.markdownType == type && state == 1) {
-        segment.markdownType = MarkdownInlineType.INVALID
+      if (segment.config.identifier() == config.identifier() && state == 1) {
+        segment.config = InvalidInline(MarkdownInlineType.INVALID)
         after.add(segment)
         state = 2
         continue
@@ -190,12 +114,12 @@ class TextInliner(val text: String) {
     }
 
     val current = MarkdownInlineBuilder()
-    current.markdownType = type
+    current.config = config
     current.paired = true
     between.forEach {
-      val inline = getSegmentForType(it.markdownType)
-      if (inline is NormalInlineSegment) {
-        current.children.add(inline)
+      val inlineConfig = it.config
+      if (inlineConfig is PhraseDelimiterInline) {
+        current.children.add(NormalInlineMarkdownSegment(inlineConfig.startDelimiter))
       }
       current.children.addAll(it.children)
     }
@@ -209,29 +133,71 @@ class TextInliner(val text: String) {
     return true
   }
 
+  /**
+   * After the pairingPoorly, it is possible to be stuck in a situation where you simply didnt pair.
+   * Like "something ** something"
+   */
+  private fun pairInvalids() {
+    currentInline = MarkdownInlineBuilder()
+    processedSegments.forEach {
+      val inlineConfig = it.config
+      if (inlineConfig is PhraseDelimiterInline && !it.paired) {
+        it.children.add(NormalInlineMarkdownSegment(inlineConfig.startDelimiter))
+      }
+
+      if (!it.paired || it.config.type() == MarkdownInlineType.INVALID) {
+        currentInline.children.addAll(it.children)
+      } else {
+        currentInline.children.add(it.build())
+      }
+    }
+    processedSegments.clear()
+  }
+
+  /**
+   * We are still not done... It might be that end up with INVALIDs inside recursively
+   */
+  private fun removeInvalids(markdown: MarkdownInline): MarkdownInline {
+    if (markdown !is PhraseDelimiterMarkdownInline) {
+      return markdown
+    }
+
+    val builder = MarkdownInlineBuilder()
+    builder.config = markdown.config()
+    markdown.children.forEach {
+      val child = removeInvalids(it)
+      when {
+        child.type() == MarkdownInlineType.INVALID
+            && child is PhraseDelimiterMarkdownInline -> builder.children.addAll(child.children)
+        else -> builder.children.add(child)
+      }
+    }
+    return builder.build()
+  }
+
   private fun addTextComponent() {
     val segment = textSegment.build()
     if (segment.text == "") {
       return
     }
-    currentSegment.children.add(segment)
+    currentInline.children.add(segment)
     textSegment = NormalInlineBuilder()
   }
 
   private fun unshelveSegment() {
-    processedSegments.last().children.add(currentSegment.build())
-    currentSegment = processedSegments.last()
+    processedSegments.last().children.add(currentInline.build())
+    currentInline = processedSegments.last()
     processedSegments.removeAt(processedSegments.size - 1)
   }
 
   private fun shelveSegment() {
-    if (currentSegment.markdownType == MarkdownInlineType.INVALID && currentSegment.children.isEmpty()) {
-      currentSegment = MarkdownInlineBuilder()
+    if (currentInline.config.type() == MarkdownInlineType.INVALID && currentInline.children.isEmpty()) {
+      currentInline = MarkdownInlineBuilder()
       return
     }
 
-    processedSegments.add(currentSegment)
-    currentSegment = MarkdownInlineBuilder()
+    processedSegments.add(currentInline)
+    currentInline = MarkdownInlineBuilder()
   }
 
   private fun debug() {
