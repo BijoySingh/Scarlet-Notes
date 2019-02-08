@@ -115,6 +115,7 @@ fun Spannable.setFormats(info: SpanInfo) {
         .relativeSize(0.9f, s, e)
     MarkdownType.STRIKE -> strike(s, e)
     MarkdownType.SEPARATOR -> separator(s, e)
+    else -> {}
   }
 }
 

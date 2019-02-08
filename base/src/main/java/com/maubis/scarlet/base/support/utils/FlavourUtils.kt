@@ -2,8 +2,9 @@ package com.maubis.scarlet.base.support.utils
 
 import android.content.Context
 import com.maubis.scarlet.base.config.CoreConfig
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
 
 
@@ -18,7 +19,7 @@ object FlavourUtils {
   const val KEY_PRO_APP_INSTALLED = "pro_app_installed"
   fun hasProAppInstalled(context: Context): Boolean {
     val reference = WeakReference(context)
-    launch(CommonPool) {
+    GlobalScope.launch(Dispatchers.IO) {
       var found = false
       try {
         found = reference.get()?.packageManager?.getPackageInfo(PRO_APP_PACKAGE_NAME, 0) != null

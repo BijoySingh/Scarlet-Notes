@@ -11,8 +11,9 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 const val KEY_EXTERNAL_FOLDER_SYNC_ENABLED = "external_folder_sync_enabled"
@@ -29,7 +30,7 @@ object ExternalFolderSync {
   fun enable(context: Context, enabled: Boolean) {
     if (enabled) {
       if (!hasPermission(context)) {
-        launch(UI) {
+        GlobalScope.launch(Dispatchers.Main) {
           ToastHelper.show(context, R.string.permission_layout_give_permission_details)
           CoreConfig.instance.externalFolderSync().reset()
         }

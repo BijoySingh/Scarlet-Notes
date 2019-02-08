@@ -38,8 +38,9 @@ import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Compa
 import com.maubis.scarlet.base.support.ui.*
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
 import com.maubis.scarlet.base.support.utils.bind
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -91,7 +92,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
     setRecyclerView()
 
-    launch {
+    GlobalScope.launch(Dispatchers.IO) {
       var noteId = intent.getIntExtra(INTENT_KEY_NOTE_ID, 0)
       if (noteId == 0 && savedInstanceState != null) {
         noteId = savedInstanceState.getInt(INTENT_KEY_NOTE_ID, 0)
@@ -102,10 +103,11 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       if (note === null) {
         note = NoteBuilder().emptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor())
       }
-      launch(UI) {
+      GlobalScope.launch(Dispatchers.Main) {
         setToolbars()
         setEditMode()
         notifyThemeChange()
+        onCreationFinished()
       }
       creationFinished.set(true)
     }
@@ -122,12 +124,16 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     notifyThemeChange()
   }
 
+  protected open fun onCreationFinished() {
+
+  }
+
   protected open fun onResumeAction() {
-    launch {
+    GlobalScope.launch(Dispatchers.IO) {
       note = notesDb.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
       when {
         note == null -> finish()
-        else -> launch(UI) { setNote() }
+        else -> GlobalScope.launch(Dispatchers.Main) { setNote() }
       }
     }
   }

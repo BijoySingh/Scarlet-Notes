@@ -5,19 +5,19 @@ import android.graphics.Typeface
 import android.text.TextPaint
 import android.text.style.TypefaceSpan
 
-class CustomTypefaceSpan(val typeface: Typeface) : TypefaceSpan("san-serif"), ICustomSpan {
+class CustomTypefaceSpan(val tface: Typeface) : TypefaceSpan("san-serif"), ICustomSpan {
 
   override fun updateDrawState(paint: TextPaint) {
-    applyTypeFace(paint, typeface)
+    applyTypeFace(paint, tface)
   }
 
   override fun updateMeasureState(paint: TextPaint) {
-    applyTypeFace(paint, typeface)
+    applyTypeFace(paint, tface)
   }
 
   private fun applyTypeFace(paint: Paint, typeface: Typeface) {
     val oldStyle = paint.typeface?.style ?: 0
-    val isFake = oldStyle and typeface.style.inv()
+    val isFake = oldStyle and tface.style.inv()
     if (isFake and Typeface.BOLD != 0) {
       paint.isFakeBoldText = true
     }
@@ -26,6 +26,6 @@ class CustomTypefaceSpan(val typeface: Typeface) : TypefaceSpan("san-serif"), IC
       paint.textSkewX = -0.25f
     }
 
-    paint.typeface = typeface
+    paint.typeface = tface
   }
 }

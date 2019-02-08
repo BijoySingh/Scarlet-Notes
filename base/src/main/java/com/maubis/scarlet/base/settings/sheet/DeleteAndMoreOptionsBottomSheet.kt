@@ -14,17 +14,13 @@ import com.maubis.scarlet.base.note.folder.delete
 import com.maubis.scarlet.base.note.tag.delete
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.withContext
+import kotlinx.coroutines.*
 
 class DeleteAndMoreOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   override fun setupViewWithDialog(dialog: Dialog) {
-    launch(UI) {
-      val options = async(CommonPool) { getOptions() }
+    GlobalScope.launch(Dispatchers.Main) {
+      val options = GlobalScope.async(Dispatchers.IO) { getOptions() }
       setOptions(dialog, options.await())
     }
   }
@@ -38,8 +34,8 @@ class DeleteAndMoreOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_note_white_48dp,
         listener = View.OnClickListener {
           AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_all_notes_details) {
-            launch(UI) {
-              withContext(CommonPool) { notesDb.getAll().forEach { it.delete(activity) } }
+            GlobalScope.launch(Dispatchers.Main) {
+              withContext(Dispatchers.IO) { notesDb.getAll().forEach { it.delete(activity) } }
               activity.resetAndSetupData()
               dismiss()
             }
@@ -52,8 +48,8 @@ class DeleteAndMoreOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_action_tags,
         listener = View.OnClickListener {
           AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_all_tags_details) {
-            launch(UI) {
-              withContext(CommonPool) { tagsDb.getAll().forEach { it.delete() } }
+            GlobalScope.launch(Dispatchers.Main) {
+              withContext(Dispatchers.IO) { tagsDb.getAll().forEach { it.delete() } }
               activity.resetAndSetupData()
               dismiss()
             }
@@ -66,8 +62,8 @@ class DeleteAndMoreOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_folder,
         listener = View.OnClickListener {
           AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_all_folders_details) {
-            launch(UI) {
-              withContext(CommonPool) { foldersDb.getAll().forEach { it.delete() } }
+            GlobalScope.launch(Dispatchers.Main) {
+              withContext(Dispatchers.IO) { foldersDb.getAll().forEach { it.delete() } }
               activity.resetAndSetupData()
               dismiss()
             }
@@ -80,10 +76,10 @@ class DeleteAndMoreOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_delete_permanently,
         listener = View.OnClickListener {
           AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_everything_details) {
-            launch(UI) {
-              val notes = async(CommonPool) { notesDb.getAll().forEach { it.delete(activity) } }
-              val tags = async(CommonPool) { tagsDb.getAll().forEach { it.delete() } }
-              val folders = async(CommonPool) { foldersDb.getAll().forEach { it.delete() } }
+            GlobalScope.launch(Dispatchers.Main) {
+              val notes = GlobalScope.async(Dispatchers.IO) { notesDb.getAll().forEach { it.delete(activity) } }
+              val tags = GlobalScope.async(Dispatchers.IO) { tagsDb.getAll().forEach { it.delete() } }
+              val folders = GlobalScope.async(Dispatchers.IO) { foldersDb.getAll().forEach { it.delete() } }
 
               notes.await()
               tags.await()

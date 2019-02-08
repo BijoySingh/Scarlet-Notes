@@ -23,10 +23,10 @@ import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class HomeNavigationBottomSheet : GridBottomSheetBase() {
 
@@ -103,15 +103,15 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   }
 
   fun resetOptions(dialog: Dialog) {
-    launch(UI) {
-      val items = async(CommonPool) { getOptions() }
+    GlobalScope.launch(Dispatchers.Main) {
+      val items = GlobalScope.async(Dispatchers.IO) { getOptions() }
       setOptions(dialog, items.await())
     }
   }
 
   fun resetTags(dialog: Dialog) {
-    launch(UI) {
-      val tags = async(CommonPool) { getTagOptions() }
+    GlobalScope.launch(Dispatchers.Main) {
+      val tags = GlobalScope.async(Dispatchers.IO) { getTagOptions() }
 
       val titleView = dialog.findViewById<TextView>(R.id.tag_options_title)
       titleView.setTextColor(

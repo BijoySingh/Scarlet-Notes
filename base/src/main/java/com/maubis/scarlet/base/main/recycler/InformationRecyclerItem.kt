@@ -14,10 +14,10 @@ import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.utils.FlavourUtils
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.util.*
 
 const val KEY_INFO_RATE_AND_REVIEW = "KEY_RATE_AND_REVIEW_INFO"
@@ -156,8 +156,8 @@ fun getMigrateToProAppInformationItem(context: Context): InformationRecyclerItem
       R.string.home_option_migrate_to_pro,
       R.string.home_option_migrate_to_pro_details
   ) {
-    launch(UI) {
-      val notes = async(CommonPool) { NoteExporter().getExportContent() }
+    GlobalScope.launch(Dispatchers.Main) {
+      val notes = GlobalScope.async(Dispatchers.IO) { NoteExporter().getExportContent() }
       val intent = Intent(Intent.ACTION_SEND)
           .putExtra(INTENT_KEY_DIRECT_NOTES_TRANSFER, notes.await())
           .setType("text/plain")

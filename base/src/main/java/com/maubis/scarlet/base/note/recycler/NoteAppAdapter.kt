@@ -57,7 +57,6 @@ fun getRecyclerItemControllerList(
       .viewType(RecyclerItem.Type.TOOLBAR.ordinal)
       .layoutFile(R.layout.toolbar_main)
       .holderClass(ToolbarMainRecyclerHolder::class.java)
-      .fullSpan(true)
       .build())
   return list
 }

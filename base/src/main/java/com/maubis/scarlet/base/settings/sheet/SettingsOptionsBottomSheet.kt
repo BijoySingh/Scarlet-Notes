@@ -8,23 +8,22 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.main.recycler.getMigrateToProAppInformationItem
-import com.maubis.scarlet.base.main.recycler.shouldShowMigrateToProAppInformationItem
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
 import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.utils.FlavourUtils
 import com.maubis.scarlet.base.support.utils.FlavourUtils.PRO_APP_PACKAGE_NAME
 import com.maubis.scarlet.base.support.utils.FlavourUtils.hasProAppInstalled
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
   override fun setupViewWithDialog(dialog: Dialog) {
-    launch(UI) {
-      val options = async(CommonPool) { getOptions() }
+    GlobalScope.launch(Dispatchers.Main) {
+      val options = GlobalScope.async(Dispatchers.IO) { getOptions() }
       setOptions(dialog, options.await())
     }
   }

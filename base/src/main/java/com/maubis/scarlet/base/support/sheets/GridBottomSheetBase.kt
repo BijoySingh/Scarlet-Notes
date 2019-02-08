@@ -10,8 +10,9 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
 
@@ -33,7 +34,7 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
   override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.grid_card)
 
   fun setOptionTitle(dialog: Dialog, title: Int) {
-    launch(UI) {
+    GlobalScope.launch(Dispatchers.Main) {
       val titleView = dialog.findViewById<TextView>(R.id.options_title)
       titleView.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
       titleView.setText(title)

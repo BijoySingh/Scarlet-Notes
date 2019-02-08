@@ -32,10 +32,10 @@ import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.utils.renderMarkdown
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
@@ -65,8 +65,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         { noteForAction: Note -> getNotePropertyOptions(noteForAction) },
         { noteForAction: Note -> getOptions(noteForAction) })
     gridOptionFunctions.forEachIndexed { index, function ->
-      launch(UI) {
-        val items = async(CommonPool) { function(note) }
+      GlobalScope.launch(Dispatchers.Main) {
+        val items = GlobalScope.async(Dispatchers.IO) { function(note) }
         setOptions(dialog.findViewById<GridLayout>(gridLayoutIds[index]), items.await())
       }
     }

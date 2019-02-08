@@ -61,11 +61,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_toolbar_main.*
 import kotlinx.android.synthetic.main.toolbar_bottom.*
 import kotlinx.android.synthetic.main.toolbar_trash_info.*
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.newSingleThreadContext
+import kotlinx.coroutines.*
 
 class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
   private val singleThreadDispatcher = newSingleThreadContext("singleThreadDispatcher")
@@ -94,7 +90,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     notifyThemeChange()
 
     val shown = WhatsNewItemsBottomSheet.maybeOpenSheet(this)
-    launch(CommonPool) {
+    GlobalScope.launch(Dispatchers.IO) {
       if (shown) {
         markHintShown(TUTORIAL_KEY_NEW_NOTE)
         markHintShown(TUTORIAL_KEY_HOME_SETTINGS)
@@ -204,7 +200,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
    * Start: Home Navigation Clicks
    */
   fun onHomeClick() {
-    launch(UI) {
+    GlobalScope.launch(Dispatchers.Main) {
       config.resetMode(HomeNavigationState.DEFAULT)
       unifiedSearch()
       notifyModeChange()
@@ -212,7 +208,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   fun onFavouritesClick() {
-    launch(UI) {
+    GlobalScope.launch(Dispatchers.Main) {
       config.resetMode(HomeNavigationState.FAVOURITE)
       unifiedSearch()
       notifyModeChange()
@@ -220,7 +216,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   fun onArchivedClick() {
-    launch(UI) {
+    GlobalScope.launch(Dispatchers.Main) {
       config.resetMode(HomeNavigationState.ARCHIVED)
       unifiedSearch()
       notifyModeChange()
@@ -228,7 +224,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   fun onTrashClick() {
-    launch(UI) {
+    GlobalScope.launch(Dispatchers.Main) {
       config.resetMode(HomeNavigationState.TRASH)
       unifiedSearch()
       notifyModeChange()
@@ -237,8 +233,8 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
   fun onLockedClick() {
     config.resetMode(HomeNavigationState.LOCKED)
-    launch(UI) {
-      val items = async(CommonPool) {
+    GlobalScope.launch(Dispatchers.Main) {
+      val items = GlobalScope.async(Dispatchers.IO) {
         val sorting = SortingOptionsBottomSheet.getSortingState()
         sort(notesDb.getNoteByLocked(true), sorting)
             .map { NoteRecyclerItem(this@MainActivity, it) }
@@ -293,7 +289,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     val allItems = emptyList<RecyclerItem>().toMutableList()
     allItems.addAll(unifiedFolderSearchSynchronous(config)
         .map {
-          async(CommonPool) {
+          GlobalScope.async(Dispatchers.IO) {
             var notesCount = -1
             if (config.hasFilter()) {
               val folderConfig = config.copy()
@@ -324,7 +320,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
         .map { it.await() }
         .filterNotNull())
     allItems.addAll(unifiedSearchSynchronous(config)
-        .map { async(CommonPool) { NoteRecyclerItem(this@MainActivity, it) } }
+        .map { GlobalScope.async(Dispatchers.IO) { NoteRecyclerItem(this@MainActivity, it) } }
         .map { it.await() })
     return allItems
   }
@@ -361,8 +357,8 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   private fun unifiedSearch() {
-    launch(UI) {
-      val items = async(CommonPool) { unifiedSearchSynchronous() }
+    GlobalScope.launch(Dispatchers.Main) {
+      val items = GlobalScope.async(Dispatchers.IO) { unifiedSearchSynchronous() }
       handleNewItems(items.await())
     }
   }
@@ -404,8 +400,8 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
     if (isInSearchMode) {
       tryOpeningTheKeyboard()
-      launch(UI) {
-        async(CommonPool) { tagAndColorPicker.reset() }.await()
+      GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.async(Dispatchers.IO) { tagAndColorPicker.reset() }.await()
         tagAndColorPicker.notifyChanged()
       }
       searchBox.requestFocus()
@@ -416,10 +412,10 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   private fun startSearch(keyword: String) {
-    launch(singleThreadDispatcher) {
+    GlobalScope.launch(singleThreadDispatcher) {
       config.text = keyword
-      val items = async(CommonPool) { unifiedSearchSynchronous() }
-      launch(UI) {
+      val items = GlobalScope.async(Dispatchers.IO) { unifiedSearchSynchronous() }
+      GlobalScope.launch(Dispatchers.Main) {
         handleNewItems(items.await())
       }
     }

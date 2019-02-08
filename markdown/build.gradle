@@ -31,5 +31,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.24.0"
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
 }

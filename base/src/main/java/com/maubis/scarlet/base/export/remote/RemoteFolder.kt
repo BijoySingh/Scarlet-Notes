@@ -4,7 +4,9 @@ import com.github.bijoysingh.starter.util.FileManager
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.support.KEY_EXTERNAL_FOLDER_SYNC_LAST_SCAN
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.File
 
 const val LAST_MODIFIED_ERROR_MARGIN = 7 * 1000 * 60 * 60 * 24L
@@ -23,7 +25,7 @@ class RemoteFolder<T>(val folder: File,
   var lastScan = CoreConfig.instance.store().get(lastScanKey, 0L)
 
   init {
-    launch {
+    GlobalScope.launch(Dispatchers.IO) {
       deletedFolder.mkdirs()
       val files = folder.listFiles() ?: emptyArray()
       files.forEach {

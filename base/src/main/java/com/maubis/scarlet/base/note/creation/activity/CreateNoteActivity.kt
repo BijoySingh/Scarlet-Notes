@@ -70,13 +70,17 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     super.onCreate(savedInstanceState)
     setTouchListener()
     startHandler()
-    history.add(NoteBuilder().copy(note!!))
-    setFolderFromIntent()
-    notifyHistoryIcons()
   }
 
   override fun setEditMode() {
     setEditMode(editModeValue)
+  }
+
+  override fun onCreationFinished() {
+    super.onCreationFinished()
+    history.add(NoteBuilder().copy(note!!))
+    setFolderFromIntent()
+    notifyHistoryIcons()
   }
 
   private fun setFolderFromIntent() {
@@ -296,18 +300,21 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   }
 
   protected fun maybeUpdateNoteWithoutSync() {
-    val vNote = note!!
-    val vLastNoteInstance = history.getOrNull(historyIndex) ?: note!!
-
-    vNote.description = FormatBuilder().getDescription(formats)
-
-    // Ignore update if nothing changed. It allows for one undo per few seconds
-    if (vNote.isEqual(vLastNoteInstance)) {
+    val currentNote = note
+    if (currentNote === null) {
       return
     }
 
-    addNoteToHistory(NoteBuilder().copy(vNote))
-    vNote.updateTimestamp = Calendar.getInstance().timeInMillis
+    val vLastNoteInstance = history.getOrNull(historyIndex) ?: currentNote
+    currentNote.description = FormatBuilder().getDescription(formats)
+
+    // Ignore update if nothing changed. It allows for one undo per few seconds
+    if (currentNote.isEqual(vLastNoteInstance)) {
+      return
+    }
+
+    addNoteToHistory(NoteBuilder().copy(currentNote))
+    currentNote.updateTimestamp = Calendar.getInstance().timeInMillis
     maybeSaveNote(false)
   }
 
@@ -380,7 +387,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
     val newPosition = position + 1
     addEmptyItem(newPosition, type)
-    formatsView.layoutManager.scrollToPosition(newPosition)
+    formatsView.layoutManager?.scrollToPosition(newPosition)
     focus(newPosition)
   }
 
