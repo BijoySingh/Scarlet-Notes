@@ -1,27 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/action_move"
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/action_move_icon"
   style="@style/BorderlessBackgroundView"
   android:layout_width="@dimen/icon_size_normal"
-  android:layout_height="@dimen/icon_size_normal"
-  android:layout_gravity="center"
-  android:layout_margin="@dimen/spacing_xsmall"
-  android:gravity="center"
-  android:orientation="horizontal"
-  android:visibility="gone">
-
-  <ImageView
-    android:id="@+id/left_icon"
-    android:layout_width="6dp"
-    android:layout_height="@dimen/icon_size_normal"
-    android:scaleType="centerCrop"
-    android:src="@drawable/ic_more_vert_white_48dp" />
-
-  <ImageView
-    android:id="@+id/right_icon"
-    android:layout_width="6dp"
-    android:layout_height="@dimen/icon_size_normal"
-    android:scaleType="centerCrop"
-    android:src="@drawable/ic_more_vert_white_48dp" />
-
-</LinearLayout>
+  android:layout_height="match_parent"
+  android:alpha="0.7"
+  android:layout_gravity="center_vertical"
+  android:src="@drawable/icon_drag_indicator" />

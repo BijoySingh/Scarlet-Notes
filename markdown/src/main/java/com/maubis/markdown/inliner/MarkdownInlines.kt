@@ -32,30 +32,19 @@ abstract class MarkdownInline {
    * The original text inside an inline,
    * e.g. for the BOLD in this example "a **b _c_ d** e" is "**b _c_ d**"
    */
-  abstract fun originalText(): String
+  abstract fun contentText(stripDelimiters: Boolean = false): String
 
   /**
    * The list of spans that make up this block.
    * This can be overlapping information, which is needed for rendering
    */
-  abstract fun allSpans(startPosition: Int): List<SpanInfo>
+  abstract fun allContentSpans(stripDelimiters: Boolean = false, startPosition: Int): List<SpanInfo>
 
-  /**
-   * The text inside an inline without any of the delimiters
-   * e.g. for the BOLD in this example "a **b _c_ d** e" is "b c d"
-   */
-  abstract fun strippedText(): String
-
-  /**
-   * The list of spans that make up the stripped portion of this block
-   * This can be overlapping information, which is needed for rendering
-   */
-  abstract fun allStrippedSpans(startPosition: Int): List<SpanInfo>
-
+  abstract fun toMarkwon(): String
 
   fun debug(): String {
     if (this !is PhraseDelimiterMarkdownInline) {
-      return originalText()
+      return contentText()
     }
 
     val string = StringBuilder()
@@ -73,16 +62,17 @@ class NormalInlineMarkdownSegment(val text: String) : MarkdownInline() {
 
   override fun config(): IInlineConfig = InvalidInline(MarkdownInlineType.NORMAL)
 
-  override fun originalText(): String {
+  override fun contentText(stripDelimiters: Boolean): String {
     return text
   }
 
-  override fun allSpans(startPosition: Int): List<SpanInfo> {
-    return listOf(SpanInfo(MarkdownType.NORMAL, startPosition, startPosition + originalText().length))
+  override fun allContentSpans(stripDelimiters: Boolean, startPosition: Int): List<SpanInfo> {
+    return listOf(SpanInfo(MarkdownType.NORMAL, startPosition, startPosition + contentText(stripDelimiters).length))
   }
 
-  override fun strippedText(): String = originalText()
-  override fun allStrippedSpans(startPosition: Int): List<SpanInfo> = allSpans(startPosition)
+  override fun toMarkwon(): String {
+    return text
+  }
 }
 
 class PhraseDelimiterMarkdownInline(val config: IInlineConfig, val children: List<MarkdownInline>) : MarkdownInline() {
@@ -91,43 +81,39 @@ class PhraseDelimiterMarkdownInline(val config: IInlineConfig, val children: Lis
 
   override fun config(): IInlineConfig = config
 
-  override fun originalText(): String = contentText(false)
-
-  override fun allSpans(startPosition: Int): List<SpanInfo> = allContentSpans(false, startPosition)
-
-  override fun strippedText(): String = contentText(true)
-
-  override fun allStrippedSpans(startPosition: Int): List<SpanInfo> = allContentSpans(true, startPosition)
-
-  private fun contentText(stripDelimiters: Boolean): String {
+  override fun contentText(stripDelimiters: Boolean): String {
     val builder = StringBuilder()
     if (!stripDelimiters && config is PhraseDelimiterInline) {
       builder.append(config.startDelimiter)
     }
-    children.forEach { builder.append(it.originalText()) }
+    children.forEach { builder.append(it.contentText(stripDelimiters)) }
     if (!stripDelimiters && config is PhraseDelimiterInline) {
       builder.append(config.endDelimiter)
     }
     return builder.toString()
   }
 
-  private fun allContentSpans(stripDelimiters: Boolean, startPosition: Int): List<SpanInfo> {
+  override fun allContentSpans(stripDelimiters: Boolean, startPosition: Int): List<SpanInfo> {
     val childrenSpans = ArrayList<SpanInfo>()
     var currentIndex = startPosition
     children.forEach {
-      when (stripDelimiters) {
-        true -> {
-          childrenSpans.addAll(it.allStrippedSpans(currentIndex))
-          currentIndex += it.strippedText().length
-        }
-        false -> {
-          childrenSpans.addAll(it.allSpans(currentIndex))
-          currentIndex += it.originalText().length
-        }
-      }
+      childrenSpans.addAll(it.allContentSpans(stripDelimiters, currentIndex))
+      currentIndex += it.contentText(stripDelimiters).length
     }
     childrenSpans.add(SpanInfo(map(type()), startPosition, startPosition + contentText(stripDelimiters).length))
     return childrenSpans
   }
 
+  override fun toMarkwon(): String {
+    val builder = StringBuilder()
+    val config = TextInlineConfig.getDefaultOutputConfig(type())
+    if (config is PhraseDelimiterInline) {
+      builder.append(config.startDelimiter)
+    }
+    children.forEach { builder.append(it.toMarkwon()) }
+    if (config is PhraseDelimiterInline) {
+      builder.append(config.endDelimiter)
+    }
+    return builder.toString()
+  }
 }

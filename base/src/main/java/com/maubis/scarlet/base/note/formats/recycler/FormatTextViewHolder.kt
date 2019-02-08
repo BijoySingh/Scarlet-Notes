@@ -7,8 +7,10 @@ import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import com.maubis.markdown.Markdown
+import com.maubis.markdown.Markdown.toMarkwonableText
 import com.maubis.markdown.spannable.clearMarkdownSpans
 import com.maubis.markdown.spannable.setFormats
 import com.maubis.scarlet.base.R
@@ -23,7 +25,7 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
 
   protected val text: TextView = root.findViewById(R.id.text)
   protected val edit: EditText = root.findViewById(R.id.edit)
-  protected val actionMove = ActionMoveIcon(root.findViewById(R.id.action_move))
+  protected val actionMove: ImageView = root.findViewById(R.id.action_move_icon)
 
   protected var format: Format? = null
 
@@ -42,8 +44,9 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     format = data
 
     val fontSize = when (data.formatType) {
-      FormatType.HEADING -> config.fontSize * 1.5f
-      FormatType.SUB_HEADING -> config.fontSize * 1.2f
+      FormatType.HEADING -> config.fontSize * 2.0f
+      FormatType.SUB_HEADING -> config.fontSize * 1.5f
+      FormatType.HEADING_3 -> config.fontSize * 1.2f
       else -> config.fontSize
     }
 
@@ -63,13 +66,13 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
 
     when {
       config.editable -> edit.setText(data.text)
-      config.isMarkdownEnabled -> text.text = renderMarkdown(context, data.text)
+      config.isMarkdownEnabled -> text.text = renderMarkdown(context, toMarkwonableText(data.text))
       else -> text.text = data.text
     }
 
     actionMove.setColorFilter(config.iconColor)
-    actionMove.view.visibility = visibility(config.editable)
-    actionMove.view.setOnClickListener {
+    actionMove.visibility = visibility(config.editable)
+    actionMove.setOnClickListener {
       FormatActionBottomSheet.openSheet(activity, config.noteUUID, data)
     }
   }
@@ -88,7 +91,7 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
 
   override fun afterTextChanged(text: Editable) {
     text.clearMarkdownSpans()
-    text.setFormats(Markdown.getSpanInfo(format!!.text))
+    text.setFormats(Markdown.getSpanInfo(format!!.text).spans)
   }
 
   fun requestEditTextFocus() {

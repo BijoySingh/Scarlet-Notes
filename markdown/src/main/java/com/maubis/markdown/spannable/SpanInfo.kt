@@ -24,6 +24,8 @@ enum class MarkdownType {
   CHECKLIST_CHECKED,
 }
 
+data class SpanResult(val text: String, val spans: List<SpanInfo>)
+
 data class SpanInfo(val markdownType: MarkdownType, val start: Int, val end: Int)
 
 fun map(type: MarkdownSegmentType): MarkdownType {

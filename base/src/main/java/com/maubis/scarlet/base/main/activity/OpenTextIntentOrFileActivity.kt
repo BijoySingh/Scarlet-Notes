@@ -63,7 +63,7 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
 
 
     val spannable = SpannableString(contentText)
-    spannable.setFormats(Markdown.getSpanInfo(contentText))
+    spannable.setFormats(Markdown.getSpanInfo(contentText).spans)
     content.setText(spannable, TextView.BufferType.SPANNABLE)
 
     title.setText(titleText)
@@ -78,7 +78,7 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
       override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
         if (text is Editable) {
           text.clearMarkdownSpans()
-          text.setFormats(Markdown.getSpanInfo(text.toString()))
+          text.setFormats(Markdown.getSpanInfo(text.toString()).spans)
         }
       }
 

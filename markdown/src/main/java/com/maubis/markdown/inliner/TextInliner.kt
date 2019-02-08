@@ -1,10 +1,11 @@
 package com.maubis.markdown.inliner
 
 import android.util.Log
+import com.maubis.markdown.MarkdownConfig.Companion.config
 
 class TextInliner(val text: String) {
 
-  val inlineConfig = TextInlineConfig(TextInlineConfig.Builder())
+  val inlineConfig = config.inlinerConfig
 
   private var textSegment = NormalInlineBuilder()
   private var currentInline = MarkdownInlineBuilder()

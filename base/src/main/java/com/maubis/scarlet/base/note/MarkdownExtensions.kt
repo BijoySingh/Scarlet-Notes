@@ -14,7 +14,7 @@ fun MarkdownSegmentType.toFormatType(): FormatType {
     MarkdownSegmentType.INVALID -> FormatType.EMPTY
     MarkdownSegmentType.HEADING_1 -> FormatType.HEADING
     MarkdownSegmentType.HEADING_2 -> FormatType.SUB_HEADING
-    MarkdownSegmentType.HEADING_3 -> FormatType.SUB_HEADING
+    MarkdownSegmentType.HEADING_3 -> FormatType.HEADING_3
     MarkdownSegmentType.NORMAL -> FormatType.TEXT
     MarkdownSegmentType.CODE -> FormatType.CODE
     MarkdownSegmentType.BULLET_1 -> FormatType.BULLET_1

@@ -6,6 +6,8 @@ import android.text.Editable
 import android.text.Spannable
 import android.text.Spanned
 import android.text.style.*
+import com.maubis.markdown.MarkdownConfig.Companion.config
+import com.maubis.markdown.spans.*
 
 fun Editable.clearMarkdownSpans() {
   val spans = getSpans(0, length, Any::class.java)
@@ -15,6 +17,7 @@ fun Editable.clearMarkdownSpans() {
         || span is StyleSpan
         || span is TypefaceSpan
         || span is UnderlineSpan
+        || span is ICustomSpan
         || span is ForegroundColorSpan
         || span is BackgroundColorSpan) {
       removeSpan(span)
@@ -62,33 +65,56 @@ fun Spannable.monospace(start: Int, end: Int): Spannable {
   return this
 }
 
-fun Spannable.quote(color: Int, start: Int, end: Int): Spannable {
-  this.setSpan(QuoteSpan(color), start, end, 0)
+fun Spannable.quote(start: Int, end: Int): Spannable {
+  this.setSpan(QuoteSegmentSpan(), start, end, 0)
+  return this
+}
+
+fun Spannable.code(start: Int, end: Int): Spannable {
+  this.setSpan(CodeSegmentSpan(), start, end, 0)
+  return this
+}
+
+fun Spannable.inlineCode(start: Int, end: Int): Spannable {
+  this.setSpan(CodeSpan(), start, end, 0)
+  return this
+}
+
+fun Spannable.separator(start: Int, end: Int): Spannable {
+  this.setSpan(SeparatorSegmentSpan(), start, end, 0)
+  return this
+}
+
+fun Spannable.font(font: Typeface, start: Int, end: Int): Spannable {
+  this.setSpan(CustomTypefaceSpan(font), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
   return this
 }
 
 fun Spannable.setFormats(info: SpanInfo) {
+  val s = info.start
+  val e = info.end
   when (info.markdownType) {
-    MarkdownType.INVALID -> {
-    }
-    MarkdownType.HEADING_1 -> relativeSize(2f, info.start, info.end)
-    MarkdownType.HEADING_2 -> relativeSize(1.5f, info.start, info.end)
-    MarkdownType.HEADING_3 -> relativeSize(1.2f, info.start, info.end)
-    MarkdownType.CODE -> monospace(info.start, info.end).background(Color.GRAY, info.start, info.end)
-    MarkdownType.BULLET_1 -> {
-    }
-    MarkdownType.BULLET_2 -> {
-    }
-    MarkdownType.BULLET_3 -> {
-    }
-    MarkdownType.QUOTE -> quote(Color.GRAY, info.start, info.end)
-    MarkdownType.NORMAL -> {
-    }
-    MarkdownType.BOLD -> bold(info.start, info.end)
-    MarkdownType.ITALICS -> italic(info.start, info.end)
-    MarkdownType.UNDERLINE -> underline(info.start, info.end)
-    MarkdownType.INLINE_CODE -> monospace(info.start, info.end).background(Color.GRAY, info.start, info.end)
-    MarkdownType.STRIKE -> strike(info.start, info.end)
+    MarkdownType.HEADING_1 -> relativeSize(2f, s, e)
+        .font(config.spanConfig.headingTypeface, s, e)
+        .bold(s, e)
+    MarkdownType.HEADING_2 -> relativeSize(1.5f, s, e)
+        .font(config.spanConfig.headingTypeface, s, e)
+        .bold(s, e)
+    MarkdownType.HEADING_3 -> relativeSize(1.2f, s, e)
+        .font(config.spanConfig.headingTypeface, s, e)
+        .bold(s, e)
+    MarkdownType.CODE -> monospace(s, e)
+        .code(s, e)
+    MarkdownType.QUOTE -> quote(s, e)
+        .italic(s, e)
+    MarkdownType.BOLD -> bold(s, e)
+    MarkdownType.ITALICS -> italic(s, e)
+    MarkdownType.UNDERLINE -> underline(s, e)
+    MarkdownType.INLINE_CODE -> monospace(s, e)
+        .inlineCode(s, e)
+        .relativeSize(0.9f, s, e)
+    MarkdownType.STRIKE -> strike(s, e)
+    MarkdownType.SEPARATOR -> separator(s, e)
   }
 }
 

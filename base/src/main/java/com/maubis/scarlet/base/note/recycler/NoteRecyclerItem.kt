@@ -3,16 +3,15 @@ package com.maubis.scarlet.base.note.recycler
 import android.content.Context
 import android.support.v4.content.ContextCompat
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.note.getNoteState
-import com.maubis.scarlet.base.core.note.getReminder
 import com.maubis.scarlet.base.core.note.getReminderV2
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet
 import com.maubis.scarlet.base.settings.sheet.MarkdownBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ColorUtil
-import ru.noties.markwon.Markwon
+import com.maubis.scarlet.base.support.utils.renderMarkdown
 
 class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
 
@@ -46,7 +45,7 @@ class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
   }
 
   val tagsSource = note.getTagString()
-  val tags = Markwon.markdown(context, tagsSource)
+  val tags = renderMarkdown(context, tagsSource)
   val tagsColor = when (isLightShaded) {
     true -> ContextCompat.getColor(context, R.color.dark_tertiary_text)
     false -> ContextCompat.getColor(context, R.color.light_secondary_text)

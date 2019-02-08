@@ -35,15 +35,6 @@ data class FormatViewHolderConfig(
     val accentColor: Int,
     val noteUUID: String)
 
-class ActionMoveIcon(val view: View) {
-  private val leftIcon: ImageView = view.findViewById(R.id.left_icon)
-  private val rightIcon: ImageView = view.findViewById(R.id.right_icon)
-
-  fun setColorFilter(color: Int) {
-    leftIcon.setColorFilter(color)
-    rightIcon.setColorFilter(color)
-  }
-}
 
 abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerViewHolder<Format>(context, view) {
 

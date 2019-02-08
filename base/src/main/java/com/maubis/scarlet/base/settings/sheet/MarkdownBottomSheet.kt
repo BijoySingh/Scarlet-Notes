@@ -3,11 +3,14 @@ package com.maubis.scarlet.base.settings.sheet
 import android.app.Dialog
 import android.widget.TextView
 import com.github.bijoysingh.uibasics.views.UIActionView
+import com.maubis.markdown.Markdown
+import com.maubis.markdown.Markdown.renderSegment
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
+import com.maubis.scarlet.base.support.utils.renderMarkdown
 import ru.noties.markwon.Markwon
 
 class MarkdownBottomSheet : ThemedBottomSheetFragment() {
@@ -20,15 +23,13 @@ class MarkdownBottomSheet : ThemedBottomSheetFragment() {
     }
 
     setupDialogContent(dialog)
-    val sourceText = dialog.findViewById<TextView>(R.id.source_text);
-    val markdownText = dialog.findViewById<TextView>(R.id.markdown_text);
-    sourceText.setText(R.string.markdown_sheet_examples_list)
-    markdownText.setText(Markwon.markdown(themedContext(), getString(R.string.markdown_sheet_examples_list)))
+
+    val markdownText = dialog.findViewById<TextView>(R.id.markdown_text)
+    markdownText.text = Markdown.render(getString(R.string.markdown_sheet_examples_list))
 
     val exampleTitle = dialog.findViewById<TextView>(R.id.examples_title)
     exampleTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
 
-    sourceText.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
     markdownText.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
     makeBackgroundTransparent(dialog, R.id.root_layout)
   }

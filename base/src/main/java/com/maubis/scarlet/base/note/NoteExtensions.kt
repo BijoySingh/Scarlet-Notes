@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
+import com.maubis.markdown.Markdown
 import com.maubis.markdown.segmenter.TextSegmenter
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.database.room.note.Note

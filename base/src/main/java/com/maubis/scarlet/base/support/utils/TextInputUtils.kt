@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import com.maubis.markdown.Markdown
 import ru.noties.markwon.Markwon
 
 fun getEditorActionListener(

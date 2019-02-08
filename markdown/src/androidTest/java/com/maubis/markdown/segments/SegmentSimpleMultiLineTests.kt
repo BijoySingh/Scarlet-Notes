@@ -72,6 +72,25 @@ class SegmentSimpleMultiLineTests : MarkdownTextSegmenterTestBase() {
   }
 
   @Test
+  fun testCodeAndQuotes() {
+    val text = "## text\n\n" +
+        "```\ncode\n```\n\n" +
+        "> text\n\n" +
+        "- bullet"
+    val processed = TextSegmenter(text).get()
+    assert(listOf(
+        getTestSegment(MarkdownSegmentType.HEADING_2, "## text"),
+        getTestSegment(MarkdownSegmentType.NORMAL, ""),
+        getTestSegment(MarkdownSegmentType.CODE, "```\ncode\n```"),
+        getTestSegment(MarkdownSegmentType.NORMAL, ""),
+        getTestSegment(MarkdownSegmentType.QUOTE, "> text"),
+        getTestSegment(MarkdownSegmentType.NORMAL, ""),
+        getTestSegment(MarkdownSegmentType.BULLET_1, "- bullet")),
+        processed)
+    assert(text, processed)
+  }
+
+  @Test
   fun testMultilineCode() {
     val text = "```\n" +
         "text\n" +

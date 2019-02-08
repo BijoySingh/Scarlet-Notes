@@ -127,7 +127,10 @@ class TextSegmentConfig(builder: Builder) {
         MarkdownSegmentType.SEPARATOR -> arrayOf(
             FullLineSegment(MarkdownSegmentType.SEPARATOR, "---"),
             FullLineSegment(MarkdownSegmentType.SEPARATOR, "___"),
-            FullLineSegment(MarkdownSegmentType.SEPARATOR, "----"))
+            FullLineSegment(MarkdownSegmentType.SEPARATOR, "----"),
+            FullLineSegment(MarkdownSegmentType.SEPARATOR, "-----"),
+            FullLineSegment(MarkdownSegmentType.SEPARATOR, "------"),
+            FullLineSegment(MarkdownSegmentType.SEPARATOR, "-------"))
         MarkdownSegmentType.CHECKLIST_UNCHECKED -> arrayOf(
             LineStartSegment(MarkdownSegmentType.CHECKLIST_UNCHECKED, "[] "), LineStartSegment(MarkdownSegmentType.CHECKLIST_UNCHECKED, "[ ] "))
         MarkdownSegmentType.CHECKLIST_CHECKED -> arrayOf(

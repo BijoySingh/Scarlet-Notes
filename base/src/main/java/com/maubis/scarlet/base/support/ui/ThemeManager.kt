@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.support.v4.content.ContextCompat
+import com.github.bijoysingh.starter.util.DimensionManager
+import com.maubis.markdown.MarkdownConfig
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 
@@ -38,6 +40,18 @@ class ThemeManager() : IThemeManager {
     for (colorType in ThemeColorType.values()) {
       map[colorType] = load(context, colorType)
     }
+    setMarkdownConfig(context)
+  }
+
+  private fun setMarkdownConfig(context: Context) {
+    MarkdownConfig.config.spanConfig.codeTextColor = get(ThemeColorType.SECONDARY_TEXT)
+    MarkdownConfig.config.spanConfig.codeBackgroundColor = get(context, R.color.code_light, R.color.code_dark)
+    MarkdownConfig.config.spanConfig.codeBlockLeadingMargin = DimensionManager.dpToPixels(context, 8)
+    MarkdownConfig.config.spanConfig.quoteColor = MarkdownConfig.config.spanConfig.codeBackgroundColor
+    MarkdownConfig.config.spanConfig.separatorColor = MarkdownConfig.config.spanConfig.codeBackgroundColor
+    MarkdownConfig.config.spanConfig.quoteWidth = DimensionManager.dpToPixels(context, 4)
+    MarkdownConfig.config.spanConfig.separatorWidth = DimensionManager.dpToPixels(context, 2)
+    MarkdownConfig.config.spanConfig.quoteBlockLeadingMargin = DimensionManager.dpToPixels(context, 8)
   }
 
   private fun load(context: Context, type: ThemeColorType): Int {

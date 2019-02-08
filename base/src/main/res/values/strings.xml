@@ -186,8 +186,7 @@
   <string name="markdown_sheet_home_markdown_support">Markdown in Note List</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">Enable Markdown formatting in the list of notes</string>
   <string name="markdown_sheet_examples">Examples</string>
-  <string name="markdown_sheet_examples_list" translatable="false">
-- **bold**\n- *italics*\n- ~~strike~~\n- `code`\n\n > quote\n</string>
+  <string name="markdown_sheet_examples_list" translatable="false"># Heading \n## Subheading \n\n```\nblock of code\n```\n\n> quote\n\n- **bold**\n- _italics_\n- *underline*\n- ~~strike~~\n- `code`\n</string>
 
   <string name="permission_layout_give_permission">Give Permissions</string>
   <string name="permission_layout_give_permission_details">Import and export require storage permissions. Please give the permission when requested.</string>

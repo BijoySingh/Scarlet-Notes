@@ -103,13 +103,18 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   override fun setNote() {
     super.setNote()
     maxUid = formats.size + 1
+
     val isEmpty = formats.isEmpty()
-    if (isEmpty || (formats[0].formatType !== FormatType.HEADING
-            && formats[0].formatType !== FormatType.IMAGE)) {
-      addEmptyItem(0, FormatType.HEADING)
-    }
-    if (isEmpty) {
-      addDefaultItem()
+    when {
+      isEmpty -> {
+        addEmptyItem(0, FormatType.HEADING)
+        addDefaultItem()
+      }
+      !formats[0].text.startsWith("# ") &&
+      formats[0].formatType !== FormatType.HEADING
+          && formats[0].formatType !== FormatType.IMAGE -> {
+        addEmptyItem(0, FormatType.HEADING)
+      }
     }
   }
 

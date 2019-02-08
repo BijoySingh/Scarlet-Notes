@@ -31,11 +31,11 @@ import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.renderMarkdown
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
-import ru.noties.markwon.Markwon
 
 class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
@@ -85,7 +85,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     if (tagContent.isNotBlank()) {
       tags.visibility = View.VISIBLE
       tagsTitle.visibility = View.GONE
-      tags.setText(Markwon.markdown(activity, tagContent))
+      tags.setText(renderMarkdown(activity, tagContent))
     }
     tagCardLayout.setOnClickListener {
       TagChooseOptionsBottomSheet.openSheet(

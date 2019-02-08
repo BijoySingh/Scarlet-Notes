@@ -14,7 +14,7 @@ import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerIte
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
@@ -22,6 +22,7 @@ import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.core.note.isUnsaved
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.actions.NoteOptionsBottomSheet
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
@@ -34,11 +35,13 @@ import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
-import com.maubis.scarlet.base.support.utils.bind
-import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.support.ui.*
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
+import com.maubis.scarlet.base.support.utils.bind
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.launch
 import java.util.*
+import java.util.concurrent.atomic.AtomicBoolean
 
 
 const val INTENT_KEY_NOTE_ID = "NOTE_ID"
@@ -54,6 +57,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   protected lateinit var formats: MutableList<Format>
   protected lateinit var formatsView: RecyclerView
   protected var isDistractionFree: Boolean = false
+
+  val creationFinished = AtomicBoolean(false)
 
   val topToolbar: View by bind(R.id.top_toolbar_layout)
   val toolbar: View by bind(R.id.toolbar)
@@ -82,39 +87,49 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_advanced_note)
     context = this
-
-    var noteId = intent.getIntExtra(INTENT_KEY_NOTE_ID, 0)
-    if (noteId == 0 && savedInstanceState != null) {
-      noteId = savedInstanceState.getInt(INTENT_KEY_NOTE_ID, 0)
-    }
-    if (noteId != 0) {
-      note = notesDb.getByID(noteId)
-    }
-    if (note === null) {
-      note = NoteBuilder().emptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor())
-    }
     isDistractionFree = intent.getBooleanExtra(INTENT_KEY_DISTRACTION_FREE, false)
 
     setRecyclerView()
-    setToolbars()
-    setEditMode()
-    notifyThemeChange()
+
+    launch {
+      var noteId = intent.getIntExtra(INTENT_KEY_NOTE_ID, 0)
+      if (noteId == 0 && savedInstanceState != null) {
+        noteId = savedInstanceState.getInt(INTENT_KEY_NOTE_ID, 0)
+      }
+      if (noteId != 0) {
+        note = notesDb.getByID(noteId)
+      }
+      if (note === null) {
+        note = NoteBuilder().emptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor())
+      }
+      launch(UI) {
+        setToolbars()
+        setEditMode()
+        notifyThemeChange()
+      }
+      creationFinished.set(true)
+    }
   }
 
   override fun onResume() {
     super.onResume()
     CoreConfig.instance.startListener(this)
+
+    if (!creationFinished.get()) {
+      return
+    }
     onResumeAction()
     notifyThemeChange()
   }
 
   protected open fun onResumeAction() {
-    note = notesDb.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
-    if (note == null) {
-      finish()
-      return
+    launch {
+      note = notesDb.getByID(intent.getIntExtra(INTENT_KEY_NOTE_ID, 0))
+      when {
+        note == null -> finish()
+        else -> launch(UI) { setNote() }
+      }
     }
-    setNote()
   }
 
   protected open fun setEditMode() {
@@ -164,7 +179,12 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   protected open fun setNote() {
-    setNoteColor(note!!.color)
+    val currentNote = note
+    if (currentNote === null) {
+      return
+    }
+
+    setNoteColor(currentNote.color)
     adapter.clearItems()
 
     if (isDistractionFree) {
@@ -172,8 +192,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     }
 
     formats = when (editModeValue) {
-      true -> note!!.getFormats()
-      false -> note!!.getSmartFormats()
+      true -> currentNote.getFormats()
+      false -> currentNote.getSmartFormats()
     }.toMutableList()
     adapter.addItems(formats)
 
@@ -182,11 +202,16 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       maybeAddEmptySpace()
     }
 
-    toolbarTimestamp.setText(note!!.getDisplayTime())
+    toolbarTimestamp.setText(currentNote.getDisplayTime())
   }
 
   private fun maybeAddTags() {
-    val tagLabel = note!!.getTagString()
+    val currentNote = note
+    if (currentNote === null) {
+      return
+    }
+
+    val tagLabel = currentNote.getTagString()
     if (tagLabel.isEmpty()) {
       return
     }
@@ -227,7 +252,11 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   private fun setToolbars() {
-    val currentNote = note!!
+    val currentNote = note
+    if (currentNote === null) {
+      return
+    }
+
     setBottomToolbar()
     actionDelete.setOnClickListener {
       moveItemToTrashOrDelete(currentNote)
@@ -255,6 +284,11 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   protected open fun notifyToolbarColor() {
+    val currentNote = note
+    if (currentNote === null) {
+      return
+    }
+
     val theme = CoreConfig.instance.themeController()
 
     val backgroundColor: Int
@@ -266,15 +300,15 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
         toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
         statusBarColor = backgroundColor
       }
-      ColorUtil.isLightColored(note!!.color) -> {
-        backgroundColor = note!!.color
+      ColorUtil.isLightColored(currentNote.color) -> {
+        backgroundColor = currentNote.color
         toolbarIconColor = theme.get(context, Theme.LIGHT, ThemeColorType.TOOLBAR_ICON)
-        statusBarColor = darkerColor(note!!.color)
+        statusBarColor = darkerColor(currentNote.color)
       }
       else -> {
-        backgroundColor = note!!.color
+        backgroundColor = currentNote.color
         toolbarIconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
-        statusBarColor = darkerColor(note!!.color)
+        statusBarColor = darkerColor(currentNote.color)
       }
     }
 

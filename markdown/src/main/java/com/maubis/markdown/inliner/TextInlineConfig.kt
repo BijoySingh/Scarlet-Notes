@@ -106,10 +106,10 @@ class TextInlineConfig(builder: Builder) {
         MarkdownInlineType.INVALID -> InvalidInline(MarkdownInlineType.INVALID)
         MarkdownInlineType.NORMAL -> InvalidInline(MarkdownInlineType.NORMAL)
         MarkdownInlineType.BOLD -> PhraseDelimiterInline(MarkdownInlineType.BOLD, "**", "**")
-        MarkdownInlineType.ITALICS -> PhraseDelimiterInline(MarkdownInlineType.ITALICS, "_", "_")
-        MarkdownInlineType.UNDERLINE -> PhraseDelimiterInline(MarkdownInlineType.UNDERLINE, "*", "*")
+        MarkdownInlineType.ITALICS -> PhraseDelimiterInline(MarkdownInlineType.ITALICS, "<i>", "</i>")
+        MarkdownInlineType.UNDERLINE -> PhraseDelimiterInline(MarkdownInlineType.UNDERLINE, "<u>", "</u>")
         MarkdownInlineType.INLINE_CODE -> PhraseDelimiterInline(MarkdownInlineType.INLINE_CODE, "`", "`")
-        MarkdownInlineType.STRIKE -> PhraseDelimiterInline(MarkdownInlineType.STRIKE, "~", "~")
+        MarkdownInlineType.STRIKE -> PhraseDelimiterInline(MarkdownInlineType.STRIKE, "~~", "~~")
       }
     }
   }
