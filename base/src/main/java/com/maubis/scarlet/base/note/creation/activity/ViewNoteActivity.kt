@@ -62,19 +62,12 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   val creationFinished = AtomicBoolean(false)
 
   val topToolbar: View by bind(R.id.top_toolbar_layout)
-  val toolbar: View by bind(R.id.toolbar)
-  val formatToolbar: View by bind(R.id.format_toolbar)
-  val markdownToolbar: View by bind(R.id.markdown_toolbar)
 
   val rootView: View by bind(R.id.root_layout)
   val backButton: ImageView by bind(R.id.back_button)
-  val actionUndo: ImageView by bind(R.id.undo_button)
-  val actionRedo: ImageView by bind(R.id.redo_button)
   val actionCopy: ImageView by bind(R.id.copy_button)
   val actionDelete: ImageView by bind(R.id.delete_button)
   val actionShare: ImageView by bind(R.id.share_button)
-  val actionDone: ImageView by bind(R.id.done_button)
-  val colorButton: ImageView by bind(R.id.color_button)
 
   val toolbarBottom: View by bind(R.id.toolbar_bottom)
   val toolbarOption: ImageView by bind(R.id.toolbar_icon_options)
@@ -147,15 +140,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     resetBundle()
     setNote()
 
-    val visibleInEditMode = if (mode) VISIBLE else GONE
-    actionDone.visibility = visibleInEditMode
-    actionUndo.visibility = visibleInEditMode
-    actionRedo.visibility = visibleInEditMode
-    toolbar.visibility = visibleInEditMode
-
     val visibleInNormalMode = if (mode || isDistractionFree) GONE else VISIBLE
     toolbarBottom.visibility = visibleInNormalMode
-    markdownToolbar.visibility = GONE
   }
 
   private fun startDistractionFreeMode() {
@@ -270,7 +256,6 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     actionCopy.setOnClickListener { currentNote.copy(context) }
     backButton.setOnClickListener { onBackPressed() }
     actionShare.setOnClickListener { currentNote.share(context) }
-    actionDone.setOnClickListener { onBackPressed() }
     toolbarOption.setOnClickListener { openMoreOptions() }
     toolbarEdit.setOnClickListener { openEditor() }
     setTopToolbar()
@@ -319,12 +304,9 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     }
 
     backButton.setColorFilter(toolbarIconColor)
-    actionRedo.setColorFilter(toolbarIconColor)
-    actionUndo.setColorFilter(toolbarIconColor)
     actionCopy.setColorFilter(toolbarIconColor)
     actionDelete.setColorFilter(toolbarIconColor)
     actionShare.setColorFilter(toolbarIconColor)
-    actionDone.setColorFilter(toolbarIconColor)
 
     setSystemTheme(statusBarColor)
     rootView.setBackgroundColor(backgroundColor)
@@ -340,17 +322,14 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   protected open fun setBottomToolbar() {
-    toolbar.visibility = GONE
-    markdownToolbar.visibility = GONE
+
   }
 
   protected open fun setTopToolbar() {
-    val colorButtonClicker = findViewById<View>(R.id.color_button_clicker)
-    colorButtonClicker.visibility = GONE
   }
 
   protected open fun setNoteColor(color: Int) {
-    colorButton.background = CircleDrawable(note!!.color)
+
   }
 
   protected fun maybeSaveNote(sync: Boolean) {
@@ -398,6 +377,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     }
     savedInstanceState.putInt(INTENT_KEY_NOTE_ID, if (note == null || note!!.uid == null) 0 else note!!.uid)
   }
+
+  fun note() = note!!
 
   companion object {
     const val HANDLER_UPDATE_TIME = 1000

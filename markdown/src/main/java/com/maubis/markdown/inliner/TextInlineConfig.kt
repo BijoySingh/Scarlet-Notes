@@ -84,12 +84,12 @@ class TextInlineConfig(builder: Builder) {
             PhraseDelimiterInline(MarkdownInlineType.BOLD, "__", "__"),
             PhraseDelimiterInline(MarkdownInlineType.BOLD, "<strong>", "</strong>"))
         MarkdownInlineType.ITALICS -> arrayOf(
-            PhraseDelimiterInline(MarkdownInlineType.ITALICS, "_", "_"),
+            PhraseDelimiterInline(MarkdownInlineType.ITALICS, "*", "*"),
             PhraseDelimiterInline(MarkdownInlineType.ITALICS, "<em>", "</em>"),
             PhraseDelimiterInline(MarkdownInlineType.ITALICS, "<i>", "</i>"))
         MarkdownInlineType.UNDERLINE -> arrayOf(
             PhraseDelimiterInline(MarkdownInlineType.UNDERLINE, "<u>", "</u>"),
-            PhraseDelimiterInline(MarkdownInlineType.UNDERLINE, "*", "*"))
+            PhraseDelimiterInline(MarkdownInlineType.UNDERLINE, "_", "_"))
         MarkdownInlineType.INLINE_CODE -> arrayOf(
             PhraseDelimiterInline(MarkdownInlineType.INLINE_CODE, "<var>", "</var>"),
             PhraseDelimiterInline(MarkdownInlineType.INLINE_CODE, "`", "`"),

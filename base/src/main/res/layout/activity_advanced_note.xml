@@ -22,12 +22,7 @@
       android:layout_height="match_parent" />
   </FrameLayout>
 
-  <View
-    android:layout_width="match_parent"
-    android:layout_height="0.5dp"
-    android:background="@color/dark_hint_text" />
-
-  <include layout="@layout/toolbar_create_note_bottom" />
+  <include layout="@layout/litho_bottom_toolbar" />
 
   <include layout="@layout/toolbar_note_bottom" />
 </LinearLayout>

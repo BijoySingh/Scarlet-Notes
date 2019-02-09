@@ -102,7 +102,7 @@ class ForgetMeActivity : ThemedActivity() {
     startActivityForResult(signInIntent, RC_SIGN_IN)
   }
 
-  public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+  public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     if (requestCode == RC_SIGN_IN) {
       val task = GoogleSignIn.getSignedInAccountFromIntent(data)

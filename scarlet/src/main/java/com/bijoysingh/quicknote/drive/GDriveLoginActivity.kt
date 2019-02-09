@@ -78,7 +78,7 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
     }
   }
 
-  public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+  public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     if (requestCode == RC_SIGN_IN || requestCode == RC_SIGN_IN_PERMISSIONS) {
       if (mDriveResourceClient !== null) {

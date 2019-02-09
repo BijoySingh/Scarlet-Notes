@@ -15,9 +15,9 @@ class InlineMultipleTextTests : MarkdownTextInlinerTestBase() {
         NormalInlineMarkdownSegment("t1 "),
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.BOLD), listOf(NormalInlineMarkdownSegment("t2"))),
         NormalInlineMarkdownSegment(" "),
-        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE), listOf(NormalInlineMarkdownSegment("t3"))),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS), listOf(NormalInlineMarkdownSegment("t3"))),
         NormalInlineMarkdownSegment(" "),
-        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS), listOf(NormalInlineMarkdownSegment("t4"))),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE), listOf(NormalInlineMarkdownSegment("t4"))),
         NormalInlineMarkdownSegment(" "),
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.STRIKE), listOf(NormalInlineMarkdownSegment("t5"))),
         NormalInlineMarkdownSegment(" "),
@@ -32,8 +32,8 @@ class InlineMultipleTextTests : MarkdownTextInlinerTestBase() {
     assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INVALID), listOf(
         NormalInlineMarkdownSegment("t1"),
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.BOLD), listOf(NormalInlineMarkdownSegment("t2"))),
-        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE), listOf(NormalInlineMarkdownSegment("t3"))),
-        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS), listOf(NormalInlineMarkdownSegment("t4"))),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS), listOf(NormalInlineMarkdownSegment("t3"))),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE), listOf(NormalInlineMarkdownSegment("t4"))),
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.STRIKE), listOf(NormalInlineMarkdownSegment("t5"))),
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INLINE_CODE), listOf(NormalInlineMarkdownSegment("t6"))))), processed)
   }

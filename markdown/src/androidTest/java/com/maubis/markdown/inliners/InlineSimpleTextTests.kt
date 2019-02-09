@@ -27,7 +27,7 @@ class InlineSimpleTextTests : MarkdownTextInlinerTestBase() {
     val text = "Hello World"
     val textToTest = "_${text}_"
     val processed = TextInliner(textToTest).get()
-    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS),listOf(NormalInlineMarkdownSegment(text))), processed)
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE),listOf(NormalInlineMarkdownSegment(text))), processed)
   }
   @Test
   fun testStrikeThroughText() {
@@ -42,7 +42,7 @@ class InlineSimpleTextTests : MarkdownTextInlinerTestBase() {
     val text = "Hello World"
     val textToTest = "*$text*"
     val processed = TextInliner(textToTest).get()
-    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE),listOf(NormalInlineMarkdownSegment(text))), processed)
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS),listOf(NormalInlineMarkdownSegment(text))), processed)
   }
 
   @Test
