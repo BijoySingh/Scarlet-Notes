@@ -2,14 +2,13 @@ package com.maubis.scarlet.base.note.creation.activity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
-import android.widget.ImageView
-import android.widget.TextView
+import com.facebook.litho.ComponentContext
+import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.R
@@ -26,6 +25,8 @@ import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.actions.NoteOptionsBottomSheet
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
+import com.maubis.scarlet.base.note.creation.specs.NoteViewBottomBar
+import com.maubis.scarlet.base.note.creation.specs.NoteViewTopBar
 import com.maubis.scarlet.base.note.formats.FormatAdapter
 import com.maubis.scarlet.base.note.formats.IFormatRecyclerViewActivity
 import com.maubis.scarlet.base.note.formats.getFormatControllerItems
@@ -38,6 +39,7 @@ import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Compa
 import com.maubis.scarlet.base.support.ui.*
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
 import com.maubis.scarlet.base.support.utils.bind
+import kotlinx.android.synthetic.main.activity_advanced_note.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -47,6 +49,13 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 const val INTENT_KEY_NOTE_ID = "NOTE_ID"
 const val INTENT_KEY_DISTRACTION_FREE = "DISTRACTION_FREE"
+
+
+data class NoteViewColorConfig(
+    var backgroundColor: Int = Color.BLACK,
+    var toolbarBackgroundColor: Int = Color.BLACK,
+    var toolbarIconColor: Int = Color.BLACK,
+    var statusBarColor: Int = Color.BLACK)
 
 open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity, IFormatRecyclerViewActivity {
 
@@ -60,19 +69,9 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   protected var isDistractionFree: Boolean = false
 
   val creationFinished = AtomicBoolean(false)
-
-  val topToolbar: View by bind(R.id.top_toolbar_layout)
+  val colorConfig = NoteViewColorConfig()
 
   val rootView: View by bind(R.id.root_layout)
-  val backButton: ImageView by bind(R.id.back_button)
-  val actionCopy: ImageView by bind(R.id.copy_button)
-  val actionDelete: ImageView by bind(R.id.delete_button)
-  val actionShare: ImageView by bind(R.id.share_button)
-
-  val toolbarBottom: View by bind(R.id.toolbar_bottom)
-  val toolbarOption: ImageView by bind(R.id.toolbar_icon_options)
-  val toolbarEdit: ImageView by bind(R.id.toolbar_icon_edit_note)
-  val toolbarTimestamp: TextView by bind(R.id.toolbar_timestamp)
 
   protected open val editModeValue: Boolean
     get() = false
@@ -139,15 +138,9 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   protected fun setEditMode(mode: Boolean) {
     resetBundle()
     setNote()
-
-    val visibleInNormalMode = if (mode || isDistractionFree) GONE else VISIBLE
-    toolbarBottom.visibility = visibleInNormalMode
   }
 
   private fun startDistractionFreeMode() {
-    topToolbar.visibility = GONE
-    toolbarBottom.visibility = GONE
-
     var uiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
         or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -193,8 +186,6 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       maybeAddTags()
       maybeAddEmptySpace()
     }
-
-    toolbarTimestamp.setText(currentNote.getDisplayTime())
   }
 
   private fun maybeAddTags() {
@@ -250,14 +241,6 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     }
 
     setBottomToolbar()
-    actionDelete.setOnClickListener {
-      moveItemToTrashOrDelete(currentNote)
-    }
-    actionCopy.setOnClickListener { currentNote.copy(context) }
-    backButton.setOnClickListener { onBackPressed() }
-    actionShare.setOnClickListener { currentNote.share(context) }
-    toolbarOption.setOnClickListener { openMoreOptions() }
-    toolbarEdit.setOnClickListener { openEditor() }
     setTopToolbar()
     notifyToolbarColor()
 
@@ -281,51 +264,53 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     }
 
     val theme = CoreConfig.instance.themeController()
-
-    val backgroundColor: Int
-    val toolbarIconColor: Int
-    val statusBarColor: Int
     when {
       !useNoteColorAsBackground -> {
-        backgroundColor = theme.get(ThemeColorType.BACKGROUND)
-        toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
-        statusBarColor = backgroundColor
+        colorConfig.backgroundColor = theme.get(ThemeColorType.BACKGROUND)
+        colorConfig.toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
+        colorConfig.statusBarColor = colorConfig.backgroundColor
+        colorConfig.toolbarBackgroundColor = theme.get(ThemeColorType.TOOLBAR_BACKGROUND)
       }
       ColorUtil.isLightColored(currentNote.color) -> {
-        backgroundColor = currentNote.color
-        toolbarIconColor = theme.get(context, Theme.LIGHT, ThemeColorType.TOOLBAR_ICON)
-        statusBarColor = darkerColor(currentNote.color)
+        colorConfig.backgroundColor = currentNote.color
+        colorConfig.toolbarIconColor = theme.get(context, Theme.LIGHT, ThemeColorType.TOOLBAR_ICON)
+        colorConfig.statusBarColor = darkerColor(currentNote.color)
+        colorConfig.toolbarBackgroundColor = colorConfig.statusBarColor
       }
       else -> {
-        backgroundColor = currentNote.color
-        toolbarIconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
-        statusBarColor = darkerColor(currentNote.color)
+        colorConfig.backgroundColor = currentNote.color
+        colorConfig.toolbarIconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
+        colorConfig.statusBarColor = darkerColor(currentNote.color)
+        colorConfig.toolbarBackgroundColor = colorConfig.statusBarColor
       }
     }
 
-    backButton.setColorFilter(toolbarIconColor)
-    actionCopy.setColorFilter(toolbarIconColor)
-    actionDelete.setColorFilter(toolbarIconColor)
-    actionShare.setColorFilter(toolbarIconColor)
-
-    setSystemTheme(statusBarColor)
-    rootView.setBackgroundColor(backgroundColor)
-    formatsView.setBackgroundColor(backgroundColor)
-
-    toolbarEdit.setColorFilter(toolbarIconColor)
-    toolbarOption.setColorFilter(toolbarIconColor)
-    toolbarTimestamp.setTextColor(toolbarIconColor)
-    toolbarBottom.setBackgroundColor(backgroundColor)
+    setSystemTheme(colorConfig.statusBarColor)
+    rootView.setBackgroundColor(colorConfig.backgroundColor)
+    formatsView.setBackgroundColor(colorConfig.backgroundColor)
 
     resetBundle()
     adapter.notifyDataSetChanged()
   }
 
   protected open fun setBottomToolbar() {
-
+    lithoBottomToolbar.removeAllViews()
+    val componentContext = ComponentContext(this)
+    lithoBottomToolbar.addView(
+        LithoView.create(componentContext,
+            NoteViewBottomBar.create(componentContext)
+                .colorConfig(colorConfig)
+                .build()))
   }
 
   protected open fun setTopToolbar() {
+    lithoTopToolbar.removeAllViews()
+    val componentContext = ComponentContext(this)
+    lithoTopToolbar.addView(
+        LithoView.create(componentContext,
+            NoteViewTopBar.create(componentContext)
+                .colorConfig(colorConfig)
+                .build()))
   }
 
   protected open fun setNoteColor(color: Int) {

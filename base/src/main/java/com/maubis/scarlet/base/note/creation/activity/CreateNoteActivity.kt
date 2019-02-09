@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.view.View.GONE
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
@@ -19,17 +17,14 @@ import com.maubis.scarlet.base.core.note.*
 import com.maubis.scarlet.base.core.note.NoteImage.Companion.deleteIfExist
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.creation.specs.NoteCreationBottomBar
+import com.maubis.scarlet.base.note.creation.specs.NoteCreationTopBar
 import com.maubis.scarlet.base.note.delete
 import com.maubis.scarlet.base.note.formats.recycler.FormatImageViewHolder
 import com.maubis.scarlet.base.note.formats.recycler.FormatTextViewHolder
 import com.maubis.scarlet.base.note.saveToSync
 import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
-import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.SimpleItemTouchHelper
-import com.maubis.scarlet.base.support.ui.ColorUtil
-import com.maubis.scarlet.base.support.ui.Theme
-import com.maubis.scarlet.base.support.ui.ThemeColorType
-import kotlinx.android.synthetic.main.litho_bottom_toolbar.*
+import kotlinx.android.synthetic.main.activity_advanced_note.*
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
@@ -111,42 +106,26 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     super.notifyToolbarColor()
     setBottomToolbar()
   }
-  override fun setBottomToolbar() {
-    val theme = CoreConfig.instance.themeController()
-    val currentNote = note!!
-    val toolbarBackgroundColor: Int
-    val toolbarIconColor: Int
-    when {
-      !UISettingsOptionsBottomSheet.useNoteColorAsBackground -> {
-        toolbarBackgroundColor = theme.get(ThemeColorType.TOOLBAR_BACKGROUND)
-        toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
-      }
-      ColorUtil.isLightColored(currentNote.color) -> {
-        toolbarBackgroundColor = ColorUtil.darkerColor(currentNote.color)
-        toolbarIconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
-      }
-      else -> {
-        toolbarBackgroundColor = ColorUtil.darkerColor(currentNote.color)
-        toolbarIconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
-      }
-    }
 
+  override fun setTopToolbar() {
+    lithoTopToolbar.removeAllViews()
     val componentContext = ComponentContext(this)
-    lithoToolbar.removeAllViews()
-    lithoToolbar.addView(
-        LithoView.create(
-            componentContext,
-            NoteCreationBottomBar.create(componentContext)
-                .iconColor(toolbarIconColor)
-                .toolbarColor(toolbarBackgroundColor)
+    lithoTopToolbar.addView(
+        LithoView.create(componentContext,
+            NoteCreationTopBar.create(componentContext)
+                .colorConfig(colorConfig)
                 .build()))
   }
 
-  override fun setTopToolbar() {
-    topToolbar.visibility = GONE
-    actionDelete.visibility = GONE
-    actionShare.visibility = GONE
-    actionCopy.visibility = GONE
+  override fun setBottomToolbar() {
+    val componentContext = ComponentContext(this)
+    lithoBottomToolbar.removeAllViews()
+    lithoBottomToolbar.addView(
+        LithoView.create(
+            componentContext,
+            NoteCreationBottomBar.create(componentContext)
+                .colorConfig(colorConfig)
+                .build()))
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
