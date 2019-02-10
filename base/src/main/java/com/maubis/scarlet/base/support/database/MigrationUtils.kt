@@ -14,20 +14,22 @@ import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
 import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.utils.getLastUsedAppVersionCode
+import java.io.File
 
 const val KEY_MIGRATE_THEME = "KEY_MIGRATE_THEME"
 const val KEY_MIGRATE_DEFAULT_VALUES = "KEY_MIGRATE_DEFAULT_VALUES"
 const val KEY_MIGRATE_REMINDERS = "KEY_MIGRATE_REMINDERS"
+const val KEY_MIGRATE_IMAGES = "KEY_MIGRATE_IMAGES"
 
 class Migrator(val context: Context) {
 
   fun start() {
-    runTask(KEY_MIGRATE_THEME, {
+    runTask(KEY_MIGRATE_THEME) {
       val isNightMode = CoreConfig.instance.store().get(KEY_NIGHT_THEME, true)
       CoreConfig.instance.store().put(KEY_APP_THEME, if (isNightMode) Theme.DARK.name else Theme.LIGHT.name)
       CoreConfig.instance.themeController().notifyChange(context)
-    })
-    runTask(KEY_MIGRATE_REMINDERS, {
+    }
+    runTask(key = KEY_MIGRATE_REMINDERS) {
       val notes = notesDb.getAll()
       notes.forEach {
         val legacyReminder = it.getReminder()
@@ -46,13 +48,16 @@ class Migrator(val context: Context) {
           it.saveWithoutSync(context)
         }
       }
-    })
+    }
+    runTask(KEY_MIGRATE_IMAGES) {
+      File(context.cacheDir, "images").renameTo(File(context.filesDir, "images"))
+    }
     runTaskIf(
         getLastUsedAppVersionCode() == 0,
-        KEY_MIGRATE_DEFAULT_VALUES, {
-      CoreConfig.instance.store().put(KEY_APP_THEME, Theme.DARK.name)
-      CoreConfig.instance.store().put(KEY_LIST_VIEW, true)
-    })
+        KEY_MIGRATE_DEFAULT_VALUES) {
+          CoreConfig.instance.store().put(KEY_APP_THEME, Theme.DARK.name)
+          CoreConfig.instance.store().put(KEY_LIST_VIEW, true)
+        }
   }
 
   private fun runTask(key: String, task: () -> Unit) {

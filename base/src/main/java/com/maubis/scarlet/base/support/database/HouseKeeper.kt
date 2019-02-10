@@ -82,7 +82,7 @@ class HouseKeeper(val context: Context) {
   private fun deleteRedundantImageFiles() {
     val uuids = notesDb.getAllUUIDs()
 
-    val imagesFolder = File(context.cacheDir, "images" + File.separator)
+    val imagesFolder = File(context.filesDir, "images" + File.separator)
     val uuidFiles = imagesFolder.listFiles()
     if (uuidFiles === null || uuidFiles.isEmpty()) {
       return

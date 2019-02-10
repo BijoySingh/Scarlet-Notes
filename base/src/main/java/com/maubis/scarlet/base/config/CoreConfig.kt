@@ -24,6 +24,7 @@ import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.export.remote.FolderRemoteDatabase
 import com.maubis.scarlet.base.support.ui.IThemeManager
 import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.ImageCache
 
 abstract class CoreConfig(context: Context) {
 
@@ -61,6 +62,8 @@ abstract class CoreConfig(context: Context) {
   abstract fun store(): Store
 
   abstract fun externalFolderSync(): FolderRemoteDatabase
+
+  abstract fun imageCache(): ImageCache
 
   companion object {
     lateinit var instance: CoreConfig

@@ -26,6 +26,7 @@ import com.maubis.scarlet.base.export.support.ExternalFolderSync
 import com.maubis.scarlet.base.support.ui.IThemeManager
 import com.maubis.scarlet.base.support.ui.ThemeManager
 import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.ImageCache
 import java.lang.ref.WeakReference
 
 const val USER_PREFERENCES_STORE_NAME = "USER_PREFERENCES";
@@ -40,6 +41,7 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   val store = VersionedStore.get(context, USER_PREFERENCES_STORE_NAME, USER_PREFERENCES_VERSION)
   val appTheme = ThemeManager()
   val externalFolderSync = FolderRemoteDatabase(WeakReference(context))
+  val imageCache = ImageCache(context)
 
   override fun database(): AppDatabase = db
 
@@ -69,4 +71,5 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
 
   override fun externalFolderSync(): FolderRemoteDatabase = externalFolderSync
 
+  override fun imageCache(): ImageCache = imageCache
 }
