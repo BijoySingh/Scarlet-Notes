@@ -46,9 +46,9 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     format = data
 
     val fontSize = when (data.formatType) {
-      FormatType.HEADING -> config.fontSize * 2.0f
+      FormatType.HEADING -> config.fontSize * 1.75f
       FormatType.SUB_HEADING -> config.fontSize * 1.5f
-      FormatType.HEADING_3 -> config.fontSize * 1.2f
+      FormatType.HEADING_3 -> config.fontSize * 1.25f
       else -> config.fontSize
     }
 

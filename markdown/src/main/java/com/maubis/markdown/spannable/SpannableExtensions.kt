@@ -94,13 +94,13 @@ fun Spannable.setFormats(info: SpanInfo) {
   val s = info.start
   val e = info.end
   when (info.markdownType) {
-    MarkdownType.HEADING_1 -> relativeSize(2f, s, e)
+    MarkdownType.HEADING_1 -> relativeSize(1.75f, s, e)
         .font(config.spanConfig.headingTypeface, s, e)
         .bold(s, e)
     MarkdownType.HEADING_2 -> relativeSize(1.5f, s, e)
         .font(config.spanConfig.headingTypeface, s, e)
         .bold(s, e)
-    MarkdownType.HEADING_3 -> relativeSize(1.2f, s, e)
+    MarkdownType.HEADING_3 -> relativeSize(1.25f, s, e)
         .font(config.spanConfig.headingTypeface, s, e)
         .bold(s, e)
     MarkdownType.CODE -> monospace(s, e)

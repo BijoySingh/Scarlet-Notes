@@ -9,5 +9,6 @@ enum class MarkdownType(val startToken: String, val endToken: String = "", val r
   UNORDERED(startToken = "- ", requiresNewLine = true),
   CHECKLIST_UNCHECKED(startToken = "[ ] ", requiresNewLine = true),
   CODE(startToken = "`", endToken = "`"),
+  CODE_BLOCK(startToken = "```\n", endToken = "\n```"),
   STRIKE_THROUGH(startToken = "~~", endToken = "~~"),
 }

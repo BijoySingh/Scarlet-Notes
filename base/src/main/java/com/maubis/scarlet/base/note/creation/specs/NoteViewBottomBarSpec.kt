@@ -324,11 +324,14 @@ object NoteCreationAllMarkdownsBottomBarSpec {
             .iconRes(R.drawable.ic_markdown_underline)
             .onClick { activity.triggerMarkdown(MarkdownType.UNDERLINE) })
         .child(bottomBarRoundIcon(context, colorConfig)
+            .iconRes(R.drawable.ic_code_white_48dp)
+            .onClick { activity.triggerMarkdown(MarkdownType.CODE_BLOCK) })
+        .child(bottomBarRoundIcon(context, colorConfig)
+            .iconRes(R.drawable.icon_code_block)
+            .onClick { activity.triggerMarkdown(MarkdownType.CODE) })
+        .child(bottomBarRoundIcon(context, colorConfig)
             .iconRes(R.drawable.ic_markdown_strikethrough)
             .onClick { activity.triggerMarkdown(MarkdownType.STRIKE_THROUGH) })
-        .child(bottomBarRoundIcon(context, colorConfig)
-            .iconRes(R.drawable.ic_code_white_48dp)
-            .onClick { activity.triggerMarkdown(MarkdownType.BOLD) })
         .build()
   }
 }
