@@ -7,8 +7,9 @@ import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.core.note.getReminderV2
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.*
+import com.maubis.scarlet.base.note.creation.sheet.sEditorMarkdownEnabled
 import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet
-import com.maubis.scarlet.base.settings.sheet.MarkdownBottomSheet
+import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.sMarkdownEnabledHome
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.utils.renderMarkdown
@@ -16,8 +17,7 @@ import com.maubis.scarlet.base.support.utils.renderMarkdown
 class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
 
   val isLightShaded = ColorUtil.isLightColored(note.color)
-  val isMarkdownEnabled = MarkdownBottomSheet.isMarkdownEnabled()
-      && MarkdownBottomSheet.isMarkdownHomeEnabled()
+  val isMarkdownEnabled = sEditorMarkdownEnabled && sMarkdownEnabledHome
   val lineCount = LineCountBottomSheet.getDefaultLineCount()
 
   val title = note.getMarkdownTitle(context, isMarkdownEnabled)

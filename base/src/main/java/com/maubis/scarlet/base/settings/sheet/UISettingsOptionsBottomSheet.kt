@@ -161,6 +161,16 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         visible = flavor != Flavor.NONE,
         actionIcon = if (flavor == Flavor.PRO) 0 else R.drawable.ic_rating
     ))
+    options.add(OptionsItem(
+        title = R.string.markdown_sheet_home_markdown_support,
+        subtitle = R.string.markdown_sheet_home_markdown_support_subtitle,
+        icon = R.drawable.ic_markdown_logo,
+        listener = View.OnClickListener {
+          sMarkdownEnabledHome = !sMarkdownEnabledHome
+          dismiss()
+        },
+        actionIcon = if (sMarkdownEnabledHome) 0 else R.drawable.ic_check_box_white_24dp
+    ))
     return options
   }
 
@@ -168,6 +178,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
     const val KEY_LIST_VIEW = "KEY_LIST_VIEW"
     const val KEY_NOTE_VIEWER_BG_COLOR = "KEY_NOTE_VIEWER_BG_COLOR"
+    const val KEY_MARKDOWN_HOME_ENABLED = "KEY_MARKDOWN_HOME_ENABLED"
 
     fun openSheet(activity: MainActivity) {
       val sheet = UISettingsOptionsBottomSheet()
@@ -181,5 +192,9 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     var useNoteColorAsBackground: Boolean
       get() = CoreConfig.instance.store().get(KEY_NOTE_VIEWER_BG_COLOR, false)
       set(value) = CoreConfig.instance.store().put(KEY_NOTE_VIEWER_BG_COLOR, value)
+
+    var sMarkdownEnabledHome: Boolean
+      get() = CoreConfig.instance.store().get(KEY_MARKDOWN_HOME_ENABLED, true)
+      set(value) = CoreConfig.instance.store().put(KEY_MARKDOWN_HOME_ENABLED, value)
   }
 }

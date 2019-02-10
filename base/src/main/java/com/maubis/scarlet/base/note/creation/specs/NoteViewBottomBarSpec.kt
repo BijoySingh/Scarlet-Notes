@@ -3,9 +3,9 @@ package com.maubis.scarlet.base.note.creation.specs
 import android.graphics.Color
 import com.facebook.litho.*
 import com.facebook.litho.annotations.*
+import com.facebook.litho.widget.Card
 import com.facebook.litho.widget.EmptyComponent
 import com.facebook.litho.widget.HorizontalScroll
-import com.facebook.litho.widget.TransparencyEnabledCard
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
@@ -15,7 +15,11 @@ import com.maubis.scarlet.base.note.copy
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.NoteViewColorConfig
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
+import com.maubis.scarlet.base.note.creation.sheet.EditorOptionsBottomSheet
+import com.maubis.scarlet.base.note.creation.sheet.MarkdownHelpBottomSheet
+import com.maubis.scarlet.base.note.creation.sheet.sEditorMarkdownDefault
 import com.maubis.scarlet.base.note.share
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.specs.RoundIcon
 
@@ -36,12 +40,12 @@ fun bottomBarCard(context: ComponentContext, child: Component, colorConfig: Note
       .paddingDip(YogaEdge.ALL, 2f)
       .backgroundColor(Color.TRANSPARENT)
       .child(
-          TransparencyEnabledCard.create(context)
+          Card.create(context)
               .widthPercent(100f)
               .backgroundColor(Color.TRANSPARENT)
               .cardBackgroundColor(colorConfig.toolbarBackgroundColor)
-              .cornerRadiusDip(4f)
-              .elevationDip(2f)
+              .cornerRadiusDip(0f)
+              .elevationDip(4f)
               .content(child))
 }
 
@@ -60,7 +64,7 @@ object NoteCreationBottomBarSpec {
   fun onCreateInitialState(
       context: ComponentContext,
       state: StateValue<NoteCreateBottomBarType>) {
-    state.set(NoteCreateBottomBarType.DEFAULT_SEGMENTS)
+    state.set(if (sEditorMarkdownDefault) NoteCreateBottomBarType.DEFAULT_MARKDOWNS else NoteCreateBottomBarType.DEFAULT_SEGMENTS)
   }
 
   @OnCreateLayout
@@ -69,6 +73,7 @@ object NoteCreationBottomBarSpec {
                @State state: NoteCreateBottomBarType): Component {
     val row = Row.create(context)
         .widthPercent(100f)
+        .paddingDip(YogaEdge.HORIZONTAL, 4f)
         .alignItems(YogaAlign.CENTER)
 
     val content = when (state) {
@@ -166,8 +171,8 @@ object NoteCreationOptionsBottomBarSpec {
         .alignItems(YogaAlign.CENTER)
         .child(bottomBarRoundIcon(context, colorConfig)
             .bgColor(Color.TRANSPARENT)
-            .iconRes(R.drawable.ic_settings_white_48dp)
-            .onClick { })
+            .iconRes(R.drawable.icon_markdown_help)
+            .onClick { openSheet(activity, MarkdownHelpBottomSheet()) })
         .child(EmptySpec.create(context).heightDip(1f).flexGrow(1f))
         .child(bottomBarRoundIcon(context, colorConfig)
             .iconRes(R.drawable.ic_undo_history)

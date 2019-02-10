@@ -30,6 +30,8 @@ abstract class CoreConfig(context: Context) {
   init {
     Reprint.initialize(context)
     config.spanConfig.headingTypeface = ResourcesCompat.getFont(context, R.font.monserrat) ?: Typeface.DEFAULT
+    FONT_MONSERRAT = config.spanConfig.headingTypeface
+    FONT_OPEN_SANS = ResourcesCompat.getFont(context, R.font.open_sans) ?: Typeface.DEFAULT
   }
 
   abstract fun database(): AppDatabase
@@ -65,5 +67,8 @@ abstract class CoreConfig(context: Context) {
     val notesDb get() = instance.notesDatabase()
     val tagsDb get() = instance.tagsDatabase()
     val foldersDb get() = instance.foldersDatabase()
+
+    var FONT_MONSERRAT: Typeface = Typeface.DEFAULT
+    var FONT_OPEN_SANS: Typeface = Typeface.DEFAULT
   }
 }

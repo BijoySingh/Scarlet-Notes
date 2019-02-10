@@ -10,6 +10,7 @@
   <dimen name="toolbar_round_icon_margin_horizontal">4dp</dimen>
   <dimen name="toolbar_round_small_icon_size">28dp</dimen>
   <dimen name="toolbar_round_small_icon_margin_horizontal">8dp</dimen>
+  <dimen name="toolbar_round_small_icon_padding">4dp</dimen>
 
   <dimen name="app_name_size">22sp</dimen>
 

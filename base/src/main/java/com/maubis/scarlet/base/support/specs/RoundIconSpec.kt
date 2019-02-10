@@ -24,6 +24,7 @@ object RoundIconSpec {
       @Prop(resType = ResType.DIMEN_SIZE, optional = true) iconPadding: Int?,
       @Prop(resType = ResType.DIMEN_OFFSET, optional = true) iconMarginVertical: Int?,
       @Prop(resType = ResType.DIMEN_OFFSET, optional = true) iconMarginHorizontal: Int?,
+      @Prop(optional = true) iconAlpha: Float?,
       @Prop(optional = true) bgAlpha: Int?,
       @Prop(optional = true) isClickDisabled: Boolean?,
       @Prop(optional = true) showBorder: Boolean?): Component {
@@ -34,6 +35,7 @@ object RoundIconSpec {
         .marginPx(YogaEdge.VERTICAL, iconMarginVertical ?: 0)
         .marginPx(YogaEdge.HORIZONTAL, iconMarginHorizontal ?: 0)
         .drawable(icon.color(iconColor))
+        .alpha(iconAlpha ?: 1f)
         .background(LithoCircleDrawable(bgColor, bgAlpha ?: 255, showBorder ?: false))
     if (isClickDisabled === null || !isClickDisabled) {
       image.clickHandler(RoundIcon.onClickEvent(context))

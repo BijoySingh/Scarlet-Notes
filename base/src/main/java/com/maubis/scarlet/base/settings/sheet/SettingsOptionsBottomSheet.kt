@@ -8,8 +8,10 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.main.recycler.getMigrateToProAppInformationItem
+import com.maubis.scarlet.base.note.creation.sheet.EditorOptionsBottomSheet
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.utils.FlavourUtils
 import com.maubis.scarlet.base.support.utils.FlavourUtils.PRO_APP_PACKAGE_NAME
@@ -71,6 +73,14 @@ class SettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         icon = R.drawable.ic_subject_white_48dp,
         listener = View.OnClickListener {
           NoteSettingsOptionsBottomSheet.openSheet(activity)
+        }
+    ))
+    options.add(OptionsItem(
+        title = R.string.home_option_editor_options_title,
+        subtitle = R.string.home_option_editor_options_description,
+        icon = R.drawable.ic_edit_white_48dp,
+        listener = View.OnClickListener {
+          openSheet(activity, EditorOptionsBottomSheet())
         }
     ))
     options.add(OptionsItem(

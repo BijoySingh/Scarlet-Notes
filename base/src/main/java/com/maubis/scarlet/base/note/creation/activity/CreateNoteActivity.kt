@@ -56,7 +56,6 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     super.onCreationFinished()
     history.add(NoteBuilder().copy(note!!))
     setFolderFromIntent()
-    notifyHistoryIcons()
   }
 
   private fun setFolderFromIntent() {
@@ -217,12 +216,8 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
       historySize -= item.description.length
       historyIndex -= 1
     }
-    notifyHistoryIcons()
   }
 
-  private fun notifyHistoryIcons() {
-
-  }
 
   private fun startHandler() {
     val handler = Handler()
@@ -314,14 +309,12 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
       true -> {
         historyIndex = if (historyIndex == 0) 0 else (historyIndex - 1)
         note = NoteBuilder().copy(history.get(historyIndex))
-        notifyHistoryIcons()
         setNote()
       }
       false -> {
         val maxHistoryIndex = history.size - 1
         historyIndex = if (historyIndex == maxHistoryIndex) maxHistoryIndex else (historyIndex + 1)
         note = NoteBuilder().copy(history.get(historyIndex))
-        notifyHistoryIcons()
         setNote()
       }
     }
@@ -358,8 +351,12 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   }
 
   override fun setNoteColor(color: Int) {
+    if (lastKnownNoteColor == color) {
+      return
+    }
     note!!.color = color
     notifyToolbarColor()
+    lastKnownNoteColor = color
   }
 
   override fun setFormat(format: Format) {

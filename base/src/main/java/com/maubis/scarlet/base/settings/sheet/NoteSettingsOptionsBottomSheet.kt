@@ -42,14 +42,6 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
-        title = R.string.home_option_markdown_settings,
-        subtitle = R.string.home_option_markdown_settings_subtitle,
-        icon = R.drawable.ic_markdown_logo,
-        listener = View.OnClickListener {
-          MarkdownBottomSheet.openSheet(activity)
-        }
-    ))
-    options.add(OptionsItem(
         title = R.string.home_option_security,
         subtitle = R.string.home_option_security_subtitle,
         icon = R.drawable.ic_option_security,

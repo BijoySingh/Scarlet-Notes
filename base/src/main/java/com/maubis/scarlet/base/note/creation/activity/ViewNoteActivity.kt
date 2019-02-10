@@ -70,6 +70,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
   val creationFinished = AtomicBoolean(false)
   val colorConfig = NoteViewColorConfig()
+  var lastKnownNoteColor = 0
 
   val rootView: View by bind(R.id.root_layout)
 

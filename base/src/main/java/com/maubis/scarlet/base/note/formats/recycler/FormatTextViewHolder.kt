@@ -18,6 +18,8 @@ import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.format.MarkdownType
 import com.maubis.scarlet.base.note.creation.sheet.FormatActionBottomSheet
+import com.maubis.scarlet.base.note.creation.sheet.sEditorLiveMarkdown
+import com.maubis.scarlet.base.note.creation.sheet.sEditorMoveHandles
 import com.maubis.scarlet.base.support.ui.visibility
 import com.maubis.scarlet.base.support.utils.renderMarkdown
 
@@ -75,6 +77,9 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     actionMove.setOnClickListener {
       FormatActionBottomSheet.openSheet(activity, config.noteUUID, data)
     }
+    if (config.editable && !sEditorMoveHandles) {
+      actionMove.visibility = View.INVISIBLE
+    }
   }
 
   override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -91,7 +96,9 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
 
   override fun afterTextChanged(text: Editable) {
     text.clearMarkdownSpans()
-    text.setFormats(Markdown.getSpanInfo(format!!.text).spans)
+    if (sEditorLiveMarkdown) {
+      text.setFormats(Markdown.getSpanInfo(format!!.text).spans)
+    }
   }
 
   fun requestEditTextFocus() {

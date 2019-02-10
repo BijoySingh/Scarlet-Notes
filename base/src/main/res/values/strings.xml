@@ -186,7 +186,7 @@
   <string name="markdown_sheet_home_markdown_support">Markdown in Note List</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">Enable Markdown formatting in the list of notes</string>
   <string name="markdown_sheet_examples">Examples</string>
-  <string name="markdown_sheet_examples_list" translatable="false"># Heading \n## Subheading \n\n```\nblock of code\n```\n\n> quote\n\n- **bold**\n- _italics_\n- *underline*\n- ~~strike~~\n- `code`\n</string>
+  <string name="markdown_sheet_examples_list" translatable="false"># Heading \n## Subheading \n\n```\nblock of code\n```\n\n> quote\n\n- **bold**\n- *italics*\n- _underline_\n- ~~strike~~\n- `code`\n</string>
 
   <string name="permission_layout_give_permission">Give Permissions</string>
   <string name="permission_layout_give_permission_details">Import and export require storage permissions. Please give the permission when requested.</string>
@@ -390,4 +390,20 @@
 
   <string name="recent_notes">Recent Notes</string>
 
+
+  <!-- Start: Editor Option Sheet -->
+  <string name="home_option_editor_options_title" translatable="false">Editor Options</string>
+  <string name="home_option_editor_options_description" translatable="false">Change the settings and usage for the note editor</string>
+
+  <string name="editor_option_enable_markdown_mode_default" translatable="false">Markdown Options as Default</string>
+  <string name="editor_option_enable_markdown_mode_default_details" translatable="false">Show the markdown quick buttons on the toolbar as default</string>
+
+  <string name="editor_option_enable_live_markdown" translatable="false">Realtime Markdown</string>
+  <string name="editor_option_enable_live_markdown_description" translatable="false">Choose if you want markdown to be visible as your type. Enabling can effect performance on large notes.</string>
+
+  <string name="editor_option_enable_move_handle" translatable="false">Show Movement Handles</string>
+  <string name="editor_option_enable_move_handle_description" translatable="false">Show the handle to move items up or down. You can still move things around by touching the corner.</string>
+
+  <string name="markdown_help_sheet_title" translatable="false">Markdown Examples</string>
+  <!-- End: Editor Option Sheet -->
 </resources>
