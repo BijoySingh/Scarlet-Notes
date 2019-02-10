@@ -13,7 +13,6 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.note.creation.activity.NoteViewColorConfig
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 object EmptySpec {
@@ -60,14 +59,15 @@ fun bottomBarRoundIcon(context: ComponentContext, colorConfig: ToolbarColorConfi
 fun bottomBarCard(context: ComponentContext, child: Component, colorConfig: ToolbarColorConfig): Column.Builder {
   return Column.create(context)
       .widthPercent(100f)
-      .paddingDip(YogaEdge.ALL, 2f)
+      .paddingDip(YogaEdge.ALL, 0f)
       .backgroundColor(Color.TRANSPARENT)
       .child(
           Card.create(context)
               .widthPercent(100f)
               .backgroundColor(Color.TRANSPARENT)
+              .clippingColor(Color.TRANSPARENT)
               .cardBackgroundColor(colorConfig.toolbarBackgroundColor)
               .cornerRadiusDip(0f)
-              .elevationDip(4f)
+              .elevationDip(0f)
               .content(child))
 }

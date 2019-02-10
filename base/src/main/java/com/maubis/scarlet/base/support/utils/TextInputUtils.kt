@@ -1,10 +1,8 @@
 package com.maubis.scarlet.base.support.utils
 
-import android.content.Context
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import ru.noties.markwon.Markwon
 
 fun getEditorActionListener(
     runnable: () -> Boolean,
@@ -41,22 +39,6 @@ fun trim(source: CharSequence?): CharSequence {
   return source.subSequence(0, index + 1)
 }
 
-fun markwonFix(source: String): String {
-  return markwonNewlineFix(source)
-}
-
-/**
- * Replace a "X\nY" with "X  \nY"
- */
-fun markwonNewlineFix(source: String): String {
-  return source.replace(Regex("(\\S)\n(\\S)"), "$1  \n$2")
-}
-
 fun removeMarkdownHeaders(source: String): String {
   return source.replace(Regex("(^|\n)(\\s*)(#+)(\\s)"), "$1$2$4")
-}
-
-fun renderMarkdown(context: Context, source: String): CharSequence {
-  val markdownText = markwonFix(source)
-  return trim(Markwon.markdown(context, markdownText))
 }

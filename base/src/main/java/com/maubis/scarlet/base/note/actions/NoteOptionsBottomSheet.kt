@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.GridLayout
 import android.widget.TextView
 import com.github.bijoysingh.starter.util.RandomHelper
+import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.note.NoteBuilder
@@ -31,7 +32,6 @@ import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.Flavor
-import com.maubis.scarlet.base.support.utils.renderMarkdown
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -83,15 +83,18 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     val tagsTitle = tagCardLayout.findViewById<TextView>(R.id.tags_title)
     val tagContent = note.getTagString()
     if (tagContent.isNotBlank()) {
-      tags.visibility = View.VISIBLE
-      tagsTitle.visibility = View.GONE
-      tags.setText(renderMarkdown(activity, tagContent))
+      GlobalScope.launch(Dispatchers.Main) {
+        val text = GlobalScope.async(Dispatchers.IO) { Markdown.renderSegment(tagContent) }
+        tags.visibility = View.VISIBLE
+        tagsTitle.visibility = View.GONE
+        tags.text = text.await()
+      }
     }
     tagCardLayout.setOnClickListener {
       TagChooseOptionsBottomSheet.openSheet(
           activity,
-          note,
-          { activity.notifyTagsChanged(note) })
+          note
+      ) { activity.notifyTagsChanged(note) }
       dismiss()
     }
 

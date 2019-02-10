@@ -93,9 +93,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
       val noteTitle = note.getTitle()
       views.setViewVisibility(R.id.title, if (TextUtils.isNullOrEmpty(noteTitle)) GONE else VISIBLE)
       views.setTextViewText(R.id.title, noteTitle)
-      views.setTextViewText(
-          R.id.description,
-          note.getLockedText(context, false))
+      views.setTextViewText(R.id.description, note.getLockedText(false))
       views.setInt(R.id.container_layout, "setBackgroundColor", note.color)
 
       val isLightShaded = ColorUtil.isLightColored(note.color)

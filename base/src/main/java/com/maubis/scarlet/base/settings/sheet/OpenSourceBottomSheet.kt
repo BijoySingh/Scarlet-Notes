@@ -5,12 +5,12 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.TextView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
+import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
-import com.maubis.scarlet.base.support.utils.renderMarkdown
 
 
 class OpenSourceBottomSheet : ThemedBottomSheetFragment() {
@@ -47,7 +47,7 @@ class OpenSourceBottomSheet : ThemedBottomSheetFragment() {
         val openSourceDetails = getString(R.string.about_page_description_os, appName, creatorName)
         openSource.text = openSourceDetails
 
-        library.text = renderMarkdown(themedContext(), LIBRARY_DETAILS_MD)
+        library.text = Markdown.render(LIBRARY_DETAILS_MD)
 
         contribute.setOnClickListener {
           themedContext().startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_URL)))

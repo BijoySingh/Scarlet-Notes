@@ -22,7 +22,6 @@ import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.HomeNavigationState
-import com.maubis.scarlet.base.main.activity.ITutorialActivity
 import com.maubis.scarlet.base.main.recycler.*
 import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
 import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
@@ -60,7 +59,7 @@ import kotlinx.android.synthetic.main.search_toolbar_main.*
 import kotlinx.android.synthetic.main.toolbar_trash_info.*
 import kotlinx.coroutines.*
 
-class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivity {
+class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
   private val singleThreadDispatcher = newSingleThreadContext("singleThreadDispatcher")
 
   private lateinit var recyclerView: RecyclerView
@@ -86,14 +85,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     setListeners()
     notifyThemeChange()
 
-    val shown = WhatsNewItemsBottomSheet.maybeOpenSheet(this)
-    GlobalScope.launch(Dispatchers.IO) {
-      if (shown) {
-        markHintShown(TUTORIAL_KEY_NEW_NOTE)
-        markHintShown(TUTORIAL_KEY_HOME_SETTINGS)
-      }
-    }
-    showHints()
+    WhatsNewItemsBottomSheet.maybeOpenSheet(this)
   }
 
   fun setListeners() {
@@ -439,49 +431,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
         MainActivityBottomBar.create(componentContext)
             .colorConfig(ToolbarColorConfig())
             .build()))
-  }
-
-  /**
-   * Start : Tutorial
-   */
-
-  override fun showHints(): Boolean {
-    when {
-      notesDb.getCount() == 0 -> showHint(TUTORIAL_KEY_NEW_NOTE)
-      shouldShowHint(TUTORIAL_KEY_NEW_NOTE) -> showHint(TUTORIAL_KEY_NEW_NOTE)
-      shouldShowHint(TUTORIAL_KEY_HOME_SETTINGS) -> showHint(TUTORIAL_KEY_HOME_SETTINGS)
-      else -> return false
-    }
-
-    return true
-  }
-
-  override fun shouldShowHint(key: String): Boolean {
-    return !CoreConfig.instance.store().get(key, false)
-  }
-
-  override fun showHint(key: String) {
-    /*when (key) {
-      TUTORIAL_KEY_NEW_NOTE -> createHint(this, toolbarIconNewNote,
-          getString(R.string.tutorial_create_a_new_note),
-          getString(R.string.main_no_notes_hint))
-      TUTORIAL_KEY_HOME_SETTINGS -> createHint(this, toolbarMenu,
-          getString(R.string.tutorial_home_menu),
-          getString(R.string.tutorial_home_menu_subtitle))
-    }
-    markHintShown(key)*/
-  }
-
-  override fun markHintShown(key: String) {
-    CoreConfig.instance.store().put(key, true)
-  }
-
-  /**
-   * End : Tutorial
-   */
-  companion object {
-    const val TUTORIAL_KEY_NEW_NOTE = "TUTORIAL_KEY_NEW_NOTE"
-    const val TUTORIAL_KEY_HOME_SETTINGS = "TUTORIAL_KEY_HOME_SETTINGS"
   }
 
   /**

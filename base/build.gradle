@@ -52,10 +52,6 @@ dependencies {
     api 'com.evernote:android-job:1.2.6'
 
     implementation 'com.google.android:flexbox:0.3.2'
-    implementation 'ru.noties:markwon:1.0.3'
-
-    implementation 'uk.co.samuelwall:material-tap-target-prompt:2.6.1'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
 
     def room_version = "1.1.1"
     implementation "android.arch.persistence.room:runtime:$room_version"

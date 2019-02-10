@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.widget.ImageView
 import android.widget.TextView
+import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
@@ -13,7 +14,6 @@ import com.maubis.scarlet.base.support.ui.CircleDrawable
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
-import com.maubis.scarlet.base.support.utils.renderMarkdown
 import com.maubis.scarlet.base.support.utils.shouldShowWhatsNewSheet
 
 class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
@@ -47,7 +47,7 @@ class WhatsNewItemsBottomSheet : ThemedBottomSheetFragment() {
 
     val whatsNewView = dialog.findViewById<TextView>(R.id.whats_new_text)
     whatsNewView.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
-    whatsNewView.text = renderMarkdown(activity, whatsNew)
+    whatsNewView.text = Markdown.render(whatsNew)
 
     val whatsNewIcon = dialog.findViewById<ImageView>(R.id.whats_new_icon)
     whatsNewIcon.background = CircleDrawable(Color.WHITE, false)

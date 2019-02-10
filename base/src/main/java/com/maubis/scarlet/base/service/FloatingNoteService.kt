@@ -127,7 +127,7 @@ class FloatingNoteService : FloatingBubbleService() {
 
   fun setNote(note: Note) {
     val noteTitle = note.getTitle()
-    val noteDescription = note.getMarkdownText(context, true)
+    val noteDescription = note.getMarkdownText(true)
     title.text = noteTitle
     description.text = noteDescription
     timestamp.text = note.getDisplayTime()

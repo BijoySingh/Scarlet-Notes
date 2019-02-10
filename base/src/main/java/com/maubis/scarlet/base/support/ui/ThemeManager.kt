@@ -40,6 +40,11 @@ class ThemeManager() : IThemeManager {
     for (colorType in ThemeColorType.values()) {
       map[colorType] = load(context, colorType)
     }
+
+    if (map[ThemeColorType.TOOLBAR_BACKGROUND] == map[ThemeColorType.BACKGROUND]) {
+      map[ThemeColorType.TOOLBAR_BACKGROUND] = ColorUtil.darkerOrSlightlyDarkerColor(map[ThemeColorType.TOOLBAR_BACKGROUND] ?: 0)
+    }
+
     setMarkdownConfig(context)
   }
 
@@ -187,7 +192,7 @@ enum class Theme(
       disabledText = R.color.material_grey_200,
       accentText = R.color.colorAccentDark,
       sectionHeader = R.color.material_blue_grey_200,
-      toolbarBackground = R.color.material_brown_800,
+      toolbarBackground = R.color.material_brown_900,
       toolbarIcon = R.color.white),
   BLUE_GRAY(
       isNightTheme = true,

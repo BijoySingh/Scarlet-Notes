@@ -10,7 +10,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.maubis.markdown.Markdown
-import com.maubis.markdown.Markdown.toMarkwonableText
 import com.maubis.markdown.spannable.clearMarkdownSpans
 import com.maubis.markdown.spannable.setFormats
 import com.maubis.scarlet.base.R
@@ -21,7 +20,6 @@ import com.maubis.scarlet.base.note.creation.sheet.FormatActionBottomSheet
 import com.maubis.scarlet.base.note.creation.sheet.sEditorLiveMarkdown
 import com.maubis.scarlet.base.note.creation.sheet.sEditorMoveHandles
 import com.maubis.scarlet.base.support.ui.visibility
-import com.maubis.scarlet.base.support.utils.renderMarkdown
 
 open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolderBase(context, view), TextWatcher {
 
@@ -66,9 +64,10 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     edit.visibility = visibility(config.editable)
     edit.isEnabled = config.editable
 
+
     when {
       config.editable -> edit.setText(data.text)
-      config.isMarkdownEnabled -> text.text = renderMarkdown(context, toMarkwonableText(data.text))
+      config.isMarkdownEnabled -> text.text = Markdown.renderSegment(data.text)
       else -> text.text = data.text
     }
 
