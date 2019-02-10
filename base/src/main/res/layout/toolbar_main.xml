@@ -5,10 +5,10 @@
   android:layout_height="wrap_content"
   android:gravity="center_vertical"
   android:orientation="horizontal"
-  android:paddingBottom="@dimen/main_toolbar_bottom_padding"
-  android:paddingEnd="@dimen/spacing_normal"
   android:paddingStart="@dimen/spacing_normal"
-  android:paddingTop="@dimen/main_toolbar_top_padding">
+  android:paddingTop="@dimen/main_toolbar_top_padding"
+  android:paddingEnd="@dimen/spacing_normal"
+  android:paddingBottom="@dimen/main_toolbar_bottom_padding">
 
   <ImageView
     android:id="@+id/app_icon"
@@ -18,7 +18,7 @@
     android:src="@drawable/app_icon_round" />
 
   <TextView
-    android:id="@+id/toolbar_title"
+    android:id="@+id/toolbarTitle"
     style="@style/FontTitle"
     android:layout_width="0dp"
     android:layout_height="match_parent"
@@ -34,10 +34,17 @@
 
 
   <ImageView
-    android:id="@+id/toolbar_icon_search"
+    android:id="@+id/toolbarIconSearch"
     android:layout_width="@dimen/main_toolbar_icon_size"
     android:layout_height="@dimen/main_toolbar_icon_size"
     android:padding="@dimen/spacing_xsmall"
-    android:src="@drawable/ic_add_search" />
+    android:src="@drawable/icon_search" />
+
+  <ImageView
+    android:id="@+id/toolbarIconSettings"
+    android:layout_width="@dimen/main_toolbar_icon_size"
+    android:layout_height="@dimen/main_toolbar_icon_size"
+    android:padding="@dimen/spacing_xsmall"
+    android:src="@drawable/icon_settings" />
 
 </LinearLayout>

@@ -10,24 +10,31 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerViewHolder<RecyclerItem>(context, itemView) {
 
-  val title: TextView = findViewById(R.id.toolbar_title)
-  val searchButton: ImageView = findViewById(R.id.toolbar_icon_search)
+  val toolbarTitle: TextView = findViewById(R.id.toolbarTitle)
+  val toolbarIconSearch: ImageView = findViewById(R.id.toolbarIconSearch)
+  val toolbarIconSettings: ImageView = findViewById(R.id.toolbarIconSettings)
 
   override fun populate(data: RecyclerItem, extra: Bundle) {
     setFullSpan()
-    searchButton.setOnClickListener {
+    toolbarIconSearch.setOnClickListener {
       (context as MainActivity).setSearchMode(true)
     }
 
+    toolbarIconSettings.setOnClickListener {
+      SettingsOptionsBottomSheet.openSheet((context as MainActivity))
+    }
+
     val titleColor = CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
-    title.setTextColor(titleColor)
+    toolbarTitle.setTextColor(titleColor)
+
     val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
-    searchButton.setColorFilter(toolbarIconColor)
+    toolbarIconSearch.setColorFilter(toolbarIconColor)
   }
 }
 

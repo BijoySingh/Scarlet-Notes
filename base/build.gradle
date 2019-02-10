@@ -78,10 +78,6 @@ dependencies {
     kapt "com.facebook.litho:litho-processor:$litho_version"
 
     implementation 'com.facebook.soloader:soloader:0.5.1'
-    implementation "com.facebook.litho:litho-sections-core:$litho_version"
-    implementation "com.facebook.litho:litho-sections-widget:$litho_version"
-    compileOnly "com.facebook.litho:litho-sections-annotations:$litho_version"
-    kapt "com.facebook.litho:litho-sections-processor:$litho_version"
 
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

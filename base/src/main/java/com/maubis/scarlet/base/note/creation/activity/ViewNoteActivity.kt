@@ -36,6 +36,7 @@ import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
+import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.*
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
 import com.maubis.scarlet.base.support.utils.bind
@@ -300,7 +301,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     lithoBottomToolbar.addView(
         LithoView.create(componentContext,
             NoteViewBottomBar.create(componentContext)
-                .colorConfig(colorConfig)
+                .colorConfig(ToolbarColorConfig(colorConfig.toolbarBackgroundColor, colorConfig.toolbarIconColor))
                 .build()))
   }
 
@@ -309,9 +310,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     val componentContext = ComponentContext(this)
     lithoTopToolbar.addView(
         LithoView.create(componentContext,
-            NoteViewTopBar.create(componentContext)
-                .colorConfig(colorConfig)
-                .build()))
+            NoteViewTopBar.create(componentContext).build()))
   }
 
   protected open fun setNoteColor(color: Int) {

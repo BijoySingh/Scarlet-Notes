@@ -24,6 +24,7 @@ import com.maubis.scarlet.base.note.formats.recycler.FormatTextViewHolder
 import com.maubis.scarlet.base.note.saveToSync
 import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
 import com.maubis.scarlet.base.support.recycler.SimpleItemTouchHelper
+import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import kotlinx.android.synthetic.main.activity_advanced_note.*
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
@@ -111,9 +112,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     val componentContext = ComponentContext(this)
     lithoTopToolbar.addView(
         LithoView.create(componentContext,
-            NoteCreationTopBar.create(componentContext)
-                .colorConfig(colorConfig)
-                .build()))
+            NoteCreationTopBar.create(componentContext).build()))
   }
 
   override fun setBottomToolbar() {
@@ -123,7 +122,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
         LithoView.create(
             componentContext,
             NoteCreationBottomBar.create(componentContext)
-                .colorConfig(colorConfig)
+                .colorConfig(ToolbarColorConfig(colorConfig.toolbarBackgroundColor, colorConfig.toolbarIconColor))
                 .build()))
   }
 

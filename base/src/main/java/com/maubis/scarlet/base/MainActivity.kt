@@ -2,7 +2,6 @@ package com.maubis.scarlet.base
 
 import android.content.BroadcastReceiver
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -11,10 +10,11 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.View.GONE
 import android.widget.GridLayout.VERTICAL
+import com.facebook.litho.ComponentContext
+import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
-import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.database.room.note.Note
@@ -23,14 +23,13 @@ import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.HomeNavigationState
 import com.maubis.scarlet.base.main.activity.ITutorialActivity
-import com.maubis.scarlet.base.main.activity.createHint
 import com.maubis.scarlet.base.main.recycler.*
 import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
-import com.maubis.scarlet.base.main.sheets.HomeNavigationBottomSheet
 import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
+import com.maubis.scarlet.base.main.specs.MainActivityBottomBar
+import com.maubis.scarlet.base.main.specs.MainActivityFolderBottomBar
 import com.maubis.scarlet.base.main.utils.MainSnackbar
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
-import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.folder.FolderRecyclerItem
 import com.maubis.scarlet.base.note.folder.sheet.CreateOrEditFolderBottomSheet
 import com.maubis.scarlet.base.note.mark
@@ -43,7 +42,6 @@ import com.maubis.scarlet.base.service.SyncedNoteBroadcastReceiver
 import com.maubis.scarlet.base.service.getNoteIntentFilter
 import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet
 import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet.Companion.KEY_LINE_COUNT
-import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
@@ -52,14 +50,13 @@ import com.maubis.scarlet.base.support.SearchConfig
 import com.maubis.scarlet.base.support.database.HouseKeeperJob
 import com.maubis.scarlet.base.support.database.Migrator
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
-import com.maubis.scarlet.base.support.ui.ColorUtil
+import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.unifiedFolderSearchSynchronous
 import com.maubis.scarlet.base.support.unifiedSearchSynchronous
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_toolbar_main.*
-import kotlinx.android.synthetic.main.toolbar_bottom.*
 import kotlinx.android.synthetic.main.toolbar_trash_info.*
 import kotlinx.coroutines.*
 
@@ -119,7 +116,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
 
       }
     })
-    toolbarMenu.setOnClickListener { HomeNavigationBottomSheet.openSheet(this@MainActivity) }
     tagAndColorPicker = TagsAndColorPickerViewHolder(
         this,
         tagsFlexBox,
@@ -145,24 +141,6 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
           tagAndColorPicker.notifyChanged()
           startSearch(searchBox.text.toString())
         })
-    toolbarIconNewFolder.setOnClickListener {
-      CreateOrEditFolderBottomSheet.openSheet(
-          this,
-          FolderBuilder().emptyFolder(NoteSettingsOptionsBottomSheet.genDefaultColor()),
-          { _, _ -> setupData() })
-    }
-    toolbarIconNewChecklist.setOnClickListener {
-      val intent = CreateNoteActivity.getNewChecklistNoteIntent(
-          this@MainActivity,
-          config.folders.firstOrNull()?.uuid ?: "")
-      this@MainActivity.startActivity(intent)
-    }
-    toolbarIconNewNote.setOnClickListener {
-      val intent = CreateNoteActivity.getNewNoteIntent(
-          this@MainActivity,
-          config.folders.firstOrNull()?.uuid ?: "")
-      this@MainActivity.startActivity(intent)
-    }
   }
 
   fun setupRecyclerView() {
@@ -325,38 +303,21 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     return allItems
   }
 
-  private fun notifyFolderChange() {
+  fun notifyFolderChange() {
+    val componentContext = ComponentContext(this)
+    lithoPreBottomToolbar.removeAllViews()
     if (config.folders.isEmpty()) {
-      folderToolbar.visibility = View.GONE
       return
     }
-    val folder = config.folders.first()
-    folderToolbar.visibility = View.VISIBLE
-    folderToolbar.setBackgroundColor(folder.color)
-    folderIconClose.setOnClickListener {
-      config.folders.clear()
-      unifiedSearch()
-      notifyFolderChange()
-    }
-    folderIconOptions.setOnClickListener {
-      if (config.folders.isEmpty()) {
-        return@setOnClickListener
-      }
-      CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, folder, { _, _ -> setupData() })
-    }
-    folderName.setText(folder.title)
 
-    val isLightShaded = ColorUtil.isLightColored(folder.color)
-    val color = when (isLightShaded) {
-      true -> ContextCompat.getColor(this, R.color.dark_tertiary_text)
-      false -> ContextCompat.getColor(this, R.color.light_secondary_text)
-    }
-    folderName.setTextColor(color)
-    folderIconClose.setColorFilter(color)
-    folderIconOptions.setColorFilter(color)
+    val folder = config.folders.first()
+    lithoPreBottomToolbar.addView(LithoView.create(componentContext,
+        MainActivityFolderBottomBar.create(componentContext)
+            .folder(folder)
+            .build()))
   }
 
-  private fun unifiedSearch() {
+  fun unifiedSearch() {
     GlobalScope.launch(Dispatchers.Main) {
       val items = GlobalScope.async(Dispatchers.IO) { unifiedSearchSynchronous() }
       handleNewItems(items.await())
@@ -461,12 +422,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
     deleteTrashIcon.setColorFilter(toolbarIconColor)
     deletesAutomatically.setTextColor(toolbarIconColor)
 
-    toolbarMenu.setColorFilter(toolbarIconColor)
-    toolbarIconNewFolder.setColorFilter(toolbarIconColor)
-    toolbarIconNewNote.setColorFilter(toolbarIconColor)
-    toolbarIconNewChecklist.setColorFilter(toolbarIconColor)
-
-    bottomToolbar.setBackgroundColor(theme.get(ThemeColorType.TOOLBAR_BACKGROUND))
+    setBottomToolbar()
   }
 
   private fun registerNoteReceiver() {
@@ -474,6 +430,15 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
       setupData()
     }
     registerReceiver(receiver, getNoteIntentFilter())
+  }
+
+  fun setBottomToolbar() {
+    val componentContext = ComponentContext(this)
+    lithoBottomToolbar.removeAllViews()
+    lithoBottomToolbar.addView(LithoView.create(componentContext,
+        MainActivityBottomBar.create(componentContext)
+            .colorConfig(ToolbarColorConfig())
+            .build()))
   }
 
   /**
@@ -496,7 +461,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
   }
 
   override fun showHint(key: String) {
-    when (key) {
+    /*when (key) {
       TUTORIAL_KEY_NEW_NOTE -> createHint(this, toolbarIconNewNote,
           getString(R.string.tutorial_create_a_new_note),
           getString(R.string.main_no_notes_hint))
@@ -504,7 +469,7 @@ class MainActivity : ThemedActivity(), ITutorialActivity, INoteOptionSheetActivi
           getString(R.string.tutorial_home_menu),
           getString(R.string.tutorial_home_menu_subtitle))
     }
-    markHintShown(key)
+    markHintShown(key)*/
   }
 
   override fun markHintShown(key: String) {

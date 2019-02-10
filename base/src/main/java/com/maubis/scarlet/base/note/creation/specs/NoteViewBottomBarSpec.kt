@@ -3,7 +3,6 @@ package com.maubis.scarlet.base.note.creation.specs
 import android.graphics.Color
 import com.facebook.litho.*
 import com.facebook.litho.annotations.*
-import com.facebook.litho.widget.Card
 import com.facebook.litho.widget.EmptyComponent
 import com.facebook.litho.widget.HorizontalScroll
 import com.facebook.yoga.YogaAlign
@@ -13,41 +12,15 @@ import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.format.MarkdownType
 import com.maubis.scarlet.base.note.copy
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
-import com.maubis.scarlet.base.note.creation.activity.NoteViewColorConfig
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
-import com.maubis.scarlet.base.note.creation.sheet.EditorOptionsBottomSheet
 import com.maubis.scarlet.base.note.creation.sheet.MarkdownHelpBottomSheet
 import com.maubis.scarlet.base.note.creation.sheet.sEditorMarkdownDefault
 import com.maubis.scarlet.base.note.share
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.EmptySpec
-import com.maubis.scarlet.base.support.specs.RoundIcon
-
-fun bottomBarRoundIcon(context: ComponentContext, colorConfig: NoteViewColorConfig): RoundIcon.Builder {
-  return RoundIcon.create(context)
-      .bgColor(colorConfig.toolbarIconColor)
-      .iconColor(colorConfig.toolbarIconColor)
-      .iconSizeRes(R.dimen.toolbar_round_icon_size)
-      .iconPaddingRes(R.dimen.toolbar_round_icon_padding)
-      .iconMarginVerticalRes(R.dimen.toolbar_round_icon_margin_vertical)
-      .iconMarginHorizontalRes(R.dimen.toolbar_round_icon_margin_horizontal)
-      .bgAlpha(15)
-}
-
-fun bottomBarCard(context: ComponentContext, child: Component, colorConfig: NoteViewColorConfig): Column.Builder {
-  return Column.create(context)
-      .widthPercent(100f)
-      .paddingDip(YogaEdge.ALL, 2f)
-      .backgroundColor(Color.TRANSPARENT)
-      .child(
-          Card.create(context)
-              .widthPercent(100f)
-              .backgroundColor(Color.TRANSPARENT)
-              .cardBackgroundColor(colorConfig.toolbarBackgroundColor)
-              .cornerRadiusDip(0f)
-              .elevationDip(4f)
-              .content(child))
-}
+import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
+import com.maubis.scarlet.base.support.specs.bottomBarCard
+import com.maubis.scarlet.base.support.specs.bottomBarRoundIcon
 
 enum class NoteCreateBottomBarType {
   DEFAULT_SEGMENTS,
@@ -69,7 +42,7 @@ object NoteCreationBottomBarSpec {
 
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
-               @Prop colorConfig: NoteViewColorConfig,
+               @Prop colorConfig: ToolbarColorConfig,
                @State state: NoteCreateBottomBarType): Component {
     val row = Row.create(context)
         .widthPercent(100f)
@@ -165,7 +138,7 @@ object NoteCreationBottomBarSpec {
 object NoteCreationOptionsBottomBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
-               @Prop colorConfig: NoteViewColorConfig): Component {
+               @Prop colorConfig: ToolbarColorConfig): Component {
     val activity = context.androidContext as CreateNoteActivity
     return Row.create(context)
         .alignItems(YogaAlign.CENTER)
@@ -197,7 +170,7 @@ object NoteCreationOptionsBottomBarSpec {
 object NoteCreationSegmentsBottomBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
-               @Prop colorConfig: NoteViewColorConfig,
+               @Prop colorConfig: ToolbarColorConfig,
                @Prop toggleButtonClick: EventHandler<ClickEvent>): Component {
     val activity = context.androidContext as CreateNoteActivity
     return Row.create(context)
@@ -227,7 +200,7 @@ object NoteCreationSegmentsBottomBarSpec {
 object NoteCreationMarkdownsBottomBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
-               @Prop colorConfig: NoteViewColorConfig,
+               @Prop colorConfig: ToolbarColorConfig,
                @Prop toggleButtonClick: EventHandler<ClickEvent>): Component {
     val activity = context.androidContext as CreateNoteActivity
     return Row.create(context)
@@ -258,7 +231,7 @@ object NoteCreationMarkdownsBottomBarSpec {
 object NoteCreationAllSegmentsBottomBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
-               @Prop colorConfig: NoteViewColorConfig): Component {
+               @Prop colorConfig: ToolbarColorConfig): Component {
     val activity = context.androidContext as CreateNoteActivity
     return Row.create(context)
         .alignSelf(YogaAlign.CENTER)
@@ -296,7 +269,7 @@ object NoteCreationAllSegmentsBottomBarSpec {
 object NoteCreationAllMarkdownsBottomBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
-               @Prop colorConfig: NoteViewColorConfig): Component {
+               @Prop colorConfig: ToolbarColorConfig): Component {
     val activity = context.androidContext as CreateNoteActivity
     return Row.create(context)
         .alignSelf(YogaAlign.CENTER)
@@ -340,7 +313,7 @@ object NoteCreationAllMarkdownsBottomBarSpec {
 object NoteViewBottomBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
-               @Prop colorConfig: NoteViewColorConfig): Component {
+               @Prop colorConfig: ToolbarColorConfig): Component {
     val activity = context.androidContext as ViewAdvancedNoteActivity
     val row = Row.create(context)
         .widthPercent(100f)

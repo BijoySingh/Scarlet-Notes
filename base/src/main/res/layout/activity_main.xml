@@ -14,10 +14,10 @@
       layout="@layout/search_toolbar_main"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/spacing_xxsmall"
-      android:layout_marginEnd="@dimen/spacing_xxsmall"
       android:layout_marginStart="@dimen/spacing_xxsmall"
       android:layout_marginTop="@dimen/default_padding"
+      android:layout_marginEnd="@dimen/spacing_xxsmall"
+      android:layout_marginBottom="@dimen/spacing_xxsmall"
       android:visibility="gone" />
 
     <android.support.v7.widget.RecyclerView
@@ -31,7 +31,15 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content" />
 
-    <include layout="@layout/toolbar_bottom" />
+    <FrameLayout
+      android:id="@+id/lithoPreBottomToolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+    <FrameLayout
+      android:id="@+id/lithoBottomToolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
   </LinearLayout>
 
   <LinearLayout
