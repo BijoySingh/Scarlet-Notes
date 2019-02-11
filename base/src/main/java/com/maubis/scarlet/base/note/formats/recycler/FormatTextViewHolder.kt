@@ -67,7 +67,7 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
 
     when {
       config.editable -> edit.setText(data.text)
-      config.isMarkdownEnabled -> text.text = Markdown.renderSegment(data.text)
+      config.isMarkdownEnabled -> text.text = Markdown.renderSegment(data.text, true)
       else -> text.text = data.text
     }
 

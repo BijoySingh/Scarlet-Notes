@@ -4,7 +4,6 @@ import android.app.Application
 import com.evernote.android.job.JobManager
 import com.facebook.soloader.SoLoader
 import com.maubis.scarlet.base.note.reminders.ReminderJobCreator
-import com.maubis.scarlet.base.support.utils.ImageCache
 
 abstract class ApplicationBase : Application() {
   override fun onCreate() {

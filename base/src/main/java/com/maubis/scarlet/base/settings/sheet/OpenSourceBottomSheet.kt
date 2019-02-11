@@ -95,10 +95,6 @@ class OpenSourceBottomSheet : ThemedBottomSheetFragment() {
         "- `'org.jetbrains.kotlin'`\n" +
         "#### Reprint: Fingerprint Library\n" +
         "- `'com.github.ajalt.reprint'`\n" +
-        "#### Tutorial Tap Target Prompt\n" +
-        "- `'uk.co.samuelwall:material-tap-target-prompt'`\n" +
-        "#### Markwon: Markdown Library\n" +
-        "- `'ru.noties:markwon'`\n" +
         "#### Google Firebase Support Library\n" +
         "- `'com.google.firebase:firebase-auth'`\n" +
         "- `'com.google.firebase:firebase-database'`\n" +

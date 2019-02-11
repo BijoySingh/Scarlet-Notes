@@ -84,7 +84,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     val tagContent = note.getTagString()
     if (tagContent.isNotBlank()) {
       GlobalScope.launch(Dispatchers.Main) {
-        val text = GlobalScope.async(Dispatchers.IO) { Markdown.renderSegment(tagContent) }
+        val text = GlobalScope.async(Dispatchers.IO) { Markdown.renderSegment(tagContent, true) }
         tags.visibility = View.VISIBLE
         tagsTitle.visibility = View.GONE
         tags.text = text.await()

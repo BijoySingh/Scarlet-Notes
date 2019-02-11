@@ -110,12 +110,11 @@ fun Spannable.setFormats(info: SpanInfo) {
     MarkdownType.BOLD -> bold(s, e)
     MarkdownType.ITALICS -> italic(s, e)
     MarkdownType.UNDERLINE -> underline(s, e)
-    MarkdownType.INLINE_CODE -> monospace(s, e)
-        .inlineCode(s, e)
-        .relativeSize(0.9f, s, e)
+    MarkdownType.INLINE_CODE -> inlineCode(s, e)
     MarkdownType.STRIKE -> strike(s, e)
     MarkdownType.SEPARATOR -> separator(s, e)
-    else -> {}
+    else -> {
+    }
   }
 }
 
