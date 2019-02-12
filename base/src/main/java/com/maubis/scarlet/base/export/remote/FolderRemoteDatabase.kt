@@ -24,14 +24,16 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
   private var notesRemoteFolder: RemoteFolder<ExportableNote>? = null
   private var tagsRemoteFolder: RemoteFolder<ExportableTag>? = null
   private var foldersRemoteFolder: RemoteFolder<ExportableFolder>? = null
+  private var remoteImagesFolder: RemoteImagesFolder? = null
 
   override fun init(userId: String) {}
 
   fun init(onNotesInit: () -> Unit = {}, onTagsInit: () -> Unit = {}, onFoldersInit: () -> Unit = {}) {
     isValidController = true
     rootFolder = File(Environment.getExternalStorageDirectory(), folderSyncPath)
+    val notesFolder = File(rootFolder, "notes")
     notesRemoteFolder = RemoteFolder(
-        File(rootFolder, "notes"),
+        notesFolder,
         ExportableNote::class.java,
         { it -> onRemoteInsert(it) },
         { it -> onRemoteRemove(ExportableNote(it, "", 0L, 0L, 0, NoteState.DEFAULT.name, "", emptyMap(), "")) },
@@ -48,6 +50,11 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
         { it -> onRemoteInsert(it) },
         { it -> onRemoteRemove(ExportableFolder(it, "", 0L, 0L, 0)) },
         onFoldersInit)
+
+    val context = weakContext.get()
+    if (context !== null) {
+      remoteImagesFolder = RemoteImagesFolder(context, File(notesFolder, "images"))
+    }
   }
 
   override fun reset() {
@@ -55,6 +62,7 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
     notesRemoteFolder = null
     tagsRemoteFolder = null
     foldersRemoteFolder = null
+    remoteImagesFolder = null
   }
 
   override fun logout() {
@@ -68,6 +76,7 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
     notesRemoteFolder?.deleteEverything()
     tagsRemoteFolder?.deleteEverything()
     foldersRemoteFolder?.deleteEverything()
+    remoteImagesFolder?.deleteEverything()
   }
 
   override fun insert(note: INoteContainer) {
@@ -78,6 +87,7 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
       notesRemoteFolder?.lock(note.uuid())
     }
     notesRemoteFolder?.insert(note.uuid(), note)
+    remoteImagesFolder?.onInsert(note)
   }
 
   override fun insert(tag: ITagContainer) {
@@ -99,6 +109,7 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
       return
     }
     notesRemoteFolder?.delete(note.uuid())
+    remoteImagesFolder?.onRemove(note.uuid())
   }
 
   override fun remove(tag: ITagContainer) {
@@ -125,6 +136,7 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
       return
     }
     IRemoteDatabaseUtils.onRemoteInsert(context, note)
+    remoteImagesFolder?.onRemoteInsert(note)
   }
 
   override fun onRemoteRemove(note: INoteContainer) {

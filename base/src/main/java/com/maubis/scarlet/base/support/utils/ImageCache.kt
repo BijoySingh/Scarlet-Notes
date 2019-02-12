@@ -29,6 +29,19 @@ class ImageCache(context: Context) {
     }
   }
 
+
+  fun imagesForNote(noteUUID: String): Array<File> {
+    val folder = File(persistentFolder, noteUUID)
+    return folder.listFiles() ?: emptyArray<File>()
+  }
+
+  fun deleteNote(noteUUID: String) {
+    GlobalScope.launch {
+      val folder = File(persistentFolder, noteUUID)
+      folder.deleteRecursively()
+    }
+  }
+
   fun persistentFile(noteUUID: String, formatFileName: String): File {
     val folder = File(persistentFolder, noteUUID)
     folder.mkdirs()
@@ -37,10 +50,7 @@ class ImageCache(context: Context) {
   }
 
   fun thumbnailFile(noteUUID: String, formatFileName: String): File {
-    val folder = File(thumbnailFolder, noteUUID)
-    folder.mkdirs()
-
-    return File(folder, formatFileName)
+    return File(thumbnailFolder, "$noteUUID::$formatFileName")
   }
 
   fun loadFromCache(cacheFile: File): Bitmap? {
@@ -50,6 +60,14 @@ class ImageCache(context: Context) {
       return BitmapFactory.decodeFile(cacheFile.absolutePath, options)
     }
     return null
+  }
+
+  fun saveToCache(cacheFile: File, bitmap: Bitmap) {
+    val fOut = FileOutputStream(cacheFile)
+    val compressedBitmap = sampleBitmap(bitmap)
+    compressedBitmap.compress(Bitmap.CompressFormat.PNG, 75, fOut)
+    fOut.flush()
+    fOut.close()
   }
 
   fun saveThumbnail(cacheFile: File, bitmap: Bitmap): Bitmap {

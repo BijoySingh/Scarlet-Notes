@@ -29,7 +29,7 @@ class RemoteFolder<T>(val folder: File,
       deletedFolder.mkdirs()
       val files = folder.listFiles() ?: emptyArray()
       files.forEach {
-        if (it.lastModified() > lastScan - LAST_MODIFIED_ERROR_MARGIN) {
+        if (it.isFile && it.lastModified() > lastScan - LAST_MODIFIED_ERROR_MARGIN) {
           uuids.add(it.name)
           try {
             val item = Gson().fromJson(FileManager.readFromFile(it), klass)

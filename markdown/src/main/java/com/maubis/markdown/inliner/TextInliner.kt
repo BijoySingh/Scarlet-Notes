@@ -207,6 +207,5 @@ class TextInliner(val text: String) {
       text.append(it.build().debug())
       text.append(", ")
     }
-    Log.d("Inliner", "processed: ${text.toString()}")
   }
 }
