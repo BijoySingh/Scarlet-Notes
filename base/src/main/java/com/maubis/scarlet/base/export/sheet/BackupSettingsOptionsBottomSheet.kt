@@ -2,6 +2,7 @@ package com.maubis.scarlet.base.export.sheet
 
 import android.app.Dialog
 import android.view.View
+import com.facebook.litho.ComponentContext
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
@@ -13,40 +14,39 @@ import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
 import com.maubis.scarlet.base.support.option.OptionsItem
+import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 import com.maubis.scarlet.base.support.utils.Flavor
 
-class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
-
-  override fun setupViewWithDialog(dialog: Dialog) {
-    setOptions(dialog, getOptions())
-  }
-
-  private fun getOptions(): List<OptionsItem> {
+class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
+  override fun title(): Int = R.string.home_option_backup_options
+  
+  override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = context as MainActivity
-    val options = ArrayList<OptionsItem>()
-    options.add(OptionsItem(
+    val options = ArrayList<LithoOptionsItem>()
+    options.add(LithoOptionsItem(
         title = R.string.home_option_install_from_store,
         subtitle = R.string.home_option_install_from_store_subtitle,
         icon = R.drawable.ic_action_play,
-        listener = View.OnClickListener {
+        listener = {
           IntentUtils.openAppPlayStore(context)
           dismiss()
         },
         visible = CoreConfig.instance.appFlavor() == Flavor.NONE
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_export,
         subtitle = R.string.home_option_export_subtitle,
         icon = R.drawable.ic_export,
-        listener = View.OnClickListener {
+        listener = {
           val manager = PermissionUtils().getStoragePermissionManager(activity)
           val hasAllPermissions = manager.hasAllPermissions()
           when (hasAllPermissions) {
             true -> {
-              openExportSheet()
+              openExportSheet(activity)
               dismiss()
             }
             false -> {
@@ -55,11 +55,11 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_import,
         subtitle = R.string.home_option_import_subtitle,
         icon = R.drawable.ic_import,
-        listener = View.OnClickListener {
+        listener = {
           val manager = PermissionUtils().getStoragePermissionManager(activity)
           val hasAllPermissions = manager.hasAllPermissions()
           when (hasAllPermissions) {
@@ -73,11 +73,11 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.import_export_layout_folder_sync,
         subtitle = R.string.import_export_layout_folder_sync_details,
         icon = R.drawable.icon_folder_sync,
-        listener = View.OnClickListener {
+        listener = {
           val manager = PermissionUtils().getStoragePermissionManager(activity)
           val hasAllPermissions = manager.hasAllPermissions()
           when (hasAllPermissions) {
@@ -91,8 +91,7 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     return options
   }
 
-  private fun openExportSheet() {
-    val activity = themedActivity() as MainActivity
+  private fun openExportSheet(activity: MainActivity) {
     if (!SecurityOptionsBottomSheet.hasPinCodeEnabled()) {
       ExportNotesBottomSheet.openSheet(activity)
       return
@@ -101,7 +100,7 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         activity as ThemedActivity,
         object : EnterPincodeBottomSheet.PincodeSuccessListener {
           override fun onFailure() {
-            openExportSheet()
+            openExportSheet(activity)
           }
 
           override fun onSuccess() {
@@ -109,8 +108,6 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         })
   }
-
-  override fun getLayout(): Int = R.layout.bottom_sheet_options
 
   companion object {
     fun openSheet(activity: MainActivity) {

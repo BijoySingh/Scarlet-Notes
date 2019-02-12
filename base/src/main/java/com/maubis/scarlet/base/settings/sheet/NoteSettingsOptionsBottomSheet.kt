@@ -1,27 +1,24 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
-import android.view.View
+import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.support.option.OptionsItem
-import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
+import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 
-class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
+class NoteSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
+  override fun title(): Int = R.string.home_option_note_settings
 
-  override fun setupViewWithDialog(dialog: Dialog) {
-    setOptions(dialog, getOptions())
-  }
-
-  private fun getOptions(): List<OptionsItem> {
+  override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = context as MainActivity
-    val options = ArrayList<OptionsItem>()
-    options.add(OptionsItem(
+    val options = ArrayList<LithoOptionsItem>()
+    options.add(LithoOptionsItem(
         title = R.string.note_option_default_color,
         subtitle = R.string.note_option_default_color_subtitle,
         icon = R.drawable.ic_action_color,
-        listener = View.OnClickListener {
+        listener = {
           ColorPickerBottomSheet.openSheet(
               activity,
               object : ColorPickerBottomSheet.ColorPickerDefaultController {
@@ -41,19 +38,17 @@ class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
           dismiss()
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_security,
         subtitle = R.string.home_option_security_subtitle,
         icon = R.drawable.ic_option_security,
-        listener = View.OnClickListener {
+        listener = {
           SecurityOptionsBottomSheet.openSheet(activity)
           dismiss()
         }
     ))
     return options
   }
-
-  override fun getLayout(): Int = R.layout.bottom_sheet_options
 
   companion object {
 

@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
-import android.view.View
+import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
@@ -12,27 +12,21 @@ import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
 import com.maubis.scarlet.base.note.delete
 import com.maubis.scarlet.base.note.folder.delete
 import com.maubis.scarlet.base.note.tag.delete
-import com.maubis.scarlet.base.support.option.OptionsItem
-import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
+import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import kotlinx.coroutines.*
 
-class DeleteAndMoreOptionsBottomSheet : OptionItemBottomSheetBase() {
+class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
+  override fun title(): Int = R.string.home_option_delete_notes_and_more
 
-  override fun setupViewWithDialog(dialog: Dialog) {
-    GlobalScope.launch(Dispatchers.Main) {
-      val options = GlobalScope.async(Dispatchers.IO) { getOptions() }
-      setOptions(dialog, options.await())
-    }
-  }
-
-  private fun getOptions(): List<OptionsItem> {
+  override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = context as MainActivity
-    val options = ArrayList<OptionsItem>()
-    options.add(OptionsItem(
+    val options = ArrayList<LithoOptionsItem>()
+    options.add(LithoOptionsItem(
         title = R.string.home_option_delete_all_notes,
         subtitle = R.string.home_option_delete_all_notes_details,
         icon = R.drawable.ic_note_white_48dp,
-        listener = View.OnClickListener {
+        listener = {
           AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_all_notes_details) {
             GlobalScope.launch(Dispatchers.Main) {
               withContext(Dispatchers.IO) { notesDb.getAll().forEach { it.delete(activity) } }
@@ -42,11 +36,11 @@ class DeleteAndMoreOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_delete_all_tags,
         subtitle = R.string.home_option_delete_all_tags_details,
         icon = R.drawable.ic_action_tags,
-        listener = View.OnClickListener {
+        listener = {
           AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_all_tags_details) {
             GlobalScope.launch(Dispatchers.Main) {
               withContext(Dispatchers.IO) { tagsDb.getAll().forEach { it.delete() } }
@@ -56,11 +50,11 @@ class DeleteAndMoreOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_delete_all_folders,
         subtitle = R.string.home_option_delete_all_folders_details,
         icon = R.drawable.ic_folder,
-        listener = View.OnClickListener {
+        listener = {
           AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_all_folders_details) {
             GlobalScope.launch(Dispatchers.Main) {
               withContext(Dispatchers.IO) { foldersDb.getAll().forEach { it.delete() } }
@@ -70,11 +64,11 @@ class DeleteAndMoreOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_delete_everything,
         subtitle = R.string.home_option_delete_everything_details,
         icon = R.drawable.ic_delete_permanently,
-        listener = View.OnClickListener {
+        listener = {
           AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_everything_details) {
             GlobalScope.launch(Dispatchers.Main) {
               val notes = GlobalScope.async(Dispatchers.IO) { notesDb.getAll().forEach { it.delete(activity) } }
@@ -93,11 +87,11 @@ class DeleteAndMoreOptionsBottomSheet : OptionItemBottomSheetBase() {
         }
     ))
     val forgetMeClick = CoreConfig.instance.authenticator().openForgetMeActivity(activity)
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.forget_me_option_title,
         subtitle = R.string.forget_me_option_details,
         icon = R.drawable.ic_action_forget_me,
-        listener = View.OnClickListener {
+        listener = {
           forgetMeClick?.run()
           dismiss()
         },
@@ -105,8 +99,6 @@ class DeleteAndMoreOptionsBottomSheet : OptionItemBottomSheetBase() {
     ))
     return options
   }
-
-  override fun getLayout(): Int = R.layout.bottom_sheet_options
 
   companion object {
     fun openSheet(activity: MainActivity) {
