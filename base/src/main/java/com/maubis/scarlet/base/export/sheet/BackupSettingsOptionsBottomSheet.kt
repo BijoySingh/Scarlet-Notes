@@ -1,29 +1,25 @@
 package com.maubis.scarlet.base.export.sheet
 
 import android.app.Dialog
-import android.view.View
 import com.facebook.litho.ComponentContext
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.activity.ImportNoteActivity
-import com.maubis.scarlet.base.export.support.ExternalFolderSync
 import com.maubis.scarlet.base.export.support.KEY_BACKUP_LOCKED
 import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
-import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
-import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 import com.maubis.scarlet.base.support.utils.Flavor
 
 class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun title(): Int = R.string.home_option_backup_options
-  
+
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<LithoOptionsItem>()

@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
-import android.view.View
+import com.facebook.litho.ComponentContext
 import com.github.ajalt.reprint.core.Reprint
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.MainActivity
@@ -10,22 +10,20 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet.Companion.openCreateSheet
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet.Companion.openVerifySheet
-import com.maubis.scarlet.base.support.option.OptionsItem
-import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
+import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 
-class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
-  override fun setupViewWithDialog(dialog: Dialog) {
-    setOptions(dialog, getOptions())
-  }
+class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
+  override fun title(): Int = R.string.security_option_title
 
-  private fun getOptions(): List<OptionsItem> {
-    val options = ArrayList<OptionsItem>()
-    options.add(OptionsItem(
+  override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
+    val options = ArrayList<LithoOptionsItem>()
+    options.add(LithoOptionsItem(
         title = R.string.security_option_set_pin_code,
         subtitle = R.string.security_option_set_pin_code_subtitle,
         icon = R.drawable.ic_option_security,
-        listener = View.OnClickListener {
+        listener = {
           val currentPinCode = CoreConfig.instance.store().get(KEY_SECURITY_CODE, "")
           val hasPinCode = !TextUtils.isNullOrEmpty(currentPinCode)
           if (hasPinCode) {
@@ -34,14 +32,15 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
             openCreatePasswordDialog(dialog)
           }
         },
-        enabled = !TextUtils.isNullOrEmpty(CoreConfig.instance.store().get(KEY_SECURITY_CODE, ""))
+        isSelectable = true,
+        selected = !TextUtils.isNullOrEmpty(CoreConfig.instance.store().get(KEY_SECURITY_CODE, ""))
     ))
     val hasFingerprint = Reprint.hasFingerprintRegistered()
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.security_option_fingerprint_enabled,
         subtitle = R.string.security_option_fingerprint_enabled_subtitle,
         icon = R.drawable.ic_option_fingerprint,
-        listener = View.OnClickListener {
+        listener = {
           val currentPinCode = CoreConfig.instance.store().get(KEY_SECURITY_CODE, "")
           val hasPinCode = !TextUtils.isNullOrEmpty(currentPinCode)
           if (hasPinCode) {
@@ -49,23 +48,24 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
                 object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
                   override fun onSuccess() {
                     CoreConfig.instance.store().put(KEY_FINGERPRINT_ENABLED, false)
-                    reset(dialog)
+                    reset(componentContext.androidContext, dialog)
                   }
                 }
             )
           } else {
             CoreConfig.instance.store().put(KEY_FINGERPRINT_ENABLED, false)
-            reset(dialog)
+            reset(componentContext.androidContext, dialog)
           }
         },
         visible = CoreConfig.instance.store().get(KEY_FINGERPRINT_ENABLED, true) && hasFingerprint,
-        enabled = true
+        isSelectable = true,
+        selected = true
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.security_option_fingerprint_disabled,
         subtitle = R.string.security_option_fingerprint_disabled_subtitle,
         icon = R.drawable.ic_option_fingerprint,
-        listener = View.OnClickListener {
+        listener = {
           val currentPinCode = CoreConfig.instance.store().get(KEY_SECURITY_CODE, "")
           val hasPinCode = !TextUtils.isNullOrEmpty(currentPinCode)
           if (hasPinCode) {
@@ -73,13 +73,13 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
                 object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
                   override fun onSuccess() {
                     CoreConfig.instance.store().put(KEY_FINGERPRINT_ENABLED, true)
-                    reset(dialog)
+                    reset(componentContext.androidContext, dialog)
                   }
                 }
             )
           } else {
             CoreConfig.instance.store().put(KEY_FINGERPRINT_ENABLED, true)
-            reset(dialog)
+            reset(componentContext.androidContext, dialog)
           }
         },
         visible = !CoreConfig.instance.store().get(KEY_FINGERPRINT_ENABLED, true) && hasFingerprint
@@ -93,7 +93,7 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
         activity,
         object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
           override fun onSuccess() {
-            reset(dialog)
+            reset(dialog.context, dialog)
           }
         })
   }
@@ -127,8 +127,6 @@ class SecurityOptionsBottomSheet : OptionItemBottomSheetBase() {
           }
         })
   }
-
-  override fun getLayout(): Int = R.layout.bottom_sheet_options
 
   companion object {
 
