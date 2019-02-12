@@ -56,7 +56,7 @@ class RemoteImagesFolder(context: Context, val folder: File) {
           val destinationFile = File(destinationFolder, it)
           copy(sourceFile, destinationFile)
         }
-      } 
+      }
       externalCache[note.uuid()] = files.toSet()
     }
   }

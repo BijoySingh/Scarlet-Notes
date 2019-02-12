@@ -98,8 +98,10 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
         note = NoteBuilder().emptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor())
       }
       GlobalScope.launch(Dispatchers.Main) {
-        setToolbars()
         setEditMode()
+        if (isDistractionFree) {
+          startDistractionFreeMode()
+        }
         notifyThemeChange()
         onCreationFinished()
       }
@@ -236,21 +238,6 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     updateNoteForChecked()
   }
 
-  private fun setToolbars() {
-    val currentNote = note
-    if (currentNote === null) {
-      return
-    }
-
-    setBottomToolbar()
-    setTopToolbar()
-    notifyToolbarColor()
-
-    if (isDistractionFree) {
-      startDistractionFreeMode()
-    }
-  }
-
   fun openMoreOptions() {
     NoteOptionsBottomSheet.openSheet(this@ViewAdvancedNoteActivity, note!!)
   }
@@ -293,6 +280,9 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
     resetBundle()
     adapter.notifyDataSetChanged()
+
+    setBottomToolbar()
+    setTopToolbar()
   }
 
   protected open fun setBottomToolbar() {
