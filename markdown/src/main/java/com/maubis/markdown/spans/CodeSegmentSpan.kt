@@ -22,7 +22,8 @@ class CodeSegmentSpan : MetricAffectingSpan(), LeadingMarginSpan, ICustomSpan {
   }
 
   private fun setTextColor(paint: TextPaint) {
-    paint.color = config.spanConfig.codeTextColor
+    paint.color = paint.color
+    paint.alpha = 225
   }
 
   override fun getLeadingMargin(first: Boolean): Int {
