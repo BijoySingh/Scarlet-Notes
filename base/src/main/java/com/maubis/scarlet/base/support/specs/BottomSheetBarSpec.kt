@@ -6,6 +6,7 @@ import com.facebook.litho.ComponentContext
 import com.facebook.litho.Row
 import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.Text
+import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
@@ -20,9 +21,11 @@ object BottomSheetBarSpec {
       @Prop(resType = ResType.STRING) primaryAction: String,
       @Prop(resType = ResType.STRING, optional = true) secondaryAction: String?): Component {
     val row = Row.create(context)
+        .alignItems(YogaAlign.CENTER)
 
     if (secondaryAction !== null && secondaryAction.isNotBlank()) {
       row.child(Text.create(context)
+          .text(secondaryAction)
           .typeface(CoreConfig.FONT_MONSERRAT)
           .textSizeRes(R.dimen.font_size_large)
           .paddingDip(YogaEdge.VERTICAL, 6f)

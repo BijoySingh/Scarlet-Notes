@@ -40,7 +40,7 @@ object Markdown {
     val textBuilder = StringBuilder()
     val formats = ArrayList<SpanInfo>()
     segments.forEach {
-      val inliner = TextInliner(it.text()).get()
+      val inliner = TextInliner(if (stripDelimiter) it.strip() else it.text()).get()
       val strippedText = inliner.contentText(stripDelimiter)
       val finalIndex = currentIndex + strippedText.length
 

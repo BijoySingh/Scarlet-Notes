@@ -24,7 +24,7 @@ import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.HomeNavigationState
 import com.maubis.scarlet.base.main.recycler.*
 import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
-import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
+import com.maubis.scarlet.base.main.sheets.WhatsNewBottomSheet
 import com.maubis.scarlet.base.main.specs.MainActivityBottomBar
 import com.maubis.scarlet.base.main.specs.MainActivityFolderBottomBar
 import com.maubis.scarlet.base.main.utils.MainSnackbar
@@ -49,11 +49,13 @@ import com.maubis.scarlet.base.support.SearchConfig
 import com.maubis.scarlet.base.support.database.HouseKeeperJob
 import com.maubis.scarlet.base.support.database.Migrator
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.unifiedFolderSearchSynchronous
 import com.maubis.scarlet.base.support.unifiedSearchSynchronous
+import com.maubis.scarlet.base.support.utils.shouldShowWhatsNewSheet
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_toolbar_main.*
 import kotlinx.android.synthetic.main.toolbar_trash_info.*
@@ -85,7 +87,9 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     setListeners()
     notifyThemeChange()
 
-    WhatsNewItemsBottomSheet.maybeOpenSheet(this)
+    if (shouldShowWhatsNewSheet()) {
+      openSheet(this, WhatsNewBottomSheet())
+    }
   }
 
   fun setListeners() {

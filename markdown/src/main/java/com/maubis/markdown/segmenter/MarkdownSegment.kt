@@ -40,7 +40,7 @@ class LineStartMarkdownSegment(val config: LineStartSegment, val text: String) :
   override fun type() = config.type()
 
   override fun strip(): String {
-    return text.removePrefix(config.lineStartToken)
+    return "${config.replacementToken}${text.removePrefix(config.lineStartToken)}"
   }
 
   override fun text(): String = text

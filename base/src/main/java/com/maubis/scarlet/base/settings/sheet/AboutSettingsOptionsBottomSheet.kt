@@ -8,7 +8,7 @@ import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
+import com.maubis.scarlet.base.main.sheets.WhatsNewBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
@@ -65,7 +65,7 @@ class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.whats_new_subtitle,
         icon = R.drawable.ic_whats_new,
         listener = {
-          WhatsNewItemsBottomSheet.openSheet(activity)
+          com.maubis.scarlet.base.support.sheets.openSheet(activity, WhatsNewBottomSheet())
           dismiss()
         }
     ))
