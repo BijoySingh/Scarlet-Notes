@@ -14,6 +14,7 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.specs.RoundIcon
@@ -60,7 +61,7 @@ object ThemeColorPickerItemSpec {
                   @Prop isDisabled: Boolean,
                   @Prop onThemeSelected: (Theme) -> Unit) {
     if (isDisabled) {
-      InstallProUpsellBottomSheet.openSheet(context.androidContext as ThemedActivity)
+      openSheet(context.androidContext as ThemedActivity, InstallProUpsellBottomSheet())
       return
     }
     onThemeSelected(theme)

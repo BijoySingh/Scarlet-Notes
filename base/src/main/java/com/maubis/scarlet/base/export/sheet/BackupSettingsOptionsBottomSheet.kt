@@ -13,6 +13,7 @@ import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 import com.maubis.scarlet.base.support.utils.Flavor
@@ -46,7 +47,7 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
               dismiss()
             }
             false -> {
-              PermissionBottomSheet.openSheet(activity)
+              openSheet(activity, PermissionBottomSheet())
             }
           }
         }
@@ -64,7 +65,7 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
               dismiss()
             }
             false -> {
-              PermissionBottomSheet.openSheet(activity)
+              openSheet(activity, PermissionBottomSheet())
             }
           }
         }
@@ -80,7 +81,7 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
             true -> {
               ThemedBottomSheetFragment.openSheet(activity, ExternalFolderSyncBottomSheet())
             }
-            false -> PermissionBottomSheet.openSheet(activity)
+            false -> openSheet(activity, PermissionBottomSheet())
           }
         }
     ))

@@ -151,7 +151,7 @@ class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
               CoreConfig.instance.store().put(KEY_AUTO_BACKUP_MODE, true)
               reset(dialog)
             }
-            else -> PermissionBottomSheet.openSheet(activity)
+            else -> com.maubis.scarlet.base.support.sheets.openSheet(activity, PermissionBottomSheet())
           }
         },
         enabled = autoBackupEnabled

@@ -73,7 +73,6 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
     val WHATS_NEW_UID = 9
     val GOOGLE_TRANSLATE_URL = "https://translate.google.com/#auto/"
 
-
     val WHATS_NEW_DETAILS_SUBTITLE = "A lot has changed in this update, here is a summary of those changes."
     val WHATS_NEW_DETAILS_NEW_FEATURES_TITLE = "New Features"
     val WHATS_NEW_DETAILS_LAST_RELEASE_TITLE = "Last Release"
@@ -83,6 +82,7 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
             "- **Realtime Markdown:** When you type in markdown you get real time conversion and formatting.\n\n" +
             "- **More Editor Options:** Head over to settings to get more control on the editor experience.\n\n" +
             "- **More Themes:** Pro Users get more themes for the app, and the default dark theme is even darker now.\n\n" +
+            "- **Folder Sync:** Sync all your notes to an external folder live along with images.\n\n" +
             "Even more little things which help you enjoy using this app everyday"
     val WHATS_NEW_DETAILS_LAST_RELEASE_MD =
         "- **New UI and Icon:** New Search and Top Actionbar UI and icon\n\n" +

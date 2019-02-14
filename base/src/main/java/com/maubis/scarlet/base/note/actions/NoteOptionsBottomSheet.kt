@@ -370,7 +370,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
             note.viewDistractionFree(activity)
             return@OnClickListener
           }
-          InstallProUpsellBottomSheet.openSheet(activity)
+          com.maubis.scarlet.base.support.sheets.openSheet(activity, InstallProUpsellBottomSheet())
         },
         visible = CoreConfig.instance.appFlavor() != Flavor.NONE,
         invalid = activity.lockedContentIsHidden() && note.locked

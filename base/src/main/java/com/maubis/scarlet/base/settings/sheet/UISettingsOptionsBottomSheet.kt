@@ -12,7 +12,6 @@ import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
-import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.utils.Flavor
 
 class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
@@ -78,7 +77,7 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           if (flavor == Flavor.PRO) {
             com.maubis.scarlet.base.support.sheets.openSheet(activity, FontSizeBottomSheet())
           } else {
-            InstallProUpsellBottomSheet.openSheet(activity)
+            openSheet(activity, InstallProUpsellBottomSheet())
           }
           reset(activity, dialog)
         },
@@ -103,7 +102,7 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         icon = R.drawable.ic_action_color,
         listener = {
           if (flavor != Flavor.PRO) {
-            InstallProUpsellBottomSheet.openSheet(activity)
+            openSheet(activity, InstallProUpsellBottomSheet())
             return@LithoOptionsItem
           }
 
