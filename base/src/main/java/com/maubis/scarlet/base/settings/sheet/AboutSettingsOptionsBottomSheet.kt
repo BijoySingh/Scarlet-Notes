@@ -11,6 +11,7 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.utils.Flavor
 
 class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
@@ -24,7 +25,7 @@ class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_about_page_subtitle,
         icon = R.drawable.ic_info,
         listener = {
-          AboutUsBottomSheet.openSheet(activity)
+          openSheet(activity, AboutUsBottomSheet())
           dismiss()
         }
     ))
@@ -33,7 +34,7 @@ class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_open_source_page_subtitle,
         icon = R.drawable.ic_code_white_48dp,
         listener = {
-          OpenSourceBottomSheet.openSheet(activity)
+          openSheet(activity, OpenSourceBottomSheet())
           dismiss()
         }
     ))

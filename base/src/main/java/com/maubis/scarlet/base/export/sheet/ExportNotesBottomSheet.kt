@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base.export.sheet
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.support.v4.content.FileProvider
 import android.view.View
@@ -8,16 +9,37 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
+import com.github.bijoysingh.uibasics.views.UIActionView
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.support.*
 import com.maubis.scarlet.base.support.option.OptionsItem
-import com.maubis.scarlet.base.support.sheets.getViewForOption
-import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
+import com.maubis.scarlet.base.support.utils.Flavor
 
+fun getViewForOption(context: Context, option: OptionsItem, titleColor: Int, subtitleColor: Int): UIActionView {
+  val contentView = View.inflate(context, R.layout.layout_option_sheet_item, null) as UIActionView
+  contentView.setTitle(option.title)
+  when (option.subtitle) {
+    0 -> contentView.setSubtitle(option.content)
+    else -> contentView.setSubtitle(option.subtitle)
+  }
+  contentView.setOnClickListener(option.listener)
+  contentView.setImageResource(option.icon)
+
+  contentView.setTitleColor(titleColor)
+  contentView.setSubtitleColor(subtitleColor)
+  contentView.setImageTint(titleColor)
+
+  if (option.enabled) {
+    contentView.setActionResource(R.drawable.ic_check_box_white_24dp)
+  } else if (option.actionIcon != 0) {
+    contentView.setActionResource(option.actionIcon)
+  }
+  return contentView
+}
 
 class ExportNotesBottomSheet : ThemedBottomSheetFragment() {
   override fun getBackgroundView(): Int {

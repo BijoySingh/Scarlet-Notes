@@ -1,23 +1,19 @@
 package com.maubis.scarlet.base.export.sheet
 
 import android.app.Dialog
-import android.content.Intent
 import android.support.v4.content.ContextCompat
-import android.support.v4.content.FileProvider
 import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.ProgressBar
 import android.widget.TextView
-import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.export.sheet.ExportNotesBottomSheet.Companion.MATERIAL_NOTES_FOLDER
-import com.maubis.scarlet.base.export.support.*
+import com.maubis.scarlet.base.export.support.ExternalFolderSync
 import com.maubis.scarlet.base.export.support.ExternalFolderSync.externalFolderSync
+import com.maubis.scarlet.base.export.support.KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED
+import com.maubis.scarlet.base.export.support.KEY_EXTERNAL_FOLDER_SYNC_PATH
 import com.maubis.scarlet.base.support.option.OptionsItem
-import com.maubis.scarlet.base.support.sheets.getViewForOption
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 

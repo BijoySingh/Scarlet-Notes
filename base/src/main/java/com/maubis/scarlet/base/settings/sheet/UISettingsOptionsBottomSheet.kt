@@ -6,12 +6,11 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
-import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet.Companion.getDefaultLineCount
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingState
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingTechniqueLabel
-import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet.Companion.getDefaultTextSize
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -113,11 +112,11 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
     options.add(LithoOptionsItem(
         title = R.string.note_option_font_size,
         subtitle = 0,
-        content = activity.getString(R.string.note_option_font_size_subtitle, getDefaultTextSize()),
+        content = activity.getString(R.string.note_option_font_size_subtitle, sEditorTextSize),
         icon = R.drawable.ic_title_white_48dp,
         listener = {
           if (flavor == Flavor.PRO) {
-            TextSizeBottomSheet.openSheet(activity)
+            com.maubis.scarlet.base.support.sheets.openSheet(activity, FontSizeBottomSheet())
           } else {
             InstallProUpsellBottomSheet.openSheet(activity)
           }
@@ -129,11 +128,10 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
     options.add(LithoOptionsItem(
         title = R.string.note_option_number_lines,
         subtitle = 0,
-        content = activity.getString(R.string.note_option_number_lines_subtitle, getDefaultLineCount()),
+        content = activity.getString(R.string.note_option_number_lines_subtitle, sNoteItemLineCount),
         icon = R.drawable.ic_action_list,
         listener = {
-          LineCountBottomSheet.openSheet(activity)
-          reset(activity, dialog)
+          openSheet(activity, LineCountBottomSheet())
         }
     ))
     options.add(LithoOptionsItem(

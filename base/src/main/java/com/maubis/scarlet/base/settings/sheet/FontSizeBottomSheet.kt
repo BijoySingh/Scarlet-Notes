@@ -4,6 +4,7 @@ import android.app.Dialog
 import com.facebook.litho.Column
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
+import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
@@ -12,17 +13,18 @@ import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
 import com.maubis.scarlet.base.support.specs.CounterChooser
+import com.maubis.scarlet.base.support.ui.ThemeColorType
 
-const val STORE_KEY_LINE_COUNT = "KEY_LINE_COUNT"
-const val LINE_COUNT_DEFAULT = 7
-const val LINE_COUNT_MIN = 2
-const val LINE_COUNT_MAX = 15
+const val STORE_KEY_TEXT_SIZE = "KEY_TEXT_SIZE"
+const val TEXT_SIZE_DEFAULT = 16
+const val TEXT_SIZE_MIN = 12
+const val TEXT_SIZE_MAX = 24
 
-var sNoteItemLineCount: Int
-  get() = CoreConfig.instance.store().get(STORE_KEY_LINE_COUNT, LINE_COUNT_DEFAULT)
-  set(value) = CoreConfig.instance.store().put(STORE_KEY_LINE_COUNT, value)
+var sEditorTextSize: Int
+  get() = CoreConfig.instance.store().get(STORE_KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT)
+  set(value) = CoreConfig.instance.store().put(STORE_KEY_TEXT_SIZE, value)
 
-class LineCountBottomSheet : LithoBottomSheet() {
+class FontSizeBottomSheet : LithoBottomSheet() {
 
   override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
     val activity = context as MainActivity
@@ -31,14 +33,19 @@ class LineCountBottomSheet : LithoBottomSheet() {
         .paddingDip(YogaEdge.VERTICAL, 8f)
         .paddingDip(YogaEdge.HORIZONTAL, 20f)
         .child(getLithoBottomSheetTitle(componentContext)
-            .textRes(R.string.note_option_number_lines)
+            .textRes(R.string.note_option_font_size)
             .marginDip(YogaEdge.HORIZONTAL, 0f))
+        .child(Text.create(componentContext)
+            .textSizeDip(sEditorTextSize.toFloat())
+            .marginDip(YogaEdge.BOTTOM, 16f)
+            .textRes(R.string.note_option_font_size_example)
+            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
         .child(CounterChooser.create(componentContext)
-            .value(sNoteItemLineCount)
-            .minValue(LINE_COUNT_MIN)
-            .maxValue(LINE_COUNT_MAX)
+            .value(sEditorTextSize)
+            .minValue(TEXT_SIZE_MIN)
+            .maxValue(TEXT_SIZE_MAX)
             .onValueChange { value ->
-              sNoteItemLineCount = value
+              sEditorTextSize = value
               reset(activity, dialog)
             }
             .paddingDip(YogaEdge.VERTICAL, 16f))

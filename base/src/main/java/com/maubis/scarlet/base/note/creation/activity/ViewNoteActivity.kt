@@ -33,9 +33,10 @@ import com.maubis.scarlet.base.note.formats.getFormatControllerItems
 import com.maubis.scarlet.base.note.formats.recycler.KEY_EDITABLE
 import com.maubis.scarlet.base.note.formats.recycler.KEY_NOTE_COLOR
 import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet
+import com.maubis.scarlet.base.settings.sheet.STORE_KEY_TEXT_SIZE
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
-import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
+import com.maubis.scarlet.base.settings.sheet.sEditorTextSize
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.*
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
@@ -161,7 +162,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     bundle.putBoolean(KEY_EDITABLE, editModeValue)
     bundle.putBoolean(KEY_MARKDOWN_ENABLED, CoreConfig.instance.store().get(KEY_MARKDOWN_ENABLED, true))
     bundle.putBoolean(KEY_NIGHT_THEME, CoreConfig.instance.themeController().isNightTheme())
-    bundle.putInt(TextSizeBottomSheet.KEY_TEXT_SIZE, TextSizeBottomSheet.getDefaultTextSize())
+    bundle.putInt(STORE_KEY_TEXT_SIZE, sEditorTextSize)
     bundle.putInt(KEY_NOTE_COLOR, note!!.color)
     bundle.putString(INTENT_KEY_NOTE_ID, note!!.uuid)
     adapter.setExtra(bundle)

@@ -18,10 +18,7 @@ import com.maubis.scarlet.base.main.recycler.EmptyRecyclerItem
 import com.maubis.scarlet.base.note.recycler.NoteAppAdapter
 import com.maubis.scarlet.base.note.recycler.NoteRecyclerItem
 import com.maubis.scarlet.base.note.recycler.getSelectableRecyclerItemControllerList
-import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet
-import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
-import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
-import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
+import com.maubis.scarlet.base.settings.sheet.*
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 
@@ -76,7 +73,7 @@ abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActi
     val isMarkdownHomeEnabled = CoreConfig.instance.store().get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, true)
     val adapterExtra = Bundle()
     adapterExtra.putBoolean(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
-    adapterExtra.putInt(LineCountBottomSheet.KEY_LINE_COUNT, LineCountBottomSheet.getDefaultLineCount())
+    adapterExtra.putInt(STORE_KEY_LINE_COUNT, sNoteItemLineCount)
 
     adapter = NoteAppAdapter(this, getSelectableRecyclerItemControllerList(staggeredView, isTablet))
     adapter.setExtra(adapterExtra)

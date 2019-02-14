@@ -37,7 +37,7 @@ object OptionItemLayoutSpec {
     val theme = CoreConfig.instance.themeController()
     val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
     val subtitleColor = theme.get(ThemeColorType.HINT_TEXT)
-    val selectedColor = context.getColor(R.color.colorAccent)
+    val selectedColor = theme.get(ThemeColorType.ACCENT_TEXT)
 
     val subtitle = when (option.subtitle) {
       0 -> option.content

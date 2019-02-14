@@ -39,12 +39,12 @@ import com.maubis.scarlet.base.note.softDelete
 import com.maubis.scarlet.base.note.tag.view.TagsAndColorPickerViewHolder
 import com.maubis.scarlet.base.service.SyncedNoteBroadcastReceiver
 import com.maubis.scarlet.base.service.getNoteIntentFilter
-import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet
-import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet.Companion.KEY_LINE_COUNT
+import com.maubis.scarlet.base.settings.sheet.STORE_KEY_LINE_COUNT
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
+import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
 import com.maubis.scarlet.base.support.SearchConfig
 import com.maubis.scarlet.base.support.database.HouseKeeperJob
 import com.maubis.scarlet.base.support.database.Migrator
@@ -143,7 +143,7 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     val isMarkdownHomeEnabled = CoreConfig.instance.store().get(KEY_MARKDOWN_HOME_ENABLED, true)
     val adapterExtra = Bundle()
     adapterExtra.putBoolean(KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
-    adapterExtra.putInt(KEY_LINE_COUNT, LineCountBottomSheet.getDefaultLineCount())
+    adapterExtra.putInt(STORE_KEY_LINE_COUNT, sNoteItemLineCount)
 
     adapter = NoteAppAdapter(this, staggeredView, isTablet)
     adapter.setExtra(adapterExtra)
