@@ -7,6 +7,13 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.openSheet
+
+const val STORE_KEY_NOTE_DEFAULT_COLOR = "KEY_NOTE_DEFAULT_COLOR"
+
+var sNoteDefaultColor: Int
+  get() = CoreConfig.instance.store().get(STORE_KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
+  set(value) = CoreConfig.instance.store().put(STORE_KEY_NOTE_DEFAULT_COLOR, value)
 
 class NoteSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun title(): Int = R.string.home_option_note_settings
@@ -19,22 +26,13 @@ class NoteSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.note_option_default_color_subtitle,
         icon = R.drawable.ic_action_color,
         listener = {
-          ColorPickerBottomSheet.openSheet(
-              activity,
-              object : ColorPickerBottomSheet.ColorPickerDefaultController {
-                override fun getSheetTitle(): Int = R.string.choose_note_color
-
-                override fun getColorList(): IntArray = activity.resources.getIntArray(R.array.bright_colors)
-
-                override fun onColorSelected(color: Int) {
-                  CoreConfig.instance.store().put(KEY_NOTE_DEFAULT_COLOR, color)
-                }
-
-                override fun getSelectedColor(): Int {
-                  return genDefaultColor()
-                }
-              }
+          val config = ColorPickerDefaultController(
+              title = R.string.note_option_default_color,
+              colors = listOf(activity.resources.getIntArray(R.array.bright_colors), activity.resources.getIntArray(R.array.bright_colors_accent)),
+              selectedColor = sNoteDefaultColor,
+              onColorSelected = { sNoteDefaultColor = it }
           )
+          openSheet(activity, ColorPickerBottomSheet().apply { this.config = config })
           dismiss()
         }
     ))
@@ -48,19 +46,5 @@ class NoteSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         }
     ))
     return options
-  }
-
-  companion object {
-
-    const val KEY_NOTE_DEFAULT_COLOR = "KEY_NOTE_DEFAULT_COLOR"
-
-    fun openSheet(activity: MainActivity) {
-      val sheet = NoteSettingsOptionsBottomSheet()
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
-
-    fun genDefaultColor(): Int {
-      return CoreConfig.instance.store().get(KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
-    }
   }
 }

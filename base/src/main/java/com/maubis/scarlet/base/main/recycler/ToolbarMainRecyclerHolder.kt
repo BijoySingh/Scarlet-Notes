@@ -33,7 +33,7 @@ class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerView
     val titleColor = CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
     toolbarTitle.setTextColor(titleColor)
 
-    val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
+    val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
     toolbarIconSearch.setColorFilter(toolbarIconColor)
     toolbarIconSettings.setColorFilter(toolbarIconColor)
   }

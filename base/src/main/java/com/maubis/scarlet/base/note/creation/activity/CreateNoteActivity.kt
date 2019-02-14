@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
+import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
@@ -22,7 +23,8 @@ import com.maubis.scarlet.base.note.delete
 import com.maubis.scarlet.base.note.formats.recycler.FormatImageViewHolder
 import com.maubis.scarlet.base.note.formats.recycler.FormatTextViewHolder
 import com.maubis.scarlet.base.note.saveToSync
-import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
 import com.maubis.scarlet.base.support.recycler.SimpleItemTouchHelper
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import kotlinx.android.synthetic.main.activity_advanced_note.*
@@ -320,12 +322,15 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   }
 
   fun onColorChangeClick() {
-    NoteColorPickerBottomSheet.openSheet(
-        this@CreateNoteActivity,
-        object : NoteColorPickerBottomSheet.ColorPickerController {
-          override fun onColorSelected(note: Note, color: Int) = setNoteColor(color)
-          override fun getNote(): Note = note!!
-        })
+    val config = ColorPickerDefaultController(
+        title = R.string.choose_note_color,
+        colors = listOf(resources.getIntArray(R.array.bright_colors), resources.getIntArray(R.array.bright_colors_accent)),
+        selectedColor = note!!.color,
+        onColorSelected = { color ->
+          setNoteColor(color)
+        }
+    )
+    com.maubis.scarlet.base.support.sheets.openSheet(this, ColorPickerBottomSheet().apply { this.config = config })
   }
 
   private fun findTextViewHolderAtPosition(position: Int): FormatTextViewHolder? {

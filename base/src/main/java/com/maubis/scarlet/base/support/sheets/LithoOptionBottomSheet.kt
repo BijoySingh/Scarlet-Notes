@@ -88,6 +88,18 @@ object OptionItemLayoutSpec {
           .onClick { }
           .isClickDisabled(true)
           .marginDip(YogaEdge.START, 12f))
+    } else if (!option.isSelectable && option.actionIcon != 0) {
+      row.child(RoundIcon.create(context)
+          .iconRes(option.actionIcon)
+          .bgColor(titleColor)
+          .bgAlpha(25)
+          .iconAlpha(0.9f)
+          .iconColor(titleColor)
+          .iconSizeRes(R.dimen.toolbar_round_small_icon_size)
+          .iconPaddingRes(R.dimen.toolbar_round_small_icon_padding)
+          .onClick { }
+          .isClickDisabled(true)
+          .marginDip(YogaEdge.START, 12f))
     }
 
     row.clickHandler(OptionItemLayout.onItemClick(context))

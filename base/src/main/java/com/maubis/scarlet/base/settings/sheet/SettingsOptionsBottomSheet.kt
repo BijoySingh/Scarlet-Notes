@@ -62,7 +62,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_note_settings_subtitle,
         icon = R.drawable.ic_subject_white_48dp,
         listener = {
-          NoteSettingsOptionsBottomSheet.openSheet(activity)
+          openSheet(activity, NoteSettingsOptionsBottomSheet())
         }
     ))
     options.add(LithoOptionsItem(

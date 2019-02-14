@@ -11,11 +11,11 @@ import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
-import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet.Companion.genDefaultColor
 import com.maubis.scarlet.base.settings.sheet.STORE_KEY_TEXT_SIZE
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.TEXT_SIZE_DEFAULT
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
+import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -41,7 +41,7 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
   protected val activity: ViewAdvancedNoteActivity = context as ViewAdvancedNoteActivity
 
   override fun populate(data: Format, extra: Bundle?) {
-    val noteColor: Int = extra?.getInt(KEY_NOTE_COLOR) ?: genDefaultColor()
+    val noteColor: Int = extra?.getInt(KEY_NOTE_COLOR) ?: sNoteDefaultColor
     val secondaryTextColor: Int
     val tertiaryTextColor: Int
     val iconColor: Int

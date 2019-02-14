@@ -13,8 +13,6 @@ import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
 import com.maubis.scarlet.base.support.ui.Theme
-import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.ui.ThemeManager
 import com.maubis.scarlet.base.support.utils.Flavor
 
 class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
@@ -25,57 +23,19 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
     val options = ArrayList<LithoOptionsItem>()
     val flavor = CoreConfig.instance.appFlavor()
     options.add(LithoOptionsItem(
-        title = R.string.home_option_enable_night_mode,
-        subtitle = R.string.home_option_enable_night_mode_subtitle,
-        icon = R.drawable.night_mode_white_48dp,
-        listener = {
-          CoreConfig.instance.store().put(KEY_APP_THEME, Theme.DARK.name)
-          CoreConfig.instance.themeController().notifyChange(activity)
-          activity.notifyThemeChange()
-          reset(activity, dialog)
-        },
-        visible = !CoreConfig.instance.themeController().isNightTheme() && flavor != Flavor.PRO
-    ))
-    options.add(LithoOptionsItem(
-        title = R.string.home_option_enable_day_mode,
-        subtitle = R.string.home_option_enable_day_mode_subtitle,
-        icon = R.drawable.ic_action_day_mode,
-        listener = {
-          CoreConfig.instance.store().put(KEY_APP_THEME, Theme.LIGHT.name)
-          CoreConfig.instance.themeController().notifyChange(activity)
-          activity.notifyThemeChange()
-          reset(activity, dialog)
-        },
-        visible = CoreConfig.instance.themeController().isNightTheme() && flavor != Flavor.PRO
-    ))
-    options.add(LithoOptionsItem(
         title = R.string.home_option_theme_color,
         subtitle = R.string.home_option_theme_color_subtitle,
         icon = if (CoreConfig.instance.themeController().isNightTheme()) R.drawable.night_mode_white_48dp else R.drawable.ic_action_day_mode,
         listener = {
-          if (flavor == Flavor.PRO) {
-            ColorPickerBottomSheet.openSheet(activity, object : ColorPickerBottomSheet.ColorPickerDefaultController {
-              override fun getSheetTitle(): Int = R.string.theme_page_title
-
-              override fun getColorList(): IntArray = resources.getIntArray(R.array.theme_color)
-
-              override fun onColorSelected(color: Int) {
-                val theme = ThemeManager.getThemeByBackgroundColor(activity, color)
-                CoreConfig.instance.store().put(KEY_APP_THEME, theme.name)
-                CoreConfig.instance.themeController().notifyChange(activity)
-                activity.notifyThemeChange()
-                reset(activity, dialog)
-              }
-
-              override fun getSelectedColor(): Int = CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND)
-            })
-          } else {
-            InstallProUpsellBottomSheet.openSheet(activity)
-            dismiss()
-          }
-        },
-        visible = flavor != Flavor.NONE,
-        actionIcon = if (flavor == Flavor.PRO) 0 else R.drawable.ic_rating
+          com.maubis.scarlet.base.support.sheets.openSheet(activity, ThemeColorPickerBottomSheet().apply {
+            this.onThemeChange = { theme ->
+              CoreConfig.instance.store().put(KEY_APP_THEME, theme.name)
+              CoreConfig.instance.themeController().notifyChange(activity)
+              activity.notifyThemeChange()
+              reset(activity, dialog)
+            }
+          })
+        }
     ))
     val isTablet = resources.getBoolean(R.bool.is_tablet)
     options.add(LithoOptionsItem(

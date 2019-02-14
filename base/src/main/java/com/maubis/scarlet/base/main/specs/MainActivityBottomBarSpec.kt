@@ -21,6 +21,7 @@ import com.maubis.scarlet.base.main.sheets.HomeNavigationBottomSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.folder.sheet.CreateOrEditFolderBottomSheet
 import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet
+import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.specs.bottomBarCard
@@ -50,7 +51,7 @@ object MainActivityBottomBarSpec {
         .onClick {
           CreateOrEditFolderBottomSheet.openSheet(
               activity,
-              FolderBuilder().emptyFolder(NoteSettingsOptionsBottomSheet.genDefaultColor()),
+              FolderBuilder().emptyFolder(sNoteDefaultColor),
               { _, _ -> activity.setupData() })
         })
     row.child(bottomBarRoundIcon(context, colorConfig)

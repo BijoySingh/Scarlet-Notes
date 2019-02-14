@@ -35,8 +35,8 @@ fun separatorSpec(context: ComponentContext): Component.Builder<*> {
       .heightDip(1f)
       .widthDip(164f)
       .marginDip(YogaEdge.HORIZONTAL, 32f)
-      .marginDip(YogaEdge.TOP, 12f)
-      .marginDip(YogaEdge.BOTTOM, 12f)
+      .marginDip(YogaEdge.TOP, 16f)
+      .marginDip(YogaEdge.BOTTOM, 16f)
 }
 
 

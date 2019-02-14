@@ -37,6 +37,7 @@ import com.maubis.scarlet.base.settings.sheet.STORE_KEY_TEXT_SIZE
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
 import com.maubis.scarlet.base.settings.sheet.sEditorTextSize
+import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.*
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
@@ -96,7 +97,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
         note = notesDb.getByID(noteId)
       }
       if (note === null) {
-        note = NoteBuilder().emptyNote(NoteSettingsOptionsBottomSheet.genDefaultColor())
+        note = NoteBuilder().emptyNote(sNoteDefaultColor)
       }
       GlobalScope.launch(Dispatchers.Main) {
         setEditMode()
@@ -263,7 +264,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       }
       ColorUtil.isLightColored(currentNote.color) -> {
         colorConfig.backgroundColor = currentNote.color
-        colorConfig.toolbarIconColor = theme.get(context, Theme.LIGHT, ThemeColorType.TOOLBAR_ICON)
+        colorConfig.toolbarIconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
         colorConfig.statusBarColor = darkerColor(currentNote.color)
         colorConfig.toolbarBackgroundColor = colorConfig.statusBarColor
       }

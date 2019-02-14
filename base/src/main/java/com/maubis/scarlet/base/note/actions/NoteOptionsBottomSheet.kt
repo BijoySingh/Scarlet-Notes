@@ -27,7 +27,8 @@ import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
 import com.maubis.scarlet.base.note.tag.sheet.TagChooseOptionsBottomSheet
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
-import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
+import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
@@ -232,19 +233,16 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.tap_for_action_color,
         icon = R.drawable.ic_action_color,
         listener = View.OnClickListener {
-          NoteColorPickerBottomSheet.openSheet(
-              activity,
-              object : NoteColorPickerBottomSheet.ColorPickerController {
-                override fun onColorSelected(note: Note, color: Int) {
-                  note.color = color
-                  activity.updateNote(note)
-                }
-
-                override fun getNote(): Note {
-                  return note
-                }
+          val config = ColorPickerDefaultController(
+              title = R.string.choose_note_color,
+              colors = listOf(activity.resources.getIntArray(R.array.bright_colors), activity.resources.getIntArray(R.array.bright_colors_accent)),
+              selectedColor = note.color,
+              onColorSelected = { color ->
+                note.color = color
+                activity.updateNote(note)
               }
           )
+          com.maubis.scarlet.base.support.sheets.openSheet(activity, ColorPickerBottomSheet().apply { this.config = config })
           dismiss()
         }
     ))
