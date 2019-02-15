@@ -261,7 +261,18 @@ fun Note.copy(context: Context) {
  ******************************* Database Functions ********************************
  **************************************************************************************/
 
+fun Note.applySanityChecks() {
+  folder = folder ?: ""
+  description = description ?: ""
+  timestamp = timestamp ?: 0L
+  color = color ?: 0
+  state = state ?: ""
+  tags = tags ?: ""
+  uuid = uuid ?: ""
+}
+
 fun Note.save(context: Context) {
+  applySanityChecks()
   if (disableBackup) {
     saveWithoutSync(context)
     return

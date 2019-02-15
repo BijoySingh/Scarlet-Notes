@@ -1,92 +1,63 @@
 package com.maubis.scarlet.base.main.sheets
 
 import android.app.Dialog
-import android.widget.TextView
+import com.facebook.litho.Column
+import com.facebook.litho.Component
+import com.facebook.litho.ComponentContext
+import com.facebook.litho.widget.Text
+import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet.Companion.openCreateSheet
-import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
+import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
+import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
+import com.maubis.scarlet.base.support.specs.BottomSheetBar
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 
 
-class NoPincodeBottomSheet : ThemedBottomSheetFragment() {
+const val STORE_KEY_NO_PIN_ASK = "KEY_NO_PIN_ASK"
+var sNoPinSetupNoticeShown: Boolean
+  get() = CoreConfig.instance.store().get(STORE_KEY_NO_PIN_ASK, false)
+  set(value) = CoreConfig.instance.store().put(STORE_KEY_NO_PIN_ASK, value)
 
-  var listener: EnterPincodeBottomSheet.PincodeSuccessOnlyListener? = null
-  override fun getBackgroundView(): Int {
-    return R.id.container_layout
-  }
+class NoPincodeBottomSheet : LithoBottomSheet() {
+  var onSuccess: () -> Unit = {}
 
-  override fun setupView(dialog: Dialog?) {
-    super.setupView(dialog)
-    if (dialog == null) {
-      return
-    }
-
+  override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
     val activity = context as ThemedActivity
-
-    val sheetTitle = dialog.findViewById<TextView>(R.id.no_pincode_title)
-    val sheetDescription = dialog.findViewById<TextView>(R.id.no_pincode_description)
-    val setUp = dialog.findViewById<TextView>(R.id.no_pincode_set_up)
-    val notNow = dialog.findViewById<TextView>(R.id.no_pincode_not_now)
-    val neverAsk = dialog.findViewById<TextView>(R.id.no_pincode_dont_ask)
-
-    sheetTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-    sheetDescription.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
-
-    notNow.setOnClickListener {
-      listener?.onSuccess()
-      dismiss()
-    }
-
-    setUp.setOnClickListener {
-      openCreateSheet(
-          activity,
-          listener ?: getEmptySuccessListener())
-      dismiss()
-    }
-
-    neverAsk.setOnClickListener {
-      CoreConfig.instance.store().put(KEY_NO_PIN_ASK, true)
-      listener?.onSuccess()
-      dismiss()
-    }
-    makeBackgroundTransparent(dialog, R.id.root_layout)
-  }
-
-  override fun getLayout(): Int = R.layout.bottom_sheet_no_pincode
-
-  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.no_pin_card)
-
-  companion object {
-    const val KEY_NO_PIN_ASK = "KEY_NO_PIN_ASK"
-
-    fun openSheet(activity: ThemedActivity,
-                  listener: EnterPincodeBottomSheet.PincodeSuccessOnlyListener) {
-      val sheet = NoPincodeBottomSheet()
-
-      sheet.listener = listener
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
-
-    fun getEmptySuccessListener(): EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
-      return object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
-        override fun onSuccess() {
-          // Ignore this
-        }
-      }
-    }
-
-    fun ignoreNoPinSheet(): Boolean {
-      return CoreConfig.instance.store().get(KEY_NO_PIN_ASK, false)
-    }
-
-    fun maybeOpenSheet(activity: ThemedActivity) {
-      if (hasPinCodeEnabled() || ignoreNoPinSheet()) {
-        return
-      }
-      openSheet(activity, getEmptySuccessListener())
-    }
+    val component = Column.create(componentContext)
+        .widthPercent(100f)
+        .paddingDip(YogaEdge.VERTICAL, 8f)
+        .paddingDip(YogaEdge.HORIZONTAL, 20f)
+        .child(getLithoBottomSheetTitle(componentContext)
+            .textRes(R.string.no_pincode_sheet_title)
+            .marginDip(YogaEdge.HORIZONTAL, 0f))
+        .child(Text.create(componentContext)
+            .textSizeRes(R.dimen.font_size_large)
+            .textRes(R.string.no_pincode_sheet_details)
+            .marginDip(YogaEdge.BOTTOM, 16f)
+            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+        .child(BottomSheetBar.create(componentContext)
+            .primaryActionRes(R.string.no_pincode_sheet_set_up)
+            .onPrimaryClick {
+              EnterPincodeBottomSheet.openCreateSheet(activity, object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
+                override fun onSuccess() {
+                  // Ignore this
+                }
+              })
+              dismiss()
+            }
+            .secondaryActionRes(R.string.no_pincode_sheet_dont_ask)
+            .onSecondaryClick {
+              onSuccess()
+              dismiss()
+            }
+            .tertiaryActionRes(R.string.no_pincode_sheet_not_now)
+            .onTertiaryClick {
+              onSuccess()
+              dismiss()
+            }
+            .paddingDip(YogaEdge.VERTICAL, 8f))
+    return component.build()
   }
 }

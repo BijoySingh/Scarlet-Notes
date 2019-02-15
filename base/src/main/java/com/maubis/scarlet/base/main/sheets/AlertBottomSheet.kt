@@ -29,6 +29,21 @@ data class AlertSheetConfig(
     val onPositiveClick: () -> Unit = {},
     val onNegativeClick: () -> Unit = {})
 
+fun openDeleteNotePermanentlySheet(activity: ThemedActivity, note: Note, onDelete: () -> Unit) {
+  openSheet(activity, AlertBottomSheet().apply {
+    this.config = AlertSheetConfig(
+        title = R.string.delete_sheet_are_you_sure,
+        description = R.string.delete_sheet_delete_note_permanently,
+        positiveText = R.string.delete_sheet_delete_trash_yes,
+        negativeText = R.string.delete_sheet_delete_trash_no,
+        onPositiveClick = {
+          note.delete(activity)
+          onDelete()
+        },
+        onNegativeClick = {})
+  })
+}
+
 class AlertBottomSheet : LithoBottomSheet() {
   var config: AlertSheetConfig = AlertSheetConfig()
 
@@ -58,21 +73,6 @@ class AlertBottomSheet : LithoBottomSheet() {
             }.paddingDip(YogaEdge.VERTICAL, 8f))
     return component.build()
   }
-}
-
-fun openDeleteNotePermanentlySheet(activity: ThemedActivity, note: Note, onDelete: () -> Unit) {
-  openSheet(activity, AlertBottomSheet().apply {
-    this.config = AlertSheetConfig(
-        title = R.string.delete_sheet_are_you_sure,
-        description = R.string.delete_sheet_delete_note_permanently,
-        positiveText = R.string.delete_sheet_delete_trash_yes,
-        negativeText = R.string.delete_sheet_delete_trash_no,
-        onPositiveClick = {
-          note.delete(activity)
-          onDelete()
-        },
-        onNegativeClick = {})
-  })
 }
 
 fun openDeleteAllXSheet(activity: MainActivity, subtitle: Int, onSuccess: () -> Unit) {

@@ -17,7 +17,6 @@ import com.github.bijoysingh.starter.util.LocaleManager
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.main.sheets.NoPincodeBottomSheet.Companion.ignoreNoPinSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -178,7 +177,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
 
         override fun onRemoveButtonClick() {
           CoreConfig.instance.store().put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
-          CoreConfig.instance.store().put(NoPincodeBottomSheet.KEY_NO_PIN_ASK, false)
+          sNoPinSetupNoticeShown = false
           listener.onSuccess()
 
           if (activity is MainActivity)
@@ -210,11 +209,13 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
         activity: ThemedActivity,
         listener: PincodeSuccessOnlyListener) {
       if (!hasPinCodeEnabled()) {
-        if (ignoreNoPinSheet()) {
+        if (sNoPinSetupNoticeShown) {
           listener.onSuccess()
           return
         }
-        NoPincodeBottomSheet.openSheet(activity, listener)
+        com.maubis.scarlet.base.support.sheets.openSheet(activity, NoPincodeBottomSheet().apply {
+          this.onSuccess = { listener.onSuccess() }
+        })
         return
       }
 

@@ -20,11 +20,13 @@ object BottomSheetBarSpec {
       context: ComponentContext,
       @Prop(resType = ResType.STRING) primaryAction: String,
       @Prop(optional = true) isActionNegative: Boolean?,
-      @Prop(resType = ResType.STRING, optional = true) secondaryAction: String?): Component {
+      @Prop(resType = ResType.STRING, optional = true) secondaryAction: String?,
+      @Prop(resType = ResType.STRING, optional = true) tertiaryAction: String?): Component {
     val actionNegative = isActionNegative ?: false
 
     val row = Row.create(context)
         .alignItems(YogaAlign.CENTER)
+
 
     if (secondaryAction !== null && secondaryAction.isNotBlank()) {
       row.child(Text.create(context)
@@ -36,12 +38,23 @@ object BottomSheetBarSpec {
           .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
           .clickHandler(BottomSheetBar.onSecondaryClickEvent(context)))
     }
-
     row.child(EmptySpec.create(context).flexGrow(1f))
-        .child(getLithoBottomSheetButton(context)
-            .text(primaryAction)
-            .backgroundRes(if (actionNegative) R.drawable.disabled_rounded_bg else R.drawable.accent_rounded_bg)
-            .clickHandler(BottomSheetBar.onPrimaryClickEvent(context)))
+
+    if (tertiaryAction !== null && tertiaryAction.isNotBlank()) {
+      row.child(Text.create(context)
+          .text(tertiaryAction)
+          .typeface(CoreConfig.FONT_MONSERRAT)
+          .textSizeRes(R.dimen.font_size_large)
+          .paddingDip(YogaEdge.VERTICAL, 6f)
+          .paddingDip(YogaEdge.HORIZONTAL, 16f)
+          .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
+          .clickHandler(BottomSheetBar.onTertiaryClickEvent(context)))
+    }
+
+    row.child(getLithoBottomSheetButton(context)
+        .text(primaryAction)
+        .backgroundRes(if (actionNegative) R.drawable.disabled_rounded_bg else R.drawable.accent_rounded_bg)
+        .clickHandler(BottomSheetBar.onPrimaryClickEvent(context)))
     return row.build()
   }
 
@@ -53,6 +66,11 @@ object BottomSheetBarSpec {
   @OnEvent(ClickEvent::class)
   fun onSecondaryClickEvent(context: ComponentContext, @Prop(optional = true) onSecondaryClick: () -> Unit) {
     onSecondaryClick()
+  }
+
+  @OnEvent(ClickEvent::class)
+  fun onTertiaryClickEvent(context: ComponentContext, @Prop(optional = true) onTertiaryClick: () -> Unit) {
+    onTertiaryClick()
   }
 }
 
