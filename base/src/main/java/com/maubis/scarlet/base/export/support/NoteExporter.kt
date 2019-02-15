@@ -13,17 +13,14 @@ import com.maubis.scarlet.base.export.data.ExportableFileFormat
 import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
-import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
-import com.maubis.scarlet.base.export.sheet.ExportNotesBottomSheet
+import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FILENAME
+import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FOLDER
 import com.maubis.scarlet.base.note.getFullText
 import java.io.File
 import java.util.*
 
 const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
-const val KEY_BACKUP_LOCKED = "KEY_BACKUP_LOCKED"
-const val KEY_BACKUP_MARKDOWN = "KEY_BACKUP_MARKDOWN"
 const val KEY_BACKUP_LOCATION = "KEY_BACKUP_LOCATION"
-const val KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
 const val KEY_AUTO_BACKUP_LAST_TIMESTAMP = "KEY_AUTO_BACKUP_LAST_TIMESTAMP"
 
 const val EXPORT_NOTE_SEPARATOR = ">S>C>A>R>L>E>T>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>N>O>T>E>S>"
@@ -32,17 +29,31 @@ const val EXPORT_VERSION = 6
 const val AUTO_BACKUP_FILENAME = "auto_backup"
 const val AUTO_BACKUP_INTERVAL_MS = 1000 * 60 * 60 * 6 // 6 hours update
 
+const val STORE_KEY_BACKUP_MARKDOWN = "KEY_BACKUP_MARKDOWN"
+var sBackupMarkdown: Boolean
+  get() = CoreConfig.instance.store().get(STORE_KEY_BACKUP_MARKDOWN, false)
+  set(value) = CoreConfig.instance.store().put(STORE_KEY_BACKUP_MARKDOWN, value)
+
+const val STORE_KEY_BACKUP_LOCKED = "KEY_BACKUP_LOCKED"
+var sBackupLockedNotes: Boolean
+  get() = CoreConfig.instance.store().get(STORE_KEY_BACKUP_LOCKED, true)
+  set(value) = CoreConfig.instance.store().put(STORE_KEY_BACKUP_LOCKED, value)
+
+const val STORE_KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
+var sAutoBackupMode: Boolean
+  get() = CoreConfig.instance.store().get(STORE_KEY_AUTO_BACKUP_MODE, false)
+  set(value) = CoreConfig.instance.store().put(STORE_KEY_AUTO_BACKUP_MODE, value)
+
 class NoteExporter() {
 
   fun getExportContent(): String {
-    if (CoreConfig.instance.store().get(KEY_BACKUP_MARKDOWN, false)) {
+    if (sBackupMarkdown) {
       return getMarkdownExportContent()
     }
 
-    val exportLocked = BackupSettingsOptionsBottomSheet.exportLockedNotes
     val notes = notesDb
         .getAll()
-        .filter { exportLocked || !it.locked }
+        .filter { sBackupLockedNotes || !it.locked }
         .map { ExportableNote(it) }
     val tags = tagsDb.getAll().map { ExportableTag(it) }
     val folders = foldersDb.getAll().map { ExportableFolder(it) }
@@ -63,8 +74,7 @@ class NoteExporter() {
 
   fun tryAutoExport() {
     AsyncTask.execute {
-      val autoBackup = CoreConfig.instance.store().get(KEY_AUTO_BACKUP_MODE, false)
-      if (!autoBackup) {
+      if (!sAutoBackupMode) {
         return@execute
       }
       val lastBackup = CoreConfig.instance.store().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
@@ -83,7 +93,7 @@ class NoteExporter() {
   }
 
   fun getOrCreateManualExportFile(): File? {
-    return getOrCreateFileForExport(ExportNotesBottomSheet.FILENAME + " " + DateFormatter.getDate("dd_MMM_yyyy HH_mm", Calendar.getInstance()))
+    return getOrCreateFileForExport(NOTES_EXPORT_FILENAME + " " + DateFormatter.getDate("dd_MMM_yyyy HH_mm", Calendar.getInstance()))
   }
 
   fun getOrCreateFileForExport(filename: String): File? {
@@ -107,7 +117,7 @@ class NoteExporter() {
   }
 
   fun createFolder(): File? {
-    val folder = File(Environment.getExternalStorageDirectory(), ExportNotesBottomSheet.MATERIAL_NOTES_FOLDER)
+    val folder = File(Environment.getExternalStorageDirectory(), NOTES_EXPORT_FOLDER)
     if (!folder.exists() && !folder.mkdirs()) {
       return null
     }

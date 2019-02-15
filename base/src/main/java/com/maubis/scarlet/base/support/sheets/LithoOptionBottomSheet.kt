@@ -128,7 +128,6 @@ abstract class LithoOptionBottomSheet : LithoBottomSheet() {
             .option(it)
             .onClick {
               it.listener()
-              reset(componentContext.androidContext, dialog)
             })
       }
     }

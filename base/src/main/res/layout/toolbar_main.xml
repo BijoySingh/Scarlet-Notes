@@ -47,4 +47,11 @@
     android:padding="@dimen/spacing_xsmall"
     android:src="@drawable/icon_settings" />
 
+  <ImageView
+    android:id="@+id/toolbarIconDebug"
+    android:layout_width="@dimen/main_toolbar_icon_size"
+    android:layout_height="@dimen/main_toolbar_icon_size"
+    android:padding="@dimen/spacing_xsmall"
+    android:src="@drawable/icon_code_block" />
+
 </LinearLayout>

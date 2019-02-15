@@ -19,7 +19,10 @@ object BottomSheetBarSpec {
   fun onCreate(
       context: ComponentContext,
       @Prop(resType = ResType.STRING) primaryAction: String,
+      @Prop(optional = true) isActionNegative: Boolean?,
       @Prop(resType = ResType.STRING, optional = true) secondaryAction: String?): Component {
+    val actionNegative = isActionNegative ?: false
+
     val row = Row.create(context)
         .alignItems(YogaAlign.CENTER)
 
@@ -37,6 +40,7 @@ object BottomSheetBarSpec {
     row.child(EmptySpec.create(context).flexGrow(1f))
         .child(getLithoBottomSheetButton(context)
             .text(primaryAction)
+            .backgroundRes(if (actionNegative) R.drawable.disabled_rounded_bg else R.drawable.accent_rounded_bg)
             .clickHandler(BottomSheetBar.onPrimaryClickEvent(context)))
     return row.build()
   }

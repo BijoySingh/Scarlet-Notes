@@ -1,105 +1,97 @@
 package com.maubis.scarlet.base.export.sheet
 
 import android.app.Dialog
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.CardView
-import android.view.View
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.graphics.Typeface
+import com.facebook.litho.Column
+import com.facebook.litho.Component
+import com.facebook.litho.ComponentContext
+import com.facebook.litho.widget.Text
+import com.facebook.yoga.YogaEdge
+import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.export.support.ExternalFolderSync
-import com.maubis.scarlet.base.export.support.ExternalFolderSync.externalFolderSync
-import com.maubis.scarlet.base.export.support.KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED
-import com.maubis.scarlet.base.export.support.KEY_EXTERNAL_FOLDER_SYNC_PATH
-import com.maubis.scarlet.base.support.option.OptionsItem
+import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
+import com.maubis.scarlet.base.export.support.sExternalFolderSync
+import com.maubis.scarlet.base.export.support.sFolderSyncBackupLocked
+import com.maubis.scarlet.base.export.support.sFolderSyncPath
+import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.OptionItemLayout
+import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
+import com.maubis.scarlet.base.support.specs.BottomSheetBar
+import com.maubis.scarlet.base.support.specs.separatorSpec
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
+import com.maubis.scarlet.base.support.ui.ThemedActivity
 
-class ExternalFolderSyncBottomSheet : ThemedBottomSheetFragment() {
-  override fun getBackgroundView(): Int {
-    return R.id.container_layout
-  }
 
-  override fun setupView(dialog: Dialog?) {
-    super.setupView(dialog)
-    if (dialog == null) {
-      return
-    }
+class ExternalFolderSyncBottomSheet : LithoBottomSheet() {
 
-    val syncTitle = dialog.findViewById<TextView>(R.id.folder_sync_title)
-    val syncDescription = dialog.findViewById<TextView>(R.id.folder_sync_description)
+  override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
+    val activity = componentContext.androidContext as ThemedActivity
 
-    val syncFolderTitle = dialog.findViewById<TextView>(R.id.folder_sync_path_title)
-    val syncFolderPath = dialog.findViewById<EditText>(R.id.folder_sync_path)
+    val component = Column.create(componentContext)
+        .widthPercent(100f)
+        .paddingDip(YogaEdge.VERTICAL, 8f)
+        .child(getLithoBottomSheetTitle(componentContext)
+            .textRes(R.string.import_export_layout_folder_sync_title)
+            .paddingDip(YogaEdge.HORIZONTAL, 20f)
+            .marginDip(YogaEdge.HORIZONTAL, 0f))
+        .child(Text.create(componentContext)
+            .textSizeRes(R.dimen.font_size_large)
+            .textRes(R.string.import_export_layout_folder_sync_description)
+            .paddingDip(YogaEdge.HORIZONTAL, 20f)
+            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+        .child(separatorSpec(componentContext).alpha(0.5f))
+        .child(Text.create(componentContext)
+            .textSizeRes(R.dimen.font_size_xlarge)
+            .typeface(FONT_MONSERRAT)
+            .textRes(R.string.import_export_layout_folder_sync_folder)
+            .paddingDip(YogaEdge.HORIZONTAL, 20f)
+            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
+        .child(Text.create(componentContext)
+            .textSizeRes(R.dimen.font_size_large)
+            .text(sFolderSyncPath)
+            .typeface(Typeface.MONOSPACE)
+            .paddingDip(YogaEdge.HORIZONTAL, 20f)
+            .paddingDip(YogaEdge.VERTICAL, 8f)
+            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+        .child(separatorSpec(componentContext).alpha(0.5f))
 
-    val enableDisableCard = dialog.findViewById<CardView>(R.id.enable_disable_card)
-    val enableDisableSync = dialog.findViewById<TextView>(R.id.folder_sync_enabled)
-    enableDisableSync.setOnClickListener {
-      ExternalFolderSync.enable(themedContext(), !externalFolderSync)
-      reset(dialog)
-    }
-
-    when (externalFolderSync) {
-      true -> {
-        enableDisableSync.setText(R.string.import_export_layout_folder_sync_disable)
-        enableDisableCard.setCardBackgroundColor(ContextCompat.getColor(themedContext(), R.color.material_grey_700))
+    getOptions(componentContext).forEach {
+      if (it.visible) {
+        component.child(OptionItemLayout.create(componentContext)
+            .option(it)
+            .onClick {
+              it.listener()
+              reset(componentContext.androidContext, dialog)
+            })
       }
-      false -> {
-        enableDisableSync.setText(R.string.import_export_layout_folder_sync_enable)
-        enableDisableCard.setCardBackgroundColor(ContextCompat.getColor(themedContext(), R.color.material_red_800))
-      }
     }
 
-    syncTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-    syncDescription.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
-    syncFolderTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-    syncFolderPath.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
-    syncFolderPath.setText(folderSyncPath)
-    syncFolderPath.isEnabled = false
-
-    setOptions()
-    makeBackgroundTransparent(dialog, R.id.root_layout)
+    component.child(BottomSheetBar.create(componentContext)
+        .primaryActionRes(if (sExternalFolderSync) R.string.import_export_layout_folder_sync_disable else R.string.import_export_layout_folder_sync_enable)
+        .isActionNegative(sExternalFolderSync)
+        .onPrimaryClick {
+          sExternalFolderSync = !sExternalFolderSync
+          reset(componentContext.androidContext, dialog)
+        }
+        .paddingDip(YogaEdge.HORIZONTAL, 20f)
+        .paddingDip(YogaEdge.VERTICAL, 8f))
+    return component.build()
   }
 
-  fun reset(dialog: Dialog) {
-    setupView(dialog)
-  }
-
-  private fun setOptions() {
-    val layout = dialog.findViewById<LinearLayout>(R.id.options_container)
-    layout.removeAllViews()
-
-    val options = ArrayList<OptionsItem>()
-    options.add(OptionsItem(
+  fun getOptions(componentContext: ComponentContext): List<LithoOptionsItem> {
+    val activity = componentContext.androidContext as MainActivity
+    val options = ArrayList<LithoOptionsItem>()
+    options.add(LithoOptionsItem(
         title = R.string.import_export_locked,
         subtitle = R.string.import_export_locked_details,
         icon = R.drawable.ic_action_lock,
-        listener = View.OnClickListener {
-          folderSyncBackupLocked = !folderSyncBackupLocked
-          reset(dialog)
-        },
-        enabled = folderSyncBackupLocked
+        listener = { sFolderSyncBackupLocked = !sFolderSyncBackupLocked },
+        isSelectable = true,
+        selected = sFolderSyncBackupLocked
     ))
-    for (option in options) {
-      val contentView = getViewForOption(
-          themedContext(), option, getOptionsTitleColor(option.selected), getOptionsSubtitleColor(option.selected))
-      layout.addView(contentView)
-    }
+    return options
   }
 
-  override fun getLayout(): Int = R.layout.bottom_sheet_folder_sync
-
-  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(R.id.title_card, R.id.export_card, R.id.options_card_layout)
-
-  companion object {
-    var folderSyncPath: String
-      get() = CoreConfig.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_PATH, "Scarlet/Sync/")
-      set(value) = CoreConfig.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_PATH, value)
-
-    var folderSyncBackupLocked: Boolean
-      get() = CoreConfig.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, true)
-      set(value) = CoreConfig.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, value)
-  }
 }

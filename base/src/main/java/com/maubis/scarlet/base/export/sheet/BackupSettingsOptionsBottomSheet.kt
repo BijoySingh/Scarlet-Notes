@@ -7,7 +7,6 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.activity.ImportNoteActivity
-import com.maubis.scarlet.base.export.support.KEY_BACKUP_LOCKED
 import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
@@ -79,7 +78,7 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           val hasAllPermissions = manager.hasAllPermissions()
           when (hasAllPermissions) {
             true -> {
-              ThemedBottomSheetFragment.openSheet(activity, ExternalFolderSyncBottomSheet())
+              openSheet(activity, ExternalFolderSyncBottomSheet())
             }
             false -> openSheet(activity, PermissionBottomSheet())
           }
@@ -90,7 +89,7 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
 
   private fun openExportSheet(activity: MainActivity) {
     if (!SecurityOptionsBottomSheet.hasPinCodeEnabled()) {
-      ExportNotesBottomSheet.openSheet(activity)
+      openSheet(activity, ExportNotesBottomSheet())
       return
     }
     EnterPincodeBottomSheet.openUnlockSheet(
@@ -101,7 +100,7 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           }
 
           override fun onSuccess() {
-            ExportNotesBottomSheet.openSheet(activity)
+            openSheet(activity, ExportNotesBottomSheet())
           }
         })
   }
@@ -111,9 +110,5 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
       val sheet = BackupSettingsOptionsBottomSheet()
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
-
-    var exportLockedNotes: Boolean
-      get() = CoreConfig.instance.store().get(KEY_BACKUP_LOCKED, true)
-      set(value) = CoreConfig.instance.store().put(KEY_BACKUP_LOCKED, value)
   }
 }

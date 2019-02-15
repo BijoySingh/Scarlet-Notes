@@ -11,8 +11,8 @@ import com.maubis.scarlet.base.database.remote.IRemoteDatabaseUtils
 import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
-import com.maubis.scarlet.base.export.sheet.ExternalFolderSyncBottomSheet.Companion.folderSyncBackupLocked
-import com.maubis.scarlet.base.export.sheet.ExternalFolderSyncBottomSheet.Companion.folderSyncPath
+import com.maubis.scarlet.base.export.support.sFolderSyncBackupLocked
+import com.maubis.scarlet.base.export.support.sFolderSyncPath
 import java.io.File
 import java.lang.ref.WeakReference
 
@@ -30,7 +30,7 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
 
   fun init(onNotesInit: () -> Unit = {}, onTagsInit: () -> Unit = {}, onFoldersInit: () -> Unit = {}) {
     isValidController = true
-    rootFolder = File(Environment.getExternalStorageDirectory(), folderSyncPath)
+    rootFolder = File(Environment.getExternalStorageDirectory(), sFolderSyncPath)
     val notesFolder = File(rootFolder, "notes")
     notesRemoteFolder = RemoteFolder(
         notesFolder,
@@ -83,7 +83,7 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
     if (!isValidController || note !is ExportableNote) {
       return
     }
-    if (note.locked() && folderSyncBackupLocked) {
+    if (note.locked() && sFolderSyncBackupLocked) {
       notesRemoteFolder?.lock(note.uuid())
     }
     notesRemoteFolder?.insert(note.uuid(), note)

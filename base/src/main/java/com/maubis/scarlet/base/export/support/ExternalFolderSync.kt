@@ -11,6 +11,7 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
+import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FOLDER
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -20,6 +21,18 @@ const val KEY_EXTERNAL_FOLDER_SYNC_ENABLED = "external_folder_sync_enabled"
 const val KEY_EXTERNAL_FOLDER_SYNC_LAST_SCAN = "external_folder_sync_last_sync"
 const val KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED = "external_folder_sync_backup_locked"
 const val KEY_EXTERNAL_FOLDER_SYNC_PATH = "external_folder_sync_path"
+
+var sExternalFolderSync: Boolean
+  get() = CoreConfig.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, false)
+  set(value) = CoreConfig.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, value)
+
+var sFolderSyncPath: String
+  get() = CoreConfig.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_PATH, "$NOTES_EXPORT_FOLDER/Sync/")
+  set(value) = CoreConfig.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_PATH, value)
+
+var sFolderSyncBackupLocked: Boolean
+  get() = CoreConfig.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, true)
+  set(value) = CoreConfig.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, value)
 
 object ExternalFolderSync {
 
@@ -36,10 +49,10 @@ object ExternalFolderSync {
         }
         return
       }
-      externalFolderSync = true
+      sExternalFolderSync = true
       loadFirstTime()
     } else {
-      externalFolderSync = false
+      sExternalFolderSync = false
       CoreConfig.instance.externalFolderSync().reset()
     }
   }
@@ -64,18 +77,14 @@ object ExternalFolderSync {
   }
 
   fun setup(context: Context) {
-    if (!externalFolderSync) {
+    if (!sExternalFolderSync) {
       return
     }
 
     if (!hasPermission(context)) {
-      externalFolderSync = false
+      sExternalFolderSync = false
       return
     }
     CoreConfig.instance.externalFolderSync().init()
   }
-
-  var externalFolderSync: Boolean
-    get() = CoreConfig.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, false)
-    set(value) = CoreConfig.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, value)
 }
