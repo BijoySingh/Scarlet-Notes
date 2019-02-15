@@ -83,6 +83,14 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         }
     ))
     options.add(LithoOptionsItem(
+        title = R.string.home_option_widget_options_title,
+        subtitle = R.string.home_option_widget_options_description,
+        icon = R.drawable.icon_widget,
+        listener = {
+          openSheet(activity, WidgetOptionsBottomSheet())
+        }
+    ))
+    options.add(LithoOptionsItem(
         title = R.string.home_option_about,
         subtitle = R.string.home_option_about_subtitle,
         icon = R.drawable.ic_info,
@@ -115,14 +123,6 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         icon = R.drawable.ic_delete_permanently,
         listener = {
           openSheet(activity, DeleteAndMoreOptionsBottomSheet())
-        }
-    ))
-    options.add(LithoOptionsItem(
-        title = R.string.home_option_widget_options_title,
-        subtitle = R.string.home_option_widget_options_description,
-        icon = R.drawable.icon_widget,
-        listener = {
-          openSheet(activity, WidgetOptionsBottomSheet())
         }
     ))
     options.add(LithoOptionsItem(
