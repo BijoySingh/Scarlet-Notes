@@ -25,6 +25,7 @@ import com.maubis.scarlet.base.main.HomeNavigationState
 import com.maubis.scarlet.base.main.recycler.*
 import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
 import com.maubis.scarlet.base.main.sheets.WhatsNewBottomSheet
+import com.maubis.scarlet.base.main.sheets.openDeleteTrashSheet
 import com.maubis.scarlet.base.main.specs.MainActivityBottomBar
 import com.maubis.scarlet.base.main.specs.MainActivityFolderBottomBar
 import com.maubis.scarlet.base.main.utils.MainSnackbar
@@ -94,7 +95,7 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
 
   fun setListeners() {
     snackbar = MainSnackbar(bottomSnackbar, { setupData() })
-    deleteTrashIcon.setOnClickListener { AlertBottomSheet.openDeleteTrashSheet(this@MainActivity) }
+    deleteTrashIcon.setOnClickListener { openDeleteTrashSheet(this@MainActivity) }
     searchBackButton.setOnClickListener {
       onBackPressed()
     }

@@ -8,7 +8,7 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
-import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
+import com.maubis.scarlet.base.main.sheets.openDeleteAllXSheet
 import com.maubis.scarlet.base.note.delete
 import com.maubis.scarlet.base.note.folder.delete
 import com.maubis.scarlet.base.note.tag.delete
@@ -27,7 +27,7 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_delete_all_notes_details,
         icon = R.drawable.ic_note_white_48dp,
         listener = {
-          AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_all_notes_details) {
+          openDeleteAllXSheet(activity, R.string.home_option_delete_all_notes_details) {
             GlobalScope.launch(Dispatchers.Main) {
               withContext(Dispatchers.IO) { notesDb.getAll().forEach { it.delete(activity) } }
               activity.resetAndSetupData()
@@ -41,7 +41,7 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_delete_all_tags_details,
         icon = R.drawable.ic_action_tags,
         listener = {
-          AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_all_tags_details) {
+          openDeleteAllXSheet(activity, R.string.home_option_delete_all_tags_details) {
             GlobalScope.launch(Dispatchers.Main) {
               withContext(Dispatchers.IO) { tagsDb.getAll().forEach { it.delete() } }
               activity.resetAndSetupData()
@@ -55,7 +55,7 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_delete_all_folders_details,
         icon = R.drawable.ic_folder,
         listener = {
-          AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_all_folders_details) {
+          openDeleteAllXSheet(activity, R.string.home_option_delete_all_folders_details) {
             GlobalScope.launch(Dispatchers.Main) {
               withContext(Dispatchers.IO) { foldersDb.getAll().forEach { it.delete() } }
               activity.resetAndSetupData()
@@ -69,7 +69,7 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_delete_everything_details,
         icon = R.drawable.ic_delete_permanently,
         listener = {
-          AlertBottomSheet.openDeleteAllXSheet(activity, R.string.home_option_delete_everything_details) {
+          openDeleteAllXSheet(activity, R.string.home_option_delete_everything_details) {
             GlobalScope.launch(Dispatchers.Main) {
               val notes = GlobalScope.async(Dispatchers.IO) { notesDb.getAll().forEach { it.delete(activity) } }
               val tags = GlobalScope.async(Dispatchers.IO) { tagsDb.getAll().forEach { it.delete() } }

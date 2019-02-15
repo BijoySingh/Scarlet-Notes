@@ -14,9 +14,9 @@ import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.main.sheets.AlertBottomSheet.Companion.openDeleteNotePermanentlySheet
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
+import com.maubis.scarlet.base.main.sheets.openDeleteNotePermanentlySheet
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
 import com.maubis.scarlet.base.note.folder.sheet.FolderChooseOptionsBottomSheet
@@ -27,8 +27,8 @@ import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
 import com.maubis.scarlet.base.note.tag.sheet.TagChooseOptionsBottomSheet
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
-import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
 import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity

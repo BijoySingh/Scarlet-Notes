@@ -12,6 +12,7 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
+import com.maubis.scarlet.base.settings.sheet.DeleteAndMoreOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.sheets.openSheet
@@ -45,7 +46,7 @@ class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerView
     toolbarIconDebug.visibility = visibility(BuildConfig.DEBUG)
     toolbarIconDebug.setColorFilter(toolbarIconColor)
     toolbarIconDebug.setOnClickListener {
-      openSheet((context as MainActivity), BackupSettingsOptionsBottomSheet())
+      openSheet((context as MainActivity), DeleteAndMoreOptionsBottomSheet())
     }
   }
 }
