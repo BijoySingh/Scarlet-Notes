@@ -13,6 +13,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.RemoteViews
 import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
@@ -20,6 +21,7 @@ import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.widget.Widget
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
+import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.note.getLockedText
 import com.maubis.scarlet.base.note.getTitle
 import com.maubis.scarlet.base.note.selection.activity.INoteSelectorActivity
@@ -90,19 +92,18 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
       val pendingIntent = PendingIntent.getActivity(context, 5000 + note.uid, intent, 0)
       val views = RemoteViews(context.getPackageName(), R.layout.widget_layout)
 
-      val noteTitle = note.getTitle()
-      views.setViewVisibility(R.id.title, if (TextUtils.isNullOrEmpty(noteTitle)) GONE else VISIBLE)
-      views.setTextViewText(R.id.title, noteTitle)
-      views.setTextViewText(R.id.description, note.getLockedText(false))
+      val text = when {
+        note.locked -> "******************\n***********\n****************"
+        else -> Markdown.render(note.getFullText(), true)
+      }
+      views.setTextViewText(R.id.description, text)
       views.setInt(R.id.container_layout, "setBackgroundColor", note.color)
 
       val isLightShaded = ColorUtil.isLightColored(note.color)
       val colorResource = if (isLightShaded) R.color.dark_tertiary_text else R.color.light_secondary_text
       val textColor = ContextCompat.getColor(context, colorResource)
-      views.setInt(R.id.title, "setTextColor", textColor)
       views.setInt(R.id.description, "setTextColor", textColor)
 
-      views.setOnClickPendingIntent(R.id.title, pendingIntent)
       views.setOnClickPendingIntent(R.id.description, pendingIntent)
       views.setOnClickPendingIntent(R.id.container_layout, pendingIntent)
 

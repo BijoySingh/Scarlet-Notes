@@ -6,20 +6,6 @@
   android:orientation="vertical">
 
   <TextView
-    android:id="@+id/title"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:hint="@string/title"
-    android:paddingLeft="@dimen/spacing_small"
-    android:paddingRight="@dimen/spacing_small"
-    android:paddingTop="@dimen/spacing_small"
-    android:textColor="@color/light_primary_text"
-    android:textIsSelectable="true"
-    android:textSize="@dimen/font_size_normal"
-    android:textStyle="bold" />
-
-  <TextView
     android:id="@+id/description"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

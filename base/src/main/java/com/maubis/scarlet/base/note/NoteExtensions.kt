@@ -127,7 +127,7 @@ fun Note.getMarkdownText(isMarkdownEnabled: Boolean): CharSequence {
 
 fun Note.getFullText(): String {
   val formats = getFormats()
-  return formats.map { it -> it.markdownText }.joinToString(separator = "\n\n").trim()
+  return formats.map { it -> it.markdownText }.joinToString(separator = "\n").trim()
 }
 
 fun Note.getUnreliablyStrippedText(context: Context): String {
