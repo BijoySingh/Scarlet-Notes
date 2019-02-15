@@ -14,7 +14,6 @@ import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 import com.maubis.scarlet.base.support.utils.Flavor
 
 class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
@@ -103,12 +102,5 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
             openSheet(activity, ExportNotesBottomSheet())
           }
         })
-  }
-
-  companion object {
-    fun openSheet(activity: MainActivity) {
-      val sheet = BackupSettingsOptionsBottomSheet()
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
   }
 }

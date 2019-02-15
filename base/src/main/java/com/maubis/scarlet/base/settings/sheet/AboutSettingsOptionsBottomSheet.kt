@@ -14,6 +14,8 @@ import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.utils.Flavor
 
+const val PRIVACY_POLICY_LINK = "https://www.iubenda.com/privacy-policy/8213521"
+
 class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun title(): Int = R.string.home_option_about
 
@@ -70,16 +72,5 @@ class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         }
     ))
     return options
-  }
-
-  companion object {
-
-    const val PRIVACY_POLICY_LINK = "https://www.iubenda.com/privacy-policy/8213521"
-
-    fun openSheet(activity: MainActivity) {
-      val sheet = AboutSettingsOptionsBottomSheet()
-
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
   }
 }

@@ -406,4 +406,22 @@
 
   <string name="markdown_help_sheet_title" translatable="false">Markdown Examples</string>
   <!-- End: Editor Option Sheet -->
+
+  <!-- Start: Widget Options Sheet -->
+  <string name="home_option_widget_options_title" translatable="false">Widget Settings</string>
+  <string name="home_option_widget_options_description" translatable="false">Change the settings for the home screen widgets</string>
+
+  <string name="widget_option_enable_formatting" translatable="false">Enable Formatting</string>
+  <string name="widget_option_enable_formatting_details" translatable="false">Notes are rendered with formatting in home screen widgets</string>
+
+  <string name="widget_option_show_locked_notes" translatable="false">Show Locked Notes</string>
+  <string name="widget_option_show_locked_notes_details" translatable="false">Allow locked notes to be shown in home screen widgets</string>
+
+  <string name="widget_option_show_archived_notes" translatable="false">Show Archived Notes</string>
+  <string name="widget_option_show_archived_notes_details" translatable="false">Allow archived notes to be shown in home screen widgets</string>
+
+  <string name="widget_option_show_trash_notes" translatable="false">Show Notes in Trash</string>
+  <string name="widget_option_show_trash_notes_details" translatable="false">Allow notes in trash to be shown in home screen widgets</string>
+  <!-- End: Widget Options Sheet -->
+
 </resources>

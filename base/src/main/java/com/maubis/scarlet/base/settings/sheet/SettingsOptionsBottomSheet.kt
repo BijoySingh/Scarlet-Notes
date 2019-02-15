@@ -16,6 +16,7 @@ import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.utils.FlavourUtils
 import com.maubis.scarlet.base.support.utils.FlavourUtils.PRO_APP_PACKAGE_NAME
 import com.maubis.scarlet.base.support.utils.FlavourUtils.hasProAppInstalled
+import com.maubis.scarlet.base.widget.sheet.WidgetOptionsBottomSheet
 
 class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun title(): Int = R.string.home_option_sheet_title
@@ -78,7 +79,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_backup_options_subtitle,
         icon = R.drawable.ic_export,
         listener = {
-          BackupSettingsOptionsBottomSheet.openSheet(activity)
+          openSheet(activity, BackupSettingsOptionsBottomSheet())
         }
     ))
     options.add(LithoOptionsItem(
@@ -86,7 +87,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_about_subtitle,
         icon = R.drawable.ic_info,
         listener = {
-          AboutSettingsOptionsBottomSheet.openSheet(activity)
+          openSheet(activity, AboutSettingsOptionsBottomSheet())
         }
     ))
     options.add(LithoOptionsItem(
@@ -113,7 +114,15 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_delete_notes_and_more_details,
         icon = R.drawable.ic_delete_permanently,
         listener = {
-          DeleteAndMoreOptionsBottomSheet.openSheet(activity)
+          openSheet(activity, DeleteAndMoreOptionsBottomSheet())
+        }
+    ))
+    options.add(LithoOptionsItem(
+        title = R.string.home_option_widget_options_title,
+        subtitle = R.string.home_option_widget_options_description,
+        icon = R.drawable.icon_widget,
+        listener = {
+          openSheet(activity, WidgetOptionsBottomSheet())
         }
     ))
     options.add(LithoOptionsItem(

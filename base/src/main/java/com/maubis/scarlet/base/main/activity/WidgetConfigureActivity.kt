@@ -9,11 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.RemoteViews
-import com.github.bijoysingh.starter.util.TextUtils
-import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
@@ -21,13 +17,13 @@ import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.widget.Widget
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
-import com.maubis.scarlet.base.note.getFullText
-import com.maubis.scarlet.base.note.getLockedText
-import com.maubis.scarlet.base.note.getTitle
 import com.maubis.scarlet.base.note.selection.activity.INoteSelectorActivity
 import com.maubis.scarlet.base.note.selection.activity.SelectableNotesActivityBase
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.widget.NoteWidgetProvider
+import com.maubis.scarlet.base.widget.sheet.getWidgetNoteText
+import com.maubis.scarlet.base.widget.sheet.getWidgetNotes
+import com.maubis.scarlet.base.widget.sheet.sWidgetShowLockedNotes
 
 class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActivity {
 
@@ -54,9 +50,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
   }
 
   override fun getNotes(): List<Note> {
-    return notesDb.getByNoteState(
-        arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name, NoteState.ARCHIVED.name))
-        .filter { note -> !note.locked }
+    return getWidgetNotes()
   }
 
   override fun onNoteClicked(note: Note) {
@@ -82,7 +76,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
     fun createNoteWidget(context: Context, widget: Widget) {
       val note = notesDb.getByUUID(widget.noteUUID)
       val appWidgetManager = AppWidgetManager.getInstance(context)
-      if (note === null || note.locked) {
+      if (note === null || (note.locked && !sWidgetShowLockedNotes)) {
         val views = RemoteViews(context.getPackageName(), R.layout.widget_invalid_note)
         appWidgetManager.updateAppWidget(widget.widgetId, views)
         return
@@ -92,11 +86,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
       val pendingIntent = PendingIntent.getActivity(context, 5000 + note.uid, intent, 0)
       val views = RemoteViews(context.getPackageName(), R.layout.widget_layout)
 
-      val text = when {
-        note.locked -> "******************\n***********\n****************"
-        else -> Markdown.render(note.getFullText(), true)
-      }
-      views.setTextViewText(R.id.description, text)
+      views.setTextViewText(R.id.description, getWidgetNoteText(note))
       views.setInt(R.id.container_layout, "setBackgroundColor", note.color)
 
       val isLightShaded = ColorUtil.isLightColored(note.color)

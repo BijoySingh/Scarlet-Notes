@@ -12,6 +12,7 @@ import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.main.activity.INTENT_KEY_DIRECT_NOTES_TRANSFER
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.utils.FlavourUtils
 import kotlinx.coroutines.Dispatchers
@@ -44,8 +45,8 @@ fun getAppUpdateInformationItem(context: Context): InformationRecyclerItem {
   return InformationRecyclerItem(
       R.drawable.ic_info,
       R.string.information_card_title,
-      R.string.information_new_app_update,
-      { IntentUtils.openAppPlayStore(context) })
+      R.string.information_new_app_update
+  ) { IntentUtils.openAppPlayStore(context) }
 }
 
 fun shouldShowReviewInformationItem(): Boolean {
@@ -57,11 +58,11 @@ fun getReviewInformationItem(context: Context): InformationRecyclerItem {
   return InformationRecyclerItem(
       R.drawable.ic_rating,
       R.string.home_option_rate_and_review,
-      R.string.home_option_rate_and_review_subtitle,
-      {
-        CoreConfig.instance.store().put(KEY_INFO_RATE_AND_REVIEW, true)
-        IntentUtils.openAppPlayStore(context)
-      })
+      R.string.home_option_rate_and_review_subtitle
+  ) {
+    CoreConfig.instance.store().put(KEY_INFO_RATE_AND_REVIEW, true)
+    IntentUtils.openAppPlayStore(context)
+  }
 }
 
 fun shouldShowThemeInformationItem(): Boolean {
@@ -73,11 +74,11 @@ fun getThemeInformationItem(activity: MainActivity): InformationRecyclerItem {
   return InformationRecyclerItem(
       R.drawable.ic_action_grid,
       R.string.home_option_ui_experience,
-      R.string.home_option_ui_experience_subtitle,
-      {
-        CoreConfig.instance.store().put(KEY_THEME_OPTIONS, true)
-        UISettingsOptionsBottomSheet.openSheet(activity)
-      })
+      R.string.home_option_ui_experience_subtitle
+  ) {
+    CoreConfig.instance.store().put(KEY_THEME_OPTIONS, true)
+    UISettingsOptionsBottomSheet.openSheet(activity)
+  }
 }
 
 fun shouldShowBackupInformationItem(): Boolean {
@@ -89,11 +90,11 @@ fun getBackupInformationItem(activity: MainActivity): InformationRecyclerItem {
   return InformationRecyclerItem(
       R.drawable.ic_export,
       R.string.home_option_backup_options,
-      R.string.home_option_backup_options_subtitle,
-      {
-        CoreConfig.instance.store().put(KEY_BACKUP_OPTIONS, true)
-        BackupSettingsOptionsBottomSheet.openSheet(activity)
-      })
+      R.string.home_option_backup_options_subtitle
+  ) {
+    CoreConfig.instance.store().put(KEY_BACKUP_OPTIONS, true)
+    openSheet(activity, BackupSettingsOptionsBottomSheet())
+  }
 }
 
 
@@ -107,11 +108,11 @@ fun getInstallProInformationItem(context: Context): InformationRecyclerItem {
   return InformationRecyclerItem(
       R.drawable.ic_favorite_white_48dp,
       R.string.install_pro_app,
-      R.string.information_install_pro,
-      {
-        notifyProUpsellShown()
-        IntentUtils.openAppPlayStore(context, "com.bijoysingh.quicknote.pro")
-      })
+      R.string.information_install_pro
+  ) {
+    notifyProUpsellShown()
+    IntentUtils.openAppPlayStore(context, "com.bijoysingh.quicknote.pro")
+  }
 }
 
 fun shouldShowSignInformationItem(): Boolean {
@@ -131,11 +132,11 @@ fun getSignInInformationItem(context: Context): InformationRecyclerItem {
   return InformationRecyclerItem(
       R.drawable.ic_sign_in_options,
       R.string.home_option_login_with_app,
-      R.string.home_option_login_with_app_subtitle,
-      {
-        CoreConfig.instance.authenticator().openLoginActivity(context)?.run()
-        notifyProUpsellShown()
-      })
+      R.string.home_option_login_with_app_subtitle
+  ) {
+    CoreConfig.instance.authenticator().openLoginActivity(context)?.run()
+    notifyProUpsellShown()
+  }
 }
 
 fun notifyProUpsellShown() {

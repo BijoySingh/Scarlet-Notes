@@ -99,11 +99,4 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
     ))
     return options
   }
-
-  companion object {
-    fun openSheet(activity: MainActivity) {
-      val sheet = DeleteAndMoreOptionsBottomSheet()
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
-  }
 }
