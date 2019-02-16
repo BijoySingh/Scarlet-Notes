@@ -17,10 +17,7 @@ import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
-import com.maubis.scarlet.base.core.note.NoteBuilder
-import com.maubis.scarlet.base.core.note.NoteState
-import com.maubis.scarlet.base.core.note.getFormats
-import com.maubis.scarlet.base.core.note.isUnsaved
+import com.maubis.scarlet.base.core.note.*
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.actions.NoteOptionsBottomSheet
@@ -32,12 +29,9 @@ import com.maubis.scarlet.base.note.formats.IFormatRecyclerViewActivity
 import com.maubis.scarlet.base.note.formats.getFormatControllerItems
 import com.maubis.scarlet.base.note.formats.recycler.KEY_EDITABLE
 import com.maubis.scarlet.base.note.formats.recycler.KEY_NOTE_COLOR
-import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet
-import com.maubis.scarlet.base.settings.sheet.STORE_KEY_TEXT_SIZE
+import com.maubis.scarlet.base.settings.sheet.*
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
-import com.maubis.scarlet.base.settings.sheet.sEditorTextSize
-import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.*
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
@@ -100,7 +94,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
         note = NoteBuilder().emptyNote(sNoteDefaultColor)
       }
       GlobalScope.launch(Dispatchers.Main) {
-        setEditMode()
+        resetBundle()
+        setNote()
         if (isDistractionFree) {
           startDistractionFreeMode()
         }
@@ -136,16 +131,6 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     }
   }
 
-  protected open fun setEditMode() {
-    setEditMode(editModeValue)
-    formatsView.setBackgroundColor(CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND))
-  }
-
-  protected fun setEditMode(mode: Boolean) {
-    resetBundle()
-    setNote()
-  }
-
   private fun startDistractionFreeMode() {
     var uiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -159,13 +144,14 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   private fun resetBundle() {
+    val currentNote = note
     val bundle = Bundle()
     bundle.putBoolean(KEY_EDITABLE, editModeValue)
     bundle.putBoolean(KEY_MARKDOWN_ENABLED, CoreConfig.instance.store().get(KEY_MARKDOWN_ENABLED, true))
     bundle.putBoolean(KEY_NIGHT_THEME, CoreConfig.instance.themeController().isNightTheme())
     bundle.putInt(STORE_KEY_TEXT_SIZE, sEditorTextSize)
-    bundle.putInt(KEY_NOTE_COLOR, note!!.color)
-    bundle.putString(INTENT_KEY_NOTE_ID, note!!.uuid)
+    bundle.putInt(KEY_NOTE_COLOR, currentNote?.color ?: sNoteDefaultColor)
+    bundle.putString(INTENT_KEY_NOTE_ID, currentNote?.uuid ?: generateUUID())
     adapter.setExtra(bundle)
   }
 

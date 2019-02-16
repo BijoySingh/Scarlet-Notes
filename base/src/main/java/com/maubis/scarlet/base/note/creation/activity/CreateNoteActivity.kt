@@ -50,11 +50,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     setTouchListener()
     startHandler()
   }
-
-  override fun setEditMode() {
-    setEditMode(editModeValue)
-  }
-
+  
   override fun onCreationFinished() {
     super.onCreationFinished()
     history.add(NoteBuilder().copy(note!!))
