@@ -7,15 +7,17 @@ import android.view.View.GONE
 import android.widget.TextView
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.uibasics.views.UIActionView
-import com.google.gson.Gson
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.core.note.Reminder
+import com.maubis.scarlet.base.core.note.ReminderInterval
+import com.maubis.scarlet.base.core.note.getReminderV2
+import com.maubis.scarlet.base.core.note.setReminderV2
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.core.note.*
 import com.maubis.scarlet.base.main.sheets.GenericOptionsBottomSheet
 import com.maubis.scarlet.base.note.reminders.ReminderJob
 import com.maubis.scarlet.base.note.saveWithoutSync
-import com.maubis.scarlet.base.support.option.SimpleOptionsItem
+import com.maubis.scarlet.base.support.sheets.LithoChooseOptionsItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
@@ -126,28 +128,31 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
   }
 
   fun openFrequencyDialog() {
-    val isSelected = fun(interval: ReminderInterval): Boolean = interval == reminder!!.interval
-    GenericOptionsBottomSheet.openSheet(
+    val isSelected = fun(interval: ReminderInterval): Boolean = interval == reminder.interval
+    com.maubis.scarlet.base.support.sheets.openSheet(
         themedActivity() as ThemedActivity,
-        getString(R.string.reminder_sheet_repeat),
-        arrayListOf(
-            SimpleOptionsItem(
-                title = getReminderIntervalLabel(ReminderInterval.ONCE),
-                listener = {
-                  reminder.interval = ReminderInterval.ONCE
-                  setContent(reminder)
-                },
-                selected = isSelected(ReminderInterval.ONCE)
-            ),
-            SimpleOptionsItem(
-                title = getReminderIntervalLabel(ReminderInterval.DAILY),
-                listener = {
-                  reminder.interval = ReminderInterval.DAILY
-                  setContent(reminder)
-                },
-                selected = isSelected(ReminderInterval.DAILY)
-            )
-        ))
+        GenericOptionsBottomSheet().apply {
+          title = R.string.reminder_sheet_repeat
+          options = arrayListOf(
+              LithoChooseOptionsItem(
+                  title = getReminderIntervalLabel(ReminderInterval.ONCE),
+                  listener = {
+                    reminder.interval = ReminderInterval.ONCE
+                    setContent(reminder)
+                  },
+                  selected = isSelected(ReminderInterval.ONCE)
+              ),
+              LithoChooseOptionsItem(
+                  title = getReminderIntervalLabel(ReminderInterval.DAILY),
+                  listener = {
+                    reminder.interval = ReminderInterval.DAILY
+                    setContent(reminder)
+                  },
+                  selected = isSelected(ReminderInterval.DAILY)
+              )
+          )
+        }
+    )
   }
 
   fun openDatePickerDialog() {

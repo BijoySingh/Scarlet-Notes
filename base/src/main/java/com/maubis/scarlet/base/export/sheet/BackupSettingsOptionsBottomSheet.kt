@@ -1,63 +1,60 @@
 package com.maubis.scarlet.base.export.sheet
 
 import android.app.Dialog
-import android.view.View
+import com.facebook.litho.ComponentContext
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.activity.ImportNoteActivity
-import com.maubis.scarlet.base.export.support.*
+import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.openSheet
+import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.Flavor
 
-import com.maubis.scarlet.base.support.option.OptionsItem
-import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
-import com.maubis.scarlet.base.support.ui.ThemedActivity
+class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
+  override fun title(): Int = R.string.home_option_backup_options
 
-class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
-
-  override fun setupViewWithDialog(dialog: Dialog) {
-    setOptions(dialog, getOptions())
-  }
-
-  private fun getOptions(): List<OptionsItem> {
+  override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = context as MainActivity
-    val options = ArrayList<OptionsItem>()
-    options.add(OptionsItem(
+    val options = ArrayList<LithoOptionsItem>()
+    options.add(LithoOptionsItem(
         title = R.string.home_option_install_from_store,
         subtitle = R.string.home_option_install_from_store_subtitle,
         icon = R.drawable.ic_action_play,
-        listener = View.OnClickListener {
+        listener = {
           IntentUtils.openAppPlayStore(context)
           dismiss()
         },
         visible = CoreConfig.instance.appFlavor() == Flavor.NONE
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_export,
         subtitle = R.string.home_option_export_subtitle,
         icon = R.drawable.ic_export,
-        listener = View.OnClickListener {
+        listener = {
           val manager = PermissionUtils().getStoragePermissionManager(activity)
           val hasAllPermissions = manager.hasAllPermissions()
           when (hasAllPermissions) {
             true -> {
-              openExportSheet()
+              openExportSheet(activity)
               dismiss()
             }
             false -> {
-              PermissionBottomSheet.openSheet(activity)
+              openSheet(activity, PermissionBottomSheet())
             }
           }
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_import,
         subtitle = R.string.home_option_import_subtitle,
         icon = R.drawable.ic_import,
-        listener = View.OnClickListener {
+        listener = {
           val manager = PermissionUtils().getStoragePermissionManager(activity)
           val hasAllPermissions = manager.hasAllPermissions()
           when (hasAllPermissions) {
@@ -66,105 +63,44 @@ class BackupSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
               dismiss()
             }
             false -> {
-              PermissionBottomSheet.openSheet(activity)
+              openSheet(activity, PermissionBottomSheet())
             }
           }
         }
     ))
-    val exportAsMarkdown = CoreConfig.instance.store().get(KEY_BACKUP_MARKDOWN, false)
-    options.add(OptionsItem(
-        title = R.string.home_option_export_markdown,
-        subtitle = R.string.home_option_export_markdown_subtitle,
-        icon = R.drawable.ic_markdown_logo,
-        listener = View.OnClickListener {
-          CoreConfig.instance.store().put(KEY_BACKUP_MARKDOWN, !exportAsMarkdown)
-          reset(dialog)
-        },
-        enabled = exportAsMarkdown
-    ))
-    options.add(OptionsItem(
-        title = R.string.import_export_locked,
-        subtitle = R.string.import_export_locked_details,
-        icon = R.drawable.ic_action_lock,
-        listener = View.OnClickListener {
-          exportLockedNotes = !exportLockedNotes
-          reset(dialog)
-        },
-        enabled = exportLockedNotes
-    ))
-    val autoBackupEnabled = CoreConfig.instance.store().get(KEY_AUTO_BACKUP_MODE, false)
-    options.add(OptionsItem(
-        title = R.string.home_option_auto_export,
-        subtitle = R.string.home_option_auto_export_subtitle,
-        icon = R.drawable.ic_time,
-        listener = View.OnClickListener {
+    options.add(LithoOptionsItem(
+        title = R.string.import_export_layout_folder_sync,
+        subtitle = R.string.import_export_layout_folder_sync_details,
+        icon = R.drawable.icon_folder_sync,
+        listener = {
           val manager = PermissionUtils().getStoragePermissionManager(activity)
           val hasAllPermissions = manager.hasAllPermissions()
-          when {
-            autoBackupEnabled -> {
-              CoreConfig.instance.store().put(KEY_AUTO_BACKUP_MODE, false)
-              reset(dialog)
+          when (hasAllPermissions) {
+            true -> {
+              openSheet(activity, ExternalFolderSyncBottomSheet())
             }
-            hasAllPermissions -> {
-              CoreConfig.instance.store().put(KEY_AUTO_BACKUP_MODE, true)
-              reset(dialog)
-            }
-            else -> PermissionBottomSheet.openSheet(activity)
+            false -> openSheet(activity, PermissionBottomSheet())
           }
-        },
-        enabled = autoBackupEnabled
+        }
     ))
-    val backupLocation = CoreConfig.instance.store().get(KEY_BACKUP_LOCATION, "")
-    options.add(OptionsItem(
-        title = R.string.home_option_auto_export,
-        subtitle = R.string.home_option_auto_export_subtitle,
-        icon = R.drawable.ic_time,
-        listener = View.OnClickListener {
-          val manager = PermissionUtils().getStoragePermissionManager(activity)
-          val hasAllPermissions = manager.hasAllPermissions()
-          when {
-            hasAllPermissions -> {
-              // Open folder choosing dialog, once built
-            }
-            else -> PermissionBottomSheet.openSheet(activity)
-          }
-        },
-        visible = false
-    ))
-
     return options
   }
 
-  private fun openExportSheet() {
-    val activity = themedActivity() as MainActivity
+  private fun openExportSheet(activity: MainActivity) {
     if (!SecurityOptionsBottomSheet.hasPinCodeEnabled()) {
-      ExportNotesBottomSheet.openSheet(activity)
+      openSheet(activity, ExportNotesBottomSheet())
       return
     }
     EnterPincodeBottomSheet.openUnlockSheet(
         activity as ThemedActivity,
         object : EnterPincodeBottomSheet.PincodeSuccessListener {
           override fun onFailure() {
-            openExportSheet()
+            openExportSheet(activity)
           }
 
           override fun onSuccess() {
-            ExportNotesBottomSheet.openSheet(activity)
+            openSheet(activity, ExportNotesBottomSheet())
           }
         })
-  }
-
-  override fun getLayout(): Int = R.layout.bottom_sheet_options
-
-  companion object {
-    fun openSheet(activity: MainActivity) {
-      val sheet = BackupSettingsOptionsBottomSheet()
-
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
-
-    var exportLockedNotes: Boolean
-      get() = CoreConfig.instance.store().get(KEY_BACKUP_LOCKED, true)
-      set(value) = CoreConfig.instance.store().put(KEY_BACKUP_LOCKED, value)
   }
 }

@@ -7,7 +7,7 @@
   <color name="colorPrimary">#07575B</color>
   <color name="colorPrimaryDark">#003B46</color>
   <color name="colorAccent">#F52549</color>
-  <color name="colorAccentDark">@color/material_pink_accent_100</color>
+  <color name="colorAccentDark">@color/material_pink_accent_200</color>
 
   <color name="welcome_page_bg">#C62828</color>
 
@@ -90,4 +90,16 @@
     <item>@color/material_grey_900</item>
     <item>@color/black</item>
   </array>
+
+
+  <color name="app_theme_rose">#efcac2</color>
+  <color name="app_theme_rose_dark">#cda397</color>
+  <color name="app_theme_oceanic">#035a6d</color>
+  <color name="app_theme_slate">#1b345c</color>
+  <color name="app_theme_violet">#45316f</color>
+  <color name="app_theme_marsala">#7d403f</color>
+  <color name="app_theme_honeysuckle">#d94f70</color>
+
+
+
 </resources>

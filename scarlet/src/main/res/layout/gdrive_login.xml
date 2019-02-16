@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/containerLayout"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:padding="@dimen/spacing_large">
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:padding="@dimen/spacing_large">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <TextView
+        android:id="@+id/signInToGDrive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_xsmall"
+        android:text="@string/google_drive_page_login_title"
+        android:textColor="@color/dark_secondary_text"
+        android:textSize="24sp" />
+
+      <TextView
+        android:id="@+id/signInToGDriveDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_xsmall"
+        android:text="@string/google_drive_page_login_details"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_normal" />
+    </LinearLayout>
+  </ScrollView>
+
+  <LinearLayout
+    android:id="@+id/signInButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/login_button_active"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacing_normal">
+
+    <ImageView
+      android:id="@+id/sign_in_button_icon"
+      android:layout_width="@dimen/icon_size_normal"
+      android:layout_height="@dimen/icon_size_normal"
+      android:layout_gravity="center"
+      android:src="@drawable/ic_google_icon"
+      android:tint="@color/white" />
+
+    <TextView
+      android:id="@+id/signInButtonTitle"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/spacing_xlarge"
+      android:layout_weight="1"
+      android:gravity="center"
+      android:text="@string/login_with_google"
+      android:textColor="@color/light_primary_text"
+      android:textSize="@dimen/font_size_normal"
+      android:textStyle="bold" />
+  </LinearLayout>
+</LinearLayout>

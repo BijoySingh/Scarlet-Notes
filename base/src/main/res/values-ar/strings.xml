@@ -1,88 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="title">عنوان</string>
   <string name="description">يحتوى</string>
   <string name="save">حفظ</string>
-  <string name="share_using">جار المشاركة باستخدام &#8230;</string>
+  <string name="import_to_app">استيراد</string>
+  <string name="search_notes">بحث ملاحظات | |</string>
+  <string name="search_toolbar_text">البحث %s…</string>
+  <string name="share_using">جار المشاركة باستخدام …</string>
+
   <string name="main_no_notes">لا ملاحظات</string>
   <string name="main_no_notes_hint">يبدو أنك لم تضف أي ملاحظات. انقر لإضافة ملاحظة.</string>
-  <string name="main_add_a_note">إضافة ملاحظة &#8230;</string>
-  <string name="main_add_a_quick_note">إضافة ملاحظة سريعة &#8230;</string>
-  <string name="edit_note">تحرير مذكرة</string>
-  <string name="open_in_popup">فتح في نافذة منبثقة</string>
 
+  <string name="main_add_a_note">إضافة ملاحظة …</string>
+  <string name="main_add_a_quick_note">إضافة ملاحظة سريعة …</string>
+
+  <string name="shortcut_add_note">اضف ملاحظة</string>
+  <string name="shortcut_add_list">إضافة قائمة التحقق</string>
+
+  <string name="open_note_night_mode">الوضع الليلي</string>
+  <string name="open_note_day_mode">وضع اليوم</string>
+  <string name="edit_note">تحرير مذكرة</string>
+  <string name="open_in_notification">إنشاء إعلام</string>
+  <string name="open_in_popup">فتح في نافذة منبثقة</string>
   <string name="delete_note">حذف ملاحظة</string>
+  <string name="delete_note_permanently">الحذف بشكل نهائي</string>
   <string name="copy_note">نسخ ملاحظة</string>
   <string name="send_note">إرسال ملاحظة</string>
-  <string name="choose_action">اختر الإجراء&#8230;</string>
-  <string name="format_hint_text">إضافة محتوى&#8230;</string>
-  <string name="format_hint_heading">إضافة العنوان &#8230;</string>
-  <string name="format_hint_sub_heading">إضافة عنوان فرعي &#8230;</string>
-  <string name="format_hint_quote">إضافة نص مقتبس &#8230;</string>
-  <string name="format_hint_list">اضافة عنصر&#8230;</string>
-  <string name="format_hint_code">إضافة شفرة &#8230;</string>
-  <string name="home_option_sheet_title">خيارات والإعدادات</string>
-  <string name="home_option_export">تصدير الملاحظات</string>
-  <string name="home_option_export_subtitle">تصدير الملاحظات إلى تخزين الجهاز للمشاركة</string>
-  <string name="home_option_import">استيراد الملاحظات</string>
-  <string name="home_option_import_subtitle">استيراد الملاحظات من تخزين الجهاز</string>
-  <string name="home_option_about_page">معلومات عنا</string>
-  <string name="home_option_about_page_subtitle">معرفة المزيد عن التطبيق والمطورين</string>
-  <string name="home_option_rate_and_review">معدل ومراجعة</string>
-  <string name="home_option_rate_and_review_subtitle">أخبرنا أعرف كم كنت أحب التطبيق</string>
-  <string name="permission_layout_give_permission">إعطاء الأذونات</string>
-  <string name="permission_layout_give_permission_details">استيراد وتصدير تتطلب أذونات التخزين. يرجى إعطاء الإذن عند الطلب.</string>
-  <string name="permission_layout_give_permission_ok">السماح</string>
-  <string name="import_export_import_file_title">استيراد النسخ الاحتياطي من ملف</string>
-  <string name="import_export_import_file">استيراد ملف</string>
-  <string name="import_export_layout_exported">تصدير إلى ملف</string>
-  <string name="import_export_layout_export_failed">أخفق التصدير</string>
-  <string name="import_export_layout_exporting">تصدير إلى ملف | |</string>
-  <string name="import_export_layout_exporting_done">فعله</string>
-  <string name="import_export_layout_exporting_share">شارك</string>
-  <string name="about_page_title">معلومات عنا وأكثر</string>
-  <string name="about_page_rate">معدل على اللعب المتجر</string>
-  <string name="about_page_contribute">تساهم</string>
-  <string name="home_option_enable_list_view">تمكين تخطيط القائمة</string>
-  <string name="home_option_enable_list_view_subtitle">إظهار الملاحظات في عمود واحد</string>
-  <string name="home_option_enable_grid_view">تمكين تخطيط الشبكة</string>
-  <string name="home_option_enable_grid_view_subtitle">عرض الملاحظات في شبكة متداخلة</string>
-  <string name="markdown_sheet_markdown_support">دعم تخفيض السعر</string>
-  <string name="markdown_sheet_markdown_support_subtitle">السماح بتنسيق التضمين المنسق</string>
-  <string name="markdown_sheet_examples">أمثلة</string>
-  <string name="home_option_markdown_settings">إعدادات تخفيض السعر</string>
-  <string name="home_option_markdown_settings_subtitle">اطلع على كيفية استخدام تخفيض السعر في الملاحظات</string>
-  <string name="about_page_app_version">نسخة التطبيق</string>
-  <string name="about_page_about_app">حول التطبيق</string>
-  <string name="open_note_night_mode">الوضع الليلي</string>
-  <string name="delete_note_permanently">الحذف بشكل نهائي</string>
-  <string name="lock_note">قفل ملاحظة</string>
-  <string name="unlock_note">فتح ملاحظة</string>
-  <string name="home_option_security">الأمان</string>
-  <string name="home_option_security_subtitle">تأمين الملاحظات وخيارات الأمان</string>
-  <string name="security_option_title">خيارات الأمان</string>
-  <string name="security_option_set_pin_code">رمز عبور</string>
-  <string name="security_option_set_pin_code_subtitle">تعيين رقم التعريف الشخصي المكون من 4 أرقام لقفل الملاحظات</string>
-  <string name="security_option_fingerprint_enabled">فتح مع بصمات الأصابع</string>
-  <string name="security_option_fingerprint_enabled_subtitle">سيتم فتح الملاحظات مع بصمات الأصابع</string>
-  <string name="security_option_fingerprint_disabled">تم تعطيل بصمة الإصبع</string>
-  <string name="security_option_fingerprint_disabled_subtitle">لن تستخدم الملاحظات بصمة الإصبع</string>
-  <string name="security_sheet_enter_new_pin_title">أدخل رقم تعريف شخصي جديد</string>
-  <string name="security_sheet_enter_pin_to_unlock_title">أدخل رقم التعريف الشخصي لإلغاء التأمين</string>
-  <string name="security_sheet_enter_current_pin_title">أدخل رقم التعريف الشخصي الحالي</string>
-  <string name="security_sheet_enter_pin_hint">ادخل الرمز</string>
-  <string name="security_sheet_button_verify">التحقق</string>
-  <string name="security_sheet_button_unlock">فتح</string>
-  <string name="security_sheet_button_set">جلس</string>
-  <string name="security_sheet_button_remove">إزالة</string>
-
   <string name="unarchive_note">إلغاء الأرشفة</string>
   <string name="archive_note">أرشيف ملاحظة</string>
   <string name="not_favourite_note">علامة غير المفضلة</string>
   <string name="favourite_note">علامة المفضلة</string>
   <string name="restore_note">استعادة ملاحظة</string>
   <string name="trash_note">ارسال الى سلة المحذوفات</string>
+  <string name="choose_note_color">غير اللون</string>
+  <string name="lock_note">قفل ملاحظة</string>
+  <string name="change_tags">تغيير العلامات</string>
+  <string name="unlock_note">فتح ملاحظة</string>
+  <string name="reminder">تذكير</string>
+  <string name="select">تحديد</string>
+  <string name="duplicate">مكرر</string>
+  <string name="pin_note">دبوس ملاحظة</string>
+  <string name="unpin_note">إلغاء تثبيت ملاحظة</string>
+  <string name="view_distraction_free">الهاء الحرة</string>
+  <string name="choose_action">اختر الإجراء…</string>
+
   <string name="tap_for_action_open_note_night_mode">انقر لعرض الملاحظة في الوضع الليلي</string>
+  <string name="tap_for_action_open_note_day_mode">انقر لعرض الملاحظة في وضع اليوم</string>
   <string name="tap_for_action_edit">انقر لفتح ملاحظة للتحرير</string>
   <string name="tap_for_action_copy">انقر لنسخ محتوى الملاحظة إلى الحافظة</string>
   <string name="tap_for_action_share">انقر لمشاركة محتوى المذكرة مع تطبيقات أخرى</string>
@@ -93,7 +55,9 @@
   <string name="tap_for_action_favourite">انقر لوضع علامة على الملاحظة كمفضلة</string>
   <string name="tap_for_action_not_favourite">انقر لوضع علامة على الملاحظة ليس كمفضلة</string>
   <string name="tap_for_action_archive">انقر لأرشفة الملاحظة</string>
+  <string name="tap_for_action_color">انقر لتغيير لون خلفية الملاحظة</string>
   <string name="tap_for_action_not_archive">انقر على إلغاء أرشفة الملاحظة</string>
+
   <string name="nav_sheet_title">ملاحظاتك | |</string>
   <string name="nav_home">الصفحة الرئيسية</string>
   <string name="nav_home_details">كل من الملاحظات العادية والمفضلة لديك</string>
@@ -101,95 +65,21 @@
   <string name="nav_favourites_details">جميع الملاحظات المفضلة لديك</string>
   <string name="nav_archived">أرشفة</string>
   <string name="nav_archived_details">جميع الملاحظات المؤرشفة</string>
-  <string name="nav_trash">قمامة، يدمر، يهدم</string>
-  <string name="nav_trash_details">جميع الملاحظات في المهملات</string>
-  <string name="open_note_day_mode">وضع اليوم</string>
-  <string name="choose_note_color">غير اللون</string>
-  <string name="tap_for_action_open_note_day_mode">انقر لعرض الملاحظة في وضع اليوم</string>
-  <string name="tap_for_action_color">انقر لتغيير لون خلفية الملاحظة</string>
-  <string name="home_option_enable_night_mode">تمكين الوضع الليلي</string>
-  <string name="home_option_enable_night_mode_subtitle">تمكين المظهر المظلم كخيار افتراضي</string>
-  <string name="home_option_enable_day_mode">تمكين وضع اليوم</string>
-  <string name="home_option_enable_day_mode_subtitle">تمكين موضوع الضوء بشكل افتراضي</string>
-  <string name="search_notes">بحث ملاحظات | |</string>
-  <string name="open_in_notification">إنشاء إعلام</string>
-  <string name="notification_channel_label">ملاحظة الإخطارات</string>
   <string name="nav_locked">مقفل</string>
   <string name="nav_locked_details">كل من الملاحظات الخاصة بك مؤمن</string>
   <string name="nav_tags">الكلمات</string>
   <string name="nav_tags_details">كل علامات الملاحظة الخاصة بك</string>
-  <string name="tag_sheet_create_title">إضافة علامة جديدة | |</string>
-  <string name="tag_sheet_edit_title">تحرير العلامة | |</string>
-  <string name="tag_sheet_enter_tag_hint">أدخل علامة</string>
-  <string name="tag_sheet_new_tag_button">إنشاء علامة جديدة</string>
-  <string name="tag_sheet_choose_tag">اختر تاجا | |</string>
+  <string name="nav_trash">قمامة، يدمر، يهدم</string>
+  <string name="nav_trash_details">جميع الملاحظات في المهملات</string>
 
-  <!-- Added in Release v3.7.9 -->
-  <string name="import_to_app">استيراد</string>
-  <string name="markdown_sheet_home_markdown_support">تخفيض السعر في قائمة الملاحظات</string>
-  <string name="markdown_sheet_home_markdown_support_subtitle">تمكين تنسيق علامة التبويب في قائمة الملاحظات</string>
-  <string name="home_option_fill_survey">ملء المسح</string>
-  <string name="home_option_fill_survey_subtitle">مساعدتنا على تحسين التطبيق من خلال إخبارنا ما تريد</string>
+  <string name="format_hint_text">إضافة محتوى…</string>
+  <string name="format_hint_heading">إضافة العنوان …</string>
+  <string name="format_hint_sub_heading">إضافة عنوان فرعي …</string>
+  <string name="format_hint_quote">إضافة نص مقتبس …</string>
+  <string name="format_hint_list">اضافة عنصر…</string>
+  <string name="format_hint_code">إضافة شفرة …</string>
+  <string name="format_hint_image">انقر لإضافة صورة أو تغييرها</string>
 
-  <!-- Added in release v3.8.4 -->
-  <string name="change_tags">تغيير العلامات</string>
-  <string name="home_option_order_notes">ترتيب ملاحظات</string>
-  <string name="home_option_open_source_page">مشروع المصدر المفتوح</string>
-  <string name="home_option_open_source_page_subtitle">معرفة المزيد عن مشروع مفتوح المصدر</string>
-  <string name="osp_page_libraries">المكتبات</string>
-  <string name="osp_page_about_osp">مشروع المصدر المفتوح</string>
-  <string name="osp_page_title">حول مشروع المصدر المفتوح</string>
-  <string name="reminder_sheet_title">ملاحظة تذكير</string>
-  <string name="reminder_sheet_reminder_date">تاريخ التذكير</string>
-  <string name="reminder_sheet_reminder_time">تذكير الوقت</string>
-  <string name="reminder_sheet_repeat">تكرار تكرار</string>
-  <string name="sort_sheet_title">فرز الملاحظات بواسطة</string>
-  <string name="sort_sheet_newest_first">الأحدث أولا</string>
-  <string name="sort_sheet_oldest_first">الأقدم أولا</string>
-  <string name="sort_sheet_last_modified">معظم تعديلها مؤخرا</string>
-  <string name="reminder">تذكير</string>
-  <string name="pin_note">دبوس ملاحظة</string>
-  <string name="unpin_note">إلغاء تثبيت ملاحظة</string>
-
-  <!-- Added in release v3.9.0 -->
-  <string name="home_option_ui_experience">واجهة والخبرة</string>
-  <string name="home_option_ui_experience_subtitle">اختيار كيف يبدو التطبيق ويشعر.</string>
-  <string name="home_option_note_settings">ملاحظة التفضيلات</string>
-  <string name="home_option_note_settings_subtitle">اختر ملاحظة وإعدادات أخرى.</string>
-  <string name="home_option_about">حول</string>
-  <string name="home_option_about_subtitle">معرفة المزيد عنا والتطبيق.</string>
-  <string name="note_option_default_color">لون ملاحظة افتراضي</string>
-  <string name="note_option_default_color_subtitle">اختر اللون الافتراضي للملاحظات</string>
-  <string name="note_option_number_lines">حد حد السطر</string>
-  <string name="home_option_backup_options">النسخ الاحتياطي والاستيراد</string>
-  <string name="home_option_backup_options_subtitle">النسخ الاحتياطي، استيراد وتصدير مذكرة الخيارات</string>
-
-  <!-- Added in release v4.0.0 -->
-  <!-- Cloud Backup Hint -->
-  <string name="home_option_install_from_store">تثبيت من مخزن</string>
-  <string name="home_option_install_from_store_subtitle">تثبيت التطبيق من غوغل ستور للمزامنة السحابية</string>
-
-  <!-- No PinCode Sheet -->
-  <string name="no_pincode_sheet_title">لم يتم تعيين رقم تعريف شخصي</string>
-  <string name="no_pincode_sheet_details">لم تقم بإعداد رقم التعريف الشخصي. هل تريد إعداده الآن؟</string>
-  <string name="no_pincode_sheet_not_now">في وقت لاحق</string>
-  <string name="no_pincode_sheet_dont_ask">لم نطلب</string>
-  <string name="no_pincode_sheet_set_up">اقامة</string>
-
-  <!-- Added for 4.1.0 -->
-  <string name="duplicate">مكرر</string>
-  <string name="select">تحديد</string>
-  <string name="delete_sheet_are_you_sure">هل أنت واثق؟</string>
-  <string name="delete_sheet_delete_trash">هل تريد حذف الملاحظات في مجلد المهملات نهائيا؟</string>
-  <string name="delete_sheet_delete_note_permanently">هل تريد حذف هذه الملاحظة نهائيا؟</string>
-  <string name="delete_sheet_delete_trash_yes">حذف</string>
-  <string name="delete_sheet_delete_trash_no">إلغاء</string>
-  <string name="trash_will_delete_automatically">يتم حذف الملاحظات إلى الأبد بعد 7 أيام</string>
-
-
-  <!-- Added for 4.3.7 -->
-  <string name="shortcut_add_note">اضف ملاحظة</string>
-  <string name="shortcut_add_list">إضافة قائمة التحقق</string>
   <string name="format_sheet_option_title">كتلة التنسيق</string>
   <string name="format_label_heading">عنوان</string>
   <string name="format_label_sub_heading">عنوان فرعي</string>
@@ -197,107 +87,52 @@
   <string name="format_label_quote">اقتبس</string>
   <string name="format_label_code">الشفرة</string>
   <string name="format_label_list">قائمة تدقيق</string>
+  <string name="format_label_image">صورة</string>
+  <string name="format_label_separator">الفاصل</string>
+
   <string name="markdown_sheet_option_title">تنسيق تحديد السعر</string>
   <string name="markdown_label_bold">بالخط العريض</string>
   <string name="markdown_label_italics">المائل</string>
   <string name="markdown_label_underline">أكد</string>
   <string name="markdown_label_strikethrough">إضراب</string>
   <string name="markdown_label_list">قائمة</string>
-  <string name="select_a_note_title">حدد ملاحظة</string>
-  <string name="select_notes_title">حدد نوتس</string>
-  <string name="nav_settings">إعدادات</string>
-  <string name="widget_no_valid_note">لاحظ إما حذف أو تأمين</string>
-  <string name="note_option_font_size">ملاحظة حجم الخط</string>
-  <string name="note_option_font_size_example">اضبط حجم خط النص في صفحة الملاحظات. يمكنك أن ترى كيف سيبدو في هذه المعاينة.</string>
-  <string name="note_option_font_size_subtitle">%d حجم النص في عارض المذكرة</string>
 
-
-  <!-- Added for 4.3.8 -->
-  <string name="whats_new_title">ما هو الجديد</string>
-  <string name="whats_new_subtitle">تعرف ما هو الجديد في التحديثات الأخيرة من التطبيق</string>
-  <string name="whats_new_translate">ترجمه</string>
-  <string name="tutorial_create_a_new_note">انقر لإضافة ملاحظة جديدة</string>
-  <string name="tutorial_home_menu">انقر لرؤية خيارات المنزل</string>
-  <string name="tutorial_home_menu_subtitle">القائمة الرئيسية لديها الملاحظات المفضلة لديك والأرشيف، وكذلك إعدادات التطبيق. يمكنك العثور على العلامات هنا أيضا.</string>
-
-  <!-- Login, Welcome Strings -->
-  <string name="home_option_login_with_app">تسجيل الدخول إلى التطبيق</string>
-  <string name="home_option_login_with_app_subtitle">تسجيل الدخول للحصول على النسخ الاحتياطي سحابة والمزامنة</string>
-  <string name="home_option_logout_of_app">خروج</string>
-  <string name="home_option_logout_of_app_subtitle">تسجيل الخروج لإيقاف النسخ الاحتياطي سحابة</string>
-  <string name="login_with_google">الدخول مع جوجل</string>
-  <string name="logging_into_app">تسجيل الدخول |</string>
-  <string name="logged_into_app">لقد سجلت الدخول</string>
-  <string name="login_to_google_failed">فشل تسجيل الدخول إلى غوغل</string>
-  <string name="material_notes_privacy_policy">سياسة الخصوصية</string>
-  <string name="material_notes_privacy_policy_subtitle">سياسة خصوصية التطبيق للمحتوى</string>
-  <string name="install_pro_app">تثبيت برو التطبيق</string>
-  <string name="why_install_pro">لماذا تثبيت برو</string>
-  <string name="why_install_pro_details">دعم المطور لتكاليف الخادم الضخمة، لتشغيل مزامنة السحاب \n\n احصل على أحدث الميزات أولا \n\n ستتوفر بعض الميزات الإضافية فقط لمستخدمي برو</string>
-  <string name="why_cloud">سبب تمكين مزامنة السحاب</string>
-  <string name="why_cloud_details">التحميل والنسخ الاحتياطي من تغييرات الجهاز \n\n المزامنة بين أجهزة متعددة، والحصول على تحديثات سريعة \n\n حفظها بشكل آمن على خوادم غوغل فيريباس</string>
-  <string name="welcome_page_hello">مرحبا،</string>
-  <string name="welcome_page_transfer_message">ملاحظات المادة الآن القرمزي!</string>
-  <string name="welcome_page_get_started">البدء</string>
-
-  <!-- Added for 4.5.3 -->
-  <string name="format_action_copy">نسخ</string>
-  <string name="format_action_title">حظر الإجراءات النصية</string>
-  <string name="format_action_gallery">صالة عرض</string>
-  <string name="format_action_camera">الة تصوير</string>
-  <string name="voice_sheet_title">الكلام ملاحظة بصوت عال</string>
-  <string name="voice_action_title">تحدث بصوت مرتفع</string>
-  <string name="image_delete_all_devices">سيؤدي حذف هذا العنصر إلى حذف الصورة من جميع الأجهزة.</string>
-  <string name="image_not_on_current_device">الصورة ليست على هذا الجهاز</string>
-  <string name="image_cannot_be_loaded">لا يمكن تحميل الصورة</string>
-  <string name="image_not_uploaded">لم تتم مزامنة الصور</string>
-  <string name="image_not_uploaded_details">لا تتم مزامنة الصور عبر الأجهزة. لن تظهر الصور على الأجهزة الأخرى أثناء عرض الملاحظة!</string>
-  <string name="image_not_uploaded_i_understand">أفهم</string>
+  <string name="home_option_sheet_title">خيارات والإعدادات</string>
+  <string name="home_option_ui_experience">واجهة والخبرة</string>
+  <string name="home_option_ui_experience_subtitle">اختيار كيف يبدو التطبيق ويشعر.</string>
+  <string name="home_option_note_settings">ملاحظة التفضيلات</string>
+  <string name="home_option_note_settings_subtitle">اختر ملاحظة وإعدادات أخرى.</string>
+  <string name="home_option_about">حول</string>
+  <string name="home_option_about_subtitle">معرفة المزيد عنا والتطبيق.</string>
+  <string name="home_option_security">الأمان</string>
+  <string name="home_option_security_subtitle">تأمين الملاحظات وخيارات الأمان</string>
+  <string name="home_option_enable_night_mode">تمكين الوضع الليلي</string>
+  <string name="home_option_enable_night_mode_subtitle">تمكين المظهر المظلم كخيار افتراضي</string>
+  <string name="home_option_enable_day_mode">تمكين وضع اليوم</string>
+  <string name="home_option_enable_day_mode_subtitle">تمكين موضوع الضوء بشكل افتراضي</string>
+  <string name="home_option_markdown_settings">إعدادات تخفيض السعر</string>
+  <string name="home_option_markdown_settings_subtitle">اطلع على كيفية استخدام تخفيض السعر في الملاحظات</string>
+  <string name="home_option_enable_list_view">تمكين تخطيط القائمة</string>
+  <string name="home_option_enable_list_view_subtitle">إظهار الملاحظات في عمود واحد</string>
+  <string name="home_option_enable_grid_view">تمكين تخطيط الشبكة</string>
+  <string name="home_option_enable_grid_view_subtitle">عرض الملاحظات في شبكة متداخلة</string>
+  <string name="home_option_order_notes">ترتيب ملاحظات</string>
+  <string name="home_option_backup_options">النسخ الاحتياطي والاستيراد</string>
+  <string name="home_option_backup_options_subtitle">النسخ الاحتياطي، استيراد وتصدير مذكرة الخيارات</string>
+  <string name="home_option_export">تصدير الملاحظات</string>
+  <string name="home_option_export_subtitle">تصدير الملاحظات إلى تخزين الجهاز للمشاركة</string>
+  <string name="home_option_import">استيراد الملاحظات</string>
+  <string name="home_option_import_subtitle">استيراد الملاحظات من تخزين الجهاز</string>
   <string name="home_option_auto_export">تصدير تلقائيا</string>
   <string name="home_option_auto_export_subtitle">تصدير الملاحظات في كثير من الأحيان إلى ملف خارجي كنسخ احتياطي</string>
-  <string name="format_label_image">صورة</string>
-  <string name="format_hint_image">انقر لإضافة صورة أو تغييرها</string>
-
-  <!-- Added for 4.7.0 -->
-  <string name="reminder_frequency_once">مرة واحدة فقط</string>
-  <string name="reminder_frequency_daily">اليومي</string>
-  <string name="reminder_frequency_custom">العادة</string>
-  <string name="reminder_beta_label">بيتا</string>
-  <string name="notification_reminder_channel_label">تذكير وإنذارات</string>
-  <string name="about_page_description_os">%s مفتوح المصدر وأي شخص مفتوح للمساهمة في تحسينه. يتم بناؤه حاليًا وصيانته بواسطة %s.</string>
-  <string name="about_page_description">%s عبارة عن ملاحظة بسيطة تأخذ التطبيق. يسمح بإدخال نص سريع سريع بدون جعل التجربة صعبة الاستخدام. يجعل تعدد المهام نسيم.</string>
-  <string name="about_page_about_us_details">مرحبًا ، نحن زوج من المصممين والمبرمجين ، الذين أنشأوا %s.
-     نحن نسعى لبناء تطبيقات إعلانية مجانية ومصممة بعناية وخالية من الإعلانات أو بأقل قدر من الإعلانات والتي تخدم فائدة عظيمة للجميع!</string>
-  <string name="note_option_number_lines_subtitle">%d خطوط على الشاشة الرئيسية</string>
-  <string name="search_toolbar_text">البحث %s&#8230;</string>
-  <string name="view_distraction_free">الهاء الحرة</string>
-  <string name="format_label_separator">الفاصل</string>
-
-  <!-- Added for 6.6.1 -->
-  <string name="home_option_theme_color">موضوع التطبيق</string>
-  <string name="home_option_theme_color_subtitle">حدد لون الخلفية للموضوع</string>
-  <string name="theme_page_title">حدد موضوع التطبيق</string>
-  <string name="click_to_add_tags">انقر لإضافة أو تغيير العلامات</string>
-  <string name="show_more_actions">عرض المزيد من الإجراءات</string>
-  <string name="select_notes">حدد ملاحظات</string>
-  <string name="select_notes_details">حدد إجراءات وتنفيذها على ملاحظات متعددة في وقت واحد</string>
-  <string name="recent_to_trash_message">تم نقل الملاحظة إلى سلة المهملات</string>
-  <string name="recent_to_delete_message">تم حذف الملاحظة</string>
-  <string name="recent_to_trash_undo">فك</string>
-  <string name="backup_note_disable">تعطيل النسخ الاحتياطي</string>
-  <string name="backup_note_enable">تمكين النسخ الاحتياطي</string>
-  <string name="folder_card_title">مفكرة فارغة</string>
-  <string name="folder_card_title_single_note">1 ملاحظة</string>
-  <string name="folder_card_title_notes">%d ملاحظات</string>
-  <string name="folder_sheet_add_note">قم بإنشاء مفكرة جديدة</string>
-  <string name="folder_sheet_edit_note">تعديل مفكرة</string>
-  <string name="folder_sheet_add_note_detail">إضافة مفكرة</string>
-  <string name="folder_option_add_to_notebook">أضف إلى دفتر الملاحظات</string>
-  <string name="folder_option_change_notebook">تعديل نوت بوك</string>
-  <string name="recent_notes">ملاحظات حديثة</string>
-  <string name="information_card_title">معلومات</string>
-  <string name="information_new_app_update">انقر لتثبيت أحدث إصدار من التطبيق</string>
-  <string name="information_install_pro">انقر للترقية إلى Scarlet Pro</string>
+  <string name="home_option_about_page">معلومات عنا</string>
+  <string name="home_option_about_page_subtitle">معرفة المزيد عن التطبيق والمطورين</string>
+  <string name="home_option_open_source_page">مشروع المصدر المفتوح</string>
+  <string name="home_option_open_source_page_subtitle">معرفة المزيد عن مشروع مفتوح المصدر</string>
+  <string name="home_option_rate_and_review">معدل ومراجعة</string>
+  <string name="home_option_rate_and_review_subtitle">أخبرنا أعرف كم كنت أحب التطبيق</string>
+  <string name="home_option_fill_survey">ملء المسح</string>
+  <string name="home_option_fill_survey_subtitle">مساعدتنا على تحسين التطبيق من خلال إخبارنا ما تريد</string>
   <string name="home_option_install_pro_app">تثبيت برو التطبيق</string>
   <string name="home_option_install_pro_app_details">ثبِّت Pro Pro لإلغاء قفل الميزات ومطور الدعم</string>
   <string name="home_option_migrate_to_pro">تهاجر ملاحظات على القرمزي برو</string>
@@ -312,6 +147,218 @@
   <string name="home_option_delete_all_tags_details">احذف جميع العلامات في التطبيق</string>
   <string name="home_option_delete_everything">حذف كل شيء</string>
   <string name="home_option_delete_everything_details">حذف الملاحظات والعلامات والمجلدات في التطبيق</string>
+
   <string name="ui_options_note_background_color">ملاحظة عارض الخلفية</string>
+
+  <string name="security_option_title">خيارات الأمان</string>
+  <string name="security_option_set_pin_code">رمز عبور</string>
+  <string name="security_option_set_pin_code_subtitle">تعيين رقم التعريف الشخصي المكون من 4 أرقام لقفل الملاحظات</string>
+  <string name="security_option_fingerprint_enabled">فتح مع بصمات الأصابع</string>
+  <string name="security_option_fingerprint_enabled_subtitle">سيتم فتح الملاحظات مع بصمات الأصابع</string>
+  <string name="security_option_fingerprint_disabled">تم تعطيل بصمة الإصبع</string>
+  <string name="security_option_fingerprint_disabled_subtitle">لن تستخدم الملاحظات بصمة الإصبع</string>
+
+  <string name="security_sheet_enter_new_pin_title">أدخل رقم تعريف شخصي جديد</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">أدخل رقم التعريف الشخصي لإلغاء التأمين</string>
+  <string name="security_sheet_enter_current_pin_title">أدخل رقم التعريف الشخصي الحالي</string>
+  <string name="security_sheet_enter_pin_hint">ادخل الرمز</string>
+  <string name="security_sheet_button_verify">التحقق</string>
+  <string name="security_sheet_button_unlock">فتح</string>
+  <string name="security_sheet_button_set">جلس</string>
+  <string name="security_sheet_button_remove">إزالة</string>
+
+  <string name="note_option_default_color">لون ملاحظة افتراضي</string>
+  <string name="note_option_default_color_subtitle">اختر اللون الافتراضي للملاحظات</string>
+  <string name="note_option_number_lines">حد حد السطر</string>
+  <string name="note_option_number_lines_subtitle">%d خطوط على الشاشة الرئيسية</string>
+
+  <string name="markdown_sheet_markdown_support">دعم تخفيض السعر</string>
+  <string name="markdown_sheet_markdown_support_subtitle">السماح بتنسيق التضمين المنسق</string>
+  <string name="markdown_sheet_home_markdown_support">تخفيض السعر في قائمة الملاحظات</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">تمكين تنسيق علامة التبويب في قائمة الملاحظات</string>
+  <string name="markdown_sheet_examples">أمثلة</string>
+
+  <string name="permission_layout_give_permission">إعطاء الأذونات</string>
+  <string name="permission_layout_give_permission_details">استيراد وتصدير تتطلب أذونات التخزين. يرجى إعطاء الإذن عند الطلب.</string>
+  <string name="permission_layout_give_permission_ok">السماح</string>
+
+  <string name="import_export_import_file_title">استيراد النسخ الاحتياطي من ملف</string>
+  <string name="import_export_import_file">استيراد ملف</string>
+  <string name="import_export_layout_exported">تصدير إلى ملف</string>
+  <string name="import_export_layout_export_failed">أخفق التصدير</string>
+  <string name="import_export_layout_exporting">تصدير إلى ملف | |</string>
+  <string name="import_export_layout_exporting_done">فعله</string>
+  <string name="import_export_layout_exporting_share">شارك</string>
+
+
+  <string name="about_page_title">معلومات عنا وأكثر</string>
+  <string name="about_page_rate">معدل على اللعب المتجر</string>
+  <string name="about_page_contribute">تساهم</string>
+  <string name="about_page_app_version">نسخة التطبيق</string>
+  <string name="about_page_about_app">حول التطبيق</string>
+
+  <string name="osp_page_libraries">المكتبات</string>
+  <string name="osp_page_about_osp">مشروع المصدر المفتوح</string>
+  <string name="osp_page_title">حول مشروع المصدر المفتوح</string>
+
+  <string name="reminder_sheet_title">ملاحظة تذكير</string>
+  <string name="reminder_sheet_reminder_date">تاريخ التذكير</string>
+  <string name="reminder_sheet_reminder_time">تذكير الوقت</string>
+  <string name="reminder_sheet_repeat">تكرار تكرار</string>
+  <string name="reminder_frequency_once">مرة واحدة فقط</string>
+  <string name="reminder_frequency_daily">اليومي</string>
+  <string name="reminder_frequency_custom">العادة</string>
+  <string name="reminder_beta_label">بيتا</string>
+
+  <string name="notification_channel_label">ملاحظة الإخطارات</string>
+  <string name="notification_reminder_channel_label">تذكير وإنذارات</string>
+
+  <string name="about_page_description_os">%s مفتوح المصدر وأي شخص مفتوح للمساهمة في تحسينه. يتم بناؤه حاليًا وصيانته بواسطة %s.</string>
+  <string name="about_page_description">%s عبارة عن ملاحظة بسيطة تأخذ التطبيق. يسمح بإدخال نص سريع سريع بدون جعل التجربة صعبة الاستخدام. يجعل تعدد المهام نسيم.</string>
+  <string name="about_page_about_us_details">مرحبًا ، نحن زوج من المصممين والمبرمجين ، الذين أنشأوا %s.      نحن نسعى لبناء تطبيقات إعلانية مجانية ومصممة بعناية وخالية من الإعلانات أو بأقل قدر من الإعلانات والتي تخدم فائدة عظيمة للجميع!</string>
+
+  <string name="tag_sheet_create_title">إضافة علامة جديدة | |</string>
+  <string name="tag_sheet_edit_title">تحرير العلامة | |</string>
+  <string name="tag_sheet_enter_tag_hint">أدخل علامة</string>
+
+  <string name="tag_sheet_new_tag_button">إنشاء علامة جديدة</string>
+  <string name="tag_sheet_choose_tag">اختر تاجا | |</string>
+
+  <string name="sort_sheet_title">فرز الملاحظات بواسطة</string>
+  <string name="sort_sheet_newest_first">الأحدث أولا</string>
+  <string name="sort_sheet_oldest_first">الأقدم أولا</string>
+  <string name="sort_sheet_last_modified">معظم تعديلها مؤخرا</string>
+
+  <!-- Start Select Notes -->
+  <string name="select_a_note_title">حدد ملاحظة</string>
+  <string name="select_notes_title">حدد نوتس</string>
+  <string name="nav_settings">إعدادات</string>
+  <string name="widget_no_valid_note">لاحظ إما حذف أو تأمين</string>
+  <!-- End Select Notes -->
+
+  <!-- Start Whats New -->
+  <string name="whats_new_title">ما هو الجديد</string>
+  <string name="whats_new_subtitle">تعرف ما هو الجديد في التحديثات الأخيرة من التطبيق</string>
+  <string name="whats_new_translate">ترجمه</string>
+
+  <string name="tutorial_create_a_new_note">انقر لإضافة ملاحظة جديدة</string>
+  <string name="tutorial_home_menu">انقر لرؤية خيارات المنزل</string>
+  <string name="tutorial_home_menu_subtitle">القائمة الرئيسية لديها الملاحظات المفضلة لديك والأرشيف، وكذلك إعدادات التطبيق. يمكنك العثور على العلامات هنا أيضا.</string>
+
+  <string name="format_action_copy">نسخ</string>
+  <string name="format_action_title">حظر الإجراءات النصية</string>
+  <string name="format_action_gallery">صالة عرض</string>
+  <string name="format_action_camera">الة تصوير</string>
+
+  <string name="voice_sheet_title">الكلام ملاحظة بصوت عال</string>
+  <string name="voice_action_title">تحدث بصوت مرتفع</string>
+  <string name="image_delete_all_devices">سيؤدي حذف هذا العنصر إلى حذف الصورة من جميع الأجهزة.</string>
+  <string name="image_not_on_current_device">الصورة ليست على هذا الجهاز</string>
+  <string name="image_cannot_be_loaded">لا يمكن تحميل الصورة</string>
+  <string name="image_not_uploaded">لم تتم مزامنة الصور</string>
+  <string name="image_not_uploaded_details">لا تتم مزامنة الصور عبر الأجهزة. لن تظهر الصور على الأجهزة الأخرى أثناء عرض الملاحظة!</string>
+  <string name="image_not_uploaded_i_understand">أفهم</string>
+  <!-- End Whats New -->
+
+  <!-- Start Note Text Size -->
+  <string name="note_option_font_size">ملاحظة حجم الخط</string>
+  <string name="note_option_font_size_example">اضبط حجم خط النص في صفحة الملاحظات. يمكنك أن ترى كيف سيبدو في هذه المعاينة.</string>
+  <string name="note_option_font_size_subtitle">%d حجم النص في عارض المذكرة</string>
+  <!-- End Note Text Size -->
+
+  <!-- Start Cloud Backup Hint -->
+  <string name="home_option_install_from_store">تثبيت من مخزن</string>
+  <string name="home_option_install_from_store_subtitle">تثبيت التطبيق من غوغل ستور للمزامنة السحابية</string>
+  <!-- End -->
+
+  <!-- Start No Pincode -->
+  <string name="no_pincode_sheet_title">لم يتم تعيين رقم تعريف شخصي</string>
+  <string name="no_pincode_sheet_details">لم تقم بإعداد رقم التعريف الشخصي. هل تريد إعداده الآن؟</string>
+  <string name="no_pincode_sheet_not_now">في وقت لاحق</string>
+  <string name="no_pincode_sheet_dont_ask">لم نطلب</string>
+  <string name="no_pincode_sheet_set_up">اقامة</string>
+  <!-- End No Pincode -->
+
+  <!-- Start Delete Notes -->
+  <string name="delete_sheet_are_you_sure">هل أنت واثق؟</string>
+  <string name="delete_sheet_delete_trash">هل تريد حذف الملاحظات في مجلد المهملات نهائيا؟</string>
+  <string name="delete_sheet_delete_note_permanently">هل تريد حذف هذه الملاحظة نهائيا؟</string>
+  <string name="delete_sheet_delete_trash_yes">حذف</string>
+  <string name="delete_sheet_delete_trash_no">إلغاء</string>
+  <string name="trash_will_delete_automatically">يتم حذف الملاحظات إلى الأبد بعد 7 أيام</string>
+  <!-- End Delete Notes -->
+
+  <!-- Start Information -->
+  <string name="information_card_title">معلومات</string>
+  <string name="information_new_app_update">انقر لتثبيت أحدث إصدار من التطبيق</string>
+  <string name="information_install_pro">انقر للترقية إلى Scarlet Pro</string>
+  <!-- End Information -->
+
+  <!-- Start: Firebase Login Strings -->
+  <string name="home_option_login_with_app">تسجيل الدخول إلى التطبيق</string>
+  <string name="home_option_login_with_app_subtitle">تسجيل الدخول للحصول على النسخ الاحتياطي سحابة والمزامنة</string>
+  <string name="home_option_logout_of_app">خروج</string>
+  <string name="home_option_logout_of_app_subtitle">تسجيل الخروج لإيقاف النسخ الاحتياطي سحابة</string>
+  <string name="login_with_google">الدخول مع جوجل</string>
+  <string name="logging_into_app">تسجيل الدخول |</string>
+  <string name="logged_into_app">لقد سجلت الدخول</string>
+  <string name="login_to_google_failed">فشل تسجيل الدخول إلى غوغل</string>
+
+  <string name="material_notes_privacy_policy">سياسة الخصوصية</string>
+  <string name="material_notes_privacy_policy_subtitle">سياسة خصوصية التطبيق للمحتوى</string>
+
+  <string name="install_pro_app">تثبيت برو التطبيق</string>
+
+  <string name="why_install_pro">لماذا تثبيت برو</string>
+  <string name="why_install_pro_details">دعم المطور لتكاليف الخادم الضخمة، لتشغيل مزامنة السحاب \n
+  \n
+   احصل على أحدث الميزات أولا \n
+  \n
+   ستتوفر بعض الميزات الإضافية فقط لمستخدمي برو</string>
+  <string name="why_cloud">سبب تمكين مزامنة السحاب</string>
+  <string name="why_cloud_details">التحميل والنسخ الاحتياطي من تغييرات الجهاز \n
+  \n
+   المزامنة بين أجهزة متعددة، والحصول على تحديثات سريعة \n
+  \n
+   حفظها بشكل آمن على خوادم غوغل فيريباس</string>
+  <!-- End: Firebase Login Strings -->
+
+
+  <!-- Start Welcome Page -->
+  <string name="welcome_page_hello">مرحبا،</string>
+  <string name="welcome_page_transfer_message">ملاحظات المادة الآن القرمزي!</string>
+  <string name="welcome_page_get_started">البدء</string>
+  <!-- End Welcome Page -->
+
+  <!-- Start Theme Color -->
+  <string name="home_option_theme_color">موضوع التطبيق</string>
+  <string name="home_option_theme_color_subtitle">حدد لون الخلفية للموضوع</string>
+  <string name="theme_page_title">حدد موضوع التطبيق</string>
+  <!-- End Theme Color-->
+
+  <string name="click_to_add_tags">انقر لإضافة أو تغيير العلامات</string>
+
+  <string name="show_more_actions">عرض المزيد من الإجراءات</string>
+  <string name="select_notes">حدد ملاحظات</string>
+  <string name="select_notes_details">حدد إجراءات وتنفيذها على ملاحظات متعددة في وقت واحد</string>
+
+  <string name="recent_to_trash_message">تم نقل الملاحظة إلى سلة المهملات</string>
+  <string name="recent_to_delete_message">تم حذف الملاحظة</string>
+  <string name="recent_to_trash_undo">فك</string>
+
+  <string name="backup_note_disable">تعطيل النسخ الاحتياطي</string>
+  <string name="backup_note_enable">تمكين النسخ الاحتياطي</string>
+
+  <string name="folder_card_title">مفكرة فارغة</string>
+  <string name="folder_card_title_single_note">1 ملاحظة</string>
+  <string name="folder_card_title_notes">%d ملاحظات</string>
+  <string name="folder_sheet_add_note">قم بإنشاء مفكرة جديدة</string>
+  <string name="folder_sheet_edit_note">تعديل مفكرة</string>
+  <string name="folder_sheet_add_note_detail">إضافة مفكرة</string>
+
+  <string name="folder_option_add_to_notebook">أضف إلى دفتر الملاحظات</string>
+  <string name="folder_option_change_notebook">تعديل نوت بوك</string>
+
+  <string name="recent_notes">ملاحظات حديثة</string>
 
 </resources>

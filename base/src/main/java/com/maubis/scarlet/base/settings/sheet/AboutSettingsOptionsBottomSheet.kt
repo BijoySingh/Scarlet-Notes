@@ -3,48 +3,48 @@ package com.maubis.scarlet.base.settings.sheet
 import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
-import android.view.View
+import com.facebook.litho.ComponentContext
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.main.sheets.WhatsNewItemsBottomSheet
+import com.maubis.scarlet.base.main.sheets.WhatsNewBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.utils.Flavor
-import com.maubis.scarlet.base.support.option.OptionsItem
-import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
 
-class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
+const val PRIVACY_POLICY_LINK = "https://www.iubenda.com/privacy-policy/8213521"
 
-  override fun setupViewWithDialog(dialog: Dialog) {
-    setOptions(dialog, getOptions())
-  }
+class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
+  override fun title(): Int = R.string.home_option_about
 
-  private fun getOptions(): List<OptionsItem> {
+  override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = context as MainActivity
-    val options = ArrayList<OptionsItem>()
-    options.add(OptionsItem(
+    val options = ArrayList<LithoOptionsItem>()
+    options.add(LithoOptionsItem(
         title = R.string.home_option_about_page,
         subtitle = R.string.home_option_about_page_subtitle,
         icon = R.drawable.ic_info,
-        listener = View.OnClickListener {
-          AboutUsBottomSheet.openSheet(activity)
+        listener = {
+          openSheet(activity, AboutUsBottomSheet())
           dismiss()
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_open_source_page,
         subtitle = R.string.home_option_open_source_page_subtitle,
         icon = R.drawable.ic_code_white_48dp,
-        listener = View.OnClickListener {
-          OpenSourceBottomSheet.openSheet(activity)
+        listener = {
+          openSheet(activity, OpenSourceBottomSheet())
           dismiss()
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.material_notes_privacy_policy,
         subtitle = R.string.material_notes_privacy_policy_subtitle,
         icon = R.drawable.ic_privacy_policy,
-        listener = View.OnClickListener {
+        listener = {
           activity.startActivity(Intent(
               Intent.ACTION_VIEW,
               Uri.parse(PRIVACY_POLICY_LINK)))
@@ -53,49 +53,24 @@ class AboutSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
         visible = CoreConfig.instance.appFlavor() != Flavor.NONE
 
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_rate_and_review,
         subtitle = R.string.home_option_rate_and_review_subtitle,
         icon = R.drawable.ic_rating,
-        listener = View.OnClickListener {
+        listener = {
           IntentUtils.openAppPlayStore(activity)
           dismiss()
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.whats_new_title,
         subtitle = R.string.whats_new_subtitle,
         icon = R.drawable.ic_whats_new,
-        listener = View.OnClickListener {
-          WhatsNewItemsBottomSheet.openSheet(activity)
-          dismiss()
-        }
-    ))
-    options.add(OptionsItem(
-        title = R.string.home_option_fill_survey,
-        subtitle = R.string.home_option_fill_survey_subtitle,
-        icon = R.drawable.ic_note_white_48dp,
-        listener = View.OnClickListener {
-          activity.startActivity(Intent(
-              Intent.ACTION_VIEW,
-              Uri.parse(SURVEY_LINK)))
+        listener = {
+          com.maubis.scarlet.base.support.sheets.openSheet(activity, WhatsNewBottomSheet())
           dismiss()
         }
     ))
     return options
-  }
-
-  override fun getLayout(): Int = R.layout.bottom_sheet_options
-
-  companion object {
-
-    const val SURVEY_LINK = "https://goo.gl/forms/UbE2lARpp89CNIbl2"
-    const val PRIVACY_POLICY_LINK = "https://www.iubenda.com/privacy-policy/8213521"
-
-    fun openSheet(activity: MainActivity) {
-      val sheet = AboutSettingsOptionsBottomSheet()
-
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
   }
 }

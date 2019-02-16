@@ -5,15 +5,15 @@ apply plugin: 'com.github.zellius.shortcut-helper'
 shortcutHelper.filePath = '../shortcuts.xml'
 
 android {
-    compileSdkVersion rootProject.ext.appconfig_compile_sdk_version
-    buildToolsVersion rootProject.ext.appconfig_build_tool_version
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "com.bijoysingh.quicknote"
-        minSdkVersion rootProject.ext.appconfig_min_os_version
-        targetSdkVersion rootProject.ext.appconfig_target_os_version
-        versionCode rootProject.ext.appconfig_version_code
-        versionName rootProject.ext.appconfig_version
+        minSdkVersion 17
+        targetSdkVersion 28
+        versionCode 121
+        versionName '6.9.3'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

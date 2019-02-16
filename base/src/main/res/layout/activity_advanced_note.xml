@@ -6,8 +6,8 @@
   android:background="@color/white"
   android:orientation="vertical">
 
-  <include
-    layout="@layout/toolbar_advanced_note"
+  <FrameLayout
+    android:id="@+id/lithoTopToolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 
@@ -22,12 +22,8 @@
       android:layout_height="match_parent" />
   </FrameLayout>
 
-  <View
+  <FrameLayout
+    android:id="@+id/lithoBottomToolbar"
     android:layout_width="match_parent"
-    android:layout_height="0.5dp"
-    android:background="@color/dark_hint_text" />
-
-  <include layout="@layout/toolbar_create_note_bottom" />
-
-  <include layout="@layout/toolbar_note_bottom" />
+    android:layout_height="wrap_content" />
 </LinearLayout>

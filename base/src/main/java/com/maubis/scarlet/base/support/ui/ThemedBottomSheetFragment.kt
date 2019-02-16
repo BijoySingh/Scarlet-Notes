@@ -10,8 +10,10 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.CardView
 import android.view.View
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
+import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
 
 abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
 
@@ -80,6 +82,12 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
     val parentView = rootView.parent
     if (parentView is View) {
       parentView.setBackgroundResource(R.drawable.note_option_bs_gradient)
+    }
+  }
+
+  companion object {
+    fun openSheet(activity: MainActivity, sheet: ThemedBottomSheetFragment) {
+      sheet.show(activity.supportFragmentManager, sheet.tag)
     }
   }
 }

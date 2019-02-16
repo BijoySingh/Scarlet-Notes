@@ -13,6 +13,7 @@ import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.note.ImageLoadCallback
 import com.maubis.scarlet.base.core.note.NoteImage
 import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
+import com.maubis.scarlet.base.main.sheets.openDeleteFormatDialog
 import com.maubis.scarlet.base.note.creation.sheet.FormatActionBottomSheet
 import com.maubis.scarlet.base.support.ui.visibility
 import pl.aprilapps.easyphotopicker.EasyImage
@@ -25,7 +26,7 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
 
   protected val actionCamera: ImageView = root.findViewById(R.id.action_camera)
   protected val actionGallery: ImageView = root.findViewById(R.id.action_gallery)
-  protected val actionMove = ActionMoveIcon(root.findViewById(R.id.action_move))
+  protected val actionMove: ImageView = root.findViewById(R.id.action_move_icon)
   protected val imageToolbar: View = root.findViewById(R.id.image_toolbar)
   protected val noImageMessage: UITextView = root.findViewById(R.id.no_image_message)
 
@@ -43,7 +44,7 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
     noImageMessage.visibility = View.GONE
     noImageMessage.setTextColor(config.tertiaryTextColor)
     noImageMessage.setOnClickListener {
-      AlertBottomSheet.openDeleteFormatDialog(activity, data)
+      openDeleteFormatDialog(activity, data)
     }
 
     val iconColor = config.iconColor
@@ -65,7 +66,7 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
       }
     }
     actionMove.setColorFilter(config.iconColor)
-    actionMove.view.setOnClickListener {
+    actionMove.setOnClickListener {
       FormatActionBottomSheet.openSheet(activity, config.noteUUID, data)
     }
     imageToolbar.visibility = visibility(config.editable)
@@ -90,7 +91,7 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
   }
 
   fun populateFile(file: File) {
-    NoteImage(context).loadFileToImageView(image, file, object : ImageLoadCallback {
+    NoteImage(context).loadPersistentFileToImageView(image, file, object : ImageLoadCallback {
       override fun onSuccess() {
         noImageMessage.visibility = View.GONE
       }

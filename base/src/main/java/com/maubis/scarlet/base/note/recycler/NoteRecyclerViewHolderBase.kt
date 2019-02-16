@@ -88,7 +88,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     val isImageAvailable = !note.imageSource.isBlank()
     image.visibility = visibility(isImageAvailable)
     if (isImageAvailable) {
-      NoteImage(context).loadFileToImageView(image, NoteImage(context).getFile(note.note.uuid, note.imageSource))
+      NoteImage(context).loadThumbnailFileToImageView(note.note.uuid, note.imageSource, image)
     }
   }
 

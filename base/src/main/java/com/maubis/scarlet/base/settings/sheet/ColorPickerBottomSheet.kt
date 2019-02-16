@@ -1,94 +1,105 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
-import android.view.View
-import android.widget.TextView
-import com.google.android.flexbox.FlexboxLayout
+import android.graphics.Color
+import com.facebook.litho.*
+import com.facebook.litho.annotations.LayoutSpec
+import com.facebook.litho.annotations.OnCreateLayout
+import com.facebook.litho.annotations.OnEvent
+import com.facebook.litho.annotations.Prop
+import com.facebook.yoga.YogaAlign
+import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.settings.view.ColorView
-import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
+import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
+import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
+import com.maubis.scarlet.base.support.specs.BottomSheetBar
+import com.maubis.scarlet.base.support.specs.EmptySpec
+import com.maubis.scarlet.base.support.specs.RoundIcon
+import com.maubis.scarlet.base.support.specs.separatorSpec
+import com.maubis.scarlet.base.support.ui.ColorUtil
 
-class ColorPickerBottomSheet : ThemedBottomSheetFragment() {
+class ColorPickerDefaultController(
+    val title: Int = R.string.note_option_default_color,
+    var selectedColor: Int = Color.WHITE,
+    val colors: List<IntArray> = listOf(intArrayOf(Color.WHITE)),
+    val onColorSelected: (Int) -> Unit = {},
+    val columns: Int = 6)
 
-  var colorChosen: Int = 0
-  var defaultController: ColorPickerDefaultController? = null
-
-  override fun setupView(dialog: Dialog?) {
-    super.setupView(dialog)
-    if (dialog == null) {
-      return
-    }
-
-    val controller = defaultController
-    if (controller === null) {
-      dismiss()
-      return
-    }
-
-    val colorPicker = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout)
-    setColorsList(colorPicker, controller)
-
-    val accentColorCard = dialog.findViewById<View>(R.id.accent_color_card)
-    accentColorCard.visibility = View.GONE
-    val colorPickerAccent = dialog.findViewById<FlexboxLayout>(R.id.flexbox_layout_accent)
-    colorPickerAccent.visibility = View.GONE
-
-    val optionsTitle = dialog.findViewById<TextView>(R.id.options_title)
-    optionsTitle.setText(controller.getSheetTitle())
-    optionsTitle.setOnClickListener {
-      dismiss()
-    }
-
-    makeBackgroundTransparent(dialog, R.id.root_layout)
+@LayoutSpec
+object ColorPickerItemSpec {
+  @OnCreateLayout
+  fun onCreate(context: ComponentContext,
+               @Prop color: Int,
+               @Prop isSelected: Boolean): Component {
+    val row = Row.create(context)
+        .alignItems(YogaAlign.CENTER)
+        .child(RoundIcon.create(context)
+            .iconRes(if (isSelected) R.drawable.ic_done_white_48dp else R.drawable.ic_empty)
+            .bgColor(color)
+            .showBorder(true)
+            .iconColorRes(if (ColorUtil.isLightColored(color)) R.color.dark_tertiary_text else R.color.light_secondary_text)
+            .iconSizeRes(R.dimen.toolbar_round_icon_size)
+            .iconPaddingRes(R.dimen.toolbar_round_icon_padding)
+            .onClick { }
+            .isClickDisabled(true))
+    row.clickHandler(ColorPickerItem.onItemClick(context))
+    return row.build()
   }
 
-  override fun getBackgroundCardViewIds() = arrayOf(
-      R.id.accent_color_card,
-      R.id.core_color_card)
-
-  override fun getBackgroundView(): Int {
-    return R.id.container_layout
+  @OnEvent(ClickEvent::class)
+  fun onItemClick(context: ComponentContext, @Prop color: Int, @Prop onColorSelected: (Int) -> Unit) {
+    onColorSelected(color)
   }
+}
 
-  private fun setColorsList(colorSelectorLayout: FlexboxLayout,
-                            controller: ColorPickerDefaultController) {
-    colorSelectorLayout.removeAllViews()
-    colorChosen = when {
-      colorChosen != 0 -> colorChosen
-      else -> controller.getSelectedColor()
-    }
+class ColorPickerBottomSheet : LithoBottomSheet() {
 
-    for (color in controller.getColorList()) {
-      val item = ColorView(themedContext())
-      item.setColor(color, colorChosen == color)
-      item.setOnClickListener {
-        colorChosen = color
-        controller.onColorSelected(colorChosen)
-        setColorsList(colorSelectorLayout, controller)
+  var config: ColorPickerDefaultController = ColorPickerDefaultController()
+
+  override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
+    val column = Column.create(componentContext)
+        .widthPercent(100f)
+        .paddingDip(YogaEdge.VERTICAL, 8f)
+        .paddingDip(YogaEdge.HORIZONTAL, 20f)
+        .child(getLithoBottomSheetTitle(componentContext)
+            .textRes(config.title)
+            .marginDip(YogaEdge.HORIZONTAL, 0f))
+
+    config.colors.forEachIndexed { colorArrayIndex, colorArray ->
+      var flex: Row.Builder? = null
+      colorArray.forEachIndexed { index, color ->
+        if (index % config.columns == 0) {
+          column.child(flex)
+          flex = Row.create(componentContext)
+              .widthPercent(100f)
+              .alignItems(YogaAlign.CENTER)
+              .paddingDip(YogaEdge.VERTICAL, 8f)
+        }
+
+        flex?.child(
+            ColorPickerItem.create(componentContext)
+                .color(color)
+                .isSelected(color == config.selectedColor)
+                .onColorSelected { color ->
+                  config.selectedColor = color
+                  config.onColorSelected(color)
+                  reset(componentContext.androidContext, dialog)
+                }
+                .flexGrow(1f))
       }
-      colorSelectorLayout.addView(item)
+      column.child(flex)
+
+      if (colorArrayIndex != config.colors.size - 1) {
+        column.child(separatorSpec(componentContext).alpha(0.5f))
+      } else {
+        column.child(EmptySpec.create(componentContext).widthPercent(100f).heightDip(24f))
+      }
     }
-  }
-
-  override fun getLayout(): Int = R.layout.bottom_sheet_flexbox_layout
-
-  interface ColorPickerDefaultController {
-    fun getSheetTitle(): Int
-
-    fun getColorList(): IntArray
-
-    fun onColorSelected(color: Int)
-
-    fun getSelectedColor(): Int
-  }
-
-  companion object {
-    fun openSheet(activity: ThemedActivity,
-                  picker: ColorPickerDefaultController) {
-      val sheet = ColorPickerBottomSheet()
-      sheet.defaultController = picker
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
+    column.child(BottomSheetBar.create(componentContext)
+        .primaryActionRes(R.string.import_export_layout_exporting_done)
+        .onPrimaryClick {
+          dismiss()
+        }.paddingDip(YogaEdge.VERTICAL, 8f))
+    return column.build()
   }
 }

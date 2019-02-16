@@ -41,8 +41,7 @@ public abstract class AppDatabase extends RoomDatabase {
   public static final Migration MIGRATION_4_5 = new Migration(4, 5) {
     @Override
     public void migrate(SupportSQLiteDatabase database) {
-      database.execSQL("CREATE TABLE IF NOT EXISTS tag (`uid` INTEGER PRIMARY KEY AUTOINCREMENT "
-                           + "NOT NULL, `title` TEXT)");
+      database.execSQL("CREATE TABLE IF NOT EXISTS tag (`uid` INTEGER PRIMARY KEY AUTOINCREMENT " + "NOT NULL, `title` TEXT)");
       database.execSQL("CREATE  INDEX `index_tag_uid` ON `tag` (`uid`)");
       database.execSQL("ALTER TABLE note ADD COLUMN tags TEXT DEFAULT ''");
     }
@@ -72,8 +71,7 @@ public abstract class AppDatabase extends RoomDatabase {
   public static final Migration MIGRATION_8_9 = new Migration(8, 9) {
     @Override
     public void migrate(SupportSQLiteDatabase database) {
-      database.execSQL("CREATE TABLE IF NOT EXISTS widget (`widgetId` INTEGER PRIMARY KEY NOT " +
-                           "NULL, `noteUUID` TEXT)");
+      database.execSQL("CREATE TABLE IF NOT EXISTS widget (`widgetId` INTEGER PRIMARY KEY NOT " + "NULL, `noteUUID` TEXT)");
       database.execSQL("CREATE  INDEX `index_widget_widgetId` ON `widget` (`widgetId`)");
     }
   };
@@ -92,7 +90,9 @@ public abstract class AppDatabase extends RoomDatabase {
   public static final Migration MIGRATION_11_12 = new Migration(11, 12) {
     @Override
     public void migrate(SupportSQLiteDatabase database) {
-      database.execSQL("CREATE TABLE IF NOT EXISTS folder (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `timestamp` INTEGER, `updateTimestamp` INTEGER NOT NULL, `color` INTEGER, `uuid` TEXT)");
+      database.execSQL("CREATE TABLE IF NOT EXISTS folder (`uid` INTEGER PRIMARY KEY " +
+                           "AUTOINCREMENT NOT NULL, `title` TEXT, `timestamp` INTEGER, " +
+                           "`updateTimestamp` INTEGER NOT NULL, `color` INTEGER, `uuid` TEXT)");
       database.execSQL("CREATE  INDEX `index_folder_uid` ON `folder` (`uid`)");
     }
   };
@@ -105,12 +105,9 @@ public abstract class AppDatabase extends RoomDatabase {
 
   public static AppDatabase createDatabase(Context context) {
     return Room.databaseBuilder(context, AppDatabase.class, "note-database")
-               .allowMainThreadQueries().addMigrations(MIGRATION_1_2, MIGRATION_2_3,
-                                                       MIGRATION_3_4, MIGRATION_4_5,
-                                                       MIGRATION_5_6, MIGRATION_6_7,
-                                                       MIGRATION_7_8, MIGRATION_8_9,
-                                                       MIGRATION_9_10, MIGRATION_10_11,
-                                                       MIGRATION_11_12, MIGRATION_12_13).build();
+               .allowMainThreadQueries()
+               .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9, MIGRATION_9_10, MIGRATION_10_11, MIGRATION_11_12, MIGRATION_12_13)
+               .build();
   }
 
   public abstract NoteDao notes();

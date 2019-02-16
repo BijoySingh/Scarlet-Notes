@@ -23,19 +23,14 @@ class HouseKeeper(val context: Context) {
       { removeOlderClips() },
       { removeDecoupledFolders() },
       { removeOldReminders() },
-      { deleteRedundantImageFiles() }
+      { deleteRedundantImageFiles() },
+      { migrateZeroUidNotes() }
   )
 
-  fun start() {
-    SimpleThreadExecutor.execute {
-      for (task in houseKeeperTasks) {
-        task()
-      }
+  fun execute() {
+    for (task in houseKeeperTasks) {
+      task()
     }
-  }
-
-  private fun removeOlderReminders() {
-
   }
 
   private fun removeOlderClips() {
@@ -87,7 +82,7 @@ class HouseKeeper(val context: Context) {
   private fun deleteRedundantImageFiles() {
     val uuids = notesDb.getAllUUIDs()
 
-    val imagesFolder = File(context.cacheDir, "images" + File.separator)
+    val imagesFolder = File(context.filesDir, "images" + File.separator)
     val uuidFiles = imagesFolder.listFiles()
     if (uuidFiles === null || uuidFiles.isEmpty()) {
       return
@@ -107,6 +102,16 @@ class HouseKeeper(val context: Context) {
       for (file in noteFolder.listFiles()) {
         deleteIfExist(file)
       }
+    }
+  }
+
+  private fun migrateZeroUidNotes() {
+    val note = notesDb.getByID(0)
+    if (note != null) {
+      notesDb.database().delete(note)
+      notesDb.notifyDelete(note)
+      note.uid = null
+      note.save(context)
     }
   }
 }

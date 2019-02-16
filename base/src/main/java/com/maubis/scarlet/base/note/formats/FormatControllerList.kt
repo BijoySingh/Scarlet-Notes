@@ -30,14 +30,20 @@ fun getFormatControllerItems(): List<MultiRecyclerViewControllerItem<Format>> {
   list.add(
       MultiRecyclerViewControllerItem.Builder<Format>()
           .viewType(FormatType.SUB_HEADING.ordinal)
-          .layoutFile(R.layout.item_format_sub_heading)
+          .layoutFile(R.layout.item_format_heading)
+          .holderClass(FormatTextViewHolder::class.java)
+          .build())
+  list.add(
+      MultiRecyclerViewControllerItem.Builder<Format>()
+          .viewType(FormatType.HEADING_3.ordinal)
+          .layoutFile(R.layout.item_format_heading)
           .holderClass(FormatTextViewHolder::class.java)
           .build())
   list.add(
       MultiRecyclerViewControllerItem.Builder<Format>()
           .viewType(FormatType.QUOTE.ordinal)
           .layoutFile(R.layout.item_format_quote)
-          .holderClass(FormatTextViewHolder::class.java)
+          .holderClass(FormatQuoteViewHolder::class.java)
           .build())
   list.add(
       MultiRecyclerViewControllerItem.Builder<Format>()

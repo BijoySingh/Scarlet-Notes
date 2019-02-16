@@ -5,10 +5,12 @@
   <include layout="@layout/layout_modify_format" />
 
   <View
-    android:layout_width="4dp"
+    android:id="@+id/quoteColorView"
+    android:layout_width="3dp"
     android:layout_height="match_parent"
-    android:layout_marginStart="@dimen/spacing_normal"
+    android:layout_marginStart="@dimen/spacing_large"
     android:layout_marginTop="@dimen/spacing_xxsmall"
+    android:background="@color/light_hint_text"
     android:layout_marginBottom="@dimen/spacing_xxsmall" />
 
   <TextView
@@ -17,6 +19,8 @@
     android:autoLink="web"
     android:hint="@string/format_hint_quote"
     android:linksClickable="true"
+    android:paddingStart="@dimen/spacing_xxsmall"
+    android:paddingBottom="@dimen/spacing_small"
     android:textStyle="italic" />
 
   <EditText

@@ -6,33 +6,28 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
-import android.widget.ImageView
+import com.facebook.litho.ComponentContext
+import com.facebook.litho.LithoView
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.core.format.*
+import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
+import com.maubis.scarlet.base.core.format.Format
+import com.maubis.scarlet.base.core.format.FormatBuilder
+import com.maubis.scarlet.base.core.format.FormatType
+import com.maubis.scarlet.base.core.format.MarkdownType
 import com.maubis.scarlet.base.core.note.*
 import com.maubis.scarlet.base.core.note.NoteImage.Companion.deleteIfExist
-import com.maubis.scarlet.base.note.creation.sheet.NoteFormatOptionsBottomSheet
-import com.maubis.scarlet.base.note.creation.sheet.NoteMarkdownOptionsBottomSheet
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.note.creation.specs.NoteCreationBottomBar
+import com.maubis.scarlet.base.note.creation.specs.NoteCreationTopBar
 import com.maubis.scarlet.base.note.delete
 import com.maubis.scarlet.base.note.formats.recycler.FormatImageViewHolder
 import com.maubis.scarlet.base.note.formats.recycler.FormatTextViewHolder
 import com.maubis.scarlet.base.note.saveToSync
-import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
-import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
-import com.maubis.scarlet.base.support.utils.bind
-import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
+import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
 import com.maubis.scarlet.base.support.recycler.SimpleItemTouchHelper
-import com.maubis.scarlet.base.support.ui.CircleDrawable
-import com.maubis.scarlet.base.support.ui.ColorUtil
-import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
-import com.maubis.scarlet.base.support.ui.ColorUtil.luminantColor
-import com.maubis.scarlet.base.support.ui.Theme
-import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
+import kotlinx.android.synthetic.main.activity_advanced_note.*
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
@@ -42,25 +37,9 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
   private var active = false
   private var maxUid = 0
-  private var toolbarMode: ToolbarMode = ToolbarMode.FORMAT
 
   private var historyIndex = 0
   private var historySize = 0L
-
-  val text: ImageView by bind(R.id.format_text)
-  val heading: ImageView by bind(R.id.format_heading)
-  val subHeading: ImageView by bind(R.id.format_sub_heading)
-  val checkList: ImageView by bind(R.id.format_check_list)
-  val formatMore: ImageView by bind(R.id.format_more)
-
-  val markdownBold: ImageView by bind(R.id.markdown_bold)
-  val markdownHeading: ImageView by bind(R.id.markdown_heading)
-  val markdownItalics: ImageView by bind(R.id.markdown_italics)
-  val markdownUnordered: ImageView by bind(R.id.markdown_unordered)
-  val markdownMore: ImageView by bind(R.id.markdown_more)
-
-  val chevronLeft: ImageView by bind(R.id.toolbar_chevron_left)
-  val chevronRight: ImageView by bind(R.id.toolbar_chevron_right)
 
   val history: MutableList<Note> = emptyList<Note>().toMutableList()
 
@@ -70,13 +49,12 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     super.onCreate(savedInstanceState)
     setTouchListener()
     startHandler()
+  }
+  
+  override fun onCreationFinished() {
+    super.onCreationFinished()
     history.add(NoteBuilder().copy(note!!))
     setFolderFromIntent()
-    notifyHistoryIcons()
-  }
-
-  override fun setEditMode() {
-    setEditMode(editModeValue)
   }
 
   private fun setFolderFromIntent() {
@@ -103,13 +81,18 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   override fun setNote() {
     super.setNote()
     maxUid = formats.size + 1
+
     val isEmpty = formats.isEmpty()
-    if (isEmpty || (formats[0].formatType !== FormatType.HEADING
-            && formats[0].formatType !== FormatType.IMAGE)) {
-      addEmptyItem(0, FormatType.HEADING)
-    }
-    if (isEmpty) {
-      addDefaultItem()
+    when {
+      isEmpty -> {
+        addEmptyItem(0, FormatType.HEADING)
+        addDefaultItem()
+      }
+      !formats[0].text.startsWith("# ") &&
+          formats[0].formatType !== FormatType.HEADING
+          && formats[0].formatType !== FormatType.IMAGE -> {
+        addEmptyItem(0, FormatType.HEADING)
+      }
     }
   }
 
@@ -117,123 +100,28 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     addEmptyItem(FormatType.TEXT)
   }
 
-  override fun setBottomToolbar() {
-    setFormatToolbar()
-    setMarkdownButtonToolbar()
-    chevronLeft.setOnClickListener { toggleToolbarMode() }
-    chevronRight.setOnClickListener { toggleToolbarMode() }
-  }
-
-  fun setFormatToolbar() {
-    text.setOnClickListener { addEmptyItemAtFocused(FormatType.TEXT) }
-    heading.setOnClickListener { addEmptyItemAtFocused(FormatType.HEADING) }
-    subHeading.setOnClickListener { addEmptyItemAtFocused(FormatType.SUB_HEADING) }
-    checkList.setOnClickListener { addEmptyItemAtFocused(FormatType.CHECKLIST_UNCHECKED) }
-    formatMore.setOnClickListener {
-      NoteFormatOptionsBottomSheet.openSheet(this)
-    }
-  }
-
-  fun setMarkdownButtonToolbar() {
-    markdownBold.setOnClickListener { triggerMarkdown(MarkdownType.BOLD) }
-    markdownItalics.setOnClickListener { triggerMarkdown(MarkdownType.ITALICS) }
-    markdownHeading.setOnClickListener { triggerMarkdown(MarkdownType.HEADER) }
-    markdownUnordered.setOnClickListener { triggerMarkdown(MarkdownType.UNORDERED) }
-    markdownMore.setOnClickListener {
-      NoteMarkdownOptionsBottomSheet.openSheet(this)
-    }
-  }
-
-  fun toggleToolbarMode() {
-    toolbarMode = when (toolbarMode) {
-      ToolbarMode.FORMAT -> ToolbarMode.MARKDOWN
-      ToolbarMode.MARKDOWN -> ToolbarMode.FORMAT
-    }
-    notifyToolbarModeChange()
-  }
-
-  fun notifyToolbarModeChange() {
-    when (toolbarMode) {
-      ToolbarMode.FORMAT -> {
-        formatToolbar.visibility = VISIBLE
-        markdownToolbar.visibility = GONE
-      }
-      ToolbarMode.MARKDOWN -> {
-        formatToolbar.visibility = GONE
-        markdownToolbar.visibility = VISIBLE
-      }
-    }
+  override fun notifyToolbarColor() {
+    super.notifyToolbarColor()
+    setBottomToolbar()
   }
 
   override fun setTopToolbar() {
-    actionUndo.setOnClickListener {
-      historyIndex = if (historyIndex == 0) 0 else (historyIndex - 1)
-      note = NoteBuilder().copy(history.get(historyIndex))
-      notifyHistoryIcons()
-      setNote()
-    }
-    actionRedo.setOnClickListener {
-      val maxHistoryIndex = history.size - 1
-      historyIndex = if (historyIndex == maxHistoryIndex) maxHistoryIndex else (historyIndex + 1)
-      note = NoteBuilder().copy(history.get(historyIndex))
-      notifyHistoryIcons()
-      setNote()
-    }
-    actionDelete.visibility = GONE
-    actionShare.visibility = GONE
-    actionCopy.visibility = GONE
-
-    val colorButtonClicker = findViewById<View>(R.id.color_button_clicker)
-    colorButtonClicker.setOnClickListener {
-      NoteColorPickerBottomSheet.openSheet(
-          this@CreateNoteActivity,
-          object : NoteColorPickerBottomSheet.ColorPickerController {
-            override fun onColorSelected(note: Note, color: Int) = setNoteColor(color)
-            override fun getNote(): Note = note!!
-          })
-    }
+    lithoTopToolbar.removeAllViews()
+    val componentContext = ComponentContext(this)
+    lithoTopToolbar.addView(
+        LithoView.create(componentContext,
+            NoteCreationTopBar.create(componentContext).build()))
   }
 
-  override fun notifyToolbarColor() {
-    super.notifyToolbarColor()
-    val theme = CoreConfig.instance.themeController()
-
-    val toolbarIconColor: Int
-    val toolbarBackgroundColor: Int
-    when {
-      !UISettingsOptionsBottomSheet.useNoteColorAsBackground -> {
-        toolbarBackgroundColor = theme.get(ThemeColorType.TOOLBAR_BACKGROUND)
-        toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
-      }
-      ColorUtil.isLightColored(note!!.color) -> {
-        toolbarBackgroundColor = luminantColor(note!!.color, 0.35f)
-        toolbarIconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
-      }
-      else -> {
-        toolbarBackgroundColor = darkerColor(note!!.color)
-        toolbarIconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
-      }
-    }
-
-    toolbar.setBackgroundColor(toolbarBackgroundColor)
-    markdownToolbar.setBackgroundColor(toolbarBackgroundColor)
-
-    text.setColorFilter(toolbarIconColor)
-    heading.setColorFilter(toolbarIconColor)
-    subHeading.setColorFilter(toolbarIconColor)
-    checkList.setColorFilter(toolbarIconColor)
-    formatMore.setColorFilter(toolbarIconColor)
-
-    markdownHeading.setColorFilter(toolbarIconColor)
-    markdownBold.setColorFilter(toolbarIconColor)
-    markdownUnordered.setColorFilter(toolbarIconColor)
-    markdownItalics.setColorFilter(toolbarIconColor)
-    markdownMore.setColorFilter(toolbarIconColor)
-
-    chevronLeft.alpha = 0.7f
-    chevronLeft.setColorFilter(toolbarIconColor)
-    chevronRight.alpha = 0.7f
-    chevronRight.setColorFilter(toolbarIconColor)
+  override fun setBottomToolbar() {
+    val componentContext = ComponentContext(this)
+    lithoBottomToolbar.removeAllViews()
+    lithoBottomToolbar.addView(
+        LithoView.create(
+            componentContext,
+            NoteCreationBottomBar.create(componentContext)
+                .colorConfig(ToolbarColorConfig(colorConfig.toolbarBackgroundColor, colorConfig.toolbarIconColor))
+                .build()))
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -291,18 +179,21 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   }
 
   protected fun maybeUpdateNoteWithoutSync() {
-    val vNote = note!!
-    val vLastNoteInstance = history.getOrNull(historyIndex) ?: note!!
-
-    vNote.description = FormatBuilder().getDescription(formats)
-
-    // Ignore update if nothing changed. It allows for one undo per few seconds
-    if (vNote.isEqual(vLastNoteInstance)) {
+    val currentNote = note
+    if (currentNote === null) {
       return
     }
 
-    addNoteToHistory(NoteBuilder().copy(vNote))
-    vNote.updateTimestamp = Calendar.getInstance().timeInMillis
+    val vLastNoteInstance = history.getOrNull(historyIndex) ?: currentNote
+    currentNote.description = FormatBuilder().getSmarterDescription(formats)
+
+    // Ignore update if nothing changed. It allows for one undo per few seconds
+    if (currentNote.isEqual(vLastNoteInstance)) {
+      return
+    }
+
+    addNoteToHistory(NoteBuilder().copy(currentNote))
+    currentNote.updateTimestamp = Calendar.getInstance().timeInMillis
     maybeSaveNote(false)
   }
 
@@ -322,19 +213,8 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
       historySize -= item.description.length
       historyIndex -= 1
     }
-    notifyHistoryIcons()
   }
 
-  private fun notifyHistoryIcons() {
-    actionRedo.alpha = when (historyIndex != history.size - 1) {
-      true -> 1.0f
-      false -> 0.4f
-    }
-    actionUndo.alpha = when (historyIndex == 0) {
-      true -> 0.4f
-      false -> 1.0f
-    }
-  }
 
   private fun startHandler() {
     val handler = Handler()
@@ -375,7 +255,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
     val newPosition = position + 1
     addEmptyItem(newPosition, type)
-    formatsView.layoutManager.scrollToPosition(newPosition)
+    formatsView.layoutManager?.scrollToPosition(newPosition)
     focus(newPosition)
   }
 
@@ -421,6 +301,34 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     setFormat(formatToChange)
   }
 
+  fun onHistoryClick(undo: Boolean) {
+    when (undo) {
+      true -> {
+        historyIndex = if (historyIndex == 0) 0 else (historyIndex - 1)
+        note = NoteBuilder().copy(history.get(historyIndex))
+        setNote()
+      }
+      false -> {
+        val maxHistoryIndex = history.size - 1
+        historyIndex = if (historyIndex == maxHistoryIndex) maxHistoryIndex else (historyIndex + 1)
+        note = NoteBuilder().copy(history.get(historyIndex))
+        setNote()
+      }
+    }
+  }
+
+  fun onColorChangeClick() {
+    val config = ColorPickerDefaultController(
+        title = R.string.choose_note_color,
+        colors = listOf(resources.getIntArray(R.array.bright_colors), resources.getIntArray(R.array.bright_colors_accent)),
+        selectedColor = note!!.color,
+        onColorSelected = { color ->
+          setNoteColor(color)
+        }
+    )
+    com.maubis.scarlet.base.support.sheets.openSheet(this, ColorPickerBottomSheet().apply { this.config = config })
+  }
+
   private fun findTextViewHolderAtPosition(position: Int): FormatTextViewHolder? {
     val holder = findViewHolderAtPositionAggressively(position)
     return if (holder !== null && holder is FormatTextViewHolder) holder else null
@@ -443,9 +351,12 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   }
 
   override fun setNoteColor(color: Int) {
+    if (lastKnownNoteColor == color) {
+      return
+    }
     note!!.color = color
-    colorButton.background = CircleDrawable(note!!.color)
     notifyToolbarColor()
+    lastKnownNoteColor = color
   }
 
   override fun setFormat(format: Format) {
@@ -490,8 +401,9 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
       return
     }
 
-    val isCheckList = (format.formatType === FormatType.CHECKLIST_UNCHECKED
-        || format.formatType === FormatType.CHECKLIST_CHECKED)
+    val isCheckList =
+        (format.formatType === FormatType.CHECKLIST_UNCHECKED
+            || format.formatType === FormatType.CHECKLIST_CHECKED)
     val newPosition = position + 1
     when {
       isCheckList -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.CHECKLIST_UNCHECKED))

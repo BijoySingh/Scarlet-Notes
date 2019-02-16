@@ -1,79 +1,50 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
-import android.view.View
+import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.support.option.OptionsItem
-import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
+import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.openSheet
 
-class NoteSettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
+const val STORE_KEY_NOTE_DEFAULT_COLOR = "KEY_NOTE_DEFAULT_COLOR"
 
-  override fun setupViewWithDialog(dialog: Dialog) {
-    setOptions(dialog, getOptions())
-  }
+var sNoteDefaultColor: Int
+  get() = CoreConfig.instance.store().get(STORE_KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
+  set(value) = CoreConfig.instance.store().put(STORE_KEY_NOTE_DEFAULT_COLOR, value)
 
-  private fun getOptions(): List<OptionsItem> {
+class NoteSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
+  override fun title(): Int = R.string.home_option_note_settings
+
+  override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = context as MainActivity
-    val options = ArrayList<OptionsItem>()
-    options.add(OptionsItem(
+    val options = ArrayList<LithoOptionsItem>()
+    options.add(LithoOptionsItem(
         title = R.string.note_option_default_color,
         subtitle = R.string.note_option_default_color_subtitle,
         icon = R.drawable.ic_action_color,
-        listener = View.OnClickListener {
-          ColorPickerBottomSheet.openSheet(
-              activity,
-              object : ColorPickerBottomSheet.ColorPickerDefaultController {
-                override fun getSheetTitle(): Int = R.string.choose_note_color
-
-                override fun getColorList(): IntArray = activity.resources.getIntArray(R.array.bright_colors)
-
-                override fun onColorSelected(color: Int) {
-                  CoreConfig.instance.store().put(KEY_NOTE_DEFAULT_COLOR, color)
-                }
-
-                override fun getSelectedColor(): Int {
-                  return genDefaultColor()
-                }
-              }
+        listener = {
+          val config = ColorPickerDefaultController(
+              title = R.string.note_option_default_color,
+              colors = listOf(activity.resources.getIntArray(R.array.bright_colors), activity.resources.getIntArray(R.array.bright_colors_accent)),
+              selectedColor = sNoteDefaultColor,
+              onColorSelected = { sNoteDefaultColor = it }
           )
+          openSheet(activity, ColorPickerBottomSheet().apply { this.config = config })
           dismiss()
         }
     ))
-    options.add(OptionsItem(
-        title = R.string.home_option_markdown_settings,
-        subtitle = R.string.home_option_markdown_settings_subtitle,
-        icon = R.drawable.ic_markdown_logo,
-        listener = View.OnClickListener {
-          MarkdownBottomSheet.openSheet(activity)
-        }
-    ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_security,
         subtitle = R.string.home_option_security_subtitle,
         icon = R.drawable.ic_option_security,
-        listener = View.OnClickListener {
+        listener = {
           SecurityOptionsBottomSheet.openSheet(activity)
           dismiss()
         }
     ))
     return options
-  }
-
-  override fun getLayout(): Int = R.layout.bottom_sheet_options
-
-  companion object {
-
-    const val KEY_NOTE_DEFAULT_COLOR = "KEY_NOTE_DEFAULT_COLOR"
-
-    fun openSheet(activity: MainActivity) {
-      val sheet = NoteSettingsOptionsBottomSheet()
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
-
-    fun genDefaultColor(): Int {
-      return CoreConfig.instance.store().get(KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
-    }
   }
 }

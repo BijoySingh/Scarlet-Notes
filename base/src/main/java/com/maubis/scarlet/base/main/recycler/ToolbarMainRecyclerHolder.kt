@@ -7,27 +7,47 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
+import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
+import com.maubis.scarlet.base.settings.sheet.DeleteAndMoreOptionsBottomSheet
+import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.ui.visibility
 
 class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerViewHolder<RecyclerItem>(context, itemView) {
 
-  val title: TextView = findViewById(R.id.toolbar_title)
-  val searchButton: ImageView = findViewById(R.id.toolbar_icon_search)
+  val toolbarTitle: TextView = findViewById(R.id.toolbarTitle)
+  val toolbarIconSearch: ImageView = findViewById(R.id.toolbarIconSearch)
+  val toolbarIconSettings: ImageView = findViewById(R.id.toolbarIconSettings)
+  val toolbarIconDebug: ImageView = findViewById(R.id.toolbarIconDebug)
 
   override fun populate(data: RecyclerItem, extra: Bundle) {
     setFullSpan()
-    searchButton.setOnClickListener {
+    toolbarIconSearch.setOnClickListener {
       (context as MainActivity).setSearchMode(true)
     }
 
+    toolbarIconSettings.setOnClickListener {
+      SettingsOptionsBottomSheet.openSheet((context as MainActivity))
+    }
+
     val titleColor = CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
-    title.setTextColor(titleColor)
-    val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
-    searchButton.setColorFilter(toolbarIconColor)
+    toolbarTitle.setTextColor(titleColor)
+
+    val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
+    toolbarIconSearch.setColorFilter(toolbarIconColor)
+    toolbarIconSettings.setColorFilter(toolbarIconColor)
+
+    toolbarIconDebug.visibility = visibility(BuildConfig.DEBUG)
+    toolbarIconDebug.setColorFilter(toolbarIconColor)
+    toolbarIconDebug.setOnClickListener {
+      openSheet((context as MainActivity), DeleteAndMoreOptionsBottomSheet())
+    }
   }
 }
 

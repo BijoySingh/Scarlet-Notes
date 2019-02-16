@@ -12,12 +12,16 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.format.FormatBuilder
+import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.main.activity.WidgetConfigureActivity
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.widget.AllNotesWidgetProvider.Companion.notifyAllChanged
 import com.maubis.scarlet.base.service.FloatingNoteService
+import com.maubis.scarlet.base.support.utils.ImageCache
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 open class MaterialNoteActor(val note: Note) : INoteActor {
@@ -41,13 +45,13 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     val id = notesDb.database().insertNote(note)
     note.uid = if (note.isUnsaved()) id.toInt() else note.uid
     notesDb.notifyInsertNote(note)
-    AsyncTask.execute {
+    GlobalScope.launch {
       onNoteUpdated(context)
     }
   }
 
   override fun onlineSave(context: Context) {
-
+    CoreConfig.instance.externalFolderSync().insert(ExportableNote(note))
   }
 
   override fun save(context: Context) {
@@ -90,7 +94,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
 
 
   override fun onlineDelete(context: Context) {
-
+    CoreConfig.instance.externalFolderSync().remove(ExportableNote(note))
   }
 
   override fun delete(context: Context) {
@@ -103,6 +107,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     notifyAllChanged(context)
     val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
     notificationManager?.cancel(note.uid)
+    CoreConfig.instance.imageCache().deleteNote(note.uuid)
   }
 
   protected fun onNoteUpdated(context: Context) {

@@ -1,5 +1,8 @@
 package com.maubis.scarlet.base.core.format
 
+import com.maubis.markdown.segmenter.TextSegmenter
+import com.maubis.scarlet.base.note.toFormat
+import com.maubis.scarlet.base.note.toRawFormat
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -28,6 +31,49 @@ class FormatBuilder {
     return JSONObject(cache).toString()
   }
 
+  fun getSmarterDescription(formats: List<Format>): String {
+    val extractedFormats = emptyList<Format>().toMutableList()
+    for (format in formats) {
+      if (format.formatType != FormatType.TEXT) {
+        extractedFormats.add(format)
+        continue
+      }
+
+      val moreFormats = TextSegmenter(format.text).get().map { it.toRawFormat() }
+      var lastFormat: Format? = null
+      for (rawFormat in moreFormats) {
+        val isCheckedType = (rawFormat.formatType == FormatType.CHECKLIST_UNCHECKED || rawFormat.formatType == FormatType.CHECKLIST_CHECKED)
+        if (lastFormat != null && !isCheckedType) {
+          lastFormat.text += "\n"
+          lastFormat.text += rawFormat.text
+          continue
+        }
+
+        if (!isCheckedType) {
+          rawFormat.formatType = FormatType.TEXT
+          lastFormat = rawFormat
+          continue
+        }
+
+        if (lastFormat != null) {
+          extractedFormats.add(lastFormat)
+          lastFormat = null
+        }
+
+        rawFormat.text = rawFormat.text
+            .removePrefix("[] ")
+            .removePrefix("[x] ")
+            .removePrefix("[ ] ")
+            .removePrefix("[X] ")
+        extractedFormats.add(rawFormat)
+      }
+      if (lastFormat !== null) {
+        extractedFormats.add(lastFormat)
+      }
+
+    }
+    return getDescription(extractedFormats)
+  }
   fun getFormats(note: String): List<Format> {
     val formats = ArrayList<Format>()
     try {
@@ -48,7 +94,6 @@ class FormatBuilder {
 
   fun getNextFormatType(type: FormatType): FormatType {
     when (type) {
-      FormatType.BULLET_LIST -> return FormatType.BULLET_LIST
       FormatType.NUMBERED_LIST -> return FormatType.NUMBERED_LIST
       FormatType.HEADING -> return FormatType.SUB_HEADING
       FormatType.CHECKLIST_CHECKED, FormatType.CHECKLIST_UNCHECKED -> return FormatType.CHECKLIST_UNCHECKED

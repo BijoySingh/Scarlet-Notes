@@ -2,6 +2,7 @@ package com.maubis.scarlet.base.core.tag
 
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.export.data.ExportableTag
 
 open class MaterialTagActor(val tag: Tag) : ITagActor {
   override fun offlineSave() {
@@ -11,7 +12,7 @@ open class MaterialTagActor(val tag: Tag) : ITagActor {
   }
 
   override fun onlineSave() {
-
+    CoreConfig.instance.externalFolderSync().insert(ExportableTag(tag))
   }
 
   override fun save() {
@@ -30,6 +31,7 @@ open class MaterialTagActor(val tag: Tag) : ITagActor {
 
   override fun delete() {
     offlineDelete()
+    CoreConfig.instance.externalFolderSync().remove(ExportableTag(tag))
   }
 
 }

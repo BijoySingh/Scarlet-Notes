@@ -1,87 +1,79 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
-import android.widget.TextView
-import com.github.bijoysingh.starter.async.MultiAsyncTask
+import com.facebook.litho.Column
+import com.facebook.litho.Component
+import com.facebook.litho.ComponentContext
+import com.facebook.litho.widget.Text
+import com.facebook.yoga.YogaEdge
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
+import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
+import com.maubis.scarlet.base.support.specs.BottomSheetBar
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 
+class AboutUsBottomSheet : LithoBottomSheet() {
 
-class AboutUsBottomSheet : ThemedBottomSheetFragment() {
-  override fun getBackgroundView(): Int {
-    return R.id.container_layout
-  }
+  override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
+    val activity = context as MainActivity
 
-  override fun setupView(dialog: Dialog?) {
-    super.setupView(dialog)
-    if (dialog == null) {
-      return
+    var version = ""
+    try {
+      val pInfo = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0)
+      version = pInfo.versionName
+    } catch (exception: Exception) {
     }
 
-    val aboutUs = dialog.findViewById<TextView>(R.id.about_us)
-    val aboutApp = dialog.findViewById<TextView>(R.id.about_app)
-    val appVersion = dialog.findViewById<TextView>(R.id.app_version)
-    val rateUs = dialog.findViewById<TextView>(R.id.rate_us)
+    val appName = getString(R.string.app_name)
+    val aboutUsDetails = getString(R.string.about_page_about_us_details, appName)
+    val aboutAppDetails = getString(R.string.about_page_description, appName)
 
-    val activity = themedActivity()
-    MultiAsyncTask.execute(object : MultiAsyncTask.Task<String> {
-      override fun run(): String {
-        try {
-          val pInfo = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0)
-          return pInfo.versionName
-        } catch (e: Exception) {
-
-        }
-        return ""
-      }
-
-      override fun handle(result: String) {
-        val appName = getString(R.string.app_name)
-        val aboutUsDetails = getString(R.string.about_page_about_us_details, appName)
-        aboutUs.text = aboutUsDetails
-
-        val aboutAppDetails = getString(R.string.about_page_description, appName)
-        aboutApp.text = aboutAppDetails
-
-        appVersion.text = result
-
-        rateUs.setOnClickListener {
-          IntentUtils.openAppPlayStore(activity)
-          dismiss()
-        }
-      }
-    })
-
-    val textColor = CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)
-    aboutUs.setTextColor(textColor)
-    aboutApp.setTextColor(textColor)
-    appVersion.setTextColor(textColor)
-
-    val aboutUsTitle = dialog.findViewById<TextView>(R.id.about_us_title)
-    val aboutAppTitle = dialog.findViewById<TextView>(R.id.about_app_title)
-    val appVersionTitle = dialog.findViewById<TextView>(R.id.app_version_title)
-    val titleTextColor = CoreConfig.instance.themeController().get(ThemeColorType.SECTION_HEADER)
-    aboutUsTitle.setTextColor(titleTextColor)
-    aboutAppTitle.setTextColor(titleTextColor)
-    appVersionTitle.setTextColor(titleTextColor)
-
-    makeBackgroundTransparent(dialog, R.id.root_layout)
-  }
-
-  override fun getLayout(): Int = R.layout.bottom_sheet_about_page
-
-  override fun getBackgroundCardViewIds(): Array<Int> = arrayOf(
-      R.id.about_app_card, R.id.about_us_card, R.id.app_version_card)
-
-  companion object {
-    fun openSheet(activity: MainActivity) {
-      val sheet = AboutUsBottomSheet()
-
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
+    val component = Column.create(componentContext)
+        .widthPercent(100f)
+        .paddingDip(YogaEdge.VERTICAL, 8f)
+        .paddingDip(YogaEdge.HORIZONTAL, 20f)
+        .child(getLithoBottomSheetTitle(componentContext)
+            .textRes(R.string.home_option_about_page)
+            .marginDip(YogaEdge.HORIZONTAL, 0f))
+        .child(Text.create(componentContext)
+            .textSizeRes(R.dimen.font_size_large)
+            .marginDip(YogaEdge.BOTTOM, 16f)
+            .text(aboutUsDetails)
+            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+        .child(Text.create(componentContext)
+            .textSizeRes(R.dimen.font_size_xlarge)
+            .marginDip(YogaEdge.BOTTOM, 4f)
+            .textRes(R.string.about_page_about_app)
+            .typeface(CoreConfig.FONT_MONSERRAT)
+            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
+        .child(Text.create(componentContext)
+            .textSizeRes(R.dimen.font_size_large)
+            .marginDip(YogaEdge.BOTTOM, 16f)
+            .text(aboutAppDetails)
+            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+        .child(Text.create(componentContext)
+            .textSizeRes(R.dimen.font_size_xlarge)
+            .marginDip(YogaEdge.BOTTOM, 4f)
+            .textRes(R.string.about_page_app_version)
+            .typeface(CoreConfig.FONT_MONSERRAT)
+            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
+        .child(Text.create(componentContext)
+            .textSizeRes(R.dimen.font_size_large)
+            .marginDip(YogaEdge.BOTTOM, 16f)
+            .text(version)
+            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+        .child(BottomSheetBar.create(componentContext)
+            .primaryActionRes(R.string.about_page_rate)
+            .onPrimaryClick {
+              try {
+                IntentUtils.openAppPlayStore(activity)
+                dismiss()
+              } catch (exception: Exception) {
+              }
+            }.paddingDip(YogaEdge.VERTICAL, 8f))
+    return component.build()
   }
 }

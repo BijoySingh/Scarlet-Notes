@@ -4,12 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.SpannableString
+import android.text.TextWatcher
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.TextUtils
 import com.github.bijoysingh.uibasics.views.UITextView
+import com.maubis.markdown.Markdown
+import com.maubis.markdown.spannable.setFormats
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.database.room.note.Note
@@ -21,6 +26,10 @@ import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import java.io.InputStreamReader
+import android.support.annotation.NonNull
+import android.text.style.*
+import com.maubis.markdown.spannable.clearMarkdownSpans
+
 
 const val KEEP_PACKAGE = "com.google.android.keep"
 const val INTENT_KEY_DIRECT_NOTES_TRANSFER = "direct_notes_transfer"
@@ -52,10 +61,32 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
     setView()
     notifyThemeChange()
 
-    content.setText(contentText)
+
+    val spannable = SpannableString(contentText)
+    spannable.setFormats(Markdown.getSpanInfo(contentText).spans)
+    content.setText(spannable, TextView.BufferType.SPANNABLE)
+
     title.setText(titleText)
     title.visibility = if (TextUtils.isNullOrEmpty(titleText)) View.GONE else View.VISIBLE
     filename.setText(filenameText)
+
+    content.addTextChangedListener(object : TextWatcher {
+      override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+      }
+
+      override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        if (text is Editable) {
+          text.clearMarkdownSpans()
+          text.setFormats(Markdown.getSpanInfo(text.toString()).spans)
+        }
+      }
+
+      override fun afterTextChanged(text: Editable) {
+
+      }
+
+    })
   }
 
   override fun onResume() {

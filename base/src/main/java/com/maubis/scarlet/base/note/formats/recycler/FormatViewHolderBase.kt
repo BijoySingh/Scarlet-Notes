@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
-import android.widget.ImageView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
@@ -12,10 +11,11 @@ import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
-import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet.Companion.genDefaultColor
+import com.maubis.scarlet.base.settings.sheet.STORE_KEY_TEXT_SIZE
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
-import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet
+import com.maubis.scarlet.base.settings.sheet.TEXT_SIZE_DEFAULT
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
+import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -35,22 +35,13 @@ data class FormatViewHolderConfig(
     val accentColor: Int,
     val noteUUID: String)
 
-class ActionMoveIcon(val view: View) {
-  private val leftIcon: ImageView = view.findViewById(R.id.left_icon)
-  private val rightIcon: ImageView = view.findViewById(R.id.right_icon)
-
-  fun setColorFilter(color: Int) {
-    leftIcon.setColorFilter(color)
-    rightIcon.setColorFilter(color)
-  }
-}
 
 abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerViewHolder<Format>(context, view) {
 
   protected val activity: ViewAdvancedNoteActivity = context as ViewAdvancedNoteActivity
 
   override fun populate(data: Format, extra: Bundle?) {
-    val noteColor: Int = extra?.getInt(KEY_NOTE_COLOR) ?: genDefaultColor()
+    val noteColor: Int = extra?.getInt(KEY_NOTE_COLOR) ?: sNoteDefaultColor
     val secondaryTextColor: Int
     val tertiaryTextColor: Int
     val iconColor: Int
@@ -86,8 +77,8 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
             || extra.getBoolean(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
             || data.forcedMarkdown),
         fontSize = {
-          val fontSize = extra?.getInt(TextSizeBottomSheet.KEY_TEXT_SIZE, TextSizeBottomSheet.TEXT_SIZE_DEFAULT)
-              ?: TextSizeBottomSheet.TEXT_SIZE_DEFAULT
+          val fontSize = extra?.getInt(STORE_KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT)
+              ?: TEXT_SIZE_DEFAULT
           when (data.formatType) {
             FormatType.HEADING -> fontSize.toFloat() + 4
             FormatType.SUB_HEADING -> fontSize.toFloat() + 2

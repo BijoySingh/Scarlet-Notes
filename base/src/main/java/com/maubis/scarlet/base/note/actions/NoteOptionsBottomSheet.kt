@@ -7,15 +7,16 @@ import android.view.View
 import android.widget.GridLayout
 import android.widget.TextView
 import com.github.bijoysingh.starter.util.RandomHelper
+import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.main.sheets.AlertBottomSheet.Companion.openDeleteNotePermanentlySheet
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
+import com.maubis.scarlet.base.main.sheets.openDeleteNotePermanentlySheet
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
 import com.maubis.scarlet.base.note.folder.sheet.FolderChooseOptionsBottomSheet
@@ -26,16 +27,16 @@ import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
 import com.maubis.scarlet.base.note.tag.sheet.TagChooseOptionsBottomSheet
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
-import com.maubis.scarlet.base.settings.sheet.NoteColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.Flavor
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
-import ru.noties.markwon.Markwon
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
@@ -65,8 +66,8 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         { noteForAction: Note -> getNotePropertyOptions(noteForAction) },
         { noteForAction: Note -> getOptions(noteForAction) })
     gridOptionFunctions.forEachIndexed { index, function ->
-      launch(UI) {
-        val items = async(CommonPool) { function(note) }
+      GlobalScope.launch(Dispatchers.Main) {
+        val items = GlobalScope.async(Dispatchers.IO) { function(note) }
         setOptions(dialog.findViewById<GridLayout>(gridLayoutIds[index]), items.await())
       }
     }
@@ -83,15 +84,18 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     val tagsTitle = tagCardLayout.findViewById<TextView>(R.id.tags_title)
     val tagContent = note.getTagString()
     if (tagContent.isNotBlank()) {
-      tags.visibility = View.VISIBLE
-      tagsTitle.visibility = View.GONE
-      tags.setText(Markwon.markdown(activity, tagContent))
+      GlobalScope.launch(Dispatchers.Main) {
+        val text = GlobalScope.async(Dispatchers.IO) { Markdown.renderSegment(tagContent, true) }
+        tags.visibility = View.VISIBLE
+        tagsTitle.visibility = View.GONE
+        tags.text = text.await()
+      }
     }
     tagCardLayout.setOnClickListener {
       TagChooseOptionsBottomSheet.openSheet(
           activity,
-          note,
-          { activity.notifyTagsChanged(note) })
+          note
+      ) { activity.notifyTagsChanged(note) }
       dismiss()
     }
 
@@ -229,19 +233,16 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.tap_for_action_color,
         icon = R.drawable.ic_action_color,
         listener = View.OnClickListener {
-          NoteColorPickerBottomSheet.openSheet(
-              activity,
-              object : NoteColorPickerBottomSheet.ColorPickerController {
-                override fun onColorSelected(note: Note, color: Int) {
-                  note.color = color
-                  activity.updateNote(note)
-                }
-
-                override fun getNote(): Note {
-                  return note
-                }
+          val config = ColorPickerDefaultController(
+              title = R.string.choose_note_color,
+              colors = listOf(activity.resources.getIntArray(R.array.bright_colors), activity.resources.getIntArray(R.array.bright_colors_accent)),
+              selectedColor = note.color,
+              onColorSelected = { color ->
+                note.color = color
+                activity.updateNote(note)
               }
           )
+          com.maubis.scarlet.base.support.sheets.openSheet(activity, ColorPickerBottomSheet().apply { this.config = config })
           dismiss()
         }
     ))
@@ -369,7 +370,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
             note.viewDistractionFree(activity)
             return@OnClickListener
           }
-          InstallProUpsellBottomSheet.openSheet(activity)
+          com.maubis.scarlet.base.support.sheets.openSheet(activity, InstallProUpsellBottomSheet())
         },
         visible = CoreConfig.instance.appFlavor() != Flavor.NONE,
         invalid = activity.lockedContentIsHidden() && note.locked

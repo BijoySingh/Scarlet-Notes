@@ -1,165 +1,127 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
-import android.view.View
+import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
-import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet.Companion.getDefaultLineCount
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingState
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingTechniqueLabel
-import com.maubis.scarlet.base.settings.sheet.TextSizeBottomSheet.Companion.getDefaultTextSize
+import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.openSheet
+import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
 import com.maubis.scarlet.base.support.utils.Flavor
 
-import com.maubis.scarlet.base.support.option.OptionsItem
-import com.maubis.scarlet.base.support.sheets.OptionItemBottomSheetBase
-import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
-import com.maubis.scarlet.base.support.ui.Theme
-import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.ui.ThemeManager
+class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
+  override fun title(): Int = R.string.home_option_ui_experience
 
-class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
-
-  override fun setupViewWithDialog(dialog: Dialog) {
-    setOptions(dialog, getOptions())
-  }
-
-  private fun getOptions(): List<OptionsItem> {
-    val activity = context as MainActivity
-    val options = ArrayList<OptionsItem>()
+  override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
+    val activity = componentContext.androidContext as MainActivity
+    val options = ArrayList<LithoOptionsItem>()
     val flavor = CoreConfig.instance.appFlavor()
-    options.add(OptionsItem(
-        title = R.string.home_option_enable_night_mode,
-        subtitle = R.string.home_option_enable_night_mode_subtitle,
-        icon = R.drawable.night_mode_white_48dp,
-        listener = View.OnClickListener {
-          CoreConfig.instance.store().put(KEY_APP_THEME, Theme.DARK.name)
-          CoreConfig.instance.themeController().notifyChange(activity)
-          activity.notifyThemeChange()
-          dismiss()
-        },
-        visible = !CoreConfig.instance.themeController().isNightTheme() && flavor != Flavor.PRO
-    ))
-    options.add(OptionsItem(
-        title = R.string.home_option_enable_day_mode,
-        subtitle = R.string.home_option_enable_day_mode_subtitle,
-        icon = R.drawable.ic_action_day_mode,
-        listener = View.OnClickListener {
-          CoreConfig.instance.store().put(KEY_APP_THEME, Theme.LIGHT.name)
-          CoreConfig.instance.themeController().notifyChange(activity)
-          activity.notifyThemeChange()
-          dismiss()
-        },
-        visible = CoreConfig.instance.themeController().isNightTheme() && flavor != Flavor.PRO
-    ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_theme_color,
         subtitle = R.string.home_option_theme_color_subtitle,
         icon = if (CoreConfig.instance.themeController().isNightTheme()) R.drawable.night_mode_white_48dp else R.drawable.ic_action_day_mode,
-        listener = View.OnClickListener {
-          if (flavor == Flavor.PRO) {
-            ColorPickerBottomSheet.openSheet(activity, object : ColorPickerBottomSheet.ColorPickerDefaultController {
-              override fun getSheetTitle(): Int = R.string.theme_page_title
-
-              override fun getColorList(): IntArray = resources.getIntArray(R.array.theme_color)
-
-              override fun onColorSelected(color: Int) {
-                val theme = ThemeManager.getThemeByBackgroundColor(activity, color)
-                CoreConfig.instance.store().put(KEY_APP_THEME, theme.name)
-                CoreConfig.instance.themeController().notifyChange(activity)
-                activity.notifyThemeChange()
-                reset(dialog)
-                resetBackground(dialog)
-                makeBackgroundTransparent(dialog, R.id.root_layout)
-              }
-
-              override fun getSelectedColor(): Int = CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND)
-            })
-          } else {
-            InstallProUpsellBottomSheet.openSheet(activity)
-            dismiss()
-          }
-        },
-        visible = flavor != Flavor.NONE,
-        actionIcon = if (flavor == Flavor.PRO) 0 else R.drawable.ic_rating
+        listener = {
+          com.maubis.scarlet.base.support.sheets.openSheet(activity, ThemeColorPickerBottomSheet().apply {
+            this.onThemeChange = { theme ->
+              CoreConfig.instance.store().put(KEY_APP_THEME, theme.name)
+              CoreConfig.instance.themeController().notifyChange(activity)
+              activity.notifyThemeChange()
+              reset(activity, dialog)
+            }
+          })
+        }
     ))
     val isTablet = resources.getBoolean(R.bool.is_tablet)
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_enable_list_view,
         subtitle = R.string.home_option_enable_list_view_subtitle,
         icon = R.drawable.ic_action_list,
-        listener = View.OnClickListener {
+        listener = {
           useGridView = false
           activity.notifyAdapterExtraChanged()
-          dismiss()
+          reset(activity, dialog)
         },
         visible = !isTablet && useGridView
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_enable_grid_view,
         subtitle = R.string.home_option_enable_grid_view_subtitle,
         icon = R.drawable.ic_action_grid,
-        listener = View.OnClickListener {
+        listener = {
           useGridView = true
           activity.notifyAdapterExtraChanged()
-          dismiss()
+          reset(activity, dialog)
         },
         visible = !isTablet && !useGridView
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.home_option_order_notes,
         subtitle = getSortingTechniqueLabel(getSortingState()),
         icon = R.drawable.ic_sort,
-        listener = View.OnClickListener {
+        listener = {
           SortingOptionsBottomSheet.openSheet(activity, { activity.setupData() })
-          dismiss()
+          reset(activity, dialog)
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.note_option_font_size,
         subtitle = 0,
-        content = activity.getString(R.string.note_option_font_size_subtitle, getDefaultTextSize()),
+        content = activity.getString(R.string.note_option_font_size_subtitle, sEditorTextSize),
         icon = R.drawable.ic_title_white_48dp,
-        listener = View.OnClickListener {
+        listener = {
           if (flavor == Flavor.PRO) {
-            TextSizeBottomSheet.openSheet(activity)
+            com.maubis.scarlet.base.support.sheets.openSheet(activity, FontSizeBottomSheet())
           } else {
-            InstallProUpsellBottomSheet.openSheet(activity)
+            openSheet(activity, InstallProUpsellBottomSheet())
           }
-          dismiss()
+          reset(activity, dialog)
         },
         visible = flavor != Flavor.NONE,
         actionIcon = if (flavor == Flavor.PRO) 0 else R.drawable.ic_rating
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.note_option_number_lines,
         subtitle = 0,
-        content = activity.getString(R.string.note_option_number_lines_subtitle, getDefaultLineCount()),
+        content = activity.getString(R.string.note_option_number_lines_subtitle, sNoteItemLineCount),
         icon = R.drawable.ic_action_list,
-        listener = View.OnClickListener {
-          LineCountBottomSheet.openSheet(activity)
-          dismiss()
+        listener = {
+          openSheet(activity, LineCountBottomSheet())
         }
     ))
-    options.add(OptionsItem(
+    options.add(LithoOptionsItem(
         title = R.string.ui_options_note_background_color,
         subtitle = when (useNoteColorAsBackground) {
           true -> R.string.ui_options_note_background_color_settings_note
           false -> R.string.ui_options_note_background_color_settings_theme
         },
         icon = R.drawable.ic_action_color,
-        listener = View.OnClickListener {
+        listener = {
           if (flavor != Flavor.PRO) {
-            InstallProUpsellBottomSheet.openSheet(activity)
-            return@OnClickListener
+            openSheet(activity, InstallProUpsellBottomSheet())
+            return@LithoOptionsItem
           }
 
           useNoteColorAsBackground = !useNoteColorAsBackground
-          reset(dialog)
+          reset(activity, dialog)
         },
         visible = flavor != Flavor.NONE,
         actionIcon = if (flavor == Flavor.PRO) 0 else R.drawable.ic_rating
+    ))
+    options.add(LithoOptionsItem(
+        title = R.string.markdown_sheet_home_markdown_support,
+        subtitle = R.string.markdown_sheet_home_markdown_support_subtitle,
+        icon = R.drawable.ic_markdown_logo,
+        listener = {
+          sMarkdownEnabledHome = !sMarkdownEnabledHome
+          reset(activity, dialog)
+        },
+        isSelectable = true,
+        selected = sMarkdownEnabledHome
     ))
     return options
   }
@@ -168,6 +130,7 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
 
     const val KEY_LIST_VIEW = "KEY_LIST_VIEW"
     const val KEY_NOTE_VIEWER_BG_COLOR = "KEY_NOTE_VIEWER_BG_COLOR"
+    const val KEY_MARKDOWN_HOME_ENABLED = "KEY_MARKDOWN_HOME_ENABLED"
 
     fun openSheet(activity: MainActivity) {
       val sheet = UISettingsOptionsBottomSheet()
@@ -181,5 +144,9 @@ class UISettingsOptionsBottomSheet : OptionItemBottomSheetBase() {
     var useNoteColorAsBackground: Boolean
       get() = CoreConfig.instance.store().get(KEY_NOTE_VIEWER_BG_COLOR, false)
       set(value) = CoreConfig.instance.store().put(KEY_NOTE_VIEWER_BG_COLOR, value)
+
+    var sMarkdownEnabledHome: Boolean
+      get() = CoreConfig.instance.store().get(KEY_MARKDOWN_HOME_ENABLED, true)
+      set(value) = CoreConfig.instance.store().put(KEY_MARKDOWN_HOME_ENABLED, value)
   }
 }

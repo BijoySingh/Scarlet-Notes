@@ -4,23 +4,26 @@ import android.content.Context
 import android.content.Intent
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
+import com.maubis.markdown.Markdown
+import com.maubis.markdown.segmenter.TextSegmenter
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
+import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.core.note.getTagUUIDs
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FREE
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
-import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
-import com.maubis.scarlet.base.support.utils.renderMarkdown
 import java.util.*
+import kotlin.collections.ArrayList
 
 fun Note.log(context: Context): String {
   val log = HashMap<String, Any>()
@@ -28,7 +31,7 @@ fun Note.log(context: Context): String {
   log["_title"] = getTitle()
   log["_text"] = getText()
   log["_image"] = getImageFile()
-  log["_locked"] = getLockedText(context, false)
+  log["_locked"] = getLockedText(false)
   log["_fullText"] = getFullText()
   log["_displayTime"] = getDisplayTime()
   log["_tag"] = getTagString()
@@ -75,10 +78,34 @@ fun Note.getText(): String {
     formats.removeAt(0)
   }
 
-  return formats
-      .map { it.markdownText }
-      .joinToString(separator = "\n")
-      .trim()
+  val stringBuilder = StringBuilder()
+  formats.forEach {
+    stringBuilder.append(it.markdownText)
+    stringBuilder.append("\n")
+    if (it.formatType == FormatType.QUOTE) {
+      stringBuilder.append("\n")
+    }
+  }
+  return stringBuilder.toString().trim()
+}
+
+fun Note.getSmartFormats(): List<Format> {
+  val formats = getFormats()
+  var maxIndex = formats.size
+  val smartFormats = ArrayList<Format>()
+  formats.forEach {
+    if (it.formatType == FormatType.TEXT) {
+      val moreFormats = TextSegmenter(it.text).get().map { it.toFormat() }
+      moreFormats.forEach { format ->
+        format.uid = maxIndex
+        smartFormats.add(format)
+        maxIndex += 1
+      }
+    } else {
+      smartFormats.add(it)
+    }
+  }
+  return smartFormats
 }
 
 fun Note.getImageFile(): String {
@@ -87,38 +114,38 @@ fun Note.getImageFile(): String {
   return format?.text ?: ""
 }
 
-fun Note.getMarkdownTitle(context: Context, isMarkdownEnabled: Boolean): CharSequence {
+fun Note.getMarkdownTitle(isMarkdownEnabled: Boolean): CharSequence {
   val titleString = getTitle()
   return when {
     titleString.isBlank() -> ""
-    !isMarkdownEnabled -> renderMarkdown(context, removeMarkdownHeaders(titleString))
+    !isMarkdownEnabled -> Markdown.render(removeMarkdownHeaders(titleString), true)
     else -> titleString
   }
 }
 
-fun Note.getMarkdownText(context: Context, isMarkdownEnabled: Boolean): CharSequence {
+fun Note.getMarkdownText(isMarkdownEnabled: Boolean): CharSequence {
   return when {
-    isMarkdownEnabled -> renderMarkdown(context, removeMarkdownHeaders(getText()))
+    isMarkdownEnabled -> Markdown.render(removeMarkdownHeaders(getText()), true)
     else -> getText()
   }
 }
 
 fun Note.getFullText(): String {
   val formats = getFormats()
-  return formats.map { it -> it.markdownText }.joinToString(separator = "\n\n").trim()
+  return formats.map { it -> it.markdownText }.joinToString(separator = "\n").trim()
 }
 
 fun Note.getUnreliablyStrippedText(context: Context): String {
   val builder = StringBuilder()
-  builder.append(renderMarkdown(context, removeMarkdownHeaders(getTitle())))
-  builder.append(renderMarkdown(context, removeMarkdownHeaders(getText())))
+  builder.append(Markdown.render(removeMarkdownHeaders(getTitle())), true)
+  builder.append(Markdown.render(removeMarkdownHeaders(getText())), true)
   return builder.toString().trim { it <= ' ' }
 }
 
-fun Note.getLockedText(context: Context, isMarkdownEnabled: Boolean): CharSequence {
+fun Note.getLockedText(isMarkdownEnabled: Boolean): CharSequence {
   return when {
     this.locked -> "******************\n***********\n****************"
-    else -> getMarkdownText(context, isMarkdownEnabled)
+    else -> getMarkdownText(isMarkdownEnabled)
   }
 }
 
@@ -239,7 +266,18 @@ fun Note.copy(context: Context) {
  ******************************* Database Functions ********************************
  **************************************************************************************/
 
+fun Note.applySanityChecks() {
+  folder = folder ?: ""
+  description = description ?: ""
+  timestamp = timestamp ?: 0L
+  color = color ?: 0
+  state = state ?: ""
+  tags = tags ?: ""
+  uuid = uuid ?: ""
+}
+
 fun Note.save(context: Context) {
+  applySanityChecks()
   if (disableBackup) {
     saveWithoutSync(context)
     return

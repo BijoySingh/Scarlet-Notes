@@ -2,32 +2,31 @@ package com.maubis.scarlet.base.note.recycler
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
+import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.note.getNoteState
-import com.maubis.scarlet.base.core.note.getReminder
 import com.maubis.scarlet.base.core.note.getReminderV2
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.*
-import com.maubis.scarlet.base.settings.sheet.LineCountBottomSheet
-import com.maubis.scarlet.base.settings.sheet.MarkdownBottomSheet
+import com.maubis.scarlet.base.note.creation.sheet.sEditorMarkdownEnabled
+import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.sMarkdownEnabledHome
+import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ColorUtil
-import ru.noties.markwon.Markwon
 
 class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
 
-  val isLightShaded = ColorUtil.isLightColored(note.color)
-  val isMarkdownEnabled = MarkdownBottomSheet.isMarkdownEnabled()
-      && MarkdownBottomSheet.isMarkdownHomeEnabled()
-  val lineCount = LineCountBottomSheet.getDefaultLineCount()
+  private val isLightShaded = ColorUtil.isLightColored(note.color)
+  private val isMarkdownEnabled = sEditorMarkdownEnabled && sMarkdownEnabledHome
+  val lineCount = sNoteItemLineCount
 
-  val title = note.getMarkdownTitle(context, isMarkdownEnabled)
+  val title = note.getMarkdownTitle(isMarkdownEnabled)
   val titleColor = when (isLightShaded) {
     true -> ContextCompat.getColor(context, R.color.dark_tertiary_text)
     false -> ContextCompat.getColor(context, R.color.light_primary_text)
   }
 
-  val description = note.getLockedText(context, isMarkdownEnabled)
+  val description = note.getLockedText(isMarkdownEnabled)
   val descriptionColor = when (isLightShaded) {
     true -> ContextCompat.getColor(context, R.color.dark_tertiary_text)
     false -> ContextCompat.getColor(context, R.color.light_primary_text)
@@ -46,7 +45,7 @@ class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
   }
 
   val tagsSource = note.getTagString()
-  val tags = Markwon.markdown(context, tagsSource)
+  val tags = Markdown.renderSegment(tagsSource, true)
   val tagsColor = when (isLightShaded) {
     true -> ContextCompat.getColor(context, R.color.dark_tertiary_text)
     false -> ContextCompat.getColor(context, R.color.light_secondary_text)

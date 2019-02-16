@@ -1,69 +1,56 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
-import android.view.View
+import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.note.SortingTechnique
-import com.maubis.scarlet.base.support.option.OptionsItem
-import com.maubis.scarlet.base.support.sheets.ChooseOptionBottomSheetBase
+import com.maubis.scarlet.base.support.sheets.LithoChooseOptionBottomSheet
+import com.maubis.scarlet.base.support.sheets.LithoChooseOptionsItem
 
-class SortingOptionsBottomSheet : ChooseOptionBottomSheetBase() {
-
+class SortingOptionsBottomSheet : LithoChooseOptionBottomSheet() {
   var listener: () -> Unit = {}
 
-  override fun setupViewWithDialog(dialog: Dialog) {
-    setOptions(dialog, getOptions())
-  }
+  override fun title(): Int =  R.string.sort_sheet_title
 
-  private fun getOptions(): List<OptionsItem> {
+  override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoChooseOptionsItem> {
     val sorting = getSortingState()
-    val options = ArrayList<OptionsItem>()
+    val options = ArrayList<LithoChooseOptionsItem>()
 
-    val getIcon = fun(sortingTechnique: SortingTechnique): Int = if (sorting == sortingTechnique) R.drawable.ic_done_white_48dp else 0
-
-    options.add(OptionsItem(
+    options.add(LithoChooseOptionsItem(
         title = getSortingTechniqueLabel(SortingTechnique.LAST_MODIFIED),
-        subtitle = getSortingTechniqueLabel(SortingTechnique.LAST_MODIFIED),
-        icon = getIcon(SortingTechnique.LAST_MODIFIED),
-        listener = View.OnClickListener {
+        listener = {
           setSortingState(SortingTechnique.LAST_MODIFIED)
           listener()
-          reset(dialog)
+          reset(componentContext.androidContext, dialog)
         },
         selected = sorting == SortingTechnique.LAST_MODIFIED
     ))
-    options.add(OptionsItem(
+    options.add(LithoChooseOptionsItem(
         title = getSortingTechniqueLabel(SortingTechnique.NEWEST_FIRST),
-        subtitle = getSortingTechniqueLabel(SortingTechnique.NEWEST_FIRST),
-        icon = getIcon(SortingTechnique.NEWEST_FIRST),
-        listener = View.OnClickListener {
+        listener = {
           setSortingState(SortingTechnique.NEWEST_FIRST)
           listener()
-          reset(dialog)
+          reset(componentContext.androidContext, dialog)
         },
         selected = sorting == SortingTechnique.NEWEST_FIRST
     ))
-    options.add(OptionsItem(
+    options.add(LithoChooseOptionsItem(
         title = getSortingTechniqueLabel(SortingTechnique.OLDEST_FIRST),
-        subtitle = getSortingTechniqueLabel(SortingTechnique.OLDEST_FIRST),
-        icon = getIcon(SortingTechnique.OLDEST_FIRST),
-        listener = View.OnClickListener {
+        listener = {
           setSortingState(SortingTechnique.OLDEST_FIRST)
           listener()
-          reset(dialog)
+          reset(componentContext.androidContext, dialog)
         },
         selected = sorting == SortingTechnique.OLDEST_FIRST
     ))
-    options.add(OptionsItem(
+    options.add(LithoChooseOptionsItem(
         title = getSortingTechniqueLabel(SortingTechnique.ALPHABETICAL),
-        subtitle = getSortingTechniqueLabel(SortingTechnique.ALPHABETICAL),
-        icon = getIcon(SortingTechnique.ALPHABETICAL),
-        listener = View.OnClickListener {
+        listener = {
           setSortingState(SortingTechnique.ALPHABETICAL)
           listener()
-          reset(dialog)
+          reset(componentContext.androidContext, dialog)
         },
         selected = sorting == SortingTechnique.ALPHABETICAL
     ))

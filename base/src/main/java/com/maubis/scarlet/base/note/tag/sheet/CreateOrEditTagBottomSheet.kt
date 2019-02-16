@@ -7,8 +7,8 @@ import android.widget.EditText
 import android.widget.TextView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.core.tag.isUnsaved
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.note.tag.delete
 import com.maubis.scarlet.base.note.tag.save
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -60,12 +60,13 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
       dismiss()
     }
     enterTag.setText(tag.title)
-    enterTag.setOnEditorActionListener(getEditorActionListener {
-      val updated = onActionClick(tag, enterTag.text.toString())
-      sheetOnTagListener(tag, !updated)
-      dismiss()
-      return@getEditorActionListener true
-    })
+    enterTag.setOnEditorActionListener(getEditorActionListener(
+        runnable = {
+          val updated = onActionClick(tag, enterTag.text.toString())
+          sheetOnTagListener(tag, !updated)
+          dismiss()
+          return@getEditorActionListener true
+        }))
     makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
