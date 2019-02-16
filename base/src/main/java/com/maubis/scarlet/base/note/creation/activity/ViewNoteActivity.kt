@@ -230,14 +230,26 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
   }
 
   open fun setFormatChecked(format: Format, checked: Boolean) {
+    val trueFormats = note!!.getFormats().toMutableList()
+    val truePosition = trueFormats.indexOfFirst { it.uid == format.uid }
+    if (truePosition == -1) {
+      return
+    }
+
     val position = getFormatIndex(format)
     if (position == -1) {
       return
     }
+
     format.formatType = if (checked) FormatType.CHECKLIST_CHECKED else FormatType.CHECKLIST_UNCHECKED
     formats[position] = format
     adapter.updateItem(format, position)
-    updateNoteForChecked()
+
+    trueFormats[truePosition] = format
+
+    note!!.description = FormatBuilder().getSmarterDescription(trueFormats.sorted())
+    setNote()
+    maybeSaveNote(true)
   }
 
   fun openMoreOptions() {
@@ -318,12 +330,6 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       true -> note!!.save(context)
       false -> note!!.saveWithoutSync(context)
     }
-  }
-
-  private fun updateNoteForChecked() {
-    note!!.description = FormatBuilder().getDescription(formats.sorted())
-    setNote()
-    maybeSaveNote(true)
   }
 
   fun notifyNoteChange() {

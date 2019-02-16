@@ -189,7 +189,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     }
 
     val vLastNoteInstance = history.getOrNull(historyIndex) ?: currentNote
-    currentNote.description = FormatBuilder().getDescription(formats)
+    currentNote.description = FormatBuilder().getSmarterDescription(formats)
 
     // Ignore update if nothing changed. It allows for one undo per few seconds
     if (currentNote.isEqual(vLastNoteInstance)) {
@@ -411,9 +411,6 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     val newPosition = position + 1
     when {
       isCheckList -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.CHECKLIST_UNCHECKED))
-      format.formatType == FormatType.BULLET_1 -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.BULLET_1))
-      format.formatType == FormatType.BULLET_2 -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.BULLET_2))
-      format.formatType == FormatType.BULLET_3 -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.BULLET_3))
       newPosition < formats.size -> focus(position + 1)
       else -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(format.formatType))
     }

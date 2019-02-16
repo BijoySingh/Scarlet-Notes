@@ -16,9 +16,6 @@ class Format : Comparable<Format> {
   val markdownText: String
     get() {
       return when (formatType) {
-        FormatType.BULLET_1 -> "- $text"
-        FormatType.BULLET_2 -> "  - $text"
-        FormatType.BULLET_3 -> "    - $text"
         FormatType.NUMBERED_LIST -> "- $text"
         FormatType.HEADING -> "# $text"
         FormatType.CHECKLIST_CHECKED -> "[ ] $text"

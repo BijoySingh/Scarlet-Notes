@@ -138,7 +138,7 @@ class TextSegmentConfig(builder: Builder) {
             LineStartSegment(MarkdownSegmentType.CHECKLIST_UNCHECKED, "[ ] ", "☐ "))
         MarkdownSegmentType.CHECKLIST_CHECKED -> arrayOf(
             LineStartSegment(MarkdownSegmentType.CHECKLIST_CHECKED, "[x] ", "☑ "),
-            LineStartSegment(MarkdownSegmentType.CHECKLIST_UNCHECKED, "[X] ", "☑ "))
+            LineStartSegment(MarkdownSegmentType.CHECKLIST_CHECKED, "[X] ", "☑ "))
       }
     }
 

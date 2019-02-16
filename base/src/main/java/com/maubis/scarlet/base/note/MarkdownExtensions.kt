@@ -9,6 +9,10 @@ fun MarkdownSegment.toFormat(): Format {
   return Format(type().toFormatType(), strip())
 }
 
+fun MarkdownSegment.toRawFormat(): Format {
+  return Format(type().toFormatType(), text())
+}
+
 fun MarkdownSegmentType.toFormatType(): FormatType {
   return when (this) {
     MarkdownSegmentType.INVALID -> FormatType.EMPTY
@@ -17,9 +21,9 @@ fun MarkdownSegmentType.toFormatType(): FormatType {
     MarkdownSegmentType.HEADING_3 -> FormatType.HEADING_3
     MarkdownSegmentType.NORMAL -> FormatType.TEXT
     MarkdownSegmentType.CODE -> FormatType.CODE
-    MarkdownSegmentType.BULLET_1 -> FormatType.BULLET_1
-    MarkdownSegmentType.BULLET_2 -> FormatType.BULLET_2
-    MarkdownSegmentType.BULLET_3 -> FormatType.BULLET_3
+    MarkdownSegmentType.BULLET_1 -> FormatType.TEXT
+    MarkdownSegmentType.BULLET_2 -> FormatType.TEXT
+    MarkdownSegmentType.BULLET_3 -> FormatType.TEXT
     MarkdownSegmentType.QUOTE -> FormatType.QUOTE
     MarkdownSegmentType.SEPARATOR -> FormatType.SEPARATOR
     MarkdownSegmentType.CHECKLIST_UNCHECKED -> FormatType.CHECKLIST_UNCHECKED

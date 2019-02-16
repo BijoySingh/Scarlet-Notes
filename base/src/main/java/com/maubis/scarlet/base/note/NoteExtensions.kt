@@ -91,11 +91,16 @@ fun Note.getText(): String {
 
 fun Note.getSmartFormats(): List<Format> {
   val formats = getFormats()
+  var maxIndex = formats.size
   val smartFormats = ArrayList<Format>()
   formats.forEach {
     if (it.formatType == FormatType.TEXT) {
       val moreFormats = TextSegmenter(it.text).get().map { it.toFormat() }
-      smartFormats.addAll(moreFormats)
+      moreFormats.forEach { format ->
+        format.uid = maxIndex
+        smartFormats.add(format)
+        maxIndex += 1
+      }
     } else {
       smartFormats.add(it)
     }

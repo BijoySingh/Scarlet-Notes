@@ -43,7 +43,7 @@ fun getFormatControllerItems(): List<MultiRecyclerViewControllerItem<Format>> {
       MultiRecyclerViewControllerItem.Builder<Format>()
           .viewType(FormatType.QUOTE.ordinal)
           .layoutFile(R.layout.item_format_quote)
-          .holderClass(FormatTextViewHolder::class.java)
+          .holderClass(FormatQuoteViewHolder::class.java)
           .build())
   list.add(
       MultiRecyclerViewControllerItem.Builder<Format>()
@@ -74,24 +74,6 @@ fun getFormatControllerItems(): List<MultiRecyclerViewControllerItem<Format>> {
           .viewType(FormatType.SEPARATOR.ordinal)
           .layoutFile(R.layout.item_format_separator)
           .holderClass(FormatSeparatorViewHolder::class.java)
-          .build())
-  list.add(
-      MultiRecyclerViewControllerItem.Builder<Format>()
-          .viewType(FormatType.BULLET_1.ordinal)
-          .layoutFile(R.layout.item_format_bullet)
-          .holderClass(FormatBulletViewHolder::class.java)
-          .build())
-  list.add(
-      MultiRecyclerViewControllerItem.Builder<Format>()
-          .viewType(FormatType.BULLET_2.ordinal)
-          .layoutFile(R.layout.item_format_bullet)
-          .holderClass(FormatBulletViewHolder::class.java)
-          .build())
-  list.add(
-      MultiRecyclerViewControllerItem.Builder<Format>()
-          .viewType(FormatType.BULLET_3.ordinal)
-          .layoutFile(R.layout.item_format_bullet)
-          .holderClass(FormatBulletViewHolder::class.java)
           .build())
   list.add(
       MultiRecyclerViewControllerItem.Builder<Format>()

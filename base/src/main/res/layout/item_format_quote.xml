@@ -5,6 +5,7 @@
   <include layout="@layout/layout_modify_format" />
 
   <View
+    android:id="@+id/quoteColorView"
     android:layout_width="3dp"
     android:layout_height="match_parent"
     android:layout_marginStart="@dimen/spacing_large"
