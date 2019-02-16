@@ -102,7 +102,7 @@
   <string name="home_option_ui_experience_subtitle">Выберите, как приложение выглядит и чувствует.</string>
   <string name="home_option_note_settings">Примечание.</string>
   <string name="home_option_note_settings_subtitle">Выберите примечание и другие настройки.</string>
-  <string name="home_option_about">Около</string>
+  <string name="home_option_about">О программе</string>
   <string name="home_option_about_subtitle">Узнайте больше о нас и приложении.</string>
   <string name="home_option_security">Безопасность</string>
   <string name="home_option_security_subtitle">Блокировка заметок и параметров безопасности</string>
@@ -311,16 +311,16 @@
 
   <string name="why_install_pro">Зачем устанавливать Pro</string>
   <string name="why_install_pro_details">Поддержка разработчиков для огромных затрат на сервер, для запуска облачной синхронизации \n
-  \n
-   Сначала получить самые последние функции \n
-  \n
-   Некоторые дополнительные функции будут доступны только пользователям Pro</string>
+     \n
+      Сначала получить самые последние функции \n
+     \n
+      Некоторые дополнительные функции будут доступны только пользователям Pro</string>
   <string name="why_cloud">Зачем использовать Cloud Sync</string>
   <string name="why_cloud_details">Загрузка и резервное копирование от изменений устройства \n
-  \n
-   Синхронизация между несколькими устройствами и быстрое обновление \n
-  \n
-   Безопасное сохранение на серверах Google Firebase</string>
+     \n
+      Синхронизация между несколькими устройствами и быстрое обновление \n
+     \n
+      Безопасное сохранение на серверах Google Firebase</string>
   <!-- End: Firebase Login Strings -->
 
 
