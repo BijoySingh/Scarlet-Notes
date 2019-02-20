@@ -3,7 +3,7 @@ package com.maubis.scarlet.base.core.format
 import org.json.JSONObject
 import java.util.*
 
-class Format : Comparable<Format> {
+class Format {
 
   var formatType: FormatType = FormatType.TEXT
 
@@ -18,8 +18,8 @@ class Format : Comparable<Format> {
       return when (formatType) {
         FormatType.NUMBERED_LIST -> "- $text"
         FormatType.HEADING -> "# $text"
-        FormatType.CHECKLIST_CHECKED -> "[ ] $text"
-        FormatType.CHECKLIST_UNCHECKED -> "[x] $text"
+        FormatType.CHECKLIST_CHECKED -> "[x] $text"
+        FormatType.CHECKLIST_UNCHECKED -> "[ ] $text"
         FormatType.SUB_HEADING -> "## $text"
         FormatType.CODE -> "```\n$text\n```"
         FormatType.QUOTE -> "> $text"
@@ -59,12 +59,20 @@ class Format : Comparable<Format> {
     map["text"] = text
     return JSONObject(map)
   }
+}
 
-  override fun compareTo(other: Format): Int {
-    return when {
-      other.formatType == FormatType.CHECKLIST_CHECKED && formatType == FormatType.CHECKLIST_UNCHECKED -> -1
-      other.formatType == FormatType.CHECKLIST_UNCHECKED && formatType == FormatType.CHECKLIST_CHECKED -> 1
-      else -> 0
+fun sectionPreservingSort(formats: List<Format>): List<Format> {
+  val mutableFormats = formats.toMutableList()
+  var index = 0
+  while (index < formats.size - 1) {
+    val currentItem = mutableFormats[index]
+    val nextItem = mutableFormats[index + 1]
+
+    if (currentItem.formatType == FormatType.CHECKLIST_CHECKED && nextItem.formatType == FormatType.CHECKLIST_UNCHECKED) {
+      Collections.swap(mutableFormats, index, index + 1)
+      continue
     }
+    index += 1
   }
+  return mutableFormats
 }

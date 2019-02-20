@@ -6,6 +6,7 @@ import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.format.FormatBuilder
+import com.maubis.scarlet.base.core.format.sectionPreservingSort
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
@@ -220,7 +221,7 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
             formats.addAll(noteToAdd.getFormats())
             noteToAdd.delete(activity)
           }
-          note.description = FormatBuilder().getDescription(formats.sorted())
+          note.description = FormatBuilder().getDescription(sectionPreservingSort(formats))
           note.save(activity)
           activity.finish()
         })

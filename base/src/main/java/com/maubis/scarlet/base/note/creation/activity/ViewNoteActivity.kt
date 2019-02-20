@@ -17,6 +17,7 @@ import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
+import com.maubis.scarlet.base.core.format.sectionPreservingSort
 import com.maubis.scarlet.base.core.note.*
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.*
@@ -233,7 +234,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
     trueFormats[truePosition] = format
 
-    note!!.description = FormatBuilder().getSmarterDescription(trueFormats.sorted())
+    note!!.description = FormatBuilder().getSmarterDescription(sectionPreservingSort(trueFormats))
     setNote()
     maybeSaveNote(true)
   }

@@ -13,8 +13,8 @@ buildscript {
     ext.appconfig_compile_sdk_version = 28
 
     repositories {
-        jcenter()
         google()
+        jcenter()
         maven { url 'https://maven.google.com' }
     }
     dependencies {
@@ -27,10 +27,10 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         jcenter()
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.google.com' }
-        google()
     }
 }
 
