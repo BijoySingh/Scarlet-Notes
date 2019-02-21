@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base.core.note
 
 import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.note.getAlphabets
 import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.note.getText
 
@@ -23,7 +24,7 @@ fun sort(notes: List<Note>, sortingTechnique: SortingTechnique): List<Note> {
       else note.timestamp
     }
     SortingTechnique.ALPHABETICAL -> notes.sortedBy { note ->
-      val content = note.getFullText()
+      val content = note.getAlphabets()
       if (note.pinned || content.isBlank()) 0
       else content[0].toInt()
     }

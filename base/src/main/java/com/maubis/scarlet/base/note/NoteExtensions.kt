@@ -135,6 +135,13 @@ fun Note.getFullText(): String {
   return formats.map { it -> it.markdownText }.joinToString(separator = "\n").trim()
 }
 
+fun Note.getAlphabets(): String {
+  val formats = getFormats()
+  return formats.map { it -> it.markdownText }.joinToString(separator = "\n").trim().filter {
+    ((it in 'a'..'z') || (it in 'A'..'Z'))
+  }
+}
+
 fun Note.getUnreliablyStrippedText(context: Context): String {
   val builder = StringBuilder()
   builder.append(Markdown.render(removeMarkdownHeaders(getTitle())), true)
