@@ -26,7 +26,7 @@ fun sort(notes: List<Note>, sortingTechnique: SortingTechnique): List<Note> {
     SortingTechnique.ALPHABETICAL -> notes.sortedBy { note ->
       val content = note.getAlphabets()
       if (note.pinned || content.isBlank()) 0
-      else content[0].toInt()
+      else content[0].toUpperCase().toInt()
     }
     else -> notes.sortedByDescending { note ->
       if (note.pinned) Long.MAX_VALUE

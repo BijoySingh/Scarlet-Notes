@@ -5,6 +5,7 @@ import com.maubis.scarlet.base.core.note.INoteContainer
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.note.NoteDao
+import com.maubis.scarlet.base.note.applySanityChecks
 import java.util.concurrent.ConcurrentHashMap
 
 class NotesProvider {
@@ -96,6 +97,7 @@ class NotesProvider {
       return
     }
     database().all.forEach {
+      it.applySanityChecks()
       notes[it.uuid] = it
     }
   }

@@ -2,6 +2,7 @@ package com.maubis.scarlet.base.note
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
 import com.maubis.markdown.Markdown
@@ -11,6 +12,7 @@ import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.NoteState
+import com.maubis.scarlet.base.core.note.generateUUID
 import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.core.note.getTagUUIDs
 import com.maubis.scarlet.base.database.room.note.Note
@@ -20,6 +22,7 @@ import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FREE
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
+import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
 import java.util.*
@@ -276,11 +279,11 @@ fun Note.copy(context: Context) {
 fun Note.applySanityChecks() {
   folder = folder ?: ""
   description = description ?: ""
-  timestamp = timestamp ?: 0L
-  color = color ?: 0
-  state = state ?: ""
+  timestamp = timestamp ?: System.currentTimeMillis()
+  color = color ?: sNoteDefaultColor
+  state = state ?: NoteState.DEFAULT.name
   tags = tags ?: ""
-  uuid = uuid ?: ""
+  uuid = uuid ?: generateUUID()
 }
 
 fun Note.save(context: Context) {
