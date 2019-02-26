@@ -1,7 +1,6 @@
 package com.maubis.scarlet.base.main.specs
 
 import android.graphics.Color
-import android.support.v4.content.ContextCompat
 import android.text.Layout
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
@@ -20,7 +19,6 @@ import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.main.sheets.HomeNavigationBottomSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.folder.sheet.CreateOrEditFolderBottomSheet
-import com.maubis.scarlet.base.settings.sheet.NoteSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
@@ -28,7 +26,6 @@ import com.maubis.scarlet.base.support.specs.bottomBarCard
 import com.maubis.scarlet.base.support.specs.bottomBarRoundIcon
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -101,7 +98,6 @@ object MainActivityFolderBottomBarSpec {
           GlobalScope.launch {
             activity.config.folders.clear()
             activity.unifiedSearch()
-
             GlobalScope.launch(Dispatchers.Main) {
               activity.notifyFolderChange()
             }

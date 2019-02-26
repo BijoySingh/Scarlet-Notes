@@ -46,10 +46,10 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
   override fun initUI() {
     super.initUI()
     primaryFab.setOnClickListener {
-      runTextFunction {
-        IntentUtils.ShareBuilder(applicationContext)
+      runTextFunction { text ->
+        IntentUtils.ShareBuilder(this)
             .setChooserText(getString(R.string.share_using))
-            .setText(it)
+            .setText(text)
             .share()
       }
     }
