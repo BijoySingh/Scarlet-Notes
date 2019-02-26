@@ -360,7 +360,8 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
       searchBox.requestFocus()
     } else {
       tryClosingTheKeyboard()
-      resetAndSetupData()
+      config.clearSearchBar()
+      setupData()
     }
   }
 

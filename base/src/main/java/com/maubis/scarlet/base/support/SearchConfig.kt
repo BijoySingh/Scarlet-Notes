@@ -37,6 +37,13 @@ class SearchConfig(
     return this
   }
 
+  fun clearSearchBar(): SearchConfig {
+    text = ""
+    colors.clear()
+    tags.clear()
+    return this
+  }
+
   fun resetMode(state: HomeNavigationState): SearchConfig {
     mode = state
     return this
