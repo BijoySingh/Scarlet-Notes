@@ -118,6 +118,6 @@ fun getNotesForMode(config: SearchConfig): List<Note> {
     HomeNavigationState.ARCHIVED -> notesDb.getByNoteState(arrayOf(NoteState.ARCHIVED.name))
     HomeNavigationState.TRASH -> notesDb.getByNoteState(arrayOf(NoteState.TRASH.name))
     HomeNavigationState.DEFAULT -> notesDb.getByNoteState(arrayOf(NoteState.DEFAULT.name, NoteState.FAVOURITE.name))
-    else -> throw Exception("Invalid Search Mode")
+    HomeNavigationState.LOCKED -> notesDb.getNoteByLocked(true)
   }
 }

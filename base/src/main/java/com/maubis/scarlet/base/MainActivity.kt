@@ -207,16 +207,11 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
   }
 
   fun onLockedClick() {
-    config.resetMode(HomeNavigationState.LOCKED)
     GlobalScope.launch(Dispatchers.Main) {
-      val items = GlobalScope.async(Dispatchers.IO) {
-        val sorting = SortingOptionsBottomSheet.getSortingState()
-        sort(notesDb.getNoteByLocked(true), sorting)
-            .map { NoteRecyclerItem(this@MainActivity, it) }
-      }
-      handleNewItems(items.await())
+      config.resetMode(HomeNavigationState.LOCKED)
+      unifiedSearch()
+      notifyModeChange()
     }
-    notifyModeChange()
   }
 
   private fun notifyModeChange() {

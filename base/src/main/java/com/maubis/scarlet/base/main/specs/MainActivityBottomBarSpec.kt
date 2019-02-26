@@ -27,6 +27,10 @@ import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.specs.bottomBarCard
 import com.maubis.scarlet.base.support.specs.bottomBarRoundIcon
 import com.maubis.scarlet.base.support.ui.ColorUtil
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @LayoutSpec
 object MainActivityBottomBarSpec {
@@ -94,9 +98,14 @@ object MainActivityFolderBottomBarSpec {
         .bgColor(Color.TRANSPARENT)
         .iconRes(R.drawable.ic_close_white_48dp)
         .onClick {
-          activity.config.folders.clear()
-          activity.unifiedSearch()
-          activity.notifyFolderChange()
+          GlobalScope.launch {
+            activity.config.folders.clear()
+            activity.unifiedSearch()
+
+            GlobalScope.launch(Dispatchers.Main) {
+              activity.notifyFolderChange()
+            }
+          }
         })
     row.child(Text.create(context)
         .typeface(FONT_MONSERRAT)
