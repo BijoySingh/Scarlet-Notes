@@ -15,6 +15,7 @@ import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.utils.getLastUsedAppVersionCode
 import java.io.File
+import java.util.*
 
 const val KEY_MIGRATE_THEME = "KEY_MIGRATE_THEME"
 const val KEY_MIGRATE_DEFAULT_VALUES = "KEY_MIGRATE_DEFAULT_VALUES"
@@ -31,21 +32,24 @@ class Migrator(val context: Context) {
     }
     runTask(key = KEY_MIGRATE_REMINDERS) {
       val notes = notesDb.getAll()
-      notes.forEach {
-        val legacyReminder = it.getReminder()
+      for (note in notes) {
+        val legacyReminder = note.getReminder()
         if (legacyReminder !== null) {
           val reminder = Reminder(0, legacyReminder.alarmTimestamp, legacyReminder.interval)
+          if (legacyReminder.alarmTimestamp < Calendar.getInstance().timeInMillis) {
+            continue
+          }
 
           val meta = NoteMeta()
-          val uid = ReminderJob.scheduleJob(it.uuid, reminder)
+          val uid = ReminderJob.scheduleJob(note.uuid, reminder)
           reminder.uid = uid
           if (uid == -1) {
-            return@forEach
+            continue
           }
 
           meta.reminderV2 = reminder
-          it.meta = Gson().toJson(meta)
-          it.saveWithoutSync(context)
+          note.meta = Gson().toJson(meta)
+          note.saveWithoutSync(context)
         }
       }
     }
@@ -55,16 +59,20 @@ class Migrator(val context: Context) {
     runTaskIf(
         getLastUsedAppVersionCode() == 0,
         KEY_MIGRATE_DEFAULT_VALUES) {
-          CoreConfig.instance.store().put(KEY_APP_THEME, Theme.DARK.name)
-          CoreConfig.instance.store().put(KEY_LIST_VIEW, true)
-        }
+      CoreConfig.instance.store().put(KEY_APP_THEME, Theme.DARK.name)
+      CoreConfig.instance.store().put(KEY_LIST_VIEW, true)
+    }
   }
 
   private fun runTask(key: String, task: () -> Unit) {
     if (CoreConfig.instance.store().get(key, false)) {
       return
     }
-    task()
+
+    try {
+      task()
+    } catch (_: Exception) {
+    }
     CoreConfig.instance.store().put(key, true)
   }
 
