@@ -337,6 +337,22 @@
   <string name="ui_options_note_background_color">注意查看器背景</string>
 
   <!-- Added for 6.9.5 -->  
+  <!-- Start: Editor Option Sheet -->
+  <string name="home_option_editor_options_title">编辑器选项</string>
+  <string name="home_option_editor_options_description">更改笔记编辑器的设置和使用方式</string>
+
+  <string name="editor_option_enable_markdown_mode_default">默认Markdown选项</string>
+  <string name="editor_option_enable_markdown_mode_default_details">默认在工具栏中显示markdown快捷按钮</string>
+
+  <string name="editor_option_enable_live_markdown">实时Markdown</string>
+  <string name="editor_option_enable_live_markdown_description">选中此项将使markdown效果在你输入的时候就显示出来。启用此功能会影响编辑较大笔记时的性能</string>
+
+  <string name="editor_option_enable_move_handle">Show Movement Handles显示拖动柄</string>
+  <string name="editor_option_enable_move_handle_description">显示可将项目上下移动的拖动柄。即使不显示，你仍可以通过按住项目边缘的方式上下移动</string>
+
+  <string name="markdown_help_sheet_title" translatable="false">Markdown例子</string>
+  <!-- End: Editor Option Sheet -->
+
   <!-- Start: Widget Options Sheet -->
   <string name="home_option_widget_options_title">小部件设置</string>
   <string name="home_option_widget_options_description">更改主屏幕小部件的设置</string>
