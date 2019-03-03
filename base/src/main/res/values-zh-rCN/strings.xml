@@ -250,8 +250,8 @@
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">复制</string>
-  <string name="format_action_title">阻止文本操作</string>
-  <string name="format_action_gallery">画廊</string>
+  <string name="format_action_title">块文本操作</string>
+  <string name="format_action_gallery">图库</string>
   <string name="format_action_camera">相机</string>
   <string name="voice_sheet_title">大声说出音符</string>
   <string name="voice_action_title">大声说话</string>
