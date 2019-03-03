@@ -316,8 +316,8 @@
   <string name="backup_note_disable">禁用备份</string>
   <string name="backup_note_enable">启用备份</string>
   <string name="folder_card_title">空笔记本</string>
-  <string name="folder_card_title_single_note">1注意</string>
-  <string name="folder_card_title_notes">%d备注</string>
+  <string name="folder_card_title_single_note">1条笔记</string>
+  <string name="folder_card_title_notes">%d条笔记</string>
   <string name="folder_sheet_add_note">创建新笔记本</string>
   <string name="folder_sheet_edit_note">编辑笔记本</string>
   <string name="folder_sheet_add_note_detail">添加笔记本</string>
@@ -331,17 +331,17 @@
   <string name="home_option_install_pro_app_details">安装Pro App以解锁功能并支持开发人员</string>
   <string name="home_option_migrate_to_pro">将笔记迁移到Scarlet Pro</string>
   <string name="home_option_migrate_to_pro_details">将所有笔记迁移到专业应用程序</string>
-  <string name="home_option_delete_notes_and_more">删除备注等</string>
-  <string name="home_option_delete_notes_and_more_details">删除应用中的注释，标签和其他数据</string>
+  <string name="home_option_delete_notes_and_more">删除笔记等</string>
+  <string name="home_option_delete_notes_and_more_details">删除应用中的笔记、标签和其他数据</string>
   <string name="home_option_delete_all_notes">删除所有笔记</string>
   <string name="home_option_delete_all_notes_details">删除应用中的所有备注</string>
   <string name="home_option_delete_all_folders">删除所有文件夹</string>
   <string name="home_option_delete_all_folders_details">删除应用中的所有文件夹</string>
   <string name="home_option_delete_all_tags">删除所有标签</string>
-  <string name="home_option_delete_all_tags_details">删除应用中的所有标记</string>
+  <string name="home_option_delete_all_tags_details">删除应用中的所有标签</string>
   <string name="home_option_delete_everything">删除所有内容</string>
-  <string name="home_option_delete_everything_details">删除应用中的注释，标签和文件夹</string>
-  <string name="ui_options_note_background_color">注意查看器背景</string>
+  <string name="home_option_delete_everything_details">删除应用中的笔记、标签和文件夹</string>
+  <string name="ui_options_note_background_color">笔记查看器背景</string>
 
   <!-- Added for 6.9.5 -->  
   <!-- Start: Editor Option Sheet -->
