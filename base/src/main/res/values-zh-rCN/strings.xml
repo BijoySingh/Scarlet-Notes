@@ -165,6 +165,13 @@
   <string name="import_export_layout_exporting">正在导出到文件&#8230;</string>
   <string name="import_export_layout_exporting_done">完成</string>
   <string name="import_export_layout_exporting_share">分享</string>
+  <string name="import_export_layout_folder_sync">启用文件夹同步</string>
+  <string name="import_export_layout_folder_sync_title">文件夹同步</string>
+  <string name="import_export_layout_folder_sync_description">将你所有的笔记、标签和文件夹同步到外部文件夹。这有助于你利用其他应用进行跨设备同步，同时这可以给你的笔记留下副本以备你需要删除本应用。</string>
+  <string name="import_export_layout_folder_sync_folder">导出到文件夹</string>
+  <string name="import_export_layout_folder_sync_details">同步所有的笔记、标签等项目到外部文件夹</string>
+  <string name="import_export_locked">导出已锁定的笔记</string>
+  <string name="import_export_locked_details">同样备份已锁定的笔记</string>
 
   <string name="about_page_title">关于我们和其他</string>
   <string name="about_page_rate">在 Play 商店上评分</string>
@@ -243,8 +250,8 @@
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">复制</string>
-  <string name="format_action_title">阻止文本操作</string>
-  <string name="format_action_gallery">画廊</string>
+  <string name="format_action_title">块文本操作</string>
+  <string name="format_action_gallery">图库</string>
   <string name="format_action_camera">相机</string>
   <string name="voice_sheet_title">大声说出音符</string>
   <string name="voice_action_title">大声说话</string>
@@ -309,8 +316,8 @@
   <string name="backup_note_disable">禁用备份</string>
   <string name="backup_note_enable">启用备份</string>
   <string name="folder_card_title">空笔记本</string>
-  <string name="folder_card_title_single_note">1注意</string>
-  <string name="folder_card_title_notes">%d备注</string>
+  <string name="folder_card_title_single_note">1条笔记</string>
+  <string name="folder_card_title_notes">%d条笔记</string>
   <string name="folder_sheet_add_note">创建新笔记本</string>
   <string name="folder_sheet_edit_note">编辑笔记本</string>
   <string name="folder_sheet_add_note_detail">添加笔记本</string>
@@ -324,16 +331,50 @@
   <string name="home_option_install_pro_app_details">安装Pro App以解锁功能并支持开发人员</string>
   <string name="home_option_migrate_to_pro">将笔记迁移到Scarlet Pro</string>
   <string name="home_option_migrate_to_pro_details">将所有笔记迁移到专业应用程序</string>
-  <string name="home_option_delete_notes_and_more">删除备注等</string>
-  <string name="home_option_delete_notes_and_more_details">删除应用中的注释，标签和其他数据</string>
+  <string name="home_option_delete_notes_and_more">删除笔记等</string>
+  <string name="home_option_delete_notes_and_more_details">删除应用中的笔记、标签和其他数据</string>
   <string name="home_option_delete_all_notes">删除所有笔记</string>
   <string name="home_option_delete_all_notes_details">删除应用中的所有备注</string>
   <string name="home_option_delete_all_folders">删除所有文件夹</string>
   <string name="home_option_delete_all_folders_details">删除应用中的所有文件夹</string>
   <string name="home_option_delete_all_tags">删除所有标签</string>
-  <string name="home_option_delete_all_tags_details">删除应用中的所有标记</string>
+  <string name="home_option_delete_all_tags_details">删除应用中的所有标签</string>
   <string name="home_option_delete_everything">删除所有内容</string>
-  <string name="home_option_delete_everything_details">删除应用中的注释，标签和文件夹</string>
-  <string name="ui_options_note_background_color">注意查看器背景</string>
+  <string name="home_option_delete_everything_details">删除应用中的笔记、标签和文件夹</string>
+  <string name="ui_options_note_background_color">笔记查看器背景</string>
 
+  <!-- Added for 6.9.5 -->  
+  <!-- Start: Editor Option Sheet -->
+  <string name="home_option_editor_options_title">编辑器选项</string>
+  <string name="home_option_editor_options_description">更改笔记编辑器的设置和使用方式</string>
+
+  <string name="editor_option_enable_markdown_mode_default">默认Markdown选项</string>
+  <string name="editor_option_enable_markdown_mode_default_details">默认在工具栏中显示markdown的快捷按钮</string>
+
+  <string name="editor_option_enable_live_markdown">实时Markdown</string>
+  <string name="editor_option_enable_live_markdown_description">选中此项将使markdown效果在你输入的时候就显示出来。启用此功能会影响编辑较大笔记时的性能</string>
+
+  <string name="editor_option_enable_move_handle">显示拖动柄</string>
+  <string name="editor_option_enable_move_handle_description">显示可将项目上下移动的拖动柄。即使不显示，你仍可以通过按住项目边缘的方式上下移动</string>
+
+  <string name="markdown_help_sheet_title">Markdown例子</string>
+  <!-- End: Editor Option Sheet -->
+
+  <!-- Start: Widget Options Sheet -->
+  <string name="home_option_widget_options_title">小部件设置</string>
+  <string name="home_option_widget_options_description">更改主屏幕小部件的设置</string>
+
+  <string name="widget_option_enable_formatting">允许带格式排版</string>
+  <string name="widget_option_enable_formatting_details">在主屏幕小部件中带格式呈现笔记</string>
+
+  <string name="widget_option_show_locked_notes">显示已锁定的笔记</string>
+  <string name="widget_option_show_locked_notes_details">允许已锁定的笔记出现在主屏幕小部件中</string>
+
+  <string name="widget_option_show_archived_notes">显示已归档的笔记</string>
+  <string name="widget_option_show_archived_notes_details">允许已归档的笔记出现在主屏幕小部件中</string>
+
+  <string name="widget_option_show_trash_notes">显示回收站中的笔记</string>
+  <string name="widget_option_show_trash_notes_details">允许回收站中的笔记出现在主屏幕小部件中</string>
+  <!-- End: Widget Options Sheet -->
+  
 </resources>
