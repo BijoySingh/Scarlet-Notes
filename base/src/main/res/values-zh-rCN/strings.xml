@@ -165,6 +165,13 @@
   <string name="import_export_layout_exporting">正在导出到文件&#8230;</string>
   <string name="import_export_layout_exporting_done">完成</string>
   <string name="import_export_layout_exporting_share">分享</string>
+  <string name="import_export_layout_folder_sync">启用文件夹同步</string>
+  <string name="import_export_layout_folder_sync_title">文件夹同步</string>
+  <string name="import_export_layout_folder_sync_description">将你所有的笔记、标签和文件夹同步到外部文件夹。这有助于你利用其他应用进行跨设备同步，同时这可以给你的笔记留下副本以备你需要删除本应用。</string>
+  <string name="import_export_layout_folder_sync_folder">导出到文件夹</string>
+  <string name="import_export_layout_folder_sync_details">同步所有的笔记、标签等项目到外部文件夹</string>
+  <string name="import_export_locked">导出已锁定的笔记</string>
+  <string name="import_export_locked_details">同样备份已锁定的笔记</string>
 
   <string name="about_page_title">关于我们和其他</string>
   <string name="about_page_rate">在 Play 商店上评分</string>
