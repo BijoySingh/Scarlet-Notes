@@ -338,20 +338,20 @@
 
   <!-- Added for 6.9.5 -->  
   <!-- Start: Widget Options Sheet -->
-  <string name="home_option_widget_options_title" translatable="false">小部件设置</string>
-  <string name="home_option_widget_options_description" translatable="false">更改主屏幕小部件的设置</string>
+  <string name="home_option_widget_options_title">小部件设置</string>
+  <string name="home_option_widget_options_description">更改主屏幕小部件的设置</string>
 
-  <string name="widget_option_enable_formatting" translatable="false">允许带格式排版</string>
-  <string name="widget_option_enable_formatting_details" translatable="false">在主屏幕小部件中带格式呈现笔记</string>
+  <string name="widget_option_enable_formatting">允许带格式排版</string>
+  <string name="widget_option_enable_formatting_details">在主屏幕小部件中带格式呈现笔记</string>
 
-  <string name="widget_option_show_locked_notes" translatable="false">显示已锁定的笔记</string>
-  <string name="widget_option_show_locked_notes_details" translatable="false">允许已锁定的笔记出现在主屏幕小部件中</string>
+  <string name="widget_option_show_locked_notes">显示已锁定的笔记</string>
+  <string name="widget_option_show_locked_notes_details">允许已锁定的笔记出现在主屏幕小部件中</string>
 
-  <string name="widget_option_show_archived_notes" translatable="false">显示已归档的笔记</string>
-  <string name="widget_option_show_archived_notes_details" translatable="false">允许已归档的笔记出现在主屏幕小部件中</string>
+  <string name="widget_option_show_archived_notes">显示已归档的笔记</string>
+  <string name="widget_option_show_archived_notes_details">允许已归档的笔记出现在主屏幕小部件中</string>
 
-  <string name="widget_option_show_trash_notes" translatable="false">显示回收站中的笔记</string>
-  <string name="widget_option_show_trash_notes_details" translatable="false">允许回收站中的笔记出现在主屏幕小部件中</string>
+  <string name="widget_option_show_trash_notes">显示回收站中的笔记</string>
+  <string name="widget_option_show_trash_notes_details">允许回收站中的笔记出现在主屏幕小部件中</string>
   <!-- End: Widget Options Sheet -->
   
 </resources>
