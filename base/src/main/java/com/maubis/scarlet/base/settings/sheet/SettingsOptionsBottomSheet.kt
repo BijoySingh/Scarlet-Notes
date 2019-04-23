@@ -1,6 +1,8 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import com.facebook.litho.ComponentContext
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
@@ -126,6 +128,18 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         }
     ))
     options.add(LithoOptionsItem(
+        title = R.string.home_option_faq_title,
+        subtitle = R.string.home_option_faq_description,
+        icon = R.drawable.icon_help,
+        listener = {
+          try {
+            activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_FAQ_URL)))
+            dismiss()
+          } catch (exception: Exception) {
+          }
+        }
+    ))
+    options.add(LithoOptionsItem(
         title = R.string.home_option_logout_of_app,
         subtitle = R.string.home_option_logout_of_app_subtitle,
         icon = R.drawable.ic_sign_in_options,
@@ -139,7 +153,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   }
 
   companion object {
-
+    const val GITHUB_FAQ_URL = "http://bijoysingh.github.io/Scarlet-Notes/faq/"
     const val KEY_MARKDOWN_ENABLED = "KEY_MARKDOWN_ENABLED"
     const val KEY_MARKDOWN_HOME_ENABLED = "KEY_MARKDOWN_HOME_ENABLED"
 
