@@ -30,7 +30,7 @@ class TextInliner(val text: String) {
     var index = 0
     while (index < text.length) {
       val char = text.get(index)
-
+      Log.d("TextInliner", "char: " + char + " currentInline: " + currentInline.config.identifier())
 
       if (currentInline.config.type() == MarkdownInlineType.INLINE_CODE
           && !currentInline.config.isEnd(text, index)) {
@@ -143,7 +143,7 @@ class TextInliner(val text: String) {
     processedSegments.forEach {
       val inlineConfig = it.config
       if (inlineConfig is PhraseDelimiterInline && !it.paired) {
-        it.children.add(NormalInlineMarkdownSegment(inlineConfig.startDelimiter))
+        it.children.add(0, NormalInlineMarkdownSegment(inlineConfig.startDelimiter))
       }
 
       if (!it.paired || it.config.type() == MarkdownInlineType.INVALID) {

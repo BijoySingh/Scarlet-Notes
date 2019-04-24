@@ -52,4 +52,15 @@ class InlineSimpleTextTests : MarkdownTextInlinerTestBase() {
     val processed = TextInliner(textToTest).get()
     assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INLINE_CODE),listOf(NormalInlineMarkdownSegment(text))), processed)
   }
+
+  @Test
+  fun testIncompleteText() {
+    val textA = "aaa_bb*c"
+    val processedA = TextInliner(textA).get()
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INVALID), listOf(NormalInlineMarkdownSegment(textA))), processedA)
+
+    val textB = "aaa_"
+    val processedB = TextInliner(textB).get()
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INVALID), listOf(NormalInlineMarkdownSegment(textB))), processedB)
+  }
 }
