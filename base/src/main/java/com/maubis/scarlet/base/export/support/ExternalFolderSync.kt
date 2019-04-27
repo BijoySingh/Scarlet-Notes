@@ -7,14 +7,17 @@ import android.os.Build
 import android.support.v4.content.ContextCompat
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.folderSync
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
+import com.maubis.scarlet.base.export.remote.FolderRemoteDatabase
 import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FOLDER
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.lang.ref.WeakReference
 
 
 const val KEY_EXTERNAL_FOLDER_SYNC_ENABLED = "external_folder_sync_enabled"
@@ -45,7 +48,7 @@ object ExternalFolderSync {
       if (!hasPermission(context)) {
         GlobalScope.launch(Dispatchers.Main) {
           ToastHelper.show(context, R.string.permission_layout_give_permission_details)
-          CoreConfig.instance.externalFolderSync().reset()
+          folderSync?.reset()
         }
         return
       }
@@ -53,25 +56,25 @@ object ExternalFolderSync {
       loadFirstTime()
     } else {
       sExternalFolderSync = false
-      CoreConfig.instance.externalFolderSync().reset()
+      folderSync?.reset()
     }
   }
 
   fun loadFirstTime() {
-    CoreConfig.instance.externalFolderSync().init(
+    folderSync?.init(
         {
           CoreConfig.instance.notesDatabase().getAll().forEach {
-            CoreConfig.instance.externalFolderSync().insert(ExportableNote(it))
+            folderSync?.insert(ExportableNote(it))
           }
         },
         {
           CoreConfig.instance.tagsDatabase().getAll().forEach {
-            CoreConfig.instance.externalFolderSync().insert(ExportableTag(it))
+            folderSync?.insert(ExportableTag(it))
           }
         },
         {
           CoreConfig.instance.foldersDatabase().getAll().forEach {
-            CoreConfig.instance.externalFolderSync().insert(ExportableFolder(it))
+            folderSync?.insert(ExportableFolder(it))
           }
         })
   }
@@ -81,10 +84,11 @@ object ExternalFolderSync {
       return
     }
 
-    if (!hasPermission(context)) {
+    if (!hasPermission(context)) {  
       sExternalFolderSync = false
       return
     }
-    CoreConfig.instance.externalFolderSync().init()
+    folderSync = FolderRemoteDatabase(WeakReference(context))
+    folderSync?.init()
   }
 }

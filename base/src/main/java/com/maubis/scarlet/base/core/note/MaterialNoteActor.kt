@@ -8,18 +8,18 @@ import android.support.v7.app.AppCompatActivity
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.folderSync
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
-import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.format.FormatBuilder
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.main.activity.WidgetConfigureActivity
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
-import com.maubis.scarlet.base.widget.AllNotesWidgetProvider.Companion.notifyAllChanged
 import com.maubis.scarlet.base.service.FloatingNoteService
-import com.maubis.scarlet.base.support.utils.ImageCache
+import com.maubis.scarlet.base.widget.AllNotesWidgetProvider.Companion.notifyAllChanged
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -51,7 +51,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
   }
 
   override fun onlineSave(context: Context) {
-    CoreConfig.instance.externalFolderSync().insert(ExportableNote(note))
+    folderSync?.insert(ExportableNote(note))
   }
 
   override fun save(context: Context) {
@@ -94,7 +94,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
 
 
   override fun onlineDelete(context: Context) {
-    CoreConfig.instance.externalFolderSync().remove(ExportableNote(note))
+    folderSync?.remove(ExportableNote(note))
   }
 
   override fun delete(context: Context) {

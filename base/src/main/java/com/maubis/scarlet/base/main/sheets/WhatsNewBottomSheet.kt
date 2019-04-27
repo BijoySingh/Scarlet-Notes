@@ -82,7 +82,7 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
             "- **Realtime Markdown:** When you type in markdown you get real time conversion and formatting.\n\n" +
             "- **More Editor Options:** Head over to settings to get more control on the editor experience.\n\n" +
             "- **More Themes:** Pro Users get more themes for the app, and the default dark theme is even darker now.\n\n" +
-            "- **Folder Sync:** Sync all your notes to an external folder live along with images.\n\n" +
+            "- **Folder Sync:** Sync all your notes to an folderSync folder live along with images.\n\n" +
             "- **Widget Options:** Widgets now show formatted text! You can also configure what notes to see in the widget.\n\n" +
             "Even more little things which help you enjoy using this app everyday"
     val WHATS_NEW_DETAILS_LAST_RELEASE_MD =
