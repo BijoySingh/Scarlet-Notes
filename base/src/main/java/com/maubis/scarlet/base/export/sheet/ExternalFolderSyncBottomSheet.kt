@@ -11,6 +11,7 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
+import com.maubis.scarlet.base.export.support.ExternalFolderSync
 import com.maubis.scarlet.base.export.support.sExternalFolderSync
 import com.maubis.scarlet.base.export.support.sFolderSyncBackupLocked
 import com.maubis.scarlet.base.export.support.sFolderSyncPath
@@ -73,6 +74,7 @@ class ExternalFolderSyncBottomSheet : LithoBottomSheet() {
         .isActionNegative(sExternalFolderSync)
         .onPrimaryClick {
           sExternalFolderSync = !sExternalFolderSync
+          ExternalFolderSync.enable(componentContext.androidContext, sExternalFolderSync)
           reset(componentContext.androidContext, dialog)
         }
         .paddingDip(YogaEdge.HORIZONTAL, 20f)

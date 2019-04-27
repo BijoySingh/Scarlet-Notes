@@ -1,5 +1,6 @@
 package com.bijoysingh.quicknote
 
+import com.bijoysingh.quicknote.drive.GDriveRemoteDatabase
 import com.bijoysingh.quicknote.firebase.FirebaseRemoteDatabase
 import com.bijoysingh.quicknote.scarlet.ScarletConfig
 import com.maubis.scarlet.base.config.ApplicationBase
@@ -19,5 +20,6 @@ class Scarlet : ApplicationBase() {
 
   companion object {
     var firebase: FirebaseRemoteDatabase? = null
+    var gDrive: GDriveRemoteDatabase? = null
   }
 }

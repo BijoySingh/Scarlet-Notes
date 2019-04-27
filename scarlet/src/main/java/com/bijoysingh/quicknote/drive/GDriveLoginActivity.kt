@@ -4,21 +4,29 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.drive.Drive
-import com.google.android.gms.drive.DriveClient
-import com.google.android.gms.drive.DriveResourceClient
+import com.google.android.gms.common.api.Scope
+import com.google.api.client.extensions.android.http.AndroidHttp
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential
+import com.google.api.client.json.gson.GsonFactory
+import com.google.api.services.drive.Drive
+import com.google.api.services.drive.DriveScopes
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import kotlinx.android.synthetic.main.gdrive_login.*
+import java.lang.ref.WeakReference
+import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
+
 
 // TODO: This is not ready... Recent changes in Drive API make this sh*t a little difficult and
 // inconclusive. I want to do this because it's safer than Firebase, but f*ck Google for
@@ -31,9 +39,8 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
   lateinit var context: Context
   lateinit var mGoogleApiClient: GoogleApiClient
 
-  var mDriveClient: DriveClient? = null
-  var mDriveResourceClient: DriveResourceClient? = null
   var loggingIn = AtomicBoolean(false)
+  var mDriveServiceHelper: GDriveServiceHelper? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -56,9 +63,10 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
   private fun setupGoogleLogin() {
     val gso = GoogleSignInOptions.Builder(
         GoogleSignInOptions.DEFAULT_SIGN_IN)
+        .requestScopes(Scope(DriveScopes.DRIVE_FILE))
         .requestIdToken(getString(R.string.default_web_client_id))
-        .requestScopes(Drive.SCOPE_APPFOLDER)
-        .requestEmail().build()
+        .requestEmail()
+        .build()
 
     mGoogleApiClient = GoogleApiClient
         .Builder(this)
@@ -80,9 +88,16 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
 
   public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    if (requestCode == RC_SIGN_IN || requestCode == RC_SIGN_IN_PERMISSIONS) {
-      if (mDriveResourceClient !== null) {
-        onLoginComplete(context, mDriveResourceClient!!)
+    if (requestCode == RC_SIGN_IN) {
+      val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+      try {
+        val account = task.getResult(ApiException::class.java)
+        if (account !== null) {
+          onLoginComplete(account)
+          return
+        }
+      } catch (exception: Exception) {
+        // Ignore this, handled by following content
       }
     }
   }
@@ -101,14 +116,6 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
     }
   }
 
-  private fun recheckPermissions(account: GoogleSignInAccount): Boolean {
-    if (!GoogleSignIn.hasPermissions(account, Drive.SCOPE_APPFOLDER)) {
-      GoogleSignIn.requestPermissions(this, RC_SIGN_IN_PERMISSIONS, account, Drive.SCOPE_APPFOLDER)
-      return false
-    }
-    return true
-  }
-
   override fun notifyThemeChange() {
     setSystemTheme()
     containerLayout.setBackgroundColor(getThemeColor())
@@ -116,19 +123,33 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
     signInToGDriveDetails.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
   }
 
-  fun onLoginComplete(
-      context: Context,
-      deviceResourceClient: DriveResourceClient) {
-    val appFolderTask = deviceResourceClient.getAppFolder()
-    appFolderTask.addOnSuccessListener { folder ->
+  fun onLoginComplete(account: GoogleSignInAccount) {
+    mDriveServiceHelper = getDriveHelper(context, account)
 
-    }.addOnFailureListener {
+    gDrive?.reset()
+    gDrive = GDriveRemoteDatabase(WeakReference(this.applicationContext))
+    gDrive?.init(mDriveServiceHelper!!)
 
-    }
+    setButton(false)
   }
 
   override fun onConnectionFailed(p0: ConnectionResult) {
     ToastHelper.show(this, R.string.google_drive_page_connection_failed)
   }
 
+  companion object {
+    fun getDriveHelper(context: Context, account: GoogleSignInAccount): GDriveServiceHelper {
+      val credential = GoogleAccountCredential.usingOAuth2(
+          context,
+          Collections.singleton(DriveScopes.DRIVE_FILE))
+      credential.selectedAccount = account.account
+      val googleDriveService = Drive.Builder(
+          AndroidHttp.newCompatibleTransport(),
+          GsonFactory(),
+          credential)
+          .setApplicationName(context.getString(R.string.app_name))
+          .build()
+      return GDriveServiceHelper(googleDriveService)
+    }
+  }
 }

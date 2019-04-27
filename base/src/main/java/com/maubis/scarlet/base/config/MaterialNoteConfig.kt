@@ -22,7 +22,6 @@ import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.export.remote.FolderRemoteDatabase
-import com.maubis.scarlet.base.export.support.ExternalFolderSync
 import com.maubis.scarlet.base.support.ui.IThemeManager
 import com.maubis.scarlet.base.support.ui.ThemeManager
 import com.maubis.scarlet.base.support.utils.Flavor

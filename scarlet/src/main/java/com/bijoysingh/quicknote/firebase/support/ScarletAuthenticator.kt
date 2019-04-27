@@ -5,11 +5,15 @@ import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import com.bijoysingh.quicknote.Scarlet.Companion.firebase
+import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
+import com.bijoysingh.quicknote.drive.GDriveLoginActivity
+import com.bijoysingh.quicknote.drive.GDriveRemoteDatabase
 import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
 import com.bijoysingh.quicknote.firebase.activity.LoginActivity
 import com.bijoysingh.quicknote.firebase.initFirebaseDatabase
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.github.bijoysingh.starter.util.ToastHelper
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +21,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.lang.ref.WeakReference
 
 class ScarletAuthenticator() : IAuthenticator {
   override fun userId(): String? {
@@ -25,18 +32,29 @@ class ScarletAuthenticator() : IAuthenticator {
   }
 
   override fun setup(context: Context) {
-    FirebaseApp.initializeApp(context)
-    try {
-      val userId = userId()
-      if (userId === null) {
-        return
+    GlobalScope.launch {
+      val account = GoogleSignIn.getLastSignedInAccount(context)
+      if (account !== null) {
+        val helper= GDriveLoginActivity.getDriveHelper(context, account)
+        gDrive = GDriveRemoteDatabase(WeakReference(context))
+        gDrive?.init(helper)
       }
+    }
 
-      FirebaseDatabase.getInstance()
-      initFirebaseDatabase(context, userId)
-      reloadUser(context)
-    } catch (exception: Exception) {
-      // Don't need to do anything
+    GlobalScope.launch {
+      FirebaseApp.initializeApp(context)
+      try {
+        val userId = userId()
+        if (userId === null) {
+          return@launch
+        }
+
+        FirebaseDatabase.getInstance()
+        initFirebaseDatabase(context, userId)
+        reloadUser(context)
+      } catch (exception: Exception) {
+        // Don't need to do anything
+      }
     }
   }
 
