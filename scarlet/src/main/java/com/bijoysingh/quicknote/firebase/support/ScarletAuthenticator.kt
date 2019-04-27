@@ -68,6 +68,7 @@ class ScarletAuthenticator() : IAuthenticator {
   }
 
   override fun openLoginActivity(context: Context) = Runnable {
+    // context.startActivity(Intent(context, GDriveLoginActivity::class.java))
     context.startActivity(Intent(context, LoginActivity::class.java))
   }
 

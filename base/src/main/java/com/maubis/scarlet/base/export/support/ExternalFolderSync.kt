@@ -84,7 +84,7 @@ object ExternalFolderSync {
       return
     }
 
-    if (!hasPermission(context)) {  
+    if (!hasPermission(context)) {
       sExternalFolderSync = false
       return
     }

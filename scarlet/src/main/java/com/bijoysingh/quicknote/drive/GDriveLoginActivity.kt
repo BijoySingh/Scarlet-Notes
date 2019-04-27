@@ -20,6 +20,7 @@ import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.drive.Drive
 import com.google.api.services.drive.DriveScopes
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.export.support.KEY_EXTERNAL_FOLDER_SYNC_ENABLED
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import kotlinx.android.synthetic.main.gdrive_login.*
@@ -31,6 +32,21 @@ import java.util.concurrent.atomic.AtomicBoolean
 // TODO: This is not ready... Recent changes in Drive API make this sh*t a little difficult and
 // inconclusive. I want to do this because it's safer than Firebase, but f*ck Google for
 // changing the API So much
+
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE = "g_drive_first_time_sync_note"
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_TAG = "g_drive_first_time_sync_tag"
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER = "g_drive_first_time_sync_folder"
+
+var sGDriveFirstSyncNote: Boolean
+  get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE, false)
+  set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE, value)
+var sGDriveFirstSyncTag: Boolean
+  get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_TAG, false)
+  set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_TAG, value)
+var sGDriveFirstSyncFolder: Boolean
+  get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER, false)
+  set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER, value)
+
 class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailedListener {
 
   private val RC_SIGN_IN = 31244
@@ -125,6 +141,10 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
 
   fun onLoginComplete(account: GoogleSignInAccount) {
     mDriveServiceHelper = getDriveHelper(context, account)
+
+    sGDriveFirstSyncNote = false
+    sGDriveFirstSyncFolder = false
+    sGDriveFirstSyncTag = false
 
     gDrive?.reset()
     gDrive = GDriveRemoteDatabase(WeakReference(this.applicationContext))

@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.drive
 
 import android.content.Context
+import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.firebase.data.*
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.folder.IFolderContainer
@@ -60,17 +61,38 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
   fun onRootFolderLoaded(rootFolderId: String) {
     driveHelper?.getOrCreateDirectory(rootFolderId, "notes") {
       if (it !== null) {
-        notesSync?.init(it)
+        notesSync?.init(it) {
+          if (!sGDriveFirstSyncNote) {
+            CoreConfig.instance.notesDatabase().getAll().forEach {
+              gDrive?.insert(it.getFirebaseNote())
+            }
+            sGDriveFirstSyncNote = true
+          }
+        }
       }
     }
     driveHelper?.getOrCreateDirectory(rootFolderId, "tags") {
       if (it !== null) {
-        tagsSync?.init(it)
+        tagsSync?.init(it) {
+          if (!sGDriveFirstSyncTag) {
+            CoreConfig.instance.tagsDatabase().getAll().forEach {
+              gDrive?.insert(it.getFirebaseTag())
+            }
+            sGDriveFirstSyncTag = true
+          }
+        }
       }
     }
     driveHelper?.getOrCreateDirectory(rootFolderId, "folders") {
       if (it !== null) {
-        foldersSync?.init(it)
+        foldersSync?.init(it) {
+          if (!sGDriveFirstSyncFolder) {
+            CoreConfig.instance.foldersDatabase().getAll().forEach {
+              gDrive?.insert(it.getFirebaseFolder())
+            }
+            sGDriveFirstSyncFolder = true
+          }
+        }
       }
     }
     driveHelper?.getOrCreateDirectory(rootFolderId, "images") {}

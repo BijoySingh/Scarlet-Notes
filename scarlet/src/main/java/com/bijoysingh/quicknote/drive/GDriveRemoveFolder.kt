@@ -27,7 +27,7 @@ class GDriveRemoteFolder<T>(
   val deletedUuids = HashSet<String>()
   var folderUid: String = INVALID_FILE_ID
 
-  fun init(fUid: String) {
+  fun init(fUid: String, onLoaded: () -> Unit) {
     folderUid = fUid
     val lastScanKey = "${KEY_G_DRIVE_SYNC_LAST_SCAN}_$folderUid"
     val lastScan = CoreConfig.instance.store().get(lastScanKey, 0L)
@@ -57,6 +57,7 @@ class GDriveRemoteFolder<T>(
           loaded.set(true)
           removePendingActions()
           scanDeletedFiles()
+          GlobalScope.launch { onLoaded() }
         }
       }
     }
