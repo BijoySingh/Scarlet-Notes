@@ -136,7 +136,7 @@ class GDriveRemoteFolder<T>(
         item is FirebaseFolder -> item.updateTimestamp
         else -> null
       }
-      helper.createFile(folderUid, modificationTime).addOnCompleteListener {
+      helper.createFile(folderUid, uuid, modificationTime).addOnCompleteListener {
         val createdFileId = it.result
         if (createdFileId !== null) {
           fileIds[uuid] = createdFileId
@@ -153,8 +153,9 @@ class GDriveRemoteFolder<T>(
       return
     }
 
+    helper.removeFileOrFolder(fileIds[uuid] ?: INVALID_FILE_ID)
     fileIds.remove(uuid)
-    helper.createFile(deletedFileId!!).addOnCompleteListener {
+    helper.createFile(deletedFileId!!, uuid).addOnCompleteListener {
       val removeFileId = it.result
       if (removeFileId !== null) {
         helper.saveFile(removeFileId, uuid, System.currentTimeMillis().toString())

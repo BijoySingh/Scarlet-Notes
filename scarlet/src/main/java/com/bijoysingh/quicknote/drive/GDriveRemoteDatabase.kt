@@ -5,6 +5,8 @@ import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.firebase.data.*
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.folder.IFolderContainer
+import com.maubis.scarlet.base.core.format.FormatBuilder
+import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.INoteContainer
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.tag.ITagContainer
@@ -75,6 +77,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
             notesSync?.notifyingExistingIds(ids)
           }
         }
+        setupImageSync(rootFolderId)
       }
     }
     driveHelper?.getOrCreateDirectory(rootFolderId, "tags") {
@@ -107,6 +110,9 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
         }
       }
     }
+  }
+
+  private fun setupImageSync(rootFolderId: String) {
     driveHelper?.getOrCreateDirectory(rootFolderId, "images") {
       if (it !== null) {
         imageSync?.init(it) {
@@ -148,6 +154,9 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
       return
     }
     notesSync?.insert(note.uuid, note)
+    notifyImageIds(note) {
+      imageSync?.onInsert(it)
+    }
   }
 
   override fun insert(tag: ITagContainer) {
@@ -169,6 +178,9 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
       return
     }
     notesSync?.delete(note.uuid)
+    notifyImageIds(note) {
+      imageSync?.onRemove(it)
+    }
   }
 
   override fun remove(tag: ITagContainer) {
@@ -195,6 +207,9 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
       return
     }
     IRemoteDatabaseUtils.onRemoteInsert(context, note)
+    notifyImageIds(note) {
+      imageSync?.onInsert(it)
+    }
   }
 
   override fun onRemoteRemove(note: INoteContainer) {
@@ -257,4 +272,14 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
     IRemoteDatabaseUtils.onRemoteRemove(context, folder)
   }
 
+  fun notifyImageIds(note: INoteContainer, onImageUUID: (ImageUUID) -> Unit) {
+    val imageIds = FormatBuilder()
+        .getFormats(note.description())
+        .filter { it.formatType == FormatType.IMAGE }
+        .map { it.text }
+        .toSet()
+    imageIds.forEach {
+      onImageUUID(ImageUUID(note.uuid(), it))
+    }
+  }
 }

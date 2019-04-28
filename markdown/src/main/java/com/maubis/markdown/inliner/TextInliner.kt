@@ -30,7 +30,6 @@ class TextInliner(val text: String) {
     var index = 0
     while (index < text.length) {
       val char = text.get(index)
-      Log.d("TextInliner", "char: " + char + " currentInline: " + currentInline.config.identifier())
 
       if (currentInline.config.type() == MarkdownInlineType.INLINE_CODE
           && !currentInline.config.isEnd(text, index)) {

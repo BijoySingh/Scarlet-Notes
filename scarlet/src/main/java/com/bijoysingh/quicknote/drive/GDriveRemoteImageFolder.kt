@@ -1,9 +1,6 @@
 package com.bijoysingh.quicknote.drive
 
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.database.remote.IRemoteDatabaseUtils.onRemoteInsert
-import com.maubis.scarlet.base.export.remote.LAST_MODIFIED_ERROR_MARGIN
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -34,9 +31,6 @@ class GDriveRemoteImageFolder(val helper: GDriveServiceHelper) {
 
   fun init(fUid: String, onLoaded: () -> Unit) {
     folderUid = fUid
-    val lastScanKey = "${KEY_G_DRIVE_SYNC_LAST_SCAN}_$folderUid"
-    val lastScan = CoreConfig.instance.store().get(lastScanKey, 0L)
-
     GlobalScope.launch(Dispatchers.IO) {
       helper.getFilesInFolder(folderUid, GOOGLE_DRIVE_IMAGE_MIME_TYPE).addOnCompleteListener {
         val imageFiles = it.result?.files
@@ -62,9 +56,15 @@ class GDriveRemoteImageFolder(val helper: GDriveServiceHelper) {
     }
 
     val remoteImages = imageFileIds.keys.toHashSet()
-    localImages.filter { !remoteImages.contains(it) }.forEach {
+    localImages.forEach {
       GlobalScope.launch {
-        onInsert(it)
+        val localFile = noteImagesFolder.getFile(it.noteUuid, it.imageUuid)
+        val hasLocalFile = localFile.exists()
+        val hasRemoteFile = remoteImages.contains(it)
+        when {
+          (hasLocalFile && !hasRemoteFile) -> onInsert(it)
+          (!hasLocalFile && hasRemoteFile) -> onRemoteInsert(it)
+        }
       }
     }
   }
@@ -80,10 +80,11 @@ class GDriveRemoteImageFolder(val helper: GDriveServiceHelper) {
     }
 
     val imageFile = noteImagesFolder.getFile(id.noteUuid, id.imageUuid)
-    helper.createFile(folderId = folderUid, mimeType = GOOGLE_DRIVE_IMAGE_MIME_TYPE).addOnCompleteListener {
+    val finalFileName = "${id.noteUuid}::${id.imageUuid}"
+    helper.createFile(folderId = folderUid, name = finalFileName, mimeType = GOOGLE_DRIVE_IMAGE_MIME_TYPE).addOnCompleteListener {
       val createdFileId = it.result
       if (createdFileId !== null) {
-        helper.saveFile(createdFileId, imageFile)
+        helper.saveFile(createdFileId, finalFileName, imageFile)
       }
     }
   }
@@ -94,10 +95,22 @@ class GDriveRemoteImageFolder(val helper: GDriveServiceHelper) {
       return
     }
 
-
+    if (!imageFileIds.containsKey(id)) {
+      return
+    }
+    helper.removeFileOrFolder(imageFileIds[id] ?: INVALID_FILE_ID)
+    imageFileIds.remove(id)
   }
 
   fun onRemoteInsert(id: ImageUUID) {
+    if (!loaded.get()) {
+      return
+    }
 
+    if (!imageFileIds.containsKey(id)) {
+      return
+    }
+    val imageFile = noteImagesFolder.getFile(id.noteUuid, id.imageUuid)
+    helper.readFile(imageFileIds[id] ?: INVALID_FILE_ID, imageFile)
   }
 }
