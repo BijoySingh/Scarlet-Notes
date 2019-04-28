@@ -2,7 +2,6 @@ package com.maubis.scarlet.base.note
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
 import com.maubis.markdown.Markdown
@@ -134,15 +133,17 @@ fun Note.getMarkdownText(isMarkdownEnabled: Boolean): CharSequence {
 }
 
 fun Note.getFullText(): String {
-  val formats = getFormats()
-  return formats.map { it -> it.markdownText }.joinToString(separator = "\n").trim()
+  return getFormats().map { it -> it.markdownText }.joinToString(separator = "\n").trim()
 }
 
 fun Note.getAlphabets(): String {
-  val formats = getFormats()
-  return formats.map { it -> it.markdownText }.joinToString(separator = "\n").trim().filter {
+  return getFormats().map { it -> it.markdownText }.joinToString(separator = "\n").trim().filter {
     ((it in 'a'..'z') || (it in 'A'..'Z'))
   }
+}
+
+fun Note.getImageIds(): Set<String> {
+  return getFormats().filter { it.formatType == FormatType.IMAGE }.map { it.text }.toSet()
 }
 
 fun Note.getUnreliablyStrippedText(context: Context): String {

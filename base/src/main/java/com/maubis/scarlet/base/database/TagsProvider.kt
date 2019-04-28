@@ -24,6 +24,11 @@ class TagsProvider {
     return tags.size
   }
 
+  fun getUUIDs(): List<String> {
+    maybeLoadFromDB()
+    return tags.values.map { it.uuid }
+  }
+
   fun getAll(): List<Tag> {
     maybeLoadFromDB()
     return tags.values.toList()

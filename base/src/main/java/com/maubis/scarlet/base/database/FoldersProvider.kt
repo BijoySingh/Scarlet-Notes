@@ -26,6 +26,11 @@ class FoldersProvider {
     return folders.size
   }
 
+  fun getUUIDs(): List<String> {
+    maybeLoadFromDB()
+    return folders.values.map { it.uuid }
+  }
+
   fun getAll(): List<Folder> {
     maybeLoadFromDB()
     return folders.values.toList()

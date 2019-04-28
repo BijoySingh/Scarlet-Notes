@@ -9,6 +9,7 @@ import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.folderSync
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.format.FormatBuilder
@@ -68,7 +69,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
   }
 
   override fun offlineDelete(context: Context) {
-    NoteImage(context).deleteAllFiles(note)
+    noteImagesFolder.deleteAllFiles(note)
     if (note.isUnsaved()) {
       return
     }

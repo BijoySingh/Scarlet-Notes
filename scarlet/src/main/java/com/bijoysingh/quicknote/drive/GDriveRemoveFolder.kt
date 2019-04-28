@@ -37,9 +37,9 @@ class GDriveRemoteFolder<T>(
         val files = it.result?.files
         if (files !== null) {
           files.forEach { file ->
+            fileIds[file.name] = file.id
             if (file.mimeType == GOOGLE_DRIVE_FILE_MIME_TYPE
                 && (file.modifiedTime?.value ?: System.currentTimeMillis() > lastScan - LAST_MODIFIED_ERROR_MARGIN)) {
-              fileIds[file.name] = file.id
               helper.readFile(file.id).addOnCompleteListener {
                 val data = it.result
                 if (data !== null) {
@@ -99,6 +99,20 @@ class GDriveRemoteFolder<T>(
           }
           "delete" -> delete(it.key)
         }
+      }
+    }
+  }
+
+  fun notifyingExistingIds(ids: List<String>) {
+    if (!loaded.get()) {
+      return
+    }
+
+    val uuids = fileIds.keys.toHashSet()
+    ids.filter { !uuids.contains(it) }.forEach {
+      val item = uuidToObject(it)
+      if (item !== null) {
+        insert(it, item)
       }
     }
   }

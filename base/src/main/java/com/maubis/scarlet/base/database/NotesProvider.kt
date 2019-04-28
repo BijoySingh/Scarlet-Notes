@@ -27,6 +27,11 @@ class NotesProvider {
     return notes.size
   }
 
+  fun getUUIDs(): List<String> {
+    maybeLoadFromDB()
+    return notes.values.map { it.uuid }
+  }
+
   fun getAll(): List<Note> {
     maybeLoadFromDB()
     return notes.values.toList()

@@ -10,6 +10,7 @@ import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.tag.ITagContainer
 import com.maubis.scarlet.base.database.remote.IRemoteDatabase
 import com.maubis.scarlet.base.database.remote.IRemoteDatabaseUtils
+import com.maubis.scarlet.base.note.getImageIds
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
@@ -22,6 +23,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
   private var notesSync: GDriveRemoteFolder<FirebaseNote>? = null
   private var foldersSync: GDriveRemoteFolder<FirebaseFolder>? = null
   private var tagsSync: GDriveRemoteFolder<FirebaseTag>? = null
+  private var imageSync: GDriveRemoteImageFolder? = null
 
   override fun init(userId: String) {}
 
@@ -47,6 +49,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
         { it -> CoreConfig.instance.foldersDatabase().getByUUID(it)?.getFirebaseFolder() },
         { it -> onRemoteInsert(it) },
         { it -> onRemoteRemove(FirebaseFolder(it, "", 0L, 0L, 0)) })
+    imageSync = GDriveRemoteImageFolder(helper)
 
     GlobalScope.launch {
       driveHelper?.getOrCreateDirectory("", GOOGLE_DRIVE_ROOT_FOLDER) {
@@ -67,6 +70,9 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
               gDrive?.insert(it.getFirebaseNote())
             }
             sGDriveFirstSyncNote = true
+          } else {
+            val ids = CoreConfig.instance.notesDatabase().getUUIDs()
+            notesSync?.notifyingExistingIds(ids)
           }
         }
       }
@@ -79,6 +85,9 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
               gDrive?.insert(it.getFirebaseTag())
             }
             sGDriveFirstSyncTag = true
+          } else {
+            val ids = CoreConfig.instance.tagsDatabase().getUUIDs()
+            tagsSync?.notifyingExistingIds(ids)
           }
         }
       }
@@ -91,16 +100,37 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
               gDrive?.insert(it.getFirebaseFolder())
             }
             sGDriveFirstSyncFolder = true
+          } else {
+            val ids = CoreConfig.instance.foldersDatabase().getUUIDs()
+            foldersSync?.notifyingExistingIds(ids)
           }
         }
       }
     }
-    driveHelper?.getOrCreateDirectory(rootFolderId, "images") {}
+    driveHelper?.getOrCreateDirectory(rootFolderId, "images") {
+      if (it !== null) {
+        imageSync?.init(it) {
+          val imageIds = emptySet<ImageUUID>().toMutableSet()
+          CoreConfig.instance.notesDatabase().getAll().map {
+            Pair(it.uuid, it.getImageIds())
+          }.forEach { idImagesPair ->
+            idImagesPair.second.forEach { imageId ->
+              imageIds.add(ImageUUID(idImagesPair.first, imageId))
+            }
+          }
+          imageSync?.notifyingExistingIds(imageIds)
+        }
+      }
+    }
   }
 
   override fun reset() {
     isValidController = false
     driveHelper = null
+    notesSync = null
+    foldersSync = null
+    tagsSync = null
+    imageSync = null
   }
 
   override fun logout() {

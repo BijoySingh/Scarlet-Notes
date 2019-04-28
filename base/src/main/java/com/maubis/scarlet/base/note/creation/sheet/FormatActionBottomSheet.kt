@@ -5,6 +5,7 @@ import android.view.View
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.NoteImage
@@ -80,8 +81,7 @@ class FormatActionBottomSheet : GridBottomSheetBase() {
         listener = View.OnClickListener {
           activity.deleteFormat(format)
           if (format.formatType === FormatType.IMAGE && !format.text.isBlank()) {
-            val noteImage = NoteImage(themedContext())
-            deleteIfExist(noteImage.getFile(noteUUID, format))
+            deleteIfExist(noteImagesFolder.getFile(noteUUID, format))
           }
           dismiss()
         }

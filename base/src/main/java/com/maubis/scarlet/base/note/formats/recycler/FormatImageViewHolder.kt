@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.note.ImageLoadCallback
 import com.maubis.scarlet.base.core.note.NoteImage
@@ -77,7 +78,7 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
 
     val fileName = data.text
     if (!fileName.isBlank()) {
-      val file = NoteImage(context).getFile(config.noteUUID, data)
+      val file = noteImagesFolder.getFile(config.noteUUID, data)
       when (file.exists()) {
         true -> populateFile(file)
         false -> {
@@ -91,7 +92,7 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
   }
 
   fun populateFile(file: File) {
-    NoteImage(context).loadPersistentFileToImageView(image, file, object : ImageLoadCallback {
+    noteImagesFolder.loadPersistentFileToImageView(image, file, object : ImageLoadCallback {
       override fun onSuccess() {
         noImageMessage.visibility = View.GONE
       }
