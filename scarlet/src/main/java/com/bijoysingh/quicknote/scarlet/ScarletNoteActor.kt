@@ -12,12 +12,12 @@ class ScarletNoteActor(note: Note) : MaterialNoteActor(note) {
   override fun onlineSave(context: Context) {
     super.onlineSave(context)
     firebase?.insert(note.getFirebaseNote())
-    gDrive?.insert(note.getFirebaseNote())
+    gDrive?.notifyInsert(note.getFirebaseNote())
   }
 
   override fun onlineDelete(context: Context) {
     super.onlineDelete(context)
     firebase?.remove(note.getFirebaseNote())
-    gDrive?.remove(note.getFirebaseNote())
+    gDrive?.notifyRemove(note.getFirebaseNote())
   }
 }

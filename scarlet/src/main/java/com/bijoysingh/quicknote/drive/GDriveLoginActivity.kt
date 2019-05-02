@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
+import com.bijoysingh.quicknote.database.GDriveDataType
+import com.bijoysingh.quicknote.database.GDriveUploadData
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -20,10 +22,11 @@ import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.drive.Drive
 import com.google.api.services.drive.DriveScopes
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.export.support.KEY_EXTERNAL_FOLDER_SYNC_ENABLED
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import kotlinx.android.synthetic.main.gdrive_login.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
@@ -150,7 +153,40 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
     gDrive = GDriveRemoteDatabase(WeakReference(this.applicationContext))
     gDrive?.init(mDriveServiceHelper!!)
 
-    setButton(false)
+    GlobalScope.launch {
+      val database = gDrive?.gDriveDatabase
+      if (database === null) {
+        return@launch
+      }
+      CoreConfig.instance.notesDatabase().getAll().forEach {
+        val existing = gDrive?.gDriveDatabase?.getByUUID(GDriveDataType.NOTE.name, it.uuid)
+            ?: GDriveUploadData()
+        existing.apply {
+          uuid = it.uuid
+          type = GDriveDataType.NOTE.name
+          save(database)
+        }
+      }
+      CoreConfig.instance.tagsDatabase().getAll().forEach {
+        val existing = gDrive?.gDriveDatabase?.getByUUID(GDriveDataType.TAG.name, it.uuid)
+            ?: GDriveUploadData()
+        existing.apply {
+          uuid = it.uuid
+          type = GDriveDataType.TAG.name
+          save(database)
+        }
+      }
+      CoreConfig.instance.foldersDatabase().getAll().forEach {
+        val existing = gDrive?.gDriveDatabase?.getByUUID(GDriveDataType.FOLDER.name, it.uuid)
+            ?: GDriveUploadData()
+        existing.apply {
+          uuid = it.uuid
+          type = GDriveDataType.FOLDER.name
+          save(database)
+        }
+      }
+      finish()
+    }
   }
 
   override fun onConnectionFailed(p0: ConnectionResult) {

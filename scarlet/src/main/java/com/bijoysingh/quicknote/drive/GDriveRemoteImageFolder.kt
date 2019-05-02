@@ -64,9 +64,7 @@ class GDriveRemoteImageFolder(val helper: GDriveServiceHelper) {
 
     val imageFile = noteImagesFolder.getFile(id.noteUuid, id.imageUuid)
     val finalFileName = "${id.noteUuid}::${id.imageUuid}"
-    helper.createFileWithData(contentFolderUid, finalFileName, imageFile).addOnCompleteListener {
-      helper.updateLastModifiedTime(contentFolderUid)
-    }
+    helper.createFileWithData(contentFolderUid, finalFileName, imageFile, getTrueCurrentTime()).addOnCompleteListener {}
   }
 
   fun delete(id: ImageUUID) {

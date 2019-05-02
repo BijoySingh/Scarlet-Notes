@@ -11,12 +11,12 @@ class ScarletTagActor(tag: Tag) : MaterialTagActor(tag) {
   override fun onlineSave() {
     super.onlineSave()
     firebase?.insert(tag.getFirebaseTag())
-    gDrive?.insert(tag.getFirebaseTag())
+    gDrive?.notifyInsert(tag.getFirebaseTag())
   }
 
   override fun delete() {
     super.delete()
     firebase?.remove(tag.getFirebaseTag())
-    gDrive?.insert(tag.getFirebaseTag())
+    gDrive?.notifyRemove(tag.getFirebaseTag())
   }
 }

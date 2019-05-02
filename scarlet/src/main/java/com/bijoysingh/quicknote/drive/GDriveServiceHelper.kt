@@ -25,13 +25,6 @@ const val GOOGLE_DRIVE_IMAGE_MIME_TYPE = "image/jpeg"
 
 const val INVALID_FILE_ID = "__invalid__"
 
-const val STORE_KEY_G_DRIVE_LAST_MODIFICATION_TIME = "store_key_g_drive_last_modification_time"
-var sGDriveLastModificationTime: Long
-  get() = CoreConfig.instance.store().get(STORE_KEY_G_DRIVE_LAST_MODIFICATION_TIME, 0L)
-  set(value) = CoreConfig.instance.store().put(STORE_KEY_G_DRIVE_LAST_MODIFICATION_TIME, value)
-
-var updateCheckerFileId: String? = null
-
 class ErrorCallable<T>(val callable: Callable<T>) : Callable<T> {
   override fun call(): T {
     try {
@@ -54,42 +47,37 @@ fun getTrueCurrentTime(): Long {
 
 class GDriveServiceHelper(private val mDriveService: Drive) {
   private val mExecutor = Executors.newFixedThreadPool(8)
-  private val mSerialExecutor = Executors.newSingleThreadExecutor()
 
   fun <T> execute(callable: Callable<T>): Task<T> {
     return Tasks.call(mExecutor, ErrorCallable(callable))
   }
 
-  fun createFileWithData(folderId: String, name: String, content: String = ""): Task<String> {
-    val currentTime = getTrueCurrentTime()
-    val contentToSave = if (content.isEmpty()) currentTime.toString() else content
+  fun createFileWithData(folderId: String, name: String, content: String, updateTime: Long): Task<File> {
+    val contentToSave = if (content.isEmpty()) updateTime.toString() else content
     return execute(Callable {
       val metadata = File()
           .setParents(listOf(folderId))
           .setMimeType(GOOGLE_DRIVE_FILE_MIME_TYPE)
-          .setModifiedTime(DateTime(currentTime))
+          .setModifiedTime(DateTime(updateTime))
           .setName(name)
       val contentStream = ByteArrayContent.fromString("text/plain", contentToSave)
-      val googleFile = mDriveService.files().create(metadata, contentStream).execute()
-      googleFile?.id ?: INVALID_FILE_ID
+      mDriveService.files().create(metadata, contentStream).execute()
     })
   }
 
-  fun createFileWithData(folderId: String, name: String, file: java.io.File): Task<String> {
-    val currentTime = getTrueCurrentTime()
-    return execute(Callable<String> {
+  fun createFileWithData(folderId: String, name: String, file: java.io.File, updateTime: Long): Task<File> {
+    return execute(Callable<File> {
       val metadata = File()
           .setParents(listOf(folderId))
           .setMimeType(GOOGLE_DRIVE_IMAGE_MIME_TYPE)
-          .setModifiedTime(DateTime(currentTime))
+          .setModifiedTime(DateTime(updateTime))
           .setName(name)
       val mediaContent = FileContent(GOOGLE_DRIVE_IMAGE_MIME_TYPE, file)
-      val googleFile = mDriveService.files().create(metadata, mediaContent).execute()
-      googleFile?.id ?: INVALID_FILE_ID
+      mDriveService.files().create(metadata, mediaContent).execute()
     })
   }
 
-  fun createFolder(parentUid: String, folderName: String): Task<String> {
+  fun createFolder(parentUid: String, folderName: String): Task<File> {
     return execute(Callable {
       val metadata = File()
           .setMimeType(GOOGLE_DRIVE_FOLDER_MIME_TYPE)
@@ -98,11 +86,9 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
       if (!parentUid.isEmpty()) {
         metadata.parents = listOf(parentUid)
       }
-      val googleFile = mDriveService.files().create(metadata).execute()
-      googleFile?.id ?: INVALID_FILE_ID
+      mDriveService.files().create(metadata).execute()
     })
   }
-
 
   fun readFile(fileId: String): Task<String> {
     return execute(Callable {
@@ -130,12 +116,11 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
     })
   }
 
-  fun saveFile(fileId: String, name: String, content: String): Task<Void> {
-    return execute(Callable<Void> {
-      val metadata = File().setName(name)
+  fun saveFile(fileId: String, name: String, content: String, updateTime: Long): Task<File> {
+    return execute(Callable<File> {
+      val metadata = File().setModifiedTime(DateTime(updateTime)).setName(name)
       val contentStream = ByteArrayContent.fromString("text/plain", content)
       mDriveService.files().update(fileId, metadata, contentStream).execute()
-      null
     })
   }
 
@@ -144,6 +129,7 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
       mDriveService.files().list()
           .setSpaces("drive")
           .setPageSize(1000)
+          .setFields("files(name, id, modifiedTime, mimeType)")
           .setQ("mimeType = '$mimeType' and '$parentUid' in parents")
           .execute()
     })
@@ -164,7 +150,7 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
 
   fun getSubRootFolders(parentUid: String, names: List<String>): Task<FileList> {
     var nameQueryBuilder = "name = '${names[0]}'"
-    names.subList(1, names.lastIndex).forEach {
+    names.subList(1, names.lastIndex + 1).forEach {
       nameQueryBuilder += " or name = '$it'"
     }
     return execute(Callable {
@@ -191,29 +177,8 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
       }
 
       createFolder(parentUid, name).addOnCompleteListener { createTask ->
-        onFolderId(createTask.result)
+        onFolderId(createTask.result?.id ?: INVALID_FILE_ID)
       }
     }
-  }
-
-  fun getLastUpdateTime(): Task<File> {
-    val folderId = updateCheckerFileId
-    return Tasks.call(mSerialExecutor, ErrorCallable(Callable<File> {
-      when {
-        (folderId === null) -> throw RuntimeException("Folder not set")
-        else -> mDriveService.files().get(folderId).execute()
-      }
-    }))
-  }
-
-  fun updateLastModifiedTime(folderUid: String): Long {
-    val currentTime = getTrueCurrentTime()
-    Tasks.call(mSerialExecutor, ErrorCallable(Callable<Unit> {
-      val metadata = File()
-          .setModifiedTime(DateTime(currentTime))
-          .setModifiedByMeTime(DateTime(currentTime))
-      mDriveService.files().update(folderUid, metadata).execute()
-    }))
-    return currentTime
   }
 }

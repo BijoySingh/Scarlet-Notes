@@ -62,6 +62,8 @@ abstract class CoreConfig(context: Context) {
 
   abstract fun imageCache(): ImageCache
 
+  abstract fun resyncDrive(onSyncCompleted: () -> Unit)
+
   companion object {
     lateinit var instance: CoreConfig
     val notesDb get() = instance.notesDatabase()

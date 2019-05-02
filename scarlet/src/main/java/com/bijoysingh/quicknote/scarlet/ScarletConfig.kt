@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.scarlet
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import com.bijoysingh.quicknote.BuildConfig
+import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity.Companion.openIfNeeded
 import com.bijoysingh.quicknote.firebase.support.RemoteConfigFetcher
 import com.bijoysingh.quicknote.firebase.support.ScarletAuthenticator
@@ -37,5 +38,13 @@ class ScarletConfig(context: Context) : MaterialNoteConfig(context) {
 
   override fun startListener(activity: AppCompatActivity) {
     openIfNeeded(activity)
+  }
+
+  override fun resyncDrive(onSyncCompleted: () -> Unit) {
+    if (gDrive === null) {
+      onSyncCompleted()
+      return
+    }
+    gDrive?.resync(onSyncCompleted)
   }
 }

@@ -328,6 +328,15 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     CoreConfig.instance.startListener(this)
     setupData()
     registerNoteReceiver()
+
+    topSyncingLayout.visibility = View.VISIBLE
+    GlobalScope.launch {
+      CoreConfig.instance.resyncDrive {
+        GlobalScope.launch(Dispatchers.Main) {
+          topSyncingLayout.visibility = View.GONE
+        }
+      }
+    }
   }
 
   fun resetAndSetupData() {

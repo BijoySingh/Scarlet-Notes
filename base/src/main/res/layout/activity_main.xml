@@ -43,6 +43,39 @@
   </LinearLayout>
 
   <LinearLayout
+    android:id="@+id/topSyncingLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top|center_horizontal"
+    android:layout_margin="16dp"
+    android:background="@drawable/accent_rounded_bg"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:alpha="0.8"
+    android:visibility="gone"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp">
+
+    <ProgressBar
+      android:layout_width="24dp"
+      android:layout_height="24dp"
+      android:layout_marginStart="8dp"
+      android:foregroundTint="@color/white"
+      android:indeterminate="true"
+      android:indeterminateTint="@color/white" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="8dp"
+      android:text="@string/home_syncing_top_layout"
+      android:textAllCaps="true"
+      android:textColor="@color/light_primary_text"
+      android:textSize="@dimen/font_size_large" />
+
+  </LinearLayout>
+
+  <LinearLayout
     android:id="@+id/bottomSnackbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

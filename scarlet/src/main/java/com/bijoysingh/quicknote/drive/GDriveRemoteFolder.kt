@@ -1,16 +1,18 @@
 package com.bijoysingh.quicknote.drive
 
+import com.bijoysingh.quicknote.database.GDriveDataType
+import com.bijoysingh.quicknote.database.GDriveUploadData
+import com.bijoysingh.quicknote.database.GDriveUploadDataDao
+import com.google.api.services.drive.model.File
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.concurrent.atomic.AtomicBoolean
 
-const val KEY_G_DRIVE_SYNC_LAST_SCAN = "drive_g_folder_sync_last_sync"
-const val G_DRIVE_LAST_MODIFIED_ERROR_MARGIN = 7 * 1000 * 60 * 60 * 24L
-const val G_DRIVE_LAST_MODIFIED_UPDATE_ERROR_MARGIN = 1000 * 60 * 60 * 1L
-
 class GDriveRemoteFolder<T>(
+    val dataType: GDriveDataType,
+    val database: GDriveUploadDataDao,
     val helper: GDriveServiceHelper,
     val uuidToObject: (String) -> T?) {
 
@@ -33,6 +35,7 @@ class GDriveRemoteFolder<T>(
         val localFileIds = emptyMap<String, String>().toMutableMap()
         files.forEach { file ->
           localFileIds[file.name] = file.id
+          notifyDriveData(file)
         }
         contentFiles.clear()
         contentFiles.putAll(localFileIds)
@@ -40,6 +43,40 @@ class GDriveRemoteFolder<T>(
 
         GlobalScope.launch { executeInsertPendingActions() }
         GlobalScope.launch { onLoaded() }
+      }
+    }
+  }
+
+  private fun notifyDriveData(file: File, deleted: Boolean = false) {
+    val modifiedTime = file.modifiedTime?.value ?: 0L
+    notifyDriveData(file.id, file.name, modifiedTime, deleted)
+  }
+
+  private fun notifyDriveData(uid: String, name: String, modifiedTime: Long, deleted: Boolean = false) {
+    GlobalScope.launch {
+      val uploadData = database.getByUUID(dataType.name, name)
+      if (uploadData == null) {
+        GDriveUploadData().apply {
+          uuid = name
+          type = dataType.name
+          fileId = uid
+          gDriveUpdateTimestamp = modifiedTime
+          gDriveStateDeleted = deleted
+          save(database)
+        }
+        return@launch
+      }
+
+
+      if (uploadData.gDriveUpdateTimestamp != modifiedTime
+          || uploadData.fileId != uid
+          || uploadData.gDriveStateDeleted != deleted) {
+        uploadData.apply {
+          gDriveUpdateTimestamp = modifiedTime
+          fileId = uid
+          gDriveStateDeleted = deleted
+          save(database)
+        }
       }
     }
   }
@@ -53,6 +90,7 @@ class GDriveRemoteFolder<T>(
         val localFileIds = emptyMap<String, String>().toMutableMap()
         files.forEach { file ->
           localFileIds[file.name] = file.id
+          notifyDriveData(file, true)
         }
         deletedFiles.clear()
         deletedFiles.putAll(localFileIds)
@@ -90,16 +128,22 @@ class GDriveRemoteFolder<T>(
     try {
       val data = Gson().toJson(item)
       val fileId = contentFiles[uuid]
+      val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp ?: getTrueCurrentTime()
       if (fileId !== null) {
-        helper.saveFile(fileId, uuid, data).addOnCompleteListener {
-          helper.updateLastModifiedTime(contentFolderUid)
+        helper.saveFile(fileId, uuid, data, timestamp).addOnCompleteListener {
+          val file = it.result
+          if (file !== null) {
+            notifyDriveData(file.id, uuid, timestamp)
+          }
         }
         return
       }
-
-      helper.createFileWithData(contentFolderUid, uuid, data).addOnCompleteListener {
-        contentFiles[uuid] = it.result ?: INVALID_FILE_ID
-        helper.updateLastModifiedTime(contentFolderUid)
+      helper.createFileWithData(contentFolderUid, uuid, data, timestamp).addOnCompleteListener {
+        val file = it.result
+        if (file !== null) {
+          contentFiles[uuid] = file.id
+          notifyDriveData(file.id, uuid, timestamp)
+        }
       }
     } catch (exception: Exception) {
     }
@@ -117,9 +161,13 @@ class GDriveRemoteFolder<T>(
       contentFiles.remove(uuid)
     }
 
-    helper.createFileWithData(deletedFolderUid, uuid).addOnCompleteListener {
-      deletedFiles[uuid] = it.result ?: INVALID_FILE_ID
-      helper.updateLastModifiedTime(deletedFolderUid)
+    val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp ?: getTrueCurrentTime()
+    helper.createFileWithData(deletedFolderUid, uuid, "", timestamp).addOnCompleteListener {
+      val file = it.result
+      if (file !== null) {
+        deletedFiles[uuid] = file.id
+        notifyDriveData(file.id, uuid, timestamp, true)
+      }
     }
   }
 }
