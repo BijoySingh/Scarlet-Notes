@@ -39,6 +39,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 const val KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE = "g_drive_first_time_sync_note"
 const val KEY_G_DRIVE_FIRST_TIME_SYNC_TAG = "g_drive_first_time_sync_tag"
 const val KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER = "g_drive_first_time_sync_folder"
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE = "g_drive_first_time_sync_image"
 
 var sGDriveFirstSyncNote: Boolean
   get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE, false)
@@ -49,6 +50,9 @@ var sGDriveFirstSyncTag: Boolean
 var sGDriveFirstSyncFolder: Boolean
   get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER, false)
   set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER, value)
+var sGDriveFirstSyncImage: Boolean
+  get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, false)
+  set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, value)
 
 class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailedListener {
 

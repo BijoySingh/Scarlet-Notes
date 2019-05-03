@@ -5,7 +5,8 @@ import android.arch.persistence.room.*
 enum class GDriveDataType {
   NOTE,
   TAG,
-  FOLDER
+  FOLDER,
+  IMAGE,
 }
 
 @Entity(tableName = "gdrive_upload", indices = [Index("uuid")])
@@ -50,4 +51,7 @@ interface GDriveUploadDataDao {
 
   @Query("SELECT * FROM gdrive_upload WHERE uuid = :uuid AND type = :type LIMIT 1")
   fun getByUUID(type: String, uuid: String): GDriveUploadData?
+
+  @Query("SELECT * FROM gdrive_upload WHERE type = :type")
+  fun getByType(type: String): List<GDriveUploadData>
 }

@@ -11,10 +11,10 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.atomic.AtomicBoolean
 
 class GDriveRemoteFolder<T>(
-    val dataType: GDriveDataType,
-    val database: GDriveUploadDataDao,
-    val helper: GDriveServiceHelper,
-    val uuidToObject: (String) -> T?) {
+    dataType: GDriveDataType,
+    database: GDriveUploadDataDao,
+    helper: GDriveServiceHelper,
+    val uuidToObject: (String) -> T?): GDriveRemoteFolderBase(dataType, database, helper) {
 
   var contentLoading = AtomicBoolean(true)
   var contentFolderUid: String = INVALID_FILE_ID
@@ -43,40 +43,6 @@ class GDriveRemoteFolder<T>(
 
         GlobalScope.launch { executeInsertPendingActions() }
         GlobalScope.launch { onLoaded() }
-      }
-    }
-  }
-
-  private fun notifyDriveData(file: File, deleted: Boolean = false) {
-    val modifiedTime = file.modifiedTime?.value ?: 0L
-    notifyDriveData(file.id, file.name, modifiedTime, deleted)
-  }
-
-  private fun notifyDriveData(uid: String, name: String, modifiedTime: Long, deleted: Boolean = false) {
-    GlobalScope.launch {
-      val uploadData = database.getByUUID(dataType.name, name)
-      if (uploadData == null) {
-        GDriveUploadData().apply {
-          uuid = name
-          type = dataType.name
-          fileId = uid
-          gDriveUpdateTimestamp = modifiedTime
-          gDriveStateDeleted = deleted
-          save(database)
-        }
-        return@launch
-      }
-
-
-      if (uploadData.gDriveUpdateTimestamp != modifiedTime
-          || uploadData.fileId != uid
-          || uploadData.gDriveStateDeleted != deleted) {
-        uploadData.apply {
-          gDriveUpdateTimestamp = modifiedTime
-          fileId = uid
-          gDriveStateDeleted = deleted
-          save(database)
-        }
       }
     }
   }

@@ -90,8 +90,20 @@ object IRemoteDatabaseUtils {
     }
   }
 
+  fun onRemoteRemoveNote(context: Context, noteUUID: String) {
+    val existingNote = CoreConfig.notesDb.getByUUID(noteUUID)
+    if (existingNote !== null && !existingNote.disableBackup) {
+      existingNote.deleteWithoutSync(context)
+      sendNoteBroadcast(context, NoteBroadcast.NOTE_DELETED, existingNote.uuid)
+    }
+  }
+
   fun onRemoteRemove(context: Context, tag: ITagContainer) {
-    val existingTag = CoreConfig.tagsDb.getByUUID(tag.uuid())
+    onRemoteRemoveTag(context, tag.uuid())
+  }
+
+  fun onRemoteRemoveTag(context: Context, tagUUID: String) {
+    val existingTag = CoreConfig.tagsDb.getByUUID(tagUUID)
     if (existingTag !== null) {
       existingTag.deleteWithoutSync()
       sendNoteBroadcast(context, NoteBroadcast.TAG_DELETED, existingTag.uuid)
@@ -99,7 +111,11 @@ object IRemoteDatabaseUtils {
   }
 
   fun onRemoteRemove(context: Context, folder: IFolderContainer) {
-    val existingFolder = CoreConfig.foldersDb.getByUUID(folder.uuid())
+    onRemoteRemoveFolder(context, folder.uuid())
+  }
+
+  fun onRemoteRemoveFolder(context: Context, folderUUID: String) {
+    val existingFolder = CoreConfig.foldersDb.getByUUID(folderUUID)
     if (existingFolder !== null) {
       existingFolder.deleteWithoutSync()
       CoreConfig.notesDb.getAll().filter { it.folder == existingFolder.uuid }.forEach {

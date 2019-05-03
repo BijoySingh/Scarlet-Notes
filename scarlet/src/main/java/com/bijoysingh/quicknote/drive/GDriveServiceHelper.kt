@@ -9,7 +9,6 @@ import com.google.api.client.util.DateTime
 import com.google.api.services.drive.Drive
 import com.google.api.services.drive.model.File
 import com.google.api.services.drive.model.FileList
-import com.maubis.scarlet.base.config.CoreConfig
 import java.io.BufferedReader
 import java.io.FileOutputStream
 import java.io.InputStreamReader
