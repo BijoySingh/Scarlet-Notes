@@ -31,6 +31,8 @@ abstract class CoreConfig(context: Context) {
     config.spanConfig.headingTypeface = ResourcesCompat.getFont(context, R.font.monserrat)
         ?: Typeface.DEFAULT
     FONT_MONSERRAT = config.spanConfig.headingTypeface
+    FONT_MONSERRAT_MEDIUM = ResourcesCompat.getFont(context, R.font.monserrat_medium) ?: Typeface.DEFAULT
+    FONT_MONSERRAT_BOLD = ResourcesCompat.getFont(context, R.font.monserrat_bold) ?: Typeface.DEFAULT
     FONT_OPEN_SANS = ResourcesCompat.getFont(context, R.font.open_sans) ?: Typeface.DEFAULT
   }
 
@@ -62,7 +64,7 @@ abstract class CoreConfig(context: Context) {
 
   abstract fun imageCache(): ImageCache
 
-  abstract fun resyncDrive(onSyncCompleted: () -> Unit)
+  abstract fun resyncDrive(force: Boolean, onSyncCompleted: () -> Unit)
 
   companion object {
     lateinit var instance: CoreConfig
@@ -71,6 +73,8 @@ abstract class CoreConfig(context: Context) {
     val foldersDb get() = instance.foldersDatabase()
 
     var FONT_MONSERRAT: Typeface = Typeface.DEFAULT
+    var FONT_MONSERRAT_MEDIUM: Typeface = Typeface.DEFAULT
+    var FONT_MONSERRAT_BOLD: Typeface = Typeface.DEFAULT
     var FONT_OPEN_SANS: Typeface = Typeface.DEFAULT
   }
 }

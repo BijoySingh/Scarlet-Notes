@@ -297,11 +297,17 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     onSyncCompleted()
   }
 
-  fun resync(onSyncCompleted: () -> Unit) {
+  @Synchronized
+  fun resync(force: Boolean, onSyncCompleted: () -> Unit) {
     if (!isValidController) {
       onSyncCompleted()
       return
     }
+
+    if (!force && sGDriveLastSync > getTrueCurrentTime() - KEY_G_DRIVE_LAST_SYNC_DELTA_MS) {
+      return
+    }
+    sGDriveLastSync = getTrueCurrentTime()
 
     GlobalScope.launch {
       resyncNotesSync {}

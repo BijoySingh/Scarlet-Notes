@@ -428,4 +428,14 @@
   <string name="home_option_faq_description" translatable="false">Find help on how to use the features in the app</string>
 
   <string name="home_syncing_top_layout" translatable="false">Syncing</string>
+
+  <!-- Start: Google Login Strings -->
+  <string name="google_drive_page_connection_failed" translatable="false">Connection Failed</string>
+  <string name="google_drive_page_login_title" translatable="false">Sync on Google Drive</string>
+  <string name="google_drive_page_login_details" translatable="false">Google Drive allows you to sync your notes between devices using your own Google Drive account.</string>
+  <string name="google_drive_page_login_firebase_button" translatable="false">Logged into Google Firebase before?</string>
+  <string name="google_drive_page_login_button" translatable="false">Sign In to Google Drive</string>
+  <string name="google_drive_page_logging_in_button" translatable="false">Signing In&#8230;</string>
+
+  <string name="google_drive_page_login_lock_details" translatable="false">Notes, Tags and Folders are stored on your own Google Drive, so only you can control access to them.</string>
 </resources>

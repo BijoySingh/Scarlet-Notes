@@ -4,10 +4,10 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
+import android.os.Bundle
 import android.support.design.widget.BottomSheetDialogFragment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.ScrollView
 import com.facebook.litho.Column
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
@@ -20,6 +20,7 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
+import com.maubis.scarlet.base.support.ui.BottomSheetTabletDialog
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 fun openSheet(activity: AppCompatActivity, sheet: LithoBottomSheet) {
@@ -48,6 +49,22 @@ fun getLithoBottomSheetButton(context: ComponentContext): Text.Builder {
 }
 
 abstract class LithoBottomSheet : BottomSheetDialogFragment() {
+
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    val ctxt = context ?: activity
+    if (ctxt === null) {
+      return super.onCreateDialog(savedInstanceState)
+    }
+
+    val isTablet = ctxt.resources.getBoolean(R.bool.is_tablet)
+    val dialog = when {
+      isTablet -> BottomSheetTabletDialog(ctxt, theme)
+      else -> super.onCreateDialog(savedInstanceState)
+    }
+    retainInstance = true
+    return dialog
+  }
+
   override fun setupDialog(dialog: Dialog, style: Int) {
     val localContext = context
     if (localContext === null) {

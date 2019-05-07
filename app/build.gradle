@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.bijoysingh.quicknote"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 125
         versionName '6.9.7'

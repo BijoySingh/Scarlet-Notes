@@ -30,6 +30,8 @@
   <color name="code_light">#22000000</color>
   <color name="code_dark">#22FFFFFF</color>
 
+  <color name="dark_low_hint_text">#16000000</color>
+
   <color name="bg_rose">#FFEBEE</color>
   <color name="bg_rose_dark">#e8ccd0</color>
   <color name="bg_rose_darkest">#d8a9af</color>

@@ -7,6 +7,9 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadData
+import com.facebook.litho.Component
+import com.facebook.litho.ComponentContext
+import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -22,9 +25,7 @@ import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.drive.Drive
 import com.google.api.services.drive.DriveScopes
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import kotlinx.android.synthetic.main.gdrive_login.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
@@ -54,12 +55,20 @@ var sGDriveFirstSyncImage: Boolean
   get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, false)
   set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, value)
 
+const val KEY_G_DRIVE_LAST_SYNC_DELTA_MS = 1000 * 60
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_LAST_SYNC = "g_drive_first_time_sync_last_sync"
+var sGDriveLastSync: Long
+  get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_LAST_SYNC, 0L)
+  set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_LAST_SYNC, value)
+
 class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailedListener {
 
   private val RC_SIGN_IN = 31244
   private val RC_SIGN_IN_PERMISSIONS = 32443
 
   lateinit var context: Context
+  lateinit var component: Component
+  lateinit var componentContext: ComponentContext
   lateinit var mGoogleApiClient: GoogleApiClient
 
   var loggingIn = AtomicBoolean(false)
@@ -67,20 +76,11 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.gdrive_login)
     context = this
-    setupSignInButton()
+    componentContext = ComponentContext(context)
+    setButton(false)
     setupGoogleLogin()
     notifyThemeChange()
-  }
-
-  private fun setupSignInButton() {
-    signInButton.setOnClickListener {
-      if (!loggingIn.get()) {
-        setButton(true)
-        signIn()
-      }
-    }
   }
 
   private fun setupGoogleLogin() {
@@ -127,23 +127,20 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
 
   private fun setButton(state: Boolean) {
     loggingIn.set(state)
-    when (loggingIn.get()) {
-      true -> {
-        signInButton.setBackgroundResource(R.drawable.login_button_disabled)
-        signInButtonTitle.setText(R.string.logging_into_app)
-      }
-      false -> {
-        signInButton.setBackgroundResource(R.drawable.login_button_active)
-        signInButtonTitle.setText(R.string.login_with_google)
-      }
-    }
+    component = GDriveRootView.create(componentContext)
+        .onClick {
+          if (!loggingIn.get()) {
+            setButton(true)
+            signIn()
+          }
+        }
+        .loggingIn(state)
+        .build()
+    setContentView(LithoView.create(componentContext, component))
   }
 
   override fun notifyThemeChange() {
     setSystemTheme()
-    containerLayout.setBackgroundColor(getThemeColor())
-    signInToGDrive.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-    signInToGDriveDetails.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
   }
 
   fun onLoginComplete(account: GoogleSignInAccount) {

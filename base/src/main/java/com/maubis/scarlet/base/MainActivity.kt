@@ -14,16 +14,13 @@ import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteState
-import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.HomeNavigationState
 import com.maubis.scarlet.base.main.recycler.*
-import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
 import com.maubis.scarlet.base.main.sheets.WhatsNewBottomSheet
 import com.maubis.scarlet.base.main.sheets.openDeleteTrashSheet
 import com.maubis.scarlet.base.main.specs.MainActivityBottomBar
@@ -43,7 +40,6 @@ import com.maubis.scarlet.base.service.getNoteIntentFilter
 import com.maubis.scarlet.base.settings.sheet.STORE_KEY_LINE_COUNT
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
-import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
 import com.maubis.scarlet.base.support.SearchConfig
@@ -331,7 +327,7 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
 
     topSyncingLayout.visibility = View.VISIBLE
     GlobalScope.launch {
-      CoreConfig.instance.resyncDrive {
+      CoreConfig.instance.resyncDrive(false) {
         GlobalScope.launch(Dispatchers.Main) {
           topSyncingLayout.visibility = View.GONE
         }
