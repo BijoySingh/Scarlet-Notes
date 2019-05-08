@@ -46,6 +46,9 @@ interface GDriveUploadDataDao {
   @Delete
   fun delete(note: GDriveUploadData)
 
+  @Query("DELETE FROM gdrive_upload WHERE 1")
+  fun drop()
+
   @Query("SELECT * FROM gdrive_upload WHERE uid = :uid LIMIT 1")
   fun getByID(uid: Int): GDriveUploadData?
 

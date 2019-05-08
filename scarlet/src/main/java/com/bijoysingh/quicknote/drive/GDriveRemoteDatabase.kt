@@ -1,11 +1,14 @@
 package com.bijoysingh.quicknote.drive
 
 import android.content.Context
+import com.bijoysingh.quicknote.Scarlet
+import com.bijoysingh.quicknote.Scarlet.Companion.gDriveConfig
 import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadData
 import com.bijoysingh.quicknote.database.GDriveUploadDataDao
 import com.bijoysingh.quicknote.database.genGDriveUploadDatabase
 import com.bijoysingh.quicknote.firebase.data.*
+import com.github.bijoysingh.starter.prefs.Store
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
 import com.maubis.scarlet.base.config.CoreConfig
@@ -26,6 +29,40 @@ const val FOLDER_NAME_FOLDERS = "folders"
 const val FOLDER_NAME_DELETED_NOTES = "deleted_notes"
 const val FOLDER_NAME_DELETED_TAGS = "deleted_tags"
 const val FOLDER_NAME_DELETED_FOLDERS = "deleted_folders"
+
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE = "g_drive_first_time_sync_note"
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_TAG = "g_drive_first_time_sync_tag"
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER = "g_drive_first_time_sync_folder"
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE = "g_drive_first_time_sync_image"
+var sGDriveFirstSyncNote: Boolean
+  get() = Scarlet.gDriveConfig?.get(KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE, false) ?: false
+  set(value) = Scarlet.gDriveConfig?.put(KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE, value) ?: Unit
+var sGDriveFirstSyncTag: Boolean
+  get() = Scarlet.gDriveConfig?.get(KEY_G_DRIVE_FIRST_TIME_SYNC_TAG, false) ?: false
+  set(value) = Scarlet.gDriveConfig?.put(KEY_G_DRIVE_FIRST_TIME_SYNC_TAG, value) ?: Unit
+var sGDriveFirstSyncFolder: Boolean
+  get() = Scarlet.gDriveConfig?.get(KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER, false) ?: false
+  set(value) = Scarlet.gDriveConfig?.put(KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER, value) ?: Unit
+var sGDriveFirstSyncImage: Boolean
+  get() = Scarlet.gDriveConfig?.get(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, false) ?: false
+  set(value) = Scarlet.gDriveConfig?.put(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, value) ?: Unit
+
+const val KEY_G_DRIVE_LAST_SYNC_DELTA_MS = 1000 * 60
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_LAST_SYNC = "g_drive_first_time_sync_last_sync"
+var sGDriveLastSync: Long
+  get() = gDriveConfig?.get(KEY_G_DRIVE_FIRST_TIME_SYNC_LAST_SYNC, 0L) ?: 0L
+  set(value) = gDriveConfig?.put(KEY_G_DRIVE_FIRST_TIME_SYNC_LAST_SYNC, value) ?: Unit
+
+fun folderIdForFolderName(folderName: String, folderId: String = ""): String {
+  val key = "g_drive_folder_if_for_$folderName"
+  return when (folderId.isEmpty()) {
+    true -> gDriveConfig?.get(key, "") ?: ""
+    false -> {
+      gDriveConfig?.put(key, folderId)
+      folderId
+    }
+  }
+}
 
 class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
 
@@ -48,6 +85,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     isValidController = true
     driveHelper = helper
     gDriveDatabase = genGDriveUploadDatabase(context)
+    gDriveConfig = Store.get(context, "gdrive_config")
 
     notesSync = GDriveRemoteFolder(GDriveDataType.NOTE, gDriveDatabase!!, helper) {
       CoreConfig.instance.notesDatabase().getByUUID(it)?.getFirebaseNote()
@@ -61,10 +99,19 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     imageSync = GDriveRemoteImageFolder(GDriveDataType.IMAGE, gDriveDatabase!!, helper)
 
     GlobalScope.launch {
-      driveHelper?.getOrCreateDirectory("", GOOGLE_DRIVE_ROOT_FOLDER) {
-        when {
-          (it === null) -> reset()
-          else -> onRootFolderLoaded(it)
+      val fuid = folderIdForFolderName(GOOGLE_DRIVE_ROOT_FOLDER)
+      when {
+        fuid.isNotBlank() -> onRootFolderLoaded(fuid)
+        else -> {
+          driveHelper?.getOrCreateDirectory("", GOOGLE_DRIVE_ROOT_FOLDER) {
+            when {
+              (it === null) -> reset()
+              else -> {
+                folderIdForFolderName(GOOGLE_DRIVE_ROOT_FOLDER, it)
+                onRootFolderLoaded(it)
+              }
+            }
+          }
         }
       }
     }
@@ -108,17 +155,31 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
   }
 
   fun createFolders(rootFolderId: String, expectedFolders: List<String>) {
-    driveHelper?.getSubRootFolders(rootFolderId, expectedFolders)?.addOnCompleteListener {
+    val knownFolderIds = expectedFolders.filter { folderIdForFolderName(it).isNotEmpty() }
+    knownFolderIds.forEach {
+      GlobalScope.launch { initSubRootFolder(it, folderIdForFolderName(it)) }
+    }
+
+    val unknownFolderIds = expectedFolders.filter { !knownFolderIds.contains(it) }
+    if (unknownFolderIds.isEmpty()) {
+      return
+    }
+
+    driveHelper?.getSubRootFolders(rootFolderId, unknownFolderIds)?.addOnCompleteListener {
       val fileIds = it.result?.files ?: emptyList()
       val existingFiles = fileIds.map { it.name }
       fileIds.forEach {
-        GlobalScope.launch { initSubRootFolder(it.name, it.id) }
+        GlobalScope.launch {
+          folderIdForFolderName(it.name, it.id)
+          initSubRootFolder(it.name, it.id)
+        }
       }
-      expectedFolders.forEach { expectedFolder ->
+      unknownFolderIds.forEach { expectedFolder ->
         if (!existingFiles.contains(expectedFolder)) {
           driveHelper?.createFolder(rootFolderId, expectedFolder)?.addOnCompleteListener { fileIdTask ->
             val file = fileIdTask.result
             if (file !== null) {
+              folderIdForFolderName(expectedFolder, file.id)
               GlobalScope.launch { initSubRootFolder(expectedFolder, file.id) }
             }
           }
@@ -134,6 +195,14 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     foldersSync = null
     tagsSync = null
     imageSync = null
+  }
+
+  fun logout() {
+    GlobalScope.launch {
+      reset()
+      gDriveDatabase?.drop()
+      gDriveConfig?.clearSync()
+    }
   }
 
   private fun deleteEverything() {
@@ -305,6 +374,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     }
 
     if (!force && sGDriveLastSync > getTrueCurrentTime() - KEY_G_DRIVE_LAST_SYNC_DELTA_MS) {
+      onSyncCompleted()
       return
     }
     sGDriveLastSync = getTrueCurrentTime()
@@ -346,7 +416,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
       val existing = database.getByUUID(itemType.name, itemUUID) ?: GDriveUploadData()
       existing.apply {
         uuid = itemUUID
-        type = GDriveDataType.NOTE.name
+        type = itemType.name
         lastUpdateTimestamp = gDriveUpdateTimestamp
         localStateDeleted = gDriveStateDeleted
         save(database)
@@ -486,6 +556,11 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     val imageUUID = toImageUUID(data.uuid)
     if (imageUUID !== null) {
       val imageFile = noteImagesFolder.getFile(imageUUID.noteUuid, imageUUID.imageUuid)
+      if (imageFile.exists()) {
+        remoteDatabaseUpdate(GDriveDataType.IMAGE, data.uuid)
+        return
+      }
+
       driveHelper?.readFile(data.fileId, imageFile)?.addOnCompleteListener {
         remoteDatabaseUpdate(GDriveDataType.IMAGE, data.uuid)
       }

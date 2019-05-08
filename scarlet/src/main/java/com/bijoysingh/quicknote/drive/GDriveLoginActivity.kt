@@ -5,11 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
+import com.bijoysingh.quicknote.Scarlet.Companion.gDriveConfig
 import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadData
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
+import com.github.bijoysingh.starter.prefs.Store
+import com.github.bijoysingh.starter.prefs.VersionedStore
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -25,6 +28,8 @@ import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.drive.Drive
 import com.google.api.services.drive.DriveScopes
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.USER_PREFERENCES_STORE_NAME
+import com.maubis.scarlet.base.config.USER_PREFERENCES_VERSION
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -36,31 +41,6 @@ import java.util.concurrent.atomic.AtomicBoolean
 // TODO: This is not ready... Recent changes in Drive API make this sh*t a little difficult and
 // inconclusive. I want to do this because it's safer than Firebase, but f*ck Google for
 // changing the API So much
-
-const val KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE = "g_drive_first_time_sync_note"
-const val KEY_G_DRIVE_FIRST_TIME_SYNC_TAG = "g_drive_first_time_sync_tag"
-const val KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER = "g_drive_first_time_sync_folder"
-const val KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE = "g_drive_first_time_sync_image"
-
-var sGDriveFirstSyncNote: Boolean
-  get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE, false)
-  set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE, value)
-var sGDriveFirstSyncTag: Boolean
-  get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_TAG, false)
-  set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_TAG, value)
-var sGDriveFirstSyncFolder: Boolean
-  get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER, false)
-  set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER, value)
-var sGDriveFirstSyncImage: Boolean
-  get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, false)
-  set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, value)
-
-const val KEY_G_DRIVE_LAST_SYNC_DELTA_MS = 1000 * 60
-const val KEY_G_DRIVE_FIRST_TIME_SYNC_LAST_SYNC = "g_drive_first_time_sync_last_sync"
-var sGDriveLastSync: Long
-  get() = CoreConfig.instance.store().get(KEY_G_DRIVE_FIRST_TIME_SYNC_LAST_SYNC, 0L)
-  set(value) = CoreConfig.instance.store().put(KEY_G_DRIVE_FIRST_TIME_SYNC_LAST_SYNC, value)
-
 class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailedListener {
 
   private val RC_SIGN_IN = 31244
