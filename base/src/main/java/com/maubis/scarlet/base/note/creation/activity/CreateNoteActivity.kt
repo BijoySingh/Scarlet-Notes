@@ -184,7 +184,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
   protected fun maybeUpdateNoteWithoutSync() {
     val currentNote = note
-    if (currentNote === null) {
+    if (currentNote === null || !formatsInitialised.get()) {
       return
     }
 

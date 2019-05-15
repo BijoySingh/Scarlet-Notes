@@ -60,11 +60,13 @@ data class NoteViewColorConfig(
 open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity, IFormatRecyclerViewActivity {
 
   var focusedFormat: Format? = null
+
   protected var note: Note? = null
+  protected lateinit var formats: MutableList<Format>
+  protected val formatsInitialised = AtomicBoolean(false)
 
   protected lateinit var context: Context
   protected lateinit var adapter: FormatAdapter
-  protected lateinit var formats: MutableList<Format>
   protected lateinit var formatsView: RecyclerView
   protected var isDistractionFree: Boolean = false
 
@@ -82,7 +84,6 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     setContentView(R.layout.activity_advanced_note)
     context = this
     isDistractionFree = intent.getBooleanExtra(INTENT_KEY_DISTRACTION_FREE, false)
-    formats = emptyList<Format>().toMutableList()
 
     setRecyclerView()
 
@@ -177,6 +178,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       false -> currentNote.getSmartFormats()
     }.toMutableList()
     adapter.addItems(formats)
+    formatsInitialised.set(true)
 
     if (!editModeValue) {
       maybeAddTags()
