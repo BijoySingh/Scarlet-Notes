@@ -18,6 +18,7 @@ import com.facebook.litho.widget.VerticalScroll
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.support.ui.BottomSheetTabletDialog
@@ -35,7 +36,7 @@ fun getLithoBottomSheetTitle(context: ComponentContext): Text.Builder {
       .marginDip(YogaEdge.TOP, 18f)
       .marginDip(YogaEdge.BOTTOM, 8f)
       .textStyle(Typeface.BOLD)
-      .textColor(CoreConfig.instance.themeController().get(ThemeColorType.PRIMARY_TEXT))
+      .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.PRIMARY_TEXT))
 }
 
 fun getLithoBottomSheetButton(context: ComponentContext): Text.Builder {
@@ -81,7 +82,7 @@ abstract class LithoBottomSheet : BottomSheetDialogFragment() {
   }
 
   fun getFullComponent(componentContext: ComponentContext, dialog: Dialog, childComponent: Component) {
-    val topHandle = when (CoreConfig.instance.themeController().isNightTheme()) {
+    val topHandle = when (ApplicationBase.instance.themeController().isNightTheme()) {
       true -> R.drawable.bottom_sheet_top_handle_dark
       false -> R.drawable.bottom_sheet_top_handle_light
     }
@@ -90,7 +91,7 @@ abstract class LithoBottomSheet : BottomSheetDialogFragment() {
         .paddingDip(YogaEdge.VERTICAL, 16f)
         .widthPercent(100f)
         .alignItems(YogaAlign.CENTER)
-        .backgroundColor(CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND))
+        .backgroundColor(ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND))
         .child(
             Image.create(componentContext)
                 .drawableRes(topHandle)

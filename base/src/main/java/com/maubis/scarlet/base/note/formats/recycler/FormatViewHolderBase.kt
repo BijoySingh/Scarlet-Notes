@@ -6,7 +6,7 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
@@ -46,7 +46,7 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
     val tertiaryTextColor: Int
     val iconColor: Int
     val hintTextColor: Int
-    val theme = CoreConfig.instance.themeController()
+    val theme = ApplicationBase.instance.themeController()
     val isLightBackground = ColorUtil.isLightColored(noteColor)
     when {
       !useNoteColorAsBackground -> {
@@ -86,7 +86,7 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
           }
         }(),
         backgroundColor = when (data.formatType) {
-          FormatType.CODE, FormatType.IMAGE -> CoreConfig.instance.themeController().get(context, R.color.code_light, R.color.code_dark)
+          FormatType.CODE, FormatType.IMAGE -> ApplicationBase.instance.themeController().get(context, R.color.code_light, R.color.code_dark)
           else -> ContextCompat.getColor(context, R.color.transparent)
         },
         secondaryTextColor = secondaryTextColor,

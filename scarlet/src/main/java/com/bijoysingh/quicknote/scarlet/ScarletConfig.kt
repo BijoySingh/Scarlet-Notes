@@ -7,15 +7,15 @@ import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity.Companion.openIfNeeded
 import com.bijoysingh.quicknote.firebase.support.RemoteConfigFetcher
 import com.bijoysingh.quicknote.firebase.support.ScarletAuthenticator
+import com.maubis.scarlet.base.config.MaterialNoteConfig
 import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher
-import com.maubis.scarlet.base.config.MaterialNoteConfig
-import com.maubis.scarlet.base.database.room.folder.Folder
-import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.core.folder.IFolderActor
 import com.maubis.scarlet.base.core.note.INoteActor
 import com.maubis.scarlet.base.core.tag.ITagActor
+import com.maubis.scarlet.base.database.room.folder.Folder
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.support.utils.Flavor
 
 class ScarletConfig(context: Context) : MaterialNoteConfig(context) {

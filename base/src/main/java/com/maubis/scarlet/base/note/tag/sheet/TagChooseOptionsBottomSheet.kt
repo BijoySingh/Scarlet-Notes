@@ -4,13 +4,13 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.view.View
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.core.note.getTagUUIDs
 import com.maubis.scarlet.base.core.tag.TagBuilder
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.note.tag.TagOptionsItem
 import com.maubis.scarlet.base.note.toggleTag
-import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.visibility
 

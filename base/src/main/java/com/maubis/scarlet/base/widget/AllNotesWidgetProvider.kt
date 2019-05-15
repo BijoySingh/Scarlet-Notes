@@ -1,16 +1,16 @@
 package com.maubis.scarlet.base.widget
 
 import android.app.Application
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.RemoteViews
-import com.maubis.scarlet.base.R
-import android.app.PendingIntent
-import android.content.ComponentName
 import com.maubis.scarlet.base.MainActivity
+import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.note.creation.activity.CreateListNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity

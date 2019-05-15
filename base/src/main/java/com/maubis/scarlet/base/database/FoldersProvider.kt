@@ -1,10 +1,8 @@
 package com.maubis.scarlet.base.database
 
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.folder.FolderDao
-import com.maubis.scarlet.base.database.room.tag.Tag
-import com.maubis.scarlet.base.database.room.tag.TagDao
 import java.util.concurrent.ConcurrentHashMap
 
 class FoldersProvider {
@@ -72,6 +70,6 @@ class FoldersProvider {
   }
 
   fun database(): FolderDao {
-    return CoreConfig.instance.database().folders()
+    return ApplicationBase.instance.database().folders()
   }
 }

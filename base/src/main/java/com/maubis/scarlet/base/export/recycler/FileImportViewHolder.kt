@@ -10,7 +10,7 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.starter.util.LocaleManager
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.export.activity.ImportNoteActivity
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -25,7 +25,7 @@ class FileImportViewHolder(context: Context, root: View)
   private val fileSize: TextView = findViewById(R.id.file_size)
 
   init {
-    val theme = CoreConfig.instance.themeController()
+    val theme = ApplicationBase.instance.themeController()
     fileName.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
     filePath.setTextColor(theme.get(ThemeColorType.HINT_TEXT))
     fileDate.setTextColor(theme.get(ThemeColorType.TERTIARY_TEXT))
@@ -43,7 +43,7 @@ class FileImportViewHolder(context: Context, root: View)
       (context as ImportNoteActivity).select(item)
     }
     root.setBackgroundColor(
-        if (item.selected) CoreConfig.instance.themeController().get(
+        if (item.selected) ApplicationBase.instance.themeController().get(
             context, R.color.material_grey_100, R.color.dark_hint_text) else Color.TRANSPARENT)
   }
 

@@ -12,7 +12,7 @@ import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_OPEN_SANS
 import com.maubis.scarlet.base.support.specs.RoundIcon
@@ -34,7 +34,7 @@ object OptionItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop option: LithoOptionsItem): Component {
-    val theme = CoreConfig.instance.themeController()
+    val theme = ApplicationBase.instance.themeController()
     val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
     val subtitleColor = theme.get(ThemeColorType.HINT_TEXT)
     val selectedColor = theme.get(ThemeColorType.ACCENT_TEXT)

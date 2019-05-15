@@ -8,6 +8,7 @@ import com.github.ajalt.reprint.core.Reprint
 import com.github.bijoysingh.starter.prefs.Store
 import com.maubis.markdown.MarkdownConfig.Companion.config
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher
 import com.maubis.scarlet.base.core.folder.IFolderActor
@@ -67,7 +68,6 @@ abstract class CoreConfig(context: Context) {
   abstract fun resyncDrive(force: Boolean, onSyncCompleted: () -> Unit)
 
   companion object {
-    lateinit var instance: CoreConfig
     val notesDb get() = instance.notesDatabase()
     val tagsDb get() = instance.tagsDatabase()
     val foldersDb get() = instance.foldersDatabase()

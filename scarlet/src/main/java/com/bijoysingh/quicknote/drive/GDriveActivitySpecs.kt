@@ -10,6 +10,7 @@ import com.facebook.litho.widget.VerticalScroll
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.support.ui.LithoCircleDrawable
@@ -26,14 +27,14 @@ object GDriveRootViewSpec {
       else -> R.string.google_drive_page_login_button
     }
     return Column.create(context)
-        .backgroundColor(CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND))
+        .backgroundColor(ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND))
         .child(VerticalScroll.create(context)
             .flexGrow(1f)
             .marginDip(YogaEdge.ALL, 8f)
             .childComponent(GDriveContentView.create(context)))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_large)
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
             .textRes(R.string.google_drive_page_login_firebase_button)
             .textAlignment(Layout.Alignment.ALIGN_CENTER)
             .typeface(CoreConfig.FONT_MONSERRAT))
@@ -71,15 +72,15 @@ object GDriveContentViewSpec {
   fun onCreate(context: ComponentContext): Component {
     return Column.create(context)
         .paddingDip(YogaEdge.ALL, 16f)
-        .backgroundColor(CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND))
+        .backgroundColor(ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_xxlarge)
             .textRes(R.string.google_drive_page_login_title)
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
             .typeface(CoreConfig.FONT_MONSERRAT_BOLD))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_large)
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
             .textRes(R.string.google_drive_page_login_details)
             .typeface(CoreConfig.FONT_MONSERRAT))
         .child(GDriveIconView.create(context)
@@ -115,7 +116,7 @@ object GDriveIconViewSpec {
             .text(title)
             .textAlignment(Layout.Alignment.ALIGN_CENTER)
             .textSizeRes(R.dimen.font_size_normal)
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
             .typeface(CoreConfig.FONT_MONSERRAT))
         .build()
   }

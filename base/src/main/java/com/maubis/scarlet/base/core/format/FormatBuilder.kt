@@ -1,7 +1,6 @@
 package com.maubis.scarlet.base.core.format
 
 import com.maubis.markdown.segmenter.TextSegmenter
-import com.maubis.scarlet.base.note.toFormat
 import com.maubis.scarlet.base.note.toRawFormat
 import org.json.JSONArray
 import org.json.JSONException

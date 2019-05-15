@@ -18,8 +18,8 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.auth.IAuthenticator
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -89,7 +89,7 @@ class ScarletAuthenticator() : IAuthenticator {
           }
 
           logout()
-          CoreConfig.instance.store().put(KEY_FORCE_SHOW_SIGN_IN, true)
+          ApplicationBase.instance.store().put(KEY_FORCE_SHOW_SIGN_IN, true)
           val handler = Handler(Looper.getMainLooper())
           handler.post {
             ToastHelper.show(context, "You have been signed out of the app")

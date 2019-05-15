@@ -7,7 +7,7 @@ import android.support.v4.content.ContextCompat
 import com.github.bijoysingh.starter.util.DimensionManager
 import com.maubis.markdown.MarkdownConfig
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 
 const val KEY_APP_THEME = "KEY_APP_THEME"
 
@@ -94,7 +94,7 @@ class ThemeManager() : IThemeManager {
     }
 
     fun getThemeFromStore(): Theme {
-      val theme = CoreConfig.instance.store().get(KEY_APP_THEME, Theme.DARK.name)
+      val theme = ApplicationBase.instance.store().get(KEY_APP_THEME, Theme.DARK.name)
       try {
         return Theme.valueOf(theme)
       } catch (_: Exception) {

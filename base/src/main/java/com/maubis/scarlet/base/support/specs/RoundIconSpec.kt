@@ -1,6 +1,5 @@
 package com.maubis.scarlet.base.support.specs
 
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import com.facebook.litho.ClickEvent
 import com.facebook.litho.Column

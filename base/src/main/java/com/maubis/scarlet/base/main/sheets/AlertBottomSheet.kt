@@ -8,6 +8,7 @@ import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.note.NoteState
@@ -60,7 +61,7 @@ class AlertBottomSheet : LithoBottomSheet() {
             .textSizeRes(R.dimen.font_size_large)
             .textRes(config.description)
             .marginDip(YogaEdge.BOTTOM, 16f)
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(config.positiveText)
             .onPrimaryClick {
@@ -105,8 +106,8 @@ fun openDeleteFormatDialog(activity: ViewAdvancedNoteActivity, format: Format) {
 
 const val STORE_KEY_IMAGE_SYNC_NOTICE = "IMAGE_SYNC_NOTICE"
 var sImageSyncNoticeShown: Int
-  get() = CoreConfig.instance.store().get(STORE_KEY_IMAGE_SYNC_NOTICE, 0)
-  set(value) = CoreConfig.instance.store().put(STORE_KEY_IMAGE_SYNC_NOTICE, value)
+  get() = ApplicationBase.instance.store().get(STORE_KEY_IMAGE_SYNC_NOTICE, 0)
+  set(value) = ApplicationBase.instance.store().put(STORE_KEY_IMAGE_SYNC_NOTICE, value)
 
 
 fun openImageNotSynced(activity: ThemedActivity) {

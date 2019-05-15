@@ -4,7 +4,7 @@ import android.app.Dialog
 import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
@@ -86,7 +86,7 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
 
         }
     ))
-    val forgetMeClick = CoreConfig.instance.authenticator().openForgetMeActivity(activity)
+    val forgetMeClick = ApplicationBase.instance.authenticator().openForgetMeActivity(activity)
     options.add(LithoOptionsItem(
         title = R.string.forget_me_option_title,
         subtitle = R.string.forget_me_option_details,
@@ -95,7 +95,7 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
           forgetMeClick?.run()
           dismiss()
         },
-        visible = forgetMeClick !== null && CoreConfig.instance.authenticator().isLoggedIn()
+        visible = forgetMeClick !== null && ApplicationBase.instance.authenticator().isLoggedIn()
     ))
     return options
   }

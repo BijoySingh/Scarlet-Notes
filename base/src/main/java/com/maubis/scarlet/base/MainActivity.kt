@@ -13,7 +13,7 @@ import android.widget.GridLayout.VERTICAL
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
@@ -140,8 +140,8 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     val staggeredView = UISettingsOptionsBottomSheet.useGridView
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
-    val isMarkdownEnabled = CoreConfig.instance.store().get(KEY_MARKDOWN_ENABLED, true)
-    val isMarkdownHomeEnabled = CoreConfig.instance.store().get(KEY_MARKDOWN_HOME_ENABLED, true)
+    val isMarkdownEnabled = ApplicationBase.instance.store().get(KEY_MARKDOWN_ENABLED, true)
+    val isMarkdownHomeEnabled = ApplicationBase.instance.store().get(KEY_MARKDOWN_HOME_ENABLED, true)
     val adapterExtra = Bundle()
     adapterExtra.putBoolean(KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
     adapterExtra.putInt(STORE_KEY_LINE_COUNT, sNoteItemLineCount)
@@ -321,13 +321,13 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
 
   override fun onResume() {
     super.onResume()
-    CoreConfig.instance.startListener(this)
+    ApplicationBase.instance.startListener(this)
     setupData()
     registerNoteReceiver()
 
     topSyncingLayout.visibility = View.VISIBLE
     GlobalScope.launch {
-      CoreConfig.instance.resyncDrive(false) {
+      ApplicationBase.instance.resyncDrive(false) {
         GlobalScope.launch(Dispatchers.Main) {
           topSyncingLayout.visibility = View.GONE
         }
@@ -413,7 +413,7 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
   override fun notifyThemeChange() {
     setSystemTheme()
 
-    val theme = CoreConfig.instance.themeController()
+    val theme = ApplicationBase.instance.themeController()
     containerLayoutMain.setBackgroundColor(getThemeColor())
 
     val toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)

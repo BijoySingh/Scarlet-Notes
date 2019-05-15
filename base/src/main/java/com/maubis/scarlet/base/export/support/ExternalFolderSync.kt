@@ -7,8 +7,8 @@ import android.os.Build
 import android.support.v4.content.ContextCompat
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.folderSync
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
@@ -26,16 +26,16 @@ const val KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED = "external_folder_sync_backup_
 const val KEY_EXTERNAL_FOLDER_SYNC_PATH = "external_folder_sync_path"
 
 var sExternalFolderSync: Boolean
-  get() = CoreConfig.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, false)
-  set(value) = CoreConfig.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, value)
+  get() = ApplicationBase.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, false)
+  set(value) = ApplicationBase.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, value)
 
 var sFolderSyncPath: String
-  get() = CoreConfig.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_PATH, "$NOTES_EXPORT_FOLDER/Sync/")
-  set(value) = CoreConfig.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_PATH, value)
+  get() = ApplicationBase.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_PATH, "$NOTES_EXPORT_FOLDER/Sync/")
+  set(value) = ApplicationBase.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_PATH, value)
 
 var sFolderSyncBackupLocked: Boolean
-  get() = CoreConfig.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, true)
-  set(value) = CoreConfig.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, value)
+  get() = ApplicationBase.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, true)
+  set(value) = ApplicationBase.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, value)
 
 object ExternalFolderSync {
 
@@ -63,17 +63,17 @@ object ExternalFolderSync {
   fun loadFirstTime() {
     folderSync?.init(
         {
-          CoreConfig.instance.notesDatabase().getAll().forEach {
+          ApplicationBase.instance.notesDatabase().getAll().forEach {
             folderSync?.insert(ExportableNote(it))
           }
         },
         {
-          CoreConfig.instance.tagsDatabase().getAll().forEach {
+          ApplicationBase.instance.tagsDatabase().getAll().forEach {
             folderSync?.insert(ExportableTag(it))
           }
         },
         {
-          CoreConfig.instance.foldersDatabase().getAll().forEach {
+          ApplicationBase.instance.foldersDatabase().getAll().forEach {
             folderSync?.insert(ExportableFolder(it))
           }
         })

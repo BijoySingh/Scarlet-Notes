@@ -2,7 +2,7 @@ package com.maubis.scarlet.base.support.ui
 
 import android.graphics.*
 import com.facebook.litho.drawable.ComparableDrawable
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 
 class LithoCircleDrawable(color: Int, alpha: Int = 255, val showBorder: Boolean = false) : ComparableDrawable() {
   private val mPaint: Paint
@@ -14,7 +14,7 @@ class LithoCircleDrawable(color: Int, alpha: Int = 255, val showBorder: Boolean 
     this.mPaint.color = color
     this.mPaint.alpha = alpha
 
-    val isNightTheme = CoreConfig.instance.themeController().isNightTheme()
+    val isNightTheme = ApplicationBase.instance.themeController().isNightTheme()
     this.mBorderPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     this.mBorderPaint.color = when {
       !showBorder -> Color.TRANSPARENT

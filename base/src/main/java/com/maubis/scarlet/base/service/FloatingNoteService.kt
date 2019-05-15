@@ -13,7 +13,7 @@ import com.bsk.floatingbubblelib.FloatingBubblePermissions
 import com.bsk.floatingbubblelib.FloatingBubbleService
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.database.room.note.Note
@@ -36,7 +36,7 @@ class FloatingNoteService : FloatingBubbleService() {
   private lateinit var panel: View
 
   override fun getConfig(): FloatingBubbleConfig {
-    val theme = CoreConfig.instance.themeController()
+    val theme = ApplicationBase.instance.themeController()
     return FloatingBubbleConfig.Builder()
         .bubbleIcon(ContextCompat.getDrawable(context, R.drawable.app_icon))
         .removeBubbleIcon(ContextCompat.getDrawable(
@@ -69,7 +69,7 @@ class FloatingNoteService : FloatingBubbleService() {
       stopSelf()
     }
 
-    val theme = CoreConfig.instance.themeController()
+    val theme = ApplicationBase.instance.themeController()
     val rootView = getInflater().inflate(R.layout.layout_add_note_overlay, null)
 
     title = rootView.findViewById<View>(R.id.title) as TextView

@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import com.github.bijoysingh.starter.util.RandomHelper
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
@@ -66,7 +66,7 @@ class NoteImage(context: Context) {
         return@launch
       }
 
-      val bitmap = CoreConfig.instance.imageCache().loadFromCache(file)
+      val bitmap = ApplicationBase.instance.imageCache().loadFromCache(file)
       if (bitmap === null) {
         deleteIfExist(file)
         GlobalScope.launch(Dispatchers.Main) {
@@ -87,8 +87,8 @@ class NoteImage(context: Context) {
                                    image: ImageView,
                                    callback: ImageLoadCallback? = null) {
     GlobalScope.launch {
-      val thumbnailFile = CoreConfig.instance.imageCache().thumbnailFile(noteUUID, imageUuid)
-      val persistentFile = CoreConfig.instance.imageCache().persistentFile(noteUUID, imageUuid)
+      val thumbnailFile = ApplicationBase.instance.imageCache().thumbnailFile(noteUUID, imageUuid)
+      val persistentFile = ApplicationBase.instance.imageCache().persistentFile(noteUUID, imageUuid)
 
       if (!persistentFile.exists()) {
         GlobalScope.launch(Dispatchers.Main) {
@@ -99,7 +99,7 @@ class NoteImage(context: Context) {
       }
 
       if (thumbnailFile.exists()) {
-        val bitmap = CoreConfig.instance.imageCache().loadFromCache(thumbnailFile)
+        val bitmap = ApplicationBase.instance.imageCache().loadFromCache(thumbnailFile)
         if (bitmap === null) {
           deleteIfExist(thumbnailFile)
           GlobalScope.launch(Dispatchers.Main) {
@@ -116,7 +116,7 @@ class NoteImage(context: Context) {
         return@launch
       }
 
-      val persistentBitmap = CoreConfig.instance.imageCache().loadFromCache(persistentFile)
+      val persistentBitmap = ApplicationBase.instance.imageCache().loadFromCache(persistentFile)
       if (persistentBitmap === null) {
         deleteIfExist(persistentFile)
         GlobalScope.launch(Dispatchers.Main) {
@@ -126,7 +126,7 @@ class NoteImage(context: Context) {
         return@launch
       }
 
-      val compressedBitmap = CoreConfig.instance.imageCache().saveThumbnail(thumbnailFile, persistentBitmap)
+      val compressedBitmap = ApplicationBase.instance.imageCache().saveThumbnail(thumbnailFile, persistentBitmap)
       GlobalScope.launch(Dispatchers.Main) {
         image.visibility = View.VISIBLE
         image.setImageBitmap(compressedBitmap)

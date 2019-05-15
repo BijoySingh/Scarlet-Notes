@@ -4,7 +4,7 @@ import android.app.Dialog
 import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
@@ -12,8 +12,8 @@ import com.maubis.scarlet.base.support.sheets.openSheet
 const val STORE_KEY_NOTE_DEFAULT_COLOR = "KEY_NOTE_DEFAULT_COLOR"
 
 var sNoteDefaultColor: Int
-  get() = CoreConfig.instance.store().get(STORE_KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
-  set(value) = CoreConfig.instance.store().put(STORE_KEY_NOTE_DEFAULT_COLOR, value)
+  get() = ApplicationBase.instance.store().get(STORE_KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
+  set(value) = ApplicationBase.instance.store().put(STORE_KEY_NOTE_DEFAULT_COLOR, value)
 
 class NoteSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun title(): Int = R.string.home_option_note_settings

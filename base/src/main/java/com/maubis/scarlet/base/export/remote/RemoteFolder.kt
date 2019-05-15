@@ -2,7 +2,7 @@ package com.maubis.scarlet.base.export.remote
 
 import com.github.bijoysingh.starter.util.FileManager
 import com.google.gson.Gson
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.export.support.KEY_EXTERNAL_FOLDER_SYNC_LAST_SCAN
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -22,7 +22,7 @@ class RemoteFolder<T>(val folder: File,
   val deletedUuids = HashSet<String>()
 
   val lastScanKey = "${KEY_EXTERNAL_FOLDER_SYNC_LAST_SCAN}_${folder.name}"
-  var lastScan = CoreConfig.instance.store().get(lastScanKey, 0L)
+  var lastScan = ApplicationBase.instance.store().get(lastScanKey, 0L)
 
   init {
     GlobalScope.launch(Dispatchers.IO) {
@@ -50,7 +50,7 @@ class RemoteFolder<T>(val folder: File,
       }
 
       onInitComplete()
-      CoreConfig.instance.store().put(lastScanKey, System.currentTimeMillis())
+      ApplicationBase.instance.store().put(lastScanKey, System.currentTimeMillis())
     }
   }
 

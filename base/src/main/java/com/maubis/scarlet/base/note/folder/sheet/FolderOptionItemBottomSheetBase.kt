@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import com.github.bijoysingh.uibasics.views.UIActionView
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.note.folder.FolderOptionsItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
@@ -58,7 +58,7 @@ abstract class FolderOptionItemBottomSheetBase : ThemedBottomSheetFragment() {
 
       if (option.editable) {
         contentView.setActionResource(option.getEditIcon());
-        contentView.setActionTint(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT));
+        contentView.setActionTint(ApplicationBase.instance.themeController().get(ThemeColorType.HINT_TEXT));
         contentView.setActionClickListener { option.editListener() }
       }
 

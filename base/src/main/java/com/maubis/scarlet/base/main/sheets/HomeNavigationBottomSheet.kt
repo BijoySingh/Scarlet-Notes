@@ -9,7 +9,7 @@ import com.github.bijoysingh.starter.util.LocaleManager
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.core.tag.TagBuilder
@@ -115,7 +115,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
 
       val titleView = dialog.findViewById<TextView>(R.id.tag_options_title)
       titleView.setTextColor(
-          CoreConfig.instance.themeController().get(themedContext(),
+          ApplicationBase.instance.themeController().get(themedContext(),
               Theme.DARK, ThemeColorType.SECONDARY_TEXT))
 
       val layout = dialog.findViewById<LinearLayout>(R.id.options_container)
@@ -134,7 +134,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
       contentView.icon.setImageResource(option.getIcon())
 
       contentView.action.setImageResource(option.getEditIcon());
-      contentView.action.setColorFilter(CoreConfig.instance.themeController().get(themedContext(), Theme.DARK, ThemeColorType.HINT_TEXT));
+      contentView.action.setColorFilter(ApplicationBase.instance.themeController().get(themedContext(), Theme.DARK, ThemeColorType.HINT_TEXT));
       contentView.action.setOnClickListener(option.editListener)
 
       if (option.usages > 0) {
@@ -172,7 +172,7 @@ class HomeNavigationBottomSheet : GridBottomSheetBase() {
   }
 
   private fun setAddTagOption(dialog: Dialog) {
-    val hintTextColor = CoreConfig.instance.themeController().get(themedContext(), Theme.DARK, ThemeColorType.HINT_TEXT)
+    val hintTextColor = ApplicationBase.instance.themeController().get(themedContext(), Theme.DARK, ThemeColorType.HINT_TEXT)
     val newTagButton = dialog.findViewById<UITextView>(R.id.new_tag_button)
     newTagButton.setTextColor(hintTextColor)
     newTagButton.setImageTint(hintTextColor)

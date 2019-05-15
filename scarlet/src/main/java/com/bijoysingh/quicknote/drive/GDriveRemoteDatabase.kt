@@ -10,8 +10,8 @@ import com.bijoysingh.quicknote.database.genGDriveUploadDatabase
 import com.bijoysingh.quicknote.firebase.data.*
 import com.github.bijoysingh.starter.prefs.Store
 import com.google.gson.Gson
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.folder.IFolderContainer
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
@@ -88,13 +88,13 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     gDriveConfig = Store.get(context, "gdrive_config")
 
     notesSync = GDriveRemoteFolder(GDriveDataType.NOTE, gDriveDatabase!!, helper) {
-      CoreConfig.instance.notesDatabase().getByUUID(it)?.getFirebaseNote()
+      ApplicationBase.instance.notesDatabase().getByUUID(it)?.getFirebaseNote()
     }
     tagsSync = GDriveRemoteFolder(GDriveDataType.TAG, gDriveDatabase!!, helper) {
-      CoreConfig.instance.tagsDatabase().getByUUID(it)?.getFirebaseTag()
+      ApplicationBase.instance.tagsDatabase().getByUUID(it)?.getFirebaseTag()
     }
     foldersSync = GDriveRemoteFolder(GDriveDataType.FOLDER, gDriveDatabase!!, helper) {
-      CoreConfig.instance.foldersDatabase().getByUUID(it)?.getFirebaseFolder()
+      ApplicationBase.instance.foldersDatabase().getByUUID(it)?.getFirebaseFolder()
     }
     imageSync = GDriveRemoteImageFolder(GDriveDataType.IMAGE, gDriveDatabase!!, helper)
 
@@ -297,7 +297,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
       if (!sameUpdateTime) {
         when {
           sameDelete && it.lastUpdateTimestamp > it.gDriveUpdateTimestamp ->
-            CoreConfig.instance.notesDatabase().getByUUID(it.uuid)?.getFirebaseNote()?.apply {
+            ApplicationBase.instance.notesDatabase().getByUUID(it.uuid)?.getFirebaseNote()?.apply {
               insert(this)
             }
           sameDelete && it.lastUpdateTimestamp < it.gDriveUpdateTimestamp -> onRemoteInsertNote(it)
@@ -316,7 +316,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
       if (!sameUpdateTime) {
         when {
           sameDelete && it.lastUpdateTimestamp > it.gDriveUpdateTimestamp ->
-            CoreConfig.instance.tagsDatabase().getByUUID(it.uuid)?.getFirebaseTag()?.apply {
+            ApplicationBase.instance.tagsDatabase().getByUUID(it.uuid)?.getFirebaseTag()?.apply {
               insert(this)
             }
           sameDelete && it.lastUpdateTimestamp < it.gDriveUpdateTimestamp -> onRemoteInsertTag(it)
@@ -335,7 +335,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
       if (!sameUpdateTime) {
         when {
           sameDelete && it.lastUpdateTimestamp > it.gDriveUpdateTimestamp ->
-            CoreConfig.instance.foldersDatabase().getByUUID(it.uuid)?.getFirebaseFolder()?.apply {
+            ApplicationBase.instance.foldersDatabase().getByUUID(it.uuid)?.getFirebaseFolder()?.apply {
               insert(this)
             }
           sameDelete && it.lastUpdateTimestamp < it.gDriveUpdateTimestamp -> onRemoteInsertFolder(it)

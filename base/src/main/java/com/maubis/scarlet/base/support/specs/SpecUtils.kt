@@ -12,7 +12,7 @@ import com.facebook.litho.widget.SolidColor
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 object EmptySpec {
@@ -41,8 +41,8 @@ fun separatorSpec(context: ComponentContext): Component.Builder<*> {
 
 
 data class ToolbarColorConfig(
-    var toolbarBackgroundColor: Int = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_BACKGROUND),
-    var toolbarIconColor: Int = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON))
+    var toolbarBackgroundColor: Int = ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_BACKGROUND),
+    var toolbarIconColor: Int = ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_ICON))
 
 
 fun bottomBarRoundIcon(context: ComponentContext, colorConfig: ToolbarColorConfig): RoundIcon.Builder {

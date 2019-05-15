@@ -10,7 +10,7 @@ import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaEdge
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
@@ -31,29 +31,29 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 16f)
             .text(WHATS_NEW_DETAILS_SUBTITLE)
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_xlarge)
             .marginDip(YogaEdge.BOTTOM, 4f)
             .text(WHATS_NEW_DETAILS_NEW_FEATURES_TITLE)
             .typeface(FONT_MONSERRAT)
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 16f)
             .text(Markdown.render(WHATS_NEW_DETAILS_NEW_FEATURES_MD, true))
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_xlarge)
             .marginDip(YogaEdge.BOTTOM, 4f)
             .text(WHATS_NEW_DETAILS_LAST_RELEASE_TITLE)
             .typeface(FONT_MONSERRAT)
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 16f)
             .text(Markdown.render(WHATS_NEW_DETAILS_LAST_RELEASE_MD, true))
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(R.string.import_export_layout_exporting_done)
             .onPrimaryClick {

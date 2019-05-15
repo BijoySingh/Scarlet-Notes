@@ -4,7 +4,7 @@ import android.app.Dialog
 import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.core.note.SortingTechnique
 import com.maubis.scarlet.base.support.sheets.LithoChooseOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoChooseOptionsItem
@@ -62,7 +62,7 @@ class SortingOptionsBottomSheet : LithoChooseOptionBottomSheet() {
     const val KEY_SORTING_TECHNIQUE = "KEY_SORTING_TECHNIQUE"
 
     fun getSortingState(): SortingTechnique {
-      return SortingTechnique.values()[CoreConfig.instance.store().get(KEY_SORTING_TECHNIQUE, SortingTechnique.NEWEST_FIRST.ordinal)]
+      return SortingTechnique.values()[ApplicationBase.instance.store().get(KEY_SORTING_TECHNIQUE, SortingTechnique.NEWEST_FIRST.ordinal)]
     }
 
     fun getSortingTechniqueLabel(technique: SortingTechnique): Int {
@@ -75,7 +75,7 @@ class SortingOptionsBottomSheet : LithoChooseOptionBottomSheet() {
     }
 
     fun setSortingState(sortingTechnique: SortingTechnique) {
-      CoreConfig.instance.store().put(KEY_SORTING_TECHNIQUE, sortingTechnique.ordinal)
+      ApplicationBase.instance.store().put(KEY_SORTING_TECHNIQUE, sortingTechnique.ordinal)
     }
 
     fun openSheet(activity: MainActivity, listener: () -> Unit) {

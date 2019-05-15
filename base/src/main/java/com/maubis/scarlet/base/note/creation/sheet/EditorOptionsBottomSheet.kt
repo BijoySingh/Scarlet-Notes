@@ -3,7 +3,7 @@ package com.maubis.scarlet.base.note.creation.sheet
 import android.app.Dialog
 import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 
@@ -13,20 +13,20 @@ const val STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT = "editor_markdown_default"
 const val STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES = "editor_move_handles"
 
 var sEditorLiveMarkdown: Boolean
-  get() = CoreConfig.instance.store().get(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, true)
-  set(value) = CoreConfig.instance.store().put(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, value)
+  get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, true)
+  set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, value)
 
 var sEditorMarkdownDefault: Boolean
-  get() = CoreConfig.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT, false)
-  set(value) = CoreConfig.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT, value)
+  get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT, false)
+  set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT, value)
 
 var sEditorMoveHandles: Boolean
-  get() = CoreConfig.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES, true)
-  set(value) = CoreConfig.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES, value)
+  get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES, true)
+  set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES, value)
 
 var sEditorMarkdownEnabled: Boolean
-  get() = CoreConfig.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, true)
-  set(value) = CoreConfig.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, value)
+  get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, true)
+  set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, value)
 
 class EditorOptionsBottomSheet : LithoOptionBottomSheet() {
 

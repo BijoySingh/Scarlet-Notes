@@ -5,7 +5,7 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 
 abstract class ThemedActivity : AppCompatActivity() {
 
@@ -26,7 +26,7 @@ abstract class ThemedActivity : AppCompatActivity() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       val view = window.decorView
       var flags = view.systemUiVisibility
-      flags = when (CoreConfig.instance.themeController().isNightTheme()) {
+      flags = when (ApplicationBase.instance.themeController().isNightTheme()) {
         true -> flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
         false -> flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
       }
@@ -34,9 +34,9 @@ abstract class ThemedActivity : AppCompatActivity() {
     }
   }
 
-  fun getThemeColor(): Int = CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND)
+  fun getThemeColor(): Int = ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND)
 
-  fun getStatusBarColor(): Int = CoreConfig.instance.themeController().get(ThemeColorType.STATUS_BAR)
+  fun getStatusBarColor(): Int = ApplicationBase.instance.themeController().get(ThemeColorType.STATUS_BAR)
 
   fun tryClosingTheKeyboard() {
     try {

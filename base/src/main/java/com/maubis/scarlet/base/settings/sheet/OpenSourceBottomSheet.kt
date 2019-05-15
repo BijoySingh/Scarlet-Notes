@@ -11,6 +11,7 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
@@ -35,18 +36,18 @@ class OpenSourceBottomSheet : LithoBottomSheet() {
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 16f)
             .text(openSourceDetails)
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_xlarge)
             .marginDip(YogaEdge.BOTTOM, 4f)
             .textRes(R.string.osp_page_libraries)
             .typeface(CoreConfig.FONT_MONSERRAT)
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 4f)
             .text(Markdown.render(LIBRARY_DETAILS_MD, true))
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(R.string.about_page_contribute)
             .onPrimaryClick {

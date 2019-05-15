@@ -5,9 +5,7 @@ import com.facebook.litho.ComponentContext
 import com.facebook.litho.Row
 import com.facebook.litho.annotations.LayoutSpec
 import com.facebook.litho.annotations.OnCreateLayout
-import com.facebook.litho.annotations.Prop
 import com.facebook.yoga.YogaAlign
-import com.maubis.scarlet.base.note.creation.activity.NoteViewColorConfig
 import com.maubis.scarlet.base.support.specs.EmptySpec
 
 @LayoutSpec

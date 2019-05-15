@@ -6,7 +6,7 @@ import android.speech.tts.TextToSpeech
 import android.widget.ImageView
 import android.widget.TextView
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.getUnreliablyStrippedText
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -26,10 +26,10 @@ class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
 
     val nonNullNote = note!!
     val title = dialog.findViewById<TextView>(R.id.options_title)
-    title.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    title.setTextColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
 
     val speakPlayPause = dialog.findViewById<ImageView>(R.id.speak_play_pause)
-    speakPlayPause.setColorFilter(CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON))
+    speakPlayPause.setColorFilter(ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_ICON))
     speakPlayPause.setOnClickListener {
       val tts = textToSpeech
       if (tts === null) {

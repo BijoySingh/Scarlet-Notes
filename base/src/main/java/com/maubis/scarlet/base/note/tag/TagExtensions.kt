@@ -1,8 +1,8 @@
 package com.maubis.scarlet.base.note.tag
 
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
+import com.maubis.scarlet.base.database.room.tag.Tag
 
 fun Tag.saveIfUnique() {
   val existing = tagsDb.getByTitle(title)
@@ -26,21 +26,21 @@ fun Tag.saveIfUnique() {
  **************************************************************************************/
 
 fun Tag.save() {
-  CoreConfig.instance.tagActions(this).save()
+  ApplicationBase.instance.tagActions(this).save()
 }
 
 fun Tag.saveWithoutSync() {
-  CoreConfig.instance.tagActions(this).offlineSave()
+  ApplicationBase.instance.tagActions(this).offlineSave()
 }
 
 fun Tag.saveToSync() {
-  CoreConfig.instance.tagActions(this).onlineSave()
+  ApplicationBase.instance.tagActions(this).onlineSave()
 }
 
 fun Tag.delete() {
-  CoreConfig.instance.tagActions(this).delete()
+  ApplicationBase.instance.tagActions(this).delete()
 }
 
 fun Tag.deleteWithoutSync() {
-  CoreConfig.instance.tagActions(this).offlineDelete()
+  ApplicationBase.instance.tagActions(this).offlineDelete()
 }

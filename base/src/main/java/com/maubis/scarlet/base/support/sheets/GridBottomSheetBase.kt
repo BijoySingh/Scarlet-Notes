@@ -6,7 +6,7 @@ import android.widget.GridLayout
 import android.widget.TextView
 import com.github.bijoysingh.uibasics.views.UILabelView
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
@@ -36,7 +36,7 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
   fun setOptionTitle(dialog: Dialog, title: Int) {
     GlobalScope.launch(Dispatchers.Main) {
       val titleView = dialog.findViewById<TextView>(R.id.options_title)
-      titleView.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+      titleView.setTextColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
       titleView.setText(title)
     }
   }

@@ -4,7 +4,7 @@ import android.app.Dialog
 import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingState
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingTechniqueLabel
@@ -20,16 +20,16 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = componentContext.androidContext as MainActivity
     val options = ArrayList<LithoOptionsItem>()
-    val flavor = CoreConfig.instance.appFlavor()
+    val flavor = ApplicationBase.instance.appFlavor()
     options.add(LithoOptionsItem(
         title = R.string.home_option_theme_color,
         subtitle = R.string.home_option_theme_color_subtitle,
-        icon = if (CoreConfig.instance.themeController().isNightTheme()) R.drawable.night_mode_white_48dp else R.drawable.ic_action_day_mode,
+        icon = if (ApplicationBase.instance.themeController().isNightTheme()) R.drawable.night_mode_white_48dp else R.drawable.ic_action_day_mode,
         listener = {
           com.maubis.scarlet.base.support.sheets.openSheet(activity, ThemeColorPickerBottomSheet().apply {
             this.onThemeChange = { theme ->
-              CoreConfig.instance.store().put(KEY_APP_THEME, theme.name)
-              CoreConfig.instance.themeController().notifyChange(activity)
+              ApplicationBase.instance.store().put(KEY_APP_THEME, theme.name)
+              ApplicationBase.instance.themeController().notifyChange(activity)
               activity.notifyThemeChange()
               reset(activity, dialog)
             }
@@ -138,15 +138,15 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
     }
 
     var useGridView: Boolean
-      get() = CoreConfig.instance.store().get(KEY_LIST_VIEW, true)
-      set(isGrid) = CoreConfig.instance.store().put(KEY_LIST_VIEW, isGrid)
+      get() = ApplicationBase.instance.store().get(KEY_LIST_VIEW, true)
+      set(isGrid) = ApplicationBase.instance.store().put(KEY_LIST_VIEW, isGrid)
 
     var useNoteColorAsBackground: Boolean
-      get() = CoreConfig.instance.store().get(KEY_NOTE_VIEWER_BG_COLOR, false)
-      set(value) = CoreConfig.instance.store().put(KEY_NOTE_VIEWER_BG_COLOR, value)
+      get() = ApplicationBase.instance.store().get(KEY_NOTE_VIEWER_BG_COLOR, false)
+      set(value) = ApplicationBase.instance.store().put(KEY_NOTE_VIEWER_BG_COLOR, value)
 
     var sMarkdownEnabledHome: Boolean
-      get() = CoreConfig.instance.store().get(KEY_MARKDOWN_HOME_ENABLED, true)
-      set(value) = CoreConfig.instance.store().put(KEY_MARKDOWN_HOME_ENABLED, value)
+      get() = ApplicationBase.instance.store().get(KEY_MARKDOWN_HOME_ENABLED, true)
+      set(value) = ApplicationBase.instance.store().put(KEY_MARKDOWN_HOME_ENABLED, value)
   }
 }

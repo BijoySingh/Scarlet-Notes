@@ -5,14 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
-import com.bijoysingh.quicknote.Scarlet.Companion.gDriveConfig
 import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadData
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
-import com.github.bijoysingh.starter.prefs.Store
-import com.github.bijoysingh.starter.prefs.VersionedStore
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -27,9 +24,7 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.drive.Drive
 import com.google.api.services.drive.DriveScopes
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.config.USER_PREFERENCES_STORE_NAME
-import com.maubis.scarlet.base.config.USER_PREFERENCES_VERSION
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -139,7 +134,7 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
       if (database === null) {
         return@launch
       }
-      CoreConfig.instance.notesDatabase().getAll().forEach {
+      ApplicationBase.instance.notesDatabase().getAll().forEach {
         val existing = gDrive?.gDriveDatabase?.getByUUID(GDriveDataType.NOTE.name, it.uuid)
             ?: GDriveUploadData()
         existing.apply {
@@ -148,7 +143,7 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
           save(database)
         }
       }
-      CoreConfig.instance.tagsDatabase().getAll().forEach {
+      ApplicationBase.instance.tagsDatabase().getAll().forEach {
         val existing = gDrive?.gDriveDatabase?.getByUUID(GDriveDataType.TAG.name, it.uuid)
             ?: GDriveUploadData()
         existing.apply {
@@ -157,7 +152,7 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
           save(database)
         }
       }
-      CoreConfig.instance.foldersDatabase().getAll().forEach {
+      ApplicationBase.instance.foldersDatabase().getAll().forEach {
         val existing = gDrive?.gDriveDatabase?.getByUUID(GDriveDataType.FOLDER.name, it.uuid)
             ?: GDriveUploadData()
         existing.apply {

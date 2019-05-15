@@ -6,10 +6,10 @@ import android.widget.TextView
 import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.database.room.tag.Tag
-import com.maubis.scarlet.base.settings.view.ColorView
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
+import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.settings.view.ColorView
 
 class TagsAndColorPickerViewHolder(
     val activity: MainActivity,

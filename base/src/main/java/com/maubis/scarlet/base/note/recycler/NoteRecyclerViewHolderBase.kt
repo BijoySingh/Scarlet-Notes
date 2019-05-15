@@ -12,9 +12,8 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
-import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.core.note.NoteImage
 import com.maubis.scarlet.base.core.note.NoteState
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.visibility
 import com.maubis.scarlet.base.support.utils.trim

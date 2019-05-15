@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.support.utils
 
 import android.content.Context
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,8 +26,8 @@ object FlavourUtils {
       } catch (e: Exception) {
         found = false
       }
-      CoreConfig.instance.store().put(KEY_PRO_APP_INSTALLED, found)
+      ApplicationBase.instance.store().put(KEY_PRO_APP_INSTALLED, found)
     }
-    return CoreConfig.instance.store().get(KEY_PRO_APP_INSTALLED, false)
+    return ApplicationBase.instance.store().get(KEY_PRO_APP_INSTALLED, false)
   }
 }

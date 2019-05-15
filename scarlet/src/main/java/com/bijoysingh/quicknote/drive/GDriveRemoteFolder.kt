@@ -1,9 +1,7 @@
 package com.bijoysingh.quicknote.drive
 
 import com.bijoysingh.quicknote.database.GDriveDataType
-import com.bijoysingh.quicknote.database.GDriveUploadData
 import com.bijoysingh.quicknote.database.GDriveUploadDataDao
-import com.google.api.services.drive.model.File
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

@@ -5,13 +5,13 @@ import android.content.Context
 import android.content.DialogInterface
 import android.view.View
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.database.room.folder.Folder
-import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.core.folder.FolderBuilder
-import com.maubis.scarlet.base.note.folder.FolderOptionsItem
-import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.core.folder.FolderBuilder
+import com.maubis.scarlet.base.database.room.folder.Folder
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.note.folder.FolderOptionsItem
+import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.visibility
 

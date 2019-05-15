@@ -8,9 +8,9 @@ import android.support.v7.app.AppCompatActivity
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.folderSync
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.database.room.note.Note
@@ -108,7 +108,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     notifyAllChanged(context)
     val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
     notificationManager?.cancel(note.uid)
-    CoreConfig.instance.imageCache().deleteNote(note.uuid)
+    ApplicationBase.instance.imageCache().deleteNote(note.uuid)
   }
 
   protected fun onNoteUpdated(context: Context) {

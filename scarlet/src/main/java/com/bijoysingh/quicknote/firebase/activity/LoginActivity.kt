@@ -21,7 +21,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
@@ -83,7 +83,7 @@ class LoginActivity : ThemedActivity() {
       finish()
     }
 
-    val proInformationVisibility = if (CoreConfig.instance.appFlavor() == Flavor.PRO) View.GONE else View.VISIBLE
+    val proInformationVisibility = if (ApplicationBase.instance.appFlavor() == Flavor.PRO) View.GONE else View.VISIBLE
     installPro.visibility = proInformationVisibility
     val installProTitle = findViewById<View>(R.id.install_pro_details_title)
     installProTitle.visibility = proInformationVisibility
@@ -164,7 +164,7 @@ class LoginActivity : ThemedActivity() {
   }
 
   private fun onLoginSuccess(user: FirebaseUser?) {
-    CoreConfig.instance.store().put(KEY_FORCE_SHOW_SIGN_IN, true)
+    ApplicationBase.instance.store().put(KEY_FORCE_SHOW_SIGN_IN, true)
     transitionNotesToServer(user)
     buttonTitle.setText(R.string.logged_into_app)
   }
@@ -197,9 +197,9 @@ class LoginActivity : ThemedActivity() {
     containerLayout.setBackgroundColor(getThemeColor());
 
     val optionsTitle = findViewById<TextView>(R.id.sign_in_title)
-    optionsTitle.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    optionsTitle.setTextColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
 
-    val textColor = CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)
+    val textColor = ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)
     val installProDescription = findViewById<TextView>(R.id.install_pro_details_description)
     val cloudSyncDescription = findViewById<TextView>(R.id.cloud_sync_details_description)
     installProDescription.setTextColor(textColor)
@@ -207,7 +207,7 @@ class LoginActivity : ThemedActivity() {
 
     val installProTitle = findViewById<TextView>(R.id.install_pro_details_title)
     val cloudSyncTitle = findViewById<TextView>(R.id.cloud_sync_details_title)
-    val titleTextColor = CoreConfig.instance.themeController().get(ThemeColorType.SECTION_HEADER)
+    val titleTextColor = ApplicationBase.instance.themeController().get(ThemeColorType.SECTION_HEADER)
     installProTitle.setTextColor(titleTextColor)
     cloudSyncTitle.setTextColor(titleTextColor)
   }

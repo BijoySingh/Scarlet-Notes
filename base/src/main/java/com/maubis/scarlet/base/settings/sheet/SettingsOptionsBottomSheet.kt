@@ -7,7 +7,7 @@ import com.facebook.litho.ComponentContext
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.main.recycler.getMigrateToProAppInformationItem
 import com.maubis.scarlet.base.note.creation.sheet.EditorOptionsBottomSheet
@@ -27,8 +27,8 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
     val activity = context as MainActivity
     val options = ArrayList<LithoOptionsItem>()
 
-    val loginClick = CoreConfig.instance.authenticator().openLoginActivity(activity)
-    val firebaseUser = CoreConfig.instance.authenticator().userId()
+    val loginClick = ApplicationBase.instance.authenticator().openLoginActivity(activity)
+    val firebaseUser = ApplicationBase.instance.authenticator().userId()
 
     val migrateToPro = getMigrateToProAppInformationItem(activity)
     options.add(LithoOptionsItem(
@@ -39,7 +39,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           migrateToPro.function()
           dismiss()
         },
-        visible = CoreConfig.instance.appFlavor() == Flavor.LITE && FlavourUtils.hasProAppInstalled(activity),
+        visible = ApplicationBase.instance.appFlavor() == Flavor.LITE && FlavourUtils.hasProAppInstalled(activity),
         selected = true
     ))
     options.add(LithoOptionsItem(
@@ -108,7 +108,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           IntentUtils.openAppPlayStore(context, PRO_APP_PACKAGE_NAME)
           dismiss()
         },
-        visible = CoreConfig.instance.appFlavor() == Flavor.LITE && !hasProAppInstalled(activity)
+        visible = ApplicationBase.instance.appFlavor() == Flavor.LITE && !hasProAppInstalled(activity)
     ))
     options.add(LithoOptionsItem(
         title = R.string.home_option_rate_and_review,
@@ -144,7 +144,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_logout_of_app_subtitle,
         icon = R.drawable.ic_sign_in_options,
         listener = {
-          CoreConfig.instance.authenticator().logout()
+          ApplicationBase.instance.authenticator().logout()
           dismiss()
         },
         visible = firebaseUser !== null

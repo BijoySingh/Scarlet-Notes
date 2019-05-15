@@ -10,8 +10,7 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.settings.sheet.DeleteAndMoreOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
@@ -36,10 +35,10 @@ class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerView
       SettingsOptionsBottomSheet.openSheet((context as MainActivity))
     }
 
-    val titleColor = CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
+    val titleColor = ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
     toolbarTitle.setTextColor(titleColor)
 
-    val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
+    val toolbarIconColor = ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
     toolbarIconSearch.setColorFilter(toolbarIconColor)
     toolbarIconSettings.setColorFilter(toolbarIconColor)
 

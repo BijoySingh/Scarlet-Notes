@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getNoteState
@@ -366,13 +366,13 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.view_distraction_free,
         icon = R.drawable.ic_action_distraction_free,
         listener = View.OnClickListener {
-          if (CoreConfig.instance.appFlavor() == Flavor.PRO) {
+          if (ApplicationBase.instance.appFlavor() == Flavor.PRO) {
             note.viewDistractionFree(activity)
             return@OnClickListener
           }
           com.maubis.scarlet.base.support.sheets.openSheet(activity, InstallProUpsellBottomSheet())
         },
-        visible = CoreConfig.instance.appFlavor() != Flavor.NONE,
+        visible = ApplicationBase.instance.appFlavor() != Flavor.NONE,
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
@@ -380,7 +380,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.tap_for_action_popup,
         icon = R.drawable.ic_bubble_chart_white_48dp,
         listener = View.OnClickListener {
-          CoreConfig.instance.noteActions(note).popup(activity)
+          ApplicationBase.instance.noteActions(note).popup(activity)
           dismiss()
         },
         invalid = activity.lockedContentIsHidden() && note.locked
@@ -390,11 +390,11 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.backup_note_enable,
         icon = R.drawable.ic_action_backup,
         listener = View.OnClickListener {
-          CoreConfig.instance.noteActions(note).enableBackup(activity)
+          ApplicationBase.instance.noteActions(note).enableBackup(activity)
           activity.updateNote(note)
           dismiss()
         },
-        visible = note.disableBackup && CoreConfig.instance.appFlavor() != Flavor.NONE,
+        visible = note.disableBackup && ApplicationBase.instance.appFlavor() != Flavor.NONE,
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
@@ -402,11 +402,11 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.backup_note_disable,
         icon = R.drawable.ic_action_backup_no,
         listener = View.OnClickListener {
-          CoreConfig.instance.noteActions(note).disableBackup(activity)
+          ApplicationBase.instance.noteActions(note).disableBackup(activity)
           activity.updateNote(note)
           dismiss()
         },
-        visible = !note.disableBackup && CoreConfig.instance.appFlavor() != Flavor.NONE,
+        visible = !note.disableBackup && ApplicationBase.instance.appFlavor() != Flavor.NONE,
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
     return options

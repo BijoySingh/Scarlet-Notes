@@ -3,12 +3,12 @@ package com.maubis.scarlet.base.note.tag.sheet
 import android.app.Dialog
 import android.view.View
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.database.room.tag.Tag
+import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.core.note.getTagUUIDs
 import com.maubis.scarlet.base.core.tag.TagBuilder
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
 import com.maubis.scarlet.base.note.tag.TagOptionsItem
-import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.visibility
 

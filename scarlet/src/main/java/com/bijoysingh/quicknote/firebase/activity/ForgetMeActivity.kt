@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat
 import android.widget.CheckBox
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
-import com.bijoysingh.quicknote.Scarlet
 import com.bijoysingh.quicknote.Scarlet.Companion.firebase
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -18,9 +17,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.support.utils.bind
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.utils.bind
 
 class ForgetMeActivity : ThemedActivity() {
 
@@ -51,7 +50,7 @@ class ForgetMeActivity : ThemedActivity() {
         return@setOnClickListener
       }
 
-      val userId = CoreConfig.instance.authenticator().userId()
+      val userId = ApplicationBase.instance.authenticator().userId()
       if (userId === null) {
         return@setOnClickListener
       }
@@ -63,7 +62,7 @@ class ForgetMeActivity : ThemedActivity() {
           ?.delete()
           ?.addOnCompleteListener {
             if (it.isSuccessful) {
-              CoreConfig.instance.authenticator().logout()
+              ApplicationBase.instance.authenticator().logout()
               finish()
               return@addOnCompleteListener
             }
@@ -145,7 +144,7 @@ class ForgetMeActivity : ThemedActivity() {
             return@addOnCompleteListener
           }
 
-          CoreConfig.instance.authenticator().logout()
+          ApplicationBase.instance.authenticator().logout()
           finish()
         }
   }

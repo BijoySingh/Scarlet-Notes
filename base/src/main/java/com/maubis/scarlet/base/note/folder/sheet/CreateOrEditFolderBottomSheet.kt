@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.folder.isUnsaved
 import com.maubis.scarlet.base.database.room.folder.Folder
@@ -51,9 +51,9 @@ class CreateOrEditFolderBottomSheet : ThemedBottomSheetFragment() {
     val colorFlexbox = dialog.findViewById<FlexboxLayout>(R.id.color_flexbox)
     val colorCard = dialog.findViewById<View>(R.id.core_color_card)
 
-    title.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-    enterFolder.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-    enterFolder.setHintTextColor(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
+    title.setTextColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    enterFolder.setTextColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    enterFolder.setHintTextColor(ApplicationBase.instance.themeController().get(ThemeColorType.HINT_TEXT))
 
     title.setText(if (folder.isUnsaved()) R.string.folder_sheet_add_note else R.string.folder_sheet_edit_note)
     action.setOnClickListener {

@@ -7,7 +7,7 @@ import com.facebook.litho.ComponentContext
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.main.sheets.WhatsNewBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
@@ -50,7 +50,7 @@ class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
               Uri.parse(PRIVACY_POLICY_LINK)))
           dismiss()
         },
-        visible = CoreConfig.instance.appFlavor() != Flavor.NONE
+        visible = ApplicationBase.instance.appFlavor() != Flavor.NONE
 
     ))
     options.add(LithoOptionsItem(

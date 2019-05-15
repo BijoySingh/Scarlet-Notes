@@ -1,9 +1,9 @@
 package com.maubis.scarlet.base.note.folder
 
 import com.github.bijoysingh.starter.util.DateFormatter
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.database.room.folder.Folder
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
+import com.maubis.scarlet.base.database.room.folder.Folder
 import java.util.*
 
 fun Folder.saveIfUnique() {
@@ -42,21 +42,21 @@ fun Folder.getDisplayTime(): String {
  **************************************************************************************/
 
 fun Folder.save() {
-  CoreConfig.instance.folderActions(this).save()
+  ApplicationBase.instance.folderActions(this).save()
 }
 
 fun Folder.saveWithoutSync() {
-  CoreConfig.instance.folderActions(this).offlineSave()
+  ApplicationBase.instance.folderActions(this).offlineSave()
 }
 
 fun Folder.saveToSync() {
-  CoreConfig.instance.folderActions(this).onlineSave()
+  ApplicationBase.instance.folderActions(this).onlineSave()
 }
 
 fun Folder.delete() {
-  CoreConfig.instance.folderActions(this).delete()
+  ApplicationBase.instance.folderActions(this).delete()
 }
 
 fun Folder.deleteWithoutSync() {
-  CoreConfig.instance.folderActions(this).offlineDelete()
+  ApplicationBase.instance.folderActions(this).offlineDelete()
 }

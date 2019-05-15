@@ -7,10 +7,10 @@ import android.view.View.VISIBLE
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getNoteState
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.save
 
 class MainSnackbar(val layout: LinearLayout, val alwaysRunnable: () -> Unit) {

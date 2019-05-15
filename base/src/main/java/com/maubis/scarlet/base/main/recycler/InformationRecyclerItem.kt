@@ -6,7 +6,7 @@ import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.main.activity.INTENT_KEY_DIRECT_NOTES_TRANSFER
@@ -38,7 +38,7 @@ class InformationRecyclerItem(val icon: Int, val title: Int, val source: Int, va
 fun probability(probability: Float): Boolean = Random().nextFloat() <= probability
 
 fun shouldShowAppUpdateInformationItem(): Boolean {
-  return !CoreConfig.instance.remoteConfigFetcher().isLatestVersion()
+  return !ApplicationBase.instance.remoteConfigFetcher().isLatestVersion()
 }
 
 fun getAppUpdateInformationItem(context: Context): InformationRecyclerItem {
@@ -51,7 +51,7 @@ fun getAppUpdateInformationItem(context: Context): InformationRecyclerItem {
 
 fun shouldShowReviewInformationItem(): Boolean {
   return probability(0.01f)
-      && !CoreConfig.instance.store().get(KEY_INFO_RATE_AND_REVIEW, false)
+      && !ApplicationBase.instance.store().get(KEY_INFO_RATE_AND_REVIEW, false)
 }
 
 fun getReviewInformationItem(context: Context): InformationRecyclerItem {
@@ -60,14 +60,14 @@ fun getReviewInformationItem(context: Context): InformationRecyclerItem {
       R.string.home_option_rate_and_review,
       R.string.home_option_rate_and_review_subtitle
   ) {
-    CoreConfig.instance.store().put(KEY_INFO_RATE_AND_REVIEW, true)
+    ApplicationBase.instance.store().put(KEY_INFO_RATE_AND_REVIEW, true)
     IntentUtils.openAppPlayStore(context)
   }
 }
 
 fun shouldShowThemeInformationItem(): Boolean {
   return probability(0.01f)
-      && !CoreConfig.instance.store().get(KEY_THEME_OPTIONS, false)
+      && !ApplicationBase.instance.store().get(KEY_THEME_OPTIONS, false)
 }
 
 fun getThemeInformationItem(activity: MainActivity): InformationRecyclerItem {
@@ -76,14 +76,14 @@ fun getThemeInformationItem(activity: MainActivity): InformationRecyclerItem {
       R.string.home_option_ui_experience,
       R.string.home_option_ui_experience_subtitle
   ) {
-    CoreConfig.instance.store().put(KEY_THEME_OPTIONS, true)
+    ApplicationBase.instance.store().put(KEY_THEME_OPTIONS, true)
     UISettingsOptionsBottomSheet.openSheet(activity)
   }
 }
 
 fun shouldShowBackupInformationItem(): Boolean {
   return probability(0.01f)
-      && !CoreConfig.instance.store().get(KEY_BACKUP_OPTIONS, false)
+      && !ApplicationBase.instance.store().get(KEY_BACKUP_OPTIONS, false)
 }
 
 fun getBackupInformationItem(activity: MainActivity): InformationRecyclerItem {
@@ -92,7 +92,7 @@ fun getBackupInformationItem(activity: MainActivity): InformationRecyclerItem {
       R.string.home_option_backup_options,
       R.string.home_option_backup_options_subtitle
   ) {
-    CoreConfig.instance.store().put(KEY_BACKUP_OPTIONS, true)
+    ApplicationBase.instance.store().put(KEY_BACKUP_OPTIONS, true)
     openSheet(activity, BackupSettingsOptionsBottomSheet())
   }
 }
@@ -100,8 +100,8 @@ fun getBackupInformationItem(activity: MainActivity): InformationRecyclerItem {
 
 fun shouldShowInstallProInformationItem(): Boolean {
   return probability(0.01f)
-      && CoreConfig.instance.store().get(KEY_INFO_INSTALL_PRO_v2, 0) < KEY_INFO_INSTALL_PRO_MAX_COUNT
-      && CoreConfig.instance.appFlavor() != Flavor.PRO
+      && ApplicationBase.instance.store().get(KEY_INFO_INSTALL_PRO_v2, 0) < KEY_INFO_INSTALL_PRO_MAX_COUNT
+      && ApplicationBase.instance.appFlavor() != Flavor.PRO
 }
 
 fun getInstallProInformationItem(context: Context): InformationRecyclerItem {
@@ -116,16 +116,16 @@ fun getInstallProInformationItem(context: Context): InformationRecyclerItem {
 }
 
 fun shouldShowSignInformationItem(): Boolean {
-  if (CoreConfig.instance.authenticator().isLoggedIn()
-      || CoreConfig.instance.appFlavor() == Flavor.NONE) {
+  if (ApplicationBase.instance.authenticator().isLoggedIn()
+      || ApplicationBase.instance.appFlavor() == Flavor.NONE) {
     return false
   }
-  if (CoreConfig.instance.store().get(KEY_FORCE_SHOW_SIGN_IN, false)) {
-    CoreConfig.instance.store().put(KEY_FORCE_SHOW_SIGN_IN, false)
+  if (ApplicationBase.instance.store().get(KEY_FORCE_SHOW_SIGN_IN, false)) {
+    ApplicationBase.instance.store().put(KEY_FORCE_SHOW_SIGN_IN, false)
     return true
   }
   return probability(0.01f)
-      && !CoreConfig.instance.store().get(KEY_INFO_SIGN_IN, false)
+      && !ApplicationBase.instance.store().get(KEY_INFO_SIGN_IN, false)
 }
 
 fun getSignInInformationItem(context: Context): InformationRecyclerItem {
@@ -134,21 +134,21 @@ fun getSignInInformationItem(context: Context): InformationRecyclerItem {
       R.string.home_option_login_with_app,
       R.string.home_option_login_with_app_subtitle
   ) {
-    CoreConfig.instance.authenticator().openLoginActivity(context)?.run()
+    ApplicationBase.instance.authenticator().openLoginActivity(context)?.run()
     notifyProUpsellShown()
   }
 }
 
 fun notifyProUpsellShown() {
-  val proUpsellCount = CoreConfig.instance.store().get(KEY_INFO_INSTALL_PRO_v2, 0)
-  CoreConfig.instance.store().put(KEY_INFO_INSTALL_PRO_v2, proUpsellCount + 1)
+  val proUpsellCount = ApplicationBase.instance.store().get(KEY_INFO_INSTALL_PRO_v2, 0)
+  ApplicationBase.instance.store().put(KEY_INFO_INSTALL_PRO_v2, proUpsellCount + 1)
 }
 
 
 fun shouldShowMigrateToProAppInformationItem(context: Context): Boolean {
-  return CoreConfig.instance.appFlavor() == Flavor.LITE
+  return ApplicationBase.instance.appFlavor() == Flavor.LITE
       && FlavourUtils.hasProAppInstalled(context)
-      && !CoreConfig.instance.store().get(KEY_MIGRATE_TO_PRO_SUCCESS, false)
+      && !ApplicationBase.instance.store().get(KEY_MIGRATE_TO_PRO_SUCCESS, false)
 }
 
 fun getMigrateToProAppInformationItem(context: Context): InformationRecyclerItem {
@@ -165,7 +165,7 @@ fun getMigrateToProAppInformationItem(context: Context): InformationRecyclerItem
           .setPackage(FlavourUtils.PRO_APP_PACKAGE_NAME)
       try {
         context.startActivity(intent)
-        CoreConfig.instance.store().put(KEY_MIGRATE_TO_PRO_SUCCESS, true)
+        ApplicationBase.instance.store().put(KEY_MIGRATE_TO_PRO_SUCCESS, true)
       } catch (e: Exception) {
         ToastHelper.show(context, "Failed transferring notes to Scarlet Pro")
       }

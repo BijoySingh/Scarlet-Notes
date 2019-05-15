@@ -2,7 +2,7 @@ package com.maubis.scarlet.base.support.database
 
 import android.content.Context
 import com.google.gson.Gson
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteMeta
 import com.maubis.scarlet.base.core.note.Reminder
@@ -26,9 +26,9 @@ class Migrator(val context: Context) {
 
   fun start() {
     runTask(KEY_MIGRATE_THEME) {
-      val isNightMode = CoreConfig.instance.store().get(KEY_NIGHT_THEME, true)
-      CoreConfig.instance.store().put(KEY_APP_THEME, if (isNightMode) Theme.DARK.name else Theme.LIGHT.name)
-      CoreConfig.instance.themeController().notifyChange(context)
+      val isNightMode = ApplicationBase.instance.store().get(KEY_NIGHT_THEME, true)
+      ApplicationBase.instance.store().put(KEY_APP_THEME, if (isNightMode) Theme.DARK.name else Theme.LIGHT.name)
+      ApplicationBase.instance.themeController().notifyChange(context)
     }
     runTask(key = KEY_MIGRATE_REMINDERS) {
       val notes = notesDb.getAll()
@@ -59,13 +59,13 @@ class Migrator(val context: Context) {
     runTaskIf(
         getLastUsedAppVersionCode() == 0,
         KEY_MIGRATE_DEFAULT_VALUES) {
-      CoreConfig.instance.store().put(KEY_APP_THEME, Theme.DARK.name)
-      CoreConfig.instance.store().put(KEY_LIST_VIEW, true)
+      ApplicationBase.instance.store().put(KEY_APP_THEME, Theme.DARK.name)
+      ApplicationBase.instance.store().put(KEY_LIST_VIEW, true)
     }
   }
 
   private fun runTask(key: String, task: () -> Unit) {
-    if (CoreConfig.instance.store().get(key, false)) {
+    if (ApplicationBase.instance.store().get(key, false)) {
       return
     }
 
@@ -73,7 +73,7 @@ class Migrator(val context: Context) {
       task()
     } catch (_: Exception) {
     }
-    CoreConfig.instance.store().put(key, true)
+    ApplicationBase.instance.store().put(key, true)
   }
 
   private fun runTaskIf(condition: Boolean, key: String, task: () -> Unit) {

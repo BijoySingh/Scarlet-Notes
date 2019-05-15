@@ -16,7 +16,7 @@ import com.github.ajalt.reprint.core.Reprint
 import com.github.bijoysingh.starter.util.LocaleManager
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -49,10 +49,10 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
     val fingerprint = dialog.findViewById<ImageView>(R.id.fingerprint)
     val removeBtn = dialog.findViewById<TextView>(R.id.action_remove_button)
 
-    title.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-    enterPin.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    title.setTextColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    enterPin.setTextColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
 
-    val hintColor = CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT)
+    val hintColor = ApplicationBase.instance.themeController().get(ThemeColorType.HINT_TEXT)
     enterPin.setHintTextColor(hintColor)
     pinLength.setTextColor(hintColor)
 
@@ -176,7 +176,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
         override fun isRemoveButtonEnabled(): Boolean = true
 
         override fun onRemoveButtonClick() {
-          CoreConfig.instance.store().put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
+          ApplicationBase.instance.store().put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
           sNoPinSetupNoticeShown = false
           listener.onSuccess()
 
@@ -185,7 +185,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
         }
 
         override fun onPasswordRequested(password: String) {
-          CoreConfig.instance.store().put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, password)
+          ApplicationBase.instance.store().put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, password)
           listener.onSuccess()
         }
 
@@ -239,11 +239,11 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
 
         override fun isFingerprintEnabled(): Boolean {
           return Reprint.hasFingerprintRegistered() &&
-              CoreConfig.instance.store().get(SecurityOptionsBottomSheet.KEY_FINGERPRINT_ENABLED, true)
+              ApplicationBase.instance.store().get(SecurityOptionsBottomSheet.KEY_FINGERPRINT_ENABLED, true)
         }
 
         override fun onPasswordRequested(password: String) {
-          val currentPassword = CoreConfig.instance.store().get(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
+          val currentPassword = ApplicationBase.instance.store().get(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
           if (currentPassword != "" && currentPassword == password) {
             listener.onSuccess()
           } else if (listener is PincodeSuccessListener) {

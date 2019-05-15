@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.uibasics.views.UIActionView
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.core.note.Reminder
 import com.maubis.scarlet.base.core.note.ReminderInterval
 import com.maubis.scarlet.base.core.note.getReminderV2
@@ -208,9 +208,9 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     val reminderTime = dialog.findViewById<UIActionView>(R.id.reminder_time)
     val reminderRepeat = dialog.findViewById<UIActionView>(R.id.reminder_repeat)
 
-    val iconColor = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
-    val textColor = CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)
-    val titleColor = CoreConfig.instance.themeController().get(ThemeColorType.SECTION_HEADER)
+    val iconColor = ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
+    val textColor = ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)
+    val titleColor = ApplicationBase.instance.themeController().get(ThemeColorType.SECTION_HEADER)
 
     reminderDate.setTitleColor(titleColor)
     reminderDate.setSubtitleColor(textColor)

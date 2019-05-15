@@ -14,21 +14,19 @@ import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.util.TextUtils
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.markdown.Markdown
+import com.maubis.markdown.spannable.clearMarkdownSpans
 import com.maubis.markdown.spannable.setFormats
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.core.note.NoteBuilder
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.export.support.NoteImporter
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.save
-import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.utils.bind
 import java.io.InputStreamReader
-import android.support.annotation.NonNull
-import android.text.style.*
-import com.maubis.markdown.spannable.clearMarkdownSpans
 
 
 const val KEEP_PACKAGE = "com.google.android.keep"
@@ -91,7 +89,7 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
 
   override fun onResume() {
     super.onResume()
-    CoreConfig.instance.startListener(this)
+    ApplicationBase.instance.startListener(this)
   }
 
   private fun setView() {
@@ -184,15 +182,15 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
     val containerLayout = findViewById<View>(R.id.container_layout);
     containerLayout.setBackgroundColor(getThemeColor());
 
-    val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON);
+    val toolbarIconColor = ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_ICON);
     backButton.setColorFilter(toolbarIconColor)
 
-    val textColor = CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
+    val textColor = ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
     filename.setTextColor(textColor)
     title.setTextColor(textColor)
     content.setTextColor(textColor)
 
-    val actionColor = CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
+    val actionColor = ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
     actionDone.setImageTint(actionColor)
     actionDone.setTextColor(actionColor)
   }

@@ -12,7 +12,7 @@ import android.widget.RemoteViews
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
@@ -93,7 +93,7 @@ class NotificationHandler(val context: Context) {
     contentView.setTextViewText(R.id.description, config.note.getText())
     contentView.setTextViewText(R.id.timestamp, config.note.getDisplayTime())
 
-    val theme = CoreConfig.instance.themeController()
+    val theme = ApplicationBase.instance.themeController()
     val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
     val descColor = theme.get(ThemeColorType.TERTIARY_TEXT)
     contentView.setTextColor(R.id.title, titleColor)

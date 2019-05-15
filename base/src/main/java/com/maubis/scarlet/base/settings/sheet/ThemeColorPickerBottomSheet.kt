@@ -10,7 +10,7 @@ import com.facebook.litho.annotations.Prop
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
@@ -92,7 +92,7 @@ class ThemeColorPickerBottomSheet : LithoBottomSheet() {
       }
 
       val disabled = when {
-        CoreConfig.instance.appFlavor() == Flavor.PRO -> false
+        ApplicationBase.instance.appFlavor() == Flavor.PRO -> false
         theme == Theme.DARK || theme == Theme.LIGHT -> false
         else -> true
       }

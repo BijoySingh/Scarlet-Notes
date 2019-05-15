@@ -1,7 +1,6 @@
 package com.maubis.scarlet.base.support.database
 
 import android.content.Context
-import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteImage.Companion.deleteIfExist

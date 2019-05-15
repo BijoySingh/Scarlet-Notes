@@ -6,7 +6,7 @@ import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
 import com.maubis.markdown.Markdown
 import com.maubis.markdown.segmenter.TextSegmenter
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
@@ -266,11 +266,11 @@ fun Note.openEdit(context: Context) {
 
 
 fun Note.share(context: Context) {
-  CoreConfig.instance.noteActions(this).share(context)
+  ApplicationBase.instance.noteActions(this).share(context)
 }
 
 fun Note.copy(context: Context) {
-  CoreConfig.instance.noteActions(this).copy(context)
+  ApplicationBase.instance.noteActions(this).copy(context)
 }
 
 /**************************************************************************************
@@ -293,15 +293,15 @@ fun Note.save(context: Context) {
     saveWithoutSync(context)
     return
   }
-  CoreConfig.instance.noteActions(this).save(context)
+  ApplicationBase.instance.noteActions(this).save(context)
 }
 
 fun Note.saveWithoutSync(context: Context) {
-  CoreConfig.instance.noteActions(this).offlineSave(context)
+  ApplicationBase.instance.noteActions(this).offlineSave(context)
 }
 
 fun Note.saveToSync(context: Context) {
-  CoreConfig.instance.noteActions(this).onlineSave(context)
+  ApplicationBase.instance.noteActions(this).onlineSave(context)
 }
 
 fun Note.delete(context: Context) {
@@ -309,17 +309,17 @@ fun Note.delete(context: Context) {
     deleteWithoutSync(context)
     return
   }
-  CoreConfig.instance.noteActions(this).delete(context)
+  ApplicationBase.instance.noteActions(this).delete(context)
 }
 
 fun Note.deleteWithoutSync(context: Context) {
-  CoreConfig.instance.noteActions(this).offlineDelete(context)
+  ApplicationBase.instance.noteActions(this).offlineDelete(context)
 }
 
 fun Note.deleteToSync(context: Context) {
-  CoreConfig.instance.noteActions(this).onlineDelete(context)
+  ApplicationBase.instance.noteActions(this).onlineDelete(context)
 }
 
 fun Note.softDelete(context: Context) {
-  CoreConfig.instance.noteActions(this).softDelete(context)
+  ApplicationBase.instance.noteActions(this).softDelete(context)
 }

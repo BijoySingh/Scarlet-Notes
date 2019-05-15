@@ -15,8 +15,11 @@ import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.format.MarkdownType
-import com.maubis.scarlet.base.core.note.*
+import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteImage.Companion.deleteIfExist
+import com.maubis.scarlet.base.core.note.getFormats
+import com.maubis.scarlet.base.core.note.isEqual
+import com.maubis.scarlet.base.core.note.isUnsaved
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.creation.specs.NoteCreationBottomBar
 import com.maubis.scarlet.base.note.creation.specs.NoteCreationTopBar

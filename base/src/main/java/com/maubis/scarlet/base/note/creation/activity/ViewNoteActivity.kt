@@ -12,7 +12,7 @@ import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
@@ -30,9 +30,11 @@ import com.maubis.scarlet.base.note.formats.IFormatRecyclerViewActivity
 import com.maubis.scarlet.base.note.formats.getFormatControllerItems
 import com.maubis.scarlet.base.note.formats.recycler.KEY_EDITABLE
 import com.maubis.scarlet.base.note.formats.recycler.KEY_NOTE_COLOR
-import com.maubis.scarlet.base.settings.sheet.*
+import com.maubis.scarlet.base.settings.sheet.STORE_KEY_TEXT_SIZE
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
+import com.maubis.scarlet.base.settings.sheet.sEditorTextSize
+import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.*
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
@@ -80,6 +82,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     setContentView(R.layout.activity_advanced_note)
     context = this
     isDistractionFree = intent.getBooleanExtra(INTENT_KEY_DISTRACTION_FREE, false)
+    formats = emptyList<Format>().toMutableList()
 
     setRecyclerView()
 
@@ -109,7 +112,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
 
   override fun onResume() {
     super.onResume()
-    CoreConfig.instance.startListener(this)
+    ApplicationBase.instance.startListener(this)
 
     if (!creationFinished.get()) {
       return
@@ -148,8 +151,8 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
     val currentNote = note
     val bundle = Bundle()
     bundle.putBoolean(KEY_EDITABLE, editModeValue)
-    bundle.putBoolean(KEY_MARKDOWN_ENABLED, CoreConfig.instance.store().get(KEY_MARKDOWN_ENABLED, true))
-    bundle.putBoolean(KEY_NIGHT_THEME, CoreConfig.instance.themeController().isNightTheme())
+    bundle.putBoolean(KEY_MARKDOWN_ENABLED, ApplicationBase.instance.store().get(KEY_MARKDOWN_ENABLED, true))
+    bundle.putBoolean(KEY_NIGHT_THEME, ApplicationBase.instance.themeController().isNightTheme())
     bundle.putInt(STORE_KEY_TEXT_SIZE, sEditorTextSize)
     bundle.putInt(KEY_NOTE_COLOR, currentNote?.color ?: sNoteDefaultColor)
     bundle.putString(INTENT_KEY_NOTE_ID, currentNote?.uuid ?: generateUUID())
@@ -253,7 +256,7 @@ open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity
       return
     }
 
-    val theme = CoreConfig.instance.themeController()
+    val theme = ApplicationBase.instance.themeController()
     when {
       !useNoteColorAsBackground -> {
         colorConfig.backgroundColor = theme.get(ThemeColorType.BACKGROUND)

@@ -9,14 +9,14 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.export.recycler.FileRecyclerItem
 import com.maubis.scarlet.base.export.support.NoteImporter
 import com.maubis.scarlet.base.note.recycler.NoteAppAdapter
-import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.utils.bind
 import java.io.File
 import java.io.FileReader
 
@@ -95,13 +95,13 @@ class ImportNoteActivity : ThemedActivity() {
   }
 
   override fun notifyThemeChange() {
-    val theme = CoreConfig.instance.themeController()
+    val theme = ApplicationBase.instance.themeController()
     background.setBackgroundColor(theme.get(ThemeColorType.BACKGROUND))
     backButton.setColorFilter(theme.get(ThemeColorType.TOOLBAR_ICON))
     pageTitle.setTextColor(theme.get(ThemeColorType.TERTIARY_TEXT))
     importFile.setTextColor(theme.get(ThemeColorType.TERTIARY_TEXT))
     importFile.setBackgroundResource(
-        if (CoreConfig.instance.themeController().isNightTheme()) R.drawable.light_circular_border_bg
+        if (ApplicationBase.instance.themeController().isNightTheme()) R.drawable.light_circular_border_bg
         else R.drawable.dark_circular_border_bg)
   }
 }

@@ -12,7 +12,7 @@ import com.facebook.yoga.YogaEdge
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.export.support.*
 import com.maubis.scarlet.base.support.sheets.*
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
@@ -25,7 +25,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 val NOTES_EXPORT_FOLDER
-  get() = when (CoreConfig.instance.appFlavor()) {
+  get() = when (ApplicationBase.instance.appFlavor()) {
     Flavor.NONE -> "MaterialNotes"
     Flavor.LITE -> "Scarlet"
     Flavor.PRO -> "ScarletPro"
@@ -52,7 +52,7 @@ class ExportNotesBottomSheet : LithoBottomSheet() {
             .text(filenameRender)
             .typeface(Typeface.MONOSPACE)
             .paddingDip(YogaEdge.HORIZONTAL, 20f)
-            .textColor(CoreConfig.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
         .child(separatorSpec(componentContext).alpha(0.5f))
 
     getOptions(componentContext).forEach {

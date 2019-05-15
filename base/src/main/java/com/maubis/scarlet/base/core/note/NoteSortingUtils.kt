@@ -2,8 +2,6 @@ package com.maubis.scarlet.base.core.note
 
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.getAlphabets
-import com.maubis.scarlet.base.note.getFullText
-import com.maubis.scarlet.base.note.getText
 
 enum class SortingTechnique() {
   LAST_MODIFIED,
