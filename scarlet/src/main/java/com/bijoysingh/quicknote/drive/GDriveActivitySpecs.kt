@@ -21,7 +21,6 @@ object GDriveRootViewSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop loggingIn: Boolean): Component {
-    val activity = context.androidContext as CreateNoteActivity
     val buttonTitle = when {
       loggingIn -> R.string.google_drive_page_logging_in_button
       else -> R.string.google_drive_page_login_button

@@ -15,6 +15,12 @@ android {
         targetSdkVersion rootProject.ext.appconfig_target_os_version
         versionCode rootProject.ext.appconfig_version_code
         versionName rootProject.ext.appconfig_version
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     flavorDimensions "tier"
@@ -58,17 +64,19 @@ dependencies {
 
     implementation 'com.android.volley:volley:1.1.0'
 
-    implementation "com.google.firebase:firebase-core:16.0.7"
-    implementation "com.google.firebase:firebase-auth:16.1.0"
-    implementation "com.google.firebase:firebase-database:16.0.6"
+    implementation "com.google.firebase:firebase-core:16.0.9"
+    implementation "com.google.firebase:firebase-auth:17.0.0"
+    implementation "com.google.firebase:firebase-database:17.0.0"
 
     def litho_version = "0.21.0"
     compileOnly "com.facebook.litho:litho-annotations:$litho_version"
     kapt "com.facebook.litho:litho-processor:$litho_version"
 
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
-    implementation 'com.google.http-client:google-http-client-gson:1.26.0'
-    implementation('com.google.api-client:google-api-client-android:1.26.0') {
+    implementation ('com.google.http-client:google-http-client-gson:1.26.0') {
+
+    }
+    implementation ('com.google.api-client:google-api-client-android:1.26.0') {
         exclude group: 'org.apache.httpcomponents'
     }
     implementation('com.google.apis:google-api-services-drive:v3-rev136-1.25.0') {
