@@ -41,6 +41,18 @@ class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         }
     ))
     options.add(LithoOptionsItem(
+        title = R.string.home_option_faq_title,
+        subtitle = R.string.home_option_faq_description,
+        icon = R.drawable.icon_help,
+        listener = {
+          try {
+            activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(SettingsOptionsBottomSheet.GITHUB_FAQ_URL)))
+            dismiss()
+          } catch (exception: Exception) {
+          }
+        }
+    ))
+    options.add(LithoOptionsItem(
         title = R.string.material_notes_privacy_policy,
         subtitle = R.string.material_notes_privacy_policy_subtitle,
         icon = R.drawable.ic_privacy_policy,

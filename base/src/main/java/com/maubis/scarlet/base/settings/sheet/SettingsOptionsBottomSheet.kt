@@ -128,18 +128,6 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_faq_title,
-        subtitle = R.string.home_option_faq_description,
-        icon = R.drawable.icon_help,
-        listener = {
-          try {
-            activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_FAQ_URL)))
-            dismiss()
-          } catch (exception: Exception) {
-          }
-        }
-    ))
-    options.add(LithoOptionsItem(
         title = R.string.home_option_logout_of_app,
         subtitle = R.string.home_option_logout_of_app_subtitle,
         icon = R.drawable.ic_sign_in_options,
