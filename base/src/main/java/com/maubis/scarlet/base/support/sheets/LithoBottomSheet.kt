@@ -88,10 +88,11 @@ abstract class LithoBottomSheet : BottomSheetDialogFragment() {
     }
 
     val baseComponent = Column.create(componentContext)
-        .paddingDip(YogaEdge.VERTICAL, 16f)
+        .paddingDip(YogaEdge.TOP, topMargin())
+        .paddingDip(YogaEdge.BOTTOM, bottomMargin())
         .widthPercent(100f)
         .alignItems(YogaAlign.CENTER)
-        .backgroundColor(ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND))
+        .backgroundColor(backgroundColor(componentContext))
         .child(
             Image.create(componentContext)
                 .drawableRes(topHandle)
@@ -116,4 +117,10 @@ abstract class LithoBottomSheet : BottomSheetDialogFragment() {
   }
 
   abstract fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component
+
+  open fun backgroundColor(componentContext: ComponentContext) = ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND)
+
+  open fun topMargin() = 16f
+
+  open fun bottomMargin() = 16f
 }

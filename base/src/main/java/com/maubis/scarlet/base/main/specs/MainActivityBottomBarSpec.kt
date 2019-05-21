@@ -16,10 +16,11 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.database.room.folder.Folder
-import com.maubis.scarlet.base.main.sheets.HomeNavigationBottomSheet
+import com.maubis.scarlet.base.main.sheets.HomeOptionsBottomSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.folder.sheet.CreateOrEditFolderBottomSheet
 import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.specs.bottomBarCard
@@ -43,7 +44,7 @@ object MainActivityBottomBarSpec {
         .bgColor(Color.TRANSPARENT)
         .iconRes(R.drawable.ic_apps_white_48dp)
         .onClick {
-          HomeNavigationBottomSheet.openSheet(activity)
+          openSheet(activity, HomeOptionsBottomSheet())
         })
     row.child(EmptySpec.create(context).heightDip(1f).flexGrow(1f))
 
