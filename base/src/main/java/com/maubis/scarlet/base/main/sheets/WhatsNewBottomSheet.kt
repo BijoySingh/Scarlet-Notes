@@ -77,6 +77,7 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
     val WHATS_NEW_DETAILS_NEW_FEATURES_TITLE = "New Features"
     val WHATS_NEW_DETAILS_COMING_SOON_TITLE = "Coming Soon"
     val WHATS_NEW_DETAILS_NEW_FEATURES_MD =
+        "- **Checked Items:** You can now enable / disable checked items from moving down when checked.\n\n" +
         "- **Bug Fixes:** This release fixes multiple crash issues throughout the application.\n\n" +
             "Even more little things which help you enjoy using this app everyday"
     val WHATS_NEW_DETAILS_COMING_SOON_MD =

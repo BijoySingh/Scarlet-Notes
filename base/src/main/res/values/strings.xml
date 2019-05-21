@@ -401,6 +401,9 @@
   <string name="editor_option_enable_live_markdown" translatable="false">Realtime Markdown</string>
   <string name="editor_option_enable_live_markdown_description" translatable="false">Choose if you want markdown to be visible as your type. Enabling can effect performance on large notes.</string>
 
+  <string name="editor_option_move_checked_items" translatable="false">Move Checked Items</string>
+  <string name="editor_option_move_checked_items_description" translatable="false">Checked items move to the bottom of the list. Uncheck does not reset position.</string>
+
   <string name="editor_option_enable_move_handle" translatable="false">Show Movement Handles</string>
   <string name="editor_option_enable_move_handle_description" translatable="false">Show the handle to move items up or down. You can still move things around by touching the corner.</string>
 

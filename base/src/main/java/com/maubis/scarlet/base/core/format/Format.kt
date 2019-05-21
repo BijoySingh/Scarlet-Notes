@@ -1,5 +1,6 @@
 package com.maubis.scarlet.base.core.format
 
+import com.maubis.scarlet.base.note.creation.sheet.sEditorMoveChecked
 import org.json.JSONObject
 import java.util.*
 
@@ -62,13 +63,18 @@ class Format {
 }
 
 fun sectionPreservingSort(formats: List<Format>): List<Format> {
+  if (!sEditorMoveChecked) {
+    return formats
+  }
+
   val mutableFormats = formats.toMutableList()
   var index = 0
   while (index < formats.size - 1) {
     val currentItem = mutableFormats[index]
     val nextItem = mutableFormats[index + 1]
 
-    if (currentItem.formatType == FormatType.CHECKLIST_CHECKED && nextItem.formatType == FormatType.CHECKLIST_UNCHECKED) {
+    if (currentItem.formatType == FormatType.CHECKLIST_CHECKED
+        && nextItem.formatType == FormatType.CHECKLIST_UNCHECKED) {
       Collections.swap(mutableFormats, index, index + 1)
       continue
     }

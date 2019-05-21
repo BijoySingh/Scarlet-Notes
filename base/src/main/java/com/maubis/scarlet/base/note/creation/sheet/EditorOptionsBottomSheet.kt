@@ -9,12 +9,17 @@ import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 
 const val STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED = "KEY_MARKDOWN_ENABLED"
 const val STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN = "editor_live_markdown"
+const val STORE_KEY_EDITOR_OPTIONS_MOVE_CHECKED_ITEMS = "editor_move_checked_items"
 const val STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT = "editor_markdown_default"
 const val STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES = "editor_move_handles"
 
 var sEditorLiveMarkdown: Boolean
   get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, true)
   set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, value)
+
+var sEditorMoveChecked: Boolean
+  get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MOVE_CHECKED_ITEMS, true)
+  set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MOVE_CHECKED_ITEMS, value)
 
 var sEditorMarkdownDefault: Boolean
   get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT, false)
@@ -64,6 +69,17 @@ class EditorOptionsBottomSheet : LithoOptionBottomSheet() {
         isSelectable = true,
         listener = {
           sEditorMarkdownDefault = !sEditorMarkdownDefault
+          reset(componentContext.androidContext, dialog)
+        }
+    ))
+    items.add(LithoOptionsItem(
+        title = R.string.editor_option_move_checked_items,
+        subtitle = R.string.editor_option_move_checked_items_description,
+        icon = R.drawable.ic_check_box_white_24dp,
+        selected = sEditorMoveChecked,
+        isSelectable = true,
+        listener = {
+          sEditorMoveChecked = !sEditorMoveChecked
           reset(componentContext.androidContext, dialog)
         }
     ))
