@@ -31,7 +31,7 @@ fun openSheet(activity: AppCompatActivity, sheet: LithoBottomSheet) {
 fun getLithoBottomSheetTitle(context: ComponentContext): Text.Builder {
   return Text.create(context)
       .textSizeRes(R.dimen.font_size_xxxlarge)
-      .typeface(CoreConfig.FONT_MONSERRAT)
+      .typeface(CoreConfig.FONT_MONSERRAT_BOLD)
       .marginDip(YogaEdge.HORIZONTAL, 20f)
       .marginDip(YogaEdge.TOP, 18f)
       .marginDip(YogaEdge.BOTTOM, 8f)

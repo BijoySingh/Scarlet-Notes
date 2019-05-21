@@ -46,13 +46,13 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_xlarge)
             .marginDip(YogaEdge.BOTTOM, 4f)
-            .text(WHATS_NEW_DETAILS_LAST_RELEASE_TITLE)
+            .text(WHATS_NEW_DETAILS_COMING_SOON_TITLE)
             .typeface(FONT_MONSERRAT)
             .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 16f)
-            .text(Markdown.render(WHATS_NEW_DETAILS_LAST_RELEASE_MD, true))
+            .text(Markdown.render(WHATS_NEW_DETAILS_COMING_SOON_MD, true))
             .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(R.string.import_export_layout_exporting_done)
@@ -70,25 +70,18 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
   }
 
   companion object {
-    val WHATS_NEW_UID = 9
+    val WHATS_NEW_UID = 10
     val GOOGLE_TRANSLATE_URL = "https://translate.google.com/#auto/"
 
     val WHATS_NEW_DETAILS_SUBTITLE = "A lot has changed in this update, here is a summary of those changes."
     val WHATS_NEW_DETAILS_NEW_FEATURES_TITLE = "New Features"
-    val WHATS_NEW_DETAILS_LAST_RELEASE_TITLE = "Last Release"
+    val WHATS_NEW_DETAILS_COMING_SOON_TITLE = "Coming Soon"
     val WHATS_NEW_DETAILS_NEW_FEATURES_MD =
-        "- **All New UI:** New Note and Settings UI. Cleaner, faster and built for easy use.\n\n" +
-            "- **Easier Editor:** Easier and faster ways to get markdown, and section options.\n\n" +
-            "- **Realtime Markdown:** When you type in markdown you get real time conversion and formatting.\n\n" +
-            "- **More Editor Options:** Head over to settings to get more control on the editor experience.\n\n" +
-            "- **More Themes:** Pro Users get more themes for the app, and the default dark theme is even darker now.\n\n" +
-            "- **Folder Sync:** Sync all your notes to an folderSync folder live along with images.\n\n" +
-            "- **Widget Options:** Widgets now show formatted text! You can also configure what notes to see in the widget.\n\n" +
+        "- **Bug Fixes:** This release fixes multiple crash issues throughout the application.\n\n" +
             "Even more little things which help you enjoy using this app everyday"
-    val WHATS_NEW_DETAILS_LAST_RELEASE_MD =
-        "- **New UI and Icon:** New Search and Top Actionbar UI and icon\n\n" +
-            "- **Widgets:** Added a new list of notes widget. Also fixed widget not updating bug.\n\n" +
-            "- **Reminder:** Improved reminders to be more reliable."
+    val WHATS_NEW_DETAILS_COMING_SOON_MD =
+        "- **Google Drive Based Sync:** We are building a secure and private Google Drive based sync\n\n" +
+            "- **Photo Sync:** Drive sync will also allow syncing photos between devices as well.\n\n"
 
 
   }

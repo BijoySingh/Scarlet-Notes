@@ -32,14 +32,17 @@ class ScarletAuthenticator() : IAuthenticator {
   }
 
   override fun setup(context: Context) {
-    GlobalScope.launch {
-      val account = GoogleSignIn.getLastSignedInAccount(context)
-      if (account !== null) {
-        val helper= GDriveLoginActivity.getDriveHelper(context, account)
-        gDrive = GDriveRemoteDatabase(WeakReference(context))
-        gDrive?.init(helper)
+    /*
+     // TODO: Uncomment this when GDrive is ready
+      GlobalScope.launch {
+        val account = GoogleSignIn.getLastSignedInAccount(context)
+        if (account !== null) {
+          val helper= GDriveLoginActivity.getDriveHelper(context, account)
+          gDrive = GDriveRemoteDatabase(WeakReference(context))
+          gDrive?.init(helper)
+        }
       }
-    }
+    */
 
     GlobalScope.launch {
       FirebaseApp.initializeApp(context)
@@ -68,6 +71,7 @@ class ScarletAuthenticator() : IAuthenticator {
   }
 
   override fun openLoginActivity(context: Context) = Runnable {
+    // TODO: Uncomment this when GDrive is ready
     // context.startActivity(Intent(context, GDriveLoginActivity::class.java))
     context.startActivity(Intent(context, LoginActivity::class.java))
   }

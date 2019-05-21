@@ -38,24 +38,25 @@ class ErrorCallable<T>(val callable: Callable<T>) : Callable<T?> {
       lastCheckpointTime.set(System.currentTimeMillis())
     }
 
-    val currentCount = numQueriesSinceLastCheckpoint.addAndGet(1) * 1.0
+    val currentCount = numQueriesSinceLastCheckpoint.get() * 1.0
     val deltaTimeS = (System.currentTimeMillis() - lastCheckpointTime.get()) / 1000.0
-    log("GDrive", "Request being called: currentCount=$currentCount, deltaTimeS=$deltaTimeS")
+    log("GDrive", "Request being called: currentCount=$currentCount, deltaTimeS=$deltaTimeS, requestRate=${currentCount/deltaTimeS}")
     if (currentCount >= 10 && deltaTimeS > 0) {
       when {
-        (currentCount / deltaTimeS) > 0.8 -> {
+        (currentCount / deltaTimeS) > 0.9 -> {
           log("GDrive", "Rate limiting measures taken: currentCount=$currentCount, deltaTimeS=$deltaTimeS")
           SystemClock.sleep(500L)
           return call()
         }
         (currentCount / deltaTimeS) < 0.1 -> {
-          numQueriesSinceLastCheckpoint.set(1L)
+          numQueriesSinceLastCheckpoint.set(0L)
           lastCheckpointTime.set(SystemClock.currentThreadTimeMillis())
         }
       }
     }
 
     try {
+      numQueriesSinceLastCheckpoint.addAndGet(1)
       return callable.call()
     } catch (exception: Exception) {
       Log.e("GDrive", exception.message, exception)

@@ -1,5 +1,6 @@
 package com.maubis.scarlet.base.support.specs
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import com.facebook.litho.ClickEvent
 import com.facebook.litho.Column
@@ -35,7 +36,7 @@ object RoundIconSpec {
         .marginPx(YogaEdge.HORIZONTAL, iconMarginHorizontal ?: 0)
         .drawable(icon.color(iconColor))
         .alpha(iconAlpha ?: 1f)
-        .background(LithoCircleDrawable(bgColor, bgAlpha ?: 255, showBorder ?: false))
+        .background(LithoCircleDrawable(bgColor, bgAlpha ?: Color.alpha(bgColor), showBorder ?: false))
     if (isClickDisabled === null || !isClickDisabled) {
       image.clickHandler(RoundIcon.onClickEvent(context))
     }

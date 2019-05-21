@@ -1,5 +1,6 @@
 package com.bijoysingh.quicknote.drive
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.Layout
 import com.facebook.litho.*
@@ -13,6 +14,7 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
+import com.maubis.scarlet.base.support.specs.color
 import com.maubis.scarlet.base.support.ui.LithoCircleDrawable
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
@@ -33,7 +35,7 @@ object GDriveRootViewSpec {
             .childComponent(GDriveContentView.create(context)))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_large)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.PRIMARY_TEXT))
             .textRes(R.string.google_drive_page_login_firebase_button)
             .textAlignment(Layout.Alignment.ALIGN_CENTER)
             .typeface(CoreConfig.FONT_MONSERRAT))
@@ -89,8 +91,8 @@ object GDriveContentViewSpec {
             .titleRes(R.string.google_drive_page_login_lock_details))
         .child(GDriveIconView.create(context)
             .bgColorRes(R.color.dark_low_hint_text)
-            .iconRes(R.drawable.ic_action_lock)
-            .titleRes(R.string.google_drive_page_login_lock_details))
+            .iconRes(R.drawable.ic_image_gallery)
+            .titleRes(R.string.google_drive_page_photo_details))
         .build()
   }
 }
@@ -106,8 +108,8 @@ object GDriveIconViewSpec {
         .paddingDip(YogaEdge.HORIZONTAL, 32f)
         .paddingDip(YogaEdge.VERTICAL, 24f)
         .child(Image.create(context)
-            .drawable(icon)
-            .background(LithoCircleDrawable(bgColor))
+            .drawable(icon.color(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)))
+            .background(LithoCircleDrawable(bgColor, Color.alpha(bgColor)))
             .paddingDip(YogaEdge.ALL, 12f)
             .marginDip(YogaEdge.BOTTOM, 12f)
             .heightDip(64f))
