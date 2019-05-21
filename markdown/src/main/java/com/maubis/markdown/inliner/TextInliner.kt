@@ -38,6 +38,15 @@ class TextInliner(val text: String) {
         continue
       }
 
+      if (currentInline.config.type() == MarkdownInlineType.IGNORE_CHAR) {
+        textSegment.builder.append(char)
+        addTextComponent()
+        currentInline.paired = true
+        index += 1
+        unshelveSegment()
+        continue
+      }
+
       if (currentInline.config.type() != MarkdownInlineType.INVALID
           && currentInline.config.isEnd(text, index)) {
         addTextComponent()

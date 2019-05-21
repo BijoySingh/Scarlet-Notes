@@ -55,5 +55,6 @@ fun map(type: MarkdownInlineType): MarkdownType {
     MarkdownInlineType.UNDERLINE -> MarkdownType.UNDERLINE
     MarkdownInlineType.INLINE_CODE -> MarkdownType.INLINE_CODE
     MarkdownInlineType.STRIKE -> MarkdownType.STRIKE
+    MarkdownInlineType.IGNORE_CHAR -> MarkdownType.NORMAL
   }
 }

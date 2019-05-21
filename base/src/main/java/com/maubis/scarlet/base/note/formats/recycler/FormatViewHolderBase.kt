@@ -75,7 +75,7 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
             && !extra.getBoolean(KEY_EDITABLE)),
         isMarkdownEnabled = (extra == null
             || extra.getBoolean(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
-            || data.forcedMarkdown),
+            || data.forcedMarkdown) && (data.formatType != FormatType.CODE),
         fontSize = {
           val fontSize = extra?.getInt(STORE_KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT)
               ?: TEXT_SIZE_DEFAULT

@@ -107,8 +107,9 @@ class PhraseDelimiterMarkdownInline(val config: IInlineConfig, val children: Lis
   override fun toMarkwon(): String {
     val builder = StringBuilder()
     val config = TextInlineConfig.getDefaultOutputConfig(type())
-    if (config is PhraseDelimiterInline) {
-      builder.append(config.startDelimiter)
+    when {
+      config is PhraseDelimiterInline -> builder.append(config.startDelimiter)
+      config is StartMarkerInline -> builder.append(config.startDelimiter)
     }
     children.forEach { builder.append(it.toMarkwon()) }
     if (config is PhraseDelimiterInline) {

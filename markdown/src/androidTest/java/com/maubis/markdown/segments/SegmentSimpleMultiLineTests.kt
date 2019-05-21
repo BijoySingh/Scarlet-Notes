@@ -120,4 +120,21 @@ class SegmentSimpleMultiLineTests : MarkdownTextSegmenterTestBase() {
     assert(text, processed)
   }
 
+
+
+  @Test
+  fun testMarkdownInsideCode() {
+    val text = "```\n" +
+        "**co** _d_ \\e\n" +
+        "```\n" +
+        "---\n" +
+        "## heading"
+    val processed = TextSegmenter(text).get()
+    assert(listOf(
+        getTestSegment(MarkdownSegmentType.CODE, "```\n**co** _d_ \\e\n```"),
+        getTestSegment(MarkdownSegmentType.SEPARATOR, "---"),
+        getTestSegment(MarkdownSegmentType.HEADING_2, "## heading")), processed)
+    assert(text, processed)
+  }
+
 }

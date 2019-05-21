@@ -37,4 +37,14 @@ class InlineMultipleTextTests : MarkdownTextInlinerTestBase() {
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.STRIKE), listOf(NormalInlineMarkdownSegment("t5"))),
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INLINE_CODE), listOf(NormalInlineMarkdownSegment("t6"))))), processed)
   }
+
+  @Test
+  fun testEscapedText() {
+    val textA = "aaa\\_bb_c"
+    val processedA = TextInliner(textA).get()
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INVALID), listOf(
+        NormalInlineMarkdownSegment("aaa"),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.IGNORE_CHAR), listOf(NormalInlineMarkdownSegment("_"))),
+        NormalInlineMarkdownSegment("bb_c"))), processedA)
+  }
 }
