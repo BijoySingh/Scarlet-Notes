@@ -176,7 +176,7 @@ fun Note.getDisplayTime(): String {
 
 fun Note.getTagString(): String {
   val tags = getTags()
-  return tags.map { it -> '`' + it.title + '`' }.joinToString(separator = " ")
+  return tags.map { it -> "` ${it.title} `" }.joinToString(separator = " ")
 }
 
 fun Note.getTags(): Set<Tag> {

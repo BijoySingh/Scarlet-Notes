@@ -24,7 +24,7 @@ import com.maubis.scarlet.base.note.reminders.sheet.ReminderBottomSheet
 import com.maubis.scarlet.base.note.selection.activity.KEY_SELECT_EXTRA_MODE
 import com.maubis.scarlet.base.note.selection.activity.KEY_SELECT_EXTRA_NOTE_ID
 import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
-import com.maubis.scarlet.base.note.tag.sheet.TagChooseOptionsBottomSheet
+import com.maubis.scarlet.base.note.tag.sheet.TagChooserBottomSheet
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
@@ -92,10 +92,10 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
       }
     }
     tagCardLayout.setOnClickListener {
-      TagChooseOptionsBottomSheet.openSheet(
-          activity,
-          note
-      ) { activity.notifyTagsChanged(note) }
+      com.maubis.scarlet.base.support.sheets.openSheet(activity, TagChooserBottomSheet().apply {
+        this.note = note
+        dismissListener = { activity.notifyTagsChanged(note) }
+      })
       dismiss()
     }
 

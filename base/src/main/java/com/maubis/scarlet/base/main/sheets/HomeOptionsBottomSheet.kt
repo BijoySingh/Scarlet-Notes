@@ -29,8 +29,8 @@ class LithoTagOptionsItem(
     val usages: Int = 0,
     val isSelected: Boolean = false,
     val isEditable: Boolean = false,
-    val editListener: () -> Unit,
-    val listener: () -> Unit) {
+    val editListener: () -> Unit = {},
+    val listener: () -> Unit = {}) {
 }
 
 @LayoutSpec
@@ -39,21 +39,30 @@ object TagItemLayoutSpec {
   fun onCreate(context: ComponentContext, @Prop option: LithoTagOptionsItem): Component {
     val theme = ApplicationBase.instance.themeController()
     val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
-    val selectedColor = theme.get(ThemeColorType.ACCENT_TEXT)
+    val selectedColor = when (theme.isNightTheme()) {
+      true -> context.getColor(R.color.material_blue_400)
+      false -> context.getColor(R.color.material_blue_700)
+    }
 
     val icon: Int
     val bgColor: Int
     val bgAlpha: Int
+    val textColor: Int
+    val typeface: Typeface
     when (option.isSelected) {
       true -> {
         icon = R.drawable.ic_action_label
         bgColor = selectedColor
         bgAlpha = 200
+        textColor = selectedColor
+        typeface = CoreConfig.FONT_MONSERRAT_MEDIUM
       }
       false -> {
         icon = R.drawable.ic_action_label_unselected
         bgColor = titleColor
         bgAlpha = 15
+        textColor = titleColor
+        typeface = CoreConfig.FONT_MONSERRAT
       }
     }
 
@@ -77,9 +86,9 @@ object TagItemLayoutSpec {
             .flexGrow(1f)
             .text(option.tag.title)
             .textSizeRes(R.dimen.font_size_normal)
-            .typeface(CoreConfig.FONT_MONSERRAT)
+            .typeface(typeface)
             .textStyle(Typeface.BOLD)
-            .textColor(titleColor))
+            .textColor(textColor))
 
     if (option.usages > 0) {
       row.child(Text.create(context)
@@ -236,6 +245,7 @@ class HomeOptionsBottomSheet : LithoBottomSheet() {
           }
       ))
     }
+    options.sortByDescending { it.usages }
     return options
   }
 }
