@@ -13,7 +13,7 @@ import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.folder.sheet.SelectedFolderChooseOptionsBottomSheet
 import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
-import com.maubis.scarlet.base.note.tag.sheet.SelectedTagChooseOptionsBottomSheet
+import com.maubis.scarlet.base.note.tag.sheet.SelectedTagChooserBottomSheet
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 
@@ -141,26 +141,26 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
         title = R.string.change_tags,
         subtitle = R.string.change_tags,
         icon = R.drawable.ic_action_tags,
-        listener = lockAwareFunctionRunner(activity, {
-          SelectedTagChooseOptionsBottomSheet.openSheet(activity, {
-            tag, selectTag ->
-            activity.runNoteFunction {
-              when (selectTag) {
-                true -> it.addTag(tag)
-                false -> it.removeTag(tag)
+        listener = lockAwareFunctionRunner(activity) {
+          com.maubis.scarlet.base.support.sheets.openSheet(activity, SelectedTagChooserBottomSheet().apply {
+            onActionListener = { tag, selectTag ->
+              activity.runNoteFunction {
+                when (selectTag) {
+                  true -> it.addTag(tag)
+                  false -> it.removeTag(tag)
+                }
+                it.save(activity)
               }
-              it.save(activity)
             }
           })
-        })
+        }
     ))
     options.add(OptionsItem(
         title = R.string.folder_option_change_notebook,
         subtitle = R.string.folder_option_change_notebook,
         icon = R.drawable.ic_folder,
         listener = lockAwareFunctionRunner(activity, {
-          SelectedFolderChooseOptionsBottomSheet.openSheet(activity, {
-            folder, selectFolder ->
+          SelectedFolderChooseOptionsBottomSheet.openSheet(activity, { folder, selectFolder ->
             activity.runNoteFunction {
               when (selectFolder) {
                 true -> it.folder = folder.uuid
