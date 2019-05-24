@@ -2,6 +2,7 @@ package com.maubis.scarlet.base.note.tag.sheet
 
 import android.app.Dialog
 import android.content.DialogInterface
+import android.support.v7.app.AppCompatActivity
 import com.facebook.litho.Column
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
@@ -21,6 +22,7 @@ import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.OptionItemLayout
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
+import com.maubis.scarlet.base.support.ui.ThemedActivity
 
 class TagChooserBottomSheet : LithoBottomSheet() {
 
@@ -30,10 +32,10 @@ class TagChooserBottomSheet : LithoBottomSheet() {
   override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
     if (note === null) {
       dismiss()
-      return EmptyComponent.create(componentContext).build()
+      return Column.create(componentContext).widthPercent(100f).build()
     }
 
-    val activity = context as MainActivity
+    val activity = context as ThemedActivity
     val component = Column.create(componentContext)
         .widthPercent(100f)
     val tagsComponent = Column.create(componentContext)
@@ -63,7 +65,7 @@ class TagChooserBottomSheet : LithoBottomSheet() {
   }
 
   private fun getTagOptions(): List<LithoTagOptionsItem> {
-    val activity = context as MainActivity
+    val activity = context as AppCompatActivity
     val options = ArrayList<LithoTagOptionsItem>()
     val tags = note!!.getTagUUIDs()
     for (tag in CoreConfig.tagsDb.getAll()) {
