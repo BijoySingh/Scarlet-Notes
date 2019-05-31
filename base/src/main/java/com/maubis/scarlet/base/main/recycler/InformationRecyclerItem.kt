@@ -115,8 +115,8 @@ fun getInstallProInformationItem(context: Context): InformationRecyclerItem {
   }
 }
 
-fun shouldShowSignInformationItem(): Boolean {
-  if (ApplicationBase.instance.authenticator().isLoggedIn()
+fun shouldShowSignInformationItem(context: Context): Boolean {
+  if (ApplicationBase.instance.authenticator().isLoggedIn(context)
       || ApplicationBase.instance.appFlavor() == Flavor.NONE) {
     return false
   }

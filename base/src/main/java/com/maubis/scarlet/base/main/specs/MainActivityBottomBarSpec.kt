@@ -2,12 +2,10 @@ package com.maubis.scarlet.base.main.specs
 
 import android.graphics.Color
 import android.text.Layout
-import com.facebook.litho.Column
-import com.facebook.litho.Component
-import com.facebook.litho.ComponentContext
-import com.facebook.litho.Row
+import com.facebook.litho.*
 import com.facebook.litho.annotations.LayoutSpec
 import com.facebook.litho.annotations.OnCreateLayout
+import com.facebook.litho.annotations.OnEvent
 import com.facebook.litho.annotations.Prop
 import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaAlign
@@ -160,6 +158,12 @@ object MainActivityDisabledSyncSpec {
                 .textRes(R.string.firebase_no_sync_warning_details)
                 .textSizeRes(R.dimen.font_size_small)
                 .textColor(colorConfig.toolbarIconColor)))
+    row.clickHandler(MainActivityDisabledSync.onClickEvent(context))
     return bottomBarCard(context, row.build(), colorConfig).build()
+  }
+
+  @OnEvent(ClickEvent::class)
+  fun onClickEvent(context: ComponentContext, @Prop onClick: () -> Unit) {
+    onClick()
   }
 }

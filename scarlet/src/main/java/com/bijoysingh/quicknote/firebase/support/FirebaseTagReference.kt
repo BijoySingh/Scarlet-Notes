@@ -67,7 +67,8 @@ fun FirebaseRemoteDatabase.setTagListener() {
         if (tag === null) {
           return
         }
-        onRemoteRemove(tag)
+        // TODO: This is disabled
+        // onRemoteRemove(tag)
       } catch (exception: Exception) {
         // Ignore if exception
       }

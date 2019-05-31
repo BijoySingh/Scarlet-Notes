@@ -454,4 +454,11 @@
 
   <string name="firebase_no_sync_warning" translatable="false">Your data is not being synced!</string>
   <string name="firebase_no_sync_warning_details" translatable="false">Data Sync based on legacy login is disabled, consider switching over to Google Drive based sync.</string>
+
+  <string name="firebase_removal_page_login_title" translatable="false">Transfer Data from Firebase to Drive</string>
+  <string name="firebase_removal_page_clear_button" translatable="false">Clear Data and Sign Out</string>
+  <string name="firebase_removal_page_clearing_button" translatable="false">Clearing and Signing Out</string>
+  <string name="firebase_removal_page_important_details" translatable="false">We used to store your information on Google Firebase. We are moving over to storing your notes in your Google Drive.</string>
+  <string name="firebase_removal_page_remove_details" translatable="false">We will first delete your notes from Firebase and log you out.</string>
+  <string name="firebase_removal_page_next_details" translatable="false">You can then log into Google Drive, and we will upload your data along with images.</string>
 </resources>

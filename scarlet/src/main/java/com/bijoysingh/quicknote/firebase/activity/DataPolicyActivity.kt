@@ -47,7 +47,7 @@ class DataPolicyActivity : ThemedActivity() {
     doneBtn.setOnClickListener {
       if (acceptCheckBox.isChecked) {
         acceptThePolicy()
-        if (startState == "" && !ApplicationBase.instance.authenticator().isLoggedIn()) {
+        if (startState == "" && !ApplicationBase.instance.authenticator().isLegacyLoggedIn()) {
           IntentUtils.startActivity(this, FirebaseLoginActivity::class.java)
         }
 
@@ -61,7 +61,7 @@ class DataPolicyActivity : ThemedActivity() {
     refuseBtn.setOnClickListener {
       IntentUtils.startActivity(this, ForgetMeActivity::class.java)
     }
-    refuseBtn.visibility = visibility(ApplicationBase.instance.authenticator().isLoggedIn())
+    refuseBtn.visibility = visibility(ApplicationBase.instance.authenticator().isLegacyLoggedIn())
 
     privacyPolicy.setOnClickListener {
       startActivity(Intent(
@@ -76,7 +76,7 @@ class DataPolicyActivity : ThemedActivity() {
 
   override fun onResume() {
     super.onResume()
-    if (startState == KEY_DATA_POLICY_REQUEST_LOGGED_IN && !ApplicationBase.instance.authenticator().isLoggedIn()) {
+    if (startState == KEY_DATA_POLICY_REQUEST_LOGGED_IN && !ApplicationBase.instance.authenticator().isLegacyLoggedIn()) {
       finish()
     }
   }
@@ -91,7 +91,7 @@ class DataPolicyActivity : ThemedActivity() {
     fun acceptThePolicy() = ApplicationBase.instance.store().put(DATA_POLICY_ACCEPTED, DATA_POLICY_VERSION)
 
     fun openIfNeeded(activity: AppCompatActivity) {
-      if (!hasAcceptedThePolicy() && ApplicationBase.instance.authenticator().isLoggedIn()) {
+      if (!hasAcceptedThePolicy() && ApplicationBase.instance.authenticator().isLegacyLoggedIn()) {
         val intent = Intent(activity, DataPolicyActivity::class.java)
         intent.putExtra(KEY_DATA_POLICY_REQUEST, KEY_DATA_POLICY_REQUEST_LOGGED_IN)
         activity.startActivity(intent)

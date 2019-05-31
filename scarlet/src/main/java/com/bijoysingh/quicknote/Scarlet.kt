@@ -11,7 +11,10 @@ class Scarlet : ApplicationBase() {
 
   override fun onCreate() {
     super.onCreate()
+
+    gDriveConfig = Store.get(this, "gdrive_config")
     ApplicationBase.instance = ScarletConfig(this)
+
     ApplicationBase.instance.themeController().setup(this)
     ApplicationBase.instance.authenticator().setup(this)
     ApplicationBase.instance.remoteConfigFetcher().setup(this)

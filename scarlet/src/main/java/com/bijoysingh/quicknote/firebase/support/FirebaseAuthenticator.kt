@@ -1,12 +1,9 @@
 package com.bijoysingh.quicknote.firebase.support
 
 import android.content.Context
-import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import com.bijoysingh.quicknote.Scarlet.Companion.firebase
-import com.bijoysingh.quicknote.firebase.activity.FirebaseLoginActivity
-import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
 import com.bijoysingh.quicknote.firebase.initFirebaseDatabase
 import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.github.bijoysingh.starter.util.ToastHelper
@@ -15,25 +12,27 @@ import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.maubis.scarlet.base.config.ApplicationBase
-import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
 
-class FirebaseAuthenticator() : IAuthenticator {
+class FirebaseAuthenticator() {
 
+  var hasUidSetup: AtomicBoolean = AtomicBoolean(false)
   var userId: String? = null
 
-  override fun userId(context: Context): String? {
+  fun userId(context: Context): String? {
     val user = FirebaseAuth.getInstance().currentUser
     return user?.uid
   }
 
-  override fun setup(context: Context) {
+  fun setup(context: Context) {
     GlobalScope.launch {
       FirebaseApp.initializeApp(context)
       try {
         userId = userId(context)
+        hasUidSetup.set(true)
         if (userId === null) {
           return@launch
         }
@@ -47,22 +46,20 @@ class FirebaseAuthenticator() : IAuthenticator {
     }
   }
 
-  override fun isLoggedIn(): Boolean {
+  fun isLoggedIn(): Boolean {
+    if (hasUidSetup.get()) {
+      return userId !== null
+    }
+
+    userId = FirebaseAuth.getInstance().currentUser?.uid
+    hasUidSetup.set(true)
     return userId !== null
   }
 
-  override fun logout() {
+  fun logout() {
     userId = null
     FirebaseAuth.getInstance().signOut()
     firebase?.logout()
-  }
-
-  override fun openLoginActivity(context: Context) = Runnable {
-    context.startActivity(Intent(context, FirebaseLoginActivity::class.java))
-  }
-
-  override fun openForgetMeActivity(context: Context) = Runnable {
-    context.startActivity(Intent(context, ForgetMeActivity::class.java))
   }
 
   private fun reloadUser(context: Context) {

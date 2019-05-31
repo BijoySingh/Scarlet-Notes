@@ -7,12 +7,16 @@ class NullAuthenticator : IAuthenticator {
 
   override fun openForgetMeActivity(context: Context): Runnable? = null
 
+  override fun openTransferDataActivity(context: Context): Runnable? = null
+
   override fun logout() {}
 
   override fun setup(context: Context) {}
 
   override fun userId(context: Context): String? = null
 
-  override fun isLoggedIn(): Boolean = false
+  override fun isLoggedIn(context: Context): Boolean = false
+
+  override fun isLegacyLoggedIn(): Boolean = false
 
 }

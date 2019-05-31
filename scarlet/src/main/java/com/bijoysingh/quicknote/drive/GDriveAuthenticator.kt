@@ -1,52 +1,54 @@
 package com.bijoysingh.quicknote.drive
 
 import android.content.Context
-import android.content.Intent
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.maubis.scarlet.base.config.auth.IAuthenticator
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
+import java.util.concurrent.atomic.AtomicBoolean
 
-class GDriveAuthenticator() : IAuthenticator {
+class GDriveAuthenticator {
 
+  var hasAccountSetup: AtomicBoolean = AtomicBoolean(false)
   var account: GoogleSignInAccount? = null
 
-  override fun setup(context: Context) {
+  fun setup(context: Context) {
     GlobalScope.launch {
-      val account = GoogleSignIn.getLastSignedInAccount(context)
-      if (account !== null) {
-        val helper = GDriveLoginActivity.getDriveHelper(context, account)
+      account = GoogleSignIn.getLastSignedInAccount(context)
+      hasAccountSetup.set(true)
+
+      val signInAccount = account
+      if (signInAccount !== null) {
+        val helper = GDriveLoginActivity.getDriveHelper(context, signInAccount)
         gDrive = GDriveRemoteDatabase(WeakReference(context))
         gDrive?.init(helper)
       }
     }
   }
 
-  override fun isLoggedIn(): Boolean {
-    return account !== null
-  }
-
-  override fun userId(context: Context): String? {
-    if (account !== null) {
-      return account?.id
+  fun isLoggedIn(context: Context): Boolean {
+    if (hasAccountSetup.get()) {
+      return account !== null
     }
 
     account = GoogleSignIn.getLastSignedInAccount(context)
+    hasAccountSetup.set(true)
+
+    return account !== null
+  }
+
+  fun userId(context: Context): String? {
+    if (!hasAccountSetup.get()) {
+      account = GoogleSignIn.getLastSignedInAccount(context)
+      hasAccountSetup.set(true)
+    }
+
     return account?.id
   }
 
-  override fun openLoginActivity(context: Context) = Runnable {
-    context.startActivity(Intent(context, GDriveLoginActivity::class.java))
-  }
-
-  override fun openForgetMeActivity(context: Context) = Runnable {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
-
-  override fun logout() {
+  fun logout() {
 
   }
 }

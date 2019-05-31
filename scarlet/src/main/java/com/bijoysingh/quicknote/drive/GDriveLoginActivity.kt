@@ -8,7 +8,7 @@ import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadData
 import com.bijoysingh.quicknote.firebase.activity.FirebaseLoginActivity
-import com.bijoysingh.quicknote.firebase.support.sGDriveLoggedIn
+import com.bijoysingh.quicknote.scarlet.sGDriveLoggedIn
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
@@ -93,6 +93,7 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
       try {
         val account = task.getResult(ApiException::class.java)
         if (account !== null) {
+          sGDriveLoggedIn = true
           onLoginComplete(account)
           return
         }
@@ -134,8 +135,6 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
     gDrive?.reset()
     gDrive = GDriveRemoteDatabase(WeakReference(this.applicationContext))
     gDrive?.init(mDriveServiceHelper!!)
-
-    sGDriveLoggedIn = true
 
     GlobalScope.launch {
       val database = gDrive?.gDriveDatabase

@@ -5,10 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.bijoysingh.quicknote.R
+import com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity.Companion.hasAcceptedThePolicy
 import com.bijoysingh.quicknote.firebase.initFirebaseDatabase
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
+import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -55,6 +57,10 @@ class FirebaseLoginActivity : ThemedActivity() {
     loggingIn.set(state)
     component = FirebaseRootView.create(componentContext)
         .onClick {
+          if (!hasAcceptedThePolicy()) {
+            IntentUtils.startActivity(this, DataPolicyActivity::class.java)
+            return@onClick
+          }
           if (!loggingIn.get()) {
             setButton(true)
             signIn()
@@ -73,7 +79,7 @@ class FirebaseLoginActivity : ThemedActivity() {
         .requestEmail()
         .build()
 
-    googleSignInClient = GoogleSignIn.getClient(this, gso);
+    googleSignInClient = GoogleSignIn.getClient(this, gso)
   }
 
   private fun signIn() {

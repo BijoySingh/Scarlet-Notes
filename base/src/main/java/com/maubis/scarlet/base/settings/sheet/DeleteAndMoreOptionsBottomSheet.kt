@@ -95,7 +95,7 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
           forgetMeClick?.run()
           dismiss()
         },
-        visible = forgetMeClick !== null && ApplicationBase.instance.authenticator().isLoggedIn()
+        visible = forgetMeClick !== null && ApplicationBase.instance.authenticator().isLegacyLoggedIn()
     ))
     return options
   }

@@ -85,7 +85,6 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     isValidController = true
     driveHelper = helper
     gDriveDatabase = genGDriveUploadDatabase(context)
-    gDriveConfig = Store.get(context, "gdrive_config")
 
     notesSync = GDriveRemoteFolder(GDriveDataType.NOTE, gDriveDatabase!!, helper) {
       ApplicationBase.instance.notesDatabase().getByUUID(it)?.getFirebaseNote()

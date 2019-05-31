@@ -14,6 +14,7 @@ import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
@@ -88,8 +89,6 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     if (shouldShowWhatsNewSheet()) {
       openSheet(this, WhatsNewBottomSheet())
     }
-
-    notifyDisabledSync()
   }
 
   fun setListeners() {
@@ -240,7 +239,7 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
   private fun addInformationItem(index: Int) {
     val informationItem = when {
       shouldShowMigrateToProAppInformationItem(this) -> getMigrateToProAppInformationItem(this)
-      shouldShowSignInformationItem() -> getSignInInformationItem(this)
+      shouldShowSignInformationItem(this) -> getSignInInformationItem(this)
       shouldShowAppUpdateInformationItem() -> getAppUpdateInformationItem(this)
       shouldShowReviewInformationItem() -> getReviewInformationItem(this)
       shouldShowInstallProInformationItem() -> getInstallProInformationItem(this)
@@ -311,9 +310,15 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
   fun notifyDisabledSync() {
     val componentContext = ComponentContext(this)
     lithoPreBottomToolbar.removeAllViews()
+    if (!instance.authenticator().isLegacyLoggedIn()) {
+      return
+    }
 
     lithoPreBottomToolbar.addView(LithoView.create(componentContext,
         MainActivityDisabledSync.create(componentContext)
+            .onClick {
+              instance.authenticator().openTransferDataActivity(componentContext.androidContext)?.run()
+            }
             .build()))
   }
 
@@ -341,10 +346,11 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     GlobalScope.launch {
       ApplicationBase.instance.resyncDrive(false) {
         GlobalScope.launch(Dispatchers.Main) {
-          topSyncingLayout.visibility = View.GONE
+          topSyncingLayout.visibility = GONE
         }
       }
     }
+    notifyDisabledSync()
   }
 
   fun resetAndSetupData() {

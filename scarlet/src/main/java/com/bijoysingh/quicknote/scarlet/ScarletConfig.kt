@@ -6,7 +6,6 @@ import com.bijoysingh.quicknote.BuildConfig
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity.Companion.openIfNeeded
 import com.bijoysingh.quicknote.firebase.support.RemoteConfigFetcher
-import com.bijoysingh.quicknote.firebase.support.ScarletAuthenticator
 import com.maubis.scarlet.base.config.MaterialNoteConfig
 import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher

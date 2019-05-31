@@ -6,12 +6,15 @@ import com.facebook.soloader.SoLoader
 import com.maubis.scarlet.base.core.note.NoteImage
 import com.maubis.scarlet.base.export.remote.FolderRemoteDatabase
 import com.maubis.scarlet.base.note.reminders.ReminderJobCreator
+import java.lang.Exception
 
 abstract class ApplicationBase : Application() {
   override fun onCreate() {
     super.onCreate()
     SoLoader.init(this, false)
-    JobManager.create(this).addJobCreator(ReminderJobCreator())
+    try {
+      JobManager.create(this).addJobCreator(ReminderJobCreator())
+    } catch (exception: Exception) {}
     noteImagesFolder = NoteImage(this)
   }
 
