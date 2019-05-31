@@ -24,6 +24,7 @@ import com.maubis.scarlet.base.main.recycler.*
 import com.maubis.scarlet.base.main.sheets.WhatsNewBottomSheet
 import com.maubis.scarlet.base.main.sheets.openDeleteTrashSheet
 import com.maubis.scarlet.base.main.specs.MainActivityBottomBar
+import com.maubis.scarlet.base.main.specs.MainActivityDisabledSync
 import com.maubis.scarlet.base.main.specs.MainActivityFolderBottomBar
 import com.maubis.scarlet.base.main.utils.MainSnackbar
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
@@ -87,6 +88,8 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     if (shouldShowWhatsNewSheet()) {
       openSheet(this, WhatsNewBottomSheet())
     }
+
+    notifyDisabledSync()
   }
 
   fun setListeners() {
@@ -305,6 +308,15 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
             .build()))
   }
 
+  fun notifyDisabledSync() {
+    val componentContext = ComponentContext(this)
+    lithoPreBottomToolbar.removeAllViews()
+
+    lithoPreBottomToolbar.addView(LithoView.create(componentContext,
+        MainActivityDisabledSync.create(componentContext)
+            .build()))
+  }
+
   fun unifiedSearch() {
     GlobalScope.launch(Dispatchers.Main) {
       val items = GlobalScope.async(Dispatchers.IO) { unifiedSearchSynchronous() }
@@ -388,6 +400,7 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
         config.clear()
         onHomeClick()
         notifyFolderChange()
+        notifyDisabledSync()
       }
       else -> super.onBackPressed()
     }

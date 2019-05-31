@@ -10,13 +10,15 @@ class ScarletFolderActor(folder: Folder) : MaterialFolderActor(folder) {
 
   override fun onlineSave() {
     super.onlineSave()
-    firebase?.insert(folder.getFirebaseFolder())
+    // TODO: Remove this completely, Not doing this anymore.
+    // firebase?.insert(folder.getFirebaseFolder())
     gDrive?.notifyInsert(folder.getFirebaseFolder())
   }
 
   override fun delete() {
     super.delete()
-    firebase?.remove(folder.getFirebaseFolder())
+    // TODO: Remove this completely, Not doing this anymore.
+    // firebase?.remove(folder.getFirebaseFolder())
     gDrive?.notifyRemove(folder.getFirebaseFolder())
   }
 }

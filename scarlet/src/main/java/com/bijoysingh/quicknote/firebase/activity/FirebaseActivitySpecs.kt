@@ -1,4 +1,4 @@
-package com.bijoysingh.quicknote.drive
+package com.bijoysingh.quicknote.firebase.activity
 
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -13,45 +13,34 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.support.specs.color
 import com.maubis.scarlet.base.support.ui.LithoCircleDrawable
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 @LayoutSpec
-object GDriveRootViewSpec {
+object FirebaseRootViewSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop loggingIn: Boolean): Component {
     val buttonTitle = when {
-      loggingIn -> R.string.google_drive_page_logging_in_button
-      else -> R.string.google_drive_page_login_button
+      loggingIn -> R.string.firebase_page_logging_in_button
+      else -> R.string.firebase_page_login_button
     }
     return Column.create(context)
         .backgroundColor(ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND))
         .child(VerticalScroll.create(context)
             .flexGrow(1f)
             .marginDip(YogaEdge.ALL, 8f)
-            .childComponent(GDriveContentView.create(context)))
-        .child(Text.create(context)
-            .backgroundRes(R.drawable.secondary_rounded_bg)
-            .marginDip(YogaEdge.HORIZONTAL, 16f)
-            .paddingDip(YogaEdge.VERTICAL, 8f)
-            .textSizeRes(R.dimen.font_size_large)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
-            .textRes(R.string.google_drive_page_login_firebase_button)
-            .textAlignment(Layout.Alignment.ALIGN_CENTER)
-            .typeface(CoreConfig.FONT_MONSERRAT)
-            .clickHandler(GDriveRootView.onFirebaseClick(context)))
+            .childComponent(FirebaseContentView.create(context)))
         .child(Row.create(context)
-            .backgroundRes(R.drawable.accent_rounded_bg)
+            .backgroundRes(R.drawable.login_button_active)
             .alignItems(YogaAlign.CENTER)
             .paddingDip(YogaEdge.HORIZONTAL, 12f)
             .paddingDip(YogaEdge.VERTICAL, 8f)
             .marginDip(YogaEdge.ALL, 16f)
             .child(
                 Image.create(context)
-                    .drawableRes(R.drawable.gdrive_icon)
+                    .drawableRes(R.drawable.ic_google_icon)
                     .heightDip(36f)
             )
             .child(Text.create(context)
@@ -61,7 +50,7 @@ object GDriveRootViewSpec {
                 .textAlignment(Layout.Alignment.ALIGN_CENTER)
                 .flexGrow(1f)
                 .typeface(CoreConfig.FONT_MONSERRAT))
-            .clickHandler(GDriveRootView.onGoogleClickEvent(context)))
+            .clickHandler(FirebaseRootView.onGoogleClickEvent(context)))
         .build()
   }
 
@@ -69,15 +58,10 @@ object GDriveRootViewSpec {
   fun onGoogleClickEvent(context: ComponentContext, @Prop onClick: () -> Unit) {
     onClick()
   }
-
-  @OnEvent(ClickEvent::class)
-  fun onFirebaseClick(context: ComponentContext, @Prop onFirebaseClick: () -> Unit) {
-    onFirebaseClick()
-  }
 }
 
 @LayoutSpec
-object GDriveContentViewSpec {
+object FirebaseContentViewSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext): Component {
     return Column.create(context)
@@ -85,29 +69,29 @@ object GDriveContentViewSpec {
         .backgroundColor(ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_xxlarge)
-            .textRes(R.string.google_drive_page_login_title)
+            .textRes(R.string.firebase_page_login_title)
             .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
             .typeface(CoreConfig.FONT_MONSERRAT_BOLD))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_large)
             .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-            .textRes(R.string.google_drive_page_login_details)
+            .textRes(R.string.firebase_page_important_details)
             .typeface(CoreConfig.FONT_MONSERRAT))
-        .child(GDriveIconView.create(context)
+        .child(FirebaseIconView.create(context)
             .marginDip(YogaEdge.TOP, 24f)
             .bgColorRes(R.color.dark_low_hint_text)
-            .iconRes(R.drawable.ic_action_lock)
-            .titleRes(R.string.google_drive_page_login_lock_details))
-        .child(GDriveIconView.create(context)
+            .iconRes(R.drawable.icon_sync_disabled)
+            .titleRes(R.string.firebase_page_not_sync_details))
+        .child(FirebaseIconView.create(context)
             .bgColorRes(R.color.dark_low_hint_text)
-            .iconRes(R.drawable.ic_image_gallery)
-            .titleRes(R.string.google_drive_page_photo_details))
+            .iconRes(R.drawable.ic_delete_permanently)
+            .titleRes(R.string.firebase_page_remove_details))
         .build()
   }
 }
 
 @LayoutSpec
-object GDriveIconViewSpec {
+object FirebaseIconViewSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop(resType = ResType.COLOR) bgColor: Int,

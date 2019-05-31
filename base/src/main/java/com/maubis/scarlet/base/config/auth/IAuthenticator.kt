@@ -8,7 +8,7 @@ interface IAuthenticator {
 
   fun isLoggedIn(): Boolean
 
-  fun userId(): String?
+  fun userId(context: Context): String?
 
   fun openLoginActivity(context: Context): Runnable?
 

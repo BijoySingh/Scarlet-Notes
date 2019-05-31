@@ -50,8 +50,8 @@ class ForgetMeActivity : ThemedActivity() {
         return@setOnClickListener
       }
 
-      val userId = ApplicationBase.instance.authenticator().userId()
-      if (userId === null) {
+      val isLoggedIn = ApplicationBase.instance.authenticator().isLoggedIn()
+      if (!isLoggedIn) {
         return@setOnClickListener
       }
 

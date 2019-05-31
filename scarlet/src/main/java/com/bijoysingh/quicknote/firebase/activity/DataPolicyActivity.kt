@@ -48,7 +48,7 @@ class DataPolicyActivity : ThemedActivity() {
       if (acceptCheckBox.isChecked) {
         acceptThePolicy()
         if (startState == "" && !ApplicationBase.instance.authenticator().isLoggedIn()) {
-          IntentUtils.startActivity(this, LoginActivity::class.java)
+          IntentUtils.startActivity(this, FirebaseLoginActivity::class.java)
         }
 
         finish()

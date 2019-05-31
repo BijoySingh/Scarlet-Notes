@@ -442,4 +442,16 @@
 
   <string name="google_drive_page_login_lock_details" translatable="false">Notes, Tags and Folders are stored on your own Google Drive, so only you can control access to them.</string>
   <string name="google_drive_page_photo_details" translatable="false">Your photos are uploaded and synced across devices as well.</string>
+
+  <!-- Start: New Firebase Login Strings -->
+  <string name="firebase_page_login_title" translatable="false">Restore Data from Firebase</string>
+  <string name="firebase_page_login_button" translatable="false">Sign In with Google</string>
+  <string name="firebase_page_logging_in_button" translatable="false">Signing In&#8230;</string>
+
+  <string name="firebase_page_important_details" translatable="false">We used to store your information on Google Firebase. After logging in we will recover these to your device</string>
+  <string name="firebase_page_not_sync_details" translatable="false">Changes to notes will NOT be synced over to Google Firebase, and you need to login on to Google Drive</string>
+  <string name="firebase_page_remove_details" translatable="false">Once your notes are recovered, we will delete them from Google Firebase, and then log you out</string>
+
+  <string name="firebase_no_sync_warning" translatable="false">Your data is not being synced!</string>
+  <string name="firebase_no_sync_warning_details" translatable="false">Data Sync based on legacy login is disabled, consider switching over to Google Drive based sync.</string>
 </resources>

@@ -2,6 +2,7 @@ package com.maubis.scarlet.base.main.specs
 
 import android.graphics.Color
 import android.text.Layout
+import com.facebook.litho.Column
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.Row
@@ -14,6 +15,7 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
+import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT_MEDIUM
 import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.main.sheets.HomeOptionsBottomSheet
@@ -119,6 +121,45 @@ object MainActivityFolderBottomBarSpec {
           }
           CreateOrEditFolderBottomSheet.openSheet(activity, folder, { _, _ -> activity.setupData() })
         })
+    return bottomBarCard(context, row.build(), colorConfig).build()
+  }
+}
+
+@LayoutSpec
+object MainActivityDisabledSyncSpec {
+  @OnCreateLayout
+  fun onCreate(context: ComponentContext): Component {
+    val colorConfig = ToolbarColorConfig(
+        toolbarBackgroundColor = context.getColor(R.color.material_blue_grey_800),
+        toolbarIconColor = context.getColor(R.color.light_secondary_text)
+    )
+    val activity = context.androidContext as MainActivity
+    val row = Row.create(context)
+        .widthPercent(100f)
+        .alignItems(YogaAlign.CENTER)
+        .paddingDip(YogaEdge.HORIZONTAL, 4f)
+    row.child(bottomBarRoundIcon(context, colorConfig)
+        .bgColor(Color.TRANSPARENT)
+        .iconRes(R.drawable.ic_info)
+        .onClick {
+          GlobalScope.launch {
+
+          }
+        })
+    row.child(
+        Column.create(context)
+            .flexGrow(1f)
+            .paddingDip(YogaEdge.ALL, 8f)
+            .child(Text.create(context)
+                .typeface(FONT_MONSERRAT_MEDIUM)
+                .textRes(R.string.firebase_no_sync_warning)
+                .textSizeRes(R.dimen.font_size_normal)
+                .textColor(colorConfig.toolbarIconColor))
+            .child(Text.create(context)
+                .typeface(FONT_MONSERRAT)
+                .textRes(R.string.firebase_no_sync_warning_details)
+                .textSizeRes(R.dimen.font_size_small)
+                .textColor(colorConfig.toolbarIconColor)))
     return bottomBarCard(context, row.build(), colorConfig).build()
   }
 }

@@ -11,7 +11,7 @@ class NullAuthenticator : IAuthenticator {
 
   override fun setup(context: Context) {}
 
-  override fun userId(): String? = null
+  override fun userId(context: Context): String? = null
 
   override fun isLoggedIn(): Boolean = false
 
