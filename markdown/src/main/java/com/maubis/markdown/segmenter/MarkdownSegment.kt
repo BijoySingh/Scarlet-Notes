@@ -19,10 +19,19 @@ class MarkdownSegmentBuilder {
 
 abstract class MarkdownSegment {
 
+  /**
+   * The type of the segment
+   */
   abstract fun type(): MarkdownSegmentType
 
+  /**
+   * Strip the segment separators and return the text inside the segment which is formatted
+   */
   abstract fun strip(): String
 
+  /**
+   * Return the entire text which the segment contains including the delimiters
+   */
   abstract fun text(): String
 }
 

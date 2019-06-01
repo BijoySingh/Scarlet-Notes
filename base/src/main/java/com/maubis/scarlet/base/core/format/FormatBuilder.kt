@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.core.format
 
-import com.maubis.markdown.segmenter.TextSegmenter
-import com.maubis.scarlet.base.note.toRawFormat
+import com.maubis.markdown.segmenter.MarkdownSegmentType
+import com.maubis.scarlet.base.note.toInternalFormats
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -38,41 +38,14 @@ class FormatBuilder {
         continue
       }
 
-      val moreFormats = TextSegmenter(format.text).get().map { it.toRawFormat() }
-      var lastFormat: Format? = null
-      for (rawFormat in moreFormats) {
-        val isCheckedType = (rawFormat.formatType == FormatType.CHECKLIST_UNCHECKED || rawFormat.formatType == FormatType.CHECKLIST_CHECKED)
-        if (lastFormat != null && !isCheckedType) {
-          lastFormat.text += "\n"
-          lastFormat.text += rawFormat.text
-          continue
-        }
-
-        if (!isCheckedType) {
-          rawFormat.formatType = FormatType.TEXT
-          lastFormat = rawFormat
-          continue
-        }
-
-        if (lastFormat != null) {
-          extractedFormats.add(lastFormat)
-          lastFormat = null
-        }
-
-        rawFormat.text = rawFormat.text
-            .removePrefix("[] ")
-            .removePrefix("[x] ")
-            .removePrefix("[ ] ")
-            .removePrefix("[X] ")
-        extractedFormats.add(rawFormat)
-      }
-      if (lastFormat !== null) {
-        extractedFormats.add(lastFormat)
-      }
-
+      val moreFormats = format.text.toInternalFormats(arrayOf(
+          MarkdownSegmentType.CHECKLIST_CHECKED,
+          MarkdownSegmentType.CHECKLIST_UNCHECKED))
+      extractedFormats.addAll(moreFormats)
     }
     return getDescription(extractedFormats)
   }
+
   fun getFormats(note: String): List<Format> {
     val formats = ArrayList<Format>()
     try {

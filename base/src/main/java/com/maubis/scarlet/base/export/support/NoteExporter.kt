@@ -9,13 +9,9 @@ import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
-import com.maubis.scarlet.base.export.data.ExportableFileFormat
-import com.maubis.scarlet.base.export.data.ExportableFolder
-import com.maubis.scarlet.base.export.data.ExportableNote
-import com.maubis.scarlet.base.export.data.ExportableTag
+import com.maubis.scarlet.base.export.data.*
 import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FILENAME
 import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FOLDER
-import com.maubis.scarlet.base.note.getFullText
 import java.io.File
 import java.util.*
 
@@ -64,7 +60,7 @@ class NoteExporter() {
   private fun getMarkdownExportContent(): String {
     var totalText = "$EXPORT_NOTE_SEPARATOR\n\n"
     notesDb.getAll()
-        .map { it.getFullText() }
+        .map { it.toExportedMarkdown() }
         .forEach {
           totalText += it
           totalText += "\n\n$EXPORT_NOTE_SEPARATOR\n\n"

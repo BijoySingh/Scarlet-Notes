@@ -11,6 +11,23 @@ import org.json.JSONObject
 import java.io.Serializable
 import java.util.*
 
+/**
+ * Data class containing the note as a string of the content which can be stored in user
+ * readable format (markdown) and meta data object
+ */
+class ExportableSplitNote(
+    val content: String,
+    val meta: ExportableNoteMeta) {
+
+  // Default failsafe constructor for Gson to use
+  constructor() : this(
+      "",
+      ExportableNoteMeta())
+}
+
+/**
+ * Data class containing only the meta data for the note which makes it unique to Scarlet
+ */
 class ExportableNoteMeta(
     val uuid: String,
     val timestamp: Long,
@@ -22,6 +39,7 @@ class ExportableNoteMeta(
     val pinned: Boolean,
     val folder: String) {
 
+  // Default failsafe constructor for Gson to use
   constructor() : this(
       "invalid",
       Calendar.getInstance().timeInMillis,
@@ -34,6 +52,9 @@ class ExportableNoteMeta(
       "")
 }
 
+/**
+ * Data class for the exportability of tags
+ */
 class ExportableTag(
     var uuid: String,
     var title: String
@@ -43,6 +64,7 @@ class ExportableTag(
 
   override fun uuid(): String = uuid
 
+  // Default failsafe constructor for Gson to use
   constructor() : this("invalid", "")
 
   constructor(tag: Tag) : this(
@@ -71,6 +93,9 @@ class ExportableTag(
   }
 }
 
+/**
+ * Data class for the exportability of folder
+ */
 class ExportableFolder(
     val uuid: String,
     val title: String,
@@ -91,6 +116,7 @@ class ExportableFolder(
       folder.updateTimestamp,
       folder.color ?: 0)
 
+  // Default failsafe constructor for Gson to use
   constructor() : this(
       "invalid",
       "",

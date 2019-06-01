@@ -6,16 +6,20 @@ import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadData
 import com.bijoysingh.quicknote.database.GDriveUploadDataDao
 import com.bijoysingh.quicknote.database.genGDriveUploadDatabase
-import com.bijoysingh.quicknote.firebase.data.FirebaseNote
 import com.bijoysingh.quicknote.firebase.data.getFirebaseNote
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
-import com.maubis.scarlet.base.core.format.FormatBuilder
+import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.format.FormatType
-import com.maubis.scarlet.base.core.note.INoteContainer
+import com.maubis.scarlet.base.core.note.NoteBuilder
+import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.database.remote.IRemoteDatabaseUtils
+import com.maubis.scarlet.base.database.room.folder.Folder
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.export.data.*
+import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
@@ -74,7 +78,8 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
   private var isValidController: Boolean = true
   private var driveHelper: GDriveServiceHelper? = null
 
-  private var notesSync: GDriveRemoteFolder<FirebaseNote>? = null
+  private var notesSync: GDriveRemoteFolder<String>? = null
+  private var notesMetaSync: GDriveRemoteFolder<ExportableNoteMeta>? = null
   private var foldersSync: GDriveRemoteFolder<ExportableFolder>? = null
   private var tagsSync: GDriveRemoteFolder<ExportableTag>? = null
   private var imageSync: GDriveRemoteImageFolder? = null
@@ -89,16 +94,39 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     driveHelper = helper
     gDriveDatabase = genGDriveUploadDatabase(context)
 
-    notesSync = GDriveRemoteFolder(GDriveDataType.NOTE, gDriveDatabase!!, helper) {
-      ApplicationBase.instance.notesDatabase().getByUUID(it)?.getFirebaseNote()
-    }
-    tagsSync = GDriveRemoteFolder(GDriveDataType.TAG, gDriveDatabase!!, helper) {
-      ApplicationBase.instance.tagsDatabase().getByUUID(it)?.getExportableTag()
-    }
-    foldersSync = GDriveRemoteFolder(GDriveDataType.FOLDER, gDriveDatabase!!, helper) {
-      ApplicationBase.instance.foldersDatabase().getByUUID(it)?.getExportableFolder()
-    }
-    imageSync = GDriveRemoteImageFolder(GDriveDataType.IMAGE, gDriveDatabase!!, helper)
+    notesSync = GDriveRemoteFolder(
+        dataType = GDriveDataType.NOTE,
+        database = gDriveDatabase!!,
+        helper = helper,
+        serialiser = { it },
+        uuidToObject = {
+          ApplicationBase.instance.notesDatabase().getByUUID(it)?.toExportedMarkdown()
+        })
+    notesMetaSync = GDriveRemoteFolder(
+        dataType = GDriveDataType.NOTE_META,
+        database = gDriveDatabase!!,
+        helper = helper,
+        serialiser = { Gson().toJson(it) },
+        uuidToObject = {
+          ApplicationBase.instance.notesDatabase().getByUUID(it)?.getExportableNoteMeta()
+        })
+    tagsSync = GDriveRemoteFolder(
+        dataType = GDriveDataType.TAG,
+        database = gDriveDatabase!!,
+        helper = helper,
+        serialiser = { Gson().toJson(it) },
+        uuidToObject = {
+          ApplicationBase.instance.tagsDatabase().getByUUID(it)?.getExportableTag()
+        })
+    foldersSync = GDriveRemoteFolder(
+        dataType = GDriveDataType.FOLDER,
+        database = gDriveDatabase!!,
+        helper = helper,
+        serialiser = { Gson().toJson(it) },
+        uuidToObject = {
+          ApplicationBase.instance.foldersDatabase().getByUUID(it)?.getExportableFolder()
+        })
+    imageSync = GDriveRemoteImageFolder(dataType = GDriveDataType.IMAGE, database = gDriveDatabase!!, helper = helper)
 
     GlobalScope.launch {
       val fuid = folderIdForFolderName(GOOGLE_DRIVE_ROOT_FOLDER)
@@ -224,15 +252,16 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     }
 
     when {
-      data is ExportableTag -> localDatabaseUpdate(GDriveDataType.TAG, data.uuid)
-      data is ExportableFolder -> localDatabaseUpdate(GDriveDataType.FOLDER, data.uuid)
-      data is FirebaseNote -> notifyInsertImpl(data)
-      data is ExportableNoteMeta -> localDatabaseUpdate(GDriveDataType.NOTE_META, data.uuid)
+      data is Tag -> localDatabaseUpdate(GDriveDataType.TAG, data.uuid)
+      data is Folder -> localDatabaseUpdate(GDriveDataType.FOLDER, data.uuid)
+      data is Note -> notifyInsertImpl(data)
     }
   }
 
-  fun notifyInsertImpl(note: FirebaseNote) {
-    localDatabaseUpdate(GDriveDataType.NOTE, note.uuid)
+  fun notifyInsertImpl(note: Note) {
+    val noteUuid = note.uuid
+    localDatabaseUpdate(GDriveDataType.NOTE, noteUuid)
+    localDatabaseUpdate(GDriveDataType.NOTE_META, noteUuid)
 
     val database = gDriveDatabase
     if (database === null) {
@@ -278,10 +307,12 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     }
 
     when {
-      data is ExportableTag -> localDatabaseUpdate(GDriveDataType.TAG, data.uuid, true)
-      data is ExportableFolder -> localDatabaseUpdate(GDriveDataType.FOLDER, data.uuid, true)
-      data is FirebaseNote -> localDatabaseUpdate(GDriveDataType.NOTE, data.uuid, true)
-      data is ExportableNoteMeta -> localDatabaseUpdate(GDriveDataType.NOTE_META, data.uuid, true)
+      data is Tag -> localDatabaseUpdate(GDriveDataType.TAG, data.uuid, true)
+      data is Folder -> localDatabaseUpdate(GDriveDataType.FOLDER, data.uuid, true)
+      data is Note -> {
+        localDatabaseUpdate(GDriveDataType.NOTE, data.uuid, true)
+        localDatabaseUpdate(GDriveDataType.NOTE_META, data.uuid, true)
+      }
     }
   }
 
@@ -378,11 +409,15 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
 
     when (type) {
       GDriveDataType.NOTE -> {
-        ApplicationBase.instance.notesDatabase().getByUUID(data.uuid)?.getFirebaseNote()?.apply {
-          notesSync?.insert(this.uuid, this)
+        ApplicationBase.instance.notesDatabase().getByUUID(data.uuid)?.toExportedMarkdown()?.apply {
+          notesSync?.insert(data.uuid, this)
         }
       }
-      GDriveDataType.NOTE_META -> TODO()
+      GDriveDataType.NOTE_META -> {
+        ApplicationBase.instance.notesDatabase().getByUUID(data.uuid)?.getExportableNoteMeta()?.apply {
+          notesMetaSync?.insert(data.uuid, this)
+        }
+      }
       GDriveDataType.TAG -> {
         ApplicationBase.instance.tagsDatabase().getByUUID(data.uuid)?.getExportableTag()?.apply {
           tagsSync?.insert(this.uuid, this)
@@ -409,7 +444,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     val uuid = data.uuid
     when (type) {
       GDriveDataType.NOTE -> notesSync?.delete(uuid)
-      GDriveDataType.NOTE_META -> TODO()
+      GDriveDataType.NOTE_META -> notesMetaSync?.delete(uuid)
       GDriveDataType.TAG -> tagsSync?.delete(uuid)
       GDriveDataType.FOLDER -> foldersSync?.delete(uuid)
       GDriveDataType.IMAGE -> {
@@ -434,15 +469,37 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     when (type) {
       GDriveDataType.NOTE -> {
         onRemoteInsertImpl(data.fileId) {
+          // TODO: De-duplicate meta data and note update
           try {
-            val item = Gson().fromJson(it, FirebaseNote::class.java)
-            IRemoteDatabaseUtils.onRemoteInsert(context, item)
-            remoteDatabaseUpdate(GDriveDataType.NOTE, item.uuid)
+            val itemDescription = fromExportedMarkdown(it)
+            val existingNote = CoreConfig.notesDb.getByUUID(data.uuid)
+                ?: NoteBuilder().emptyNote(sNoteDefaultColor).apply { uuid = data.uuid }
+            val temporaryNote = NoteBuilder().copy(existingNote)
+            temporaryNote.description = itemDescription
+            IRemoteDatabaseUtils.onRemoteInsert(context, temporaryNote.getFirebaseNote())
+
+            remoteDatabaseUpdate(GDriveDataType.NOTE, data.uuid)
           } catch (exception: Exception) {
           }
         }
       }
-      GDriveDataType.NOTE_META -> TODO()
+      GDriveDataType.NOTE_META -> {
+        // TODO: De-duplicate meta data and note update
+        onRemoteInsertImpl(data.fileId) {
+          try {
+            val item = Gson().fromJson(it, ExportableNoteMeta::class.java)
+
+            val existingNote = CoreConfig.notesDb.getByUUID(data.uuid)
+                ?: NoteBuilder().emptyNote(sNoteDefaultColor).apply { uuid = data.uuid }
+            val temporaryNote = NoteBuilder().copy(existingNote)
+            temporaryNote.mergeMetas(item)
+            IRemoteDatabaseUtils.onRemoteInsert(context, temporaryNote.getFirebaseNote())
+
+            remoteDatabaseUpdate(GDriveDataType.NOTE, data.uuid)
+          } catch (exception: Exception) {
+          }
+        }
+      }
       GDriveDataType.TAG -> {
         onRemoteInsertImpl(data.fileId) {
           try {
@@ -491,8 +548,12 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     }
 
     when (type) {
-      GDriveDataType.NOTE -> IRemoteDatabaseUtils.onRemoteRemoveNote(context, data.uuid)
-      GDriveDataType.NOTE_META -> TODO()
+      GDriveDataType.NOTE -> {
+        IRemoteDatabaseUtils.onRemoteRemoveNote(context, data.uuid)
+        remoteDatabaseUpdate(GDriveDataType.NOTE_META, data.uuid)
+      }
+      GDriveDataType.NOTE_META -> {
+      } // Should never happen as note is handling this deletion
       GDriveDataType.TAG -> IRemoteDatabaseUtils.onRemoteRemoveTag(context, data.uuid)
       GDriveDataType.FOLDER -> IRemoteDatabaseUtils.onRemoteRemoveFolder(context, data.uuid)
       GDriveDataType.IMAGE -> {
@@ -519,14 +580,13 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     }
   }
 
-  private fun notifyImageIds(note: INoteContainer, onImageUUID: (ImageUUID) -> Unit) {
-    val imageIds = FormatBuilder()
-        .getFormats(note.description())
+  private fun notifyImageIds(note: Note, onImageUUID: (ImageUUID) -> Unit) {
+    val imageIds = note.getFormats()
         .filter { it.formatType == FormatType.IMAGE }
         .map { it.text }
         .toSet()
     imageIds.forEach {
-      onImageUUID(ImageUUID(note.uuid(), it))
+      onImageUUID(ImageUUID(note.uuid, it))
     }
   }
 }

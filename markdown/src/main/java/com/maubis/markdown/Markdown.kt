@@ -28,12 +28,6 @@ object Markdown {
     return spannable
   }
 
-  fun toMarkwonableText(text: String): String {
-    val source = TextInliner(text).get().toMarkwon()
-    source.replace(Regex("(\\S)\n(\\S)"), "$1  \n$2")
-    return source
-  }
-
   fun getSpanInfo(text: String, stripDelimiter: Boolean = false): SpanResult {
     val segments = TextSegmenter(text).get()
     var currentIndex = 0

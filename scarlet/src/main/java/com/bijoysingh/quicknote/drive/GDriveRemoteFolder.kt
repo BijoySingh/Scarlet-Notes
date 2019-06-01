@@ -2,7 +2,6 @@ package com.bijoysingh.quicknote.drive
 
 import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadDataDao
-import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -12,7 +11,8 @@ class GDriveRemoteFolder<T>(
     dataType: GDriveDataType,
     database: GDriveUploadDataDao,
     helper: GDriveServiceHelper,
-    val uuidToObject: (String) -> T?): GDriveRemoteFolderBase(dataType, database, helper) {
+    val serialiser: (T) -> String,
+    val uuidToObject: (String) -> T?) : GDriveRemoteFolderBase(dataType, database, helper) {
 
   var contentLoading = AtomicBoolean(true)
   var contentFolderUid: String = INVALID_FILE_ID
@@ -83,6 +83,9 @@ class GDriveRemoteFolder<T>(
     }
   }
 
+  /**
+   * Insert the file on the server based on the insertion on the local device
+   */
   fun insert(uuid: String, item: T) {
     if (contentLoading.get()) {
       contentPendingActions.add(uuid)
@@ -90,9 +93,10 @@ class GDriveRemoteFolder<T>(
     }
 
     try {
-      val data = Gson().toJson(item)
+      val data = serialiser(item)
       val fileId = contentFiles[uuid]
-      val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp ?: getTrueCurrentTime()
+      val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp
+          ?: getTrueCurrentTime()
       if (fileId !== null) {
         helper.saveFile(fileId, uuid, data, timestamp).addOnCompleteListener {
           val file = it.result
@@ -113,6 +117,9 @@ class GDriveRemoteFolder<T>(
     }
   }
 
+  /**
+   * Delete the file on the server based on removal on the local device
+   */
   fun delete(uuid: String) {
     if (deletedLoading.get() || contentLoading.get()) {
       deletedPendingActions.add(uuid)
@@ -125,7 +132,8 @@ class GDriveRemoteFolder<T>(
       contentFiles.remove(uuid)
     }
 
-    val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp ?: getTrueCurrentTime()
+    val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp
+        ?: getTrueCurrentTime()
     helper.createFileWithData(deletedFolderUid, uuid, "", timestamp).addOnCompleteListener {
       val file = it.result
       if (file !== null) {
