@@ -52,7 +52,6 @@ class AllNotesRemoteViewsFactory(val context: Context) : RemoteViewsService.Remo
 
     val note = notes[position]
 
-    val intent = ViewAdvancedNoteActivity.getIntent(context, note)
     val views = RemoteViews(context.getPackageName(), R.layout.item_widget_note)
 
     views.setTextViewText(R.id.description, getWidgetNoteText(note))

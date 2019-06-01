@@ -4,6 +4,7 @@ import android.arch.persistence.room.*
 
 enum class GDriveDataType {
   NOTE,
+  NOTE_META,
   TAG,
   FOLDER,
   IMAGE,

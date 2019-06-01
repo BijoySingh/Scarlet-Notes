@@ -49,7 +49,6 @@ class AlertBottomSheet : LithoBottomSheet() {
   var config: AlertSheetConfig = AlertSheetConfig()
 
   override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
-    val activity = context as ThemedActivity
     val component = Column.create(componentContext)
         .widthPercent(100f)
         .paddingDip(YogaEdge.VERTICAL, 8f)

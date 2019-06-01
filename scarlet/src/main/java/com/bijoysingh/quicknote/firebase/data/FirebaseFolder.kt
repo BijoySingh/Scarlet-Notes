@@ -4,6 +4,7 @@ import com.google.firebase.database.Exclude
 import com.maubis.scarlet.base.core.folder.IFolderContainer
 import java.util.*
 
+// TODO: Remove this on Firebase deprecation
 class FirebaseFolder(
     val uuid: String,
     val title: String,

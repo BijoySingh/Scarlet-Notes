@@ -156,11 +156,16 @@ class OpenTextIntentOrFileActivity : ThemedActivity() {
 
   fun handleFileIntent(intent: Intent): Boolean {
     val data = intent.data
+    val lastPathSegment = data?.lastPathSegment
+    if (data === null || lastPathSegment === null) {
+      return false
+    }
+
     try {
       val inputStream = contentResolver.openInputStream(data)
       contentText = NoteImporter().readFileInputStream(InputStreamReader(inputStream))
-      filenameText = data.lastPathSegment
-      inputStream.close()
+      filenameText = lastPathSegment
+      inputStream?.close()
       return true
     } catch (exception: Exception) {
       return false

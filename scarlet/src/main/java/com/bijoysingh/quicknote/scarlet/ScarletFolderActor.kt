@@ -1,6 +1,5 @@
 package com.bijoysingh.quicknote.scarlet
 
-import com.bijoysingh.quicknote.Scarlet.Companion.firebase
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.firebase.data.getFirebaseFolder
 import com.maubis.scarlet.base.core.folder.MaterialFolderActor

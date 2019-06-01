@@ -5,6 +5,7 @@ import com.maubis.scarlet.base.core.note.INoteContainer
 import com.maubis.scarlet.base.core.note.NoteState
 import java.util.*
 
+// TODO: Remove this on Firebase deprecation
 class FirebaseNote(
     val uuid: String,
     val description: String,
