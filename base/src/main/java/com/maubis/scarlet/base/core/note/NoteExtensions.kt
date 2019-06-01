@@ -62,6 +62,5 @@ fun Note.setReminderV2(reminder: Reminder) {
 
 fun Note.getTagUUIDs(): MutableSet<String> {
   val tags = if (this.tags == null) "" else this.tags
-  val split = tags.split(",")
-  return HashSet<String>(split)
+  return tags.split(",").filter { it.isNotBlank() }.toMutableSet()
 }

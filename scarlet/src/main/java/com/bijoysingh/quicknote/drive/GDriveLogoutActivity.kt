@@ -86,7 +86,6 @@ class GDriveLogoutActivity : ThemedActivity(), GoogleApiClient.OnConnectionFaile
 
   fun onSignOutComplete() {
     instance.authenticator().logout()
-    setButton(false)
     finish()
   }
 

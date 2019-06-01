@@ -1,8 +1,5 @@
 package com.maubis.scarlet.base.export.data
 
-import com.maubis.markdown.segmenter.MarkdownSegmentType
-import com.maubis.markdown.segmenter.TextSegmenter
-import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.getFormats
@@ -35,7 +32,7 @@ fun Note.toExportedMarkdown(): String {
       FormatType.CODE -> "```\n$text\n```"
       FormatType.QUOTE -> "> $text"
       // TODO: Fix the fact that markdown parsing wont parse this correctly
-      FormatType.IMAGE -> "<scarlet::image>$text</scarlet::image>"
+      FormatType.IMAGE -> "<image>$text</image>"
       FormatType.SEPARATOR -> "\n---\n"
       FormatType.TEXT -> text
 

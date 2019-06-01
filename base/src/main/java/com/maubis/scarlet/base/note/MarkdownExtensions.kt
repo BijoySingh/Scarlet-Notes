@@ -1,36 +1,9 @@
 package com.maubis.scarlet.base.note
 
-import com.maubis.markdown.segmenter.MarkdownSegment
 import com.maubis.markdown.segmenter.MarkdownSegmentType
 import com.maubis.markdown.segmenter.TextSegmenter
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
-
-fun MarkdownSegment.toFormat(): Format {
-  return Format(type().toFormatType(), strip())
-}
-
-fun MarkdownSegment.toRawFormat(): Format {
-  return Format(type().toFormatType(), text())
-}
-
-fun MarkdownSegmentType.toFormatType(): FormatType {
-  return when (this) {
-    MarkdownSegmentType.INVALID -> FormatType.EMPTY
-    MarkdownSegmentType.HEADING_1 -> FormatType.HEADING
-    MarkdownSegmentType.HEADING_2 -> FormatType.SUB_HEADING
-    MarkdownSegmentType.HEADING_3 -> FormatType.HEADING_3
-    MarkdownSegmentType.NORMAL -> FormatType.TEXT
-    MarkdownSegmentType.CODE -> FormatType.CODE
-    MarkdownSegmentType.BULLET_1 -> FormatType.TEXT
-    MarkdownSegmentType.BULLET_2 -> FormatType.TEXT
-    MarkdownSegmentType.BULLET_3 -> FormatType.TEXT
-    MarkdownSegmentType.QUOTE -> FormatType.QUOTE
-    MarkdownSegmentType.SEPARATOR -> FormatType.SEPARATOR
-    MarkdownSegmentType.CHECKLIST_UNCHECKED -> FormatType.CHECKLIST_UNCHECKED
-    MarkdownSegmentType.CHECKLIST_CHECKED -> FormatType.CHECKLIST_CHECKED
-  }
-}
 
 fun String.toInternalFormats(): List<Format> {
   return toInternalFormats(arrayOf(
@@ -40,7 +13,8 @@ fun String.toInternalFormats(): List<Format> {
       MarkdownSegmentType.QUOTE,
       MarkdownSegmentType.CHECKLIST_UNCHECKED,
       MarkdownSegmentType.CHECKLIST_CHECKED,
-      MarkdownSegmentType.SEPARATOR))
+      MarkdownSegmentType.SEPARATOR,
+      MarkdownSegmentType.IMAGE))
 }
 
 /**
@@ -63,6 +37,7 @@ fun String.toInternalFormats(whitelistedSegments: Array<MarkdownSegmentType>): L
       segment.type() == MarkdownSegmentType.CHECKLIST_UNCHECKED -> Format(FormatType.CHECKLIST_UNCHECKED, segment.strip())
       segment.type() == MarkdownSegmentType.CHECKLIST_CHECKED -> Format(FormatType.CHECKLIST_CHECKED, segment.strip())
       segment.type() == MarkdownSegmentType.SEPARATOR -> Format(FormatType.SEPARATOR)
+      segment.type() == MarkdownSegmentType.IMAGE -> Format(FormatType.IMAGE, segment.strip().trim())
       else -> null
     }
 
@@ -85,6 +60,11 @@ fun String.toInternalFormats(whitelistedSegments: Array<MarkdownSegmentType>): L
         lastFormat = Format(FormatType.TEXT, segment.text())
       }
     }
+  }
+
+  val tempLastFormat = lastFormat
+  if (tempLastFormat !== null) {
+    extractedFormats.add(tempLastFormat)
   }
   return extractedFormats
 }

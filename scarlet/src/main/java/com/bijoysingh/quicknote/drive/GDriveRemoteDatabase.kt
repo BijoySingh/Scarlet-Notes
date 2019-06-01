@@ -159,6 +159,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
   fun logout() {
     GlobalScope.launch {
       reset()
+      gDriveDatabase?.drop()
       gDriveConfig?.clearSync()
     }
   }
@@ -174,7 +175,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
           sGDriveFirstSyncNote = true
         }
       }
-      FOLDER_NAME_NOTES_META -> notesSync?.initContentFolderId(folderId) {
+      FOLDER_NAME_NOTES_META -> notesMetaSync?.initContentFolderId(folderId) {
         if (!sGDriveFirstSyncNoteMeta) {
           GlobalScope.launch { resyncDataSync(GDriveDataType.NOTE_META) }
           sGDriveFirstSyncNoteMeta = true
@@ -530,7 +531,9 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
           }
 
           driveHelper?.readFile(data.fileId, imageFile)?.addOnCompleteListener {
-            remoteDatabaseUpdate(GDriveDataType.IMAGE, data.uuid)
+            if (it.result == true) {
+              remoteDatabaseUpdate(GDriveDataType.IMAGE, data.uuid)
+            }
           }
         }
       }

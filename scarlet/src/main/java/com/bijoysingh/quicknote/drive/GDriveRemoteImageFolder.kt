@@ -69,28 +69,6 @@ class GDriveRemoteImageFolder(
     }
   }
 
-  fun onRemoteInsert(id: ImageUUID) {
-    if (contentLoading.get()) {
-      contentPendingActions.add(id)
-      return
-    }
-
-    if (contentFiles.containsKey(id)) {
-      return
-    }
-
-    val gDriveUUID = id.name()
-    val timestamp = database.getByUUID(dataType.name, gDriveUUID)?.lastUpdateTimestamp ?: getTrueCurrentTime()
-    val imageFile = noteImagesFolder.getFile(id.noteUuid, id.imageUuid)
-    helper.createFileWithData(contentFolderUid, gDriveUUID, imageFile, timestamp).addOnCompleteListener {
-      val file = it.result
-      if (file !== null) {
-        contentFiles[id] = file.id
-        notifyDriveData(file.id, gDriveUUID, timestamp)
-      }
-    }
-  }
-
   fun insert(id: ImageUUID) {
     if (contentLoading.get()) {
       contentPendingActions.add(id)

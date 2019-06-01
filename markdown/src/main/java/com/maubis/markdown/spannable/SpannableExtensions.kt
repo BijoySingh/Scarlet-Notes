@@ -113,6 +113,7 @@ fun Spannable.setFormats(info: SpanInfo) {
     MarkdownType.INLINE_CODE -> inlineCode(s, e)
     MarkdownType.STRIKE -> strike(s, e)
     MarkdownType.SEPARATOR -> separator(s, e)
+    MarkdownType.IMAGE -> monospace(s, e).code(s, e)
     else -> {
     }
   }

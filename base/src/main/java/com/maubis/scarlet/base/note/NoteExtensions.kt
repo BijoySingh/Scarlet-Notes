@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.Intent
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
+import com.maubis.markdown.BuildConfig
 import com.maubis.markdown.Markdown
-import com.maubis.markdown.segmenter.TextSegmenter
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.core.format.Format
@@ -97,7 +97,7 @@ fun Note.getSmartFormats(): List<Format> {
   val smartFormats = ArrayList<Format>()
   formats.forEach {
     if (it.formatType == FormatType.TEXT) {
-      val moreFormats = TextSegmenter(it.text).get().map { it.toFormat() }
+      val moreFormats = it.text.toInternalFormats()
       moreFormats.forEach { format ->
         format.uid = maxIndex
         smartFormats.add(format)
@@ -154,10 +154,15 @@ fun Note.getUnreliablyStrippedText(context: Context): String {
 }
 
 fun Note.getLockedText(isMarkdownEnabled: Boolean): CharSequence {
-  return when {
+  val text = when {
     this.locked -> "******************\n***********\n****************"
     else -> getMarkdownText(isMarkdownEnabled)
   }
+
+  if (BuildConfig.DEBUG) {
+    return "`$uuid`\n$text"
+  }
+  return text;
 }
 
 fun Note.getDisplayTime(): String {

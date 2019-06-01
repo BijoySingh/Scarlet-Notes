@@ -132,6 +132,9 @@ class GDriveRemoteFolder<T>(
       contentFiles.remove(uuid)
     }
 
+    if (deletedFolderUid == INVALID_FILE_ID) {
+      return
+    }
     val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp
         ?: getTrueCurrentTime()
     helper.createFileWithData(deletedFolderUid, uuid, "", timestamp).addOnCompleteListener {

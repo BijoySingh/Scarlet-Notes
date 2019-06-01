@@ -46,7 +46,7 @@ class AllNotesRemoteViewsFactory(val context: Context) : RemoteViewsService.Remo
   }
 
   override fun getViewAt(position: Int): RemoteViews? {
-    if (position == AdapterView.INVALID_POSITION) {
+    if (position == AdapterView.INVALID_POSITION || position >= notes.size) {
       return null
     }
 

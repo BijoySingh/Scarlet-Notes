@@ -27,7 +27,7 @@ const val GOOGLE_DRIVE_FILE_MIME_TYPE = "text/plain"
 const val GOOGLE_DRIVE_IMAGE_MIME_TYPE = "image/jpeg"
 
 const val INVALID_FILE_ID = "__invalid__"
-const val MAX_THRESHOLD_QUERIES_PER_SECOND = 5
+const val MAX_THRESHOLD_QUERIES_PER_SECOND = 2
 const val MIN_RESET_QUERIES_PER_SECOND = 0.1
 
 var lastCheckpointTime: AtomicLong = AtomicLong(0L)
@@ -81,7 +81,7 @@ fun getTrueCurrentTime(): Long {
 }
 
 class GDriveServiceHelper(private val mDriveService: Drive) {
-  private val mExecutor = Executors.newFixedThreadPool(8)
+  private val mExecutor = Executors.newFixedThreadPool(2)
 
   fun <T> execute(action: String = "", callable: Callable<T>): Task<T?> {
     return Tasks.call(mExecutor, ErrorCallable(action, callable))
@@ -133,26 +133,24 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
     return execute("readFile", Callable {
       mDriveService.files().get(fileId).executeMediaAsInputStream().use { `is` ->
         BufferedReader(InputStreamReader(`is`)).use { reader ->
-          val stringBuilder = StringBuilder()
-          var line: String? = reader.readLine()
-          while (line !== null) {
-            stringBuilder.append(line)
-            line = reader.readLine()
-          }
-          val contents = stringBuilder.toString()
-          contents
+          reader.readText()
         }
       }
     })
   }
 
-  fun readFile(fileId: String, destinationFile: java.io.File): Task<Void?> {
+  fun readFile(fileId: String, destinationFile: java.io.File): Task<Boolean?> {
     log("GDrive", "readFile($fileId, ${destinationFile.absolutePath})")
-    return execute("readFile", Callable<Void> {
+    return execute("readFile", Callable<Boolean> {
       destinationFile.parentFile.mkdirs()
-      val fileStream = FileOutputStream(destinationFile)
-      mDriveService.files().get(fileId).executeMediaAndDownloadTo(fileStream)
-      null
+      try {
+        val fileStream = FileOutputStream(destinationFile)
+        mDriveService.files().get(fileId).executeMediaAndDownloadTo(fileStream)
+        fileStream.close()
+      } catch (exception: Exception) {
+        return@Callable false
+      }
+      destinationFile.exists()
     })
   }
 

@@ -27,6 +27,7 @@ import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.drive.Drive
 import com.google.api.services.drive.DriveScopes
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -142,31 +143,13 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
         return@launch
       }
       ApplicationBase.instance.notesDatabase().getAll().forEach {
-        val existing = gDrive?.gDriveDatabase?.getByUUID(GDriveDataType.NOTE.name, it.uuid)
-            ?: GDriveUploadData()
-        existing.apply {
-          uuid = it.uuid
-          type = GDriveDataType.NOTE.name
-          save(database)
-        }
+        instance.noteActions(it).onlineSave(context)
       }
       ApplicationBase.instance.tagsDatabase().getAll().forEach {
-        val existing = gDrive?.gDriveDatabase?.getByUUID(GDriveDataType.TAG.name, it.uuid)
-            ?: GDriveUploadData()
-        existing.apply {
-          uuid = it.uuid
-          type = GDriveDataType.TAG.name
-          save(database)
-        }
+        instance.tagActions(it).onlineSave()
       }
       ApplicationBase.instance.foldersDatabase().getAll().forEach {
-        val existing = gDrive?.gDriveDatabase?.getByUUID(GDriveDataType.FOLDER.name, it.uuid)
-            ?: GDriveUploadData()
-        existing.apply {
-          uuid = it.uuid
-          type = GDriveDataType.FOLDER.name
-          save(database)
-        }
+        instance.folderActions(it).onlineSave()
       }
       finish()
     }
