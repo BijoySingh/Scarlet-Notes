@@ -7,6 +7,7 @@ import android.util.Log
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity.Companion.hasAcceptedThePolicy
 import com.bijoysingh.quicknote.firebase.initFirebaseDatabase
+import com.bijoysingh.quicknote.scarlet.sFirebaseKilled
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
@@ -59,6 +60,7 @@ class FirebaseRemovalActivity : ThemedActivity() {
             instance.authenticator().logout()
             setButton(false)
 
+            sFirebaseKilled = true
             instance.authenticator().openLoginActivity(context)?.run()
             finish()
           }

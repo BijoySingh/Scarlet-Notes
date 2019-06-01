@@ -5,6 +5,7 @@ import android.content.Intent
 import com.bijoysingh.quicknote.Scarlet
 import com.bijoysingh.quicknote.drive.GDriveAuthenticator
 import com.bijoysingh.quicknote.drive.GDriveLoginActivity
+import com.bijoysingh.quicknote.drive.GDriveLogoutActivity
 import com.bijoysingh.quicknote.firebase.activity.FirebaseRemovalActivity
 import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
 import com.bijoysingh.quicknote.firebase.support.FirebaseAuthenticator
@@ -69,5 +70,9 @@ class ScarletAuthenticator() : IAuthenticator {
 
   override fun openTransferDataActivity(context: Context) = Runnable {
     context.startActivity(Intent(context, FirebaseRemovalActivity::class.java))
+  }
+
+  override fun openLogoutActivity(context: Context) = Runnable {
+    context.startActivity(Intent(context, GDriveLogoutActivity::class.java))
   }
 }

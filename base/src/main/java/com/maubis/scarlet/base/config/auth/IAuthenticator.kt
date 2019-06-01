@@ -18,5 +18,7 @@ interface IAuthenticator {
 
   fun openTransferDataActivity(context: Context): Runnable?
 
+  fun openLogoutActivity(context: Context): Runnable?
+
   fun logout()
 }

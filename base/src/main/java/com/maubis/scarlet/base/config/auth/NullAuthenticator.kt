@@ -9,6 +9,8 @@ class NullAuthenticator : IAuthenticator {
 
   override fun openTransferDataActivity(context: Context): Runnable? = null
 
+  override fun openLogoutActivity(context: Context): Runnable? = null
+
   override fun logout() {}
 
   override fun setup(context: Context) {}

@@ -28,7 +28,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
     val options = ArrayList<LithoOptionsItem>()
 
     val loginClick = ApplicationBase.instance.authenticator().openLoginActivity(activity)
-    val firebaseLoggedIn = ApplicationBase.instance.authenticator().userId(activity) !== null
+    val isLoggedIn = ApplicationBase.instance.authenticator().isLoggedIn(activity)
 
     val migrateToPro = getMigrateToProAppInformationItem(activity)
     options.add(LithoOptionsItem(
@@ -50,7 +50,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           loginClick?.run()
           dismiss()
         },
-        visible = loginClick !== null && !firebaseLoggedIn
+        visible = loginClick !== null && !isLoggedIn
     ))
     options.add(LithoOptionsItem(
         title = R.string.home_option_ui_experience,
@@ -132,10 +132,16 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_logout_of_app_subtitle,
         icon = R.drawable.ic_sign_in_options,
         listener = {
-          ApplicationBase.instance.authenticator().logout()
+          if (ApplicationBase.instance.authenticator().isLegacyLoggedIn()) {
+            ApplicationBase.instance.authenticator().logout()
+            dismiss()
+            return@LithoOptionsItem
+          }
+
+          ApplicationBase.instance.authenticator().openLogoutActivity(activity)?.run()
           dismiss()
         },
-        visible = firebaseLoggedIn
+        visible = isLoggedIn
     ))
     return options
   }

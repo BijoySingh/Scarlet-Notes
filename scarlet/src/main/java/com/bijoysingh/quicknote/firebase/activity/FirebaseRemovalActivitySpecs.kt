@@ -1,10 +1,12 @@
 package com.bijoysingh.quicknote.firebase.activity
 
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.text.Layout
+import com.bijoysingh.quicknote.drive.GDriveRootView
 import com.facebook.litho.*
-import com.facebook.litho.annotations.*
+import com.facebook.litho.annotations.LayoutSpec
+import com.facebook.litho.annotations.OnCreateLayout
+import com.facebook.litho.annotations.OnEvent
+import com.facebook.litho.annotations.Prop
 import com.facebook.litho.widget.Image
 import com.facebook.litho.widget.Text
 import com.facebook.litho.widget.VerticalScroll
@@ -13,8 +15,6 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.support.specs.color
-import com.maubis.scarlet.base.support.ui.LithoCircleDrawable
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 @LayoutSpec
@@ -77,15 +77,46 @@ object FirebaseRemovalContentViewSpec {
             .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
             .textRes(R.string.firebase_removal_page_important_details)
             .typeface(CoreConfig.FONT_MONSERRAT))
-        .child(FirebaseIconView.create(context)
+        .child(Row.create(context)
             .marginDip(YogaEdge.TOP, 24f)
-            .bgColorRes(R.color.dark_low_hint_text)
-            .iconRes(R.drawable.ic_delete_permanently)
-            .titleRes(R.string.firebase_removal_page_remove_details))
-        .child(FirebaseIconView.create(context)
-            .bgColorRes(R.color.dark_low_hint_text)
-            .iconRes(R.drawable.ic_action_backup)
-            .titleRes(R.string.firebase_removal_page_next_details))
+            .child(
+                FirebaseIconView.create(context)
+                    .bgColorRes(R.color.dark_low_hint_text)
+                    .iconRes(R.drawable.ic_privacy_policy)
+                    .titleRes(R.string.firebase_removal_page_more_privacy_details)
+                    .flexGrow(1f))
+            .child(FirebaseIconView.create(context)
+                .bgColorRes(R.color.dark_low_hint_text)
+                .iconRes(R.drawable.ic_image_gallery)
+                .titleRes(R.string.firebase_removal_page_photo_upload_details)
+                .flexGrow(1f))
+        )
+        .child(Text.create(context)
+            .marginDip(YogaEdge.HORIZONTAL, 16f)
+            .paddingDip(YogaEdge.BOTTOM, 10f)
+            .paddingDip(YogaEdge.TOP, 20f)
+            .textSizeRes(R.dimen.font_size_normal)
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
+            .textRes(R.string.firebase_removal_page_whats_next_details)
+            .typeface(CoreConfig.FONT_MONSERRAT_BOLD))
+        .child(Text.create(context)
+            .backgroundRes(R.drawable.secondary_rounded_bg)
+            .marginDip(YogaEdge.VERTICAL, 4f)
+            .marginDip(YogaEdge.HORIZONTAL, 16f)
+            .paddingDip(YogaEdge.ALL, 12f)
+            .textSizeRes(R.dimen.font_size_normal)
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
+            .textRes(R.string.firebase_removal_page_remove_details)
+            .typeface(CoreConfig.FONT_MONSERRAT))
+        .child(Text.create(context)
+            .backgroundRes(R.drawable.secondary_rounded_bg)
+            .marginDip(YogaEdge.VERTICAL, 4f)
+            .marginDip(YogaEdge.HORIZONTAL, 16f)
+            .paddingDip(YogaEdge.ALL, 12f)
+            .textSizeRes(R.dimen.font_size_normal)
+            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
+            .textRes(R.string.firebase_removal_page_next_details)
+            .typeface(CoreConfig.FONT_MONSERRAT))
         .build()
   }
 }

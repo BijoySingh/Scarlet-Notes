@@ -440,6 +440,11 @@
   <string name="google_drive_page_login_button" translatable="false">Sign In to Google Drive</string>
   <string name="google_drive_page_logging_in_button" translatable="false">Signing In&#8230;</string>
 
+  <string name="google_drive_page_logout_title" translatable="false">Sign Out of Scarlet</string>
+  <string name="google_drive_page_logout_details" translatable="false">Scarlet will stop syncing your notes, tags and folders to your Google Drive.</string>
+  <string name="google_drive_page_logout_button" translatable="false">Sign Out from Drive</string>
+  <string name="google_drive_page_logging_out_button" translatable="false">Signing Out In&#8230;</string>
+
   <string name="google_drive_page_login_lock_details" translatable="false">Notes, Tags and Folders are stored on your own Google Drive, so only you can control access to them.</string>
   <string name="google_drive_page_photo_details" translatable="false">Your photos are uploaded and synced across devices as well.</string>
 
@@ -449,8 +454,8 @@
   <string name="firebase_page_logging_in_button" translatable="false">Signing In&#8230;</string>
 
   <string name="firebase_page_important_details" translatable="false">We used to store your information on Google Firebase. After logging in we will recover these to your device</string>
-  <string name="firebase_page_not_sync_details" translatable="false">Changes to notes will NOT be synced over to Google Firebase, and you need to login on to Google Drive</string>
-  <string name="firebase_page_remove_details" translatable="false">Once your notes are recovered, we will delete them from Google Firebase, and then log you out</string>
+  <string name="firebase_page_not_sync_details" translatable="false">New notes and changes will NOT be synced over to Google Firebase, and you need to login on to Google Drive</string>
+  <string name="firebase_page_remove_details" translatable="false">Once your notes are recovered, you can delete them from Google Firebase, and then switch over</string>
 
   <string name="firebase_no_sync_warning" translatable="false">Your data is not being synced!</string>
   <string name="firebase_no_sync_warning_details" translatable="false">Data Sync based on legacy login is disabled, consider switching over to Google Drive based sync.</string>
@@ -459,6 +464,9 @@
   <string name="firebase_removal_page_clear_button" translatable="false">Clear Data and Sign Out</string>
   <string name="firebase_removal_page_clearing_button" translatable="false">Clearing and Signing Out</string>
   <string name="firebase_removal_page_important_details" translatable="false">We used to store your information on Google Firebase. We are moving over to storing your notes in your Google Drive.</string>
+  <string name="firebase_removal_page_more_privacy_details" translatable="false">More Privacy.</string>
+  <string name="firebase_removal_page_photo_upload_details" translatable="false">Photo Sync.</string>
+  <string name="firebase_removal_page_whats_next_details" translatable="false">Next Steps</string>
   <string name="firebase_removal_page_remove_details" translatable="false">We will first delete your notes from Firebase and log you out.</string>
   <string name="firebase_removal_page_next_details" translatable="false">You can then log into Google Drive, and we will upload your data along with images.</string>
 </resources>

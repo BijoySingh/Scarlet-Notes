@@ -27,6 +27,8 @@ const val GOOGLE_DRIVE_FILE_MIME_TYPE = "text/plain"
 const val GOOGLE_DRIVE_IMAGE_MIME_TYPE = "image/jpeg"
 
 const val INVALID_FILE_ID = "__invalid__"
+const val MAX_THRESHOLD_QUERIES_PER_SECOND = 5
+const val MIN_RESET_QUERIES_PER_SECOND = 0.1
 
 var lastCheckpointTime: AtomicLong = AtomicLong(0L)
 var numQueriesSinceLastCheckpoint: AtomicLong = AtomicLong(0L)
@@ -40,15 +42,16 @@ class ErrorCallable<T>(val action: String, val callable: Callable<T>) : Callable
 
     val currentCount = numQueriesSinceLastCheckpoint.get() * 1.0
     val deltaTimeS = (System.currentTimeMillis() - lastCheckpointTime.get()) / 1000.0
-    log("GDrive", "Request being called: action=$action, currentCount=$currentCount, deltaTimeS=$deltaTimeS, requestRate=${currentCount / deltaTimeS}")
+    val currentQueriesPerSecond = (currentCount / deltaTimeS)
+    log("GDrive", "Request being called: action=$action, currentCount=$currentCount, deltaTimeS=$deltaTimeS, requestRate=$currentQueriesPerSecond")
     if (currentCount >= 10 && deltaTimeS > 0) {
       when {
-        (currentCount / deltaTimeS) > 0.9 -> {
+        currentQueriesPerSecond > MAX_THRESHOLD_QUERIES_PER_SECOND -> {
           log("GDrive", "Rate limiting measures taken: action=$action, currentCount=$currentCount, deltaTimeS=$deltaTimeS")
           SystemClock.sleep(500L)
           return call()
         }
-        (currentCount / deltaTimeS) < 0.1 -> {
+        (currentCount / deltaTimeS) < MIN_RESET_QUERIES_PER_SECOND -> {
           numQueriesSinceLastCheckpoint.set(0L)
           lastCheckpointTime.set(SystemClock.currentThreadTimeMillis())
         }

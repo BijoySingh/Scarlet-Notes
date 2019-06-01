@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.drive
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.Layout
+import com.bijoysingh.quicknote.scarlet.sFirebaseKilled
 import com.facebook.litho.*
 import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.Image
@@ -42,6 +43,7 @@ object GDriveRootViewSpec {
             .textRes(R.string.google_drive_page_login_firebase_button)
             .textAlignment(Layout.Alignment.ALIGN_CENTER)
             .typeface(CoreConfig.FONT_MONSERRAT)
+            .alpha(if (sFirebaseKilled) 0.5f else 1f)
             .clickHandler(GDriveRootView.onFirebaseClick(context)))
         .child(Row.create(context)
             .backgroundRes(R.drawable.accent_rounded_bg)

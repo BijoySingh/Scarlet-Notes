@@ -199,7 +199,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
   fun logout() {
     GlobalScope.launch {
       reset()
-      gDriveDatabase?.drop()
+      // gDriveDatabase?.drop()
       gDriveConfig?.clearSync()
     }
   }
