@@ -14,6 +14,7 @@ import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
 import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.utils.getLastUsedAppVersionCode
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import java.io.File
 import java.util.*
 
@@ -71,7 +72,8 @@ class Migrator(val context: Context) {
 
     try {
       task()
-    } catch (_: Exception) {
+    } catch (exception: Exception) {
+      maybeThrow(exception)
     }
     ApplicationBase.instance.store().put(key, true)
   }

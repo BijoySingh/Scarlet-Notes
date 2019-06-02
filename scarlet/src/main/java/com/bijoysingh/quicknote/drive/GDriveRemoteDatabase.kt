@@ -22,8 +22,10 @@ import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.export.data.*
 import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.utils.log
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.junit.Ignore
 import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -267,7 +269,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     resync()
   }
 
-  fun verifyAndNotifyPendingStateChange() {
+  private fun verifyAndNotifyPendingStateChange() {
     GlobalScope.launch {
       val database = gDriveDatabase
       if (database === null) {
@@ -293,11 +295,12 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     when {
       data is Tag -> localDatabaseUpdate(GDriveDataType.TAG, data.uuid)
       data is Folder -> localDatabaseUpdate(GDriveDataType.FOLDER, data.uuid)
-      data is Note -> notifyInsertImpl(data)
+      data is Note -> notifyNoteInsertImpl(data)
+      else -> maybeThrow("notifyInsert called with unhandled data type")
     }
   }
 
-  fun notifyInsertImpl(note: Note) {
+  private fun notifyNoteInsertImpl(note: Note) {
     val noteUuid = note.uuid
     localDatabaseUpdate(GDriveDataType.NOTE, noteUuid)
     localDatabaseUpdate(GDriveDataType.NOTE_META, noteUuid)
@@ -352,6 +355,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
         localDatabaseUpdate(GDriveDataType.NOTE, data.uuid, true)
         localDatabaseUpdate(GDriveDataType.NOTE_META, data.uuid, true)
       }
+      else -> maybeThrow("notifyRemove called with unhandled data type")
     }
   }
 
@@ -364,13 +368,6 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     if (!isValidController) {
       return
     }
-
-    /**
-    if (sGDriveLastSync >= getTrueCurrentTime() - KEY_G_DRIVE_LAST_SYNC_DELTA_MS) {
-      return
-    }
-    sGDriveLastSync = getTrueCurrentTime()
-    **/
 
     GlobalScope.launch {
       resyncDataSync(GDriveDataType.NOTE)
@@ -529,6 +526,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
 
             remoteDatabaseUpdate(GDriveDataType.NOTE, data.uuid)
           } catch (exception: Exception) {
+            maybeThrow(exception)
           }
         }
       }
@@ -546,6 +544,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
 
             remoteDatabaseUpdate(GDriveDataType.NOTE_META, data.uuid)
           } catch (exception: Exception) {
+            maybeThrow(exception)
           }
         }
       }
@@ -556,6 +555,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
             IRemoteDatabaseUtils.onRemoteInsert(context, item)
             remoteDatabaseUpdate(GDriveDataType.TAG, data.uuid)
           } catch (exception: Exception) {
+            maybeThrow(exception)
           }
         }
       }
@@ -566,6 +566,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
             IRemoteDatabaseUtils.onRemoteInsert(context, item)
             remoteDatabaseUpdate(GDriveDataType.FOLDER, data.uuid)
           } catch (exception: Exception) {
+            maybeThrow(exception)
           }
         }
       }

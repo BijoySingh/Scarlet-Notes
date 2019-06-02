@@ -13,6 +13,8 @@ import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.note.folder.saveIfUnique
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.note.tag.saveIfUnique
+import com.maubis.scarlet.base.support.utils.maybeThrow
+import com.maubis.scarlet.base.support.utils.throwOrReturn
 import org.json.JSONArray
 import java.io.BufferedReader
 import java.io.File
@@ -58,6 +60,7 @@ class NoteImporter() {
       }
     } catch (exception: Exception) {
       importNoteFallback(content, context)
+      maybeThrow(exception)
     }
   }
 
@@ -100,7 +103,7 @@ class NoteImporter() {
         files.addAll(childFile)
       }
     } catch (exception: Exception) {
-      // Failed
+      maybeThrow(exception)
     }
 
     return files
@@ -120,7 +123,7 @@ class NoteImporter() {
       return fileContents.toString()
     } catch (exception: IOException) {
       reader.close()
-      return ""
+      return throwOrReturn(exception, "")
     }
   }
 

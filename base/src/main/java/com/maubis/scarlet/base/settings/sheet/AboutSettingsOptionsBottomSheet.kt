@@ -13,6 +13,7 @@ import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 const val PRIVACY_POLICY_LINK = "https://www.iubenda.com/privacy-policy/8213521"
 
@@ -49,6 +50,7 @@ class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
             activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(SettingsOptionsBottomSheet.GITHUB_FAQ_URL)))
             dismiss()
           } catch (exception: Exception) {
+            maybeThrow(exception)
           }
         }
     ))

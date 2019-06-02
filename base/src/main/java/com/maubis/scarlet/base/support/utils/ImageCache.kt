@@ -83,7 +83,7 @@ class ImageCache(context: Context) {
       fOut.flush()
       fOut.close()
     } catch (exception: Exception) {
-      return compressedBitmap
+      return throwOrReturn(exception, compressedBitmap)
     }
 
     thumbnailCacheSize.addAndGet(cacheFile.length())

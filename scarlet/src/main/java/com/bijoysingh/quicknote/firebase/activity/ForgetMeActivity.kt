@@ -20,6 +20,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.bind
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 class ForgetMeActivity : ThemedActivity() {
 
@@ -117,7 +118,7 @@ class ForgetMeActivity : ThemedActivity() {
         return
       }
     } catch (exception: Exception) {
-      // Ignore this, handled by following content
+      maybeThrow(exception)
     }
     ToastHelper.show(this, R.string.login_to_google_failed)
   }

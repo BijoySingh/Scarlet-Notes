@@ -21,6 +21,7 @@ import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 /**
  * The floating not service
@@ -90,7 +91,7 @@ class FloatingNoteService : FloatingBubbleService() {
         intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
       } catch (exception: Exception) {
-        // Some issue
+        maybeThrow(exception)
       }
       stopSelf()
     }

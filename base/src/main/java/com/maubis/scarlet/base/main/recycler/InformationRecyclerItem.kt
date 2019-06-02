@@ -15,6 +15,7 @@ import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.utils.FlavourUtils
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -166,8 +167,9 @@ fun getMigrateToProAppInformationItem(context: Context): InformationRecyclerItem
       try {
         context.startActivity(intent)
         ApplicationBase.instance.store().put(KEY_MIGRATE_TO_PRO_SUCCESS, true)
-      } catch (e: Exception) {
+      } catch (exception: Exception) {
         ToastHelper.show(context, "Failed transferring notes to Scarlet Pro")
+        maybeThrow(exception)
       }
     }
   }

@@ -12,6 +12,7 @@ import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher
 import com.maubis.scarlet.base.config.remote.RemoteConfig
 import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 const val REMOTE_CONFIG_URL = "https://material-notes-63563.firebaseapp.com/config/config.txt"
 const val REMOTE_CONFIG_REFETCH_TIME_MS = 7 * 24 * 60 * 60 * 1000
@@ -61,6 +62,7 @@ class RemoteConfigFetcher() : IRemoteConfigFetcher {
       ApplicationBase.instance.store().put(KEY_RC_LITE_VERSION, config.rc_lite_production_version ?: 0)
       ApplicationBase.instance.store().put(KEY_RC_FULL_VERSION, config.rc_full_production_version ?: 0)
     } catch (exception: Exception) {
+      maybeThrow(exception)
       return
     }
   }

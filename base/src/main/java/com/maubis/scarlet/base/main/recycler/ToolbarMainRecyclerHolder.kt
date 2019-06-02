@@ -17,6 +17,7 @@ import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.visibility
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerViewHolder<RecyclerItem>(context, itemView) {
 
@@ -54,6 +55,7 @@ fun RecyclerViewHolder<RecyclerItem>.setFullSpan() {
   try {
     val layoutParams = itemView.getLayoutParams() as StaggeredGridLayoutManager.LayoutParams
     layoutParams.isFullSpan = true
-  } catch (e: Exception) {
+  } catch (exception: Exception) {
+    maybeThrow(exception)
   }
 }

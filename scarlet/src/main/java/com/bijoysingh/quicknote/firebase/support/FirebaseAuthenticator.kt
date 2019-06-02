@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.concurrent.atomic.AtomicBoolean
@@ -41,7 +42,7 @@ class FirebaseAuthenticator() {
         initFirebaseDatabase(context, userId!!)
         reloadUser(context)
       } catch (exception: Exception) {
-        // Don't need to do anything
+        maybeThrow(exception)
       }
     }
   }
@@ -81,8 +82,8 @@ class FirebaseAuthenticator() {
             ToastHelper.show(context, "You have been signed out of the app")
           }
         }
-      } catch (e: Exception) {
-        // In case somehow it fails
+      } catch (exception: Exception) {
+        maybeThrow(exception)
       }
     }
   }

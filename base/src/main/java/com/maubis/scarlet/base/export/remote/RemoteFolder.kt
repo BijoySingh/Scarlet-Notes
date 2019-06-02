@@ -4,6 +4,7 @@ import com.github.bijoysingh.starter.util.FileManager
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.export.support.KEY_EXTERNAL_FOLDER_SYNC_LAST_SCAN
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -37,6 +38,7 @@ class RemoteFolder<T>(val folder: File,
               onRemoteInsert(item)
             }
           } catch (exception: Exception) {
+            maybeThrow(exception)
           }
         }
       }
@@ -64,6 +66,7 @@ class RemoteFolder<T>(val folder: File,
       val file = file(uuid)
       FileManager.writeToFile(file, data)
     } catch (exception: Exception) {
+      maybeThrow(exception)
     }
   }
 

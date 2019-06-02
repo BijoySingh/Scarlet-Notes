@@ -7,6 +7,7 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 
 /**
@@ -54,7 +55,7 @@ fun FirebaseRemoteDatabase.setTagListener() {
         }
         onRemoteInsert(tag)
       } catch (exception: Exception) {
-        // Ignore if exception
+        maybeThrow(exception)
       }
     }
 
@@ -70,7 +71,7 @@ fun FirebaseRemoteDatabase.setTagListener() {
         // TODO: This is disabled
         // onRemoteRemove(tag)
       } catch (exception: Exception) {
-        // Ignore if exception
+        maybeThrow(exception)
       }
     }
   })

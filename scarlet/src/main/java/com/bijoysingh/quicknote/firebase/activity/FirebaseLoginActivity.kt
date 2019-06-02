@@ -28,6 +28,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import java.util.concurrent.atomic.AtomicBoolean
 
 class FirebaseLoginActivity : ThemedActivity() {
@@ -109,8 +110,7 @@ class FirebaseLoginActivity : ThemedActivity() {
         return
       }
     } catch (exception: Exception) {
-      Log.e("Firebase", exception.toString(), exception)
-      // Ignore this, handled by following content
+      maybeThrow(exception)
     }
     onLoginFailure()
   }

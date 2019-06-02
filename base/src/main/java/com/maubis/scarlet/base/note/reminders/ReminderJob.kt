@@ -13,6 +13,7 @@ import com.maubis.scarlet.base.note.saveWithoutSync
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.notification.REMINDER_NOTIFICATION_CHANNEL_ID
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -43,7 +44,8 @@ class ReminderJob : Job() {
         note.meta = ""
         note.saveWithoutSync(context)
       }
-    } catch (e: Exception) {
+    } catch (exception: Exception) {
+      maybeThrow(exception)
     }
 
     return Job.Result.SUCCESS

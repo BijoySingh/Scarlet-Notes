@@ -8,6 +8,7 @@ import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.support.INTENT_KEY_ACTION
 import com.maubis.scarlet.base.support.INTENT_KEY_NOTE_ID
+import com.maubis.scarlet.base.support.utils.throwOrReturn
 
 class NotificationIntentService : IntentService("NotificationIntentService") {
 
@@ -54,8 +55,8 @@ class NotificationIntentService : IntentService("NotificationIntentService") {
 
     try {
       return NoteAction.valueOf(action)
-    } catch (_: Exception) {
-      return null
+    } catch (exception: Exception) {
+      return throwOrReturn(exception, null)
     }
   }
 

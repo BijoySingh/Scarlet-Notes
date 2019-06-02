@@ -17,6 +17,7 @@ import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 class OpenSourceBottomSheet : LithoBottomSheet() {
 
@@ -55,6 +56,7 @@ class OpenSourceBottomSheet : LithoBottomSheet() {
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_URL)))
                 dismiss()
               } catch (exception: Exception) {
+                maybeThrow(exception)
               }
             }
             .paddingDip(YogaEdge.VERTICAL, 8f))

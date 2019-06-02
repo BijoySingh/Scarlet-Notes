@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.drive
 
 import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadDataDao
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -114,6 +115,7 @@ class GDriveRemoteFolder<T>(
         }
       }
     } catch (exception: Exception) {
+      maybeThrow(exception)
     }
   }
 

@@ -12,6 +12,8 @@ import com.google.api.services.drive.Drive
 import com.google.api.services.drive.model.File
 import com.google.api.services.drive.model.FileList
 import com.maubis.scarlet.base.support.utils.log
+import com.maubis.scarlet.base.support.utils.maybeThrow
+import com.maubis.scarlet.base.support.utils.throwOrReturn
 import java.io.BufferedReader
 import java.io.FileOutputStream
 import java.io.InputStreamReader
@@ -65,11 +67,7 @@ class ErrorCallable<T>(val action: String, val callable: Callable<T>) : Callable
       numQueriesSinceLastCheckpoint.addAndGet(1)
       return callable.call()
     } catch (exception: Exception) {
-      Log.e("GDrive", exception.message, exception)
-      if (BuildConfig.DEBUG) {
-        throw exception
-      }
-      return null
+      return throwOrReturn(exception, null)
     }
   }
 }
@@ -79,6 +77,7 @@ fun getTrueCurrentTime(): Long {
   try {
     calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"))
   } catch (exception: Exception) {
+    maybeThrow(exception)
   }
   return calendar.timeInMillis
 }
@@ -151,7 +150,7 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
         mDriveService.files().get(fileId).executeMediaAndDownloadTo(fileStream)
         fileStream.close()
       } catch (exception: Exception) {
-        return@Callable false
+        return@Callable throwOrReturn(exception, false)
       }
       destinationFile.exists()
     })

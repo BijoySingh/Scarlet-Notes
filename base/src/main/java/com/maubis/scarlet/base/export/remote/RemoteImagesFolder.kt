@@ -5,6 +5,7 @@ import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.support.utils.ImageCache
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -107,6 +108,7 @@ class RemoteImagesFolder(context: Context, val folder: File) {
       inStream.close()
       outStream.close()
     } catch (exception: Exception) {
+      maybeThrow(exception)
     }
   }
 }

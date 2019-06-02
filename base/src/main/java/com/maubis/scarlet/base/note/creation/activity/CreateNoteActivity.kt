@@ -141,8 +141,8 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
         triggerImageLoaded(index, targetFile)
       }
 
-      override fun onImagePickerError(e: Exception, source: EasyImage.ImageSource, type: Int) {
-        //Some error handling
+      override fun onImagePickerError(exception: Exception, source: EasyImage.ImageSource, type: Int) {
+        maybeThrow(exception)
       }
     })
   }

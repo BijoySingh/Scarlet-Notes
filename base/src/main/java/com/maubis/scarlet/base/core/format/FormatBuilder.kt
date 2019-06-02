@@ -2,6 +2,7 @@ package com.maubis.scarlet.base.core.format
 
 import com.maubis.markdown.segmenter.MarkdownSegmentType
 import com.maubis.scarlet.base.note.toInternalFormats
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -57,9 +58,11 @@ class FormatBuilder {
           format.uid = formats.size
           formats.add(format)
         } catch (innerException: JSONException) {
+          maybeThrow(innerException)
         }
       }
     } catch (exception: Exception) {
+      maybeThrow(exception)
     }
     return formats
   }

@@ -24,7 +24,7 @@ object FlavourUtils {
       try {
         found = reference.get()?.packageManager?.getPackageInfo(PRO_APP_PACKAGE_NAME, 0) != null
       } catch (e: Exception) {
-        found = false
+        found = throwOrReturn(e, false)
       }
       ApplicationBase.instance.store().put(KEY_PRO_APP_INSTALLED, found)
     }

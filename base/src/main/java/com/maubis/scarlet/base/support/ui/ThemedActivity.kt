@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 abstract class ThemedActivity : AppCompatActivity() {
 
@@ -43,7 +44,7 @@ abstract class ThemedActivity : AppCompatActivity() {
       val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
       inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
     } catch (exception: Exception) {
-      // Do nothing
+      maybeThrow(exception)
     }
   }
 
@@ -52,7 +53,7 @@ abstract class ThemedActivity : AppCompatActivity() {
       val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
       inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     } catch (exception: Exception) {
-      // Do nothing
+      maybeThrow(exception)
     }
   }
 }

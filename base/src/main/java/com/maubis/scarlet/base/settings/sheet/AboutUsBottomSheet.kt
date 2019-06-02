@@ -15,6 +15,7 @@ import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 class AboutUsBottomSheet : LithoBottomSheet() {
 
@@ -26,6 +27,7 @@ class AboutUsBottomSheet : LithoBottomSheet() {
       val pInfo = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0)
       version = pInfo.versionName
     } catch (exception: Exception) {
+      maybeThrow(exception)
     }
 
     val appName = getString(R.string.app_name)
@@ -73,6 +75,7 @@ class AboutUsBottomSheet : LithoBottomSheet() {
                 IntentUtils.openAppPlayStore(activity)
                 dismiss()
               } catch (exception: Exception) {
+                maybeThrow(exception)
               }
             }.paddingDip(YogaEdge.VERTICAL, 8f))
     return component.build()

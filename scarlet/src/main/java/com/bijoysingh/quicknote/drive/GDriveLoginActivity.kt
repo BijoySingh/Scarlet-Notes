@@ -29,6 +29,7 @@ import com.google.api.services.drive.DriveScopes
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
@@ -99,7 +100,7 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
           return
         }
       } catch (exception: Exception) {
-        // Ignore this, handled by following content
+        maybeThrow(exception)
       }
     }
   }

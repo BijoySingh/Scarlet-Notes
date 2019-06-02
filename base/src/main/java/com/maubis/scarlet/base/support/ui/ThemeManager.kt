@@ -8,6 +8,7 @@ import com.github.bijoysingh.starter.util.DimensionManager
 import com.maubis.markdown.MarkdownConfig
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.support.utils.throwOrReturn
 
 const val KEY_APP_THEME = "KEY_APP_THEME"
 
@@ -97,8 +98,8 @@ class ThemeManager() : IThemeManager {
       val theme = ApplicationBase.instance.store().get(KEY_APP_THEME, Theme.DARK.name)
       try {
         return Theme.valueOf(theme)
-      } catch (_: Exception) {
-        return Theme.DARK
+      } catch (exception: Exception) {
+        return throwOrReturn(exception, Theme.DARK)
       }
     }
   }
