@@ -20,9 +20,11 @@ import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.export.data.*
 import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
+import com.maubis.scarlet.base.support.utils.log
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
+import java.util.concurrent.atomic.AtomicBoolean
 
 const val FOLDER_NAME_IMAGES = "images"
 const val FOLDER_NAME_NOTES = "notes"
@@ -83,6 +85,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
   private var foldersSync: GDriveRemoteFolder<ExportableFolder>? = null
   private var tagsSync: GDriveRemoteFolder<ExportableTag>? = null
   private var imageSync: GDriveRemoteImageFolder? = null
+  private var syncing = HashMap<GDriveDataType, AtomicBoolean>()
 
   fun init(helper: GDriveServiceHelper) {
     val context = weakContext.get()
@@ -93,6 +96,12 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
     isValidController = true
     driveHelper = helper
     gDriveDatabase = genGDriveUploadDatabase(context)
+
+    syncing[GDriveDataType.NOTE] = AtomicBoolean(false)
+    syncing[GDriveDataType.TAG] = AtomicBoolean(false)
+    syncing[GDriveDataType.FOLDER] = AtomicBoolean(false)
+    syncing[GDriveDataType.NOTE_META] = AtomicBoolean(false)
+    syncing[GDriveDataType.IMAGE] = AtomicBoolean(false)
 
     notesSync = GDriveRemoteFolder(
         dataType = GDriveDataType.NOTE,
@@ -245,6 +254,22 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
   }
 
   /**
+   * Pending Upload
+   */
+  fun isDataPendingUpload(): Boolean {
+    val database = gDriveDatabase
+    if (database === null) {
+      return false
+    }
+
+    val pending = database.getAllPending()
+    pending.forEach {
+      log("GDrivRemoe", "pending(${it.uuid}, ${it.type})")
+    }
+    return pending.isNotEmpty()
+  }
+
+  /**
    * Notify local changes to the notes
    */
   fun notifyInsert(data: Any) {
@@ -322,14 +347,13 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
    */
 
   @Synchronized
-  fun resync(force: Boolean, onSyncCompleted: () -> Unit) {
+  fun resync(onSyncCompleted: () -> Unit) {
     if (!isValidController) {
       onSyncCompleted()
       return
     }
 
-    if (!force && sGDriveLastSync > getTrueCurrentTime() - KEY_G_DRIVE_LAST_SYNC_DELTA_MS) {
-      onSyncCompleted()
+    if (sGDriveLastSync >= getTrueCurrentTime() - KEY_G_DRIVE_LAST_SYNC_DELTA_MS) {
       return
     }
     sGDriveLastSync = getTrueCurrentTime()
@@ -345,7 +369,12 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
   }
 
   fun resyncDataSync(type: GDriveDataType) {
-    gDriveDatabase?.getByType(type.name)?.forEach {
+    if (syncing[type]?.getAndSet(true) == true) {
+      return
+    }
+    gDriveDatabase?.getPendingByType(type.name)?.forEach {
+      log("GDrive", "resyncDataSync(${type.name}, ${it.uuid}, ${it.lastUpdateTimestamp}, ${it.gDriveUpdateTimestamp})")
+      log("GDrive", "resyncDataSync(${type.name}, ${it.uuid}, ${it.localStateDeleted}, ${it.gDriveStateDeleted})")
       val sameDelete = it.localStateDeleted == it.gDriveStateDeleted
       val sameUpdateTime = it.lastUpdateTimestamp == it.gDriveUpdateTimestamp
       if (!sameUpdateTime) {
@@ -357,6 +386,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
         }
       }
     }
+    syncing[type]?.set(false)
   }
 
   /**
@@ -370,7 +400,9 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
         return@launch
       }
 
+      log("GDrive", "localDatabaseUpdate(${itemType.name}, $itemUUID)")
       val existing = database.getByUUID(itemType.name, itemUUID) ?: GDriveUploadData()
+      log("GDrive", "existing(${existing.uuid}, ${existing.lastUpdateTimestamp}, ${existing.gDriveUpdateTimestamp})")
       existing.apply {
         uuid = itemUUID
         type = itemType.name
@@ -388,7 +420,9 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
         return@launch
       }
 
+      log("GDrive", "remoteDatabaseUpdate(${itemType.name}, $itemUUID)")
       val existing = database.getByUUID(itemType.name, itemUUID) ?: GDriveUploadData()
+      log("GDrive", "existing(${existing.uuid}, ${existing.lastUpdateTimestamp}, ${existing.gDriveUpdateTimestamp})")
       existing.apply {
         uuid = itemUUID
         type = itemType.name
@@ -496,7 +530,7 @@ class GDriveRemoteDatabase(val weakContext: WeakReference<Context>) {
             temporaryNote.mergeMetas(item)
             IRemoteDatabaseUtils.onRemoteInsert(context, temporaryNote.getFirebaseNote())
 
-            remoteDatabaseUpdate(GDriveDataType.NOTE, data.uuid)
+            remoteDatabaseUpdate(GDriveDataType.NOTE_META, data.uuid)
           } catch (exception: Exception) {
           }
         }

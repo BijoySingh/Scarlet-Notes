@@ -21,4 +21,5 @@ class NullAuthenticator : IAuthenticator {
 
   override fun isLegacyLoggedIn(): Boolean = false
 
+  override fun isDataPendingUpload(): Boolean = false
 }

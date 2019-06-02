@@ -22,7 +22,6 @@ var sFirebaseKilled: Boolean
   set(value) = Scarlet.gDriveConfig?.put(KEY_FIREBASE_KILLED, value) ?: Unit
 
 class ScarletAuthenticator() : IAuthenticator {
-
   val firebase = FirebaseAuthenticator()
   val gdrive = GDriveAuthenticator()
 
@@ -58,6 +57,13 @@ class ScarletAuthenticator() : IAuthenticator {
       return
     }
     firebase.logout()
+  }
+
+  override fun isDataPendingUpload(): Boolean {
+    if (sGDriveLoggedIn) {
+      return gdrive.isDataPendingUpload()
+    }
+    return false
   }
 
   override fun openLoginActivity(context: Context) = Runnable {

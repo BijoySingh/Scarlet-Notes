@@ -1,6 +1,8 @@
 package com.bijoysingh.quicknote.database
 
 import android.arch.persistence.room.*
+import com.google.gson.Gson
+import com.maubis.scarlet.base.support.utils.log
 
 enum class GDriveDataType {
   NOTE,
@@ -10,7 +12,7 @@ enum class GDriveDataType {
   IMAGE,
 }
 
-@Entity(tableName = "gdrive_upload", indices = [Index("uuid")])
+@Entity(tableName = "gdrive_upload", indices = [Index("uuid", "type", unique = true)])
 class GDriveUploadData {
   @PrimaryKey(autoGenerate = true)
   var uid: Int = 0
@@ -58,4 +60,10 @@ interface GDriveUploadDataDao {
 
   @Query("SELECT * FROM gdrive_upload WHERE type = :type")
   fun getByType(type: String): List<GDriveUploadData>
+
+  @Query("SELECT * FROM gdrive_upload WHERE (lastUpdateTimestamp != gDriveUpdateTimestamp OR localStateDeleted != gDriveStateDeleted)")
+  fun getAllPending(): List<GDriveUploadData>
+
+  @Query("SELECT * FROM gdrive_upload WHERE type = :type AND (lastUpdateTimestamp != gDriveUpdateTimestamp OR localStateDeleted != gDriveStateDeleted)")
+  fun getPendingByType(type: String): List<GDriveUploadData>
 }

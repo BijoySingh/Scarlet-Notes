@@ -32,10 +32,29 @@ abstract class GDriveRemoteFolderBase(
         return@launch
       }
 
+      if (uploadData.gDriveStateDeleted != deleted) {
+        uploadData.apply {
+          gDriveUpdateTimestamp = modifiedTime
+          fileId = uid
+          gDriveStateDeleted = deleted
+          save(database)
+        }
+        return@launch
+      }
 
-      if (uploadData.gDriveUpdateTimestamp != modifiedTime
-          || uploadData.fileId != uid
-          || uploadData.gDriveStateDeleted != deleted) {
+      if (uploadData.fileId != uid && uploadData.gDriveUpdateTimestamp < modifiedTime) {
+        // This is a bit of shit situation to be in, as multiple files are pointing to the
+        // same name... Something Google Drive allows for whatever reason
+        // To help disambiguate, choose the one with the higher update timestamp
+        uploadData.apply {
+          gDriveUpdateTimestamp = modifiedTime
+          fileId = uid
+          gDriveStateDeleted = deleted
+          save(database)
+        }
+      }
+
+      if (uploadData.fileId == uid && uploadData.gDriveUpdateTimestamp != modifiedTime) {
         uploadData.apply {
           gDriveUpdateTimestamp = modifiedTime
           fileId = uid

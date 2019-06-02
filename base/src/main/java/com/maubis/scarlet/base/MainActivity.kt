@@ -27,6 +27,7 @@ import com.maubis.scarlet.base.main.sheets.openDeleteTrashSheet
 import com.maubis.scarlet.base.main.specs.MainActivityBottomBar
 import com.maubis.scarlet.base.main.specs.MainActivityDisabledSync
 import com.maubis.scarlet.base.main.specs.MainActivityFolderBottomBar
+import com.maubis.scarlet.base.main.specs.MainActivitySyncingNow
 import com.maubis.scarlet.base.main.utils.MainSnackbar
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
 import com.maubis.scarlet.base.note.folder.FolderRecyclerItem
@@ -59,6 +60,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_toolbar_main.*
 import kotlinx.android.synthetic.main.toolbar_trash_info.*
 import kotlinx.coroutines.*
+import java.lang.ref.WeakReference
 
 class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
   private val singleThreadDispatcher = newSingleThreadContext("singleThreadDispatcher")
@@ -322,6 +324,41 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
             .build()))
   }
 
+  fun notifySyncingInformation() {
+    val componentContext = ComponentContext(this)
+    if (!instance.authenticator().isLoggedIn(this)
+        || instance.authenticator().isLegacyLoggedIn()) {
+      return
+    }
+
+    GlobalScope.launch {
+      if (!instance.authenticator().isDataPendingUpload()) {
+        GlobalScope.launch(Dispatchers.Main) {
+          lithoPreBottomToolbar.removeAllViews()
+        }
+        return@launch
+      }
+
+      GlobalScope.launch(Dispatchers.Main) {
+        lithoPreBottomToolbar.removeAllViews()
+        lithoPreBottomToolbar.addView(LithoView.create(componentContext,
+            MainActivitySyncingNow.create(componentContext)
+                .onClick {}
+                .build()))
+
+        val weakActivity = WeakReference(this@MainActivity)
+        ApplicationBase.instance.resyncDrive {
+          GlobalScope.launch(Dispatchers.Main) {
+            val instance = weakActivity.get()
+            if (instance !== null && !instance.isDestroyed) {
+              instance.notifySyncingInformation()
+            }
+          }
+        }
+      }
+    }
+  }
+
   fun unifiedSearch() {
     GlobalScope.launch(Dispatchers.Main) {
       val items = GlobalScope.async(Dispatchers.IO) { unifiedSearchSynchronous() }
@@ -342,15 +379,8 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     setupData()
     registerNoteReceiver()
 
-    topSyncingLayout.visibility = View.VISIBLE
-    GlobalScope.launch {
-      ApplicationBase.instance.resyncDrive(false) {
-        GlobalScope.launch(Dispatchers.Main) {
-          topSyncingLayout.visibility = GONE
-        }
-      }
-    }
     notifyDisabledSync()
+    notifySyncingInformation()
   }
 
   fun resetAndSetupData() {

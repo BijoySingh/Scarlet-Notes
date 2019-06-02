@@ -29,6 +29,8 @@ class GDriveAuthenticator {
     }
   }
 
+  fun isDataPendingUpload(): Boolean = gDrive?.isDataPendingUpload() ?: false
+
   fun isLoggedIn(context: Context): Boolean {
     if (hasAccountSetup.get()) {
       return account !== null
