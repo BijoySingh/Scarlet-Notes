@@ -100,7 +100,7 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
           return
         }
       } catch (exception: Exception) {
-        maybeThrow(exception)
+        maybeThrow(this, exception)
       }
     }
   }

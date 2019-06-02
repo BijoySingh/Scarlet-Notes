@@ -110,7 +110,7 @@ class FirebaseLoginActivity : ThemedActivity() {
         return
       }
     } catch (exception: Exception) {
-      maybeThrow(exception)
+      maybeThrow(this, exception)
     }
     onLoginFailure()
   }

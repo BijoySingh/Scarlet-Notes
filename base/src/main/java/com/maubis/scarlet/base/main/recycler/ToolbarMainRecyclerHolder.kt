@@ -2,6 +2,7 @@ package com.maubis.scarlet.base.main.recycler
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import android.widget.ImageView
@@ -11,7 +12,7 @@ import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
-import com.maubis.scarlet.base.settings.sheet.DeleteAndMoreOptionsBottomSheet
+import com.maubis.scarlet.base.settings.sheet.InternalSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.sheets.openSheet
@@ -46,7 +47,7 @@ class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerView
     toolbarIconDebug.visibility = visibility(BuildConfig.DEBUG)
     toolbarIconDebug.setColorFilter(toolbarIconColor)
     toolbarIconDebug.setOnClickListener {
-      openSheet((context as MainActivity), DeleteAndMoreOptionsBottomSheet())
+      openSheet((context as MainActivity), InternalSettingsOptionsBottomSheet())
     }
   }
 }
@@ -56,6 +57,6 @@ fun RecyclerViewHolder<RecyclerItem>.setFullSpan() {
     val layoutParams = itemView.getLayoutParams() as StaggeredGridLayoutManager.LayoutParams
     layoutParams.isFullSpan = true
   } catch (exception: Exception) {
-    maybeThrow(exception)
+    maybeThrow(itemView.context as AppCompatActivity, exception)
   }
 }

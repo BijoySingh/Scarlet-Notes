@@ -27,7 +27,7 @@ class AboutUsBottomSheet : LithoBottomSheet() {
       val pInfo = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0)
       version = pInfo.versionName
     } catch (exception: Exception) {
-      maybeThrow(exception)
+      maybeThrow(activity, exception)
     }
 
     val appName = getString(R.string.app_name)
@@ -75,7 +75,7 @@ class AboutUsBottomSheet : LithoBottomSheet() {
                 IntentUtils.openAppPlayStore(activity)
                 dismiss()
               } catch (exception: Exception) {
-                maybeThrow(exception)
+                maybeThrow(activity, exception)
               }
             }.paddingDip(YogaEdge.VERTICAL, 8f))
     return component.build()

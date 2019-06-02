@@ -23,6 +23,7 @@ class NoteBuilder {
     note.updateTimestamp = note.timestamp
     note.color = -0xff8695
     note.folder = ""
+    note.description = FormatBuilder().getDescription(emptyList())
     return note
   }
 

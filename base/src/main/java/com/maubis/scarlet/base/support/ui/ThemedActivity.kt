@@ -44,7 +44,7 @@ abstract class ThemedActivity : AppCompatActivity() {
       val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
       inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
     } catch (exception: Exception) {
-      maybeThrow(exception)
+      maybeThrow(this, exception)
     }
   }
 
@@ -53,7 +53,7 @@ abstract class ThemedActivity : AppCompatActivity() {
       val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
       inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     } catch (exception: Exception) {
-      maybeThrow(exception)
+      maybeThrow(this, exception)
     }
   }
 }

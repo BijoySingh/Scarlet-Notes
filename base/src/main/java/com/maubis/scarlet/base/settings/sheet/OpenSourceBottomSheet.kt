@@ -56,7 +56,7 @@ class OpenSourceBottomSheet : LithoBottomSheet() {
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_URL)))
                 dismiss()
               } catch (exception: Exception) {
-                maybeThrow(exception)
+                maybeThrow(activity, exception)
               }
             }
             .paddingDip(YogaEdge.VERTICAL, 8f))

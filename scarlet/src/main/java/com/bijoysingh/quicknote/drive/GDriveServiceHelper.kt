@@ -17,6 +17,8 @@ import com.maubis.scarlet.base.support.utils.throwOrReturn
 import java.io.BufferedReader
 import java.io.FileOutputStream
 import java.io.InputStreamReader
+import java.io.InterruptedIOException
+import java.net.SocketTimeoutException
 import java.util.*
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
@@ -66,6 +68,9 @@ class ErrorCallable<T>(val action: String, val callable: Callable<T>) : Callable
     try {
       numQueriesSinceLastCheckpoint.addAndGet(1)
       return callable.call()
+    } catch (exception: InterruptedIOException) {
+      // Ignore timeout exceptions
+      return null
     } catch (exception: Exception) {
       return throwOrReturn(exception, null)
     }

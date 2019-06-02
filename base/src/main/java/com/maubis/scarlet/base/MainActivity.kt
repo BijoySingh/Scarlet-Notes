@@ -56,6 +56,7 @@ import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.unifiedFolderSearchSynchronous
 import com.maubis.scarlet.base.support.unifiedSearchSynchronous
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import com.maubis.scarlet.base.support.utils.shouldShowWhatsNewSheet
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_toolbar_main.*
@@ -369,7 +370,6 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     registerNoteReceiver()
 
     notifyDisabledSync()
-
     instance.authenticator().setPendingUploadListener(object : IPendingUploadListener {
       override fun onPendingStateUpdate(isDataSyncPending: Boolean) {
         notifySyncingInformation(isDataSyncPending)

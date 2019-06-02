@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base.note.formats.recycler
 
 import android.content.Context
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
@@ -128,7 +129,7 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
       val additionTokenLength = (if (markdownType.requiresNewLine) 1 else 0) + markdownType.startToken.length
       edit.setSelection(Math.min(startString.length + additionTokenLength, edit.text.length))
     } catch (exception: Exception) {
-      maybeThrow(exception)
+      maybeThrow(context as AppCompatActivity, exception)
     }
   }
 }

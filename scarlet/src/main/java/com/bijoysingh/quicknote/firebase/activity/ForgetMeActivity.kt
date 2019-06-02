@@ -118,7 +118,7 @@ class ForgetMeActivity : ThemedActivity() {
         return
       }
     } catch (exception: Exception) {
-      maybeThrow(exception)
+      maybeThrow(this, exception)
     }
     ToastHelper.show(this, R.string.login_to_google_failed)
   }

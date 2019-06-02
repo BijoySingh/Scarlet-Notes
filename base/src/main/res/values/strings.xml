@@ -432,6 +432,26 @@
 
   <string name="home_syncing_top_layout" translatable="false">Syncing</string>
 
+  <!-- Start: Internal Settings Strings -->
+  <string name="internal_settings_title" translatable="false">Developer Options</string>
+  <string name="internal_settings_description" translatable="false">Change internal settings to the application used for debugging</string>
+
+  <string name="internal_settings_enable_log_exceptions_title" translatable="false">Log Exceptions</string>
+  <string name="internal_settings_enable_log_exceptions_description" translatable="false">Log caught exceptions to a fixed note, to allow forwarding to Developer</string>
+
+  <string name="internal_settings_enable_show_exceptions_title" translatable="false">Show Exception Sheet</string>
+  <string name="internal_settings_enable_show_exceptions_description" translatable="false">Show caught exceptions on a sheet if possible, to allow forwarding to Developer</string>
+
+  <string name="internal_settings_enable_throw_exceptions_title" translatable="false">Throw on Exceptions</string>
+  <string name="internal_settings_enable_throw_exceptions_description" translatable="false">Throw and crash the application on exceptions. Will be reset after 5 crashes</string>
+
+  <string name="internal_settings_fake_exceptions_title" translatable="false">Fake Exceptions</string>
+  <string name="internal_settings_fake_exceptions_description" translatable="false">Throw a fake exception to test the exception features</string>
+
+  <string name="exception_sheet_title" translatable="false">Exception Thrown</string>
+  <string name="exception_sheet_crash_app" translatable="false">Crash App</string>
+  <string name="exception_sheet_mail" translatable="false">Mail</string>
+
   <!-- Start: Google Login Strings -->
   <string name="google_drive_page_connection_failed" translatable="false">Connection Failed</string>
   <string name="google_drive_page_login_title" translatable="false">Sync on Google Drive</string>

@@ -54,17 +54,17 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
     actionCamera.setOnClickListener {
       try {
         EasyImage.openCamera(context as AppCompatActivity, data.uid)
-      } catch (e: Exception) {
+      } catch (exception: Exception) {
         ToastHelper.show(context, "No camera app installed")
-        maybeThrow(e)
+        maybeThrow(context as AppCompatActivity, exception)
       }
     }
     actionGallery.setOnClickListener {
       try {
         EasyImage.openGallery(context as AppCompatActivity, data.uid)
-      } catch (e: Exception) {
+      } catch (exception: Exception) {
         ToastHelper.show(context, "No photo picker app installed")
-        maybeThrow(e)
+        maybeThrow(context as AppCompatActivity, exception)
       }
     }
     actionMove.setColorFilter(config.iconColor)

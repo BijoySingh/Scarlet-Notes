@@ -50,8 +50,17 @@ class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
             activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(SettingsOptionsBottomSheet.GITHUB_FAQ_URL)))
             dismiss()
           } catch (exception: Exception) {
-            maybeThrow(exception)
+            maybeThrow(activity, exception)
           }
+        }
+    ))
+    options.add(LithoOptionsItem(
+        title = R.string.whats_new_title,
+        subtitle = R.string.whats_new_subtitle,
+        icon = R.drawable.ic_whats_new,
+        listener = {
+          openSheet(activity, WhatsNewBottomSheet())
+          dismiss()
         }
     ))
     options.add(LithoOptionsItem(
@@ -68,20 +77,11 @@ class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
 
     ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_rate_and_review,
-        subtitle = R.string.home_option_rate_and_review_subtitle,
-        icon = R.drawable.ic_rating,
+        title = R.string.internal_settings_title,
+        subtitle = R.string.internal_settings_description,
+        icon = R.drawable.icon_code_block,
         listener = {
-          IntentUtils.openAppPlayStore(activity)
-          dismiss()
-        }
-    ))
-    options.add(LithoOptionsItem(
-        title = R.string.whats_new_title,
-        subtitle = R.string.whats_new_subtitle,
-        icon = R.drawable.ic_whats_new,
-        listener = {
-          com.maubis.scarlet.base.support.sheets.openSheet(activity, WhatsNewBottomSheet())
+          openSheet(activity, InternalSettingsOptionsBottomSheet())
           dismiss()
         }
     ))

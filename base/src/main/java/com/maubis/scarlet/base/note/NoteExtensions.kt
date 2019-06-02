@@ -7,13 +7,11 @@ import com.google.gson.Gson
 import com.maubis.markdown.BuildConfig
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
-import com.maubis.scarlet.base.core.note.NoteState
-import com.maubis.scarlet.base.core.note.generateUUID
-import com.maubis.scarlet.base.core.note.getFormats
-import com.maubis.scarlet.base.core.note.getTagUUIDs
+import com.maubis.scarlet.base.core.note.*
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
@@ -299,6 +297,14 @@ fun Note.save(context: Context) {
     return
   }
   ApplicationBase.instance.noteActions(this).save(context)
+}
+
+fun Note.unsafeSave_INTERNAL_USE_ONLY() {
+  applySanityChecks()
+
+  val id = CoreConfig.notesDb.database().insertNote(this)
+  uid = if (isUnsaved()) id.toInt() else uid
+  CoreConfig.notesDb.notifyInsertNote(this)
 }
 
 fun Note.saveWithoutSync(context: Context) {
