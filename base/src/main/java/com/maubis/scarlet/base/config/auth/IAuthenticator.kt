@@ -10,8 +10,6 @@ interface IAuthenticator {
 
   fun isLegacyLoggedIn(): Boolean
 
-  fun isDataPendingUpload(): Boolean
-
   fun userId(context: Context): String?
 
   fun openLoginActivity(context: Context): Runnable?
@@ -21,6 +19,8 @@ interface IAuthenticator {
   fun openTransferDataActivity(context: Context): Runnable?
 
   fun openLogoutActivity(context: Context): Runnable?
+
+  fun setPendingUploadListener(listener: IPendingUploadListener?)
 
   fun logout()
 }

@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.scarlet
 import android.content.Context
 import android.content.Intent
 import com.bijoysingh.quicknote.Scarlet
+import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.drive.GDriveAuthenticator
 import com.bijoysingh.quicknote.drive.GDriveLoginActivity
 import com.bijoysingh.quicknote.drive.GDriveLogoutActivity
@@ -10,6 +11,7 @@ import com.bijoysingh.quicknote.firebase.activity.FirebaseRemovalActivity
 import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
 import com.bijoysingh.quicknote.firebase.support.FirebaseAuthenticator
 import com.maubis.scarlet.base.config.auth.IAuthenticator
+import com.maubis.scarlet.base.config.auth.IPendingUploadListener
 
 const val KEY_G_DRIVE_LOGGED_IN = "g_drive_logged_in"
 var sGDriveLoggedIn: Boolean
@@ -59,11 +61,10 @@ class ScarletAuthenticator() : IAuthenticator {
     firebase.logout()
   }
 
-  override fun isDataPendingUpload(): Boolean {
+  override fun setPendingUploadListener(listener: IPendingUploadListener?) {
     if (sGDriveLoggedIn) {
-      return gdrive.isDataPendingUpload()
+      gDrive?.setPendingUploadListener(listener)
     }
-    return false
   }
 
   override fun openLoginActivity(context: Context) = Runnable {

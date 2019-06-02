@@ -34,6 +34,8 @@ var lastCheckpointTime: AtomicLong = AtomicLong(0L)
 var numQueriesSinceLastCheckpoint: AtomicLong = AtomicLong(0L)
 
 class ErrorCallable<T>(val action: String, val callable: Callable<T>) : Callable<T?> {
+  private var delay: Long = 100L
+
   override fun call(): T? {
     val lastCheckpoint = lastCheckpointTime.get()
     if (lastCheckpoint == 0L) {
@@ -48,7 +50,8 @@ class ErrorCallable<T>(val action: String, val callable: Callable<T>) : Callable
       when {
         currentQueriesPerSecond > MAX_THRESHOLD_QUERIES_PER_SECOND -> {
           log("GDrive", "Rate limiting measures taken: action=$action, currentCount=$currentCount, deltaTimeS=$deltaTimeS")
-          SystemClock.sleep(500L)
+          delay *= 2
+          SystemClock.sleep(delay)
           return call()
         }
         (currentCount / deltaTimeS) < MIN_RESET_QUERIES_PER_SECOND -> {
@@ -81,7 +84,7 @@ fun getTrueCurrentTime(): Long {
 }
 
 class GDriveServiceHelper(private val mDriveService: Drive) {
-  private val mExecutor = Executors.newFixedThreadPool(2)
+  private val mExecutor = Executors.newFixedThreadPool(4)
 
   fun <T> execute(action: String = "", callable: Callable<T>): Task<T?> {
     return Tasks.call(mExecutor, ErrorCallable(action, callable))

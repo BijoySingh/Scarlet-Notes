@@ -66,6 +66,4 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   override fun store(): Store = store
 
   override fun imageCache(): ImageCache = imageCache
-
-  override fun resyncDrive(onSyncCompleted: () -> Unit) = onSyncCompleted()
 }

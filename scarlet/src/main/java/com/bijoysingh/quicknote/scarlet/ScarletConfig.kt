@@ -38,12 +38,4 @@ class ScarletConfig(context: Context) : MaterialNoteConfig(context) {
   override fun startListener(activity: AppCompatActivity) {
     openIfNeeded(activity)
   }
-
-  override fun resyncDrive(onSyncCompleted: () -> Unit) {
-    if (gDrive === null) {
-      onSyncCompleted()
-      return
-    }
-    gDrive?.resync(onSyncCompleted)
-  }
 }

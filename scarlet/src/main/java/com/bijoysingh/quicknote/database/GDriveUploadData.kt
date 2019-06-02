@@ -61,8 +61,8 @@ interface GDriveUploadDataDao {
   @Query("SELECT * FROM gdrive_upload WHERE type = :type")
   fun getByType(type: String): List<GDriveUploadData>
 
-  @Query("SELECT * FROM gdrive_upload WHERE (lastUpdateTimestamp != gDriveUpdateTimestamp OR localStateDeleted != gDriveStateDeleted)")
-  fun getAllPending(): List<GDriveUploadData>
+  @Query("SELECT COUNT(*) FROM gdrive_upload WHERE (lastUpdateTimestamp != gDriveUpdateTimestamp OR localStateDeleted != gDriveStateDeleted)")
+  fun getPendingCount(): Int
 
   @Query("SELECT * FROM gdrive_upload WHERE type = :type AND (lastUpdateTimestamp != gDriveUpdateTimestamp OR localStateDeleted != gDriveStateDeleted)")
   fun getPendingByType(type: String): List<GDriveUploadData>

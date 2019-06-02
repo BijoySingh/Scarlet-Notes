@@ -15,6 +15,7 @@ import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.config.auth.IPendingUploadListener
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
@@ -324,38 +325,26 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
             .build()))
   }
 
-  fun notifySyncingInformation() {
+  fun notifySyncingInformation(isSyncPending: Boolean) {
     val componentContext = ComponentContext(this)
     if (!instance.authenticator().isLoggedIn(this)
         || instance.authenticator().isLegacyLoggedIn()) {
       return
     }
 
-    GlobalScope.launch {
-      if (!instance.authenticator().isDataPendingUpload()) {
-        GlobalScope.launch(Dispatchers.Main) {
-          lithoPreBottomToolbar.removeAllViews()
-        }
-        return@launch
-      }
-
+    if (!isSyncPending) {
       GlobalScope.launch(Dispatchers.Main) {
         lithoPreBottomToolbar.removeAllViews()
-        lithoPreBottomToolbar.addView(LithoView.create(componentContext,
-            MainActivitySyncingNow.create(componentContext)
-                .onClick {}
-                .build()))
-
-        val weakActivity = WeakReference(this@MainActivity)
-        ApplicationBase.instance.resyncDrive {
-          GlobalScope.launch(Dispatchers.Main) {
-            val instance = weakActivity.get()
-            if (instance !== null && !instance.isDestroyed) {
-              instance.notifySyncingInformation()
-            }
-          }
-        }
       }
+      return
+    }
+
+    GlobalScope.launch(Dispatchers.Main) {
+      lithoPreBottomToolbar.removeAllViews()
+      lithoPreBottomToolbar.addView(LithoView.create(componentContext,
+          MainActivitySyncingNow.create(componentContext)
+              .onClick {}
+              .build()))
     }
   }
 
@@ -380,7 +369,12 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     registerNoteReceiver()
 
     notifyDisabledSync()
-    notifySyncingInformation()
+
+    instance.authenticator().setPendingUploadListener(object : IPendingUploadListener {
+      override fun onPendingStateUpdate(isDataSyncPending: Boolean) {
+        notifySyncingInformation(isDataSyncPending)
+      }
+    })
   }
 
   fun resetAndSetupData() {
@@ -445,6 +439,7 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
   override fun onPause() {
     super.onPause()
     unregisterReceiver(receiver)
+    instance.authenticator().setPendingUploadListener(null)
   }
 
   override fun onDestroy() {
