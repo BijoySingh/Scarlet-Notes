@@ -86,7 +86,12 @@ fun Note.getText(): String {
       stringBuilder.append("\n")
     }
   }
-  return stringBuilder.toString().trim()
+
+  val text = stringBuilder.toString().trim()
+  if (BuildConfig.DEBUG) {
+    return "`$uuid`\n\n$text"
+  }
+  return text
 }
 
 fun Note.getSmartFormats(): List<Format> {
@@ -157,10 +162,7 @@ fun Note.getLockedText(isMarkdownEnabled: Boolean): CharSequence {
     else -> getMarkdownText(isMarkdownEnabled)
   }
 
-  if (BuildConfig.DEBUG) {
-    return "`$uuid`\n$text"
-  }
-  return text;
+  return text
 }
 
 fun Note.getDisplayTime(): String {

@@ -40,7 +40,8 @@ fun toImageUUID(imageUuid: String): ImageUUID? {
 class GDriveRemoteImageFolder(
     dataType: GDriveDataType,
     database: GDriveUploadDataDao,
-    helper: GDriveServiceHelper) : GDriveRemoteFolderBase(dataType, database, helper) {
+    helper: GDriveServiceHelper,
+    onPendingChange: () -> Unit) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange) {
 
   val contentLoading = AtomicBoolean(true)
   var contentFolderUid: String = INVALID_FILE_ID

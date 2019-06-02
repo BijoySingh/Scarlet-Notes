@@ -63,6 +63,7 @@ import kotlinx.android.synthetic.main.search_toolbar_main.*
 import kotlinx.android.synthetic.main.toolbar_trash_info.*
 import kotlinx.coroutines.*
 import java.lang.ref.WeakReference
+import java.util.concurrent.atomic.AtomicBoolean
 
 class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
   private val singleThreadDispatcher = newSingleThreadContext("singleThreadDispatcher")
@@ -73,6 +74,8 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
 
   private lateinit var receiver: BroadcastReceiver
   private lateinit var tagAndColorPicker: TagsAndColorPickerViewHolder
+
+  private var lastSyncState: AtomicBoolean = AtomicBoolean(false)
 
   var config: SearchConfig = SearchConfig(mode = HomeNavigationState.DEFAULT)
   var isInSearchMode: Boolean = false
@@ -330,6 +333,10 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     val componentContext = ComponentContext(this)
     if (!instance.authenticator().isLoggedIn(this)
         || instance.authenticator().isLegacyLoggedIn()) {
+      return
+    }
+
+    if (lastSyncState.getAndSet(isSyncPending) == isSyncPending) {
       return
     }
 

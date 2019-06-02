@@ -1,8 +1,6 @@
 package com.bijoysingh.quicknote.drive
 
 import android.os.SystemClock
-import android.util.Log
-import com.bijoysingh.quicknote.BuildConfig
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.api.client.http.ByteArrayContent
@@ -18,7 +16,6 @@ import java.io.BufferedReader
 import java.io.FileOutputStream
 import java.io.InputStreamReader
 import java.io.InterruptedIOException
-import java.net.SocketTimeoutException
 import java.util.*
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
@@ -31,14 +28,14 @@ const val GOOGLE_DRIVE_FILE_MIME_TYPE = "text/plain"
 const val GOOGLE_DRIVE_IMAGE_MIME_TYPE = "image/jpeg"
 
 const val INVALID_FILE_ID = "__invalid__"
-const val MAX_THRESHOLD_QUERIES_PER_SECOND = 2
+const val MAX_THRESHOLD_QUERIES_PER_SECOND = 4
 const val MIN_RESET_QUERIES_PER_SECOND = 0.1
 
 var lastCheckpointTime: AtomicLong = AtomicLong(0L)
 var numQueriesSinceLastCheckpoint: AtomicLong = AtomicLong(0L)
 
 class ErrorCallable<T>(val action: String, val callable: Callable<T>) : Callable<T?> {
-  private var delay: Long = 100L
+  private var delay: Long = 200L
 
   override fun call(): T? {
     val lastCheckpoint = lastCheckpointTime.get()
@@ -49,12 +46,11 @@ class ErrorCallable<T>(val action: String, val callable: Callable<T>) : Callable
     val currentCount = numQueriesSinceLastCheckpoint.get() * 1.0
     val deltaTimeS = (System.currentTimeMillis() - lastCheckpointTime.get()) / 1000.0
     val currentQueriesPerSecond = (currentCount / deltaTimeS)
-    log("GDrive", "Request being called: action=$action, currentCount=$currentCount, deltaTimeS=$deltaTimeS, requestRate=$currentQueriesPerSecond")
+    // log("GDrive", "Request being called: action=$action, currentCount=$currentCount, deltaTimeS=$deltaTimeS, requestRate=$currentQueriesPerSecond")
     if (currentCount >= 10 && deltaTimeS > 0) {
       when {
         currentQueriesPerSecond > MAX_THRESHOLD_QUERIES_PER_SECOND -> {
-          log("GDrive", "Rate limiting measures taken: action=$action, currentCount=$currentCount, deltaTimeS=$deltaTimeS")
-          delay *= 2
+          // log("GDrive", "Rate limiting measures taken: action=$action, currentCount=$currentCount, deltaTimeS=$deltaTimeS, delay=$delay")
           SystemClock.sleep(delay)
           return call()
         }
@@ -178,6 +174,7 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
           .setPageSize(1000)
           .setFields("files(name, id, modifiedTime, mimeType)")
           .setQ("mimeType = '$mimeType' and '$parentUid' in parents")
+          .setOrderBy("modifiedTime desc")
           .execute()
     })
   }
@@ -213,7 +210,7 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
   fun removeFileOrFolder(fileUid: String): Task<Void?> {
     log("GDrive", "removeFileOrFolder($fileUid)")
     return execute("removeFileOrFolder", Callable<Void> {
-      mDriveService.files().delete(fileUid)
+      mDriveService.files().delete(fileUid).execute()
       null
     })
   }

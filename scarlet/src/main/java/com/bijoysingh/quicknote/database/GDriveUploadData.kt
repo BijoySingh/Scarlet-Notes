@@ -3,6 +3,7 @@ package com.bijoysingh.quicknote.database
 import android.arch.persistence.room.*
 import com.google.gson.Gson
 import com.maubis.scarlet.base.support.utils.log
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 enum class GDriveDataType {
   NOTE,
@@ -31,12 +32,37 @@ class GDriveUploadData {
 
   var gDriveStateDeleted: Boolean = false
 
+  var attempts: Long = 0L
+
   @Ignore
   fun save(dao: GDriveUploadDataDao) {
+    if (uuid.isBlank() || type.isBlank()) {
+      maybeThrow("Invalid Dao")
+      return
+    }
+
+    log("GDrive", "data = ${Gson().toJson(this)}")
     val id = dao.insert(this)
     uid = if (uid == 0) id.toInt() else uid
   }
+
+  @Ignore
+  fun unsaved(): Boolean {
+    return uid == 0
+  }
 }
+
+object GDriveDatabaseHelper {
+  fun getByUUID(type: GDriveDataType, uuid: String): GDriveUploadData {
+    return getByUUID(type.name, uuid)
+  }
+
+  fun getByUUID(itemType: String, itemUuid: String): GDriveUploadData {
+    return gDriveDatabase?.getByUUID(itemType, itemUuid) ?: GDriveUploadData().apply {
+      this.uuid = itemUuid
+      this.type = itemType
+    }
+  }}
 
 @Dao
 interface GDriveUploadDataDao {
@@ -63,6 +89,9 @@ interface GDriveUploadDataDao {
 
   @Query("SELECT COUNT(*) FROM gdrive_upload WHERE (lastUpdateTimestamp != gDriveUpdateTimestamp OR localStateDeleted != gDriveStateDeleted)")
   fun getPendingCount(): Int
+
+  @Query("SELECT * FROM gdrive_upload WHERE (lastUpdateTimestamp != gDriveUpdateTimestamp OR localStateDeleted != gDriveStateDeleted)")
+  fun getAllPending(): List<GDriveUploadData>
 
   @Query("SELECT * FROM gdrive_upload WHERE type = :type AND (lastUpdateTimestamp != gDriveUpdateTimestamp OR localStateDeleted != gDriveStateDeleted)")
   fun getPendingByType(type: String): List<GDriveUploadData>

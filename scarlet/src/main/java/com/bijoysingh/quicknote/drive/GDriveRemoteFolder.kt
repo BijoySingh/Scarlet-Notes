@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.drive
 
 import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadDataDao
+import com.maubis.scarlet.base.support.utils.log
 import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -12,8 +13,9 @@ class GDriveRemoteFolder<T>(
     dataType: GDriveDataType,
     database: GDriveUploadDataDao,
     helper: GDriveServiceHelper,
+    onPendingChange: () -> Unit,
     val serialiser: (T) -> String,
-    val uuidToObject: (String) -> T?) : GDriveRemoteFolderBase(dataType, database, helper) {
+    val uuidToObject: (String) -> T?) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange) {
 
   var contentLoading = AtomicBoolean(true)
   var contentFolderUid: String = INVALID_FILE_ID
@@ -25,6 +27,8 @@ class GDriveRemoteFolder<T>(
   var deletedPendingActions = emptySet<String>().toMutableSet()
   val deletedFiles = emptyMap<String, String>().toMutableMap()
 
+  val duplicateFilesToDelete: MutableList<String> = emptyList<String>().toMutableList()
+
   fun initContentFolderId(fUid: String, onLoaded: () -> Unit) {
     GlobalScope.launch(Dispatchers.IO) {
       contentLoading.set(true)
@@ -33,13 +37,18 @@ class GDriveRemoteFolder<T>(
         val files = it.result?.files ?: emptyList()
         val localFileIds = emptyMap<String, String>().toMutableMap()
         files.forEach { file ->
-          localFileIds[file.name] = file.id
-          notifyDriveData(file)
+          if (localFileIds.containsKey(file.name)) {
+            duplicateFilesToDelete.add(file.id)
+          } else {
+            localFileIds[file.name] = file.id
+            notifyDriveData(file)
+          }
         }
         contentFiles.clear()
         contentFiles.putAll(localFileIds)
         contentLoading.set(false)
 
+        GlobalScope.launch { executeAllDuplicateDeletion() }
         GlobalScope.launch { executeInsertPendingActions() }
         GlobalScope.launch { onLoaded() }
       }
@@ -54,16 +63,30 @@ class GDriveRemoteFolder<T>(
         val files = it.result?.files ?: emptyList()
         val localFileIds = emptyMap<String, String>().toMutableMap()
         files.forEach { file ->
-          localFileIds[file.name] = file.id
-          notifyDriveData(file, true)
+          if (localFileIds.containsKey(file.name)) {
+            duplicateFilesToDelete.add(file.id)
+          } else {
+            localFileIds[file.name] = file.id
+            notifyDriveData(file, true)
+          }
         }
         deletedFiles.clear()
         deletedFiles.putAll(localFileIds)
         deletedLoading.set(false)
 
+        GlobalScope.launch { executeAllDuplicateDeletion() }
         GlobalScope.launch { executeDeletePendingActions() }
         GlobalScope.launch { onLoaded() }
       }
+    }
+  }
+
+  fun executeAllDuplicateDeletion() {
+    val files = ArrayList<String>()
+    files.addAll(duplicateFilesToDelete)
+    duplicateFilesToDelete.clear()
+    files.forEach { fileId ->
+      helper.removeFileOrFolder(fileId)
     }
   }
 
@@ -96,8 +119,10 @@ class GDriveRemoteFolder<T>(
     try {
       val data = serialiser(item)
       val fileId = contentFiles[uuid]
-      val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp
-          ?: getTrueCurrentTime()
+      val existing = database.getByUUID(dataType.name, uuid)
+      val timestamp = existing?.lastUpdateTimestamp ?: getTrueCurrentTime()
+
+      log("GDriveFolder", "uuid=$uuid efid=${existing?.fileId} ets=${existing?.lastUpdateTimestamp} :: fid=$fileId, ts=$timestamp")
       if (fileId !== null) {
         helper.saveFile(fileId, uuid, data, timestamp).addOnCompleteListener {
           val file = it.result
@@ -130,20 +155,22 @@ class GDriveRemoteFolder<T>(
 
     val existingFileUid = contentFiles[uuid]
     if (existingFileUid !== null) {
-      helper.removeFileOrFolder(existingFileUid)
-      contentFiles.remove(uuid)
-    }
+      helper.removeFileOrFolder(existingFileUid).addOnCompleteListener {
+        contentFiles.remove(uuid)
+        if (deletedFolderUid == INVALID_FILE_ID) {
+          return@addOnCompleteListener
+        }
 
-    if (deletedFolderUid == INVALID_FILE_ID) {
-      return
-    }
-    val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp
-        ?: getTrueCurrentTime()
-    helper.createFileWithData(deletedFolderUid, uuid, "", timestamp).addOnCompleteListener {
-      val file = it.result
-      if (file !== null) {
-        deletedFiles[uuid] = file.id
-        notifyDriveData(file.id, uuid, timestamp, true)
+        GlobalScope.launch {
+          val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp ?: getTrueCurrentTime()
+          helper.createFileWithData(deletedFolderUid, uuid, uuid, timestamp).addOnCompleteListener {
+            val file = it.result
+            if (file !== null) {
+              deletedFiles[uuid] = file.id
+              notifyDriveData(file.id, uuid, timestamp, true)
+            }
+          }
+        }
       }
     }
   }

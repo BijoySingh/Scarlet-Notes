@@ -4,6 +4,7 @@ import android.os.SystemClock
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.github.bijoysingh.starter.util.DateFormatter
+import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
@@ -67,6 +68,10 @@ fun maybeThrow(exception: Exception) {
 
     sInternalThrownExceptionCount = 0
     sInternalThrowOnException = false
+  }
+
+  if (BuildConfig.DEBUG) {
+    Log.e("Scarlet", "Exception Thrown and Recovered", exception)
   }
 }
 

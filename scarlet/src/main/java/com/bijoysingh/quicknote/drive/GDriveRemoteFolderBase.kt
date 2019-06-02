@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.drive
 
 import com.bijoysingh.quicknote.database.GDriveDataType
+import com.bijoysingh.quicknote.database.GDriveDatabaseHelper
 import com.bijoysingh.quicknote.database.GDriveUploadData
 import com.bijoysingh.quicknote.database.GDriveUploadDataDao
 import com.google.api.services.drive.model.File
@@ -10,7 +11,8 @@ import kotlinx.coroutines.launch
 abstract class GDriveRemoteFolderBase(
     val dataType: GDriveDataType,
     val database: GDriveUploadDataDao,
-    val helper: GDriveServiceHelper) {
+    val helper: GDriveServiceHelper,
+    val onPendingChange: () -> Unit) {
 
   protected fun notifyDriveData(file: File, deleted: Boolean = false) {
     val modifiedTime = file.modifiedTime?.value ?: 0L
@@ -19,11 +21,9 @@ abstract class GDriveRemoteFolderBase(
 
   protected fun notifyDriveData(uid: String, name: String, modifiedTime: Long, deleted: Boolean = false) {
     GlobalScope.launch {
-      val uploadData = database.getByUUID(dataType.name, name)
-      if (uploadData == null) {
-        GDriveUploadData().apply {
-          uuid = name
-          type = dataType.name
+      val uploadData = GDriveDatabaseHelper.getByUUID(dataType, name)
+      if (uploadData.unsaved()) {
+        uploadData.apply {
           fileId = uid
           gDriveUpdateTimestamp = modifiedTime
           gDriveStateDeleted = deleted
