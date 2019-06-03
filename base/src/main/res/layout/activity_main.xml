@@ -42,6 +42,13 @@
       android:layout_height="wrap_content" />
   </LinearLayout>
 
+  <FrameLayout
+    android:id="@+id/lithoSyncingBottomToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:layout_marginBottom="@dimen/toolbar_size" />
+
   <LinearLayout
     android:id="@+id/bottomSnackbar"
     android:layout_width="match_parent"

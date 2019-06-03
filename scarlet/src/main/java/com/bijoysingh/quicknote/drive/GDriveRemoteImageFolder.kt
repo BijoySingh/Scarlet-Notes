@@ -41,7 +41,8 @@ class GDriveRemoteImageFolder(
     dataType: GDriveDataType,
     database: GDriveUploadDataDao,
     helper: GDriveServiceHelper,
-    onPendingChange: () -> Unit) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange) {
+    onPendingChange: () -> Unit,
+    onPendingSyncComplete: () -> Unit) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange, onPendingSyncComplete) {
 
   val contentLoading = AtomicBoolean(true)
   var contentFolderUid: String = INVALID_FILE_ID
@@ -77,19 +78,32 @@ class GDriveRemoteImageFolder(
     }
 
     if (contentFiles.containsKey(id)) {
+      GlobalScope.launch {
+        database.getByUUID(dataType.name, id.name())?.apply {
+          gDriveUpdateTimestamp = lastUpdateTimestamp
+          gDriveStateDeleted = localStateDeleted
+          save(database)
+        }
+        onPendingChange()
+        onPendingSyncComplete()
+      }
       return
     }
 
     val gDriveUUID = id.name()
-    val timestamp = database.getByUUID(dataType.name, gDriveUUID)?.lastUpdateTimestamp ?: getTrueCurrentTime()
+    val timestamp = database.getByUUID(dataType.name, gDriveUUID)?.lastUpdateTimestamp
+        ?: getTrueCurrentTime()
     val imageFile = noteImagesFolder.getFile(id.noteUuid, id.imageUuid)
-    helper.createFileWithData(contentFolderUid, gDriveUUID, imageFile, timestamp).addOnCompleteListener {
-      val file = it.result
-      if (file !== null) {
-        contentFiles[id] = file.id
-        notifyDriveData(file.id, gDriveUUID, timestamp)
-      }
-    }
+    helper.createFileWithData(contentFolderUid, gDriveUUID, imageFile, timestamp)
+        .addOnCompleteListener {
+          val file = it.result
+          if (file !== null) {
+            contentFiles[id] = file.id
+            notifyDriveData(file.id, gDriveUUID, timestamp)
+          }
+          onPendingSyncComplete()
+        }
+        .addOnCanceledListener { onPendingSyncComplete() }
   }
 
   fun delete(id: ImageUUID) {
@@ -99,10 +113,15 @@ class GDriveRemoteImageFolder(
     }
 
     if (!contentFiles.containsKey(id)) {
+      onPendingSyncComplete()
       return
     }
 
     helper.removeFileOrFolder(contentFiles[id] ?: INVALID_FILE_ID)
-    contentFiles.remove(id)
+        .addOnCompleteListener {
+          contentFiles.remove(id)
+          onPendingSyncComplete()
+        }
+        .addOnCanceledListener { onPendingSyncComplete() }
   }
 }

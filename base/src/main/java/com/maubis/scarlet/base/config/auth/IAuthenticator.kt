@@ -22,5 +22,7 @@ interface IAuthenticator {
 
   fun setPendingUploadListener(listener: IPendingUploadListener?)
 
+  fun requestSync()
+
   fun logout()
 }

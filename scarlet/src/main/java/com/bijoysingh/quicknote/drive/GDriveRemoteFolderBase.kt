@@ -12,7 +12,8 @@ abstract class GDriveRemoteFolderBase(
     val dataType: GDriveDataType,
     val database: GDriveUploadDataDao,
     val helper: GDriveServiceHelper,
-    val onPendingChange: () -> Unit) {
+    val onPendingChange: () -> Unit,
+    val onPendingSyncComplete: () -> Unit) {
 
   protected fun notifyDriveData(file: File, deleted: Boolean = false) {
     val modifiedTime = file.modifiedTime?.value ?: 0L
@@ -29,6 +30,7 @@ abstract class GDriveRemoteFolderBase(
           gDriveStateDeleted = deleted
           save(database)
         }
+        onPendingChange()
         return@launch
       }
 
@@ -39,6 +41,7 @@ abstract class GDriveRemoteFolderBase(
           gDriveStateDeleted = deleted
           save(database)
         }
+        onPendingChange()
         return@launch
       }
 
@@ -52,6 +55,7 @@ abstract class GDriveRemoteFolderBase(
           gDriveStateDeleted = deleted
           save(database)
         }
+        onPendingChange()
       }
 
       if (uploadData.fileId == uid && uploadData.gDriveUpdateTimestamp != modifiedTime) {
@@ -61,6 +65,7 @@ abstract class GDriveRemoteFolderBase(
           gDriveStateDeleted = deleted
           save(database)
         }
+        onPendingChange()
       }
     }
   }

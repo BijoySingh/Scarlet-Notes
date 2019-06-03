@@ -67,6 +67,12 @@ class ScarletAuthenticator() : IAuthenticator {
     }
   }
 
+  override fun requestSync() {
+    if (sGDriveLoggedIn) {
+      gDrive?.resync()
+    }
+  }
+
   override fun openLoginActivity(context: Context) = Runnable {
     context.startActivity(Intent(context, GDriveLoginActivity::class.java))
   }

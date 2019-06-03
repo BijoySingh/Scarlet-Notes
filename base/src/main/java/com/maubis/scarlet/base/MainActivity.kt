@@ -76,6 +76,7 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
   private lateinit var tagAndColorPicker: TagsAndColorPickerViewHolder
 
   private var lastSyncState: AtomicBoolean = AtomicBoolean(false)
+  private var lastSyncHappening: AtomicBoolean = AtomicBoolean(false)
 
   var config: SearchConfig = SearchConfig(mode = HomeNavigationState.DEFAULT)
   var isInSearchMode: Boolean = false
@@ -329,30 +330,37 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
             .build()))
   }
 
-  fun notifySyncingInformation(isSyncPending: Boolean) {
+  fun notifySyncingInformation(isSyncHappening: Boolean, isSyncPending: Boolean) {
     val componentContext = ComponentContext(this)
     if (!instance.authenticator().isLoggedIn(this)
         || instance.authenticator().isLegacyLoggedIn()) {
       return
     }
 
-    if (lastSyncState.getAndSet(isSyncPending) == isSyncPending) {
+    if (lastSyncState.getAndSet(isSyncPending) == isSyncPending
+        && lastSyncHappening.getAndSet(isSyncHappening) == isSyncHappening) {
       return
     }
 
-    if (!isSyncPending) {
+    if (!isSyncPending && !isSyncHappening) {
       GlobalScope.launch(Dispatchers.Main) {
-        lithoPreBottomToolbar.removeAllViews()
+        lithoSyncingBottomToolbar.removeAllViews()
       }
       return
     }
 
     GlobalScope.launch(Dispatchers.Main) {
-      lithoPreBottomToolbar.removeAllViews()
-      lithoPreBottomToolbar.addView(LithoView.create(componentContext,
+      lithoSyncingBottomToolbar.removeAllViews()
+      lithoSyncingBottomToolbar.addView(LithoView.create(componentContext,
           MainActivitySyncingNow.create(componentContext)
-              .onClick {}
+              .isSyncHappening(isSyncHappening)
+              .onClick {
+                instance.authenticator().requestSync()
+              }
               .build()))
+      if (!isSyncHappening && isSyncPending) {
+        instance.authenticator().requestSync()
+      }
     }
   }
 
@@ -378,10 +386,15 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
 
     notifyDisabledSync()
     instance.authenticator().setPendingUploadListener(object : IPendingUploadListener {
+      override fun onPendingSyncsUpdate(isSyncHappening: Boolean) {
+        notifySyncingInformation(isSyncHappening, lastSyncState.get())
+      }
+
       override fun onPendingStateUpdate(isDataSyncPending: Boolean) {
-        notifySyncingInformation(isDataSyncPending)
+        notifySyncingInformation(lastSyncHappening.get(), isDataSyncPending)
       }
     })
+    instance.authenticator().requestSync()
   }
 
   fun resetAndSetupData() {

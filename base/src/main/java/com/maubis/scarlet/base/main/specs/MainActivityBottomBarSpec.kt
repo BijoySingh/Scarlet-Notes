@@ -7,6 +7,7 @@ import com.facebook.litho.annotations.LayoutSpec
 import com.facebook.litho.annotations.OnCreateLayout
 import com.facebook.litho.annotations.OnEvent
 import com.facebook.litho.annotations.Prop
+import com.facebook.litho.widget.Image
 import com.facebook.litho.widget.Progress
 import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaAlign
@@ -23,10 +24,7 @@ import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.folder.sheet.CreateOrEditFolderBottomSheet
 import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.sheets.openSheet
-import com.maubis.scarlet.base.support.specs.EmptySpec
-import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
-import com.maubis.scarlet.base.support.specs.bottomBarCard
-import com.maubis.scarlet.base.support.specs.bottomBarRoundIcon
+import com.maubis.scarlet.base.support.specs.*
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import kotlinx.coroutines.Dispatchers
@@ -174,33 +172,50 @@ object MainActivityDisabledSyncSpec {
 @LayoutSpec
 object MainActivitySyncingNowSpec {
   @OnCreateLayout
-  fun onCreate(context: ComponentContext): Component {
+  fun onCreate(context: ComponentContext, @Prop isSyncHappening: Boolean): Component {
     val colorConfig = ToolbarColorConfig(
         toolbarBackgroundColor = instance.themeController().get(ThemeColorType.TOOLBAR_BACKGROUND),
         toolbarIconColor = instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
     )
+    val syncText = when (isSyncHappening) {
+      true -> R.string.home_syncing_top_layout
+      false -> R.string.home_pending_backup_top_layout
+    }
+    val syncIcon = when (isSyncHappening) {
+      true -> Progress.create(context)
+          .widthDip(24f)
+          .alpha(0.8f)
+          .marginDip(YogaEdge.END, 8f)
+          .color(colorConfig.toolbarIconColor)
+      false -> Image.create(context)
+          .heightDip(24f)
+          .widthDip(24f)
+          .marginDip(YogaEdge.END, 8f)
+          .alpha(0.8f)
+          .drawableRes(R.drawable.icon_folder_sync)
+    }
+
     val row = Row.create(context)
         .widthPercent(100f)
         .alignItems(YogaAlign.CENTER)
-        .paddingDip(YogaEdge.HORIZONTAL, 4f)
-        .child(Row.create(context)
-            .child(EmptySpec.create(context).flexGrow(1f))
-            .child(
-                Progress.create(context)
-                    .widthDip(48f)
-                    .paddingDip(YogaEdge.ALL, 8f)
-                    .marginDip(YogaEdge.HORIZONTAL, 8f)
-                    .alpha(0.6f)
-                    .color(colorConfig.toolbarIconColor))
-            .flexGrow(1f))
-        .child(Text.create(context)
-            .typeface(FONT_MONSERRAT)
-            .textRes(R.string.home_syncing_top_layout)
-            .textSizeRes(R.dimen.font_size_normal)
-            .textColor(colorConfig.toolbarIconColor))
+        .paddingDip(YogaEdge.HORIZONTAL, 8f)
+        .paddingDip(YogaEdge.VERTICAL, 8f)
+        .alpha(0.8f)
         .child(EmptySpec.create(context).flexGrow(1f))
-        .clickHandler(MainActivityDisabledSync.onClickEvent(context))
-    return bottomBarCard(context, row.build(), colorConfig).build()
+        .child(Row.create(context)
+            .alignItems(YogaAlign.CENTER)
+            .alignContent(YogaAlign.CENTER)
+            .paddingDip(YogaEdge.VERTICAL, 8f)
+            .paddingDip(YogaEdge.HORIZONTAL, 12f)
+            .backgroundRes(R.drawable.login_button_disabled)
+            .child(syncIcon)
+            .child(Text.create(context)
+                .typeface(FONT_MONSERRAT)
+                .textRes(syncText)
+                .textSizeRes(R.dimen.font_size_normal)
+                .textColor(colorConfig.toolbarIconColor)))
+        .clickHandler(MainActivitySyncingNow.onClickEvent(context))
+    return row.build()
   }
 
   @OnEvent(ClickEvent::class)

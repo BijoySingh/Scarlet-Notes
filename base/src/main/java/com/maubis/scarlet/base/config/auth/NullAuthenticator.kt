@@ -22,4 +22,6 @@ class NullAuthenticator : IAuthenticator {
   override fun isLegacyLoggedIn(): Boolean = false
 
   override fun setPendingUploadListener(listener: IPendingUploadListener?) {}
+
+  override fun requestSync() {}
 }

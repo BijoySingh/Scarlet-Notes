@@ -3,7 +3,6 @@ package com.bijoysingh.quicknote.drive
 import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadDataDao
 import com.maubis.scarlet.base.support.utils.log
-import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -14,8 +13,9 @@ class GDriveRemoteFolder<T>(
     database: GDriveUploadDataDao,
     helper: GDriveServiceHelper,
     onPendingChange: () -> Unit,
+    onPendingSyncComplete: () -> Unit,
     val serialiser: (T) -> String,
-    val uuidToObject: (String) -> T?) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange) {
+    val uuidToObject: (String) -> T?) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange, onPendingSyncComplete) {
 
   var contentLoading = AtomicBoolean(true)
   var contentFolderUid: String = INVALID_FILE_ID
@@ -56,6 +56,13 @@ class GDriveRemoteFolder<T>(
   }
 
   fun initDeletedFolderId(fUid: String, onLoaded: () -> Unit) {
+    if (fUid == INVALID_FILE_ID) {
+      deletedLoading.set(false)
+      GlobalScope.launch { executeDeletePendingActions() }
+      GlobalScope.launch { onLoaded() }
+      return
+    }
+
     GlobalScope.launch(Dispatchers.IO) {
       deletedLoading.set(true)
       deletedFolderUid = fUid
@@ -116,32 +123,35 @@ class GDriveRemoteFolder<T>(
       return
     }
 
-    try {
-      val data = serialiser(item)
-      val fileId = contentFiles[uuid]
-      val existing = database.getByUUID(dataType.name, uuid)
-      val timestamp = existing?.lastUpdateTimestamp ?: getTrueCurrentTime()
+    val data = serialiser(item)
+    val fileId = contentFiles[uuid]
+    val existing = database.getByUUID(dataType.name, uuid)
+    val timestamp = existing?.lastUpdateTimestamp ?: getTrueCurrentTime()
 
-      log("GDriveFolder", "uuid=$uuid efid=${existing?.fileId} ets=${existing?.lastUpdateTimestamp} :: fid=$fileId, ts=$timestamp")
-      if (fileId !== null) {
-        helper.saveFile(fileId, uuid, data, timestamp).addOnCompleteListener {
+    log("GDriveFolder", "uuid=$uuid efid=${existing?.fileId} ets=${existing?.lastUpdateTimestamp} :: fid=$fileId, ts=$timestamp")
+    if (fileId !== null) {
+      helper.saveFile(fileId, uuid, data, timestamp)
+          .addOnCompleteListener {
+            val file = it.result
+            if (file !== null) {
+              notifyDriveData(file.id, uuid, timestamp)
+            }
+            onPendingSyncComplete()
+          }
+          .addOnCanceledListener { onPendingSyncComplete() }
+      return
+    }
+    helper.createFileWithData(contentFolderUid, uuid, data, timestamp)
+        .addOnCompleteListener {
           val file = it.result
           if (file !== null) {
+            contentFiles[uuid] = file.id
             notifyDriveData(file.id, uuid, timestamp)
           }
+          onPendingSyncComplete()
         }
-        return
-      }
-      helper.createFileWithData(contentFolderUid, uuid, data, timestamp).addOnCompleteListener {
-        val file = it.result
-        if (file !== null) {
-          contentFiles[uuid] = file.id
-          notifyDriveData(file.id, uuid, timestamp)
-        }
-      }
-    } catch (exception: Exception) {
-      maybeThrow(exception)
-    }
+        .addOnCanceledListener { onPendingSyncComplete() }
+
   }
 
   /**
@@ -154,24 +164,41 @@ class GDriveRemoteFolder<T>(
     }
 
     val existingFileUid = contentFiles[uuid]
-    if (existingFileUid !== null) {
-      helper.removeFileOrFolder(existingFileUid).addOnCompleteListener {
-        contentFiles.remove(uuid)
-        if (deletedFolderUid == INVALID_FILE_ID) {
-          return@addOnCompleteListener
+    if (existingFileUid === null) {
+      GlobalScope.launch {
+        val existing = database.getByUUID(dataType.name, uuid)
+        if (existing !== null) {
+          database.delete(existing)
+          onPendingChange()
         }
+        onPendingSyncComplete()
+      }
+      return
+    }
 
-        GlobalScope.launch {
-          val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp ?: getTrueCurrentTime()
-          helper.createFileWithData(deletedFolderUid, uuid, uuid, timestamp).addOnCompleteListener {
-            val file = it.result
-            if (file !== null) {
-              deletedFiles[uuid] = file.id
-              notifyDriveData(file.id, uuid, timestamp, true)
-            }
+    helper.removeFileOrFolder(existingFileUid)
+        .addOnCompleteListener {
+          contentFiles.remove(uuid)
+          if (deletedFolderUid == INVALID_FILE_ID) {
+            onPendingSyncComplete()
+            return@addOnCompleteListener
+          }
+
+          GlobalScope.launch {
+            val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp
+                ?: getTrueCurrentTime()
+            helper.createFileWithData(deletedFolderUid, uuid, uuid, timestamp)
+                .addOnCompleteListener {
+                  val file = it.result
+                  if (file !== null) {
+                    deletedFiles[uuid] = file.id
+                    notifyDriveData(file.id, uuid, timestamp, true)
+                  }
+                  onPendingSyncComplete()
+                }
+                .addOnCanceledListener { onPendingSyncComplete() }
           }
         }
-      }
-    }
+        .addOnCanceledListener { onPendingSyncComplete() }
   }
 }

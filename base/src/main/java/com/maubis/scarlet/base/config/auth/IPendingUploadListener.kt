@@ -5,4 +5,9 @@ interface IPendingUploadListener {
    * Fires when the pending state changes.
    */
   fun onPendingStateUpdate(isDataSyncPending: Boolean)
+
+  /**
+   * Pending Sync Count state change
+   */
+  fun onPendingSyncsUpdate(isSyncHappening: Boolean)
 }
