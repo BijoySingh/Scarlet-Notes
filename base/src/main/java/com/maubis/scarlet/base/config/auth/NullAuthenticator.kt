@@ -23,5 +23,5 @@ class NullAuthenticator : IAuthenticator {
 
   override fun setPendingUploadListener(listener: IPendingUploadListener?) {}
 
-  override fun requestSync() {}
+  override fun requestSync(forced: Boolean) {}
 }

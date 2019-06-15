@@ -100,12 +100,20 @@ class GDriveRemoteDatabaseState(context: Context): IRemoteDatabaseState {
     }
 
     val existing = GDriveDatabaseHelper.getByUUID(itemType, itemUUID)
+    val lastAttemptedTime = existing.lastAttemptTime
+
+    // If it fails 8 times, only re-attempt after hour. This handles situations like no-network conditions
+    val reAttempt = (existing.attempts >= 8 && (getTrueCurrentTime() - lastAttemptedTime > 1000 * 60 * 60))
     existing.apply {
-      attempts += 1
+      attempts = when {
+        (attempts < 8) -> attempts + 1
+        reAttempt -> 0
+        else -> attempts
+      }
+      lastAttemptTime = getTrueCurrentTime()
       save(database)
     }
-
-    return existing.attempts < 16
+    return existing.attempts < 8
   }
 
   fun remoteDatabaseUpdate(itemType: GDriveDataType, itemUUID: String, onExecution: () -> Unit) {
@@ -119,6 +127,7 @@ class GDriveRemoteDatabaseState(context: Context): IRemoteDatabaseState {
       val existing = GDriveDatabaseHelper.getByUUID(itemType, itemUUID)
       existing.apply {
         attempts = 0
+        lastAttemptTime = 0
         lastUpdateTimestamp = gDriveUpdateTimestamp
         localStateDeleted = gDriveStateDeleted
         save(database)
@@ -142,6 +151,7 @@ class GDriveRemoteDatabaseState(context: Context): IRemoteDatabaseState {
       val existing = GDriveDatabaseHelper.getByUUID(itemType, itemUUID)
       existing.apply {
         attempts = 0
+        lastAttemptTime = 0
         lastUpdateTimestamp = Math.max(gDriveUpdateTimestamp + 1, getTrueCurrentTime())
         localStateDeleted = removed
         save(database)

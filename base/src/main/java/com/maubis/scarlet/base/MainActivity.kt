@@ -56,13 +56,11 @@ import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.unifiedFolderSearchSynchronous
 import com.maubis.scarlet.base.support.unifiedSearchSynchronous
-import com.maubis.scarlet.base.support.utils.maybeThrow
 import com.maubis.scarlet.base.support.utils.shouldShowWhatsNewSheet
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_toolbar_main.*
 import kotlinx.android.synthetic.main.toolbar_trash_info.*
 import kotlinx.coroutines.*
-import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicBoolean
 
 class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
@@ -75,7 +73,7 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
   private lateinit var receiver: BroadcastReceiver
   private lateinit var tagAndColorPicker: TagsAndColorPickerViewHolder
 
-  private var lastSyncState: AtomicBoolean = AtomicBoolean(false)
+  private var lastSyncPending: AtomicBoolean = AtomicBoolean(false)
   private var lastSyncHappening: AtomicBoolean = AtomicBoolean(false)
 
   var config: SearchConfig = SearchConfig(mode = HomeNavigationState.DEFAULT)
@@ -337,7 +335,7 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
       return
     }
 
-    if (lastSyncState.getAndSet(isSyncPending) == isSyncPending
+    if (lastSyncPending.getAndSet(isSyncPending) == isSyncPending
         && lastSyncHappening.getAndSet(isSyncHappening) == isSyncHappening) {
       return
     }
@@ -355,11 +353,13 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
           MainActivitySyncingNow.create(componentContext)
               .isSyncHappening(isSyncHappening)
               .onClick {
-                instance.authenticator().requestSync()
+                if (!lastSyncHappening.get()) {
+                  instance.authenticator().requestSync(true)
+                }
               }
               .build()))
       if (!isSyncHappening && isSyncPending) {
-        instance.authenticator().requestSync()
+        instance.authenticator().requestSync(false)
       }
     }
   }
@@ -387,14 +387,14 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     notifyDisabledSync()
     instance.authenticator().setPendingUploadListener(object : IPendingUploadListener {
       override fun onPendingSyncsUpdate(isSyncHappening: Boolean) {
-        notifySyncingInformation(isSyncHappening, lastSyncState.get())
+        notifySyncingInformation(isSyncHappening, lastSyncPending.get())
       }
 
       override fun onPendingStateUpdate(isDataSyncPending: Boolean) {
         notifySyncingInformation(lastSyncHappening.get(), isDataSyncPending)
       }
     })
-    instance.authenticator().requestSync()
+    instance.authenticator().requestSync(false)
   }
 
   fun resetAndSetupData() {

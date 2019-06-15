@@ -2,7 +2,6 @@ package com.bijoysingh.quicknote.drive
 
 import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadDataDao
-import com.maubis.scarlet.base.support.utils.log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -13,9 +12,11 @@ class GDriveRemoteFolder<T>(
     database: GDriveUploadDataDao,
     helper: GDriveServiceHelper,
     onPendingChange: () -> Unit,
-    onPendingSyncComplete: () -> Unit,
+    onPendingSyncComplete: (String) -> Unit,
     val serialiser: (T) -> String,
     val uuidToObject: (String) -> T?) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange, onPendingSyncComplete) {
+
+  var networkOrAbsoluteFailure = AtomicBoolean(false)
 
   var contentLoading = AtomicBoolean(true)
   var contentFolderUid: String = INVALID_FILE_ID
@@ -30,10 +31,16 @@ class GDriveRemoteFolder<T>(
   val duplicateFilesToDelete: MutableList<String> = emptyList<String>().toMutableList()
 
   fun initContentFolderId(fUid: String, onLoaded: () -> Unit) {
+    val logInfo = "initContentFolderId($fUid)"
     GlobalScope.launch(Dispatchers.IO) {
       contentLoading.set(true)
       contentFolderUid = fUid
       helper.getFilesInFolder(contentFolderUid).addOnCompleteListener {
+        if (it.result === null) {
+          // Something bad happened, probably network failure etc
+          networkOrAbsoluteFailure.set(true)
+        }
+
         val files = it.result?.files ?: emptyList()
         val localFileIds = emptyMap<String, String>().toMutableMap()
         files.forEach { file ->
@@ -51,11 +58,16 @@ class GDriveRemoteFolder<T>(
         GlobalScope.launch { executeAllDuplicateDeletion() }
         GlobalScope.launch { executeInsertPendingActions() }
         GlobalScope.launch { onLoaded() }
+      }.addOnFailureListener {
+        onPendingSyncComplete(logInfo)
+      }.addOnCanceledListener {
+        onPendingSyncComplete(logInfo)
       }
     }
   }
 
   fun initDeletedFolderId(fUid: String, onLoaded: () -> Unit) {
+    val logInfo = "initDeletedFolderId($fUid)"
     if (fUid == INVALID_FILE_ID) {
       deletedLoading.set(false)
       GlobalScope.launch { executeDeletePendingActions() }
@@ -67,6 +79,11 @@ class GDriveRemoteFolder<T>(
       deletedLoading.set(true)
       deletedFolderUid = fUid
       helper.getFilesInFolder(deletedFolderUid).addOnCompleteListener {
+        if (it.result === null) {
+          // Something bad happened, probably network failure etc
+          networkOrAbsoluteFailure.set(true)
+        }
+
         val files = it.result?.files ?: emptyList()
         val localFileIds = emptyMap<String, String>().toMutableMap()
         files.forEach { file ->
@@ -84,6 +101,10 @@ class GDriveRemoteFolder<T>(
         GlobalScope.launch { executeAllDuplicateDeletion() }
         GlobalScope.launch { executeDeletePendingActions() }
         GlobalScope.launch { onLoaded() }
+      }.addOnFailureListener {
+        onPendingSyncComplete(logInfo)
+      }.addOnCanceledListener {
+        onPendingSyncComplete(logInfo)
       }
     }
   }
@@ -118,8 +139,14 @@ class GDriveRemoteFolder<T>(
    * Insert the file on the server based on the insertion on the local device
    */
   fun insert(uuid: String, item: T) {
+    val logInfo = "insert($uuid)"
     if (contentLoading.get()) {
       contentPendingActions.add(uuid)
+      return
+    }
+
+    if (networkOrAbsoluteFailure.get()) {
+      onPendingSyncComplete(logInfo)
       return
     }
 
@@ -128,7 +155,6 @@ class GDriveRemoteFolder<T>(
     val existing = database.getByUUID(dataType.name, uuid)
     val timestamp = existing?.lastUpdateTimestamp ?: getTrueCurrentTime()
 
-    log("GDriveFolder", "uuid=$uuid efid=${existing?.fileId} ets=${existing?.lastUpdateTimestamp} :: fid=$fileId, ts=$timestamp")
     if (fileId !== null) {
       helper.saveFile(fileId, uuid, data, timestamp)
           .addOnCompleteListener {
@@ -136,9 +162,10 @@ class GDriveRemoteFolder<T>(
             if (file !== null) {
               notifyDriveData(file.id, uuid, timestamp)
             }
-            onPendingSyncComplete()
+            onPendingSyncComplete(logInfo)
           }
-          .addOnCanceledListener { onPendingSyncComplete() }
+          .addOnFailureListener { onPendingSyncComplete(logInfo) }
+          .addOnCanceledListener { onPendingSyncComplete(logInfo) }
       return
     }
     helper.createFileWithData(contentFolderUid, uuid, data, timestamp)
@@ -148,9 +175,10 @@ class GDriveRemoteFolder<T>(
             contentFiles[uuid] = file.id
             notifyDriveData(file.id, uuid, timestamp)
           }
-          onPendingSyncComplete()
+          onPendingSyncComplete(logInfo)
         }
-        .addOnCanceledListener { onPendingSyncComplete() }
+        .addOnFailureListener { onPendingSyncComplete(logInfo) }
+        .addOnCanceledListener { onPendingSyncComplete(logInfo) }
 
   }
 
@@ -158,8 +186,14 @@ class GDriveRemoteFolder<T>(
    * Delete the file on the server based on removal on the local device
    */
   fun delete(uuid: String) {
+    val logInfo = "delete($uuid)"
     if (deletedLoading.get() || contentLoading.get()) {
       deletedPendingActions.add(uuid)
+      return
+    }
+
+    if (networkOrAbsoluteFailure.get()) {
+      onPendingSyncComplete(logInfo)
       return
     }
 
@@ -171,7 +205,7 @@ class GDriveRemoteFolder<T>(
           database.delete(existing)
           onPendingChange()
         }
-        onPendingSyncComplete()
+        onPendingSyncComplete(logInfo)
       }
       return
     }
@@ -180,7 +214,7 @@ class GDriveRemoteFolder<T>(
         .addOnCompleteListener {
           contentFiles.remove(uuid)
           if (deletedFolderUid == INVALID_FILE_ID) {
-            onPendingSyncComplete()
+            onPendingSyncComplete(logInfo)
             return@addOnCompleteListener
           }
 
@@ -194,11 +228,13 @@ class GDriveRemoteFolder<T>(
                     deletedFiles[uuid] = file.id
                     notifyDriveData(file.id, uuid, timestamp, true)
                   }
-                  onPendingSyncComplete()
+                  onPendingSyncComplete(logInfo)
                 }
-                .addOnCanceledListener { onPendingSyncComplete() }
+                .addOnFailureListener { onPendingSyncComplete(logInfo) }
+                .addOnCanceledListener { onPendingSyncComplete(logInfo) }
           }
         }
-        .addOnCanceledListener { onPendingSyncComplete() }
+        .addOnFailureListener { onPendingSyncComplete(logInfo) }
+        .addOnCanceledListener { onPendingSyncComplete(logInfo) }
   }
 }

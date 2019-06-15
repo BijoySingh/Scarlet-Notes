@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.bijoysingh.quicknote.Scarlet
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
+import com.bijoysingh.quicknote.database.gDriveDatabase
 import com.bijoysingh.quicknote.drive.GDriveAuthenticator
 import com.bijoysingh.quicknote.drive.GDriveLoginActivity
 import com.bijoysingh.quicknote.drive.GDriveLogoutActivity
@@ -12,6 +13,8 @@ import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
 import com.bijoysingh.quicknote.firebase.support.FirebaseAuthenticator
 import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.auth.IPendingUploadListener
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 const val KEY_G_DRIVE_LOGGED_IN = "g_drive_logged_in"
 var sGDriveLoggedIn: Boolean
@@ -67,7 +70,17 @@ class ScarletAuthenticator() : IAuthenticator {
     }
   }
 
-  override fun requestSync() {
+  override fun requestSync(forced: Boolean) {
+    if (forced) {
+      GlobalScope.launch {
+        gDriveDatabase?.resetAttempts()
+        if (sGDriveLoggedIn) {
+          gDrive?.resync()
+        }
+      }
+      return
+    }
+
     if (sGDriveLoggedIn) {
       gDrive?.resync()
     }

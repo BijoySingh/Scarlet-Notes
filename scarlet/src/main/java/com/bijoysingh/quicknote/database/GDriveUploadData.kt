@@ -34,6 +34,8 @@ class GDriveUploadData {
 
   var attempts: Long = 0L
 
+  var lastAttemptTime: Long = 0L
+
   @Ignore
   fun save(dao: GDriveUploadDataDao) {
     if (uuid.isBlank() || type.isBlank()) {
@@ -71,6 +73,9 @@ interface GDriveUploadDataDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   fun insert(note: GDriveUploadData): Long
+
+  @Query("UPDATE gdrive_upload SET attempts = 0")
+  fun resetAttempts()
 
   @Delete
   fun delete(note: GDriveUploadData)

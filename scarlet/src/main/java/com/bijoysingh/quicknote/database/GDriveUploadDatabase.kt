@@ -15,7 +15,7 @@ fun genGDriveUploadDatabase(context: Context): GDriveUploadDataDao? {
   return gDriveDatabase
 }
 
-@Database(entities = [GDriveUploadData::class], version = 3)
+@Database(entities = [GDriveUploadData::class], version = 4)
 abstract class GDriveUploadDatabase : RoomDatabase() {
   abstract fun drive(): GDriveUploadDataDao
 }

@@ -98,7 +98,6 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
           .setParents(listOf(folderId))
           .setMimeType(GOOGLE_DRIVE_FILE_MIME_TYPE)
           .setModifiedTime(DateTime(updateTime))
-          .setModifiedByMeTime(DateTime(updateTime))
           .setName(name)
       val contentStream = ByteArrayContent.fromString("text/plain", contentToSave)
       mDriveService.files().create(metadata, contentStream).execute()
@@ -112,7 +111,6 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
           .setParents(listOf(folderId))
           .setMimeType(GOOGLE_DRIVE_IMAGE_MIME_TYPE)
           .setModifiedTime(DateTime(updateTime))
-          .setModifiedByMeTime(DateTime(updateTime))
           .setName(name)
       val mediaContent = FileContent(GOOGLE_DRIVE_IMAGE_MIME_TYPE, file)
       mDriveService.files().create(metadata, mediaContent).execute()
@@ -126,7 +124,6 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
       val metadata = File()
           .setMimeType(GOOGLE_DRIVE_FOLDER_MIME_TYPE)
           .setModifiedTime(timestamp)
-          .setModifiedByMeTime(timestamp)
           .setName(folderName)
       if (!parentUid.isEmpty()) {
         metadata.parents = listOf(parentUid)
@@ -166,7 +163,6 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
     return execute("saveFile", Callable<File> {
       val metadata = File()
           .setModifiedTime(DateTime(updateTime))
-          .setModifiedByMeTime(DateTime(updateTime))
           .setName(name)
       val contentStream = ByteArrayContent.fromString("text/plain", content)
       mDriveService.files().update(fileId, metadata, contentStream).execute()
