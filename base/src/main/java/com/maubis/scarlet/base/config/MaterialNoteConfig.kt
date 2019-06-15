@@ -17,6 +17,7 @@ import com.maubis.scarlet.base.core.tag.MaterialTagActor
 import com.maubis.scarlet.base.database.FoldersProvider
 import com.maubis.scarlet.base.database.NotesProvider
 import com.maubis.scarlet.base.database.TagsProvider
+import com.maubis.scarlet.base.database.remote.IRemoteDatabaseState
 import com.maubis.scarlet.base.database.room.AppDatabase
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
@@ -58,6 +59,13 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   override fun themeController(): IThemeManager = appTheme
 
   override fun remoteConfigFetcher(): IRemoteConfigFetcher = NullRemoteConfigFetcher()
+
+  override fun remoteDatabaseState(): IRemoteDatabaseState {
+    return object: IRemoteDatabaseState {
+      override fun notifyInsert(data: Any, onExecution: () -> Unit) {}
+      override fun notifyRemove(data: Any, onExecution: () -> Unit) {}
+    }
+  }
 
   override fun startListener(activity: AppCompatActivity) {}
 

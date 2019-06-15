@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
+import com.bijoysingh.quicknote.Scarlet.Companion.gDriveDbState
 import com.bijoysingh.quicknote.database.GDriveDataType
 import com.bijoysingh.quicknote.database.GDriveUploadData
 import com.bijoysingh.quicknote.firebase.activity.FirebaseLoginActivity
@@ -138,22 +139,7 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
     gDrive = GDriveRemoteDatabase(WeakReference(this.applicationContext))
     gDrive?.init(mDriveServiceHelper!!)
 
-    GlobalScope.launch {
-      val database = gDrive?.gDriveDatabase
-      if (database === null) {
-        return@launch
-      }
-      ApplicationBase.instance.notesDatabase().getAll().forEach {
-        instance.noteActions(it).onlineSave(context)
-      }
-      ApplicationBase.instance.tagsDatabase().getAll().forEach {
-        instance.tagActions(it).onlineSave()
-      }
-      ApplicationBase.instance.foldersDatabase().getAll().forEach {
-        instance.folderActions(it).onlineSave()
-      }
-      finish()
-    }
+    finish()
   }
 
   override fun onConnectionFailed(p0: ConnectionResult) {

@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.drive
 
 import android.content.Context
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
+import com.bijoysingh.quicknote.Scarlet.Companion.gDriveDbState
 import com.bijoysingh.quicknote.scarlet.sGDriveLoggedIn
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -16,6 +17,7 @@ class GDriveAuthenticator {
   var account: GoogleSignInAccount? = null
 
   fun setup(context: Context) {
+    gDriveDbState = GDriveRemoteDatabaseState(context)
     GlobalScope.launch {
       account = GoogleSignIn.getLastSignedInAccount(context)
       hasAccountSetup.set(true)

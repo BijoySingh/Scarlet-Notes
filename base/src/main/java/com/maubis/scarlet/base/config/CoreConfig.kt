@@ -17,6 +17,7 @@ import com.maubis.scarlet.base.core.tag.ITagActor
 import com.maubis.scarlet.base.database.FoldersProvider
 import com.maubis.scarlet.base.database.NotesProvider
 import com.maubis.scarlet.base.database.TagsProvider
+import com.maubis.scarlet.base.database.remote.IRemoteDatabaseState
 import com.maubis.scarlet.base.database.room.AppDatabase
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
@@ -56,6 +57,8 @@ abstract class CoreConfig(context: Context) {
   abstract fun themeController(): IThemeManager
 
   abstract fun remoteConfigFetcher(): IRemoteConfigFetcher
+
+  abstract fun remoteDatabaseState(): IRemoteDatabaseState
 
   abstract fun startListener(activity: AppCompatActivity)
 

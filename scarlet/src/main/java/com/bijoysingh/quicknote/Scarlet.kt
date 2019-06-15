@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote
 
 import com.bijoysingh.quicknote.drive.GDriveRemoteDatabase
+import com.bijoysingh.quicknote.drive.GDriveRemoteDatabaseState
 import com.bijoysingh.quicknote.firebase.FirebaseRemoteDatabase
 import com.bijoysingh.quicknote.scarlet.ScarletConfig
 import com.github.bijoysingh.starter.prefs.Store
@@ -24,6 +25,7 @@ class Scarlet : ApplicationBase() {
   companion object {
     var firebase: FirebaseRemoteDatabase? = null
     var gDrive: GDriveRemoteDatabase? = null
+    var gDriveDbState: GDriveRemoteDatabaseState? = null
     var gDriveConfig: Store? = null
   }
 }

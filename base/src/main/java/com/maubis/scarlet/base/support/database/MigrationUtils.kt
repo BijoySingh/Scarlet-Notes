@@ -15,6 +15,8 @@ import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.utils.getLastUsedAppVersionCode
 import com.maubis.scarlet.base.support.utils.maybeThrow
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.File
 import java.util.*
 
@@ -22,6 +24,7 @@ const val KEY_MIGRATE_THEME = "KEY_MIGRATE_THEME"
 const val KEY_MIGRATE_DEFAULT_VALUES = "KEY_MIGRATE_DEFAULT_VALUES"
 const val KEY_MIGRATE_REMINDERS = "KEY_MIGRATE_REMINDERS"
 const val KEY_MIGRATE_IMAGES = "KEY_MIGRATE_IMAGES"
+const val KEY_MIGRATE_TO_GDRIVE_DATABASE = "KEY_MIGRATE_TO_GDRIVE_DATABASE"
 
 class Migrator(val context: Context) {
 
@@ -62,6 +65,21 @@ class Migrator(val context: Context) {
         KEY_MIGRATE_DEFAULT_VALUES) {
       ApplicationBase.instance.store().put(KEY_APP_THEME, Theme.DARK.name)
       ApplicationBase.instance.store().put(KEY_LIST_VIEW, true)
+    }
+
+    runTask(KEY_MIGRATE_TO_GDRIVE_DATABASE) {
+      GlobalScope.launch {
+        val remoteDatabaseState = ApplicationBase.instance.remoteDatabaseState()
+        ApplicationBase.instance.notesDatabase().getAll().forEach {
+          remoteDatabaseState.notifyInsert(it) {}
+        }
+        ApplicationBase.instance.tagsDatabase().getAll().forEach {
+          remoteDatabaseState.notifyInsert(it) {}
+        }
+        ApplicationBase.instance.foldersDatabase().getAll().forEach {
+          remoteDatabaseState.notifyInsert(it) {}
+        }
+      }
     }
   }
 

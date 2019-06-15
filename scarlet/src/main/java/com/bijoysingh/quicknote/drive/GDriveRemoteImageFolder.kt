@@ -113,15 +113,28 @@ class GDriveRemoteImageFolder(
     }
 
     if (!contentFiles.containsKey(id)) {
-      onPendingSyncComplete()
+      GlobalScope.launch {
+        val existing = database.getByUUID(dataType.name, id.name())
+        if (existing !== null) {
+          database.delete(existing)
+        }
+        onPendingSyncComplete()
+      }
       return
     }
 
-    helper.removeFileOrFolder(contentFiles[id] ?: INVALID_FILE_ID)
-        .addOnCompleteListener {
-          contentFiles.remove(id)
-          onPendingSyncComplete()
-        }
-        .addOnCanceledListener { onPendingSyncComplete() }
+    GlobalScope.launch {
+      val fuid = contentFiles[id] ?: INVALID_FILE_ID
+      val existing = database.getByUUID(dataType.name, id.name())
+      val timestamp = existing?.lastUpdateTimestamp ?: getTrueCurrentTime()
+
+      helper.removeFileOrFolder(fuid)
+          .addOnCompleteListener {
+            notifyDriveData(fuid, id.name(), timestamp, true)
+            contentFiles.remove(id)
+            onPendingSyncComplete()
+          }
+          .addOnCanceledListener { onPendingSyncComplete() }
+    }
   }
 }
