@@ -58,10 +58,7 @@ class GDriveRemoteImageFolder(
     contentFolderUid = fUid
     GlobalScope.launch(Dispatchers.IO) {
       helper.getFilesInFolder(contentFolderUid, GOOGLE_DRIVE_IMAGE_MIME_TYPE).addOnCompleteListener {
-        if (it.result === null) {
-          // Something bad happened, probably network failure etc
-          networkOrAbsoluteFailure.set(true)
-        }
+        networkOrAbsoluteFailure.set(it.result === null)
 
         val imageFiles = it.result?.files
         if (imageFiles !== null) {
@@ -85,6 +82,7 @@ class GDriveRemoteImageFolder(
 
   fun insert(id: ImageUUID) {
     val logInfo = "insert($id)"
+
     if (contentLoading.get()) {
       contentPendingActions.add(id)
       return

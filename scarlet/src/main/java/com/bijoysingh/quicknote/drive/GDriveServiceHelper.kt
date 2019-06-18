@@ -192,6 +192,7 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
       mDriveService.files().list()
           .setSpaces("drive")
           .setQ(query)
+          .setOrderBy("modifiedTime desc")
           .execute()
     })
   }
@@ -206,6 +207,7 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
       mDriveService.files().list()
           .setSpaces("drive")
           .setQ("mimeType = '$GOOGLE_DRIVE_FOLDER_MIME_TYPE' and ($nameQueryBuilder) and '$parentUid' in parents")
+          .setOrderBy("modifiedTime desc")
           .execute()
     })
   }

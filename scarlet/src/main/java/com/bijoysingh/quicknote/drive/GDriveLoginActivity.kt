@@ -31,6 +31,7 @@ import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.maybeThrow
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
@@ -44,7 +45,6 @@ import java.util.concurrent.atomic.AtomicBoolean
 class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailedListener {
 
   private val RC_SIGN_IN = 31244
-  private val RC_SIGN_IN_PERMISSIONS = 32443
 
   lateinit var context: Context
   lateinit var component: Component
@@ -61,6 +61,22 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
     setButton(false)
     setupGoogleLogin()
     notifyThemeChange()
+    resetNotesToUploadStateDB()
+  }
+
+  private fun resetNotesToUploadStateDB() {
+    GlobalScope.launch(Dispatchers.IO) {
+      val remoteDatabaseState = ApplicationBase.instance.remoteDatabaseState() as GDriveRemoteDatabaseState
+      ApplicationBase.instance.notesDatabase().getAll().forEach {
+        remoteDatabaseState.notifyInsertIfNotPresent(it)
+      }
+      ApplicationBase.instance.tagsDatabase().getAll().forEach {
+        remoteDatabaseState.notifyInsertIfNotPresent(it)
+      }
+      ApplicationBase.instance.foldersDatabase().getAll().forEach {
+        remoteDatabaseState.notifyInsertIfNotPresent(it)
+      }
+    }
   }
 
   private fun setupGoogleLogin() {
@@ -139,7 +155,9 @@ class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailed
     gDrive = GDriveRemoteDatabase(WeakReference(this.applicationContext))
     gDrive?.init(mDriveServiceHelper!!)
 
-    finish()
+    GlobalScope.launch(Dispatchers.IO) {
+      finish()
+    }
   }
 
   override fun onConnectionFailed(p0: ConnectionResult) {

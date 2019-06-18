@@ -5,8 +5,8 @@ buildscript {
     ext.android_support_version = '28.0.0'
 
     // NOTE: Keep this in sync with the build.gradle for app/
-    ext.appconfig_version_code = 131
-    ext.appconfig_version = '6.15.0'
+    ext.appconfig_version_code = 132
+    ext.appconfig_version = '7.0.1'
     ext.appconfig_min_os_version = 21
     ext.appconfig_target_os_version = 28
     ext.appconfig_build_tool_version = '28.0.3'

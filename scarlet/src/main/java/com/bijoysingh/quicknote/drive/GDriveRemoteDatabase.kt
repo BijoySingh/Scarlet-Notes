@@ -55,6 +55,11 @@ var sGDriveFirstSyncImage: Boolean
   get() = gDriveConfig?.get(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, false) ?: false
   set(value) = gDriveConfig?.put(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, value) ?: Unit
 
+const val KEY_G_DRIVE_LAST_FULL_SYNC_TIME = "g_drive_last_full_sync_time"
+var sGDriveLastFullSyncTime: Long
+  get() = gDriveConfig?.get(KEY_G_DRIVE_LAST_FULL_SYNC_TIME, 0L) ?: 0L
+  set(value) = gDriveConfig?.put(KEY_G_DRIVE_LAST_FULL_SYNC_TIME, value) ?: Unit
+
 fun folderIdForFolderName(folderName: String, folderId: String = ""): String {
   val key = "g_drive_folder_if_for_$folderName"
   if (folderId.isEmpty()) {
@@ -157,7 +162,33 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
         onPendingChange = { verifyAndNotifyPendingStateChange() },
         onPendingSyncComplete = { action -> decrementPendingSyncs(action) })
 
+    initRootFolder()
+  }
+
+  fun reset() {
+    isValidController = false
+    driveHelper = null
+    notesSync = null
+    foldersSync = null
+    tagsSync = null
+    imageSync = null
+  }
+
+
+  fun logout() {
     GlobalScope.launch {
+      reset()
+      gDriveConfig?.clearSync()
+    }
+  }
+
+  /**
+   * Initialisation Methods
+   */
+
+  private fun initRootFolder() {
+    GlobalScope.launch {
+      sGDriveLastFullSyncTime = getTrueCurrentTime()
       val fuid = folderIdForFolderName(GOOGLE_DRIVE_ROOT_FOLDER)
       when {
         fuid.isNotBlank() -> onRootFolderLoaded(fuid)
@@ -176,25 +207,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     }
   }
 
-  fun reset() {
-    isValidController = false
-    driveHelper = null
-    notesSync = null
-    foldersSync = null
-    tagsSync = null
-    imageSync = null
-  }
-
-  fun logout() {
-    GlobalScope.launch {
-      reset()
-      gDriveConfig?.clearSync()
-    }
-  }
-
-  /**
-   * Initialisation Methods
-   */
   private fun initSubRootFolder(folderName: String, folderId: String) {
     val logInfo = "initSubRootFolder($folderName, $folderId)"
     log("GDriveRemote", logInfo)
@@ -348,8 +360,16 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
    */
 
   @Synchronized
-  fun resync() {
+  fun resync(forced: Boolean) {
     if (!isValidController) {
+      return
+    }
+
+    if (forced || (getTrueCurrentTime() - sGDriveLastFullSyncTime > 1000 * 60 * 60 * 24)) {
+      GlobalScope.launch {
+        gDriveDatabase?.resetAttempts()
+        initRootFolder()
+      }
       return
     }
 

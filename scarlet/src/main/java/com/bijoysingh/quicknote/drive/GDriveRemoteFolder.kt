@@ -36,10 +36,7 @@ class GDriveRemoteFolder<T>(
       contentLoading.set(true)
       contentFolderUid = fUid
       helper.getFilesInFolder(contentFolderUid).addOnCompleteListener {
-        if (it.result === null) {
-          // Something bad happened, probably network failure etc
-          networkOrAbsoluteFailure.set(true)
-        }
+        networkOrAbsoluteFailure.set(it.result === null)
 
         val files = it.result?.files ?: emptyList()
         val localFileIds = emptyMap<String, String>().toMutableMap()
@@ -79,10 +76,7 @@ class GDriveRemoteFolder<T>(
       deletedLoading.set(true)
       deletedFolderUid = fUid
       helper.getFilesInFolder(deletedFolderUid).addOnCompleteListener {
-        if (it.result === null) {
-          // Something bad happened, probably network failure etc
-          networkOrAbsoluteFailure.set(true)
-        }
+        networkOrAbsoluteFailure.set(it.result === null)
 
         val files = it.result?.files ?: emptyList()
         val localFileIds = emptyMap<String, String>().toMutableMap()
@@ -140,6 +134,7 @@ class GDriveRemoteFolder<T>(
    */
   fun insert(uuid: String, item: T) {
     val logInfo = "insert($uuid)"
+
     if (contentLoading.get()) {
       contentPendingActions.add(uuid)
       return

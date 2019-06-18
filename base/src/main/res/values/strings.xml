@@ -462,7 +462,9 @@
   <string name="google_drive_page_logging_in_button" translatable="false">Signing In&#8230;</string>
 
   <string name="google_drive_page_logout_title" translatable="false">Sign Out of Scarlet</string>
-  <string name="google_drive_page_logout_details" translatable="false">Scarlet will stop syncing your notes, tags and folders to your Google Drive.</string>
+  <string name="google_drive_page_logout_details" translatable="false">Stop syncing notes, tags and folders.</string>
+  <string name="google_drive_page_logout_no_sync_details" translatable="false">Stop syncing your notes, tags and folders to your Google Drive.</string>
+  <string name="google_drive_page_logout_data_persists_details" translatable="false">Your data on the app and on Google Drive will still be there.</string>
   <string name="google_drive_page_logout_button" translatable="false">Sign Out from Drive</string>
   <string name="google_drive_page_logging_out_button" translatable="false">Signing Out&#8230;</string>
 

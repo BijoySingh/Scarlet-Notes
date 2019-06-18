@@ -76,6 +76,16 @@ object GDriveLogoutContentViewSpec {
             .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
             .textRes(R.string.google_drive_page_logout_details)
             .typeface(CoreConfig.FONT_MONSERRAT))
+        .child(GDriveIconView.create(context)
+            .marginDip(YogaEdge.TOP, 24f)
+            .bgColorRes(R.color.dark_low_hint_text)
+            .iconRes(R.drawable.icon_sync_disabled)
+            .titleRes(R.string.google_drive_page_logout_no_sync_details))
+        .child(GDriveIconView.create(context)
+            .marginDip(YogaEdge.TOP, 16f)
+            .bgColorRes(R.color.dark_low_hint_text)
+            .iconRes(R.drawable.ic_restore)
+            .titleRes(R.string.google_drive_page_logout_data_persists_details))
         .build()
   }
 }

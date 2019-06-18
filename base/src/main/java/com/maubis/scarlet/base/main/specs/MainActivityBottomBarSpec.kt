@@ -111,16 +111,23 @@ object MainActivityFolderBottomBarSpec {
         .flexGrow(1f)
         .text(folder.title)
         .textSizeRes(R.dimen.font_size_normal)
-        .textColor(colorConfig.toolbarIconColor))
+        .textColor(colorConfig.toolbarIconColor)
+        .clickHandler(MainActivityFolderBottomBar.onClickEvent(context)))
     row.child(bottomBarRoundIcon(context, colorConfig)
         .iconRes(R.drawable.ic_more_options)
-        .onClick {
-          if (activity.config.folders.isEmpty()) {
-            return@onClick
-          }
-          CreateOrEditFolderBottomSheet.openSheet(activity, folder, { _, _ -> activity.setupData() })
-        })
+        .isClickDisabled(true)
+        .clickHandler(MainActivityFolderBottomBar.onClickEvent(context))
+        .onClick {})
     return bottomBarCard(context, row.build(), colorConfig).build()
+  }
+
+  @OnEvent(ClickEvent::class)
+  fun onClickEvent(context: ComponentContext, @Prop folder: Folder) {
+    val activity = context.androidContext as MainActivity
+    if (activity.config.folders.isEmpty()) {
+      return
+    }
+    CreateOrEditFolderBottomSheet.openSheet(activity, folder) { _, _ -> activity.setupData() }
   }
 }
 
@@ -208,13 +215,13 @@ object MainActivitySyncingNowSpec {
             .paddingDip(YogaEdge.VERTICAL, 8f)
             .paddingDip(YogaEdge.HORIZONTAL, 12f)
             .backgroundRes(R.drawable.login_button_disabled)
+            .clickHandler(MainActivitySyncingNow.onClickEvent(context))
             .child(syncIcon)
             .child(Text.create(context)
                 .typeface(FONT_MONSERRAT)
                 .textRes(syncText)
                 .textSizeRes(R.dimen.font_size_normal)
                 .textColor(colorConfig.toolbarIconColor)))
-        .clickHandler(MainActivitySyncingNow.onClickEvent(context))
     return row.build()
   }
 

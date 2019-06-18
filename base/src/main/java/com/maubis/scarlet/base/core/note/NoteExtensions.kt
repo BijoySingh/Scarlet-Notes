@@ -21,6 +21,7 @@ fun Note.isEqual(note: Note): Boolean {
       && this.color.toInt() == note.color.toInt()
       && this.locked == note.locked
       && this.pinned == note.pinned
+      && this.folder == note.folder
 }
 
 /**************************************************************************************

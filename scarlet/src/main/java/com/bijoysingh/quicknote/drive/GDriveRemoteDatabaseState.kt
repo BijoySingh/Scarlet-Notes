@@ -1,7 +1,10 @@
 package com.bijoysingh.quicknote.drive
 
 import android.content.Context
-import com.bijoysingh.quicknote.database.*
+import com.bijoysingh.quicknote.database.GDriveDataType
+import com.bijoysingh.quicknote.database.GDriveDatabaseHelper
+import com.bijoysingh.quicknote.database.gDriveDatabase
+import com.bijoysingh.quicknote.database.genGDriveUploadDatabase
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.database.remote.IRemoteDatabaseState
@@ -27,6 +30,33 @@ class GDriveRemoteDatabaseState(context: Context): IRemoteDatabaseState {
       data is Tag -> localDatabaseUpdate(GDriveDataType.TAG, data.uuid, onExecution)
       data is Folder -> localDatabaseUpdate(GDriveDataType.FOLDER, data.uuid, onExecution)
       data is Note -> notifyNoteInsertImpl(data, onExecution)
+      else -> maybeThrow("notifyInsert called with unhandled data type")
+    }
+  }
+
+  fun notifyInsertIfNotPresent(data: Any) {
+    val database = gDriveDatabase
+    if (database === null) {
+      return
+    }
+
+    when {
+      data is Tag -> {
+        if (database.getByUUID(GDriveDataType.TAG.name, data.uuid) === null) {
+          notifyInsert(data) {}
+        }
+      }
+      data is Folder -> {
+        if (database.getByUUID(GDriveDataType.FOLDER.name, data.uuid) === null) {
+          notifyInsert(data) {}
+        }
+      }
+      data is Note -> {
+        if (database.getByUUID(GDriveDataType.NOTE.name, data.uuid) === null
+            || database.getByUUID(GDriveDataType.NOTE_META.name, data.uuid) === null) {
+          notifyInsert(data) {}
+        }
+      }
       else -> maybeThrow("notifyInsert called with unhandled data type")
     }
   }
@@ -59,16 +89,8 @@ class GDriveRemoteDatabaseState(context: Context): IRemoteDatabaseState {
 
       imageUUIDs.forEach {
         val existing = database.getByUUID(GDriveDataType.IMAGE.name, it.name())
-        if (existing !== null) {
-          return@launch
-        }
-
-        GDriveUploadData().apply {
-          uuid = it.name()
-          type = GDriveDataType.IMAGE.name
-          lastUpdateTimestamp = getTrueCurrentTime()
-          localStateDeleted = false
-          save(database)
+        if (existing === null) {
+          localDatabaseUpdate(GDriveDataType.IMAGE, it.name(), {}, false)
         }
       }
     }
@@ -152,7 +174,7 @@ class GDriveRemoteDatabaseState(context: Context): IRemoteDatabaseState {
       existing.apply {
         attempts = 0
         lastAttemptTime = 0
-        lastUpdateTimestamp = Math.max(gDriveUpdateTimestamp + 1, getTrueCurrentTime())
+        lastUpdateTimestamp = Math.max(Math.max(gDriveUpdateTimestamp + 1, lastUpdateTimestamp + 1), getTrueCurrentTime())
         localStateDeleted = removed
         save(database)
       }

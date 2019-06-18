@@ -20,11 +20,17 @@
       android:layout_marginBottom="@dimen/spacing_xxsmall"
       android:visibility="gone" />
 
-    <android.support.v7.widget.RecyclerView
-      android:id="@+id/recycler_view"
+    <android.support.v4.widget.SwipeRefreshLayout
+      android:id="@+id/vSwipeToRefresh"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="1" />
+      android:layout_weight="1">
+
+      <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <include
       layout="@layout/toolbar_trash_info"

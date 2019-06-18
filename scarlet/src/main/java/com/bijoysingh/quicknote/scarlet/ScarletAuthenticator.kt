@@ -71,18 +71,8 @@ class ScarletAuthenticator() : IAuthenticator {
   }
 
   override fun requestSync(forced: Boolean) {
-    if (forced) {
-      GlobalScope.launch {
-        gDriveDatabase?.resetAttempts()
-        if (sGDriveLoggedIn) {
-          gDrive?.resync()
-        }
-      }
-      return
-    }
-
     if (sGDriveLoggedIn) {
-      gDrive?.resync()
+      gDrive?.resync(forced)
     }
   }
 

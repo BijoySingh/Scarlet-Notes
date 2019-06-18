@@ -161,6 +161,13 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
         .setAdapter(adapter)
         .setLayoutManager(getLayoutManager(staggeredView, isTablet))
         .build()
+
+    vSwipeToRefresh.setOnRefreshListener {
+      when {
+        instance.authenticator().isLoggedIn(this) && !lastSyncHappening.get() -> instance.authenticator().requestSync(true)
+        else -> vSwipeToRefresh.isRefreshing = false
+      }
+    }
   }
 
   private fun getLayoutManager(isStaggeredView: Boolean, isTabletView: Boolean): RecyclerView.LayoutManager {
@@ -388,6 +395,9 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
     instance.authenticator().setPendingUploadListener(object : IPendingUploadListener {
       override fun onPendingSyncsUpdate(isSyncHappening: Boolean) {
         notifySyncingInformation(isSyncHappening, lastSyncPending.get())
+        GlobalScope.launch(Dispatchers.Main) {
+          vSwipeToRefresh.isRefreshing = false
+        }
       }
 
       override fun onPendingStateUpdate(isDataSyncPending: Boolean) {
