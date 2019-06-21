@@ -17,7 +17,6 @@ class GDriveAuthenticator {
   var account: GoogleSignInAccount? = null
 
   fun setup(context: Context) {
-    gDriveDbState = GDriveRemoteDatabaseState(context)
     GlobalScope.launch {
       account = GoogleSignIn.getLastSignedInAccount(context)
       hasAccountSetup.set(true)

@@ -164,7 +164,9 @@ class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
 
     vSwipeToRefresh.setOnRefreshListener {
       when {
-        instance.authenticator().isLoggedIn(this) && !lastSyncHappening.get() -> instance.authenticator().requestSync(true)
+        instance.authenticator().isLoggedIn(this)
+            && !instance.authenticator().isLegacyLoggedIn()
+            && !lastSyncHappening.get() -> instance.authenticator().requestSync(true)
         else -> vSwipeToRefresh.isRefreshing = false
       }
     }

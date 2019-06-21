@@ -67,6 +67,8 @@ class ErrorCallable<T>(val action: String, val callable: Callable<T>) : Callable
     } catch (exception: InterruptedIOException) {
       // Ignore timeout exceptions
       return null
+    } catch (exception: ClassNotFoundException) {
+      return throwOrReturn(exception, null)
     } catch (exception: Exception) {
       return throwOrReturn(exception, null)
     }
@@ -94,51 +96,67 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
     log("GDrive", "createFileWithData($folderId, $name)")
     val contentToSave = if (content.isEmpty()) updateTime.toString() else content
     return execute("createFileWithData", Callable {
-      val metadata = File()
-          .setParents(listOf(folderId))
-          .setMimeType(GOOGLE_DRIVE_FILE_MIME_TYPE)
-          .setModifiedTime(DateTime(updateTime))
-          .setName(name)
-      val contentStream = ByteArrayContent.fromString("text/plain", contentToSave)
-      mDriveService.files().create(metadata, contentStream).execute()
+      try {
+        val metadata = File()
+            .setParents(listOf(folderId))
+            .setMimeType(GOOGLE_DRIVE_FILE_MIME_TYPE)
+            .setModifiedTime(DateTime(updateTime))
+            .setName(name)
+        val contentStream = ByteArrayContent.fromString("text/plain", contentToSave)
+        mDriveService.files().create(metadata, contentStream).execute()
+      } catch (exception: Exception) {
+        throwOrReturn(exception, null)
+      }
     })
   }
 
   fun createFileWithData(folderId: String, name: String, file: java.io.File, updateTime: Long): Task<File?> {
     log("GDrive", "createFileWithData($folderId, $name, ${file.absolutePath})")
-    return execute("createFileWithData", Callable<File> {
-      val metadata = File()
-          .setParents(listOf(folderId))
-          .setMimeType(GOOGLE_DRIVE_IMAGE_MIME_TYPE)
-          .setModifiedTime(DateTime(updateTime))
-          .setName(name)
-      val mediaContent = FileContent(GOOGLE_DRIVE_IMAGE_MIME_TYPE, file)
-      mDriveService.files().create(metadata, mediaContent).execute()
+    return execute("createFileWithData", Callable {
+      try {
+        val metadata = File()
+            .setParents(listOf(folderId))
+            .setMimeType(GOOGLE_DRIVE_IMAGE_MIME_TYPE)
+            .setModifiedTime(DateTime(updateTime))
+            .setName(name)
+        val mediaContent = FileContent(GOOGLE_DRIVE_IMAGE_MIME_TYPE, file)
+        mDriveService.files().create(metadata, mediaContent).execute()
+      } catch (exception: Exception) {
+        throwOrReturn(exception, null)
+      }
     })
   }
 
   fun createFolder(parentUid: String, folderName: String): Task<File?> {
     log("GDrive", "createFolder($parentUid, $folderName)")
     return execute("createFolder", Callable {
-      val timestamp = DateTime(getTrueCurrentTime())
-      val metadata = File()
-          .setMimeType(GOOGLE_DRIVE_FOLDER_MIME_TYPE)
-          .setModifiedTime(timestamp)
-          .setName(folderName)
-      if (!parentUid.isEmpty()) {
-        metadata.parents = listOf(parentUid)
+      try {
+        val timestamp = DateTime(getTrueCurrentTime())
+        val metadata = File()
+            .setMimeType(GOOGLE_DRIVE_FOLDER_MIME_TYPE)
+            .setModifiedTime(timestamp)
+            .setName(folderName)
+        if (!parentUid.isEmpty()) {
+          metadata.parents = listOf(parentUid)
+        }
+        mDriveService.files().create(metadata).execute()
+      } catch (exception: Exception) {
+        throwOrReturn(exception, null)
       }
-      mDriveService.files().create(metadata).execute()
     })
   }
 
   fun readFile(fileId: String): Task<String?> {
     log("GDrive", "readFile($fileId)")
     return execute("readFile", Callable {
-      mDriveService.files().get(fileId).executeMediaAsInputStream().use { `is` ->
-        BufferedReader(InputStreamReader(`is`)).use { reader ->
-          reader.readText()
+      try {
+        mDriveService.files().get(fileId).executeMediaAsInputStream().use { `is` ->
+          BufferedReader(InputStreamReader(`is`)).use { reader ->
+            reader.readText()
+          }
         }
+      } catch (exception: Exception) {
+        throwOrReturn(exception, null)
       }
     })
   }
@@ -160,12 +178,16 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
 
   fun saveFile(fileId: String, name: String, content: String, updateTime: Long): Task<File?> {
     log("GDrive", "saveFile($fileId, $name)")
-    return execute("saveFile", Callable<File> {
-      val metadata = File()
-          .setModifiedTime(DateTime(updateTime))
-          .setName(name)
-      val contentStream = ByteArrayContent.fromString("text/plain", content)
-      mDriveService.files().update(fileId, metadata, contentStream).execute()
+    return execute("saveFile", Callable {
+      try {
+        val metadata = File()
+            .setModifiedTime(DateTime(updateTime))
+            .setName(name)
+        val contentStream = ByteArrayContent.fromString("text/plain", content)
+        mDriveService.files().update(fileId, metadata, contentStream).execute()
+      } catch (exception: Exception) {
+        throwOrReturn(exception, null)
+      }
     })
   }
 
@@ -215,7 +237,11 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
   fun removeFileOrFolder(fileUid: String): Task<Void?> {
     log("GDrive", "removeFileOrFolder($fileUid)")
     return execute("removeFileOrFolder", Callable<Void> {
-      mDriveService.files().delete(fileUid).execute()
+      try {
+        mDriveService.files().delete(fileUid).execute()
+      } catch (exception: Exception) {
+        maybeThrow(exception)
+      }
       null
     })
   }

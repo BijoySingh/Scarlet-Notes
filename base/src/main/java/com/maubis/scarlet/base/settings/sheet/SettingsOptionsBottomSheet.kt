@@ -133,7 +133,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         icon = R.drawable.ic_sign_in_options,
         listener = {
           if (ApplicationBase.instance.authenticator().isLegacyLoggedIn()) {
-            ApplicationBase.instance.authenticator().logout()
+            ApplicationBase.instance.authenticator().openTransferDataActivity(activity)?.run()
             dismiss()
             return@LithoOptionsItem
           }

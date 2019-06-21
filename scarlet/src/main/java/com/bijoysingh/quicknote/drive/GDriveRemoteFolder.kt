@@ -5,6 +5,7 @@ import com.bijoysingh.quicknote.database.GDriveUploadDataDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 
 class GDriveRemoteFolder<T>(
@@ -53,7 +54,10 @@ class GDriveRemoteFolder<T>(
         contentLoading.set(false)
 
         GlobalScope.launch { executeAllDuplicateDeletion() }
-        GlobalScope.launch { executeInsertPendingActions() }
+        GlobalScope.launch {
+          executeInsertPendingActions()
+          executeDeletePendingActions()
+        }
         GlobalScope.launch { onLoaded() }
       }.addOnFailureListener {
         onPendingSyncComplete(logInfo)
@@ -67,7 +71,10 @@ class GDriveRemoteFolder<T>(
     val logInfo = "initDeletedFolderId($fUid)"
     if (fUid == INVALID_FILE_ID) {
       deletedLoading.set(false)
-      GlobalScope.launch { executeDeletePendingActions() }
+      GlobalScope.launch {
+        executeInsertPendingActions()
+        executeDeletePendingActions()
+      }
       GlobalScope.launch { onLoaded() }
       return
     }
@@ -81,11 +88,13 @@ class GDriveRemoteFolder<T>(
         val files = it.result?.files ?: emptyList()
         val localFileIds = emptyMap<String, String>().toMutableMap()
         files.forEach { file ->
-          if (localFileIds.containsKey(file.name)) {
-            duplicateFilesToDelete.add(file.id)
-          } else {
-            localFileIds[file.name] = file.id
-            notifyDriveData(file, true)
+          when {
+            localFileIds.containsKey(file.name) -> duplicateFilesToDelete.add(file.id)
+            getTrueCurrentTime() - (file.modifiedTime?.value ?: 0L) > TimeUnit.DAYS.toMillis(7) -> duplicateFilesToDelete.add(file.id)
+            else -> {
+              localFileIds[file.name] = file.id
+              notifyDriveData(file, true)
+            }
           }
         }
         deletedFiles.clear()
@@ -113,6 +122,9 @@ class GDriveRemoteFolder<T>(
   }
 
   fun executeInsertPendingActions() {
+    if (deletedLoading.get() || contentLoading.get()) {
+      return
+    }
     contentPendingActions.forEach { uuid ->
       GlobalScope.launch {
         val item = uuidToObject(uuid)
@@ -124,6 +136,9 @@ class GDriveRemoteFolder<T>(
   }
 
   fun executeDeletePendingActions() {
+    if (deletedLoading.get() || contentLoading.get()) {
+      return
+    }
     deletedPendingActions.forEach {
       GlobalScope.launch { delete(it) }
     }
@@ -135,14 +150,26 @@ class GDriveRemoteFolder<T>(
   fun insert(uuid: String, item: T) {
     val logInfo = "insert($uuid)"
 
-    if (contentLoading.get()) {
-      contentPendingActions.add(uuid)
+    if (deletedLoading.get() || contentLoading.get()) {
+      if (!contentPendingActions.add(uuid)) {
+        onPendingSyncComplete(logInfo)
+      }
       return
     }
 
     if (networkOrAbsoluteFailure.get()) {
       onPendingSyncComplete(logInfo)
       return
+    }
+
+    if (deletedFiles.containsKey(uuid)) {
+      GlobalScope.launch {
+        val existingFileUid = deletedFiles[uuid] ?: INVALID_FILE_ID
+        helper.removeFileOrFolder(existingFileUid)
+            .addOnCompleteListener {
+              deletedFiles.remove(uuid)
+            }
+      }
     }
 
     val data = serialiser(item)
@@ -183,7 +210,9 @@ class GDriveRemoteFolder<T>(
   fun delete(uuid: String) {
     val logInfo = "delete($uuid)"
     if (deletedLoading.get() || contentLoading.get()) {
-      deletedPendingActions.add(uuid)
+      if (!deletedPendingActions.add(uuid)) {
+        onPendingSyncComplete(logInfo)
+      }
       return
     }
 

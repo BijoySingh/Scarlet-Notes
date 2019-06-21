@@ -34,7 +34,7 @@ class AllNotesRemoteViewsFactory(val context: Context) : RemoteViewsService.Remo
   }
 
   override fun getItemId(position: Int): Long {
-    return notes[position].uid.toLong()
+    return if(position >= notes.size) notes[position].uid.toLong() else 0
   }
 
   override fun onDataSetChanged() {

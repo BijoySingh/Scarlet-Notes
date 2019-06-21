@@ -8,6 +8,7 @@ import com.bijoysingh.quicknote.database.gDriveDatabase
 import com.bijoysingh.quicknote.drive.GDriveAuthenticator
 import com.bijoysingh.quicknote.drive.GDriveLoginActivity
 import com.bijoysingh.quicknote.drive.GDriveLogoutActivity
+import com.bijoysingh.quicknote.drive.GDriveRemoteDatabaseState
 import com.bijoysingh.quicknote.firebase.activity.FirebaseRemovalActivity
 import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
 import com.bijoysingh.quicknote.firebase.support.FirebaseAuthenticator
@@ -31,14 +32,15 @@ class ScarletAuthenticator() : IAuthenticator {
   val gdrive = GDriveAuthenticator()
 
   override fun userId(context: Context): String? {
-    if (sGDriveLoggedIn) {
+    if (shouldIgnoreFirebase()) {
       return gdrive.userId(context)
     }
     return firebase.userId(context)
   }
 
   override fun setup(context: Context) {
-    if (sGDriveLoggedIn) {
+    Scarlet.gDriveDbState = GDriveRemoteDatabaseState(context)
+    if (shouldIgnoreFirebase()) {
       gdrive.setup(context)
       return
     }
@@ -46,18 +48,18 @@ class ScarletAuthenticator() : IAuthenticator {
   }
 
   override fun isLoggedIn(context: Context): Boolean {
-    if (sGDriveLoggedIn) {
+    if (shouldIgnoreFirebase()) {
       return gdrive.isLoggedIn(context)
     }
     return firebase.isLoggedIn()
   }
 
   override fun isLegacyLoggedIn(): Boolean {
-    return firebase.isLoggedIn()
+    return !shouldIgnoreFirebase() && firebase.isLoggedIn()
   }
 
   override fun logout() {
-    if (sGDriveLoggedIn) {
+    if (shouldIgnoreFirebase()) {
       gdrive.logout()
       return
     }
@@ -65,16 +67,18 @@ class ScarletAuthenticator() : IAuthenticator {
   }
 
   override fun setPendingUploadListener(listener: IPendingUploadListener?) {
-    if (sGDriveLoggedIn) {
+    if (shouldIgnoreFirebase()) {
       gDrive?.setPendingUploadListener(listener)
     }
   }
 
   override fun requestSync(forced: Boolean) {
-    if (sGDriveLoggedIn) {
+    if (shouldIgnoreFirebase()) {
       gDrive?.resync(forced)
     }
   }
+
+  private fun shouldIgnoreFirebase() = sFirebaseKilled || sGDriveLoggedIn
 
   override fun openLoginActivity(context: Context) = Runnable {
     context.startActivity(Intent(context, GDriveLoginActivity::class.java))

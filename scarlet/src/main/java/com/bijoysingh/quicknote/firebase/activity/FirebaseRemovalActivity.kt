@@ -8,6 +8,7 @@ import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity.Companion.hasAcceptedThePolicy
 import com.bijoysingh.quicknote.firebase.initFirebaseDatabase
 import com.bijoysingh.quicknote.scarlet.sFirebaseKilled
+import com.bijoysingh.quicknote.scarlet.sGDriveLoggedIn
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
