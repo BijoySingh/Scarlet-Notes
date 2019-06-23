@@ -227,6 +227,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
       override fun run() {
         if (active) {
           maybeUpdateNoteWithoutSync()
+          fullScreenView()
           handler.postDelayed(this, HANDLER_UPDATE_TIME.toLong())
         }
       }

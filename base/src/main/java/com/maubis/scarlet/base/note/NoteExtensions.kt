@@ -19,6 +19,7 @@ import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FREE
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
+import com.maubis.scarlet.base.settings.sheet.sInternalShowUUID
 import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
@@ -88,7 +89,7 @@ fun Note.getText(): String {
   }
 
   val text = stringBuilder.toString().trim()
-  if (BuildConfig.DEBUG) {
+  if (sInternalShowUUID) {
     return "`$uuid`\n\n$text"
   }
   return text

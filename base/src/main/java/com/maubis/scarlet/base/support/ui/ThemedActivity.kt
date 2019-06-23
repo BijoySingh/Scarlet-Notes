@@ -5,7 +5,9 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.settings.sheet.sInternalEnableFullScreen
 import com.maubis.scarlet.base.support.utils.maybeThrow
 
 abstract class ThemedActivity : AppCompatActivity() {
@@ -15,6 +17,28 @@ abstract class ThemedActivity : AppCompatActivity() {
   fun setSystemTheme(color: Int = getStatusBarColor()) {
     setStatusBarColor(color)
     setStatusBarTextColor()
+  }
+
+  override fun onResume() {
+    super.onResume()
+    fullScreenView()
+  }
+
+  fun fullScreenView() {
+    if (!sInternalEnableFullScreen) {
+      return
+    }
+
+    window.decorView.systemUiVisibility = (
+        View.SYSTEM_UI_FLAG_IMMERSIVE
+        // Set the content to appear under the system bars so that the
+        // content doesn't resize when the system bars hide and show.
+        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        // Hide the nav bar and status bar
+        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        or View.SYSTEM_UI_FLAG_FULLSCREEN)
   }
 
   fun setStatusBarColor(color: Int) {

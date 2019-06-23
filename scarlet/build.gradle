@@ -73,6 +73,7 @@ dependencies {
     kapt "com.facebook.litho:litho-processor:$litho_version"
 
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'commons-codec:commons-codec:1.10'
     implementation ('com.google.http-client:google-http-client-gson:1.26.0') {
        exclude group: 'org.apache.httpcomponents'
     }

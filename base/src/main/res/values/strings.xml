@@ -446,6 +446,12 @@
   <string name="internal_settings_enable_throw_exceptions_title" translatable="false">Throw on Exceptions</string>
   <string name="internal_settings_enable_throw_exceptions_description" translatable="false">Throw and crash the application on exceptions. Will be reset after 5 crashes</string>
 
+  <string name="internal_settings_enable_fullscreen_title" translatable="false">Enable Fullscreen</string>
+  <string name="internal_settings_enable_fullscreen_description" translatable="false">Make the app in fullscreen to allow screenshots and recordings</string>
+
+  <string name="internal_settings_show_uuid_title" translatable="false">Show Note UUIDs</string>
+  <string name="internal_settings_show_uuid_description" translatable="false">Show the unique ids of the notes in the home screen view</string>
+
   <string name="internal_settings_fake_exceptions_title" translatable="false">Fake Exceptions</string>
   <string name="internal_settings_fake_exceptions_description" translatable="false">Throw a fake exception to test the exception features</string>
 
