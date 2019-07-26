@@ -20,13 +20,7 @@ class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
   private val isMarkdownEnabled = sEditorMarkdownEnabled && sMarkdownEnabledHome
   val lineCount = sNoteItemLineCount
 
-  val title = note.getMarkdownTitle(isMarkdownEnabled)
-  val titleColor = when (isLightShaded) {
-    true -> ContextCompat.getColor(context, R.color.dark_tertiary_text)
-    false -> ContextCompat.getColor(context, R.color.light_primary_text)
-  }
-
-  val description = note.getLockedText(isMarkdownEnabled)
+  val description = note.getLockedAwareTextForHomeList(isMarkdownEnabled)
   val descriptionColor = when (isLightShaded) {
     true -> ContextCompat.getColor(context, R.color.dark_tertiary_text)
     false -> ContextCompat.getColor(context, R.color.light_primary_text)

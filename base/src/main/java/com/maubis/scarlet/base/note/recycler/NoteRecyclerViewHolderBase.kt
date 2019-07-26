@@ -23,7 +23,6 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
   protected val view: CardView
   protected val tags: TextView
   protected val image: ImageView
-  protected val title: TextView
   protected val description: TextView
   protected val edit: ImageView
   protected val share: ImageView
@@ -41,7 +40,6 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     this.view = view as CardView
     tags = view.findViewById(R.id.tags)
     image = view.findViewById(R.id.image)
-    title = view.findViewById(R.id.title)
     description = view.findViewById(R.id.description)
     share = view.findViewById(R.id.share_button)
     delete = view.findViewById(R.id.delete_button)
@@ -57,7 +55,6 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
 
   override fun populate(itemData: RecyclerItem, extra: Bundle?) {
     val item = itemData as NoteRecyclerItem
-    setTitle(item)
     setDescription(item)
     setImage(item)
     setIndicators(item)
@@ -70,12 +67,6 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     }
     view.setCardBackgroundColor(item.note.color)
     setActionBar(item, extra)
-  }
-
-  private fun setTitle(note: NoteRecyclerItem) {
-    title.text = note.title
-    title.visibility = if (note.title.isEmpty()) View.GONE else View.VISIBLE
-    title.setTextColor(note.titleColor)
   }
 
   private fun setDescription(note: NoteRecyclerItem) {

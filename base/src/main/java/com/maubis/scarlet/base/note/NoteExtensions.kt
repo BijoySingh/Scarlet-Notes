@@ -4,8 +4,9 @@ import android.content.Context
 import android.content.Intent
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
-import com.maubis.markdown.BuildConfig
 import com.maubis.markdown.Markdown
+import com.maubis.markdown.MarkdownConfig
+import com.maubis.markdown.spannable.*
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
@@ -22,17 +23,14 @@ import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.settings.sheet.sInternalShowUUID
 import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
 import java.util.*
 import kotlin.collections.ArrayList
 
-fun Note.log(context: Context): String {
+fun Note.log(): String {
   val log = HashMap<String, Any>()
   log["note"] = this
-  log["_title"] = getTitle()
-  log["_text"] = getText()
+  log["_text"] = getFullText()
   log["_image"] = getImageFile()
-  log["_locked"] = getLockedText(false)
   log["_fullText"] = getFullText()
   log["_displayTime"] = getDisplayTime()
   log["_tag"] = getTagString()
@@ -40,22 +38,50 @@ fun Note.log(context: Context): String {
   return Gson().toJson(log)
 }
 
-fun Note.log(): String {
-  val log = HashMap<String, Any>()
-  log["note"] = this
-  log["_title"] = getTitle()
-  log["_text"] = getText()
-  log["_image"] = getImageFile()
-  log["_fullText"] = getFullText()
-  log["_displayTime"] = getDisplayTime()
-  log["_formats"] = getFormats()
-  return Gson().toJson(log)
-}
-
 /**************************************************************************************
  ************* Content and Display Information Functions Functions ********************
  **************************************************************************************/
-fun Note.getTitle(): String {
+
+fun Note.getFullTextForDirectMarkdownRender(): String {
+  var text = getFullText()
+  text = text.replace("\n[x] ", "\n\u2611 ")
+  text = text.replace( "\n[ ] ", "\n\u2610 ")
+  text = text.replace( "\n- ", "\n\u2022 ")
+  return text
+}
+
+fun Note.getMarkdownForListView(isMarkdownEnabled: Boolean): CharSequence {
+  var text = getFullTextForDirectMarkdownRender()
+  return when {
+    isMarkdownEnabled -> Markdown.renderWithCustomFormatting(text, true) { spannable, spanInfo ->
+      val s = spanInfo.start
+      val e = spanInfo.end
+      when (spanInfo.markdownType) {
+        MarkdownType.HEADING_1 -> {
+          spannable.relativeSize(1.2f, s, e)
+              .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
+              .bold(s, e)
+          true
+        }
+        MarkdownType.HEADING_2 -> {
+          spannable.relativeSize(1.1f, s, e)
+              .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
+              .bold(s, e)
+          true
+        }
+        MarkdownType.CHECKLIST_CHECKED -> {
+          spannable.strike(s, e)
+          true
+        }
+        else -> false
+      }
+    }
+    else -> text
+  }
+}
+
+
+fun Note.getTitleForSharing(): String {
   val formats = getFormats()
   if (formats.isEmpty()) {
     return ""
@@ -68,7 +94,7 @@ fun Note.getTitle(): String {
   }
 }
 
-fun Note.getText(): String {
+fun Note.getTextForSharing(): String {
   val formats = getFormats().toMutableList()
   if (formats.isEmpty()) {
     return ""
@@ -120,47 +146,14 @@ fun Note.getImageFile(): String {
   return format?.text ?: ""
 }
 
-fun Note.getMarkdownTitle(isMarkdownEnabled: Boolean): CharSequence {
-  val titleString = getTitle()
-  return when {
-    titleString.isBlank() -> ""
-    !isMarkdownEnabled -> Markdown.render(removeMarkdownHeaders(titleString), true)
-    else -> titleString
-  }
-}
-
-fun Note.getMarkdownText(isMarkdownEnabled: Boolean): CharSequence {
-  return when {
-    isMarkdownEnabled -> Markdown.render(removeMarkdownHeaders(getText()), true)
-    else -> getText()
-  }
-}
-
 fun Note.getFullText(): String {
   return getFormats().map { it -> it.markdownText }.joinToString(separator = "\n").trim()
 }
 
-fun Note.getAlphabets(): String {
-  return getFormats().map { it -> it.markdownText }.joinToString(separator = "\n").trim().filter {
-    ((it in 'a'..'z') || (it in 'A'..'Z'))
-  }
-}
-
-fun Note.getImageIds(): Set<String> {
-  return getFormats().filter { it.formatType == FormatType.IMAGE }.map { it.text }.toSet()
-}
-
-fun Note.getUnreliablyStrippedText(context: Context): String {
-  val builder = StringBuilder()
-  builder.append(Markdown.render(removeMarkdownHeaders(getTitle())), true)
-  builder.append(Markdown.render(removeMarkdownHeaders(getText())), true)
-  return builder.toString().trim { it <= ' ' }
-}
-
-fun Note.getLockedText(isMarkdownEnabled: Boolean): CharSequence {
+fun Note.getLockedAwareTextForHomeList(isMarkdownEnabled: Boolean): CharSequence {
   val text = when {
     this.locked -> "******************\n***********\n****************"
-    else -> getMarkdownText(isMarkdownEnabled)
+    else -> getMarkdownForListView(isMarkdownEnabled)
   }
 
   return text

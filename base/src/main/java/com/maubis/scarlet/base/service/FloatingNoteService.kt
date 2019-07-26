@@ -11,7 +11,7 @@ import android.widget.TextView
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions
 import com.bsk.floatingbubblelib.FloatingBubbleService
-import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
@@ -31,7 +31,6 @@ import com.maubis.scarlet.base.support.utils.maybeThrow
 class FloatingNoteService : FloatingBubbleService() {
 
   private var note: Note? = null
-  private lateinit var title: TextView
   private lateinit var description: TextView
   private lateinit var timestamp: TextView
   private lateinit var panel: View
@@ -73,11 +72,9 @@ class FloatingNoteService : FloatingBubbleService() {
     val theme = ApplicationBase.instance.themeController()
     val rootView = getInflater().inflate(R.layout.layout_add_note_overlay, null)
 
-    title = rootView.findViewById<View>(R.id.title) as TextView
     description = rootView.findViewById<View>(R.id.description) as TextView
     timestamp = rootView.findViewById<View>(R.id.timestamp) as TextView
 
-    title.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
     description.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
 
     val noteItem = note!!
@@ -118,22 +115,18 @@ class FloatingNoteService : FloatingBubbleService() {
   }
 
   fun getShareIntent(note: Note) {
-    val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
+    val sharingIntent = Intent(Intent.ACTION_SEND)
     sharingIntent.type = "text/plain"
-    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, note.getTitle())
-    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, note.getText())
+    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, note.getTitleForSharing())
+    sharingIntent.putExtra(Intent.EXTRA_TEXT, note.getTextForSharing())
     sharingIntent.addFlags(FLAG_ACTIVITY_NEW_TASK)
     context.startActivity(sharingIntent)
   }
 
   fun setNote(note: Note) {
-    val noteTitle = note.getTitle()
-    val noteDescription = note.getMarkdownText(true)
-    title.text = noteTitle
+    val noteDescription = Markdown.render(note.getFullTextForDirectMarkdownRender(), true)
     description.text = noteDescription
     timestamp.text = note.getDisplayTime()
-
-    title.visibility = if (TextUtils.isNullOrEmpty(noteTitle)) View.GONE else View.VISIBLE
   }
 
   companion object {

@@ -32,8 +32,8 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
 
   override fun share(context: Context) {
     IntentUtils.ShareBuilder(context)
-        .setSubject(note.getTitle())
-        .setText(note.getText())
+        .setSubject(note.getTitleForSharing())
+        .setText(note.getFullText())
         .setChooserText(context.getString(R.string.share_using))
         .share()
   }

@@ -90,7 +90,7 @@ fun Spannable.font(font: Typeface, start: Int, end: Int): Spannable {
   return this
 }
 
-fun Spannable.setFormats(info: SpanInfo) {
+fun Spannable.setDefaultFormats(info: SpanInfo) {
   val s = info.start
   val e = info.end
   when (info.markdownType) {
@@ -120,5 +120,5 @@ fun Spannable.setFormats(info: SpanInfo) {
 }
 
 fun Spannable.setFormats(info: List<SpanInfo>) {
-  info.forEach { setFormats(it) }
+  info.forEach { setDefaultFormats(it) }
 }

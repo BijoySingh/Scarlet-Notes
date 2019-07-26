@@ -5,16 +5,24 @@ import android.text.SpannableStringBuilder
 import com.maubis.markdown.inliner.TextInliner
 import com.maubis.markdown.segmenter.MarkdownSegmentType
 import com.maubis.markdown.segmenter.TextSegmenter
-import com.maubis.markdown.spannable.SpanInfo
-import com.maubis.markdown.spannable.SpanResult
-import com.maubis.markdown.spannable.map
-import com.maubis.markdown.spannable.setFormats
+import com.maubis.markdown.spannable.*
 
 object Markdown {
   fun render(text: String, strip: Boolean = false): Spannable {
     val spans = getSpanInfo(text, strip)
     val spannable = SpannableStringBuilder(spans.text)
     spannable.setFormats(spans.spans)
+    return spannable
+  }
+
+  fun renderWithCustomFormatting(text: String, strip: Boolean = false, customSpanInfoAction: (Spannable, SpanInfo) -> Boolean): Spannable {
+    val spans = getSpanInfo(text, strip)
+    val spannable = SpannableStringBuilder(spans.text)
+    spans.spans.forEach {
+      if (!customSpanInfoAction(spannable, it)) {
+        spannable.setDefaultFormats(it)
+      }
+    }
     return spannable
   }
 

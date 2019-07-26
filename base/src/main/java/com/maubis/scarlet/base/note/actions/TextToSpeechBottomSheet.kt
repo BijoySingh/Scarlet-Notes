@@ -5,13 +5,21 @@ import android.os.Build
 import android.speech.tts.TextToSpeech
 import android.widget.ImageView
 import android.widget.TextView
+import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.note.getUnreliablyStrippedText
+import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
+import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
+
+fun Note.getTextToSpeechText(): String {
+  val builder = StringBuilder()
+  builder.append(Markdown.render(removeMarkdownHeaders(getFullText())), true)
+  return builder.toString().trim { it <= ' ' }
+}
 
 class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
 
@@ -57,9 +65,9 @@ class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
 
   fun speak(note: Note) {
     if (Build.VERSION.SDK_INT >= 21) {
-      textToSpeech?.speak(note.getUnreliablyStrippedText(themedContext()), TextToSpeech.QUEUE_FLUSH, null, "NOTE")
+      textToSpeech?.speak(note.getTextToSpeechText(), TextToSpeech.QUEUE_FLUSH, null, "NOTE")
     } else {
-      textToSpeech?.speak(note.getUnreliablyStrippedText(themedContext()), TextToSpeech.QUEUE_FLUSH, null)
+      textToSpeech?.speak(note.getTextToSpeechText(), TextToSpeech.QUEUE_FLUSH, null)
     }
   }
 
