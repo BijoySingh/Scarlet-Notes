@@ -17,6 +17,7 @@
         android:background="@android:color/transparent"
         android:gravity="top"
         android:hint="@string/description"
+      android:lineHeight="21sp"
         android:lineSpacingExtra="6dp"
         android:padding="@dimen/spacing_normal"
         android:textColor="@color/dark_secondary_text"

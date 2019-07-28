@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import com.maubis.markdown.Markdown
 import com.maubis.markdown.MarkdownConfig
 import com.maubis.markdown.spannable.*
+import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
@@ -45,8 +46,8 @@ fun Note.log(): String {
 fun Note.getFullTextForDirectMarkdownRender(): String {
   var text = getFullText()
   text = text.replace("\n[x] ", "\n\u2611 ")
-  text = text.replace( "\n[ ] ", "\n\u2610 ")
-  text = text.replace( "\n- ", "\n\u2022 ")
+  text = text.replace("\n[ ] ", "\n\u2610 ")
+  text = text.replace("\n- ", "\n\u2022 ")
   return text
 }
 
@@ -147,7 +148,11 @@ fun Note.getImageFile(): String {
 }
 
 fun Note.getFullText(): String {
-  return getFormats().map { it -> it.markdownText }.joinToString(separator = "\n").trim()
+  val fullText = getFormats().map { it -> it.markdownText }.joinToString(separator = "\n").trim()
+  if (BuildConfig.DEBUG) {
+    return "`$uuid`\n$fullText"
+  }
+  return fullText
 }
 
 fun Note.getLockedAwareTextForHomeList(isMarkdownEnabled: Boolean): CharSequence {

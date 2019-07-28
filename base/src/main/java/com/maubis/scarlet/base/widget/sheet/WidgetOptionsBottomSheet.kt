@@ -15,6 +15,7 @@ import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.getFullText
+import com.maubis.scarlet.base.note.getFullTextForDirectMarkdownRender
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
@@ -49,7 +50,7 @@ fun getWidgetNoteText(note: Note): CharSequence {
     return "******************\n***********\n****************"
   }
 
-  val text = note.getFullText()
+  val text = note.getFullTextForDirectMarkdownRender()
   return when (sWidgetEnableFormatting) {
     true -> Markdown.render(text, true)
     false -> text
