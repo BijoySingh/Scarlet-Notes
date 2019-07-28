@@ -2,16 +2,21 @@ package com.maubis.scarlet.base.note.creation.sheet
 
 import android.app.Dialog
 import com.facebook.litho.ComponentContext
+import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.openSheet
 
 const val STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED = "KEY_MARKDOWN_ENABLED"
 const val STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN = "editor_live_markdown"
 const val STORE_KEY_EDITOR_OPTIONS_MOVE_CHECKED_ITEMS = "editor_move_checked_items"
 const val STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT = "editor_markdown_default"
 const val STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES = "editor_move_handles"
+const val STORE_KEY_NOTE_DEFAULT_COLOR = "KEY_NOTE_DEFAULT_COLOR"
 
 var sEditorLiveMarkdown: Boolean
   get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, true)
@@ -33,12 +38,34 @@ var sEditorMarkdownEnabled: Boolean
   get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, true)
   set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, value)
 
+var sNoteDefaultColor: Int
+  get() = ApplicationBase.instance.store().get(STORE_KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
+  set(value) = ApplicationBase.instance.store().put(STORE_KEY_NOTE_DEFAULT_COLOR, value)
+
 class EditorOptionsBottomSheet : LithoOptionBottomSheet() {
 
   override fun title(): Int = R.string.home_option_editor_options_title
 
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val items = ArrayList<LithoOptionsItem>()
+    val activity = context as MainActivity
+    items.add(LithoOptionsItem(
+        title = R.string.note_option_default_color,
+        subtitle = R.string.note_option_default_color_subtitle,
+        icon = R.drawable.ic_action_color,
+        listener = {
+          val config = ColorPickerDefaultController(
+              title = R.string.note_option_default_color,
+              colors = listOf(
+                  activity.resources.getIntArray(R.array.bright_colors),
+                  activity.resources.getIntArray(R.array.bright_colors_accent)),
+              selectedColor = sNoteDefaultColor,
+              onColorSelected = { sNoteDefaultColor = it }
+          )
+          openSheet(activity, ColorPickerBottomSheet().apply { this.config = config })
+          dismiss()
+        }
+    ))
     items.add(LithoOptionsItem(
         title = R.string.markdown_sheet_markdown_support,
         subtitle = R.string.markdown_sheet_markdown_support_subtitle,

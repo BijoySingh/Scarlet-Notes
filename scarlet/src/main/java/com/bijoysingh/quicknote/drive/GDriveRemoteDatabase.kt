@@ -16,7 +16,7 @@ import com.maubis.scarlet.base.config.auth.IPendingUploadListener
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.database.remote.IRemoteDatabaseUtils
 import com.maubis.scarlet.base.export.data.*
-import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
+import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.utils.log
 import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.GlobalScope
@@ -583,7 +583,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
       return
     }
 
-    val logInfo ="onRemoteRemove(${type.name}, ${data.uuid})"
+    val logInfo = "onRemoteRemove(${type.name}, ${data.uuid})"
     log("GDriveRemote", logInfo)
     incrementPendingSyncs(logInfo)
     when (type) {

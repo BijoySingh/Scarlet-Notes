@@ -21,8 +21,8 @@ import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FREE
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
+import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.settings.sheet.sInternalShowUUID
-import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import java.util.*
 import kotlin.collections.ArrayList
@@ -53,6 +53,9 @@ fun Note.getFullTextForDirectMarkdownRender(): String {
 
 fun Note.getMarkdownForListView(isMarkdownEnabled: Boolean): CharSequence {
   var text = getFullTextForDirectMarkdownRender()
+  if (sInternalShowUUID) {
+    text = "`$uuid`\n\n$text"
+  }
   return when {
     isMarkdownEnabled -> Markdown.renderWithCustomFormatting(text, true) { spannable, spanInfo ->
       val s = spanInfo.start

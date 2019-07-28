@@ -61,14 +61,6 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_note_settings,
-        subtitle = R.string.home_option_note_settings_subtitle,
-        icon = R.drawable.ic_subject_white_48dp,
-        listener = {
-          openSheet(activity, NoteSettingsOptionsBottomSheet())
-        }
-    ))
-    options.add(LithoOptionsItem(
         title = R.string.home_option_editor_options_title,
         subtitle = R.string.home_option_editor_options_description,
         icon = R.drawable.ic_edit_white_48dp,
@@ -82,6 +74,15 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         icon = R.drawable.ic_export,
         listener = {
           openSheet(activity, BackupSettingsOptionsBottomSheet())
+        }
+    ))
+    options.add(LithoOptionsItem(
+        title = R.string.home_option_security,
+        subtitle = R.string.home_option_security_subtitle,
+        icon = R.drawable.ic_option_security,
+        listener = {
+          SecurityOptionsBottomSheet.openSheet(activity)
+          dismiss()
         }
     ))
     options.add(LithoOptionsItem(

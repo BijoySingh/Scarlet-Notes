@@ -21,8 +21,8 @@ import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.main.sheets.HomeOptionsBottomSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
+import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.note.folder.sheet.CreateOrEditFolderBottomSheet
-import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.*
 import com.maubis.scarlet.base.support.ui.ColorUtil

@@ -35,6 +35,7 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         isSelectable = true,
         selected = !TextUtils.isNullOrEmpty(ApplicationBase.instance.store().get(KEY_SECURITY_CODE, ""))
     ))
+
     val hasFingerprint = Reprint.hasFingerprintRegistered()
     options.add(LithoOptionsItem(
         title = R.string.security_option_fingerprint_enabled,
