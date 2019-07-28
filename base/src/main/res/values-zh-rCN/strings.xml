@@ -376,5 +376,72 @@
   <string name="widget_option_show_trash_notes">显示回收站中的笔记</string>
   <string name="widget_option_show_trash_notes_details">允许回收站中的笔记出现在主屏幕小部件中</string>
   <!-- End: Widget Options Sheet -->
-  
+
+  <!-- Added for 7.0.4 -->
+  <string name="merge_notes">合并备注</string>
+  <string name="home_option_export_markdown">出口为降价</string>
+  <string name="home_option_export_markdown_subtitle">以降价格式导出备注。 （你不能将这些导回到应用程序）</string>
+  <string name="home_option_auto_export_folder">导出文件夹</string>
+  <string name="home_option_auto_export_folder_subtitle">选择存储所有导出的位置</string>
+  <string name="ui_options_note_background_color_settings_theme">使用主题颜色为背景</string>
+  <string name="ui_options_note_background_color_settings_note">使用备注颜色作为背景</string>
+  <string name="import_export_layout_folder_sync_enable">启用</string>
+  <string name="import_export_layout_folder_sync_disable">禁用</string>
+  <string name="sort_sheet_alphabetical">按英文字母顺序</string>
+  <string name="available_in_pro_only">可在Scarlet Pro上使用</string>
+  <string name="editor_option_move_checked_items">移动选中的项目</string>
+  <string name="editor_option_move_checked_items_description">选中的项目移动到列表的底部。取消选中不会重置位置。</string>
+  <string name="home_option_faq_title">帮助和常见问题</string>
+  <string name="home_option_faq_description">查找有关如何使用应用程序中的功能的帮助</string>
+  <string name="home_syncing_top_layout">同步</string>
+  <string name="home_pending_backup_top_layout">待备份</string>
+  <string name="internal_settings_title">开发者选项</string>
+  <string name="internal_settings_description">将内部设置更改为用于调试的应用程序</string>
+  <string name="internal_settings_enable_log_exceptions_title">记录例外</string>
+  <string name="internal_settings_enable_log_exceptions_description">记录固定注释的异常，以允许转发给Developer</string>
+  <string name="internal_settings_enable_show_exceptions_title">显示例外表</string>
+  <string name="internal_settings_enable_show_exceptions_description">如果可能，在工作表上显示捕获的异常，以允许转发到Developer</string>
+  <string name="internal_settings_enable_throw_exceptions_title">抛弃异常</string>
+  <string name="internal_settings_enable_throw_exceptions_description">在异常上抛出并崩溃应用程序。 5次崩溃后将重置</string>
+  <string name="internal_settings_enable_fullscreen_title">启用全屏</string>
+  <string name="internal_settings_enable_fullscreen_description">全屏显示应用程序以允许截屏和录制</string>
+  <string name="internal_settings_show_uuid_title">显示注释UUID</string>
+  <string name="internal_settings_show_uuid_description">在主屏幕视图中显示备注的唯一ID</string>
+  <string name="internal_settings_fake_exceptions_title">假例外</string>
+  <string name="internal_settings_fake_exceptions_description">抛出一个假异常来测试异常功能</string>
+  <string name="exception_sheet_title">抛出异常</string>
+  <string name="exception_sheet_crash_app">崩溃应用程序</string>
+  <string name="exception_sheet_mail">邮件</string>
+  <string name="google_drive_page_connection_failed">连接失败</string>
+  <string name="google_drive_page_login_title">在Google云端硬盘上同步</string>
+  <string name="google_drive_page_login_details">Google云端硬盘可让您使用自己的Google云端硬盘帐户在设备之间同步笔记。</string>
+  <string name="google_drive_page_login_firebase_button">之前登录过Google Firebase？</string>
+  <string name="google_drive_page_login_button">登录Google云端硬盘</string>
+  <string name="google_drive_page_logging_in_button">签约</string>
+  <string name="google_drive_page_logout_title">退出血色</string>
+  <string name="google_drive_page_logout_details">停止同步笔记，标签和文件夹。</string>
+  <string name="google_drive_page_logout_no_sync_details">停止将您的笔记，标签和文件夹同步到Google云端硬盘。</string>
+  <string name="google_drive_page_logout_data_persists_details">您在应用和Google云端硬盘上的数据仍然存在。</string>
+  <string name="google_drive_page_logout_button">从云端硬盘退出</string>
+  <string name="google_drive_page_logging_out_button">签出 -</string>
+  <string name="google_drive_page_login_lock_details">备注，标签和文件夹存储在您自己的Google云端硬盘中，因此只有您可以控制对它们的访问权限。</string>
+  <string name="google_drive_page_photo_details">您的照片也会上传并在设备间同步。</string>
+  <string name="firebase_page_login_title">从Firebase还原数据</string>
+  <string name="firebase_page_login_button">与谷歌签约</string>
+  <string name="firebase_page_logging_in_button">签约</string>
+  <string name="firebase_page_important_details">我们过去常常将您的信息存储在Google Firebase上。登录后，我们会将这些恢复到您的设备</string>
+  <string name="firebase_page_not_sync_details">新笔记和更改不会同步到Google Firebase，您需要登录Google云端硬盘</string>
+  <string name="firebase_page_remove_details">恢复笔记后，您可以将其从Google Firebase中删除，然后进行切换</string>
+  <string name="firebase_no_sync_warning">您的数据未同步！</string>
+  <string name="firebase_no_sync_warning_details">基于旧版登录的数据同步已停用，请考虑切换到基于Google云端硬盘的同步。</string>
+  <string name="firebase_removal_page_login_title">将数据从Firebase传输到云端硬盘</string>
+  <string name="firebase_removal_page_clear_button">清除数据并注销</string>
+  <string name="firebase_removal_page_clearing_button">清除和签出</string>
+  <string name="firebase_removal_page_important_details">我们过去常常将您的信息存储在Google Firebase上。我们正在将您的笔记存储到您的Google云端硬盘中。</string>
+  <string name="firebase_removal_page_more_privacy_details">更多隐私。</string>
+  <string name="firebase_removal_page_photo_upload_details">照片同步。</string>
+  <string name="firebase_removal_page_whats_next_details">下一步</string>
+  <string name="firebase_removal_page_remove_details">我们会先从Firebase中删除您的备注并注销。</string>
+  <string name="firebase_removal_page_next_details">然后，您可以登录Google云端硬盘，我们会将您的数据与图片一起上传。</string>
+
 </resources>

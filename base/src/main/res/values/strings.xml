@@ -43,7 +43,7 @@
   <string name="pin_note">Pin Note</string>
   <string name="unpin_note">Unpin Note</string>
   <string name="view_distraction_free">Distraction Free</string>
-  <string name="merge_notes" translatable="false">Merge Notes</string>
+  <string name="merge_notes">Merge Notes</string>
   <string name="choose_action">Choose Action&#8230;</string>
 
   <string name="tap_for_action_open_note_night_mode">Tap to view the note in night mode</string>
@@ -126,10 +126,10 @@
   <string name="home_option_export_subtitle">Export notes to device storage to share</string>
   <string name="home_option_import">Import Notes</string>
   <string name="home_option_import_subtitle">Import notes from the device storage</string>
-  <string name="home_option_export_markdown" translatable="false">Export As Markdown</string>
-  <string name="home_option_export_markdown_subtitle" translatable="false">Export notes in markdown format. (You cannot import these back to the app)</string>
-  <string name="home_option_auto_export_folder" translatable="false">Export Folder</string>
-  <string name="home_option_auto_export_folder_subtitle" translatable="false">Choose where all exports are stored</string>
+  <string name="home_option_export_markdown">Export As Markdown</string>
+  <string name="home_option_export_markdown_subtitle">Export notes in markdown format. (You cannot import these back to the app)</string>
+  <string name="home_option_auto_export_folder">Export Folder</string>
+  <string name="home_option_auto_export_folder_subtitle">Choose where all exports are stored</string>
   <string name="home_option_auto_export">Export Automatically</string>
   <string name="home_option_auto_export_subtitle">Export notes frequently to external file as backup</string>
   <string name="home_option_about_page">About Us</string>
@@ -156,8 +156,8 @@
   <string name="home_option_delete_everything_details">Delete notes, tags and folders in the app</string>
 
   <string name="ui_options_note_background_color">Note Viewer Background</string>
-  <string name="ui_options_note_background_color_settings_theme" translatable="false">Use theme color for background</string>
-  <string name="ui_options_note_background_color_settings_note" translatable="false">Use note color for background</string>
+  <string name="ui_options_note_background_color_settings_theme">Use theme color for background</string>
+  <string name="ui_options_note_background_color_settings_note">Use note color for background</string>
 
   <string name="security_option_title">Security Options</string>
   <string name="security_option_set_pin_code">Pass Code</string>
@@ -199,16 +199,16 @@
   <string name="import_export_layout_exporting">Exporting to file&#8230;</string>
   <string name="import_export_layout_exporting_done">Done</string>
   <string name="import_export_layout_exporting_share">Share</string>
-  <string name="import_export_layout_folder_sync_enable" translatable="false">Enable</string>
-  <string name="import_export_layout_folder_sync_disable" translatable="false">Disable</string>
-  <string name="import_export_layout_folder_sync" translatable="false">Enable Folder Sync</string>
-  <string name="import_export_layout_folder_sync_title" translatable="false">Folder Sync</string>
-  <string name="import_export_layout_folder_sync_description" translatable="false">Sync all your notes, tags and folders to an external folder. This helps you sync using other apps between devices, as well have a copy in case you need to delete the app.</string>
-  <string name="import_export_layout_folder_sync_folder" translatable="false">Exporting to Folder</string>
-  <string name="import_export_layout_folder_sync_details" translatable="false">Sync all the notes, tags, etc to an external folder</string>
+  <string name="import_export_layout_folder_sync_enable">Enable</string>
+  <string name="import_export_layout_folder_sync_disable">Disable</string>
+  <string name="import_export_layout_folder_sync">Enable Folder Sync</string>
+  <string name="import_export_layout_folder_sync_title">Folder Sync</string>
+  <string name="import_export_layout_folder_sync_description">Sync all your notes, tags and folders to an external folder. This helps you sync using other apps between devices, as well have a copy in case you need to delete the app.</string>
+  <string name="import_export_layout_folder_sync_folder">Exporting to Folder</string>
+  <string name="import_export_layout_folder_sync_details">Sync all the notes, tags, etc to an external folder</string>
   <string name="import_export_layout_filename" translatable="false">MaterialNotes/BACKUP.txt</string>
-  <string name="import_export_locked" translatable="false">Export locked notes</string>
-  <string name="import_export_locked_details" translatable="false">Also backup the notes which are locked</string>
+  <string name="import_export_locked">Export locked notes</string>
+  <string name="import_export_locked_details">Also backup the notes which are locked</string>
 
   <string name="file_size_kb" translatable="false">%s KB</string>
   <string name="file_size_mb" translatable="false">%s MB</string>
@@ -256,7 +256,7 @@
   <string name="sort_sheet_newest_first">Newest First</string>
   <string name="sort_sheet_oldest_first">Oldest First</string>
   <string name="sort_sheet_last_modified">Most Recently Modified</string>
-  <string name="sort_sheet_alphabetical" translatable="false">Alphabetical</string>
+  <string name="sort_sheet_alphabetical">Alphabetical</string>
 
   <!-- Start Select Notes -->
   <string name="select_a_note_title">Select a Note</string>
@@ -337,7 +337,7 @@
   <string name="material_notes_privacy_policy_subtitle">App privacy policy for the content</string>
 
   <string name="install_pro_app">Install Pro App</string>
-  <string name="available_in_pro_only" translatable="false">Available on Scarlet Pro</string>
+  <string name="available_in_pro_only">Available on Scarlet Pro</string>
 
   <string name="why_install_pro">Why Install Pro</string>
   <string name="why_install_pro_details">
@@ -392,110 +392,110 @@
 
 
   <!-- Start: Editor Option Sheet -->
-  <string name="home_option_editor_options_title" translatable="false">Editor Options</string>
-  <string name="home_option_editor_options_description" translatable="false">Change the settings and usage for the note editor</string>
+  <string name="home_option_editor_options_title">Editor Options</string>
+  <string name="home_option_editor_options_description">Change the settings and usage for the note editor</string>
 
-  <string name="editor_option_enable_markdown_mode_default" translatable="false">Markdown Options as Default</string>
-  <string name="editor_option_enable_markdown_mode_default_details" translatable="false">Show the markdown quick buttons on the toolbar as default</string>
+  <string name="editor_option_enable_markdown_mode_default">Markdown Options as Default</string>
+  <string name="editor_option_enable_markdown_mode_default_details">Show the markdown quick buttons on the toolbar as default</string>
 
-  <string name="editor_option_enable_live_markdown" translatable="false">Realtime Markdown</string>
-  <string name="editor_option_enable_live_markdown_description" translatable="false">Choose if you want markdown to be visible as your type. Enabling can effect performance on large notes.</string>
+  <string name="editor_option_enable_live_markdown">Realtime Markdown</string>
+  <string name="editor_option_enable_live_markdown_description">Choose if you want markdown to be visible as your type. Enabling can effect performance on large notes.</string>
 
-  <string name="editor_option_move_checked_items" translatable="false">Move Checked Items</string>
-  <string name="editor_option_move_checked_items_description" translatable="false">Checked items move to the bottom of the list. Uncheck does not reset position.</string>
+  <string name="editor_option_move_checked_items">Move Checked Items</string>
+  <string name="editor_option_move_checked_items_description">Checked items move to the bottom of the list. Uncheck does not reset position.</string>
 
-  <string name="editor_option_enable_move_handle" translatable="false">Show Movement Handles</string>
-  <string name="editor_option_enable_move_handle_description" translatable="false">Show the handle to move items up or down. You can still move things around by touching the corner.</string>
+  <string name="editor_option_enable_move_handle">Show Movement Handles</string>
+  <string name="editor_option_enable_move_handle_description">Show the handle to move items up or down. You can still move things around by touching the corner.</string>
 
-  <string name="markdown_help_sheet_title" translatable="false">Markdown Examples</string>
+  <string name="markdown_help_sheet_title">Markdown Examples</string>
   <!-- End: Editor Option Sheet -->
 
   <!-- Start: Widget Options Sheet -->
-  <string name="home_option_widget_options_title" translatable="false">Widget Settings</string>
-  <string name="home_option_widget_options_description" translatable="false">Change the settings for the home screen widgets</string>
+  <string name="home_option_widget_options_title">Widget Settings</string>
+  <string name="home_option_widget_options_description">Change the settings for the home screen widgets</string>
 
-  <string name="widget_option_enable_formatting" translatable="false">Enable Formatting</string>
-  <string name="widget_option_enable_formatting_details" translatable="false">Notes are rendered with formatting in home screen widgets</string>
+  <string name="widget_option_enable_formatting">Enable Formatting</string>
+  <string name="widget_option_enable_formatting_details">Notes are rendered with formatting in home screen widgets</string>
 
-  <string name="widget_option_show_locked_notes" translatable="false">Show Locked Notes</string>
-  <string name="widget_option_show_locked_notes_details" translatable="false">Allow locked notes to be shown in home screen widgets</string>
+  <string name="widget_option_show_locked_notes">Show Locked Notes</string>
+  <string name="widget_option_show_locked_notes_details">Allow locked notes to be shown in home screen widgets</string>
 
-  <string name="widget_option_show_archived_notes" translatable="false">Show Archived Notes</string>
-  <string name="widget_option_show_archived_notes_details" translatable="false">Allow archived notes to be shown in home screen widgets</string>
+  <string name="widget_option_show_archived_notes">Show Archived Notes</string>
+  <string name="widget_option_show_archived_notes_details">Allow archived notes to be shown in home screen widgets</string>
 
-  <string name="widget_option_show_trash_notes" translatable="false">Show Notes in Trash</string>
-  <string name="widget_option_show_trash_notes_details" translatable="false">Allow notes in trash to be shown in home screen widgets</string>
+  <string name="widget_option_show_trash_notes">Show Notes in Trash</string>
+  <string name="widget_option_show_trash_notes_details">Allow notes in trash to be shown in home screen widgets</string>
   <!-- End: Widget Options Sheet -->
 
-  <string name="home_option_faq_title" translatable="false">Help and Common Questions</string>
-  <string name="home_option_faq_description" translatable="false">Find help on how to use the features in the app</string>
+  <string name="home_option_faq_title">Help and Common Questions</string>
+  <string name="home_option_faq_description">Find help on how to use the features in the app</string>
 
-  <string name="home_syncing_top_layout" translatable="false">Syncing</string>
-  <string name="home_pending_backup_top_layout" translatable="false">Pending Backup</string>
+  <string name="home_syncing_top_layout">Syncing</string>
+  <string name="home_pending_backup_top_layout">Pending Backup</string>
 
   <!-- Start: Internal Settings Strings -->
-  <string name="internal_settings_title" translatable="false">Developer Options</string>
-  <string name="internal_settings_description" translatable="false">Change internal settings to the application used for debugging</string>
+  <string name="internal_settings_title">Developer Options</string>
+  <string name="internal_settings_description">Change internal settings to the application used for debugging</string>
 
-  <string name="internal_settings_enable_log_exceptions_title" translatable="false">Log Exceptions</string>
-  <string name="internal_settings_enable_log_exceptions_description" translatable="false">Log caught exceptions to a fixed note, to allow forwarding to Developer</string>
+  <string name="internal_settings_enable_log_exceptions_title">Log Exceptions</string>
+  <string name="internal_settings_enable_log_exceptions_description">Log caught exceptions to a fixed note, to allow forwarding to Developer</string>
 
-  <string name="internal_settings_enable_show_exceptions_title" translatable="false">Show Exception Sheet</string>
-  <string name="internal_settings_enable_show_exceptions_description" translatable="false">Show caught exceptions on a sheet if possible, to allow forwarding to Developer</string>
+  <string name="internal_settings_enable_show_exceptions_title">Show Exception Sheet</string>
+  <string name="internal_settings_enable_show_exceptions_description">Show caught exceptions on a sheet if possible, to allow forwarding to Developer</string>
 
-  <string name="internal_settings_enable_throw_exceptions_title" translatable="false">Throw on Exceptions</string>
-  <string name="internal_settings_enable_throw_exceptions_description" translatable="false">Throw and crash the application on exceptions. Will be reset after 5 crashes</string>
+  <string name="internal_settings_enable_throw_exceptions_title">Throw on Exceptions</string>
+  <string name="internal_settings_enable_throw_exceptions_description">Throw and crash the application on exceptions. Will be reset after 5 crashes</string>
 
-  <string name="internal_settings_enable_fullscreen_title" translatable="false">Enable Fullscreen</string>
-  <string name="internal_settings_enable_fullscreen_description" translatable="false">Make the app in fullscreen to allow screenshots and recordings</string>
+  <string name="internal_settings_enable_fullscreen_title">Enable Fullscreen</string>
+  <string name="internal_settings_enable_fullscreen_description">Make the app in fullscreen to allow screenshots and recordings</string>
 
-  <string name="internal_settings_show_uuid_title" translatable="false">Show Note UUIDs</string>
-  <string name="internal_settings_show_uuid_description" translatable="false">Show the unique ids of the notes in the home screen view</string>
+  <string name="internal_settings_show_uuid_title">Show Note UUIDs</string>
+  <string name="internal_settings_show_uuid_description">Show the unique ids of the notes in the home screen view</string>
 
-  <string name="internal_settings_fake_exceptions_title" translatable="false">Fake Exceptions</string>
-  <string name="internal_settings_fake_exceptions_description" translatable="false">Throw a fake exception to test the exception features</string>
+  <string name="internal_settings_fake_exceptions_title">Fake Exceptions</string>
+  <string name="internal_settings_fake_exceptions_description">Throw a fake exception to test the exception features</string>
 
-  <string name="exception_sheet_title" translatable="false">Exception Thrown</string>
-  <string name="exception_sheet_crash_app" translatable="false">Crash App</string>
-  <string name="exception_sheet_mail" translatable="false">Mail</string>
+  <string name="exception_sheet_title">Exception Thrown</string>
+  <string name="exception_sheet_crash_app">Crash App</string>
+  <string name="exception_sheet_mail">Mail</string>
 
   <!-- Start: Google Login Strings -->
-  <string name="google_drive_page_connection_failed" translatable="false">Connection Failed</string>
-  <string name="google_drive_page_login_title" translatable="false">Sync on Google Drive</string>
-  <string name="google_drive_page_login_details" translatable="false">Google Drive allows you to sync your notes between devices using your own Google Drive account.</string>
-  <string name="google_drive_page_login_firebase_button" translatable="false">Logged into Google Firebase before?</string>
-  <string name="google_drive_page_login_button" translatable="false">Sign In to Google Drive</string>
-  <string name="google_drive_page_logging_in_button" translatable="false">Signing In&#8230;</string>
+  <string name="google_drive_page_connection_failed">Connection Failed</string>
+  <string name="google_drive_page_login_title">Sync on Google Drive</string>
+  <string name="google_drive_page_login_details">Google Drive allows you to sync your notes between devices using your own Google Drive account.</string>
+  <string name="google_drive_page_login_firebase_button">Logged into Google Firebase before?</string>
+  <string name="google_drive_page_login_button">Sign In to Google Drive</string>
+  <string name="google_drive_page_logging_in_button">Signing In&#8230;</string>
 
-  <string name="google_drive_page_logout_title" translatable="false">Sign Out of Scarlet</string>
-  <string name="google_drive_page_logout_details" translatable="false">Stop syncing notes, tags and folders.</string>
-  <string name="google_drive_page_logout_no_sync_details" translatable="false">Stop syncing your notes, tags and folders to your Google Drive.</string>
-  <string name="google_drive_page_logout_data_persists_details" translatable="false">Your data on the app and on Google Drive will still be there.</string>
-  <string name="google_drive_page_logout_button" translatable="false">Sign Out from Drive</string>
-  <string name="google_drive_page_logging_out_button" translatable="false">Signing Out&#8230;</string>
+  <string name="google_drive_page_logout_title">Sign Out of Scarlet</string>
+  <string name="google_drive_page_logout_details">Stop syncing notes, tags and folders.</string>
+  <string name="google_drive_page_logout_no_sync_details">Stop syncing your notes, tags and folders to your Google Drive.</string>
+  <string name="google_drive_page_logout_data_persists_details">Your data on the app and on Google Drive will still be there.</string>
+  <string name="google_drive_page_logout_button">Sign Out from Drive</string>
+  <string name="google_drive_page_logging_out_button">Signing Out&#8230;</string>
 
-  <string name="google_drive_page_login_lock_details" translatable="false">Notes, Tags and Folders are stored on your own Google Drive, so only you can control access to them.</string>
-  <string name="google_drive_page_photo_details" translatable="false">Your photos are uploaded and synced across devices as well.</string>
+  <string name="google_drive_page_login_lock_details">Notes, Tags and Folders are stored on your own Google Drive, so only you can control access to them.</string>
+  <string name="google_drive_page_photo_details">Your photos are uploaded and synced across devices as well.</string>
 
   <!-- Start: New Firebase Login Strings -->
-  <string name="firebase_page_login_title" translatable="false">Restore Data from Firebase</string>
-  <string name="firebase_page_login_button" translatable="false">Sign In with Google</string>
-  <string name="firebase_page_logging_in_button" translatable="false">Signing In&#8230;</string>
+  <string name="firebase_page_login_title">Restore Data from Firebase</string>
+  <string name="firebase_page_login_button">Sign In with Google</string>
+  <string name="firebase_page_logging_in_button">Signing In&#8230;</string>
 
-  <string name="firebase_page_important_details" translatable="false">We used to store your information on Google Firebase. After logging in we will recover these to your device</string>
-  <string name="firebase_page_not_sync_details" translatable="false">New notes and changes will NOT be synced over to Google Firebase, and you need to login on to Google Drive</string>
-  <string name="firebase_page_remove_details" translatable="false">Once your notes are recovered, you can delete them from Google Firebase, and then switch over</string>
+  <string name="firebase_page_important_details">We used to store your information on Google Firebase. After logging in we will recover these to your device</string>
+  <string name="firebase_page_not_sync_details">New notes and changes will NOT be synced over to Google Firebase, and you need to login on to Google Drive</string>
+  <string name="firebase_page_remove_details">Once your notes are recovered, you can delete them from Google Firebase, and then switch over</string>
 
-  <string name="firebase_no_sync_warning" translatable="false">Your data is not being synced!</string>
-  <string name="firebase_no_sync_warning_details" translatable="false">Data Sync based on legacy login is disabled, consider switching over to Google Drive based sync.</string>
+  <string name="firebase_no_sync_warning">Your data is not being synced!</string>
+  <string name="firebase_no_sync_warning_details">Data Sync based on legacy login is disabled, consider switching over to Google Drive based sync.</string>
 
-  <string name="firebase_removal_page_login_title" translatable="false">Transfer Data from Firebase to Drive</string>
-  <string name="firebase_removal_page_clear_button" translatable="false">Clear Data and Sign Out</string>
-  <string name="firebase_removal_page_clearing_button" translatable="false">Clearing and Signing Out</string>
-  <string name="firebase_removal_page_important_details" translatable="false">We used to store your information on Google Firebase. We are moving over to storing your notes in your Google Drive.</string>
-  <string name="firebase_removal_page_more_privacy_details" translatable="false">More Privacy.</string>
-  <string name="firebase_removal_page_photo_upload_details" translatable="false">Photo Sync.</string>
-  <string name="firebase_removal_page_whats_next_details" translatable="false">Next Steps</string>
-  <string name="firebase_removal_page_remove_details" translatable="false">We will first delete your notes from Firebase and log you out.</string>
-  <string name="firebase_removal_page_next_details" translatable="false">You can then log into Google Drive, and we will upload your data along with images.</string>
+  <string name="firebase_removal_page_login_title">Transfer Data from Firebase to Drive</string>
+  <string name="firebase_removal_page_clear_button">Clear Data and Sign Out</string>
+  <string name="firebase_removal_page_clearing_button">Clearing and Signing Out</string>
+  <string name="firebase_removal_page_important_details">We used to store your information on Google Firebase. We are moving over to storing your notes in your Google Drive.</string>
+  <string name="firebase_removal_page_more_privacy_details">More Privacy.</string>
+  <string name="firebase_removal_page_photo_upload_details">Photo Sync.</string>
+  <string name="firebase_removal_page_whats_next_details">Next Steps</string>
+  <string name="firebase_removal_page_remove_details">We will first delete your notes from Firebase and log you out.</string>
+  <string name="firebase_removal_page_next_details">You can then log into Google Drive, and we will upload your data along with images.</string>
 </resources>
