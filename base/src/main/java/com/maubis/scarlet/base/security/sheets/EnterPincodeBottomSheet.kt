@@ -1,4 +1,4 @@
-package com.maubis.scarlet.base.main.sheets
+package com.maubis.scarlet.base.security.sheets
 
 import android.app.Dialog
 import android.content.DialogInterface
@@ -17,8 +17,9 @@ import com.github.bijoysingh.starter.util.LocaleManager
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
-import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
+import com.maubis.scarlet.base.settings.sheet.sSecurityCode
+import com.maubis.scarlet.base.settings.sheet.sSecurityFingerprintEnabled
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
@@ -176,7 +177,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
         override fun isRemoveButtonEnabled(): Boolean = true
 
         override fun onRemoveButtonClick() {
-          ApplicationBase.instance.store().put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
+          sSecurityCode = ""
           sNoPinSetupNoticeShown = false
           listener.onSuccess()
 
@@ -185,7 +186,7 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
         }
 
         override fun onPasswordRequested(password: String) {
-          ApplicationBase.instance.store().put(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, password)
+          sSecurityCode = password
           listener.onSuccess()
         }
 
@@ -238,12 +239,11 @@ class EnterPincodeBottomSheet : ThemedBottomSheetFragment() {
         override fun getActionTitle(): Int = actionTitle
 
         override fun isFingerprintEnabled(): Boolean {
-          return Reprint.hasFingerprintRegistered() &&
-              ApplicationBase.instance.store().get(SecurityOptionsBottomSheet.KEY_FINGERPRINT_ENABLED, true)
+          return Reprint.hasFingerprintRegistered() && sSecurityFingerprintEnabled
         }
 
         override fun onPasswordRequested(password: String) {
-          val currentPassword = ApplicationBase.instance.store().get(SecurityOptionsBottomSheet.KEY_SECURITY_CODE, "")
+          val currentPassword = sSecurityCode
           if (currentPassword != "" && currentPassword == password) {
             listener.onSuccess()
           } else if (listener is PincodeSuccessListener) {

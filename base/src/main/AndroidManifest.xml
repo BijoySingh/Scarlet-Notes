@@ -1,2 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.maubis.scarlet.base" />
+  package="com.maubis.scarlet.base">
+
+  <application>
+    <activity
+      android:name=".security.activity.AppLockActivity"
+      android:windowSoftInputMode="adjustResize"
+      />
+  </application>
+
+</manifest>

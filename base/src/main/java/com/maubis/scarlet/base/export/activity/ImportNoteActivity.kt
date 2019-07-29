@@ -14,6 +14,7 @@ import com.maubis.scarlet.base.export.recycler.FileRecyclerItem
 import com.maubis.scarlet.base.export.support.NoteImporter
 import com.maubis.scarlet.base.note.recycler.NoteAppAdapter
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
+import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.bind
@@ -21,7 +22,7 @@ import java.io.File
 import java.io.FileReader
 
 
-class ImportNoteActivity : ThemedActivity() {
+class ImportNoteActivity : SecuredActivity() {
   val adapter = NoteAppAdapter(this)
 
   var currentlySelectedFile: File? = null

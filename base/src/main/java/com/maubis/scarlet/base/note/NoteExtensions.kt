@@ -16,7 +16,7 @@ import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.*
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
-import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
+import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FREE
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID

@@ -7,34 +7,68 @@ import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
-import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
-import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet.Companion.openCreateSheet
-import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet.Companion.openVerifySheet
+import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet
+import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet.Companion.openCreateSheet
+import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet.Companion.openVerifySheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+
+const val KEY_SECURITY_CODE = "KEY_SECURITY_CODE"
+const val KEY_FINGERPRINT_ENABLED = "KEY_FINGERPRINT_ENABLED"
+const val KEY_APP_LOCK_ENABLED = "app_lock_enabled"
+
+var sSecurityCode: String
+  get() = ApplicationBase.instance.store().get(KEY_SECURITY_CODE, "")
+  set(value) = ApplicationBase.instance.store().put(KEY_SECURITY_CODE, value)
+var sSecurityFingerprintEnabled: Boolean
+  get() = ApplicationBase.instance.store().get(KEY_FINGERPRINT_ENABLED, true)
+  set(value) = ApplicationBase.instance.store().put(KEY_FINGERPRINT_ENABLED, value)
+var sSecurityAppLockEnabled: Boolean
+  get() = ApplicationBase.instance.store().get(KEY_APP_LOCK_ENABLED, false)
+  set(value) = ApplicationBase.instance.store().put(KEY_APP_LOCK_ENABLED, value)
 
 class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun title(): Int = R.string.security_option_title
 
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val options = ArrayList<LithoOptionsItem>()
+
     options.add(LithoOptionsItem(
         title = R.string.security_option_set_pin_code,
         subtitle = R.string.security_option_set_pin_code_subtitle,
         icon = R.drawable.ic_option_security,
         listener = {
-          val currentPinCode = ApplicationBase.instance.store().get(KEY_SECURITY_CODE, "")
-          val hasPinCode = !TextUtils.isNullOrEmpty(currentPinCode)
-          if (hasPinCode) {
-            openResetPasswordDialog(dialog)
-          } else {
-            openCreatePasswordDialog(dialog)
+          when {
+            hasPinCodeEnabled() -> openResetPasswordDialog(dialog)
+            else -> openCreatePasswordDialog(dialog)
           }
         },
         isSelectable = true,
-        selected = !TextUtils.isNullOrEmpty(ApplicationBase.instance.store().get(KEY_SECURITY_CODE, ""))
+        selected = hasPinCodeEnabled()
     ))
+
+    options.add(LithoOptionsItem(
+        title = R.string.security_option_lock_app,
+        subtitle = R.string.security_option_lock_app_details,
+        icon = R.drawable.ic_option_security,
+        listener = {
+          when {
+            hasPinCodeEnabled() -> openVerifyPasswordDialog(
+                object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
+                  override fun onSuccess() {
+                    sSecurityAppLockEnabled = !sSecurityAppLockEnabled
+                    reset(componentContext.androidContext, dialog)
+                  }
+                }
+            )
+            else -> openCreatePasswordDialog(dialog)
+          }
+        },
+        isSelectable = true,
+        selected = sSecurityAppLockEnabled
+    ))
+
 
     val hasFingerprint = Reprint.hasFingerprintRegistered()
     options.add(LithoOptionsItem(
@@ -42,23 +76,22 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.security_option_fingerprint_enabled_subtitle,
         icon = R.drawable.ic_option_fingerprint,
         listener = {
-          val currentPinCode = ApplicationBase.instance.store().get(KEY_SECURITY_CODE, "")
-          val hasPinCode = !TextUtils.isNullOrEmpty(currentPinCode)
-          if (hasPinCode) {
-            openVerifyPasswordDialog(
+          when {
+            hasPinCodeEnabled() -> openVerifyPasswordDialog(
                 object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
                   override fun onSuccess() {
-                    ApplicationBase.instance.store().put(KEY_FINGERPRINT_ENABLED, false)
+                    sSecurityFingerprintEnabled = false
                     reset(componentContext.androidContext, dialog)
                   }
                 }
             )
-          } else {
-            ApplicationBase.instance.store().put(KEY_FINGERPRINT_ENABLED, false)
-            reset(componentContext.androidContext, dialog)
+            else -> {
+              sSecurityFingerprintEnabled = false
+              reset(componentContext.androidContext, dialog)
+            }
           }
         },
-        visible = ApplicationBase.instance.store().get(KEY_FINGERPRINT_ENABLED, true) && hasFingerprint,
+        visible = sSecurityFingerprintEnabled && hasFingerprint,
         isSelectable = true,
         selected = true
     ))
@@ -67,23 +100,22 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.security_option_fingerprint_disabled_subtitle,
         icon = R.drawable.ic_option_fingerprint,
         listener = {
-          val currentPinCode = ApplicationBase.instance.store().get(KEY_SECURITY_CODE, "")
-          val hasPinCode = !TextUtils.isNullOrEmpty(currentPinCode)
-          if (hasPinCode) {
-            openVerifyPasswordDialog(
+          when {
+            hasPinCodeEnabled() -> openVerifyPasswordDialog(
                 object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
                   override fun onSuccess() {
-                    ApplicationBase.instance.store().put(KEY_FINGERPRINT_ENABLED, true)
+                    sSecurityFingerprintEnabled = true
                     reset(componentContext.androidContext, dialog)
                   }
                 }
             )
-          } else {
-            ApplicationBase.instance.store().put(KEY_FINGERPRINT_ENABLED, true)
-            reset(componentContext.androidContext, dialog)
+            else -> {
+              sSecurityFingerprintEnabled = true
+              reset(componentContext.androidContext, dialog)
+            }
           }
         },
-        visible = !ApplicationBase.instance.store().get(KEY_FINGERPRINT_ENABLED, true) && hasFingerprint
+        visible = !sSecurityFingerprintEnabled && hasFingerprint
     ))
     return options
   }
@@ -130,18 +162,13 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
   }
 
   companion object {
-
-    const val KEY_SECURITY_CODE = "KEY_SECURITY_CODE"
-    const val KEY_FINGERPRINT_ENABLED = "KEY_FINGERPRINT_ENABLED"
-
     fun openSheet(activity: MainActivity) {
       val sheet = SecurityOptionsBottomSheet()
       sheet.show(activity.supportFragmentManager, sheet.tag)
     }
 
     fun hasPinCodeEnabled(): Boolean {
-      val currentPinCode = ApplicationBase.instance.store().get(KEY_SECURITY_CODE, "")
-      return !TextUtils.isNullOrEmpty(currentPinCode)
+      return !TextUtils.isNullOrEmpty(sSecurityCode)
     }
   }
 }

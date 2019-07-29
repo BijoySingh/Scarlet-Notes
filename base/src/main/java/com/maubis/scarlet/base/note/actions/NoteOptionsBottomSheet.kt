@@ -14,7 +14,7 @@ import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
+import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.main.sheets.openDeleteNotePermanentlySheet
 import com.maubis.scarlet.base.note.*

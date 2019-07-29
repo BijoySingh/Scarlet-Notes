@@ -57,7 +57,7 @@ data class NoteViewColorConfig(
     var toolbarIconColor: Int = Color.BLACK,
     var statusBarColor: Int = Color.BLACK)
 
-open class ViewAdvancedNoteActivity : ThemedActivity(), INoteOptionSheetActivity, IFormatRecyclerViewActivity {
+open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivity, IFormatRecyclerViewActivity {
 
   var focusedFormat: Format? = null
 

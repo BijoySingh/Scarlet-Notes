@@ -9,7 +9,7 @@ import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.sectionPreservingSort
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getFormats
-import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
+import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.folder.sheet.SelectedFolderChooseOptionsBottomSheet
 import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity

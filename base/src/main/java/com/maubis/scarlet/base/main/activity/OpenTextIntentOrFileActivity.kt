@@ -23,6 +23,7 @@ import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.export.support.NoteImporter
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.save
+import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.bind
@@ -32,7 +33,7 @@ import java.io.InputStreamReader
 const val KEEP_PACKAGE = "com.google.android.keep"
 const val INTENT_KEY_DIRECT_NOTES_TRANSFER = "direct_notes_transfer"
 
-class OpenTextIntentOrFileActivity : ThemedActivity() {
+class OpenTextIntentOrFileActivity : SecuredActivity() {
 
   lateinit var context: Context
 

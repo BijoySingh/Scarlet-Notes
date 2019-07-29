@@ -29,6 +29,7 @@ import com.google.api.services.drive.Drive
 import com.google.api.services.drive.DriveScopes
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.Dispatchers
@@ -42,7 +43,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 // TODO: This is not ready... Recent changes in Drive API make this sh*t a little difficult and
 // inconclusive. I want to do this because it's safer than Firebase, but f*ck Google for
 // changing the API So much
-class GDriveLoginActivity : ThemedActivity(), GoogleApiClient.OnConnectionFailedListener {
+class GDriveLoginActivity : SecuredActivity(), GoogleApiClient.OnConnectionFailedListener {
 
   private val RC_SIGN_IN = 31244
 

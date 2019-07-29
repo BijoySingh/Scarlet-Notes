@@ -52,6 +52,7 @@ import com.maubis.scarlet.base.support.database.Migrator
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
+import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.unifiedFolderSearchSynchronous
@@ -63,7 +64,7 @@ import kotlinx.android.synthetic.main.toolbar_trash_info.*
 import kotlinx.coroutines.*
 import java.util.concurrent.atomic.AtomicBoolean
 
-class MainActivity : ThemedActivity(), INoteOptionSheetActivity {
+class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   private val singleThreadDispatcher = newSingleThreadContext("singleThreadDispatcher")
 
   private lateinit var recyclerView: RecyclerView

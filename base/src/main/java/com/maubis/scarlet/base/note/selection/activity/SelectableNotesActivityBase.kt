@@ -19,10 +19,10 @@ import com.maubis.scarlet.base.note.recycler.NoteAppAdapter
 import com.maubis.scarlet.base.note.recycler.NoteRecyclerItem
 import com.maubis.scarlet.base.note.recycler.getSelectableRecyclerItemControllerList
 import com.maubis.scarlet.base.settings.sheet.*
+import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.ui.ThemedActivity
 
-abstract class SelectableNotesActivityBase : ThemedActivity(), INoteSelectorActivity {
+abstract class SelectableNotesActivityBase : SecuredActivity(), INoteSelectorActivity {
 
   lateinit var recyclerView: RecyclerView
   lateinit var adapter: NoteAppAdapter

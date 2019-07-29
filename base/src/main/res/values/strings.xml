@@ -162,6 +162,8 @@
   <string name="security_option_title">Security Options</string>
   <string name="security_option_set_pin_code">Pass Code</string>
   <string name="security_option_set_pin_code_subtitle">Set a 4 digit PIN to lock notes</string>
+  <string name="security_option_lock_app" translatable="false">Enable App Lock</string>
+  <string name="security_option_lock_app_details" translatable="false">Use PIN to unlock the whole application</string>
   <string name="security_option_fingerprint_enabled">Unlock with Fingerprint</string>
   <string name="security_option_fingerprint_enabled_subtitle">The notes will unlock with the fingerprint</string>
   <string name="security_option_fingerprint_disabled">Fingerprint disabled</string>
@@ -498,4 +500,12 @@
   <string name="firebase_removal_page_whats_next_details">Next Steps</string>
   <string name="firebase_removal_page_remove_details">We will first delete your notes from Firebase and log you out.</string>
   <string name="firebase_removal_page_next_details">You can then log into Google Drive, and we will upload your data along with images.</string>
+
+
+  <!-- Start: App Lock Activity -->
+  <string name="app_lock_title" translatable="false">Unlock App</string>
+  <string name="app_lock_details" translatable="false">Enter PIN or use fingerprint to unlock</string>
+  <string name="app_lock_details_no_fingerprint" translatable="false">Enter PIN to unlock</string>
+  <!-- End: App Lock Activity -->
+
 </resources>
