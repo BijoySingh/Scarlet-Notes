@@ -16,12 +16,13 @@ import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.*
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
-import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FREE
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
+import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet
+import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.sMarkdownEnabledHome
 import com.maubis.scarlet.base.settings.sheet.sInternalShowUUID
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import java.util.*
@@ -51,36 +52,41 @@ fun Note.getFullTextForDirectMarkdownRender(): String {
   return text
 }
 
-fun Note.getMarkdownForListView(isMarkdownEnabled: Boolean): CharSequence {
+fun Note.getMarkdownForListView(): CharSequence {
   var text = getFullTextForDirectMarkdownRender()
   if (sInternalShowUUID) {
     text = "`$uuid`\n\n$text"
   }
-  return when {
-    isMarkdownEnabled -> Markdown.renderWithCustomFormatting(text, true) { spannable, spanInfo ->
-      val s = spanInfo.start
-      val e = spanInfo.end
-      when (spanInfo.markdownType) {
-        MarkdownType.HEADING_1 -> {
-          spannable.relativeSize(1.2f, s, e)
-              .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
-              .bold(s, e)
-          true
-        }
-        MarkdownType.HEADING_2 -> {
-          spannable.relativeSize(1.1f, s, e)
-              .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
-              .bold(s, e)
-          true
-        }
-        MarkdownType.CHECKLIST_CHECKED -> {
-          spannable.strike(s, e)
-          true
-        }
-        else -> false
+
+  if (sMarkdownEnabledHome) {
+    return markdownFormatForList(text)
+  }
+  return text
+}
+
+internal fun markdownFormatForList(text: String): CharSequence {
+  return Markdown.renderWithCustomFormatting(text, true) { spannable, spanInfo ->
+    val s = spanInfo.start
+    val e = spanInfo.end
+    when (spanInfo.markdownType) {
+      MarkdownType.HEADING_1 -> {
+        spannable.relativeSize(1.2f, s, e)
+            .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
+            .bold(s, e)
+        true
       }
+      MarkdownType.HEADING_2 -> {
+        spannable.relativeSize(1.1f, s, e)
+            .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
+            .bold(s, e)
+        true
+      }
+      MarkdownType.CHECKLIST_CHECKED -> {
+        spannable.strike(s, e)
+        true
+      }
+      else -> false
     }
-    else -> text
   }
 }
 
@@ -152,18 +158,19 @@ fun Note.getImageFile(): String {
 
 fun Note.getFullText(): String {
   val fullText = getFormats().map { it -> it.markdownText }.joinToString(separator = "\n").trim()
-  if (BuildConfig.DEBUG) {
+  if (sInternalShowUUID) {
     return "`$uuid`\n$fullText"
   }
   return fullText
 }
 
-fun Note.getLockedAwareTextForHomeList(isMarkdownEnabled: Boolean): CharSequence {
+fun Note.getLockedAwareTextForHomeList(): CharSequence {
+  val lockedText = "******************\n***********\n****************"
   val text = when {
-    this.locked -> "******************\n***********\n****************"
-    else -> getMarkdownForListView(isMarkdownEnabled)
+    this.locked && !sMarkdownEnabledHome -> "${getTitleForSharing()}\n$lockedText"
+    this.locked -> markdownFormatForList("# ${getTitleForSharing()}\n\n```\n$lockedText\n```")
+    else -> getMarkdownForListView()
   }
-
   return text
 }
 

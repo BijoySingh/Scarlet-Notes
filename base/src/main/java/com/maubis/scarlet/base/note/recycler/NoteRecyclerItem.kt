@@ -17,10 +17,9 @@ import com.maubis.scarlet.base.support.ui.ColorUtil
 class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
 
   private val isLightShaded = ColorUtil.isLightColored(note.color)
-  private val isMarkdownEnabled = sEditorMarkdownEnabled && sMarkdownEnabledHome
   val lineCount = sNoteItemLineCount
 
-  val description = note.getLockedAwareTextForHomeList(isMarkdownEnabled)
+  val description = note.getLockedAwareTextForHomeList()
   val descriptionColor = when (isLightShaded) {
     true -> ContextCompat.getColor(context, R.color.dark_tertiary_text)
     false -> ContextCompat.getColor(context, R.color.light_primary_text)

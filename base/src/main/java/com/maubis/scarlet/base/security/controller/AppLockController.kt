@@ -13,7 +13,7 @@ object AppLockController {
       val deltaSinceLastUnlock = SystemClock.uptimeMillis() - sLastLoginTimeMs
 
       // unlock stays 10 minutes
-      if (deltaSinceLastUnlock > 1000 * 60 * 10) {
+      if (sLastLoginTimeMs == 0L || deltaSinceLastUnlock > 1000 * 60 * 10) {
         return true
       }
 

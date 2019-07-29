@@ -42,16 +42,25 @@ object Markdown {
     val textBuilder = StringBuilder()
     val formats = ArrayList<SpanInfo>()
     segments.forEach {
-      val inliner = TextInliner(if (stripDelimiter) it.strip() else it.text()).get()
-      val strippedText = inliner.contentText(stripDelimiter)
-      val finalIndex = currentIndex + strippedText.length
+      val finalIndex: Int
+      val strippedText: String
+      when {
+        it.type() == MarkdownSegmentType.CODE -> {
+          strippedText = if (stripDelimiter) it.strip() else it.text()
+          finalIndex = currentIndex + strippedText.length
+          formats.add(SpanInfo(map(it.type()), currentIndex, finalIndex))
+        }
+        else -> {
+          val inliner = TextInliner(if (stripDelimiter) it.strip() else it.text()).get()
+          strippedText = inliner.contentText(stripDelimiter)
+          finalIndex = currentIndex + strippedText.length
 
-      formats.add(SpanInfo(map(it.type()), currentIndex, finalIndex))
-      if (it.type() != MarkdownSegmentType.CODE) {
-        formats.addAll(inliner.allContentSpans(stripDelimiter, currentIndex))
+          formats.add(SpanInfo(map(it.type()), currentIndex, finalIndex))
+          formats.addAll(inliner.allContentSpans(stripDelimiter, currentIndex))
+        }
       }
-      currentIndex = finalIndex + 1
 
+      currentIndex = finalIndex + 1
       textBuilder.append(strippedText)
       textBuilder.append("\n")
     }
