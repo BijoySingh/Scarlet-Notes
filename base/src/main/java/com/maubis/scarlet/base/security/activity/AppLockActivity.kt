@@ -1,16 +1,14 @@
 package com.maubis.scarlet.base.security.activity
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
 import com.github.ajalt.reprint.core.AuthenticationFailureReason
 import com.github.ajalt.reprint.core.AuthenticationListener
 import com.github.ajalt.reprint.core.Reprint
-import com.maubis.scarlet.base.security.controller.AppLockController
+import com.maubis.scarlet.base.security.controller.PinLockController
 import com.maubis.scarlet.base.settings.sheet.sSecurityCode
 import com.maubis.scarlet.base.settings.sheet.sSecurityFingerprintEnabled
 import com.maubis.scarlet.base.support.ui.ThemedActivity
@@ -38,7 +36,7 @@ class AppLockActivity : ThemedActivity() {
         }
         .onClick {
           if (passCodeEntered.length == 4 && sSecurityCode == passCodeEntered) {
-            AppLockController.notifyAppLock()
+            PinLockController.notifyPinVerified()
             finish()
           }
         }
@@ -51,7 +49,7 @@ class AppLockActivity : ThemedActivity() {
     passCodeEntered = ""
     Reprint.authenticate(object : AuthenticationListener {
       override fun onSuccess(moduleTag: Int) {
-        AppLockController.notifyAppLock()
+        PinLockController.notifyPinVerified()
         finish()
       }
 

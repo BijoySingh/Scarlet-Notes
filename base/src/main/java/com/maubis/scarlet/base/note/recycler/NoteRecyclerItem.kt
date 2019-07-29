@@ -9,8 +9,10 @@ import com.maubis.scarlet.base.core.note.getReminderV2
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.creation.sheet.sEditorMarkdownEnabled
+import com.maubis.scarlet.base.security.controller.PinLockController
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.sMarkdownEnabledHome
 import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
+import com.maubis.scarlet.base.settings.sheet.sSecurityAppLockEnabled
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ColorUtil
 

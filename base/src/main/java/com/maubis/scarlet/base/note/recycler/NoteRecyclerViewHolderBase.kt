@@ -14,6 +14,7 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.note.isNoteLockedButAppUnlocked
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.visibility
 import com.maubis.scarlet.base.support.utils.trim
@@ -32,6 +33,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
   protected val bottomLayout: View
 
   protected val pinIndicator: ImageView
+  protected val unlockIndicator: ImageView
   protected val reminderIndicator: ImageView
   protected val stateIndicator: ImageView
   protected val backupIndicator: ImageView
@@ -46,6 +48,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     copy = view.findViewById(R.id.copy_button)
     moreOptions = view.findViewById(R.id.options_button)
     pinIndicator = view.findViewById(R.id.pin_icon)
+    unlockIndicator = view.findViewById(R.id.unlock_icon)
     reminderIndicator = view.findViewById(R.id.reminder_icon)
     edit = view.findViewById(R.id.edit_button)
     bottomLayout = view.findViewById(R.id.bottom_toolbar_layout)
@@ -60,6 +63,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     setIndicators(item)
     setMetaText(item)
 
+    view.alpha = if (item.note.isNoteLockedButAppUnlocked()) 0.7f else 1.0f
     view.setOnClickListener { viewClick(item.note, extra) }
     view.setOnLongClickListener {
       viewLongClick(item.note, extra)
@@ -102,11 +106,13 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
       }
       NoteState.DEFAULT -> stateIndicator.visibility = GONE
     }
+    unlockIndicator.visibility = visibility(note.note.locked)
 
     pinIndicator.setColorFilter(note.indicatorColor)
     stateIndicator.setColorFilter(note.indicatorColor)
     reminderIndicator.setColorFilter(note.indicatorColor)
     backupIndicator.setColorFilter(note.indicatorColor)
+    unlockIndicator.setColorFilter(note.indicatorColor)
   }
 
   private fun setMetaText(note: NoteRecyclerItem) {

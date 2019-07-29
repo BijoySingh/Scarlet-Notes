@@ -20,9 +20,11 @@ import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FRE
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
+import com.maubis.scarlet.base.security.controller.PinLockController.needsLockCheck
 import com.maubis.scarlet.base.security.sheets.openUnlockSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.sMarkdownEnabledHome
 import com.maubis.scarlet.base.settings.sheet.sInternalShowUUID
+import com.maubis.scarlet.base.settings.sheet.sSecurityAppLockEnabled
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import java.util.*
 import kotlin.collections.ArrayList
@@ -163,14 +165,17 @@ fun Note.getFullText(): String {
   return fullText
 }
 
+fun Note.isNoteLockedButAppUnlocked(): Boolean {
+  return this.locked && !needsLockCheck() && sSecurityAppLockEnabled
+}
+
 fun Note.getLockedAwareTextForHomeList(): CharSequence {
   val lockedText = "******************\n***********\n****************"
-  val text = when {
-    this.locked && !sMarkdownEnabledHome -> "${getTitleForSharing()}\n$lockedText"
-    this.locked -> markdownFormatForList("# ${getTitleForSharing()}\n\n```\n$lockedText\n```")
-    else -> getMarkdownForListView()
+  return when {
+    isNoteLockedButAppUnlocked() || !this.locked -> getMarkdownForListView()
+    !sMarkdownEnabledHome -> "${getTitleForSharing()}\n$lockedText"
+    else -> markdownFormatForList("# ${getTitleForSharing()}\n\n```\n$lockedText\n```")
   }
-  return text
 }
 
 fun Note.getDisplayTime(): String {

@@ -17,7 +17,9 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet.Companion.hasPinCodeEnabled
+import com.maubis.scarlet.base.security.controller.PinLockController
+import com.maubis.scarlet.base.security.controller.PinLockController.isPinCodeEnabled
+import com.maubis.scarlet.base.security.controller.PinLockController.needsLockCheck
 import com.maubis.scarlet.base.settings.sheet.sSecurityAppLockEnabled
 import com.maubis.scarlet.base.settings.sheet.sSecurityCode
 import com.maubis.scarlet.base.settings.sheet.sSecurityFingerprintEnabled
@@ -36,7 +38,10 @@ data class PincodeSheetData(
     val isFingerprintEnabled: Boolean = false,
     val onActionClicked: (String) -> Unit = {password ->
       when {
-        password != "" && password == sSecurityCode -> onSuccess()
+        password != "" && password == sSecurityCode -> {
+          PinLockController.notifyPinVerified()
+          onSuccess()
+        }
         else -> onFailure()
       }
     },
@@ -204,7 +209,7 @@ fun openUnlockSheet(
     activity: ThemedActivity,
     onUnlockSuccess: () -> Unit,
     onUnlockFailure: () -> Unit) {
-  if (!hasPinCodeEnabled()) {
+  if (!isPinCodeEnabled()) {
     if (sNoPinSetupNoticeShown) {
       onUnlockSuccess()
       return
@@ -215,6 +220,9 @@ fun openUnlockSheet(
     return
   }
 
+  if (!needsLockCheck()) {
+    return onUnlockSuccess()
+  }
   openSheet(activity, PincodeBottomSheet().apply {
     data = PincodeSheetData(
         title = R.string.security_sheet_enter_pin_to_unlock_title,

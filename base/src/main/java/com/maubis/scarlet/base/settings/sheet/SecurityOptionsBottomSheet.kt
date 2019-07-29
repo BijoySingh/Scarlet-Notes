@@ -3,10 +3,9 @@ package com.maubis.scarlet.base.settings.sheet
 import android.app.Dialog
 import com.facebook.litho.ComponentContext
 import com.github.ajalt.reprint.core.Reprint
-import com.github.bijoysingh.starter.util.TextUtils
-import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.security.controller.PinLockController.isPinCodeEnabled
 import com.maubis.scarlet.base.security.sheets.openCreateSheet
 import com.maubis.scarlet.base.security.sheets.openVerifySheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
@@ -16,6 +15,7 @@ import com.maubis.scarlet.base.support.ui.ThemedActivity
 const val KEY_SECURITY_CODE = "KEY_SECURITY_CODE"
 const val KEY_FINGERPRINT_ENABLED = "KEY_FINGERPRINT_ENABLED"
 const val KEY_APP_LOCK_ENABLED = "app_lock_enabled"
+const val KEY_ASK_PIN_ALWAYS = "ask_pin_always"
 
 var sSecurityCode: String
   get() = ApplicationBase.instance.store().get(KEY_SECURITY_CODE, "")
@@ -26,6 +26,9 @@ var sSecurityFingerprintEnabled: Boolean
 var sSecurityAppLockEnabled: Boolean
   get() = ApplicationBase.instance.store().get(KEY_APP_LOCK_ENABLED, false)
   set(value) = ApplicationBase.instance.store().put(KEY_APP_LOCK_ENABLED, value)
+var sSecurityAskPinAlways: Boolean
+  get() = ApplicationBase.instance.store().get(KEY_ASK_PIN_ALWAYS, true)
+  set(value) = ApplicationBase.instance.store().put(KEY_ASK_PIN_ALWAYS, value)
 
 class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun title(): Int = R.string.security_option_title
@@ -39,21 +42,21 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         icon = R.drawable.ic_option_security,
         listener = {
           when {
-            hasPinCodeEnabled() -> openResetPasswordDialog(dialog)
+            isPinCodeEnabled() -> openResetPasswordDialog(dialog)
             else -> openCreatePasswordDialog(dialog)
           }
         },
         isSelectable = true,
-        selected = hasPinCodeEnabled()
+        selected = isPinCodeEnabled()
     ))
 
     options.add(LithoOptionsItem(
         title = R.string.security_option_lock_app,
         subtitle = R.string.security_option_lock_app_details,
-        icon = R.drawable.ic_option_security,
+        icon = R.drawable.ic_apps_white_48dp,
         listener = {
           when {
-            hasPinCodeEnabled() -> openVerifySheet(
+            isPinCodeEnabled() -> openVerifySheet(
                 activity = activity,
                 onVerifySuccess = {
                   sSecurityAppLockEnabled = !sSecurityAppLockEnabled
@@ -67,6 +70,25 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         selected = sSecurityAppLockEnabled
     ))
 
+    options.add(LithoOptionsItem(
+        title = R.string.security_option_ask_pin_always,
+        subtitle = R.string.security_option_ask_pin_always_details,
+        icon = R.drawable.ic_action_grid,
+        listener = {
+          when {
+            isPinCodeEnabled() -> openVerifySheet(
+                activity = activity,
+                onVerifySuccess = {
+                  sSecurityAskPinAlways = !sSecurityAskPinAlways
+                  reset(componentContext.androidContext, dialog)
+                }
+            )
+            else -> openCreatePasswordDialog(dialog)
+          }
+        },
+        isSelectable = true,
+        selected = sSecurityAskPinAlways
+    ))
 
     val hasFingerprint = Reprint.hasFingerprintRegistered()
     options.add(LithoOptionsItem(
@@ -75,7 +97,7 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         icon = R.drawable.ic_option_fingerprint,
         listener = {
           when {
-            hasPinCodeEnabled() -> openVerifySheet(
+            isPinCodeEnabled() -> openVerifySheet(
                 activity = activity,
                 onVerifySuccess = {
                   sSecurityFingerprintEnabled = false
@@ -98,7 +120,7 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         icon = R.drawable.ic_option_fingerprint,
         listener = {
           when {
-            hasPinCodeEnabled() -> openVerifySheet(
+            isPinCodeEnabled() -> openVerifySheet(
                 activity = activity,
                 onVerifySuccess = {
                   sSecurityFingerprintEnabled = true
@@ -133,11 +155,5 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         onVerifyFailure = {
           openResetPasswordDialog(dialog)
         })
-  }
-
-  companion object {
-    fun hasPinCodeEnabled(): Boolean {
-      return !TextUtils.isNullOrEmpty(sSecurityCode)
-    }
   }
 }

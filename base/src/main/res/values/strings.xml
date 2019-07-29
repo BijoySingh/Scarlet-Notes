@@ -164,6 +164,8 @@
   <string name="security_option_set_pin_code_subtitle">Set a 4 digit PIN to lock notes</string>
   <string name="security_option_lock_app" translatable="false">Enable App Lock</string>
   <string name="security_option_lock_app_details" translatable="false">Use PIN to unlock the whole application</string>
+  <string name="security_option_ask_pin_always" translatable="false">Always ask for PIN</string>
+  <string name="security_option_ask_pin_always_details" translatable="false">Enter PIN for all notes, even if previously entered</string>
   <string name="security_option_fingerprint_enabled">Unlock with Fingerprint</string>
   <string name="security_option_fingerprint_enabled_subtitle">The notes will unlock with the fingerprint</string>
   <string name="security_option_fingerprint_disabled">Fingerprint disabled</string>
