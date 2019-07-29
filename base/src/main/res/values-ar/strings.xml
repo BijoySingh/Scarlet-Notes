@@ -4,24 +4,17 @@
   <string name="save">حفظ</string>
   <string name="import_to_app">استيراد</string>
   <string name="search_notes">بحث ملاحظات | |</string>
-  <string name="search_toolbar_text">البحث %s…</string>
   <string name="share_using">جار المشاركة باستخدام …</string>
 
   <string name="main_no_notes">لا ملاحظات</string>
   <string name="main_no_notes_hint">يبدو أنك لم تضف أي ملاحظات. انقر لإضافة ملاحظة.</string>
 
-  <string name="main_add_a_note">إضافة ملاحظة …</string>
-  <string name="main_add_a_quick_note">إضافة ملاحظة سريعة …</string>
-
   <string name="shortcut_add_note">اضف ملاحظة</string>
   <string name="shortcut_add_list">إضافة قائمة التحقق</string>
 
-  <string name="open_note_night_mode">الوضع الليلي</string>
-  <string name="open_note_day_mode">وضع اليوم</string>
   <string name="edit_note">تحرير مذكرة</string>
   <string name="open_in_notification">إنشاء إعلام</string>
   <string name="open_in_popup">فتح في نافذة منبثقة</string>
-  <string name="delete_note">حذف ملاحظة</string>
   <string name="delete_note_permanently">الحذف بشكل نهائي</string>
   <string name="copy_note">نسخ ملاحظة</string>
   <string name="send_note">إرسال ملاحظة</string>
@@ -43,8 +36,6 @@
   <string name="view_distraction_free">الهاء الحرة</string>
   <string name="choose_action">اختر الإجراء…</string>
 
-  <string name="tap_for_action_open_note_night_mode">انقر لعرض الملاحظة في الوضع الليلي</string>
-  <string name="tap_for_action_open_note_day_mode">انقر لعرض الملاحظة في وضع اليوم</string>
   <string name="tap_for_action_edit">انقر لفتح ملاحظة للتحرير</string>
   <string name="tap_for_action_copy">انقر لنسخ محتوى الملاحظة إلى الحافظة</string>
   <string name="tap_for_action_share">انقر لمشاركة محتوى المذكرة مع تطبيقات أخرى</string>
@@ -58,60 +49,26 @@
   <string name="tap_for_action_color">انقر لتغيير لون خلفية الملاحظة</string>
   <string name="tap_for_action_not_archive">انقر على إلغاء أرشفة الملاحظة</string>
 
-  <string name="nav_sheet_title">ملاحظاتك | |</string>
   <string name="nav_home">الصفحة الرئيسية</string>
-  <string name="nav_home_details">كل من الملاحظات العادية والمفضلة لديك</string>
   <string name="nav_favourites">المفضلة</string>
-  <string name="nav_favourites_details">جميع الملاحظات المفضلة لديك</string>
   <string name="nav_archived">أرشفة</string>
-  <string name="nav_archived_details">جميع الملاحظات المؤرشفة</string>
   <string name="nav_locked">مقفل</string>
-  <string name="nav_locked_details">كل من الملاحظات الخاصة بك مؤمن</string>
-  <string name="nav_tags">الكلمات</string>
-  <string name="nav_tags_details">كل علامات الملاحظة الخاصة بك</string>
   <string name="nav_trash">قمامة، يدمر، يهدم</string>
-  <string name="nav_trash_details">جميع الملاحظات في المهملات</string>
 
   <string name="format_hint_text">إضافة محتوى…</string>
   <string name="format_hint_heading">إضافة العنوان …</string>
-  <string name="format_hint_sub_heading">إضافة عنوان فرعي …</string>
   <string name="format_hint_quote">إضافة نص مقتبس …</string>
   <string name="format_hint_list">اضافة عنصر…</string>
   <string name="format_hint_code">إضافة شفرة …</string>
   <string name="format_hint_image">انقر لإضافة صورة أو تغييرها</string>
 
-  <string name="format_sheet_option_title">كتلة التنسيق</string>
-  <string name="format_label_heading">عنوان</string>
-  <string name="format_label_sub_heading">عنوان فرعي</string>
-  <string name="format_label_text">نص</string>
-  <string name="format_label_quote">اقتبس</string>
-  <string name="format_label_code">الشفرة</string>
-  <string name="format_label_list">قائمة تدقيق</string>
-  <string name="format_label_image">صورة</string>
-  <string name="format_label_separator">الفاصل</string>
-
-  <string name="markdown_sheet_option_title">تنسيق تحديد السعر</string>
-  <string name="markdown_label_bold">بالخط العريض</string>
-  <string name="markdown_label_italics">المائل</string>
-  <string name="markdown_label_underline">أكد</string>
-  <string name="markdown_label_strikethrough">إضراب</string>
-  <string name="markdown_label_list">قائمة</string>
-
   <string name="home_option_sheet_title">خيارات والإعدادات</string>
   <string name="home_option_ui_experience">واجهة والخبرة</string>
   <string name="home_option_ui_experience_subtitle">اختيار كيف يبدو التطبيق ويشعر.</string>
-  <string name="home_option_note_settings">ملاحظة التفضيلات</string>
-  <string name="home_option_note_settings_subtitle">اختر ملاحظة وإعدادات أخرى.</string>
   <string name="home_option_about">حول</string>
   <string name="home_option_about_subtitle">معرفة المزيد عنا والتطبيق.</string>
   <string name="home_option_security">الأمان</string>
   <string name="home_option_security_subtitle">تأمين الملاحظات وخيارات الأمان</string>
-  <string name="home_option_enable_night_mode">تمكين الوضع الليلي</string>
-  <string name="home_option_enable_night_mode_subtitle">تمكين المظهر المظلم كخيار افتراضي</string>
-  <string name="home_option_enable_day_mode">تمكين وضع اليوم</string>
-  <string name="home_option_enable_day_mode_subtitle">تمكين موضوع الضوء بشكل افتراضي</string>
-  <string name="home_option_markdown_settings">إعدادات تخفيض السعر</string>
-  <string name="home_option_markdown_settings_subtitle">اطلع على كيفية استخدام تخفيض السعر في الملاحظات</string>
   <string name="home_option_enable_list_view">تمكين تخطيط القائمة</string>
   <string name="home_option_enable_list_view_subtitle">إظهار الملاحظات في عمود واحد</string>
   <string name="home_option_enable_grid_view">تمكين تخطيط الشبكة</string>
@@ -131,8 +88,6 @@
   <string name="home_option_open_source_page_subtitle">معرفة المزيد عن مشروع مفتوح المصدر</string>
   <string name="home_option_rate_and_review">معدل ومراجعة</string>
   <string name="home_option_rate_and_review_subtitle">أخبرنا أعرف كم كنت أحب التطبيق</string>
-  <string name="home_option_fill_survey">ملء المسح</string>
-  <string name="home_option_fill_survey_subtitle">مساعدتنا على تحسين التطبيق من خلال إخبارنا ما تريد</string>
   <string name="home_option_install_pro_app">تثبيت برو التطبيق</string>
   <string name="home_option_install_pro_app_details">ثبِّت Pro Pro لإلغاء قفل الميزات ومطور الدعم</string>
   <string name="home_option_migrate_to_pro">تهاجر ملاحظات على القرمزي برو</string>
@@ -161,7 +116,6 @@
   <string name="security_sheet_enter_new_pin_title">أدخل رقم تعريف شخصي جديد</string>
   <string name="security_sheet_enter_pin_to_unlock_title">أدخل رقم التعريف الشخصي لإلغاء التأمين</string>
   <string name="security_sheet_enter_current_pin_title">أدخل رقم التعريف الشخصي الحالي</string>
-  <string name="security_sheet_enter_pin_hint">ادخل الرمز</string>
   <string name="security_sheet_button_verify">التحقق</string>
   <string name="security_sheet_button_unlock">فتح</string>
   <string name="security_sheet_button_set">جلس</string>
@@ -176,7 +130,6 @@
   <string name="markdown_sheet_markdown_support_subtitle">السماح بتنسيق التضمين المنسق</string>
   <string name="markdown_sheet_home_markdown_support">تخفيض السعر في قائمة الملاحظات</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">تمكين تنسيق علامة التبويب في قائمة الملاحظات</string>
-  <string name="markdown_sheet_examples">أمثلة</string>
 
   <string name="permission_layout_give_permission">إعطاء الأذونات</string>
   <string name="permission_layout_give_permission_details">استيراد وتصدير تتطلب أذونات التخزين. يرجى إعطاء الإذن عند الطلب.</string>
@@ -191,7 +144,6 @@
   <string name="import_export_layout_exporting_share">شارك</string>
 
 
-  <string name="about_page_title">معلومات عنا وأكثر</string>
   <string name="about_page_rate">معدل على اللعب المتجر</string>
   <string name="about_page_contribute">تساهم</string>
   <string name="about_page_app_version">نسخة التطبيق</string>
@@ -199,16 +151,12 @@
 
   <string name="osp_page_libraries">المكتبات</string>
   <string name="osp_page_about_osp">مشروع المصدر المفتوح</string>
-  <string name="osp_page_title">حول مشروع المصدر المفتوح</string>
 
-  <string name="reminder_sheet_title">ملاحظة تذكير</string>
   <string name="reminder_sheet_reminder_date">تاريخ التذكير</string>
   <string name="reminder_sheet_reminder_time">تذكير الوقت</string>
   <string name="reminder_sheet_repeat">تكرار تكرار</string>
   <string name="reminder_frequency_once">مرة واحدة فقط</string>
   <string name="reminder_frequency_daily">اليومي</string>
-  <string name="reminder_frequency_custom">العادة</string>
-  <string name="reminder_beta_label">بيتا</string>
 
   <string name="notification_channel_label">ملاحظة الإخطارات</string>
   <string name="notification_reminder_channel_label">تذكير وإنذارات</string>
@@ -240,10 +188,6 @@
   <string name="whats_new_title">ما هو الجديد</string>
   <string name="whats_new_subtitle">تعرف ما هو الجديد في التحديثات الأخيرة من التطبيق</string>
   <string name="whats_new_translate">ترجمه</string>
-
-  <string name="tutorial_create_a_new_note">انقر لإضافة ملاحظة جديدة</string>
-  <string name="tutorial_home_menu">انقر لرؤية خيارات المنزل</string>
-  <string name="tutorial_home_menu_subtitle">القائمة الرئيسية لديها الملاحظات المفضلة لديك والأرشيف، وكذلك إعدادات التطبيق. يمكنك العثور على العلامات هنا أيضا.</string>
 
   <string name="format_action_copy">نسخ</string>
   <string name="format_action_title">حظر الإجراءات النصية</string>
@@ -299,9 +243,6 @@
   <string name="home_option_login_with_app_subtitle">تسجيل الدخول للحصول على النسخ الاحتياطي سحابة والمزامنة</string>
   <string name="home_option_logout_of_app">خروج</string>
   <string name="home_option_logout_of_app_subtitle">تسجيل الخروج لإيقاف النسخ الاحتياطي سحابة</string>
-  <string name="login_with_google">الدخول مع جوجل</string>
-  <string name="logging_into_app">تسجيل الدخول |</string>
-  <string name="logged_into_app">لقد سجلت الدخول</string>
   <string name="login_to_google_failed">فشل تسجيل الدخول إلى غوغل</string>
 
   <string name="material_notes_privacy_policy">سياسة الخصوصية</string>
@@ -315,19 +256,10 @@
    احصل على أحدث الميزات أولا \n
   \n
    ستتوفر بعض الميزات الإضافية فقط لمستخدمي برو</string>
-  <string name="why_cloud">سبب تمكين مزامنة السحاب</string>
-  <string name="why_cloud_details">التحميل والنسخ الاحتياطي من تغييرات الجهاز \n
-  \n
-   المزامنة بين أجهزة متعددة، والحصول على تحديثات سريعة \n
-  \n
-   حفظها بشكل آمن على خوادم غوغل فيريباس</string>
   <!-- End: Firebase Login Strings -->
 
 
   <!-- Start Welcome Page -->
-  <string name="welcome_page_hello">مرحبا،</string>
-  <string name="welcome_page_transfer_message">ملاحظات المادة الآن القرمزي!</string>
-  <string name="welcome_page_get_started">البدء</string>
   <!-- End Welcome Page -->
 
   <!-- Start Theme Color -->
@@ -338,7 +270,6 @@
 
   <string name="click_to_add_tags">انقر لإضافة أو تغيير العلامات</string>
 
-  <string name="show_more_actions">عرض المزيد من الإجراءات</string>
   <string name="select_notes">حدد ملاحظات</string>
   <string name="select_notes_details">حدد إجراءات وتنفيذها على ملاحظات متعددة في وقت واحد</string>
 
@@ -365,8 +296,6 @@
   <string name="merge_notes">دمج الملاحظات</string>
   <string name="home_option_export_markdown">تصدير كما تخفيض السعر</string>
   <string name="home_option_export_markdown_subtitle">تصدير الملاحظات في شكل تخفيض السعر. (لا يمكنك استيراد هذه العودة إلى التطبيق)</string>
-  <string name="home_option_auto_export_folder">مجلد التصدير</string>
-  <string name="home_option_auto_export_folder_subtitle">اختر مكان تخزين جميع الصادرات</string>
   <string name="ui_options_note_background_color_settings_theme">استخدام لون موضوع للخلفية</string>
   <string name="ui_options_note_background_color_settings_note">استخدام لون المذكرة للخلفية</string>
   <string name="import_export_layout_folder_sync_enable">مكن</string>

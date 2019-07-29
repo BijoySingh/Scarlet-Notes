@@ -8,16 +8,11 @@
   <string name="share_using">共有を使用して| |</string>
   <string name="main_no_notes">ノートなし</string>
   <string name="main_no_notes_hint">メモを追加していないようです。メモを追加する場合にクリックします。</string>
-  <string name="main_add_a_note">ノートを追加する|</string>
-  <string name="main_add_a_quick_note">簡単なメモを追加する|</string>
   <string name="shortcut_add_note">メモを追加</string>
   <string name="shortcut_add_list">チェックリストを追加</string>
-  <string name="open_note_night_mode">ナイトモード</string>
-  <string name="open_note_day_mode">デイモード</string>
   <string name="edit_note">メモを編集する</string>
   <string name="open_in_notification">通知の作成</string>
   <string name="open_in_popup">ポップアップで開く</string>
-  <string name="delete_note">メモを削除</string>
   <string name="delete_note_permanently">永久に削除</string>
   <string name="copy_note">コピーノート</string>
   <string name="send_note">ノートを送る</string>
@@ -37,8 +32,6 @@
   <string name="pin_note">ピンノート</string>
   <string name="unpin_note">ノートを固定解除する</string>
   <string name="choose_action">アクションを選択する|</string>
-  <string name="tap_for_action_open_note_night_mode">タップしてナイトモードでノートを表示する</string>
-  <string name="tap_for_action_open_note_day_mode">タップしてメモを日中のモードで表示する</string>
   <string name="tap_for_action_edit">タップして編集用のメモを開きます</string>
   <string name="tap_for_action_copy">ノートのコンテンツをクリップボードにコピーするにはタップしてください</string>
   <string name="tap_for_action_share">タップしてメモコンテンツを他のアプリと共有する</string>
@@ -51,54 +44,24 @@
   <string name="tap_for_action_archive">タップしてメモをアーカイブする</string>
   <string name="tap_for_action_color">タップしてメモの背景色を変更する</string>
   <string name="tap_for_action_not_archive">メモを保存するにはタップしてください</string>
-  <string name="nav_sheet_title">あなたのメモやその他|</string>
   <string name="nav_home">ホーム</string>
-  <string name="nav_home_details">あなたの普通のノートとお気に入りのノート</string>
   <string name="nav_favourites">お気に入り</string>
-  <string name="nav_favourites_details">お気に入りのメモすべて</string>
   <string name="nav_archived">アーカイブ済み</string>
-  <string name="nav_archived_details">すべてのアーカイブされたメモ</string>
   <string name="nav_locked">ロックされた</string>
-  <string name="nav_locked_details">すべてのロックされたメモ</string>
-  <string name="nav_tags">タグ</string>
-  <string name="nav_tags_details">すべてのノートタグ</string>
   <string name="nav_trash">ごみ</string>
-  <string name="nav_trash_details">ごみの中のあなたのメモ</string>
 
   <string name="format_hint_text">コンテンツを追加する|</string>
   <string name="format_hint_heading">見出しを追加する|</string>
-  <string name="format_hint_sub_heading">サブ見出しを追加する|</string>
   <string name="format_hint_quote">引用符で囲まれたテキストを追加する|</string>
   <string name="format_hint_list">アイテムを追加する|</string>
   <string name="format_hint_code">コードを追加する|</string>
-  <string name="format_sheet_option_title">ブロック書式設定</string>
-  <string name="format_label_heading">見出し</string>
-  <string name="format_label_sub_heading">副見出し</string>
-  <string name="format_label_text">テキスト</string>
-  <string name="format_label_quote">見積もり</string>
-  <string name="format_label_code">コード</string>
-  <string name="format_label_list">チェックリスト</string>
-  <string name="markdown_sheet_option_title">マークダウンの書式設定</string>
-  <string name="markdown_label_bold">大胆な</string>
-  <string name="markdown_label_italics">イタリック体</string>
-  <string name="markdown_label_underline">アンダーライン</string>
-  <string name="markdown_label_strikethrough">ストライク</string>
-  <string name="markdown_label_list">リスト</string>
   <string name="home_option_sheet_title">オプションと設定</string>
   <string name="home_option_ui_experience">インターフェースと経験</string>
   <string name="home_option_ui_experience_subtitle">アプリの見た目と感じ方を選択します。</string>
-  <string name="home_option_note_settings">ノート設定</string>
-  <string name="home_option_note_settings_subtitle">メモやその他の設定を選択します。</string>
   <string name="home_option_about">約</string>
   <string name="home_option_about_subtitle">私たちとアプリについてもっと知ってください。</string>
   <string name="home_option_security">セキュリティ</string>
   <string name="home_option_security_subtitle">ロックノートとセキュリティオプション</string>
-  <string name="home_option_enable_night_mode">ナイトモードを有効にする</string>
-  <string name="home_option_enable_night_mode_subtitle">暗いテーマをデフォルトとして有効にする</string>
-  <string name="home_option_enable_day_mode">デイモードを有効にする</string>
-  <string name="home_option_enable_day_mode_subtitle">デフォルトとしてライトテーマを有効にする</string>
-  <string name="home_option_markdown_settings">マークダウン設定</string>
-  <string name="home_option_markdown_settings_subtitle">メモにmarkdownを使用する方法を参照してください</string>
   <string name="home_option_enable_list_view">リストレイアウトを有効にする</string>
   <string name="home_option_enable_list_view_subtitle">ノートを1つの列に表示する</string>
   <string name="home_option_enable_grid_view">グリッドレイアウトを有効にする</string>
@@ -116,8 +79,6 @@
   <string name="home_option_open_source_page_subtitle">オープンソースプロジェクトの詳細を知る</string>
   <string name="home_option_rate_and_review">評価と批評</string>
   <string name="home_option_rate_and_review_subtitle">あなたがアプリをどれだけ好きだったか教えてください</string>
-  <string name="home_option_fill_survey">調査を記入する</string>
-  <string name="home_option_fill_survey_subtitle">あなたの好きなことを教えてアプリを改善してください</string>
   <string name="security_option_title">セキュリティオプション</string>
   <string name="security_option_set_pin_code">パスコード</string>
   <string name="security_option_set_pin_code_subtitle">ノートをロックする4桁のPINを設定する</string>
@@ -128,7 +89,6 @@
   <string name="security_sheet_enter_new_pin_title">新しいPINを入力してください</string>
   <string name="security_sheet_enter_pin_to_unlock_title">PINを入力してロックを解除する</string>
   <string name="security_sheet_enter_current_pin_title">現在のPINを入力</string>
-  <string name="security_sheet_enter_pin_hint">コードを入力する</string>
   <string name="security_sheet_button_verify">確認</string>
   <string name="security_sheet_button_unlock">ロックを解除する</string>
   <string name="security_sheet_button_set">セット</string>
@@ -141,7 +101,6 @@
   <string name="markdown_sheet_markdown_support_subtitle">マークダウンがサポートされているフォーマットを許可する</string>
   <string name="markdown_sheet_home_markdown_support">ノートリストのマークダウン</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">ノートのリストでマークダウンの書式設定を有効にする</string>
-  <string name="markdown_sheet_examples">例</string>
   <string name="permission_layout_give_permission">許可を与える</string>
   <string name="permission_layout_give_permission_details">インポートとエクスポートにはストレージ権限が必要です。要請された場合は許可を与えてください。</string>
   <string name="permission_layout_give_permission_ok">許可する</string>
@@ -152,15 +111,12 @@
   <string name="import_export_layout_exporting">ファイルにエクスポートする|</string>
   <string name="import_export_layout_exporting_done">完了</string>
   <string name="import_export_layout_exporting_share">シェア</string>
-  <string name="about_page_title">私たちについて</string>
   <string name="about_page_rate">Playストアでのレート</string>
   <string name="about_page_contribute">寄稿</string>
   <string name="about_page_app_version">アプリのバージョン</string>
   <string name="about_page_about_app">アプリについて</string>
   <string name="osp_page_libraries">図書館</string>
   <string name="osp_page_about_osp">オープンソースプロジェクト</string>
-  <string name="osp_page_title">オープンソースプロジェクトについて</string>
-  <string name="reminder_sheet_title">メモの通知</string>
   <string name="reminder_sheet_reminder_date">リマインダの日付</string>
   <string name="reminder_sheet_reminder_time">リマインダー時間</string>
   <string name="reminder_sheet_repeat">繰り返し周波数</string>
@@ -181,9 +137,6 @@
   <string name="whats_new_title">新着情報</string>
   <string name="whats_new_subtitle">最近のアプリのアップデートで何が新しくなったのかを知る</string>
   <string name="whats_new_translate">翻訳</string>
-  <string name="tutorial_create_a_new_note">クリックして新しいメモを追加する</string>
-  <string name="tutorial_home_menu">クリックしてホームオプションを表示する</string>
-  <string name="tutorial_home_menu_subtitle">ホームメニューには、お気に入りのメモやアーカイブのメモ、アプリケーションの設定があります。ここでもあなたのタグを見つけることができます。</string>
   <string name="note_option_font_size">メモフォントサイズ</string>
   <string name="note_option_font_size_example">メモページのテキストのフォントサイズを調整します。このプレビューでどのように見えるかを見ることができます。</string>
   <string name="note_option_font_size_subtitle">ノートビューア内のテキストの%dサイズ</string>
@@ -205,20 +158,12 @@
   <string name="home_option_login_with_app_subtitle">クラウドバックアップと同期のためのサインイン</string>
   <string name="home_option_logout_of_app">サインアウト</string>
   <string name="home_option_logout_of_app_subtitle">ログアウトしてクラウドバックアップを停止する</string>
-  <string name="login_with_google">Googleでログイン</string>
-  <string name="logging_into_app">サインイン|</string>
-  <string name="logged_into_app">あなたはログインしています</string>
   <string name="login_to_google_failed">Googleログインに失敗しました</string>
   <string name="material_notes_privacy_policy">個人情報保護方針</string>
   <string name="material_notes_privacy_policy_subtitle">コンテンツのアプリプライバシーポリシー</string>
   <string name="install_pro_app">プロアプリのインストール</string>
   <string name="why_install_pro">プロをインストールする理由</string>
   <string name="why_install_pro_details">クラウド同期を実行するために大規模なサーバーコストの開発者をサポートする \n\n 最新の機能を最初に入手する \n\n いくつかの追加機能はProユーザーだけが利用できます</string>
-  <string name="why_cloud">クラウド同期を有効にする理由</string>
-  <string name="why_cloud_details">â€ "デバイスの変更に対するアップロードとバックアップ \n\n 複数のデバイス間の同期とクイックアップデートの取得 \n\n Google Firebaseサーバーへの安全な保存</string>
-  <string name="welcome_page_hello">こんにちは、</string>
-  <string name="welcome_page_transfer_message">マテリアルノートはスカーレットになりました！</string>
-  <string name="welcome_page_get_started">開始する</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">コピー</string>
@@ -235,30 +180,24 @@
   <string name="image_not_uploaded_i_understand">わかりました</string>
   <string name="home_option_auto_export">自動的にエクスポート</string>
   <string name="home_option_auto_export_subtitle">メモを頻繁にバックアップとして外部ファイルにエクスポートする</string>
-  <string name="format_label_image">画像</string>
   <string name="format_hint_image">クリックして画像を追加または変更する</string>
 
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">1回だけ</string>
   <string name="reminder_frequency_daily">毎日</string>
-  <string name="reminder_frequency_custom">カスタム</string>
-  <string name="reminder_beta_label">ベータ</string>
   <string name="notification_reminder_channel_label">リマインダーとアラーム</string>
   <string name="about_page_description_os">%s はオープンソースで誰でもオープンになっています。 現在、%sによって構築され維持されています。</string>
   <string name="about_page_description">%sはアプリを撮るシンプルなメモです。 体験を非常に難しくすることなく、リッチテキスト入力を素早く行うことができます。 それはマルチタスクを簡単にします。</string>
   <string name="about_page_about_us_details">こんにちは、私たちは%sを創造したデザイナーとプログラマーのペアです。
      私たちは美しくて慎重に設計された無償、無償、または最小限の広告アプリケーションを構築して、誰にとっても大きな有用性を提供するよう努めています。</string>
   <string name="note_option_number_lines_subtitle">ホーム画面の%d行</string>
-  <string name="search_toolbar_text">検索%s &#8230;</string>
   <string name="view_distraction_free">気を散らさない</string>
-  <string name="format_label_separator">セパレータ</string>
 
   <!-- Added for 6.6.1 -->
   <string name="home_option_theme_color">アプリのテーマ</string>
   <string name="home_option_theme_color_subtitle">テーマの背景色を選択する</string>
   <string name="theme_page_title">アプリケーションテーマを選択</string>
   <string name="click_to_add_tags">クリックしてタグを追加または変更する</string>
-  <string name="show_more_actions">その他のアクションを表示</string>
   <string name="select_notes">ノートを選択</string>
   <string name="select_notes_details">一度に複数のノートでアクションを選択して実行する</string>
   <string name="recent_to_trash_message">メモはゴミ箱に移動されました</string>
@@ -298,8 +237,6 @@
   <string name="merge_notes">メモをマージ</string>
   <string name="home_option_export_markdown">値下げとしてエクスポート</string>
   <string name="home_option_export_markdown_subtitle">ノートをマークダウン形式でエクスポートします。 （これらをアプリにインポートすることはできません）</string>
-  <string name="home_option_auto_export_folder">エクスポートフォルダ</string>
-  <string name="home_option_auto_export_folder_subtitle">すべての輸出が保管されている場所を選択してください</string>
   <string name="ui_options_note_background_color_settings_theme">背景色にテーマカラーを使用</string>
   <string name="ui_options_note_background_color_settings_note">背景にメモの色を使用</string>
   <string name="import_export_layout_folder_sync_enable">有効にする</string>

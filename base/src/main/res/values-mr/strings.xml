@@ -6,17 +6,13 @@
   <string name="share_using">वापरून सामायिक करा &#8230;</string>
   <string name="main_no_notes">कोणत्याही टिपा नाहीत</string>
   <string name="main_no_notes_hint">आपण कोणत्याही नोट्स जोडले नाहीत असे दिसते एक टीप जोडण्यासाठी क्लिक करा</string>
-  <string name="main_add_a_note">एक टीप जोडा &#8230;</string>
-  <string name="main_add_a_quick_note">एक द्रुत टीप जोडा &#8230;</string>
   <string name="edit_note">टीप संपादित करा</string>
   <string name="open_in_popup">पॉपअपमध्ये उघडा</string>
-  <string name="delete_note">टीप हटवा</string>
   <string name="copy_note">कॉपी टीप</string>
   <string name="send_note">टीप पाठवा</string>
   <string name="choose_action">क्रिया निवडा &#8230;</string>
   <string name="format_hint_text">सामग्री जोडा &#8230;</string>
   <string name="format_hint_heading">मथळा जोडा &#8230;</string>
-  <string name="format_hint_sub_heading">उप शीर्षलेख जोडा &#8230;</string>
   <string name="format_hint_quote">कोट केलेला मजकूर जोडा &#8230;</string>
   <string name="format_hint_list">आयटम जोडा &#8230;</string>
   <string name="format_hint_code">कोड जोडा &#8230;</string>
@@ -43,7 +39,6 @@
   <string name="import_export_layout_exporting">फाईलवर निर्यात करत आहे &#8230; |</string>
   <string name="import_export_layout_exporting_done">झाले</string>
   <string name="import_export_layout_exporting_share">सामायिक करा</string>
-  <string name="about_page_title">आमच्याबद्दल आणि बरेच काही</string>
   <string name="about_page_rate">प्ले स्टोअरवर रेट करा</string>
   <string name="about_page_contribute">योगदान द्या</string>
   <string name="about_page_app_version">अॅप आवृत्ती</string>
@@ -53,9 +48,6 @@
   <string name="unlock_note">टीप अनलॉक करा</string>
   <string name="markdown_sheet_markdown_support">चिन्हांकित आधार</string>
   <string name="markdown_sheet_markdown_support_subtitle">मार्कडाउन समर्थित स्वरूपण ला अनुमती द्या</string>
-  <string name="markdown_sheet_examples">उदाहरणे</string>
-  <string name="home_option_markdown_settings">चिन्हांकित करा सेटिंग्ज</string>
-  <string name="home_option_markdown_settings_subtitle">नोट्समध्ये चिन्हांकित कसे वापरावे ते पहा</string>
   <string name="home_option_security">सुरक्षा</string>
   <string name="home_option_security_subtitle">लॉकिंग नोट्स आणि सुरक्षा पर्याय</string>
   <string name="security_option_title">सुरक्षा पर्याय</string>
@@ -68,21 +60,13 @@
   <string name="security_sheet_enter_new_pin_title">नवीन पिन प्रविष्ट करा</string>
   <string name="security_sheet_enter_pin_to_unlock_title">अनलॉक करण्यासाठी पिन प्रविष्ट करा</string>
   <string name="security_sheet_enter_current_pin_title">वर्तमान PIN प्रविष्ट करा</string>
-  <string name="security_sheet_enter_pin_hint">कोड टाका</string>
   <string name="security_sheet_button_verify">सत्यापित करा</string>
   <string name="security_sheet_button_unlock">अनलॉक करा</string>
   <string name="security_sheet_button_set">सेट करा</string>
   <string name="security_sheet_button_remove">काढा</string>
-  <string name="open_note_day_mode">दिवस मोड</string>
   <string name="choose_note_color">रंग बदला</string>
-  <string name="tap_for_action_open_note_day_mode">दिवस मोडमध्ये टीप पाहण्यासाठी टॅप करा</string>
   <string name="tap_for_action_color">टीपचा पार्श्वभूमी रंग बदलण्यासाठी टॅप करा</string>
-  <string name="home_option_enable_night_mode">रात्री मोड सक्षम करा</string>
-  <string name="home_option_enable_night_mode_subtitle">डीफॉल्ट म्हणून गडद थीम सक्षम करा</string>
-  <string name="home_option_enable_day_mode">दिवस मोड सक्षम करा</string>
-  <string name="home_option_enable_day_mode_subtitle">मुलभूत म्हणून प्रकाश थीम सक्षम करा</string>
 
-  <string name="open_note_night_mode">रात्र मोड</string>
   <string name="delete_note_permanently">कायमचे हटवा</string>
   <string name="unarchive_note">टीप संग्रहण रद्द करा</string>
   <string name="archive_note">संग्रहण टीप</string>
@@ -90,7 +74,6 @@
   <string name="favourite_note">मार्क पसंतीचा</string>
   <string name="restore_note">टीप पुनर्संचयित करा</string>
   <string name="trash_note">कचरा मध्ये हलवा</string>
-  <string name="tap_for_action_open_note_night_mode">रात्रीच्या मोडमध्ये टीप पाहण्यासाठी टॅप करा</string>
   <string name="tap_for_action_edit">संपादनासाठी टिप उघडण्यासाठी टॅप करा</string>
   <string name="tap_for_action_copy">टीप सामग्री क्लिपबोर्डवर कॉपी करण्यासाठी टॅप करा</string>
   <string name="tap_for_action_share">अन्य अॅप्सवर टीप सामग्री सामायिक करण्यासाठी टॅप करा</string>
@@ -102,21 +85,13 @@
   <string name="tap_for_action_not_favourite">टीप आवडलेली म्हणून चिन्हांकित करण्यासाठी टॅप करा</string>
   <string name="tap_for_action_archive">टीप संग्रहित करण्यासाठी टॅप करा</string>
   <string name="tap_for_action_not_archive">टीप संग्रहित करणे अनइझम करण्यासाठी टॅप करा</string>
-  <string name="nav_sheet_title">आपले नोट्स &#8230; |</string>
   <string name="nav_home">घर</string>
-  <string name="nav_home_details">आपल्या सर्व सामान्य आणि आवडत्या नोट्स</string>
   <string name="nav_favourites">आवडते</string>
-  <string name="nav_favourites_details">आपल्या सर्व आवडत्या टिपा</string>
   <string name="nav_archived">संग्रहित</string>
-  <string name="nav_archived_details">आपल्या सर्व संग्रहित टिपा</string>
   <string name="nav_trash">कचरा</string>
-  <string name="nav_trash_details">कचरा मधील आपल्या सर्व नोट्स</string>
   <string name="open_in_notification">सूचना तयार करा</string>
   <string name="notification_channel_label">टीप सूचना</string>
   <string name="nav_locked">लॉक केलेले</string>
-  <string name="nav_locked_details">आपली सर्व लॉक केलेली टिपा</string>
-  <string name="nav_tags">टॅग्ज</string>
-  <string name="nav_tags_details">आपले सर्व नोट टॅग्ज</string>
   <string name="tag_sheet_create_title">नवीन टॅग जोडा |</string>
   <string name="tag_sheet_edit_title">टॅगचे संपादन करा |</string>
   <string name="tag_sheet_enter_tag_hint">टॅग प्रविष्ट करा</string>
@@ -127,8 +102,6 @@
   <string name="import_to_app">आयात करा</string>
   <string name="markdown_sheet_home_markdown_support">नोट लिस्ट मध्ये चिन्हांकित करा</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">नोट्सच्या सूचीमध्ये चिन्हांकित स्वरूपन सक्षम करा</string>
-  <string name="home_option_fill_survey">सर्वेक्षण भरा</string>
-  <string name="home_option_fill_survey_subtitle">आपल्याला काय आवडते ते आम्हाला सांगून अनुप्रयोग सुधारण्यात आम्हाला मदत करा</string>
 
   <!-- Added in release v3.8.4 -->
   <string name="change_tags">टॅग्ज बदला</string>
@@ -137,8 +110,6 @@
   <string name="home_option_open_source_page_subtitle">मुक्त स्त्रोत प्रकल्पाबद्दल अधिक जाणून घ्या</string>
   <string name="osp_page_libraries">ग्रंथालये</string>
   <string name="osp_page_about_osp">मुक्त स्रोत प्रकल्प</string>
-  <string name="osp_page_title">मुक्त स्त्रोत प्रकल्पाबद्दल</string>
-  <string name="reminder_sheet_title">टीप स्मरणपत्र</string>
   <string name="reminder_sheet_reminder_date">स्मरणपत्र तारीख</string>
   <string name="reminder_sheet_reminder_time">स्मरणपत्र वेळ</string>
   <string name="reminder_sheet_repeat">वारंवारिता पुनरावृत्ती करा</string>
@@ -153,8 +124,6 @@
   <!-- Added in release v3.9.0 -->
   <string name="home_option_ui_experience">इंटरफेस आणि अनुभव</string>
   <string name="home_option_ui_experience_subtitle">अॅप कसे दिसते आणि कसे वाटते ते निवडा</string>
-  <string name="home_option_note_settings">टीप प्राधान्ये</string>
-  <string name="home_option_note_settings_subtitle">टीप आणि अन्य सेटिंग्ज निवडा</string>
   <string name="home_option_about">विषयी</string>
   <string name="home_option_about_subtitle">आमच्याबद्दल आणि अॅपबद्दल अधिक जाणून घ्या</string>
   <string name="note_option_default_color">डीफॉल्ट टीप रंग</string>
@@ -189,19 +158,6 @@
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">नोंदी जोडा</string>
   <string name="shortcut_add_list">चेकलिस्ट जोडा</string>
-  <string name="format_sheet_option_title">ब्लॉक फॉरमॅटिंग</string>
-  <string name="format_label_heading">मथळा</string>
-  <string name="format_label_sub_heading">उप शीर्षलेख</string>
-  <string name="format_label_text">मजकूर</string>
-  <string name="format_label_quote">कोट</string>
-  <string name="format_label_code">कोड</string>
-  <string name="format_label_list">चेकलिस्ट</string>
-  <string name="markdown_sheet_option_title">चिन्हांकित स्वरूपन</string>
-  <string name="markdown_label_bold">धीट</string>
-  <string name="markdown_label_italics">तिर्यक</string>
-  <string name="markdown_label_underline">अधोरेखित करा</string>
-  <string name="markdown_label_strikethrough">स्ट्राइक</string>
-  <string name="markdown_label_list">यादी</string>
   <string name="select_a_note_title">एक टीप निवडा</string>
   <string name="select_notes_title">टिपा निवडा</string>
   <string name="nav_settings">सेटिंग्ज</string>
@@ -215,29 +171,18 @@
   <string name="whats_new_title">काय नवीन आहे</string>
   <string name="whats_new_subtitle">अॅपच्या अलीकडील अद्यतनांमध्ये नवीन काय आहे ते जाणून घ्या</string>
   <string name="whats_new_translate">भाषांतर करा</string>
-  <string name="tutorial_create_a_new_note">एक नवीन टीप जोडण्यासाठी क्लिक करा</string>
-  <string name="tutorial_home_menu">मुख्यपृष्ठ पर्याय पाहण्यासाठी क्लिक करा</string>
-  <string name="tutorial_home_menu_subtitle">होम मेनूमध्ये आपल्या पसंतीचे आणि संग्रहित नोट्स तसेच अनुप्रयोग सेटिंग्ज असतात. आपण येथे आपले टॅगदेखील शोधू शकता.</string>
 
   <!-- Login, Welcome Strings -->
   <string name="home_option_login_with_app">अॅपमध्ये साइन इन करा</string>
   <string name="home_option_login_with_app_subtitle">मेघ बॅकअप आणि समक्रमण साठी साइन इन करा</string>
   <string name="home_option_logout_of_app">साइन आऊट करा</string>
   <string name="home_option_logout_of_app_subtitle">मेघ बॅकअप थांबविण्यासाठी साइन आउट करा</string>
-  <string name="login_with_google">Google सह साइन इन करा</string>
-  <string name="logging_into_app">साइन इन करत आहे &#8230; |</string>
-  <string name="logged_into_app">आपण लॉग इन केले आहे</string>
   <string name="login_to_google_failed">Google लॉगिन अयशस्वी</string>
   <string name="material_notes_privacy_policy">गोपनीयता धोरण</string>
   <string name="material_notes_privacy_policy_subtitle">सामग्रीसाठी अॅप्स गोपनीयता धोरण</string>
   <string name="install_pro_app">प्रो अॅप स्थापित करा</string>
   <string name="why_install_pro">का प्रो स्थापित</string>
   <string name="why_install_pro_details">क्लाऊड सिंक चालविण्याकरिता मोठ्या सर्व्हरच्या खर्चासाठी समर्थन विकसक \n\n प्रथम नवीनतम वैशिष्ट्ये मिळवा \n\n काही अतिरिक्त वैशिष्ट्ये केवळ प्रो वापरकर्त्यांसाठी उपलब्ध असतील</string>
-  <string name="why_cloud">मेघ समक्रमण सक्षम का</string>
-  <string name="why_cloud_details">डिव्हाइस बदलांविषयी अपलोड आणि बॅकअप \n\n एकाधिक डिव्हाइसेस दरम्यान समक्रमण करा, आणि द्रुत अद्यतने मिळवा \n\n Google Firebase सर्व्हरवर सुरक्षितपणे जतन केले</string>
-  <string name="welcome_page_hello">हॅलो,</string>
-  <string name="welcome_page_transfer_message">सामग्री टिपा आता कमी दर्जाची आहे!</string>
-  <string name="welcome_page_get_started">सुरु करूया</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">कॉपी करा</string>
@@ -254,30 +199,24 @@
   <string name="image_not_uploaded_i_understand">मी समजून घ्या</string>
   <string name="home_option_auto_export">स्वयंचलितरित्या निर्यात करा</string>
   <string name="home_option_auto_export_subtitle">बॅकअप म्हणून बाह्य फायलीमध्ये वारंवार नोट्स निर्यात करा</string>
-  <string name="format_label_image">प्रतिमा</string>
   <string name="format_hint_image">प्रतिमा जोडण्यासाठी किंवा बदलण्यासाठी क्लिक करा</string>
 
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">फक्त एकदाच</string>
   <string name="reminder_frequency_daily">दैनिक</string>
-  <string name="reminder_frequency_custom">सानुकूल</string>
-  <string name="reminder_beta_label">बीटा</string>
   <string name="notification_reminder_channel_label">स्मरणपत्रे आणि अलार्म</string>
   <string name="about_page_description_os">%s मुक्त स्त्रोत आहे आणि कोणीही ते अधिक चांगले बनवण्यासाठी योगदान देण्यास तयार आहे. हे सध्या %s द्वारे बांधले आणि ठेवली जाते.</string>
   <string name="about_page_description">%s ही एक सोपी टीप ठेवण्याचे अनुप्रयोग आहे. तो वापरण्यासाठी अतिशय कठीण अनुभव न जलद रिच मजकूर इनपुट परवानगी देते. हे बहु- tasking एक ब्रीझ करते</string>
   <string name="about_page_about_us_details">हाय, आम्ही डिझायनर आणि प्रोग्रामरचा जोडीदार आहे, ज्याने %s तयार केले आहे.
      आम्ही सुरेख, काळजीपूर्वक डिझाइन केलेले विनामूल्य, जाहिरात-मुक्त किंवा कमीत कमी जाहिरातीचे अॅप्स तयार करण्याचा प्रयत्न करतो जे प्रत्येकाला उत्कृष्ट उपयुक्तता देतात!</string>
   <string name="note_option_number_lines_subtitle">%d होम स्क्रीनवरील ओळी</string>
-  <string name="search_toolbar_text">%s शोधा &#8230;</string>
   <string name="view_distraction_free">Distraction विनामूल्य</string>
-  <string name="format_label_separator">सेपरेटर</string>
 
   <!-- Added for 6.6.1 -->
   <string name="home_option_theme_color">अॅप थीम</string>
   <string name="home_option_theme_color_subtitle">थीमसाठी पार्श्वभूमी रंग निवडा</string>
   <string name="theme_page_title">अॅप थीम निवडा</string>
   <string name="click_to_add_tags">टॅग जोडण्यासाठी किंवा बदलण्यासाठी क्लिक करा</string>
-  <string name="show_more_actions">अधिक क्रिया दर्शवा</string>
   <string name="select_notes">नोट्स निवडा</string>
   <string name="select_notes_details">एकाच वेळी एकाधिक नोट्सवर क्रिया निवडा आणि करा</string>
   <string name="recent_to_trash_message">टीप कचर्यात हलविली गेली</string>
@@ -317,8 +256,6 @@
   <string name="merge_notes">नोट्स विलीन करा</string>
   <string name="home_option_export_markdown">मार्कडाउन म्हणून निर्यात करा</string>
   <string name="home_option_export_markdown_subtitle">मार्कडाउन स्वरूपनात नोट्स निर्यात करा. (आपण हे अॅपवर परत आयात करू शकत नाही)</string>
-  <string name="home_option_auto_export_folder">फोल्डर निर्यात करा</string>
-  <string name="home_option_auto_export_folder_subtitle">सर्व निर्यात कोठे संग्रहित आहेत ते निवडा</string>
   <string name="ui_options_note_background_color_settings_theme">पार्श्वभूमीसाठी थीम रंग वापरा</string>
   <string name="ui_options_note_background_color_settings_note">पार्श्वभूमीसाठी नोट रंग वापरा</string>
   <string name="import_export_layout_folder_sync_enable">सक्षम करा</string>

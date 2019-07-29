@@ -6,17 +6,13 @@
   <string name="share_using">Kullanarak paylaş &#8230;</string>
   <string name="main_no_notes">Not Yok</string>
   <string name="main_no_notes_hint">Hiçbir not eklememişsiniz gibi görünüyor. Not eklemek için tıklayın.</string>
-  <string name="main_add_a_note">Bir not ekle&#8230;</string>
-  <string name="main_add_a_quick_note">Hızlı not ekle &#8230;</string>
   <string name="edit_note">Notu Düzenle</string>
   <string name="open_in_popup">Açılır Pencerede Aç</string>
-  <string name="delete_note">Not Sil</string>
   <string name="copy_note">Notu Kopyala</string>
   <string name="send_note">Not gönder</string>
   <string name="choose_action">Eylem seçin&#8230;</string>
   <string name="format_hint_text">İçerik Ekle &#8230;</string>
   <string name="format_hint_heading">Başlık Ekle &#8230;</string>
-  <string name="format_hint_sub_heading">Alt Başlık Ekle &#8230;</string>
   <string name="format_hint_quote">Alıntı Metni Ekle &#8230;</string>
   <string name="format_hint_list">Öğe eklemek&#8230;</string>
   <string name="format_hint_code">Kod Ekle &#8230;</string>
@@ -34,7 +30,6 @@
   <string name="security_sheet_enter_new_pin_title">Yeni PIN girin</string>
   <string name="security_sheet_enter_pin_to_unlock_title">Kilidi açmak için PIN girin</string>
   <string name="security_sheet_enter_current_pin_title">Geçerli PIN\'i gir</string>
-  <string name="security_sheet_enter_pin_hint">Kodu girin</string>
   <string name="security_sheet_button_verify">DOĞRULAYIN</string>
   <string name="security_sheet_button_unlock">Kilidini aç</string>
   <string name="security_sheet_button_set">Set</string>
@@ -63,23 +58,15 @@
   <string name="import_export_layout_exporting">Dosyaya dışa aktarma |</string>
   <string name="import_export_layout_exporting_done">tamam</string>
   <string name="import_export_layout_exporting_share">Pay</string>
-  <string name="about_page_title">Hakkımızda ve Daha Fazlası</string>
   <string name="about_page_rate">Play Store\'da Ücretlendirme</string>
   <string name="about_page_contribute">Katkıda bulunmak</string>
   <string name="about_page_app_version">Uygulama sürümü</string>
   <string name="about_page_about_app">App Hakkında</string>
-  <string name="open_note_day_mode">Gün Modu</string>
   <string name="search_notes">Notları Ara &#8230;</string>
 
   <string name="choose_note_color">Rengi değiştir</string>
-  <string name="tap_for_action_open_note_day_mode">Notu gündüz modunda görüntülemek için dokunun</string>
   <string name="tap_for_action_color">Notun arka plan rengini değiştirmek için dokunun</string>
-  <string name="home_option_enable_night_mode">Gece Modunu Etkinleştir</string>
-  <string name="home_option_enable_night_mode_subtitle">Koyu temayı varsayılan olarak etkinleştir</string>
-  <string name="home_option_enable_day_mode">Gün Modunu Etkinleştir</string>
-  <string name="home_option_enable_day_mode_subtitle">Hafif temayı varsayılan olarak etkinleştir</string>
 
-  <string name="open_note_night_mode">Gece modu</string>
   <string name="delete_note_permanently">kalıcı olarak sil</string>
   <string name="unarchive_note">Unarchive Not</string>
   <string name="archive_note">Arşiv Notu</string>
@@ -87,7 +74,6 @@
   <string name="favourite_note">Favoriyi işaretle</string>
   <string name="restore_note">Notu Geri Yükle</string>
   <string name="trash_note">Çöp kutusuna taşıyın</string>
-  <string name="tap_for_action_open_note_night_mode">Notu gece modunda görüntülemek için dokunun</string>
   <string name="tap_for_action_edit">Düzenlemek için notu açmak için dokunun</string>
   <string name="tap_for_action_copy">Not içeriğini panoya kopyalamak için dokunun</string>
   <string name="tap_for_action_share">Not içeriğini diğer uygulamalara paylaşmak için dokunun</string>
@@ -99,26 +85,15 @@
   <string name="tap_for_action_not_favourite">Notu favori olarak işaretlemek için dokunun</string>
   <string name="tap_for_action_archive">Notu arşivlemek için hafifçe dokunun</string>
   <string name="tap_for_action_not_archive">Notu arşivden kaldırmak için hafifçe dokunun</string>
-  <string name="nav_sheet_title">Notlarınız |</string>
   <string name="nav_home">Ev</string>
-  <string name="nav_home_details">Normal ve favori notlarınızın tümü</string>
   <string name="nav_favourites">Favoriler</string>
-  <string name="nav_favourites_details">En sevdiğiniz notların tümü</string>
   <string name="nav_archived">Arşivlenen</string>
-  <string name="nav_archived_details">Arşivlenen notlarınızın tamamı</string>
   <string name="nav_trash">Çöp</string>
-  <string name="nav_trash_details">Çöplerdeki notların tümü</string>
   <string name="markdown_sheet_markdown_support">Markdown Destek</string>
   <string name="markdown_sheet_markdown_support_subtitle">Markdown destekli formatlamaya izin ver</string>
-  <string name="markdown_sheet_examples">Örnekler</string>
-  <string name="home_option_markdown_settings">İşaretleme Ayarları</string>
-  <string name="home_option_markdown_settings_subtitle">Notlarda markdown\'u nasıl kullanacağınızı öğrenin</string>
   <string name="open_in_notification">Bildirim Oluştur</string>
   <string name="notification_channel_label">Not Bildirimleri</string>
   <string name="nav_locked">Kilitli</string>
-  <string name="nav_locked_details">Kilitli notların tümü</string>
-  <string name="nav_tags">Etiketler</string>
-  <string name="nav_tags_details">Tüm not etiketleriniz</string>
   <string name="tag_sheet_create_title">Yeni Etiket Ekle |</string>
   <string name="tag_sheet_edit_title">Etiketi Düzenle |</string>
   <string name="tag_sheet_enter_tag_hint">etiketi gir</string>
@@ -129,8 +104,6 @@
   <string name="import_to_app">İthalat</string>
   <string name="markdown_sheet_home_markdown_support">Not Listesindeki İşaretleme</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">Not listesinde Markdown biçimlendirmeyi etkinleştirin</string>
-  <string name="home_option_fill_survey">Dolgu Anketi</string>
-  <string name="home_option_fill_survey_subtitle">Neye benzediğinizi söyleyerek uygulamayı geliştirmemize yardımcı olun</string>
 
   <!-- Added in release v3.8.4 -->
   <string name="change_tags">Etiketleri Değiştir</string>
@@ -139,8 +112,6 @@
   <string name="home_option_open_source_page_subtitle">Açık kaynak projesi hakkında daha fazla şey öğrenin</string>
   <string name="osp_page_libraries">Kütüphaneler</string>
   <string name="osp_page_about_osp">Açık Kaynak Projesi</string>
-  <string name="osp_page_title">Açık Kaynak Projesi Hakkında</string>
-  <string name="reminder_sheet_title">Not Hatırlatma</string>
   <string name="reminder_sheet_reminder_date">Hatırlatma Tarihi</string>
   <string name="reminder_sheet_reminder_time">Hatırlatıcı Saati</string>
   <string name="reminder_sheet_repeat">Sıklığı Tekrarla</string>
@@ -155,8 +126,6 @@
   <!-- Added in release v3.9.0 -->
   <string name="home_option_ui_experience">Arayüz ve Deneyim</string>
   <string name="home_option_ui_experience_subtitle">Uygulamanın nasıl göründüğünü ve neler hissettiğini seçin.</string>
-  <string name="home_option_note_settings">Not Tercihleri</string>
-  <string name="home_option_note_settings_subtitle">Not ve diğer ayarları seçin.</string>
   <string name="home_option_about">hakkında</string>
   <string name="home_option_about_subtitle">Bizimle uygulama hakkında daha fazla bilgi edinin.</string>
   <string name="note_option_default_color">Varsayılan Not Renk</string>
@@ -190,19 +159,6 @@
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">Not ekle</string>
   <string name="shortcut_add_list">Kontrol Listesi Ekle</string>
-  <string name="format_sheet_option_title">Blok Formatlama</string>
-  <string name="format_label_heading">başlık</string>
-  <string name="format_label_sub_heading">Alt Başlık</string>
-  <string name="format_label_text">Metin</string>
-  <string name="format_label_quote">Alıntı</string>
-  <string name="format_label_code">kod</string>
-  <string name="format_label_list">Kontrol Listesi</string>
-  <string name="markdown_sheet_option_title">İşaretleme Biçimlendirme</string>
-  <string name="markdown_label_bold">cesur</string>
-  <string name="markdown_label_italics">italik yazı</string>
-  <string name="markdown_label_underline">Altını çizmek</string>
-  <string name="markdown_label_strikethrough">Vuruş</string>
-  <string name="markdown_label_list">Liste</string>
   <string name="select_a_note_title">Not Seç</string>
   <string name="select_notes_title">Notlar\'ı seçin</string>
   <string name="nav_settings">Ayarlar</string>
@@ -216,9 +172,6 @@
   <string name="whats_new_title">Ne var ne yok</string>
   <string name="whats_new_subtitle">Uygulamanın son güncellemelerindeki yenilikleri bilin</string>
   <string name="whats_new_translate">Çevirmek</string>
-  <string name="tutorial_create_a_new_note">Yeni bir not eklemek için tıklayın</string>
-  <string name="tutorial_home_menu">Ev seçeneklerini görmek için tıklayın</string>
-  <string name="tutorial_home_menu_subtitle">Ana menü, favori ve arşiv notların yanı sıra uygulama ayarlarına sahiptir. Etiketlerinizi de burada bulabilirsiniz.</string>
 
 
   <!-- Added for 4.5.3 -->
@@ -236,25 +189,19 @@
   <string name="image_not_uploaded_i_understand">Anlıyorum</string>
   <string name="home_option_auto_export">Otomatik Olarak Dışa Aktar</string>
   <string name="home_option_auto_export_subtitle">Notları sık sık dış dosyaya yedekleme olarak dışa aktarın</string>
-  <string name="format_label_image">görüntü</string>
   <string name="format_hint_image">Resmi eklemek veya değiştirmek için tıklayın</string>
 
 
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">Sadece bir kere</string>
   <string name="reminder_frequency_daily">Günlük</string>
-  <string name="reminder_frequency_custom">görenek</string>
-  <string name="reminder_beta_label">Beta</string>
   <string name="notification_reminder_channel_label">Hatırlatıcılar ve Alarmlar</string>
   <string name="about_page_description_os">%s açık kaynaklıdır ve herkes daha iyi hale getirmeye katkıda bulunmaya açıktır. Şu anda %s tarafından oluşturulmakta ve sürdürülmektedir.</string>
   <string name="about_page_description">%s, uygulamayı çeken basit bir nottur. Kullanımı çok zor hale getirmeden hızlı Zengin Metin girişi sağlar. Çok görevli bir esinti yapar.</string>
   <string name="about_page_about_us_details">Merhaba, biz %s \'ı yaratan bir çift tasarımcı ve programcıyız.
      Herkese harika bir hizmet sunan güzel, dikkatlice tasarlanmış ücretsiz, reklamsız veya minimum reklam uygulamaları oluşturmaya çalışıyoruz!</string>
   <string name="note_option_number_lines_subtitle">%d ana ekranda çizgiler</string>
-  <string name="search_toolbar_text">%s ara &#8230;</string>
   <string name="view_distraction_free">Distraksiyon Ücretsiz</string>
-  <string name="format_label_separator">Ayırıcı</string>
-
 
 
   <!-- Login, Welcome Strings -->
@@ -262,27 +209,18 @@
   <string name="home_option_login_with_app_subtitle">Bulut yedekleme ve senkronizasyon için oturum açın</string>
   <string name="home_option_logout_of_app">Oturumu Kapat</string>
   <string name="home_option_logout_of_app_subtitle">Bulut yedeklemeyi durdurmak için çıkış yapın</string>
-  <string name="login_with_google">Google ile giriş yap</string>
-  <string name="logging_into_app">Oturum açma |</string>
-  <string name="logged_into_app">Oturum açtınız</string>
   <string name="login_to_google_failed">Google Giriş Başarısız Oldu</string>
   <string name="material_notes_privacy_policy">Gizlilik Politikası</string>
   <string name="material_notes_privacy_policy_subtitle">İçerik için uygulama gizlilik politikası</string>
   <string name="install_pro_app">Pro Uygulamasını Yükle</string>
   <string name="why_install_pro">Neden Pro Install</string>
   <string name="why_install_pro_details">Bulut senkronizasyonunu çalıştırmak için büyük sunucu maliyetleri için geliştiriciyi destekleyin \n\n En yeni özellikleri edinin \n\n Bazı ekstra özellikler yalnızca Pro kullanıcıları tarafından kullanılabilir olacak</string>
-  <string name="why_cloud">Cloud Sync\'i neden etkinleştirebilirim?</string>
-  <string name="why_cloud_details">Cihaz değişikliklerine karşı yükle ve yedekle \n\n Birden fazla cihaz arasında senkronize edin ve hızlı güncellemeler yapın \n\n Güvenli bir şekilde Google Firebase sunucularına kaydedin</string>
-  <string name="welcome_page_hello">Merhaba,</string>
-  <string name="welcome_page_transfer_message">Malzeme Notları artık Scarlet!</string>
-  <string name="welcome_page_get_started">Başlamak</string>
 
   <!-- Added for 6.6.1 -->
   <string name="home_option_theme_color">Uygulama Teması</string>
   <string name="home_option_theme_color_subtitle">Temanın arka plan rengini seçin</string>
   <string name="theme_page_title">Uygulama Temasını Seç</string>
   <string name="click_to_add_tags">Etiket eklemek veya değiştirmek için tıklayın</string>
-  <string name="show_more_actions">Diğer İşlemleri Göster</string>
   <string name="select_notes">Notlar Seç</string>
   <string name="select_notes_details">Tek seferde birden fazla notta eylemleri seçip gerçekleştirin</string>
   <string name="recent_to_trash_message">Not çöp kutusuna taşındı</string>
@@ -322,8 +260,6 @@
   <string name="merge_notes">Notları Birleştirme</string>
   <string name="home_option_export_markdown">Markdown Olarak Dışa Aktar</string>
   <string name="home_option_export_markdown_subtitle">Notları işaretleme biçiminde dışa aktarın. (Bunları uygulamaya geri alamazsınız)</string>
-  <string name="home_option_auto_export_folder">Klasörü Ver</string>
-  <string name="home_option_auto_export_folder_subtitle">Tüm ihracatın nerede saklanacağını seçin</string>
   <string name="ui_options_note_background_color_settings_theme">Arka plan için tema rengini kullan</string>
   <string name="ui_options_note_background_color_settings_note">Arka plan için not rengini kullan</string>
   <string name="import_export_layout_folder_sync_enable">etkinleştirme</string>

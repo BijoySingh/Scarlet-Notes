@@ -6,29 +6,20 @@
   <string name="share_using">分享使用&#8230;</string>
   <string name="main_no_notes">沒有筆記</string>
   <string name="main_no_notes_hint">看來你還沒有添加任何筆記。 點擊添加備註。</string>
-  <string name="main_add_a_note">添加備註&#8230;</string>
-  <string name="main_add_a_quick_note">添加快速筆記&#8230;</string>
   <string name="edit_note">編輯註釋</string>
   <string name="open_in_popup">在彈出窗口中打開</string>
-  <string name="delete_note">刪除註釋</string>
   <string name="copy_note">複製說明</string>
   <string name="send_note">發送注意事項</string>
   <string name="choose_action">選擇動作&#8230;</string>
   <string name="format_hint_text">添加內容&#8230;</string>
   <string name="format_hint_heading">添加標題&#8230;</string>
-  <string name="format_hint_sub_heading">添加子標題&#8230;</string>
   <string name="format_hint_quote">添加引號文本&#8230;</string>
   <string name="format_hint_list">新增項目&#8230;</string>
   <string name="format_hint_code">添加代碼&#8230;</string>
   <string name="home_option_sheet_title">選項和設置</string>
   <string name="home_option_export">導出註釋</string>
-  <string name="open_note_day_mode">日間模式</string>
   <string name="choose_note_color">換顏色</string>
-  <string name="tap_for_action_open_note_day_mode">點按即可在日間模式下查看筆記</string>
   <string name="tap_for_action_color">點擊改變音符的背景顏色</string>
-  <string name="home_option_enable_night_mode">啟用夜間模式</string>
-  <string name="home_option_enable_night_mode_subtitle">默認啟用黑色主題</string>
-  <string name="home_option_enable_day_mode">啟用日間模式</string>
   <string name="search_notes">搜索筆記&#8230;</string>
   <string name="lock_note">鎖定注意</string>
   <string name="unlock_note">解鎖注意</string>
@@ -44,7 +35,6 @@
   <string name="security_sheet_enter_new_pin_title">輸入新的PIN碼</string>
   <string name="security_sheet_enter_pin_to_unlock_title">輸入PIN碼即可解鎖</string>
   <string name="security_sheet_enter_current_pin_title">輸入當前的PIN碼</string>
-  <string name="security_sheet_enter_pin_hint">輸入代碼</string>
   <string name="security_sheet_button_verify">校驗</string>
   <string name="security_sheet_button_unlock">開鎖</string>
   <string name="security_sheet_button_set">組</string>
@@ -54,7 +44,6 @@
   <string name="home_option_enable_grid_view">啟用網格佈局</string>
   <string name="home_option_enable_grid_view_subtitle">以交錯格子顯示筆記</string>
 
-  <string name="home_option_enable_day_mode_subtitle">默認啟用輕量級主題</string>
   <string name="home_option_export_subtitle">將筆記導出到設備存儲以進行共享</string>
   <string name="home_option_import">導入註釋</string>
   <string name="home_option_import_subtitle">從設備存儲導入筆記</string>
@@ -72,12 +61,10 @@
   <string name="import_export_layout_exporting">導出到文件&#8230;</string>
   <string name="import_export_layout_exporting_done">完成</string>
   <string name="import_export_layout_exporting_share">分享</string>
-  <string name="about_page_title">關於我們和更多</string>
   <string name="about_page_rate">Play商店的價格</string>
   <string name="about_page_contribute">有助於</string>
   <string name="about_page_app_version">應用程式版本</string>
   <string name="about_page_about_app">關於應用</string>
-  <string name="open_note_night_mode">夜間模式</string>
   <string name="delete_note_permanently">永久刪除</string>
   <string name="unarchive_note">解除注意</string>
   <string name="archive_note">存檔注意</string>
@@ -85,7 +72,6 @@
   <string name="favourite_note">標記收藏</string>
   <string name="restore_note">還原註意</string>
   <string name="trash_note">移到廢紙簍</string>
-  <string name="tap_for_action_open_note_night_mode">點按即可在夜間模式下查看筆記</string>
   <string name="tap_for_action_edit">點擊以打開註釋進行編輯</string>
   <string name="tap_for_action_copy">點擊將音符內容複製到剪貼板</string>
   <string name="tap_for_action_share">點按即可將筆記內容分享到其他應用</string>
@@ -97,26 +83,15 @@
   <string name="tap_for_action_not_favourite">點擊標記註意不是最喜歡的</string>
   <string name="tap_for_action_archive">點擊歸檔筆記</string>
   <string name="tap_for_action_not_archive">點擊以取消存檔</string>
-  <string name="nav_sheet_title">你的筆記&#8230;</string>
   <string name="nav_home">家</string>
-  <string name="nav_home_details">所有正常和最喜歡的筆記</string>
   <string name="nav_favourites">最愛</string>
-  <string name="nav_favourites_details">所有你最喜歡的筆記</string>
   <string name="nav_archived">存檔</string>
-  <string name="nav_archived_details">所有的歸檔筆記</string>
   <string name="nav_trash">垃圾</string>
-  <string name="nav_trash_details">你在垃圾桶裡的所有筆記</string>
   <string name="markdown_sheet_markdown_support">減價支持</string>
   <string name="markdown_sheet_markdown_support_subtitle">允許降價支持格式</string>
-  <string name="markdown_sheet_examples">例子</string>
-  <string name="home_option_markdown_settings">減價設置</string>
-  <string name="home_option_markdown_settings_subtitle">看看如何在筆記中使用降價</string>
   <string name="open_in_notification">創建通知</string>
   <string name="notification_channel_label">注意通知</string>
   <string name="nav_locked">鎖定</string>
-  <string name="nav_locked_details">所有鎖定的筆記</string>
-  <string name="nav_tags">標籤</string>
-  <string name="nav_tags_details">所有的筆記標籤</string>
   <string name="tag_sheet_create_title">添加新標籤&#8230;</string>
   <string name="tag_sheet_edit_title">編輯標籤&#8230;</string>
   <string name="tag_sheet_enter_tag_hint">輸入標籤</string>
@@ -127,8 +102,6 @@
   <string name="import_to_app">進口</string>
   <string name="markdown_sheet_home_markdown_support">註釋列表中的降價</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">在筆記列表中啟用Markdown格式</string>
-  <string name="home_option_fill_survey">填寫調查</string>
-  <string name="home_option_fill_survey_subtitle">通過告訴我們你喜歡什麼來幫助我們改進應用程序</string>
 
   <!-- Added in release v3.8.4 -->
   <string name="change_tags">更改標籤</string>
@@ -137,8 +110,6 @@
   <string name="home_option_open_source_page_subtitle">了解更多關於開源項目</string>
   <string name="osp_page_libraries">圖書館</string>
   <string name="osp_page_about_osp">開源項目</string>
-  <string name="osp_page_title">關於開源項目</string>
-  <string name="reminder_sheet_title">注意提醒</string>
   <string name="reminder_sheet_reminder_date">提醒日期</string>
   <string name="reminder_sheet_reminder_time">提醒時間</string>
   <string name="reminder_sheet_repeat">重複頻率</string>
@@ -153,8 +124,6 @@
   <!-- Added in release v3.9.0 -->
   <string name="home_option_ui_experience">界面和經驗</string>
   <string name="home_option_ui_experience_subtitle">選擇應用程序的外觀和感覺。</string>
-  <string name="home_option_note_settings">注意首選項</string>
-  <string name="home_option_note_settings_subtitle">選擇筆記和其他設置。</string>
   <string name="home_option_about">關於</string>
   <string name="home_option_about_subtitle">了解更多關於我們和應用程序。</string>
   <string name="note_option_default_color">默認的注意顏色</string>
@@ -189,19 +158,6 @@
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">添加註釋</string>
   <string name="shortcut_add_list">添加清單</string>
-  <string name="format_sheet_option_title">塊格式化</string>
-  <string name="format_label_heading">標題</string>
-  <string name="format_label_sub_heading">小標題</string>
-  <string name="format_label_text">文本</string>
-  <string name="format_label_quote">引用</string>
-  <string name="format_label_code">碼</string>
-  <string name="format_label_list">清單</string>
-  <string name="markdown_sheet_option_title">降價格式</string>
-  <string name="markdown_label_bold">膽大</string>
-  <string name="markdown_label_italics">斜體</string>
-  <string name="markdown_label_underline">強調</string>
-  <string name="markdown_label_strikethrough">罷工</string>
-  <string name="markdown_label_list">名單</string>
   <string name="select_a_note_title">選擇一個註釋</string>
   <string name="select_notes_title">選擇註釋</string>
   <string name="nav_settings">設置</string>
@@ -215,9 +171,6 @@
   <string name="whats_new_title">什麼是新的</string>
   <string name="whats_new_subtitle">了解最近更新的應用程序中的新功能</string>
   <string name="whats_new_translate">翻譯</string>
-  <string name="tutorial_create_a_new_note">點擊添加一個新的筆記</string>
-  <string name="tutorial_home_menu">點擊查看家庭選項</string>
-  <string name="tutorial_home_menu_subtitle">主菜單有您最喜歡的和存檔的筆記，以及應用程序設置。 你也可以在這裡找到你的標籤。</string>
 
 
   <!-- Added for 4.5.3 -->
@@ -235,51 +188,37 @@
   <string name="image_not_uploaded_i_understand">我明白</string>
   <string name="home_option_auto_export">自動導出</string>
   <string name="home_option_auto_export_subtitle">頻繁導出筆記到外部文件作為備份</string>
-  <string name="format_label_image">圖片</string>
   <string name="format_hint_image">點擊添加或更改圖像</string>
 
 
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">只有一次</string>
   <string name="reminder_frequency_daily">日常</string>
-  <string name="reminder_frequency_custom">習慣</string>
-  <string name="reminder_beta_label">Beta版</string>
   <string name="notification_reminder_channel_label">提醒和警報</string>
   <string name="about_page_description_os">%s是開源的，任何人都可以為改善它做出貢獻。 它目前由%s構建和維護。</string>
   <string name="about_page_description">%s是一個簡單的筆記應用程序。 它允許快速富文本輸入，而不會讓使用體驗變得非常困難。 它使得多任務輕而易舉。</string>
   <string name="about_page_about_us_details">嗨，我們是一對設計師和程序員，他們創造了%s。
      我們致力於打造漂亮，精心設計的免費，無廣告或最低限度的廣告應用程序，這些應用程序對每個人都非常實用！</string>
   <string name="note_option_number_lines_subtitle">主屏幕上的%d行</string>
-  <string name="search_toolbar_text">搜索%s &#8230;</string>
   <string name="view_distraction_free">分心免費</string>
-  <string name="format_label_separator">分隔器</string>
 
   <!-- Login, Welcome Strings -->
   <string name="home_option_login_with_app">登錄到應用程序</string>
   <string name="home_option_login_with_app_subtitle">登錄雲備份和同步</string>
   <string name="home_option_logout_of_app">登出</string>
   <string name="home_option_logout_of_app_subtitle">註銷以停止雲備份</string>
-  <string name="login_with_google">用Google登錄</string>
-  <string name="logging_into_app">登錄&#8230;</string>
-  <string name="logged_into_app">您已經登錄</string>
   <string name="login_to_google_failed">Google登錄失敗</string>
   <string name="material_notes_privacy_policy">隱私政策</string>
   <string name="material_notes_privacy_policy_subtitle">應用程序隱私政策的內容</string>
   <string name="install_pro_app">安裝Pro App</string>
   <string name="why_install_pro">為什麼安裝Pro</string>
   <string name="why_install_pro_details">支持大規模服務器成本的開發人員，運行云同步 \n\n 首先獲取最新功能 \n\n 一些額外功能僅適用於專業用戶</string>
-  <string name="why_cloud">為什麼啟用雲端同步</string>
-  <string name="why_cloud_details">根據設備更改進行上傳和備份 \n\n 在多個設備之間進行同步，並獲得快速更新 \n\n 安全地保存在Google Firebase服務器上</string>
-  <string name="welcome_page_hello">你好，</string>
-  <string name="welcome_page_transfer_message">材料的筆記現在是猩紅色！</string>
-  <string name="welcome_page_get_started">開始使用</string>
 
   <!-- Added for 6.6.1 -->
   <string name="home_option_theme_color">應用主題</string>
   <string name="home_option_theme_color_subtitle">選擇主題的背景顏色</string>
   <string name="theme_page_title">選擇應用主題</string>
   <string name="click_to_add_tags">單擊以添加或更改標籤</string>
-  <string name="show_more_actions">顯示更多操作</string>
   <string name="select_notes">選擇備註</string>
   <string name="select_notes_details">一次選擇並對多個音符執行操作</string>
   <string name="recent_to_trash_message">這張紙條被移到了垃圾桶裡</string>
@@ -319,8 +258,6 @@
   <string name="merge_notes">合併備註</string>
   <string name="home_option_export_markdown">出口為降價</string>
   <string name="home_option_export_markdown_subtitle">以降價格式導出備註。 （你不能將這些導回到應用程序）</string>
-  <string name="home_option_auto_export_folder">導出文件夾</string>
-  <string name="home_option_auto_export_folder_subtitle">選擇存儲所有導出的位置</string>
   <string name="ui_options_note_background_color_settings_theme">使用主題顏色為背景</string>
   <string name="ui_options_note_background_color_settings_note">使用備註顏色作為背景</string>
   <string name="import_export_layout_folder_sync_enable">啟用</string>

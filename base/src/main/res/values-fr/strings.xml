@@ -6,17 +6,13 @@
   <string name="share_using">Partager avec &#8230;</string>
   <string name="main_no_notes">Pas de notes</string>
   <string name="main_no_notes_hint">Il semble que vous n\'ayez pas ajouté de notes. Cliquez pour ajouter une note.</string>
-  <string name="main_add_a_note">Ajouter une note&#8230;</string>
-  <string name="main_add_a_quick_note">Ajouter une note rapide &#8230;</string>
   <string name="edit_note">Modifier</string>
   <string name="open_in_popup">Ouvrir comme pop-up</string>
-  <string name="delete_note">Supprimer</string>
   <string name="copy_note">Copier</string>
   <string name="send_note">Partager</string>
   <string name="choose_action">Choisir une action&#8230;</string>
   <string name="format_hint_text">Ajouter du contenu&#8230;</string>
   <string name="format_hint_heading">Ajouter un titre &#8230;</string>
-  <string name="format_hint_sub_heading">Ajouter un sous-titre &#8230;</string>
   <string name="format_hint_quote">Ajouter une citation &#8230;</string>
   <string name="format_hint_list">Ajouter un item&#8230;</string>
   <string name="format_hint_code">Ajouter du code &#8230;</string>
@@ -34,7 +30,6 @@
   <string name="security_sheet_enter_new_pin_title">Entrer le nouveau code PIN</string>
   <string name="security_sheet_enter_pin_to_unlock_title">Entrer le code PIN pour déverrouiller</string>
   <string name="security_sheet_enter_current_pin_title">Entrer le code PIN actuel</string>
-  <string name="security_sheet_enter_pin_hint">Entrer le code</string>
   <string name="security_sheet_button_verify">Vérifier</string>
   <string name="security_sheet_button_unlock">Ouvrir</string>
   <string name="security_sheet_button_set">Activer</string>
@@ -45,9 +40,6 @@
   <string name="home_option_enable_grid_view_subtitle">Afficher les notes dans une grille décalée</string>
   <string name="markdown_sheet_markdown_support">Prise en charge du formatage</string>
   <string name="markdown_sheet_markdown_support_subtitle">Autoriser le formatage pris en charge</string>
-  <string name="markdown_sheet_examples">Exemples</string>
-  <string name="home_option_markdown_settings">Paramètres de formatage</string>
-  <string name="home_option_markdown_settings_subtitle">Voir comment utiliser le formatage dans les notes</string>
   <string name="home_option_sheet_title">Options et paramètres</string>
   <string name="home_option_export">Exporter des notes</string>
   <string name="home_option_export_subtitle">Exporter des notes vers le stockage de l\'appareil</string>
@@ -67,23 +59,15 @@
   <string name="import_export_layout_exporting">Exportation vers un fichier &#8230;</string>
   <string name="import_export_layout_exporting_done">Terminé</string>
   <string name="import_export_layout_exporting_share">Partager</string>
-  <string name="about_page_title">À propos de nous et plus</string>
   <string name="about_page_rate">Noter sur le Play Store</string>
   <string name="about_page_contribute">Contribuer</string>
   <string name="about_page_app_version">Version de l\'application</string>
   <string name="about_page_about_app">À propos de l\'application</string>
   <string name="search_notes">Rechercher des notes &#8230;</string>
 
-  <string name="open_note_day_mode">Mode jour</string>
   <string name="choose_note_color">Changer de couleur</string>
-  <string name="tap_for_action_open_note_day_mode">Appuyer pour afficher la note en mode jour</string>
   <string name="tap_for_action_color">Appuyer pour modifier la couleur d\'arrière-plan de la note</string>
-  <string name="home_option_enable_night_mode">Activer le mode nuit</string>
-  <string name="home_option_enable_night_mode_subtitle">Activer le thème sombre par défaut</string>
-  <string name="home_option_enable_day_mode">Activer le mode jour</string>
-  <string name="home_option_enable_day_mode_subtitle">Activer le thème lumineux par défaut</string>
 
-  <string name="open_note_night_mode">Mode nuit</string>
   <string name="delete_note_permanently">Supprimer définitivement</string>
   <string name="unarchive_note">Retirer des archives</string>
   <string name="archive_note">Archiver</string>
@@ -91,7 +75,6 @@
   <string name="favourite_note">Marquer comme favori</string>
   <string name="restore_note">Restaurer</string>
   <string name="trash_note">Mettre à la corbeille</string>
-  <string name="tap_for_action_open_note_night_mode">Appuyer pour afficher la note en mode nuit</string>
   <string name="tap_for_action_edit">Appuyer pour éditer la note</string>
   <string name="tap_for_action_copy">Appuyer pour copier le contenu de la note dans le presse-papiers</string>
   <string name="tap_for_action_share">Appuyer pour partager le contenu de la note avec d\'autres applications</string>
@@ -103,21 +86,13 @@
   <string name="tap_for_action_not_favourite">Appuyer pour retirer la note des favoris</string>
   <string name="tap_for_action_archive">Appuyer pour archiver la note</string>
   <string name="tap_for_action_not_archive">Appuyer pour retirer la note des archives</string>
-  <string name="nav_sheet_title">Vos notes &#8230;</string>
   <string name="nav_home">Accueil</string>
-  <string name="nav_home_details">Toutes vos notes normales et préférées</string>
   <string name="nav_favourites">Favoris</string>
-  <string name="nav_favourites_details">Toutes vos notes préférées</string>
   <string name="nav_archived">Archives</string>
-  <string name="nav_archived_details">Toutes vos notes archivées</string>
   <string name="nav_trash">Corbeille</string>
-  <string name="nav_trash_details">Toutes vos notes à la corbeille</string>
   <string name="open_in_notification">Créer une notification</string>
   <string name="notification_channel_label">Notifications</string>
   <string name="nav_locked">Verrouillé</string>
-  <string name="nav_locked_details">Toutes vos notes verrouillées</string>
-  <string name="nav_tags">Tags</string>
-  <string name="nav_tags_details">Toutes vos tags</string>
   <string name="tag_sheet_create_title">Ajouter un nouveau tag</string>
   <string name="tag_sheet_edit_title">Modifier le tag &#8230;</string>
   <string name="tag_sheet_enter_tag_hint">entrer le tag</string>
@@ -128,8 +103,6 @@
   <string name="import_to_app">Importer</string>
   <string name="markdown_sheet_home_markdown_support">Markdown dans la liste des notes</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">Activer le formatage Markdown dans la liste des notes</string>
-  <string name="home_option_fill_survey">Remplir l\'enquête</string>
-  <string name="home_option_fill_survey_subtitle">Aidez-nous à améliorer l\'application en nous disant ce que vous aimez</string>
 
   <!-- Added in release v3.8.4 -->
   <string name="change_tags">Modifier les tags</string>
@@ -138,8 +111,6 @@
   <string name="home_option_open_source_page_subtitle">En savoir plus sur le projet open source</string>
   <string name="osp_page_libraries">Bibliothèques</string>
   <string name="osp_page_about_osp">Projet Open Source</string>
-  <string name="osp_page_title">À propos du projet Open Source</string>
-  <string name="reminder_sheet_title">Rappel</string>
   <string name="reminder_sheet_reminder_date">Date du rappel</string>
   <string name="reminder_sheet_reminder_time">Heure du rappel</string>
   <string name="reminder_sheet_repeat">Fréquence du rappel</string>
@@ -154,8 +125,6 @@
   <!-- Added in release v3.9.0 -->
   <string name="home_option_ui_experience">Interface</string>
   <string name="home_option_ui_experience_subtitle">Définir l\'apparence de l\'application.</string>
-  <string name="home_option_note_settings">Préférences des notes</string>
-  <string name="home_option_note_settings_subtitle">Définir les paramètres des notes.</string>
   <string name="home_option_about">À propos</string>
   <string name="home_option_about_subtitle">En savoir plus sur nous et sur l\'application.</string>
   <string name="note_option_default_color">Couleur des notes par défaut</string>
@@ -190,19 +159,6 @@
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">Ajouter une note</string>
   <string name="shortcut_add_list">Ajouter une liste</string>
-  <string name="format_sheet_option_title">Formatage du texte</string>
-  <string name="format_label_heading">Titre</string>
-  <string name="format_label_sub_heading">Sous-titre</string>
-  <string name="format_label_text">Texte</string>
-  <string name="format_label_quote">Citation</string>
-  <string name="format_label_code">Code</string>
-  <string name="format_label_list">Liste</string>
-  <string name="markdown_sheet_option_title">Formatage Markdown</string>
-  <string name="markdown_label_bold">Gras</string>
-  <string name="markdown_label_italics">Italique</string>
-  <string name="markdown_label_underline">Souligner</string>
-  <string name="markdown_label_strikethrough">Barrer</string>
-  <string name="markdown_label_list">Liste</string>
   <string name="select_a_note_title">Sélectionner une note</string>
   <string name="select_notes_title">Sélectionner des notes</string>
   <string name="nav_settings">Paramètres</string>
@@ -216,29 +172,18 @@
   <string name="whats_new_title">Quoi de neuf</string>
   <string name="whats_new_subtitle">Voir les nouveautés dans les mises à jour récentes de l\'application</string>
   <string name="whats_new_translate">Traduire</string>
-  <string name="tutorial_create_a_new_note">Cliquer pour ajouter une nouvelle note</string>
-  <string name="tutorial_home_menu">Cliquer pour voir les options de l\'accueil</string>
-  <string name="tutorial_home_menu_subtitle">Le menu de l\'accueil montre vos notes préférées et archivées, ainsi que les paramètres de l\'application. Vous pouvez trouver vos tags ici aussi.</string>
 
   <!-- Login, Welcome Strings -->
   <string name="home_option_login_with_app">Connectez-vous à l\'application</string>
   <string name="home_option_login_with_app_subtitle">Connexion pour la sauvegarde et la synchronisation dans le cloud</string>
   <string name="home_option_logout_of_app">Déconnexion</string>
   <string name="home_option_logout_of_app_subtitle">Se déconnecter pour arrêter la sauvegarde dans le cloud</string>
-  <string name="login_with_google">Connectez-vous avec Google</string>
-  <string name="logging_into_app">Connexion &#8230;</string>
-  <string name="logged_into_app">Vous êtes authentifié</string>
   <string name="login_to_google_failed">Échec de la connexion à Google</string>
   <string name="material_notes_privacy_policy">Politique de confidentialité</string>
   <string name="material_notes_privacy_policy_subtitle">Politique de confidentialité de l\'application pour le contenu</string>
   <string name="install_pro_app">Installer l\'application Pro</string>
   <string name="why_install_pro">Pourquoi installer Pro</string>
   <string name="why_install_pro_details">Supporter le développeur pour les coûts massifs du serveur, pour exécuter la synchronisation du cloud \n\n Récupérer les dernières fonctionnalités en premier \n\n Certaines fonctionnalités supplémentaires ne seront disponibles que pour les utilisateurs Pro</string>
-  <string name="why_cloud">Pourquoi activer Cloud Sync</string>
-  <string name="why_cloud_details">Téléchargement et sauvegarde des modifications de l\'appareil \n\n Synchronisation entre plusieurs appareils et mise à jour rapide \n\n Enregistrement sécurisé sur les serveurs Google Firebase</string>
-  <string name="welcome_page_hello">Bonjour,</string>
-  <string name="welcome_page_transfer_message">Notes de matériaux est maintenant Scarlet!</string>
-  <string name="welcome_page_get_started">Commencer</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">Copie</string>
@@ -255,30 +200,24 @@
   <string name="image_not_uploaded_i_understand">Je comprends</string>
   <string name="home_option_auto_export">Exporter automatiquement</string>
   <string name="home_option_auto_export_subtitle">Exporter des notes fréquemment vers un fichier externe en tant que sauvegarde</string>
-  <string name="format_label_image">Image</string>
   <string name="format_hint_image">Cliquez pour ajouter ou modifier l\'image</string>
 
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">Juste une fois</string>
   <string name="reminder_frequency_daily">du quotidien</string>
-  <string name="reminder_frequency_custom">Douane</string>
-  <string name="reminder_beta_label">Bêta</string>
   <string name="notification_reminder_channel_label">Rappels et alarmes</string>
   <string name="about_page_description_os">%s est open source et tout le monde est ouvert pour contribuer à l\'améliorer. Il est actuellement construit et maintenu par %s.</string>
   <string name="about_page_description">%s est une application de prise de notes simple. Il permet une saisie rapide en texte enrichi sans rendre l\'expérience très difficile à utiliser. Cela rend le multitâche facile.</string>
   <string name="about_page_about_us_details">Salut, nous sommes une paire de concepteur et programmeur, qui a créé %s.
      Nous nous efforçons de créer de superbes applications gratuites, sans annonces ou minimes qui soient utiles à tous!</string>
   <string name="note_option_number_lines_subtitle">%d lignes sur l\'écran d\'accueil</string>
-  <string name="search_toolbar_text">Rechercher %s&#8230;</string>
   <string name="view_distraction_free">Distraction Gratuit</string>
-  <string name="format_label_separator">Séparateur</string>
 
   <!-- Added for 6.6.1 -->
   <string name="home_option_theme_color">Thème de l\'application</string>
   <string name="home_option_theme_color_subtitle">Sélectionnez la couleur de fond pour le thème</string>
   <string name="theme_page_title">Sélectionnez le thème de l\'application</string>
   <string name="click_to_add_tags">Cliquez pour ajouter ou modifier des tags</string>
-  <string name="show_more_actions">Afficher plus d\'actions</string>
   <string name="select_notes">Sélectionnez des notes</string>
   <string name="select_notes_details">Sélectionner et effectuer des actions sur plusieurs notes à la fois</string>
   <string name="recent_to_trash_message">La note a été déplacée à la corbeille</string>
@@ -318,8 +257,6 @@
   <string name="merge_notes">Fusionner les notes</string>
   <string name="home_option_export_markdown">Exporter comme démarque</string>
   <string name="home_option_export_markdown_subtitle">Exporter des notes au format markdown. (Vous ne pouvez pas les importer dans l\'application)</string>
-  <string name="home_option_auto_export_folder">Dossier d\'exportation</string>
-  <string name="home_option_auto_export_folder_subtitle">Choisissez où toutes les exportations sont stockées</string>
   <string name="ui_options_note_background_color_settings_theme">Utiliser la couleur du thème pour le fond</string>
   <string name="ui_options_note_background_color_settings_note">Utiliser la couleur de note pour le fond</string>
   <string name="import_export_layout_folder_sync_enable">Activer</string>

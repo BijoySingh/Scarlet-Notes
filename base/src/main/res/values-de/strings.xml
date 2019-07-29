@@ -6,17 +6,13 @@
   <string name="share_using">Teilen über&#8230;</string>
   <string name="main_no_notes">Keine Notizen</string>
   <string name="main_no_notes_hint">Es scheint, dass Sie keine Notizen hinzugefügt haben. Klicken Sie, um eine Notiz hinzuzufügen.</string>
-  <string name="main_add_a_note">Notiz hinzufügen&#8230;</string>
-  <string name="main_add_a_quick_note">Schnellnotiz hinzufügen&#8230;</string>
   <string name="edit_note">Bearbeiten</string>
   <string name="open_in_popup">Im Popup öffnen</string>
-  <string name="delete_note">Notiz löschen</string>
   <string name="copy_note">Kopieren</string>
   <string name="send_note">Notiz senden&#8230;</string>
   <string name="choose_action">Aktion wählen&#8230;</string>
   <string name="format_hint_text">Inhalt hinzufügen&#8230;</string>
   <string name="format_hint_heading">Überschrift hinzufügen&#8230;</string>
-  <string name="format_hint_sub_heading">Unterüberschrift hinzufügen&#8230;</string>
   <string name="format_hint_quote">Zitat hinzufügen&#8230;</string>
   <string name="format_hint_list">Artikel hinzufügen&#8230;</string>
   <string name="format_hint_code">Code hinzufügen &#8230;</string>
@@ -34,7 +30,6 @@
   <string name="security_sheet_enter_new_pin_title">Geben Sie eine neue PIN ein</string>
   <string name="security_sheet_enter_pin_to_unlock_title">Geben Sie zum Entsperren die PIN ein</string>
   <string name="security_sheet_enter_current_pin_title">Geben Sie die aktuelle PIN ein</string>
-  <string name="security_sheet_enter_pin_hint">Code eingeben</string>
   <string name="security_sheet_button_verify">Überprüfen</string>
   <string name="security_sheet_button_unlock">Entsperren</string>
   <string name="security_sheet_button_set">Einstellen</string>
@@ -45,9 +40,6 @@
   <string name="home_option_enable_grid_view_subtitle">Notizen in einem gestaffelten Raster anzeigen</string>
   <string name="markdown_sheet_markdown_support">Markdown-Unterstützung</string>
   <string name="markdown_sheet_markdown_support_subtitle">Erlaube Markdown-Formatierung</string>
-  <string name="markdown_sheet_examples">Beispiele</string>
-  <string name="home_option_markdown_settings">Markdown-Einstellungen</string>
-  <string name="home_option_markdown_settings_subtitle">Sehen Sie, wie man Markdown in Notizen verwendet</string>
 
   <string name="home_option_sheet_title">Optionen und Einstellungen</string>
   <string name="home_option_export">Notizen exportieren</string>
@@ -69,22 +61,14 @@
   <string name="import_export_layout_exporting">In Datei exportieren&#8230;</string>
   <string name="import_export_layout_exporting_done">Erledigt</string>
   <string name="import_export_layout_exporting_share">Teilen</string>
-  <string name="about_page_title">Über uns und mehr</string>
   <string name="about_page_rate">Im Play Store bewerten</string>
   <string name="about_page_contribute">Beitragen</string>
   <string name="about_page_app_version">App-Version</string>
   <string name="about_page_about_app">Über die App</string>
-  <string name="open_note_day_mode">Tagmodus</string>
   <string name="choose_note_color">Farbe ändern</string>
-  <string name="tap_for_action_open_note_day_mode">Tippen Sie hier, um die Notiz im Tagmodus anzuzeigen</string>
   <string name="tap_for_action_color">Tippen, um die Hintergrundfarbe der Notiz zu ändern</string>
-  <string name="home_option_enable_night_mode">Nachtmodus aktivieren</string>
-  <string name="home_option_enable_night_mode_subtitle">Aktiviere dunkles Design als Standard</string>
-  <string name="home_option_enable_day_mode">Tagmodus aktivieren</string>
-  <string name="home_option_enable_day_mode_subtitle">Tagmodus als Standard aktivieren</string>
 
 
-  <string name="open_note_night_mode">Nachtmodus</string>
   <string name="delete_note_permanently">Dauerhaft löschen</string>
   <string name="unarchive_note">Notiz dearchivieren</string>
   <string name="archive_note">Notiz archivieren</string>
@@ -92,7 +76,6 @@
   <string name="favourite_note">Als Favorit markieren</string>
   <string name="restore_note">Notiz wiederherstellen</string>
   <string name="trash_note">Ab in den Müll</string>
-  <string name="tap_for_action_open_note_night_mode">Tippen, um die Notiz im Nachtmodus anzuzeigen.</string>
   <string name="tap_for_action_edit">Zum Öffnen der Notiz antippen</string>
   <string name="tap_for_action_copy">Tippen, um den Notizinhalt in die Zwischenablage zu kopieren</string>
   <string name="tap_for_action_share">Tippen, um Notizinhalte an andere Apps weiterzugeben</string>
@@ -104,21 +87,13 @@
   <string name="tap_for_action_not_favourite">Tippen, um die Markierung als Favorit zu entfernen</string>
   <string name="tap_for_action_archive">Zum Archivieren der Notiz antippen</string>
   <string name="tap_for_action_not_archive">Tippen Sie auf, um die Notiz zu dearchivieren</string>
-  <string name="nav_sheet_title">Deine Notizen&#8230;</string>
   <string name="nav_home">Hauptseite</string>
-  <string name="nav_home_details">Alle Ihre normalen und Lieblingsnotizen</string>
   <string name="nav_favourites">Favoriten</string>
-  <string name="nav_favourites_details">Alle deine Lieblingsnotizen</string>
   <string name="nav_archived">Archiviert</string>
-  <string name="nav_archived_details">Alle archivierten Notizen</string>
   <string name="nav_trash">Papierkorb</string>
-  <string name="nav_trash_details">Alle Ihre Notizen im Papierkorb</string>
   <string name="open_in_notification">Benachrichtigung erstellen</string>
   <string name="notification_channel_label">Hinweis Benachrichtigungen</string>
   <string name="nav_locked">Verschlossen</string>
-  <string name="nav_locked_details">Alle Ihre gesperrten Notizen</string>
-  <string name="nav_tags">Stichworte</string>
-  <string name="nav_tags_details">Alle Ihre Notiz-Tags</string>
   <string name="tag_sheet_create_title">Neuen Tag hinzufügen &#8230;</string>
   <string name="tag_sheet_edit_title">Tag bearbeiten &#8230;</string>
   <string name="tag_sheet_enter_tag_hint">Tag eingeben</string>
@@ -129,8 +104,6 @@
   <string name="import_to_app">Einführen</string>
   <string name="markdown_sheet_home_markdown_support">Abschrift in der Notizliste</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">Aktivieren Sie Markdown-Formatierung in der Liste der Notizen</string>
-  <string name="home_option_fill_survey">Umfrage ausfüllen</string>
-  <string name="home_option_fill_survey_subtitle">Hilf uns, die App zu verbessern, indem du uns sagst, was dir gefällt</string>
 
   <!-- Added in release v3.8.4 -->
   <string name="change_tags">Tags ändern</string>
@@ -139,8 +112,6 @@
   <string name="home_option_open_source_page_subtitle">Erfahren Sie mehr über das Open-Source-Projekt</string>
   <string name="osp_page_libraries">Bibliotheken</string>
   <string name="osp_page_about_osp">Open-Source-Projekt</string>
-  <string name="osp_page_title">Über das Open-Source-Projekt</string>
-  <string name="reminder_sheet_title">Hinweis Erinnerung</string>
   <string name="reminder_sheet_reminder_date">Erinnerungsdatum</string>
   <string name="reminder_sheet_reminder_time">Erinnerungszeit</string>
   <string name="reminder_sheet_repeat">Häufigkeit wiederholen</string>
@@ -155,8 +126,6 @@
   <!-- Added in release v3.9.0 -->
   <string name="home_option_ui_experience">Schnittstelle und Erfahrung</string>
   <string name="home_option_ui_experience_subtitle">Wählen Sie, wie die App aussieht und sich anfühlt.</string>
-  <string name="home_option_note_settings">Hinweis Einstellungen</string>
-  <string name="home_option_note_settings_subtitle">Wählen Sie Notiz und andere Einstellungen.</string>
   <string name="home_option_about">Über</string>
   <string name="home_option_about_subtitle">Erfahren Sie mehr über uns und die App.</string>
   <string name="note_option_default_color">Standard Hinweisfarbe</string>
@@ -191,19 +160,6 @@
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">Notiz hinzufügen</string>
   <string name="shortcut_add_list">Prüfliste hinzufügen</string>
-  <string name="format_sheet_option_title">Blockformatierung</string>
-  <string name="format_label_heading">Überschrift</string>
-  <string name="format_label_sub_heading">Unter Überschrift</string>
-  <string name="format_label_text">Text</string>
-  <string name="format_label_quote">Zitat</string>
-  <string name="format_label_code">Code</string>
-  <string name="format_label_list">Checkliste</string>
-  <string name="markdown_sheet_option_title">Abzeichnungsformatierung</string>
-  <string name="markdown_label_bold">Fett gedruckt</string>
-  <string name="markdown_label_italics">Kursivschrift</string>
-  <string name="markdown_label_underline">Unterstreichen</string>
-  <string name="markdown_label_strikethrough">Streik</string>
-  <string name="markdown_label_list">Liste</string>
   <string name="select_a_note_title">Wählen Sie eine Notiz</string>
   <string name="select_notes_title">Wählen Sie Notizen</string>
   <string name="nav_settings">die Einstellungen</string>
@@ -216,29 +172,18 @@
   <string name="whats_new_title">Was gibt\'s Neues</string>
   <string name="whats_new_subtitle">Erfahren Sie, was in den letzten Updates der App neu ist</string>
   <string name="whats_new_translate">Übersetzen</string>
-  <string name="tutorial_create_a_new_note">Klicken Sie auf, um eine neue Notiz hinzuzufügen</string>
-  <string name="tutorial_home_menu">Klicken Sie hier, um die Startseite anzuzeigen</string>
-  <string name="tutorial_home_menu_subtitle">Das Home-Menü enthält Ihre Favoriten- und Archivnotizen sowie die Anwendungseinstellungen. Sie können Ihre Tags auch hier finden.</string>
 
   <!-- Login, Welcome Strings -->
   <string name="home_option_login_with_app">In der App anmelden</string>
   <string name="home_option_login_with_app_subtitle">Melden Sie sich für Cloud-Backup und -Synchronisierung an</string>
   <string name="home_option_logout_of_app">Ausloggen</string>
   <string name="home_option_logout_of_app_subtitle">Melden Sie sich ab, um die Cloud-Sicherung zu stoppen</string>
-  <string name="login_with_google">Anmeldung mit Google</string>
-  <string name="logging_into_app">Anmelden &#8230;</string>
-  <string name="logged_into_app">Du bist eingeloggt</string>
   <string name="login_to_google_failed">Google-Anmeldung fehlgeschlagen</string>
   <string name="material_notes_privacy_policy">Datenschutz-Bestimmungen</string>
   <string name="material_notes_privacy_policy_subtitle">App-Datenschutzrichtlinie für den Inhalt</string>
   <string name="install_pro_app">Installieren Sie die Pro App</string>
   <string name="why_install_pro">Warum Pro installieren?</string>
   <string name="why_install_pro_details">Unterstütze den Entwickler für die enormen Serverkosten, um die Cloud-Synchronisierung auszuführen \n\n Hol dir die neuesten Funktionen zuerst \n\n Einige zusätzliche Funktionen sind nur für Pro-Benutzer verfügbar</string>
-  <string name="why_cloud">Warum sollte Cloud Sync aktiviert sein?</string>
-  <string name="why_cloud_details">Hochladen und Sichern gegen Geräteänderungen \n\n Synchronisieren Sie mehrere Geräte und erhalten Sie schnelle Updates \n\n Sicher auf den Google Firebase Servern gespeichert</string>
-  <string name="welcome_page_hello">Hallo,</string>
-  <string name="welcome_page_transfer_message">Material Notes ist jetzt Scarlet!</string>
-  <string name="welcome_page_get_started">Loslegen</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">Kopieren</string>
@@ -255,30 +200,24 @@
   <string name="image_not_uploaded_i_understand">Ich verstehe</string>
   <string name="home_option_auto_export">Automatisch exportieren</string>
   <string name="home_option_auto_export_subtitle">Exportiert häufig Notizen in eine externe Datei als Backup</string>
-  <string name="format_label_image">Bild</string>
   <string name="format_hint_image">Klicken Sie hier, um ein Bild hinzuzufügen oder zu ändern</string>
 
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">Nur einmal</string>
   <string name="reminder_frequency_daily">Täglich</string>
-  <string name="reminder_frequency_custom">Brauch</string>
-  <string name="reminder_beta_label">Beta</string>
   <string name="notification_reminder_channel_label">Erinnerungen und Alarme</string>
   <string name="about_page_description_os">%s ist Open Source und jeder ist offen, um dazu beizutragen, dass es besser wird. Es wird derzeit von %s gebaut und gewartet.</string>
   <string name="about_page_description">%s ist eine einfache Notiz App. Es ermöglicht eine schnelle Rich-Text-Eingabe, ohne dass die Bedienung sehr schwierig wird. Es macht Multitasking zum Kinderspiel.</string>
   <string name="about_page_about_us_details">Hallo, wir sind ein Paar Designer und Programmierer, die %s erstellt haben.
      Wir sind bestrebt, schöne, sorgfältig gestaltete kostenlose, werbefreie oder minimale Anzeigen-Apps zu entwickeln, die allen Nutzern großen Nutzen bieten!</string>
   <string name="note_option_number_lines_subtitle">%d Zeilen auf dem Startbildschirm</string>
-  <string name="search_toolbar_text">Suche %s &#8230;</string>
   <string name="view_distraction_free">Ablenkung frei</string>
-  <string name="format_label_separator">Separator</string>
 
   <!-- Added for 6.6.1 -->
   <string name="home_option_theme_color">App-Thema</string>
   <string name="home_option_theme_color_subtitle">Wählen Sie die Hintergrundfarbe für das Thema</string>
   <string name="theme_page_title">Wählen Sie App Theme</string>
   <string name="click_to_add_tags">Klicken Sie hier, um Tags hinzuzufügen oder zu ändern</string>
-  <string name="show_more_actions">Mehr Aktionen anzeigen</string>
   <string name="select_notes">Wählen Sie Notizen aus</string>
   <string name="select_notes_details">Wählen Sie mehrere Notizen gleichzeitig aus und führen Sie sie aus</string>
   <string name="recent_to_trash_message">Die Notiz wurde in den Papierkorb verschoben</string>
@@ -318,8 +257,6 @@
   <string name="merge_notes">Notizen zusammenführen</string>
   <string name="home_option_export_markdown">Als Abschrift exportieren</string>
   <string name="home_option_export_markdown_subtitle">Notizen im Abschriftenformat exportieren. (Sie können diese nicht zurück in die App importieren.)</string>
-  <string name="home_option_auto_export_folder">Ordner exportieren</string>
-  <string name="home_option_auto_export_folder_subtitle">Wählen Sie, wo alle Exporte gespeichert werden</string>
   <string name="ui_options_note_background_color_settings_theme">Verwenden Sie die Themenfarbe für den Hintergrund</string>
   <string name="ui_options_note_background_color_settings_note">Verwenden Sie die Notenfarbe für den Hintergrund</string>
   <string name="import_export_layout_folder_sync_enable">Aktivieren</string>

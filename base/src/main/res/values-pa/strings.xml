@@ -6,17 +6,13 @@
   <string name="share_using">ਵਰਤਦੇ ਹੋਏ ਸ਼ੇਅਰ ਕਰੋ &#8230;</string>
   <string name="main_no_notes">ਕੋਈ ਨੋਟਸ ਨਹੀਂ</string>
   <string name="main_no_notes_hint">ਇੰਜ ਜਾਪਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕੋਈ ਨੋਟ ਨਹੀਂ ਜੋੜਿਆ ਹੈ ਕੋਈ ਨੋਟ ਜੋੜਨ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
-  <string name="main_add_a_note">ਕੋਈ ਨੋਟ ਜੋੜੋ &#8230;</string>
-  <string name="main_add_a_quick_note">ਇੱਕ ਤੁਰੰਤ ਸੂਚਨਾ ਜੋੜੋ &#8230;</string>
   <string name="edit_note">ਨੋਟ ਸੰਪਾਦਿਤ ਕਰੋ</string>
   <string name="open_in_popup">ਪੋਪਅੱਪ ਵਿੱਚ ਖੋਲ੍ਹੋ</string>
-  <string name="delete_note">ਨੋਟ ਮਿਟਾਓ</string>
   <string name="copy_note">ਨੋਟ ਕਾਪੀ ਕਰੋ</string>
   <string name="send_note">ਸੂਚਨਾ ਭੇਜੋ</string>
   <string name="choose_action">ਕਾਰਵਾਈ ਚੁਣੋ &#8230;</string>
   <string name="format_hint_text">ਸਮੱਗਰੀ ਜੋੜੋ &#8230;</string>
   <string name="format_hint_heading">ਸਿਰਲੇਖ ਸ਼ਾਮਲ ਕਰੋ &#8230;</string>
-  <string name="format_hint_sub_heading">ਸਬ ਸਿਰਲੇਖ ਸ਼ਾਮਲ ਕਰੋ &#8230;</string>
   <string name="format_hint_quote">ਹਵਾਲੇ ਪਾਓ &#8230;</string>
   <string name="format_hint_list">ਆਈਟਮ ਸ਼ਾਮਲ ਕਰੋ &#8230;</string>
   <string name="format_hint_code">ਕੋਡ ਜੋੜੋ &#8230;</string>
@@ -35,7 +31,6 @@
   <string name="security_sheet_enter_new_pin_title">ਨਵਾਂ PIN ਦਰਜ ਕਰੋ</string>
   <string name="security_sheet_enter_pin_to_unlock_title">ਅਨਲੌਕ ਕਰਨ ਲਈ PIN ਦਰਜ ਕਰੋ</string>
   <string name="security_sheet_enter_current_pin_title">ਮੌਜੂਦਾ PIN ਦਰਜ ਕਰੋ</string>
-  <string name="security_sheet_enter_pin_hint">ਕੋਡ ਦਰਜ ਕਰੋ</string>
   <string name="security_sheet_button_verify">ਜਾਂਚ ਕਰੋ</string>
   <string name="security_sheet_button_unlock">ਅਨਲੌਕ</string>
   <string name="security_sheet_button_set">ਸੈੱਟ ਕਰੋ</string>
@@ -46,9 +41,6 @@
   <string name="home_option_enable_grid_view_subtitle">ਥੋੜ੍ਹੇ ਸਮੇਂ ਵਿਚ ਗਰਿੱਡ ਵਿਚ ਨੋਟ ਦਿਖਾਓ</string>
   <string name="markdown_sheet_markdown_support">ਮਾਰਕਡਾਉਨ ਸਹਿਯੋਗ</string>
   <string name="markdown_sheet_markdown_support_subtitle">ਮਾਰਕਡਾਊਨ ਸਮਰਥਿਤ ਫੌਰਮੈਟਿੰਗ ਨੂੰ ਅਨੁਮਤੀ ਦਿਓ</string>
-  <string name="markdown_sheet_examples">ਉਦਾਹਰਨਾਂ</string>
-  <string name="home_option_markdown_settings">ਮਾਰਕੇਡਾਊਨ ਸੈਟਿੰਗਜ਼</string>
-  <string name="home_option_markdown_settings_subtitle">ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਮਾਰਕਡਾਊਨ ਨੂੰ ਕਿਵੇਂ ਵਰਤਿਆ ਜਾਵੇ ਵੇਖੋ</string>
   <string name="home_option_sheet_title">ਚੋਣਾਂ ਅਤੇ ਸੈਟਿੰਗਾਂ</string>
   <string name="home_option_export">ਨੋਟ ਐਕਸਪੋਰਟ</string>
   <string name="home_option_export_subtitle">ਸਾਂਝੇ ਕਰਨ ਲਈ ਡਿਵਾਈਸ ਸਟੋਰੇਜ ਨੂੰ ਨੋਟ ਐਕਸਪੋਰਟ ਕਰੋ</string>
@@ -68,22 +60,14 @@
   <string name="import_export_layout_exporting">ਫਾਈਲ ਨੂੰ ਐਕਸਪੋਰਟ ਕਰ ਰਿਹਾ ਹੈ |</string>
   <string name="import_export_layout_exporting_done">ਹੋ ਗਿਆ</string>
   <string name="import_export_layout_exporting_share">ਸਾਂਝਾ ਕਰੋ</string>
-  <string name="about_page_title">ਸਾਡੇ ਬਾਰੇ ਅਤੇ ਹੋਰ</string>
   <string name="about_page_rate">ਪਲੇ ਸਟੋਰ ਤੇ ਰੇਟ</string>
   <string name="about_page_contribute">ਯੋਗਦਾਨ</string>
   <string name="about_page_app_version">ਐਪ ਵਰਜ਼ਨ</string>
   <string name="about_page_about_app">ਐਪ ਬਾਰੇ</string>
-  <string name="open_note_day_mode">ਦਿਵਸ ਮੋਡ</string>
   <string name="choose_note_color">ਰੰਗ ਬਦਲੋ</string>
-  <string name="tap_for_action_open_note_day_mode">ਦਿਨ ਦੇ ਮੋਡ ਵਿੱਚ ਨੋਟ ਦੇਖਣ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_color">ਨੋਟ ਦੇ ਪਿਛੋਕੜ ਰੰਗ ਨੂੰ ਬਦਲਣ ਲਈ ਟੈਪ ਕਰੋ</string>
-  <string name="home_option_enable_night_mode">ਰਾਤ ਮੋਡ ਸਮਰੱਥ ਬਣਾਓ</string>
-  <string name="home_option_enable_night_mode_subtitle">ਡਿਫੌਲਟ ਦੇ ਤੌਰ ਤੇ ਡੌਕ ਥੀਮ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
-  <string name="home_option_enable_day_mode">ਦਿਨ ਮੋਡ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
-  <string name="home_option_enable_day_mode_subtitle">ਡਿਫਾਲਟ ਤੌਰ ਤੇ ਲਾਈਟ ਥੀਮ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
 
 
-  <string name="open_note_night_mode">ਨਾਈਟ ਮੋਡ</string>
   <string name="delete_note_permanently">ਹਮੇਸ਼ਾ ਲਈ ਹਟਾਓ</string>
   <string name="unarchive_note">ਅਨਾਰਚਾਇਜ਼ ਨੋਟ</string>
   <string name="archive_note">ਆਰਕਾਈਵ ਸੂਚਨਾ</string>
@@ -91,7 +75,6 @@
   <string name="favourite_note">ਮਰਕੁਸ ਪਸੰਦੀਦਾ</string>
   <string name="restore_note">ਨੋਟ ਰੀਸਟੋਰ ਕਰੋ</string>
   <string name="trash_note">ਰੱਦੀ \'ਚ ਭੇਜੋ</string>
-  <string name="tap_for_action_open_note_night_mode">ਰਾਤ ਨੂੰ ਮੋਡ ਵਿੱਚ ਨੋਟ ਦੇਖਣ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_edit">ਸੰਪਾਦਨ ਲਈ ਨੋਟ ਖੋਲ੍ਹਣ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_copy">ਸੂਚਨਾ ਸਮੱਗਰੀ ਦੀ ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_share">ਹੋਰ ਐਪਸ ਤੇ ਨੋਟ ਸਮੱਗਰੀ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
@@ -103,21 +86,13 @@
   <string name="tap_for_action_not_favourite">ਨੋਟ ਨੂੰ ਮਨਪਸੰਦ ਨਾ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_archive">ਨੋਟ ਨੂੰ ਅਕਾਇਵ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_not_archive">ਨੋਟ ਨੂੰ ਅਨਾਰਿਚ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
-  <string name="nav_sheet_title">ਤੁਹਾਡੇ ਨੋਟਸ |</string>
   <string name="nav_home">ਘਰ</string>
-  <string name="nav_home_details">ਤੁਹਾਡੇ ਸਾਰੇ ਆਮ ਅਤੇ ਮਨਪਸੰਦ ਨੋਟਸ</string>
   <string name="nav_favourites">ਮਨਪਸੰਦ</string>
-  <string name="nav_favourites_details">ਤੁਹਾਡੇ ਸਾਰੇ ਪਸੰਦੀਦਾ ਨੋਟਸ</string>
   <string name="nav_archived">ਆਰਕਾਈਵਡ</string>
-  <string name="nav_archived_details">ਤੁਹਾਡੇ ਸਾਰੇ ਸੰਗ੍ਰਹਿਤ ਨੋਟਸ</string>
   <string name="nav_trash">ਟ੍ਰੈਸ਼</string>
-  <string name="nav_trash_details">ਰੱਦੀ ਵਿੱਚ ਤੁਹਾਡੇ ਸਾਰੇ ਨੋਟਸ</string>
   <string name="open_in_notification">ਸੂਚਨਾ ਬਣਾਓ</string>
   <string name="notification_channel_label">ਸੂਚਨਾ ਨੋਟਿਸ</string>
   <string name="nav_locked">ਬੰਦ</string>
-  <string name="nav_locked_details">ਤੁਹਾਡੇ ਸਾਰੇ ਲਾਕ ਨੋਟਸ</string>
-  <string name="nav_tags">ਟੈਗਸ</string>
-  <string name="nav_tags_details">ਤੁਹਾਡੇ ਸਾਰੇ ਨੋਟ ਟੈਗਸ</string>
   <string name="tag_sheet_create_title">ਨਿਊ ਟੈਗ ਸ਼ਾਮਲ ਕਰੋ |</string>
   <string name="tag_sheet_edit_title">ਟੈਗ ਸੰਪਾਦਨ ਕਰੋ |</string>
   <string name="tag_sheet_enter_tag_hint">ਟੈਗ ਦਿਓ</string>
@@ -128,8 +103,6 @@
   <string name="import_to_app">ਆਯਾਤ ਕਰੋ</string>
   <string name="markdown_sheet_home_markdown_support">ਨੋਟ ਸੂਚੀ ਵਿੱਚ ਮਾਰਕੇਡਾਊਨ</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">ਨੋਟਸ ਦੀ ਸੂਚੀ ਵਿੱਚ ਮਾਰਕੱਡਾਡ ਫਾਰਮੈਟਿੰਗ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
-  <string name="home_option_fill_survey">ਸਰਵੇਖਣ ਭਰੋ</string>
-  <string name="home_option_fill_survey_subtitle">ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕੀ ਪਸੰਦ ਕਰਦੇ ਹੋ, ਐਪ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਸਾਡੀ ਸਹਾਇਤਾ ਕਰੋ</string>
 
   <!-- Added in release v3.8.4 -->
   <string name="change_tags">ਟੈਗ ਬਦਲੋ</string>
@@ -138,8 +111,6 @@
   <string name="home_option_open_source_page_subtitle">ਓਪਨ ਸੋਰਸ ਪ੍ਰੋਜੈਕਟ ਬਾਰੇ ਹੋਰ ਜਾਣੋ</string>
   <string name="osp_page_libraries">ਲਾਇਬ੍ਰੇਰੀਆਂ</string>
   <string name="osp_page_about_osp">ਓਪਨ ਸੋਰਸ ਪ੍ਰੋਜੈਕਟ</string>
-  <string name="osp_page_title">ਓਪਨ ਸੋਰਸ ਪ੍ਰੋਜੈਕਟ ਬਾਰੇ</string>
-  <string name="reminder_sheet_title">ਨੋਟ ਰੀਮਾਈਂਡਰ</string>
   <string name="reminder_sheet_reminder_date">ਰੀਮਾਈਂਡਰ ਤਾਰੀਖ</string>
   <string name="reminder_sheet_reminder_time">ਰੀਮਾਈਂਡਰ ਟਾਈਮ</string>
   <string name="reminder_sheet_repeat">ਬਾਰ ਬਾਰ ਦੁਹਰਾਓ</string>
@@ -154,8 +125,6 @@
   <!-- Added in release v3.9.0 -->
   <string name="home_option_ui_experience">ਇੰਟਰਫੇਸ ਅਤੇ ਅਨੁਭਵ</string>
   <string name="home_option_ui_experience_subtitle">ਚੁਣੋ ਕਿ ਐਪ ਕਿਵੇਂ ਵੇਖਦਾ ਹੈ ਅਤੇ ਕਿਵੇਂ ਮਹਿਸੂਸ ਕਰਦਾ ਹੈ</string>
-  <string name="home_option_note_settings">ਨੋਟ ਪਸੰਦ</string>
-  <string name="home_option_note_settings_subtitle">ਨੋਟ ਅਤੇ ਹੋਰ ਸੈਟਿੰਗਜ਼ ਚੁਣੋ.</string>
   <string name="home_option_about">ਇਸ ਬਾਰੇ</string>
   <string name="home_option_about_subtitle">ਸਾਡੇ ਅਤੇ ਐਪ ਬਾਰੇ ਹੋਰ ਜਾਣੋ</string>
   <string name="note_option_default_color">ਡਿਫੌਲਟ ਨੋਟ ਰੰਗ</string>
@@ -190,19 +159,6 @@
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">ਨੋਟ ਜੋੜੋ</string>
   <string name="shortcut_add_list">ਚੈੱਕਲਿਸਟ ਸ਼ਾਮਲ ਕਰੋ</string>
-  <string name="format_sheet_option_title">ਬਲਾਕ ਫਾਰਮੈਟਿੰਗ</string>
-  <string name="format_label_heading">ਸਿਰਲੇਖ</string>
-  <string name="format_label_sub_heading">ਉਪ ਸਿਰਲੇਖ</string>
-  <string name="format_label_text">ਟੈਕਸਟ</string>
-  <string name="format_label_quote">ਹਵਾਲਾ</string>
-  <string name="format_label_code">ਕੋਡ</string>
-  <string name="format_label_list">ਚੈੱਕਲਿਸਟ</string>
-  <string name="markdown_sheet_option_title">ਮਾਰਕੇਡੋਂ ਫਾਰਮੈਟਿੰਗ</string>
-  <string name="markdown_label_bold">ਬੋਲਡ</string>
-  <string name="markdown_label_italics">ਇਟਾਲਿਕ</string>
-  <string name="markdown_label_underline">ਹੇਠਾਂ ਰੇਖਾ ਖਿੱਚੋ</string>
-  <string name="markdown_label_strikethrough">ਹੜਤਾਲ</string>
-  <string name="markdown_label_list">ਸੂਚੀ</string>
   <string name="select_a_note_title">ਇੱਕ ਨੋਟ ਚੁਣੋ</string>
   <string name="select_notes_title">ਨੋਟਸ ਚੁਣੋ</string>
   <string name="nav_settings">ਸੈਟਿੰਗਾਂ</string>
@@ -216,9 +172,6 @@
   <string name="whats_new_title">ਨਵਾਂ ਕੀ ਹੈ</string>
   <string name="whats_new_subtitle">ਐਪ ਦੇ ਹਾਲ ਹੀ ਦੇ ਅਪਡੇਟਸ ਵਿੱਚ ਨਵਾਂ ਕੀ ਹੈ ਪਤਾ ਕਰੋ</string>
   <string name="whats_new_translate">ਅਨੁਵਾਦ</string>
-  <string name="tutorial_create_a_new_note">ਇੱਕ ਨਵਾਂ ਨੋਟ ਜੋੜਨ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
-  <string name="tutorial_home_menu">ਘਰ ਦੀਆਂ ਚੋਣਾਂ ਦੇਖਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
-  <string name="tutorial_home_menu_subtitle">ਹੋਮ ਮੀਨੂ ਵਿੱਚ ਤੁਹਾਡੀ ਮਨਪਸੰਦ ਅਤੇ ਅਕਾਇਵ ਨੋਟਸ ਦੇ ਨਾਲ ਨਾਲ ਐਪਲੀਕੇਸ਼ਨ ਸੈਟਿੰਗਜ਼ ਵੀ ਹਨ. ਤੁਸੀਂ ਇੱਥੇ ਆਪਣੇ ਟੈਗ ਵੀ ਲੱਭ ਸਕਦੇ ਹੋ</string>
 
 
   <!-- Added for 4.5.3 -->
@@ -236,51 +189,37 @@
   <string name="image_not_uploaded_i_understand">ਮੈਂ ਸੱਮਝਦਾ ਹਾਂ</string>
   <string name="home_option_auto_export">ਆਟੋਮੈਟਿਕ ਤੌਰ ਤੇ ਨਿਰਯਾਤ ਕਰੋ</string>
   <string name="home_option_auto_export_subtitle">ਬੈਕਅਪ ਦੇ ਤੌਰ ਤੇ ਬਾਹਰੀ ਫਾਈਲਾਂ ਤੇ ਅਕਸਰ ਨੋਟ ਐਕਸਪੋਰਟ ਕਰੋ</string>
-  <string name="format_label_image">ਚਿੱਤਰ</string>
   <string name="format_hint_image">ਚਿੱਤਰ ਨੂੰ ਜੋੜਨ ਜਾਂ ਬਦਲਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
 
 
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">ਸਿਰਫ਼ ਇੱਕ ਵਾਰ</string>
   <string name="reminder_frequency_daily">ਰੋਜ਼ਾਨਾ</string>
-  <string name="reminder_frequency_custom">ਕਸਟਮ</string>
-  <string name="reminder_beta_label">ਬੀਟਾ</string>
   <string name="notification_reminder_channel_label">ਰੀਮਾਈਂਡਰਸ ਅਤੇ ਅਲਾਰਮ</string>
   <string name="about_page_description_os">%s ਓਪਨ ਸੋਰਸ ਹੈ ਅਤੇ ਕੋਈ ਵੀ ਇਸ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਲਈ ਯੋਗਦਾਨ ਪਾਉਣ ਲਈ ਖੁੱਲ੍ਹਾ ਹੈ. ਇਹ ਵਰਤਮਾਨ ਵਿੱਚ %s ਦੁਆਰਾ ਬਣਾਇਆ ਅਤੇ ਪਰਬੰਧਨ ਕੀਤਾ ਗਿਆ ਹੈ.</string>
   <string name="about_page_description">%s ਇੱਕ ਸਧਾਰਨ ਨੋਟ ਲੈਣਾ ਐਪ ਹੈ. ਇਹ ਤਜ਼ਰਬੇ ਨੂੰ ਬਹੁਤ ਮੁਸ਼ਕਲ ਬਣਾਉਣ ਦੇ ਬਿਨਾਂ ਤੁਰੰਤ ਰਿਚ ਟੈਕਸਟ ਇੰਪੁੱਟ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ. ਇਹ ਬਹੁਤਾ ਨਾਲ ਕੰਮ ਕਰਨ ਵਾਲੀ ਇੱਕ ਹਵਾ ਬਣਾਉਂਦਾ ਹੈ</string>
   <string name="about_page_about_us_details">ਹੈਲੋ, ਅਸੀਂ ਡਿਜ਼ਾਇਨਰ ਅਤੇ ਪ੍ਰੋਗਰਾਮਰ ਦਾ ਇੱਕ ਜੋੜਾ ਹਾਂ, ਜਿਸਨੇ %s ਬਣਾਇਆ ਹੈ
      ਅਸੀਂ ਸੁੰਦਰ, ਧਿਆਨ ਨਾਲ ਡਿਜ਼ਾਈਨ ਕੀਤੇ ਗਏ ਮੁਫ਼ਤ, ਵਿਗਿਆਪਨ-ਮੁਕਤ ਜਾਂ ਘੱਟੋ ਘੱਟ ਇਸ਼ਤਿਹਾਰਾਂ ਵਾਲੇ ਐਪਸ ਬਣਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਾਂ ਜੋ ਹਰ ਕਿਸੇ ਲਈ ਮਹਾਨ ਉਪਯੋਗਤਾ ਦੀ ਸੇਵਾ ਕਰਦੇ ਹਨ!</string>
   <string name="note_option_number_lines_subtitle">%d ਹੋਮ ਸਕ੍ਰੀਨ ਤੇ ਲਾਈਨਾਂ</string>
-  <string name="search_toolbar_text">%s ਖੋਜ ਕਰੋ &#8230;</string>
   <string name="view_distraction_free">ਵਿਵਹਾਰ ਮੁਫ਼ਤ</string>
-  <string name="format_label_separator">ਵਿਭਾਜਕ</string>
 
   <!-- Login, Welcome Strings -->
   <string name="home_option_login_with_app">ਐਪ ਵਿੱਚ ਸਾਈਨ ਇਨ ਕਰੋ</string>
   <string name="home_option_login_with_app_subtitle">ਕਲਾਉਡ ਬੈਕਅਪ ਅਤੇ ਸਮਕਾਲੀਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ</string>
   <string name="home_option_logout_of_app">ਸਾਇਨ ਆਉਟ</string>
   <string name="home_option_logout_of_app_subtitle">ਕਲਾਉਡ ਬੈਕਅਪ ਨੂੰ ਰੋਕਣ ਲਈ ਸਾਈਨ ਆਉਟ ਕਰੋ</string>
-  <string name="login_with_google">Google ਦੇ ਨਾਲ ਸਾਈਨ ਇਨ ਕਰੋ</string>
-  <string name="logging_into_app">ਸਾਈਨ ਇੰਨ ਕਰੋ |</string>
-  <string name="logged_into_app">ਤੁਸੀਂ ਲੌਗਇਨ ਹੋ</string>
   <string name="login_to_google_failed">ਗੂਗਲ ਲਾਗਇਨ ਫੇਲ੍ਹ</string>
   <string name="material_notes_privacy_policy">ਪਰਾਈਵੇਟ ਨੀਤੀ</string>
   <string name="material_notes_privacy_policy_subtitle">ਸਮਗਰੀ ਲਈ ਐਪ ਗੋਪਨੀਯਤਾ ਨੀਤੀ</string>
   <string name="install_pro_app">ਪ੍ਰੋ ਐੱਸ ਇੰਸਟਾਲ ਕਰੋ</string>
   <string name="why_install_pro">ਪ੍ਰੋ ਇੰਸਟਾਲ ਕਿਉਂ ਕਰੋ</string>
   <string name="why_install_pro_details">ਕਲਾਉਡ ਸੰਕੁਚਨ ਨੂੰ ਚਲਾਉਣ ਲਈ ਵੱਡੇ ਸਰਵਰ ਲਾਗਤਾਂ ਲਈ ਸਹਿਯੋਗ ਡਿਵੈਲਪਰ \n\n ਪਹਿਲਾਂ ਸਭ ਤੋਂ ਨਵੀਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰੋ \n\n ਕੁਝ ਹੋਰ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਕੇਵਲ ਪ੍ਰੋ ਯੂਜ਼ਰਸ ਲਈ ਉਪਲਬਧ ਹੋਣਗੀਆਂ</string>
-  <string name="why_cloud">ਕਿਉਂ Cloud Sync ਸਮਰਥਿਤ ਕਰੋ</string>
-  <string name="why_cloud_details">ਡਿਵਾਈਸ ਬਦਲਾਅ ਦੇ ਵਿਰੁੱਧ ਅਪਲੋਡ ਅਤੇ ਬੈਕਅੱਪ ਕਰੋ \n\n ਬਹੁਤੇ ਡਿਵਾਈਸਾਂ ਵਿਚਕਾਰ ਸਿੰਕ ਕਰੋ, ਅਤੇ ਤੁਰੰਤ ਅਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰੋ \n\n Google Firebase ਸਰਵਰਾਂ ਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਗਿਆ</string>
-  <string name="welcome_page_hello">ਸਤ ਸ੍ਰੀ ਅਕਾਲ,</string>
-  <string name="welcome_page_transfer_message">ਮੈਟੀਰੀਅਲ ਨੋਟਸ ਹੁਣ ਸਵਾਨੇ ਹਨ!</string>
-  <string name="welcome_page_get_started">ਸ਼ੁਰੂਆਤ ਕਰੋ</string>
 
   <!-- Added for 6.6.1 -->
   <string name="home_option_theme_color">ਐਪ ਥੀਮ</string>
   <string name="home_option_theme_color_subtitle">ਥੀਮ ਲਈ ਬੈਕਗਰਾਊਂਡ ਰੰਗ ਚੁਣੋ</string>
   <string name="theme_page_title">ਐਪ ਥੀਮ ਚੁਣੋ</string>
   <string name="click_to_add_tags">ਟੈਗਸ ਨੂੰ ਜੋੜਨ ਜਾਂ ਬਦਲਣ ਲਈ ਕਲਿਕ ਕਰੋ</string>
-  <string name="show_more_actions">ਹੋਰ ਕਾਰਵਾਈਆਂ ਦਿਖਾਓ</string>
   <string name="select_notes">ਨੋਟਸ ਚੁਣੋ</string>
   <string name="select_notes_details">ਇੱਕ ਵਾਰ ਵਿੱਚ ਕਈ ਨੋਟਿਸਾਂ ਉੱਤੇ ਕਾਰਵਾਈ ਚੁਣੋ ਅਤੇ ਕਾਰਵਾਈ ਕਰੋ</string>
   <string name="recent_to_trash_message">ਨੋਟ ਨੂੰ ਰੱਦੀ \'ਚ ਭੇਜਿਆ ਗਿਆ ਸੀ</string>
@@ -320,8 +259,6 @@
   <string name="merge_notes">ਨੋਟਸ ਮਿਲਾਓ</string>
   <string name="home_option_export_markdown">ਮਾਰਕਡਾਉਨ ਦੇ ਤੌਰ ਤੇ ਨਿਰਯਾਤ ਕਰੋ</string>
   <string name="home_option_export_markdown_subtitle">ਮਾਰਕੇਡਾਊਨ ਫਾਰਮੈਟ ਵਿੱਚ ਨੋਟ ਨਿਰਯਾਤ ਕਰੋ. (ਤੁਸੀਂ ਇਹ ਵਾਪਸ ਐਪ ਤੇ ਆਯਾਤ ਨਹੀਂ ਕਰ ਸਕਦੇ)</string>
-  <string name="home_option_auto_export_folder">ਫੋਲਡਰ ਨਿਰਯਾਤ ਕਰੋ</string>
-  <string name="home_option_auto_export_folder_subtitle">ਚੁਣੋ ਕਿ ਸਾਰੇ ਨਿਰਯਾਤ ਕਿੱਥੇ ਸਟੋਰ ਕੀਤੇ ਜਾਂਦੇ ਹਨ</string>
   <string name="ui_options_note_background_color_settings_theme">ਪਿਛੋਕੜ ਲਈ ਥੀਮ ਕਲੰਡ ਵਰਤੋਂ</string>
   <string name="ui_options_note_background_color_settings_note">ਪਿਛੋਕੜ ਲਈ ਨੋਟ ਰੰਗ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
   <string name="import_export_layout_folder_sync_enable">ਸਮਰੱਥ ਬਣਾਓ</string>

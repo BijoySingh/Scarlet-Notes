@@ -9,18 +9,12 @@
   <string name="main_no_notes">没有笔记</string>
   <string name="main_no_notes_hint">您尚未添加笔记。点击以添加一条笔记。</string>
 
-  <string name="main_add_a_note">添加笔记&#8230;</string>
-  <string name="main_add_a_quick_note">添加快速笔记&#8230;</string>
-
   <string name="shortcut_add_note">添加笔记</string>
   <string name="shortcut_add_list">添加清单项</string>
 
-  <string name="open_note_night_mode">夜间模式</string>
-  <string name="open_note_day_mode">日间模式</string>
   <string name="edit_note">编辑笔记</string>
   <string name="open_in_notification">创建通知</string>
   <string name="open_in_popup">在弹出窗口中打开</string>
-  <string name="delete_note">删除笔记</string>
   <string name="delete_note_permanently">永久删除</string>
   <string name="copy_note">复制笔记</string>
   <string name="send_note">发送笔记</string>
@@ -41,8 +35,6 @@
   <string name="unpin_note">取消固定笔记</string>
   <string name="choose_action">选择操作&#8230;</string>
 
-  <string name="tap_for_action_open_note_night_mode">轻触以在夜间模式下查看该笔记</string>
-  <string name="tap_for_action_open_note_day_mode">轻触以在日间模式下查看该笔记</string>
   <string name="tap_for_action_edit">轻触以打开并编辑该笔记</string>
   <string name="tap_for_action_copy">轻触以将该笔记的内容复制到剪贴板</string>
   <string name="tap_for_action_share">轻触以将该笔记的内容分享到其他应用</string>
@@ -56,57 +48,25 @@
   <string name="tap_for_action_color">轻触以更改该笔记的背景色</string>
   <string name="tap_for_action_not_archive">轻触以取消归档</string>
 
-  <string name="nav_sheet_title">您的笔记和其他</string>
   <string name="nav_home">主页</string>
-  <string name="nav_home_details">您所有的普通笔记和已收藏的笔记</string>
   <string name="nav_favourites">收藏夹</string>
-  <string name="nav_favourites_details">您所有已收藏的笔记</string>
   <string name="nav_archived">归档</string>
-  <string name="nav_archived_details">您所有已归档的笔记</string>
   <string name="nav_locked">已锁定</string>
-  <string name="nav_locked_details">您所有已锁定的笔记</string>
-  <string name="nav_tags">标签</string>
-  <string name="nav_tags_details">您所有的笔记标签</string>
   <string name="nav_trash">回收站</string>
-  <string name="nav_trash_details">您所有在回收站中的笔记</string>
 
   <string name="format_hint_text">添加内容&#8230;</string>
   <string name="format_hint_heading">添加标题&#8230;</string>
-  <string name="format_hint_sub_heading">添加副标题&#8230;</string>
   <string name="format_hint_quote">添加引用文本&#8230;</string>
   <string name="format_hint_list">添加列表项&#8230;</string>
   <string name="format_hint_code">添加代码&#8230;</string>
 
-  <string name="format_sheet_option_title">块排版</string>
-  <string name="format_label_heading">标题</string>
-  <string name="format_label_sub_heading">副标题</string>
-  <string name="format_label_text">文本</string>
-  <string name="format_label_quote">引用</string>
-  <string name="format_label_code">代码</string>
-  <string name="format_label_list">清单</string>
-
-  <string name="markdown_sheet_option_title">Markdown 排版</string>
-  <string name="markdown_label_bold">加粗</string>
-  <string name="markdown_label_italics">倾斜</string>
-  <string name="markdown_label_underline">下划线</string>
-  <string name="markdown_label_strikethrough">删除线</string>
-  <string name="markdown_label_list">列表</string>
-
   <string name="home_option_sheet_title">选项和设置</string>
   <string name="home_option_ui_experience">界面和体验</string>
   <string name="home_option_ui_experience_subtitle">选择本应用的观感</string>
-  <string name="home_option_note_settings">笔记首选项</string>
-  <string name="home_option_note_settings_subtitle">选择笔记和其他的设置</string>
   <string name="home_option_about">关于</string>
   <string name="home_option_about_subtitle">了解更多关于我们和本应用的信息</string>
   <string name="home_option_security">安全</string>
   <string name="home_option_security_subtitle">锁定笔记和安全方面的选项</string>
-  <string name="home_option_enable_night_mode">启用夜间模式</string>
-  <string name="home_option_enable_night_mode_subtitle">将暗色主题设为默认主题</string>
-  <string name="home_option_enable_day_mode">启用日间模式</string>
-  <string name="home_option_enable_day_mode_subtitle">将亮色主题设为默认主题</string>
-  <string name="home_option_markdown_settings">Markdown 设置</string>
-  <string name="home_option_markdown_settings_subtitle">看看如何在笔记中使用 markdown</string>
   <string name="home_option_enable_list_view">列表视图</string>
   <string name="home_option_enable_list_view_subtitle">将笔记显示为一列</string>
   <string name="home_option_enable_grid_view">网格视图</string>
@@ -124,8 +84,6 @@
   <string name="home_option_open_source_page_subtitle">了解更多关于开源项目的信息</string>
   <string name="home_option_rate_and_review">Rate and Review</string>
   <string name="home_option_rate_and_review_subtitle">告诉我们您有多喜欢本应用</string>
-  <string name="home_option_fill_survey">参与调查</string>
-  <string name="home_option_fill_survey_subtitle">说说您喜欢什么，以帮助我们改善本应用</string>
 
   <string name="security_option_title">安全选项</string>
   <string name="security_option_set_pin_code">密码</string>
@@ -138,7 +96,6 @@
   <string name="security_sheet_enter_new_pin_title">输入新的 PIN 码</string>
   <string name="security_sheet_enter_pin_to_unlock_title">输入 PIN 码解锁</string>
   <string name="security_sheet_enter_current_pin_title">输入当前的 PIN 码</string>
-  <string name="security_sheet_enter_pin_hint">输入密码</string>
   <string name="security_sheet_button_verify">验证</string>
   <string name="security_sheet_button_unlock">解锁</string>
   <string name="security_sheet_button_set">设置</string>
@@ -152,7 +109,6 @@
   <string name="markdown_sheet_markdown_support_subtitle">允许 markdown 支持的排版</string>
   <string name="markdown_sheet_home_markdown_support">笔记列表中的 Markdown</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">在笔记列表中使用 Markdown 排版</string>
-  <string name="markdown_sheet_examples">示例</string>
 
   <string name="permission_layout_give_permission">授权</string>
   <string name="permission_layout_give_permission_details">导入和导出功能需要存储权限。请在收到请求后授权。</string>
@@ -173,7 +129,6 @@
   <string name="import_export_locked">导出已锁定的笔记</string>
   <string name="import_export_locked_details">同样备份已锁定的笔记</string>
 
-  <string name="about_page_title">关于我们和其他</string>
   <string name="about_page_rate">在 Play 商店上评分</string>
   <string name="about_page_contribute">贡献</string>
   <string name="about_page_app_version">应用版本</string>
@@ -181,9 +136,7 @@
 
   <string name="osp_page_libraries">库</string>
   <string name="osp_page_about_osp">开源项目</string>
-  <string name="osp_page_title">关于开源项目</string>
 
-  <string name="reminder_sheet_title">笔记提醒</string>
   <string name="reminder_sheet_reminder_date">提醒日期</string>
   <string name="reminder_sheet_reminder_time">提醒时间</string>
   <string name="reminder_sheet_repeat">重复频率</string>
@@ -214,9 +167,6 @@
   <string name="whats_new_subtitle">了解本应用最近更新的内容</string>
   <string name="whats_new_translate">翻译</string>
 
-  <string name="tutorial_create_a_new_note">点击新建一条笔记</string>
-  <string name="tutorial_home_menu">点击查看主页选项</string>
-  <string name="tutorial_home_menu_subtitle">主页菜单中有您已收藏和归档的笔记，以及应用设置。您还可以在此找到您的标签。</string>
   <!-- End Whats New -->
 
   <!-- Start Note Text Size -->
@@ -263,51 +213,37 @@
   <string name="image_not_uploaded_i_understand">我明白</string>
   <string name="home_option_auto_export">自动导出</string>
   <string name="home_option_auto_export_subtitle">频繁导出笔记到外部文件作为备份</string>
-  <string name="format_label_image">图片</string>
   <string name="format_hint_image">点击添加或更改图像</string>
 
 
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">只有一次</string>
   <string name="reminder_frequency_daily">日常</string>
-  <string name="reminder_frequency_custom">习惯</string>
-  <string name="reminder_beta_label">Beta版</string>
   <string name="notification_reminder_channel_label">提醒和警报</string>
   <string name="about_page_description_os">%s是开源的，任何人都可以为改善它做出贡献。 它目前由%s构建和维护。</string>
   <string name="about_page_description">%s是一个简单的笔记应用程序。 它允许快速富文本输入，而不会让使用体验变得非常困难。 它使得多任务轻而易举。</string>
   <string name="about_page_about_us_details">嗨，我们是一对设计师和程序员，他们创造了%s。
      我们致力于打造漂亮，精心设计的免费，无广告或最低限度的广告应用程序，这些应用程序对每个人都非常实用！</string>
   <string name="note_option_number_lines_subtitle">主屏幕上的%d行</string>
-  <string name="search_toolbar_text">搜索%s &#8230;</string>
   <string name="view_distraction_free">分心免费</string>
-  <string name="format_label_separator">分隔器</string>
 
   <!-- Login, Welcome Strings -->
   <string name="home_option_login_with_app">登录到应用程序</string>
   <string name="home_option_login_with_app_subtitle">登录云备份和同步</string>
   <string name="home_option_logout_of_app">登出</string>
   <string name="home_option_logout_of_app_subtitle">注销以停止云备份</string>
-  <string name="login_with_google">用Google登录</string>
-  <string name="logging_into_app">登录&#8230;</string>
-  <string name="logged_into_app">您已经登录</string>
   <string name="login_to_google_failed">Google登录失败</string>
   <string name="material_notes_privacy_policy">隐私政策</string>
   <string name="material_notes_privacy_policy_subtitle">应用程序隐私政策的内容</string>
   <string name="install_pro_app">安装Pro App</string>
   <string name="why_install_pro">为什么安装Pro</string>
   <string name="why_install_pro_details">支持大规模服务器成本的开发人员，运行云同步 \n\n 首先获取最新功能 \n\n 一些额外功能仅适用于专业用户</string>
-  <string name="why_cloud">为什么启用云端同步</string>
-  <string name="why_cloud_details">根据设备更改进行上传和备份 \n\n 在多个设备之间进行同步，并获得快速更新 \n\n 安全地保存在Google Firebase服务器上</string>
-  <string name="welcome_page_hello">你好，</string>
-  <string name="welcome_page_transfer_message">材料的笔记现在是猩红色！</string>
-  <string name="welcome_page_get_started">开始使用</string>
 
   <!-- Added for 6.6.1 -->
   <string name="home_option_theme_color">应用主题</string>
   <string name="home_option_theme_color_subtitle">选择主题的背景颜色</string>
   <string name="theme_page_title">选择应用主题</string>
   <string name="click_to_add_tags">单击以添加或更改标签</string>
-  <string name="show_more_actions">显示更多操作</string>
   <string name="select_notes">选择备注</string>
   <string name="select_notes_details">一次选择并对多个音符执行操作</string>
   <string name="recent_to_trash_message">这张纸条被移到了垃圾桶里</string>
@@ -381,8 +317,6 @@
   <string name="merge_notes">合并备注</string>
   <string name="home_option_export_markdown">出口为降价</string>
   <string name="home_option_export_markdown_subtitle">以降价格式导出备注。 （你不能将这些导回到应用程序）</string>
-  <string name="home_option_auto_export_folder">导出文件夹</string>
-  <string name="home_option_auto_export_folder_subtitle">选择存储所有导出的位置</string>
   <string name="ui_options_note_background_color_settings_theme">使用主题颜色为背景</string>
   <string name="ui_options_note_background_color_settings_note">使用备注颜色作为背景</string>
   <string name="import_export_layout_folder_sync_enable">启用</string>

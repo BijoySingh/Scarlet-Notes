@@ -8,16 +8,11 @@
   <string name="share_using">사용하여 공유 |</string>
   <string name="main_no_notes">메모 없음</string>
   <string name="main_no_notes_hint">메모를 추가하지 않은 것 같습니다. 메모를 추가하려면 클릭하십시오.</string>
-  <string name="main_add_a_note">메모 추가하기 |</string>
-  <string name="main_add_a_quick_note">빠른 메모 추가하기 |</string>
   <string name="shortcut_add_note">메모를 추가</string>
   <string name="shortcut_add_list">체크리스트 추가</string>
-  <string name="open_note_night_mode">야간 모드</string>
-  <string name="open_note_day_mode">주간 모드</string>
   <string name="edit_note">메모 편집</string>
   <string name="open_in_notification">알림 만들기</string>
   <string name="open_in_popup">팝업에서 열기</string>
-  <string name="delete_note">메모 삭제</string>
   <string name="delete_note_permanently">영구적으로 삭제</string>
   <string name="copy_note">메모 복사</string>
   <string name="send_note">메모 보내기</string>
@@ -37,8 +32,6 @@
   <string name="pin_note">핀 메모</string>
   <string name="unpin_note">메모 고정 해제</string>
   <string name="choose_action">액션 선택 |</string>
-  <string name="tap_for_action_open_note_night_mode">밤 모드에서 메모를 보려면 탭하세요.</string>
-  <string name="tap_for_action_open_note_day_mode">요일 모드에서 메모를 보려면 살짝 누르십시오.</string>
   <string name="tap_for_action_edit">편집하기 위해 메모를 열려면 살짝 누르십시오.</string>
   <string name="tap_for_action_copy">메모 내용을 클립 보드에 복사하려면 누르십시오.</string>
   <string name="tap_for_action_share">메모 콘텐츠를 다른 앱과 공유하려면 탭하세요.</string>
@@ -51,54 +44,24 @@
   <string name="tap_for_action_archive">메모를 보관하려면 탭하세요.</string>
   <string name="tap_for_action_color">메모의 배경색을 변경하려면 누르십시오.</string>
   <string name="tap_for_action_not_archive">메모를 보관 취소하려면 탭하세요.</string>
-  <string name="nav_sheet_title">귀하의 메모 및 기타 &#8230; |</string>
   <string name="nav_home">집</string>
-  <string name="nav_home_details">당신의 평소와 좋아하는 모든 메모</string>
   <string name="nav_favourites">즐겨 찾기</string>
-  <string name="nav_favourites_details">좋아하는 모든 메모</string>
   <string name="nav_archived">보관 됨</string>
-  <string name="nav_archived_details">보관 처리 된 모든 메모</string>
   <string name="nav_locked">잠김</string>
-  <string name="nav_locked_details">모든 잠긴 메모</string>
-  <string name="nav_tags">태그</string>
-  <string name="nav_tags_details">모든 메모 태그</string>
   <string name="nav_trash">폐물</string>
-  <string name="nav_trash_details">휴지통에있는 모든 메모</string>
 
   <string name="format_hint_text">컨텐츠 추가 |</string>
   <string name="format_hint_heading">헤딩 추가하기 |</string>
-  <string name="format_hint_sub_heading">하위 제목 추가 &#8230; |</string>
   <string name="format_hint_quote">따옴표 붙은 텍스트 추가하기 |</string>
   <string name="format_hint_list">항목 추가하기 |</string>
   <string name="format_hint_code">코드 추가 |</string>
-  <string name="format_sheet_option_title">블록 서식 지정</string>
-  <string name="format_label_heading">표제</string>
-  <string name="format_label_sub_heading">하위 제목</string>
-  <string name="format_label_text">본문</string>
-  <string name="format_label_quote">인용문</string>
-  <string name="format_label_code">암호</string>
-  <string name="format_label_list">체크리스트</string>
-  <string name="markdown_sheet_option_title">마크 다운 형식</string>
-  <string name="markdown_label_bold">대담한</string>
-  <string name="markdown_label_italics">이탤릭체</string>
-  <string name="markdown_label_underline">밑줄</string>
-  <string name="markdown_label_strikethrough">스트라이크</string>
-  <string name="markdown_label_list">명부</string>
   <string name="home_option_sheet_title">옵션 및 설정</string>
   <string name="home_option_ui_experience">인터페이스와 경험</string>
   <string name="home_option_ui_experience_subtitle">앱의 모양과 느낌을 선택합니다.</string>
-  <string name="home_option_note_settings">메모 환경 설정</string>
-  <string name="home_option_note_settings_subtitle">메모 및 기타 설정을 선택하십시오.</string>
   <string name="home_option_about">약</string>
   <string name="home_option_about_subtitle">우리와 앱에 대해 더 많이 알기.</string>
   <string name="home_option_security">보안</string>
   <string name="home_option_security_subtitle">잠금 메모 및 보안 옵션</string>
-  <string name="home_option_enable_night_mode">야간 모드 사용</string>
-  <string name="home_option_enable_night_mode_subtitle">어두운 테마를 기본값으로 사용</string>
-  <string name="home_option_enable_day_mode">주간 모드 사용</string>
-  <string name="home_option_enable_day_mode_subtitle">조명 테마를 기본값으로 사용</string>
-  <string name="home_option_markdown_settings">마크 다운 설정</string>
-  <string name="home_option_markdown_settings_subtitle">메모에서 마크 다운 사용 방법보기</string>
   <string name="home_option_enable_list_view">목록 레이아웃 사용</string>
   <string name="home_option_enable_list_view_subtitle">단일 열에 노트 표시</string>
   <string name="home_option_enable_grid_view">그리드 레이아웃 활성화</string>
@@ -116,8 +79,6 @@
   <string name="home_option_open_source_page_subtitle">오픈 소스 프로젝트에 대해 더 많이 알기</string>
   <string name="home_option_rate_and_review">별점과 리뷰</string>
   <string name="home_option_rate_and_review_subtitle">앱을 얼마나 좋아하는지 알려주세요.</string>
-  <string name="home_option_fill_survey">설문 조사 작성</string>
-  <string name="home_option_fill_survey_subtitle">내가 좋아하는 것을 말하면서 앱을 개선 할 수 있도록 도와주세요.</string>
   <string name="security_option_title">보안 옵션</string>
   <string name="security_option_set_pin_code">패스 코드</string>
   <string name="security_option_set_pin_code_subtitle">메모를 잠 그려면 4 자리 PIN을 설정하십시오.</string>
@@ -128,7 +89,6 @@
   <string name="security_sheet_enter_new_pin_title">새 PIN 입력</string>
   <string name="security_sheet_enter_pin_to_unlock_title">잠금 해제 할 PIN 입력</string>
   <string name="security_sheet_enter_current_pin_title">현재 PIN 입력</string>
-  <string name="security_sheet_enter_pin_hint">코드를 입력</string>
   <string name="security_sheet_button_verify">검증</string>
   <string name="security_sheet_button_unlock">터놓다</string>
   <string name="security_sheet_button_set">세트</string>
@@ -141,7 +101,6 @@
   <string name="markdown_sheet_markdown_support_subtitle">마크 다운 지원 서식 지정 허용</string>
   <string name="markdown_sheet_home_markdown_support">노트 목록의 마크 다운</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">메모 목록에서 마크 다운 서식 사용</string>
-  <string name="markdown_sheet_examples">예제들</string>
   <string name="permission_layout_give_permission">권한 부여</string>
   <string name="permission_layout_give_permission_details">가져 오기 및 내보내기에는 저장 영역 권한이 필요합니다. 요청시 허가를하십시오.</string>
   <string name="permission_layout_give_permission_ok">허용</string>
@@ -152,15 +111,12 @@
   <string name="import_export_layout_exporting">파일로 내보내기 &#8230; |</string>
   <string name="import_export_layout_exporting_done">끝난</string>
   <string name="import_export_layout_exporting_share">몫</string>
-  <string name="about_page_title">회사 소개</string>
   <string name="about_page_rate">Play 스토어에서 평가하기</string>
   <string name="about_page_contribute">기부</string>
   <string name="about_page_app_version">앱 버전</string>
   <string name="about_page_about_app">앱 정보</string>
   <string name="osp_page_libraries">도서관</string>
   <string name="osp_page_about_osp">오픈 소스 프로젝트</string>
-  <string name="osp_page_title">오픈 소스 프로젝트 정보</string>
-  <string name="reminder_sheet_title">메모 알림</string>
   <string name="reminder_sheet_reminder_date">알림 날짜</string>
   <string name="reminder_sheet_reminder_time">미리 알림 시간</string>
   <string name="reminder_sheet_repeat">반복 주파수</string>
@@ -181,9 +137,6 @@
   <string name="whats_new_title">What \'s New</string>
   <string name="whats_new_subtitle">앱의 최근 업데이트에서 새로운 점을 파악합니다.</string>
   <string name="whats_new_translate">옮기다</string>
-  <string name="tutorial_create_a_new_note">새 메모를 추가하려면 클릭하십시오.</string>
-  <string name="tutorial_home_menu">홈 옵션을 보려면 클릭하십시오.</string>
-  <string name="tutorial_home_menu_subtitle">홈 메뉴에는 응용 프로그램 설정뿐만 아니라 좋아하는 노트와 아카이브 노트가 있습니다. 여기에서도 태그를 찾을 수 있습니다.</string>
   <string name="note_option_font_size">참고 글꼴 크기</string>
   <string name="note_option_font_size_example">메모 페이지에서 텍스트의 글꼴 크기를 조정하십시오. 미리보기에서 어떻게 보이는지 알 수 있습니다.</string>
   <string name="note_option_font_size_subtitle">노트 뷰어의 텍스트 크기 %d</string>
@@ -205,20 +158,12 @@
   <string name="home_option_login_with_app_subtitle">클라우드 백업 및 동기화를위한 로그인</string>
   <string name="home_option_logout_of_app">로그 아웃</string>
   <string name="home_option_logout_of_app_subtitle">클라우드 백업을 중지하려면 로그 아웃하십시오.</string>
-  <string name="login_with_google">Google로 로그인</string>
-  <string name="logging_into_app">로그인 |</string>
-  <string name="logged_into_app">로그인하셨습니다.</string>
   <string name="login_to_google_failed">Google 로그인 실패</string>
   <string name="material_notes_privacy_policy">개인 정보 정책</string>
   <string name="material_notes_privacy_policy_subtitle">콘텐츠에 대한 앱 개인 정보 취급 방침</string>
   <string name="install_pro_app">프로 앱 설치</string>
   <string name="why_install_pro">Pro를 설치해야하는 이유</string>
   <string name="why_install_pro_details">대규모의 서버 비용, 클라우드 동기화 실행을위한 개발자 지원 \n\n 최신 기능 먼저 가져 오기 \n\n 일부 추가 기능은 Pro 사용자 만 사용할 수 있습니다</string>
-  <string name="why_cloud">클라우드 동기화를 사용 설정해야하는 이유</string>
-  <string name="why_cloud_details">장치 변경에 대한 업로드 및 백업 \n\n 여러 장치 간 동기화 및 빠른 업데이트 받기 \n\n Google Firebase 서버에 안전하게 저장</string>
-  <string name="welcome_page_hello">여보세요,</string>
-  <string name="welcome_page_transfer_message">소재 노트는 스칼렛입니다!</string>
-  <string name="welcome_page_get_started">시작하다</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">부</string>
@@ -235,30 +180,24 @@
   <string name="image_not_uploaded_i_understand">이해 했어</string>
   <string name="home_option_auto_export">자동으로 내보내기</string>
   <string name="home_option_auto_export_subtitle">메모를 외부 파일로 자주 내보내 백업으로 보내기</string>
-  <string name="format_label_image">영상</string>
   <string name="format_hint_image">이미지를 추가하거나 변경하려면 클릭하십시오.</string>
 
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">한 번만</string>
   <string name="reminder_frequency_daily">매일</string>
-  <string name="reminder_frequency_custom">관습</string>
-  <string name="reminder_beta_label">베타</string>
   <string name="notification_reminder_channel_label">미리 알림 및 경보</string>
   <string name="about_page_description_os">%s는 오픈 소스이며 누구나 오픈 소스를 통해 더 잘 만들 수 있습니다. 그것은 현재 %s에 의해 만들어지고 관리되고 있습니다.</string>
   <string name="about_page_description">%s는 앱을 복용하는 간단한 메모입니다. 경험을 사용하기가 매우 어렵지 않으면 서 빠른 서식있는 텍스트 입력이 가능합니다. 그것은 멀티 태스킹 바람을 만듭니다.</string>
   <string name="about_page_about_us_details">안녕하세요, 우리는 %s 를 만든 디자이너와 프로그래머입니다.
      우리는 아름답고 신중하게 디자인 된 무료, 광고없는 또는 최소한의 광고 응용 프로그램을 만들어 모든 사람에게 유용한 유틸리티를 제공하기 위해 노력합니다.</string>
   <string name="note_option_number_lines_subtitle">홈 스크린의 %d 라인</string>
-  <string name="search_toolbar_text">%s 검색 &#8230;</string>
   <string name="view_distraction_free">산만 무료</string>
-  <string name="format_label_separator">분리 기호</string>
 
   <!-- Added for 6.6.1 -->
   <string name="home_option_theme_color">앱 테마</string>
   <string name="home_option_theme_color_subtitle">테마의 배경색 선택</string>
   <string name="theme_page_title">앱 테마 선택</string>
   <string name="click_to_add_tags">태그를 추가하거나 변경하려면 클릭하십시오.</string>
-  <string name="show_more_actions">추가 작업 표시</string>
   <string name="select_notes">메모 선택</string>
   <string name="select_notes_details">한 번에 여러 음표에 대한 작업 선택 및 수행</string>
   <string name="recent_to_trash_message">메모가 휴지통으로 이동되었습니다.</string>
@@ -298,8 +237,6 @@
   <string name="merge_notes">메모 병합</string>
   <string name="home_option_export_markdown">마크 다운으로 내보내기</string>
   <string name="home_option_export_markdown_subtitle">메모를 축소 형으로 내 보냅니다. (다시 앱으로 가져올 수는 없습니다.)</string>
-  <string name="home_option_auto_export_folder">폴더 내보내기</string>
-  <string name="home_option_auto_export_folder_subtitle">모든 내보내기가 저장되는 위치 선택</string>
   <string name="ui_options_note_background_color_settings_theme">배경에 테마 색상 사용</string>
   <string name="ui_options_note_background_color_settings_note">배경에 노트 색상 사용</string>
   <string name="import_export_layout_folder_sync_enable">사용</string>

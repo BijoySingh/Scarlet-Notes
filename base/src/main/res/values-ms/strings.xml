@@ -6,17 +6,13 @@
   <string name="share_using">Kongsi menggunakan &#8230;</string>
   <string name="main_no_notes">Tiada Nota</string>
   <string name="main_no_notes_hint">Nampaknya anda belum menambahkan sebarang nota. Klik untuk menambah nota.</string>
-  <string name="main_add_a_note">Tambah nota &#8230;</string>
-  <string name="main_add_a_quick_note">Tambah nota cepat &#8230;</string>
   <string name="edit_note">Edit Nota</string>
   <string name="open_in_popup">Buka Dalam Popup</string>
-  <string name="delete_note">Padam Nota</string>
   <string name="copy_note">Salin Nota</string>
   <string name="send_note">Hantar Nota</string>
   <string name="choose_action">Pilih Tindakan &#8230;</string>
   <string name="format_hint_text">Tambah Kandungan &#8230;</string>
   <string name="format_hint_heading">Tambah Tajuk &#8230;</string>
-  <string name="format_hint_sub_heading">Tambah Sub Tajuk &#8230;</string>
   <string name="format_hint_quote">Tambahkan Teks Kutipan &#8230;</string>
   <string name="format_hint_list">Tambah Item &#8230;</string>
   <string name="format_hint_code">Tambah Kod &#8230;</string>
@@ -34,14 +30,10 @@
   <string name="security_sheet_enter_new_pin_title">Masukkan PIN baru</string>
   <string name="security_sheet_enter_pin_to_unlock_title">Masukkan PIN untuk membuka kunci</string>
   <string name="security_sheet_enter_current_pin_title">Masukkan PIN semasa</string>
-  <string name="security_sheet_enter_pin_hint">masukkan kod</string>
   <string name="security_sheet_button_verify">Sahkan</string>
   <string name="security_sheet_button_unlock">Buka kunci</string>
   <string name="markdown_sheet_markdown_support">Sokongan Markdown</string>
   <string name="markdown_sheet_markdown_support_subtitle">Benarkan markup disokong pemformatan</string>
-  <string name="markdown_sheet_examples">Contoh</string>
-  <string name="home_option_markdown_settings">Tetapan Tamat Penamatan</string>
-  <string name="home_option_markdown_settings_subtitle">Lihat cara menggunakan markdown dalam nota</string>
   <string name="security_sheet_button_set">Tetapkan</string>
   <string name="home_option_enable_list_view">Dayakan Layout Senarai</string>
   <string name="home_option_enable_list_view_subtitle">Tunjukkan nota dalam satu lajur</string>
@@ -67,23 +59,15 @@
   <string name="import_export_layout_exporting">Mengeksport ke failâ € |</string>
   <string name="import_export_layout_exporting_done">Selesai</string>
   <string name="import_export_layout_exporting_share">Kongsi</string>
-  <string name="about_page_title">Mengenai Kami dan Lebih Banyak</string>
   <string name="about_page_rate">Rate pada Play Store</string>
   <string name="about_page_contribute">Sumbang</string>
   <string name="about_page_app_version">Versi App</string>
   <string name="search_notes">Nota Pencari</string>
   <string name="about_page_about_app">Mengenai App</string>
 
-  <string name="open_note_day_mode">Mod Hari</string>
   <string name="choose_note_color">Tukar Warna</string>
-  <string name="tap_for_action_open_note_day_mode">Ketik untuk melihat nota dalam mod hari</string>
   <string name="tap_for_action_color">Ketik untuk menukar warna latar belakang nota</string>
-  <string name="home_option_enable_night_mode">Dayakan Mod Malam</string>
-  <string name="home_option_enable_night_mode_subtitle">Dayakan tema gelap sebagai lalai</string>
-  <string name="home_option_enable_day_mode">Dayakan Mod Hari</string>
-  <string name="home_option_enable_day_mode_subtitle">Dayakan tema cahaya sebagai lalai</string>
 
-  <string name="open_note_night_mode">Mod malam</string>
   <string name="delete_note_permanently">Padamkan secara kekal</string>
   <string name="unarchive_note">Nota Unarkif</string>
   <string name="archive_note">Nota Arkib</string>
@@ -91,7 +75,6 @@
   <string name="favourite_note">Tandakan Kegemaran</string>
   <string name="restore_note">Pulihkan Nota</string>
   <string name="trash_note">Pindah ke tong sampah</string>
-  <string name="tap_for_action_open_note_night_mode">Ketik untuk melihat nota dalam mod malam</string>
   <string name="tap_for_action_edit">Ketik untuk membuka nota untuk mengedit</string>
   <string name="tap_for_action_copy">Ketik untuk menyalin kandungan nota ke papan keratan</string>
   <string name="tap_for_action_share">Ketik untuk berkongsi kandungan nota ke apl lain</string>
@@ -103,21 +86,13 @@
   <string name="tap_for_action_not_favourite">Ketik untuk menandakan nota sebagai kegemaran</string>
   <string name="tap_for_action_archive">Ketik untuk mengarkibkan nota tersebut</string>
   <string name="tap_for_action_not_archive">Ketik untuk menyusun notarkar nota</string>
-  <string name="nav_sheet_title">Nota andaâ € |</string>
   <string name="nav_home">Rumah</string>
-  <string name="nav_home_details">Semua nota biasa dan kegemaran anda</string>
   <string name="nav_favourites">Kegemaran</string>
-  <string name="nav_favourites_details">Semua nota kegemaran anda</string>
   <string name="nav_archived">Diarkibkan</string>
-  <string name="nav_archived_details">Semua nota arkib anda</string>
   <string name="nav_trash">Sampah</string>
-  <string name="nav_trash_details">Semua nota anda di dalam tong sampah</string>
   <string name="open_in_notification">Buat Pemberitahuan</string>
   <string name="notification_channel_label">Pemberitahuan Nota</string>
   <string name="nav_locked">Terkunci</string>
-  <string name="nav_locked_details">Semua nota terkunci anda</string>
-  <string name="nav_tags">Tags</string>
-  <string name="nav_tags_details">Semua tanda nota anda</string>
   <string name="tag_sheet_create_title">Tambah Tag Baru</string>
   <string name="tag_sheet_edit_title">Edit Tag &#8230;</string>
   <string name="tag_sheet_enter_tag_hint">masukkan tag</string>
@@ -128,8 +103,6 @@
   <string name="import_to_app">Import</string>
   <string name="markdown_sheet_home_markdown_support">Senarai penurunan nilai dalam Senarai Nota</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">Dayakan pemformatan keterlihatan dalam senarai nota</string>
-  <string name="home_option_fill_survey">Isi kajian</string>
-  <string name="home_option_fill_survey_subtitle">Bantu kami meningkatkan aplikasi dengan memberitahu kami apa yang anda suka</string>
 
   <!-- Added in release v3.8.4 -->
   <string name="change_tags">Tukar Tag</string>
@@ -138,8 +111,6 @@
   <string name="home_option_open_source_page_subtitle">Ketahui lebih lanjut mengenai projek sumber terbuka</string>
   <string name="osp_page_libraries">Perpustakaan</string>
   <string name="osp_page_about_osp">Projek Sumber Terbuka</string>
-  <string name="osp_page_title">Mengenai Projek Sumber Terbuka</string>
-  <string name="reminder_sheet_title">Peringatan Peringatan</string>
   <string name="reminder_sheet_reminder_date">Tarikh Peringatan</string>
   <string name="reminder_sheet_reminder_time">Masa Peringatan</string>
   <string name="reminder_sheet_repeat">Kekerapan Ulang</string>
@@ -154,8 +125,6 @@
   <!-- Added in release v3.9.0 -->
   <string name="home_option_ui_experience">Antara Muka dan Pengalaman</string>
   <string name="home_option_ui_experience_subtitle">Pilih bagaimana aplikasinya kelihatan dan dirasakan.</string>
-  <string name="home_option_note_settings">Nota Pilihan</string>
-  <string name="home_option_note_settings_subtitle">Pilih nota dan tetapan lain.</string>
   <string name="home_option_about">Mengenai</string>
   <string name="home_option_about_subtitle">Ketahui lebih lanjut mengenai kami dan aplikasinya.</string>
   <string name="note_option_default_color">Warna Nota Default</string>
@@ -190,19 +159,6 @@
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">Tambah Nota</string>
   <string name="shortcut_add_list">Tambah Senarai Semak</string>
-  <string name="format_sheet_option_title">Blok Pemformatan</string>
-  <string name="format_label_heading">Tajuk</string>
-  <string name="format_label_sub_heading">Sub Tajuk</string>
-  <string name="format_label_text">Teks</string>
-  <string name="format_label_quote">Quote</string>
-  <string name="format_label_code">Kod</string>
-  <string name="format_label_list">Senarai Semak</string>
-  <string name="markdown_sheet_option_title">Pemformatan Markdown</string>
-  <string name="markdown_label_bold">Bold</string>
-  <string name="markdown_label_italics">Italik</string>
-  <string name="markdown_label_underline">Garis bawah</string>
-  <string name="markdown_label_strikethrough">Mogok</string>
-  <string name="markdown_label_list">Senarai</string>
   <string name="select_a_note_title">Pilih Nota</string>
   <string name="select_notes_title">Pilih Nota</string>
   <string name="nav_settings">Tetapan</string>
@@ -216,29 +172,18 @@
   <string name="whats_new_title">Apa yang Baru</string>
   <string name="whats_new_subtitle">Ketahui apa yang baru dalam kemas kini aplikasi baru-baru ini</string>
   <string name="whats_new_translate">Terjemah</string>
-  <string name="tutorial_create_a_new_note">Klik untuk menambah nota baharu</string>
-  <string name="tutorial_home_menu">Klik untuk melihat pilihan rumah</string>
-  <string name="tutorial_home_menu_subtitle">Menu rumah mempunyai nota kegemaran dan arkib anda, serta tetapan aplikasi. Anda boleh mencari tag anda di sini juga.</string>
 
   <!-- Login, Welcome Strings -->
   <string name="home_option_login_with_app">Masuk ke App</string>
   <string name="home_option_login_with_app_subtitle">Masuk untuk sandaran dan penyegerakan awan</string>
   <string name="home_option_logout_of_app">Keluar</string>
   <string name="home_option_logout_of_app_subtitle">Log keluar untuk menghentikan sandaran awan</string>
-  <string name="login_with_google">Masuk dengan Google</string>
-  <string name="logging_into_app">Menandatangani dalam € |</string>
-  <string name="logged_into_app">Anda log masuk</string>
   <string name="login_to_google_failed">Masuk Google Gagal</string>
   <string name="material_notes_privacy_policy">Dasar Privasi</string>
   <string name="material_notes_privacy_policy_subtitle">Dasar privasi apl untuk kandungan</string>
   <string name="install_pro_app">Pasang Pro App</string>
   <string name="why_install_pro">Mengapa Memasang Pro</string>
   <string name="why_install_pro_details">Pemaju sokongan untuk kos pelayan besar, untuk menjalankan penyegerakan awan \n\n Dapatkan ciri-ciri terkini terlebih dahulu \n\n Sesetengah ciri tambahan akan tersedia hanya untuk pengguna Pro</string>
-  <string name="why_cloud">Kenapa membolehkan Cloud Sync</string>
-  <string name="why_cloud_details">Muat naik dan sandaran terhadap perubahan peranti \n\n Segerakkan antara berbilang peranti, dan dapatkan kemas kini pantas \n\n Secepat disimpan di pelayan Google Firebase</string>
-  <string name="welcome_page_hello">Halo,</string>
-  <string name="welcome_page_transfer_message">Nota Bahan kini Scarlet!</string>
-  <string name="welcome_page_get_started">Bermula</string>
 
   <!-- Added for 4.5.3 -->
   <string name="format_action_copy">Salinan</string>
@@ -255,30 +200,24 @@
   <string name="image_not_uploaded_i_understand">Saya faham</string>
   <string name="home_option_auto_export">Eksport Secara Automatik</string>
   <string name="home_option_auto_export_subtitle">Nota eksport sering ke fail luaran sebagai sandaran</string>
-  <string name="format_label_image">Gambar</string>
   <string name="format_hint_image">Klik untuk menambah atau menukar imej</string>
 
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">Hanya sekali</string>
   <string name="reminder_frequency_daily">Harian</string>
-  <string name="reminder_frequency_custom">Custom</string>
-  <string name="reminder_beta_label">Beta</string>
   <string name="notification_reminder_channel_label">Peringatan dan Penggera</string>
   <string name="about_page_description_os">%s adalah sumber terbuka dan sesiapa sahaja terbuka untuk menyumbang untuk menjadikannya lebih baik. Ia kini dibina dan diselenggarakan oleh %s.</string>
   <string name="about_page_description">%s adalah aplikasi mengambil nota ringkas. Ia membolehkan input teks kaya cepat tanpa membuat pengalaman yang sangat sukar untuk digunakan. Ia membuat pelbagai tugas dengan mudah.</string>
   <string name="about_page_about_us_details">Hai, kami sepasang pereka dan pengaturcara, yang mencipta %s.
      Kami berusaha untuk membina aplikasi iklan bebas, bebas iklan atau minimum yang direka dengan cermat, yang berfungsi dengan baik untuk semua orang!</string>
   <string name="note_option_number_lines_subtitle">garis %d pada skrin utama</string>
-  <string name="search_toolbar_text">Cari %s &#8230;</string>
   <string name="view_distraction_free">Penglibatan Percuma</string>
-  <string name="format_label_separator">Pemisah</string>
 
   <!-- Added for 6.6.1 -->
   <string name="home_option_theme_color">Tema App</string>
   <string name="home_option_theme_color_subtitle">Pilih warna latar belakang untuk tema</string>
   <string name="theme_page_title">Pilih Tema App</string>
   <string name="click_to_add_tags">Klik untuk menambah atau tukar tag</string>
-  <string name="show_more_actions">Tunjukkan Lagi Tindakan</string>
   <string name="select_notes">Pilih Nota</string>
   <string name="select_notes_details">Pilih dan lakukan tindakan pada beberapa nota serentak</string>
   <string name="recent_to_trash_message">Nota itu dipindahkan ke sampah</string>
@@ -318,8 +257,6 @@
   <string name="merge_notes">Merge Notes</string>
   <string name="home_option_export_markdown">Eksport Sebagai Penurunan Nilai</string>
   <string name="home_option_export_markdown_subtitle">Nota eksport dalam format markdown. (Anda tidak boleh mengimport kembali ini ke aplikasi)</string>
-  <string name="home_option_auto_export_folder">Folder Eksport</string>
-  <string name="home_option_auto_export_folder_subtitle">Pilih di mana semua eksport disimpan</string>
   <string name="ui_options_note_background_color_settings_theme">Gunakan warna tema untuk latar belakang</string>
   <string name="ui_options_note_background_color_settings_note">Gunakan warna nota untuk latar belakang</string>
   <string name="import_export_layout_folder_sync_enable">Dayakan</string>
