@@ -81,7 +81,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_security_subtitle,
         icon = R.drawable.ic_option_security,
         listener = {
-          SecurityOptionsBottomSheet.openSheet(activity)
+          openSheet(activity, SecurityOptionsBottomSheet())
           dismiss()
         }
     ))

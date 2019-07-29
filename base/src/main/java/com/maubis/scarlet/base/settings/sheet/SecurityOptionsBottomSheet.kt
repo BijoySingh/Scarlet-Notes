@@ -7,9 +7,8 @@ import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
-import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet
-import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet.Companion.openCreateSheet
-import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet.Companion.openVerifySheet
+import com.maubis.scarlet.base.security.sheets.openCreateSheet
+import com.maubis.scarlet.base.security.sheets.openVerifySheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.ui.ThemedActivity
@@ -32,8 +31,8 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun title(): Int = R.string.security_option_title
 
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
+    val activity = context as ThemedActivity
     val options = ArrayList<LithoOptionsItem>()
-
     options.add(LithoOptionsItem(
         title = R.string.security_option_set_pin_code,
         subtitle = R.string.security_option_set_pin_code_subtitle,
@@ -54,12 +53,11 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         icon = R.drawable.ic_option_security,
         listener = {
           when {
-            hasPinCodeEnabled() -> openVerifyPasswordDialog(
-                object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
-                  override fun onSuccess() {
-                    sSecurityAppLockEnabled = !sSecurityAppLockEnabled
-                    reset(componentContext.androidContext, dialog)
-                  }
+            hasPinCodeEnabled() -> openVerifySheet(
+                activity = activity,
+                onVerifySuccess = {
+                  sSecurityAppLockEnabled = !sSecurityAppLockEnabled
+                  reset(componentContext.androidContext, dialog)
                 }
             )
             else -> openCreatePasswordDialog(dialog)
@@ -77,12 +75,11 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         icon = R.drawable.ic_option_fingerprint,
         listener = {
           when {
-            hasPinCodeEnabled() -> openVerifyPasswordDialog(
-                object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
-                  override fun onSuccess() {
-                    sSecurityFingerprintEnabled = false
-                    reset(componentContext.androidContext, dialog)
-                  }
+            hasPinCodeEnabled() -> openVerifySheet(
+                activity = activity,
+                onVerifySuccess = {
+                  sSecurityFingerprintEnabled = false
+                  reset(componentContext.androidContext, dialog)
                 }
             )
             else -> {
@@ -101,12 +98,11 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         icon = R.drawable.ic_option_fingerprint,
         listener = {
           when {
-            hasPinCodeEnabled() -> openVerifyPasswordDialog(
-                object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
-                  override fun onSuccess() {
-                    sSecurityFingerprintEnabled = true
-                    reset(componentContext.androidContext, dialog)
-                  }
+            hasPinCodeEnabled() -> openVerifySheet(
+                activity = activity,
+                onVerifySuccess = {
+                  sSecurityFingerprintEnabled = true
+                  reset(componentContext.androidContext, dialog)
                 }
             )
             else -> {
@@ -123,50 +119,23 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
   fun openCreatePasswordDialog(dialog: Dialog) {
     val activity = context as ThemedActivity
     openCreateSheet(
-        activity,
-        object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
-          override fun onSuccess() {
-            reset(dialog.context, dialog)
-          }
-        })
+        activity = activity,
+        onCreateSuccess = { reset(dialog.context, dialog) })
   }
 
   fun openResetPasswordDialog(dialog: Dialog) {
     val activity = context as ThemedActivity
     openVerifySheet(
         activity,
-        object : EnterPincodeBottomSheet.PincodeSuccessListener {
-          override fun onFailure() {
-            openResetPasswordDialog(dialog)
-          }
-
-          override fun onSuccess() {
-            openCreatePasswordDialog(dialog)
-          }
-        })
-  }
-
-  fun openVerifyPasswordDialog(listener: EnterPincodeBottomSheet.PincodeSuccessOnlyListener) {
-    val activity = context as ThemedActivity
-    openVerifySheet(
-        activity,
-        object : EnterPincodeBottomSheet.PincodeSuccessListener {
-          override fun onFailure() {
-
-          }
-
-          override fun onSuccess() {
-            listener.onSuccess()
-          }
+        onVerifySuccess = {
+          openCreatePasswordDialog(dialog)
+        },
+        onVerifyFailure = {
+          openResetPasswordDialog(dialog)
         })
   }
 
   companion object {
-    fun openSheet(activity: MainActivity) {
-      val sheet = SecurityOptionsBottomSheet()
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
-
     fun hasPinCodeEnabled(): Boolean {
       return !TextUtils.isNullOrEmpty(sSecurityCode)
     }

@@ -9,11 +9,11 @@ import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.sectionPreservingSort
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getFormats
-import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.folder.sheet.SelectedFolderChooseOptionsBottomSheet
 import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
 import com.maubis.scarlet.base.note.tag.sheet.SelectedTagChooserBottomSheet
+import com.maubis.scarlet.base.security.sheets.openUnlockSheet
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 
@@ -266,14 +266,13 @@ class SelectedNoteOptionsBottomSheet() : GridBottomSheetBase() {
       dismiss()
       return@OnClickListener
     }
-    EnterPincodeBottomSheet.openUnlockSheet(
-        activity,
-        object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
-          override fun onSuccess() {
-            listener()
-            dismiss()
-          }
-        })
+    openUnlockSheet(
+        activity = activity,
+        onUnlockSuccess = {
+          listener()
+          dismiss()
+        },
+        onUnlockFailure = {})
   }
 
   companion object {

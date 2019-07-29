@@ -8,7 +8,7 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.export.activity.ImportNoteActivity
 import com.maubis.scarlet.base.export.support.PermissionUtils
-import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet
+import com.maubis.scarlet.base.security.sheets.openUnlockSheet
 import com.maubis.scarlet.base.settings.sheet.SecurityOptionsBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
@@ -91,16 +91,9 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
       openSheet(activity, ExportNotesBottomSheet())
       return
     }
-    EnterPincodeBottomSheet.openUnlockSheet(
-        activity as ThemedActivity,
-        object : EnterPincodeBottomSheet.PincodeSuccessListener {
-          override fun onFailure() {
-            openExportSheet(activity)
-          }
-
-          override fun onSuccess() {
-            openSheet(activity, ExportNotesBottomSheet())
-          }
-        })
+    openUnlockSheet(
+        activity = activity as ThemedActivity,
+        onUnlockSuccess = { openSheet(activity, ExportNotesBottomSheet()) },
+        onUnlockFailure = { openExportSheet(activity) })
   }
 }

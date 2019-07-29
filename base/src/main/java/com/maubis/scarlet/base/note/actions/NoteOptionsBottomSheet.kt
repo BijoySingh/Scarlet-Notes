@@ -14,7 +14,7 @@ import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet
+
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.main.sheets.openDeleteNotePermanentlySheet
 import com.maubis.scarlet.base.note.*
@@ -27,6 +27,7 @@ import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
 import com.maubis.scarlet.base.note.tag.sheet.TagChooserBottomSheet
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
+import com.maubis.scarlet.base.security.sheets.openUnlockSheet
 import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
 import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
 import com.maubis.scarlet.base.support.option.OptionsItem
@@ -272,15 +273,14 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.unlock_note,
         icon = R.drawable.ic_action_unlock,
         listener = View.OnClickListener {
-          EnterPincodeBottomSheet.openUnlockSheet(
-              activity,
-              object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
-                override fun onSuccess() {
-                  note.locked = false
-                  activity.updateNote(note)
-                  dismiss()
-                }
-              })
+          openUnlockSheet(
+              activity = activity,
+              onUnlockSuccess = {
+                note.locked = false
+                activity.updateNote(note)
+                dismiss()
+              },
+              onUnlockFailure = { })
         },
         visible = note.locked
     ))

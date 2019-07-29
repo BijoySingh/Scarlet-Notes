@@ -40,11 +40,9 @@ class NoPincodeBottomSheet : LithoBottomSheet() {
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(R.string.no_pincode_sheet_set_up)
             .onPrimaryClick {
-              EnterPincodeBottomSheet.openCreateSheet(activity, object : EnterPincodeBottomSheet.PincodeSuccessOnlyListener {
-                override fun onSuccess() {
-                  // Ignore this
-                }
-              })
+              openCreateSheet(
+                  activity = activity,
+                  onCreateSuccess = {})
               dismiss()
             }
             .secondaryActionRes(R.string.no_pincode_sheet_dont_ask)

@@ -504,8 +504,8 @@
 
   <!-- Start: App Lock Activity -->
   <string name="app_lock_title" translatable="false">Unlock App</string>
-  <string name="app_lock_details" translatable="false">Enter PIN or use fingerprint to unlock</string>
-  <string name="app_lock_details_no_fingerprint" translatable="false">Enter PIN to unlock</string>
+  <string name="app_lock_details" translatable="false">Enter 4 digit PIN or use fingerprint to unlock</string>
+  <string name="app_lock_details_no_fingerprint" translatable="false">Enter 4 digit PIN to unlock</string>
   <!-- End: App Lock Activity -->
 
 </resources>

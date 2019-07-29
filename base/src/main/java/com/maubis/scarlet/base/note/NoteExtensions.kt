@@ -7,7 +7,6 @@ import com.google.gson.Gson
 import com.maubis.markdown.Markdown
 import com.maubis.markdown.MarkdownConfig
 import com.maubis.markdown.spannable.*
-import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
@@ -21,7 +20,7 @@ import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FRE
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
-import com.maubis.scarlet.base.security.sheets.EnterPincodeBottomSheet
+import com.maubis.scarlet.base.security.sheets.openUnlockSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.sMarkdownEnabledHome
 import com.maubis.scarlet.base.settings.sheet.sInternalShowUUID
 import com.maubis.scarlet.base.support.ui.ThemedActivity
@@ -244,15 +243,10 @@ fun Note.mark(context: Context, noteState: NoteState) {
 fun Note.edit(context: Context) {
   if (this.locked) {
     if (context is ThemedActivity) {
-      EnterPincodeBottomSheet.openUnlockSheet(context, object : EnterPincodeBottomSheet.PincodeSuccessListener {
-        override fun onFailure() {
-          edit(context)
-        }
-
-        override fun onSuccess() {
-          openEdit(context)
-        }
-      })
+      openUnlockSheet(
+          activity = context,
+          onUnlockSuccess = { openEdit(context) },
+          onUnlockFailure = { edit(context) })
     }
     return
   }
