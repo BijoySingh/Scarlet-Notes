@@ -3,19 +3,22 @@ package com.maubis.scarlet.base.security.activity
 import android.graphics.Color
 import android.text.InputType
 import android.text.Layout
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import com.facebook.litho.*
 import com.facebook.litho.annotations.*
-import com.facebook.litho.widget.EditText
-import com.facebook.litho.widget.Image
-import com.facebook.litho.widget.Text
-import com.facebook.litho.widget.TextChangedEvent
+import com.facebook.litho.widget.*
+import com.facebook.litho.widget.Spinner.onClick
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.security.sheets.PincodeSheetData
+import com.maubis.scarlet.base.security.sheets.PincodeSheetViewSpec
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.utils.getEditorActionListener
 
 @LayoutSpec
 object AppLockViewSpec {
@@ -23,12 +26,14 @@ object AppLockViewSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop fingerprintEnabled: Boolean,
-               @Prop onTextChange: (String) -> Unit): Component {
+               @Prop onTextChange: (String) -> Unit,
+               @Prop onClick: () -> Unit): Component {
     return Column.create(context)
         .backgroundColor(ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND))
         .child(AppLockContentView.create(context)
             .fingerprintEnabled(fingerprintEnabled)
             .onTextChange(onTextChange)
+            .onClick(onClick)
             .flexGrow(1f))
         .child(Row.create(context)
             .alignItems(YogaAlign.CENTER)
@@ -68,11 +73,17 @@ object AppLockContentViewSpec {
 
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
-               @Prop fingerprintEnabled: Boolean): Component {
+               @Prop fingerprintEnabled: Boolean,
+               @Prop onClick: () -> Unit): Component {
     val description = when {
       fingerprintEnabled -> R.string.app_lock_details
       else -> R.string.app_lock_details_no_fingerprint
     }
+    val editBackground = when {
+      ApplicationBase.instance.themeController().isNightTheme() -> R.drawable.light_secondary_rounded_bg
+      else -> R.drawable.secondary_rounded_bg
+    }
+
     return Column.create(context)
         .paddingDip(YogaEdge.ALL, 16f)
         .backgroundColor(ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND))
@@ -88,10 +99,11 @@ object AppLockContentViewSpec {
             .typeface(CoreConfig.FONT_MONSERRAT))
         .child(EmptySpec.create(context).flexGrow(1f))
         .child(EditText.create(context)
-            .backgroundRes(R.drawable.secondary_rounded_bg)
+            .backgroundRes(editBackground)
             .textSizeRes(R.dimen.font_size_xlarge)
             .minWidthDip(128f)
             .maxLength(4)
+            .hint("****")
             .alignSelf(YogaAlign.CENTER)
             .inputType(InputType.TYPE_CLASS_NUMBER  or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
             .textAlignment(Layout.Alignment.ALIGN_CENTER)
@@ -99,7 +111,11 @@ object AppLockContentViewSpec {
             .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.PRIMARY_TEXT))
             .paddingDip(YogaEdge.HORIZONTAL, 22f)
             .paddingDip(YogaEdge.VERTICAL, 6f)
-
+            .imeOptions(EditorInfo.IME_ACTION_DONE)
+            .editorActionListener(getEditorActionListener({
+              onClick()
+              true
+            }))
             .textChangedEventHandler(AppLockContentView.onTextChanged(context)))
         .child(EmptySpec.create(context).flexGrow(1f))
         .build()

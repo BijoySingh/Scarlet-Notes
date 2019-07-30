@@ -3,14 +3,15 @@ package com.maubis.scarlet.base.security.sheets
 import android.app.Dialog
 import android.text.InputType
 import android.text.Layout
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import com.facebook.litho.*
 import com.facebook.litho.annotations.*
-import com.facebook.litho.widget.EditText
-import com.facebook.litho.widget.Image
-import com.facebook.litho.widget.Text
-import com.facebook.litho.widget.TextChangedEvent
+import com.facebook.litho.widget.*
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
+import com.github.ajalt.reprint.core.AuthenticationFailureReason
+import com.github.ajalt.reprint.core.AuthenticationListener
 import com.github.ajalt.reprint.core.Reprint
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
@@ -29,6 +30,7 @@ import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.utils.getEditorActionListener
 
 data class PincodeSheetData(
     val title: Int,
@@ -36,7 +38,7 @@ data class PincodeSheetData(
     val onSuccess: () -> Unit,
     val onFailure: () -> Unit = {},
     val isFingerprintEnabled: Boolean = false,
-    val onActionClicked: (String) -> Unit = {password ->
+    val onActionClicked: (String) -> Unit = { password ->
       when {
         password != "" && password == sSecurityCode -> {
           PinLockController.notifyPinVerified()
@@ -54,7 +56,14 @@ object PincodeSheetViewSpec {
   private var passcodeEntered = ""
 
   @OnCreateLayout
-  fun onCreate(context: ComponentContext, @Prop data: PincodeSheetData): Component {
+  fun onCreate(context: ComponentContext,
+               @Prop data: PincodeSheetData,
+               @Prop dismiss: () -> Unit): Component {
+    val editBackground = when {
+      ApplicationBase.instance.themeController().isNightTheme() -> R.drawable.light_secondary_rounded_bg
+      else -> R.drawable.secondary_rounded_bg
+    }
+
     val component = Column.create(context)
         .widthPercent(100f)
         .paddingDip(YogaEdge.VERTICAL, 8f)
@@ -68,11 +77,12 @@ object PincodeSheetViewSpec {
             .marginDip(YogaEdge.BOTTOM, 16f)
             .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
         .child(EditText.create(context)
-            .backgroundRes(R.drawable.secondary_rounded_bg)
+            .backgroundRes(editBackground)
             .textSizeRes(R.dimen.font_size_xlarge)
             .minWidthDip(128f)
             .maxLength(4)
             .alignSelf(YogaAlign.CENTER)
+            .hint("****")
             .inputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
             .textAlignment(Layout.Alignment.ALIGN_CENTER)
             .typeface(CoreConfig.FONT_OPEN_SANS)
@@ -80,6 +90,12 @@ object PincodeSheetViewSpec {
             .paddingDip(YogaEdge.HORIZONTAL, 22f)
             .paddingDip(YogaEdge.VERTICAL, 6f)
             .marginDip(YogaEdge.VERTICAL, 8f)
+            .imeOptions(EditorInfo.IME_ACTION_DONE)
+            .editorActionListener(getEditorActionListener({
+              data.onActionClicked(passcodeEntered)
+              dismiss()
+              true
+            }))
             .textChangedEventHandler(PincodeSheetView.onTextChangeListener(context)))
         .child(Row.create(context)
             .alignItems(YogaAlign.CENTER)
@@ -156,6 +172,28 @@ class PincodeBottomSheet : LithoBottomSheet() {
         .data(data)
         .dismiss { dismiss() }
         .build()
+  }
+
+  override fun onResume() {
+    super.onResume()
+    if (data.isFingerprintEnabled) {
+      Reprint.authenticate(object : AuthenticationListener {
+        override fun onSuccess(moduleTag: Int) {
+          data.onSuccess()
+          dismiss()
+        }
+
+        override fun onFailure(failureReason: AuthenticationFailureReason?, fatal: Boolean, errorMessage: CharSequence?, moduleTag: Int, errorCode: Int) {
+        }
+      })
+    }
+  }
+
+  override fun onPause() {
+    super.onPause()
+    if (data.isFingerprintEnabled) {
+      Reprint.cancelAuthentication()
+    }
   }
 }
 
