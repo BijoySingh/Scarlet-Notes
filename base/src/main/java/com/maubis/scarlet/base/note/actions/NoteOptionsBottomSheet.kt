@@ -14,12 +14,11 @@ import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.database.room.note.Note
-
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.main.sheets.openDeleteNotePermanentlySheet
 import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
-import com.maubis.scarlet.base.note.folder.sheet.FolderChooseOptionsBottomSheet
+import com.maubis.scarlet.base.note.folder.sheet.FolderChooserBottomSheet
 import com.maubis.scarlet.base.note.reminders.sheet.ReminderBottomSheet
 import com.maubis.scarlet.base.note.selection.activity.KEY_SELECT_EXTRA_MODE
 import com.maubis.scarlet.base.note.selection.activity.KEY_SELECT_EXTRA_NOTE_ID
@@ -299,8 +298,11 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.folder_option_add_to_notebook,
         icon = R.drawable.ic_folder,
         listener = View.OnClickListener {
-          FolderChooseOptionsBottomSheet.openSheet(activity, note, {
-            activity.notifyResetOrDismiss()
+          com.maubis.scarlet.base.support.sheets.openSheet(activity, FolderChooserBottomSheet().apply {
+            this.note = note
+            this.dismissListener = {
+              activity.notifyResetOrDismiss()
+            }
           })
           dismiss()
         }

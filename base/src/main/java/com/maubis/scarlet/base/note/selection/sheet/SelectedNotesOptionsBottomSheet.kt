@@ -225,16 +225,19 @@ class SelectedNotesOptionsBottomSheet : GridOptionBottomSheet() {
         label = R.string.folder_option_change_notebook,
         icon = R.drawable.ic_folder,
         listener = lockAwareFunctionRunner(activity) {
-          SelectedFolderChooseOptionsBottomSheet.openSheet(activity) { folder, selectFolder ->
-            activity.runNoteFunction {
-              when (selectFolder) {
-                true -> it.folder = folder.uuid
-                false -> it.folder = ""
+          openSheet(activity, SelectedFolderChooseOptionsBottomSheet().apply {
+            this.dismissListener = {}
+            this.onActionListener = { folder, selectFolder ->
+              activity.runNoteFunction {
+                when (selectFolder) {
+                  true -> it.folder = folder.uuid
+                  false -> it.folder = ""
+                }
+                it.save(activity)
               }
-              it.save(activity)
+              activity.finish()
             }
-            activity.finish()
-          }
+          })
         }
     ))
 
