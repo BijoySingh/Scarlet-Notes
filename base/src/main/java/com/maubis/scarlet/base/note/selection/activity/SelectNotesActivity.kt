@@ -9,7 +9,8 @@ import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.main.HomeNavigationState
 import com.maubis.scarlet.base.note.getFullText
-import com.maubis.scarlet.base.note.selection.sheet.SelectedNoteOptionsBottomSheet
+import com.maubis.scarlet.base.note.selection.sheet.SelectedNotesOptionsBottomSheet
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.utils.bind
 
 const val KEY_SELECT_EXTRA_MODE = "KEY_SELECT_EXTRA_MODE"
@@ -54,7 +55,7 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
       }
     }
     secondaryFab.setOnClickListener {
-      SelectedNoteOptionsBottomSheet.openSheet(this)
+      openSheet(this, SelectedNotesOptionsBottomSheet())
     }
     recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
       override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {

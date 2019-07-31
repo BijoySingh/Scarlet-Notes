@@ -258,6 +258,7 @@
   <string name="delete_sheet_are_you_sure">Are you sure?</string>
   <string name="delete_sheet_delete_trash">Would you like to permanently delete the notes in the trash folder?</string>
   <string name="delete_sheet_delete_note_permanently">Would you like to permanently delete this note?</string>
+  <string name="delete_sheet_delete_selected_notes_permanently" translatable="false">Would you like to permanently delete these notes?</string>
   <string name="delete_sheet_delete_trash_yes">Delete</string>
   <string name="delete_sheet_delete_trash_no">Cancel</string>
   <string name="trash_will_delete_automatically">Notes are deleted forever after 7 days</string>
@@ -440,5 +441,9 @@
   <string name="app_lock_details" translatable="false">Enter 4 digit PIN or use fingerprint to unlock</string>
   <string name="app_lock_details_no_fingerprint" translatable="false">Enter 4 digit PIN to unlock</string>
   <!-- End: App Lock Activity -->
+
+  <!-- Start: Note Sheet -->
+
+  <!-- End: Note Sheet -->
 
 </resources>
