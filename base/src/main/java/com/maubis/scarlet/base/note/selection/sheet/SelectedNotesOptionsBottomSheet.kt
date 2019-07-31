@@ -35,8 +35,6 @@ class SelectedNotesOptionsBottomSheet : GridOptionBottomSheet() {
 
   private fun getQuickActions(componentContext: ComponentContext, dialog: Dialog): GridSectionItem {
     val activity = componentContext.androidContext as SelectNotesActivity
-
-    val title = R.string.note_option_font_size
     val options = ArrayList<GridSectionOptionItem>()
 
     val allItemsInTrash = !activity.getAllSelectedNotes().any { it.state !== NoteState.TRASH.name }

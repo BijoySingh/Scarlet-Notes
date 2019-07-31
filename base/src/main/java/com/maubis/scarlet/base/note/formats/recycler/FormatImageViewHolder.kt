@@ -14,6 +14,7 @@ import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.note.ImageLoadCallback
 import com.maubis.scarlet.base.main.sheets.openDeleteFormatDialog
 import com.maubis.scarlet.base.note.creation.sheet.FormatActionBottomSheet
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.visibility
 import com.maubis.scarlet.base.support.utils.maybeThrow
 import pl.aprilapps.easyphotopicker.EasyImage
@@ -69,7 +70,10 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
     }
     actionMove.setColorFilter(config.iconColor)
     actionMove.setOnClickListener {
-      FormatActionBottomSheet.openSheet(activity, config.noteUUID, data)
+      openSheet(activity, FormatActionBottomSheet().apply {
+        noteUUID = config.noteUUID
+        format = data
+      })
     }
     imageToolbar.visibility = visibility(config.editable)
 

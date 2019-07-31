@@ -20,11 +20,15 @@ abstract class GridOptionBottomSheet : LithoBottomSheet() {
         .paddingDip(YogaEdge.VERTICAL, 8f)
         .child(getLithoBottomSheetTitle(componentContext).textRes(title()))
 
-    getOptions(componentContext, dialog).forEach {
+    val options = getOptions(componentContext, dialog)
+    var index = 0
+    options.forEach {
+      index++
       column.child(
           GridSectionView.create(componentContext)
               .marginDip(YogaEdge.HORIZONTAL, 12f)
               .marginDip(YogaEdge.VERTICAL, 8f)
+              .showSeparator(index != options.size)
               .section(it))
     }
 

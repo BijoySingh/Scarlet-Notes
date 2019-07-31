@@ -78,7 +78,8 @@ object GridSectionViewSpec {
   @OnCreateLayout
   fun onCreate(
       context: ComponentContext,
-      @Prop section: GridSectionItem): Component {
+      @Prop section: GridSectionItem,
+      @Prop showSeparator: Boolean): Component {
     val column = Column.create(context)
     val primaryColor = instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
 
@@ -126,13 +127,16 @@ object GridSectionViewSpec {
       }
       column.child(row)
     }
-    column.child(SolidColor.create(context)
-            .color(instance.themeController().get(ThemeColorType.PRIMARY_TEXT))
-            .heightDip(1.5f)
-            .widthDip(196f)
-            .alignSelf(YogaAlign.CENTER)
-            .marginDip(YogaEdge.VERTICAL, 16f)
-            .alpha(0.1f))
+
+    if (showSeparator) {
+      column.child(SolidColor.create(context)
+          .color(instance.themeController().get(ThemeColorType.PRIMARY_TEXT))
+          .heightDip(1.5f)
+          .widthDip(196f)
+          .alignSelf(YogaAlign.CENTER)
+          .marginDip(YogaEdge.VERTICAL, 16f)
+          .alpha(0.1f))
+    }
     return column.build()
   }
 }
