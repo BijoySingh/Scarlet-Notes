@@ -7,11 +7,11 @@
 
   <LinearLayout
     android:id="@+id/container_layout"
+    style="@style/BottomSheetCardContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/transparent"
-    android:orientation="vertical"
-    style="@style/BottomSheetCardContainer">
+    android:orientation="vertical">
 
     <TextView
       android:id="@+id/options_title"
@@ -35,62 +35,121 @@
       </GridLayout>
     </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.CardView
-      android:id="@+id/tag_card_layout"
-      style="@style/BottomSheetCardView"
-      app:cardBackgroundColor="@color/material_teal_800">
+    <LinearLayout
+      android:id="@+id/group_card_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
 
-      <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_normal">
+      <android.support.v7.widget.CardView
+        android:id="@+id/tag_card_layout"
+        style="@style/BottomSheetCardView"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        app:cardBackgroundColor="@color/material_teal_800">
 
-        <ImageView
-          android:id="@+id/tags_icon"
-          android:layout_width="@dimen/icon_size_normal"
-          android:layout_height="@dimen/icon_size_normal"
-          android:layout_alignParentStart="true"
-          android:layout_centerVertical="true"
-          android:layout_margin="@dimen/spacing_xxsmall"
-          android:src="@drawable/ic_action_tags" />
-
-        <TextView
-          android:id="@+id/tags_title"
-          android:layout_width="wrap_content"
+        <RelativeLayout
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_alignStart="@+id/tags_subtitle"
-          android:text="@string/change_tags"
-          android:textColor="@color/light_secondary_text"
-          android:textSize="@dimen/font_size_small" />
+          android:orientation="vertical"
+          android:padding="@dimen/spacing_normal">
 
-        <TextView
-          android:id="@+id/tags_subtitle"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/tags_title"
-          android:layout_marginStart="@dimen/spacing_normal"
-          android:layout_toEndOf="@+id/tags_icon"
-          android:ellipsize="end"
-          android:maxLines="1"
-          android:text="@string/click_to_add_tags"
-          android:textColor="@color/light_tertiary_text"
-          android:textSize="@dimen/font_size_small" />
+          <ImageView
+            android:id="@+id/tags_icon"
+            android:layout_width="@dimen/icon_size_normal"
+            android:layout_height="@dimen/icon_size_normal"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/spacing_xxsmall"
+            android:src="@drawable/ic_action_tags" />
 
-        <TextView
-          android:id="@+id/tags_content"
-          android:layout_width="wrap_content"
+          <TextView
+            android:id="@+id/tags_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/tags_icon"
+            android:text="@string/change_tags"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:maxLines="1"
+            android:textColor="@color/light_secondary_text"
+            android:textSize="@dimen/font_size_small" />
+
+          <TextView
+            android:id="@+id/tags_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tags_title"
+            android:layout_alignStart="@+id/tags_title"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:minLines="2"
+            android:text="@string/click_to_add_tags"
+            android:textColor="@color/light_tertiary_text"
+            android:textSize="@dimen/font_size_small" />
+
+          <TextView
+            android:id="@+id/tags_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tags_title"
+            android:layout_alignStart="@+id/tags_title"
+            android:layout_marginTop="@dimen/spacing_xsmall"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/light_tertiary_text"
+            android:textSize="@dimen/font_size_large"
+            android:visibility="gone" />
+        </RelativeLayout>
+      </android.support.v7.widget.CardView>
+
+      <android.support.v7.widget.CardView
+        android:id="@+id/select_notes_layout"
+        style="@style/BottomSheetCardView"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        app:cardBackgroundColor="@color/material_blue_grey_800">
+
+        <RelativeLayout
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_alignStart="@+id/tags_subtitle"
-          android:layout_below="@+id/tags_subtitle"
-          android:layout_marginTop="@dimen/spacing_xsmall"
-          android:ellipsize="end"
-          android:maxLines="2"
-          android:textColor="@color/light_tertiary_text"
-          android:textSize="@dimen/font_size_large"
-          android:visibility="gone" />
-      </RelativeLayout>
-    </android.support.v7.widget.CardView>
+          android:orientation="vertical"
+          android:padding="@dimen/spacing_normal">
+
+          <TextView
+            android:id="@+id/select_notes_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/icon_size_large"
+            android:text="@string/select_notes"
+            android:maxLines="1"
+            android:textColor="@color/light_secondary_text"
+            android:textSize="@dimen/font_size_small" />
+
+          <TextView
+            android:id="@+id/select_notes_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/select_notes_title"
+            android:layout_marginEnd="@dimen/icon_size_large"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:minLines="2"
+            android:text="@string/select_notes_details"
+            android:textColor="@color/light_tertiary_text"
+            android:textSize="@dimen/font_size_small" />
+
+          <ImageView
+            android:id="@+id/select_notes_icon"
+            android:layout_width="@dimen/icon_size_normal"
+            android:layout_height="@dimen/icon_size_normal"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/spacing_xxsmall"
+            android:src="@drawable/ic_action_select" />
+
+        </RelativeLayout>
+      </android.support.v7.widget.CardView>
+    </LinearLayout>
 
     <android.support.v7.widget.CardView
       style="@style/BottomSheetCardView"
@@ -100,50 +159,6 @@
         android:id="@+id/note_properties"
         style="@style/NoteOptionGridLayout"
         android:padding="@dimen/spacing_small" />
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-      android:id="@+id/select_notes_layout"
-      style="@style/BottomSheetCardView"
-      app:cardBackgroundColor="@color/material_blue_grey_800">
-
-      <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_normal">
-
-        <TextView
-          android:id="@+id/select_notes_title"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="@dimen/icon_size_large"
-          android:text="@string/select_notes"
-          android:textColor="@color/light_secondary_text"
-          android:textSize="@dimen/font_size_small" />
-
-        <TextView
-          android:id="@+id/select_notes_subtitle"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/select_notes_title"
-          android:layout_marginEnd="@dimen/icon_size_large"
-          android:ellipsize="end"
-          android:maxLines="2"
-          android:text="@string/select_notes_details"
-          android:textColor="@color/light_tertiary_text"
-          android:textSize="@dimen/font_size_small" />
-
-        <ImageView
-          android:id="@+id/select_notes_icon"
-          android:layout_width="@dimen/icon_size_normal"
-          android:layout_height="@dimen/icon_size_normal"
-          android:layout_alignParentEnd="true"
-          android:layout_centerVertical="true"
-          android:layout_margin="@dimen/spacing_xxsmall"
-          android:src="@drawable/ic_action_select" />
-
-      </RelativeLayout>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView

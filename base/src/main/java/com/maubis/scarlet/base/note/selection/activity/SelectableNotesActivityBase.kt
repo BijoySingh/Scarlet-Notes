@@ -12,13 +12,16 @@ import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.main.recycler.EmptyRecyclerItem
+import com.maubis.scarlet.base.note.folder.SelectorFolderRecyclerItem
 import com.maubis.scarlet.base.note.recycler.NoteAppAdapter
 import com.maubis.scarlet.base.note.recycler.NoteRecyclerItem
 import com.maubis.scarlet.base.note.recycler.getSelectableRecyclerItemControllerList
 import com.maubis.scarlet.base.settings.sheet.*
+import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
@@ -36,20 +39,41 @@ abstract class SelectableNotesActivityBase : SecuredActivity(), INoteSelectorAct
     notifyThemeChange()
     setupRecyclerView()
 
-    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<NoteRecyclerItem>> {
-      override fun run(): List<NoteRecyclerItem> {
+    MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<RecyclerItem>> {
+      override fun run(): List<RecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
-        return sort(getNotes(), sorting)
+        val notes = sort(getNotes(), sorting)
+            .sortedBy { it.folder }
             .map { NoteRecyclerItem(this@SelectableNotesActivityBase, it) }
+
+        if (notes.isEmpty()) {
+          return notes
+        }
+
+        val items = emptyList<RecyclerItem>().toMutableList()
+        var lastFolder = ""
+        notes.forEach {
+          val noteFolderId = it.note.folder
+          if (lastFolder != noteFolderId) {
+            val folder = instance.foldersDatabase().getByUUID(noteFolderId)
+            if (folder !== null) {
+              items.add(SelectorFolderRecyclerItem(this@SelectableNotesActivityBase, folder))
+              lastFolder = noteFolderId
+            }
+          }
+          items.add(it)
+        }
+        return items
       }
 
-      override fun handle(notes: List<NoteRecyclerItem>) {
+      override fun handle(notes: List<RecyclerItem>) {
         adapter.clearItems()
 
         if (notes.isEmpty()) {
           adapter.addItem(EmptyRecyclerItem())
         }
 
+        var lastFolder = ""
         notes.forEach {
           adapter.addItem(it)
         }

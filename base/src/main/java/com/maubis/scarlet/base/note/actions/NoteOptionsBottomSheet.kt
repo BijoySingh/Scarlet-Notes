@@ -4,7 +4,10 @@ import android.app.Dialog
 import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.view.View
+import android.view.ViewGroup
 import android.widget.GridLayout
+import android.widget.LinearLayout
+import android.widget.LinearLayout.VERTICAL
 import android.widget.TextView
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.maubis.markdown.Markdown
@@ -79,16 +82,28 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
       return
     }
 
+    val groupCardLayout = dialog.findViewById<LinearLayout>(R.id.group_card_layout)
     val tagCardLayout = dialog.findViewById<View>(R.id.tag_card_layout)
+    val selectCardLayout = dialog.findViewById<View>(R.id.select_notes_layout)
+
     val tags = tagCardLayout.findViewById<TextView>(R.id.tags_content)
-    val tagsTitle = tagCardLayout.findViewById<TextView>(R.id.tags_title)
+    val tagSubtitle = tagCardLayout.findViewById<TextView>(R.id.tags_subtitle)
     val tagContent = note.getTagString()
     if (tagContent.isNotBlank()) {
       GlobalScope.launch(Dispatchers.Main) {
         val text = GlobalScope.async(Dispatchers.IO) { Markdown.renderSegment(tagContent, true) }
         tags.visibility = View.VISIBLE
-        tagsTitle.visibility = View.GONE
+        tagSubtitle.visibility = View.GONE
+
         tags.text = text.await()
+
+        groupCardLayout.orientation = VERTICAL
+
+        val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        val margin = activity.resources.getDimension(R.dimen.spacing_xxsmall).toInt()
+        params.setMargins(margin, margin, margin, margin)
+        tagCardLayout.layoutParams = params
+        selectCardLayout.layoutParams = params
       }
     }
     tagCardLayout.setOnClickListener {
@@ -99,7 +114,6 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
       dismiss()
     }
 
-    val selectCardLayout = dialog.findViewById<View>(R.id.select_notes_layout)
     selectCardLayout.setOnClickListener {
       val intent = Intent(context, SelectNotesActivity::class.java)
       intent.putExtra(KEY_SELECT_EXTRA_MODE, activity.getSelectMode(note))

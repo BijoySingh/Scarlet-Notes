@@ -9,6 +9,7 @@ import com.maubis.scarlet.base.main.recycler.EmptyRecyclerHolder
 import com.maubis.scarlet.base.main.recycler.InformationRecyclerHolder
 import com.maubis.scarlet.base.main.recycler.ToolbarMainRecyclerHolder
 import com.maubis.scarlet.base.note.folder.FolderRecyclerHolder
+import com.maubis.scarlet.base.note.folder.SelectorFolderRecyclerHolder
 import com.maubis.scarlet.base.note.selection.recycler.SelectableNoteRecyclerViewHolder
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import java.util.*
@@ -69,6 +70,11 @@ fun getSelectableRecyclerItemControllerList(
       .viewType(RecyclerItem.Type.NOTE.ordinal)
       .layoutFile(if (staggered && !isTablet) R.layout.item_note_staggered else R.layout.item_note)
       .holderClass(SelectableNoteRecyclerViewHolder::class.java)
+      .build())
+  list.add(MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
+      .viewType(RecyclerItem.Type.FOLDER.ordinal)
+      .layoutFile(R.layout.item_selector_folder)
+      .holderClass(SelectorFolderRecyclerHolder::class.java)
       .build())
   list.add(MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
       .viewType(RecyclerItem.Type.EMPTY.ordinal)
