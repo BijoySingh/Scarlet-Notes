@@ -7,6 +7,9 @@ import android.widget.CheckBox
 import android.widget.TextView
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.Scarlet.Companion.firebase
+import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
+import com.bijoysingh.quicknote.scarlet.sFirebaseKilled
+import com.bijoysingh.quicknote.scarlet.sGDriveLoggedIn
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -57,19 +60,15 @@ class ForgetMeActivity : ThemedActivity() {
       }
 
       forgettingInProcess = true
-      firebase?.deleteEverything()
-
-      FirebaseAuth.getInstance().currentUser
-          ?.delete()
-          ?.addOnCompleteListener {
-            if (it.isSuccessful) {
-              ApplicationBase.instance.authenticator().logout()
-              finish()
-              return@addOnCompleteListener
-            }
-
+      firebaseForgetMe(
+          onComplete = {
+            sFirebaseKilled = true
+            finish()
+          },
+          onFailure = {
             reauthAndDelete()
-          }
+          })
+
     }
     cancelBtn.setOnClickListener {
       finish()
@@ -82,6 +81,24 @@ class ForgetMeActivity : ThemedActivity() {
 
   companion object {
     var forgettingInProcess = false
+
+    fun firebaseForgetMe(onComplete: () -> Unit = {}, onFailure: () -> Unit = {}) {
+      firebase?.deleteEverything()
+
+      FirebaseAuth.getInstance().currentUser
+          ?.delete()
+          ?.addOnCompleteListener {
+            if (it.isSuccessful) {
+              firebase?.logout()
+              gDrive?.logout()
+              sFirebaseKilled = true
+              sGDriveLoggedIn = false
+              onComplete()
+              return@addOnCompleteListener
+            }
+            onFailure()
+          }
+    }
   }
 
 
@@ -149,6 +166,5 @@ class ForgetMeActivity : ThemedActivity() {
           finish()
         }
   }
-
 
 }
