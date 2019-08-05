@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.drive
 
 import android.os.SystemClock
+import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.api.client.http.ByteArrayContent
@@ -33,6 +34,24 @@ const val MIN_RESET_QUERIES_PER_SECOND = 0.1
 
 var lastCheckpointTime: AtomicLong = AtomicLong(0L)
 var numQueriesSinceLastCheckpoint: AtomicLong = AtomicLong(0L)
+var sSyncingCount: AtomicLong = AtomicLong(0)
+
+class CountingErrorCallable<T>(val action: String, callable: Callable<T>) : Callable<T?> {
+  val errorCallable = ErrorCallable(action, callable)
+
+  override fun call(): T? {
+    try {
+      sSyncingCount.incrementAndGet()
+      gDrive?.notifyPendingSyncChange(action)
+      return errorCallable.call()
+    } catch (exception: Exception) {
+      return throwOrReturn(exception, null)
+    } finally {
+      sSyncingCount.decrementAndGet()
+      gDrive?.notifyPendingSyncChange(action)
+    }
+  }
+}
 
 class ErrorCallable<T>(val action: String, val callable: Callable<T>) : Callable<T?> {
   private var delay: Long = 200L
@@ -89,7 +108,7 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
   private val mExecutor = Executors.newFixedThreadPool(4)
 
   fun <T> execute(action: String = "", callable: Callable<T>): Task<T?> {
-    return Tasks.call(mExecutor, ErrorCallable(action, callable))
+    return Tasks.call(mExecutor, CountingErrorCallable(action, callable))
   }
 
   fun createFileWithData(folderId: String, name: String, content: String, updateTime: Long): Task<File?> {

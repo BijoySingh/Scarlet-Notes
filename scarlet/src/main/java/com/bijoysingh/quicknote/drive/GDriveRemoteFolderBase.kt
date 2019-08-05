@@ -12,8 +12,7 @@ abstract class GDriveRemoteFolderBase(
     val dataType: GDriveDataType,
     val database: GDriveUploadDataDao,
     val helper: GDriveServiceHelper,
-    val onPendingChange: () -> Unit,
-    val onPendingSyncComplete: (String) -> Unit) {
+    val onPendingChange: () -> Unit) {
 
   protected fun notifyDriveData(file: File, deleted: Boolean = false) {
     val modifiedTime = file.modifiedTime?.value ?: file.modifiedByMeTime?.value ?: 0L

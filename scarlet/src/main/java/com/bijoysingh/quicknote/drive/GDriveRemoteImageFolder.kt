@@ -41,8 +41,7 @@ class GDriveRemoteImageFolder(
     dataType: GDriveDataType,
     database: GDriveUploadDataDao,
     helper: GDriveServiceHelper,
-    onPendingChange: () -> Unit,
-    onPendingSyncComplete: (String) -> Unit) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange, onPendingSyncComplete) {
+    onPendingChange: () -> Unit) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange) {
 
   var networkOrAbsoluteFailure = AtomicBoolean(false)
 
@@ -54,7 +53,6 @@ class GDriveRemoteImageFolder(
   val deletedPendingActions = emptySet<ImageUUID>().toMutableSet()
 
   fun initContentFolderId(fUid: String, onLoaded: () -> Unit) {
-    val logInfo = "initContentFolderId($fUid)"
     contentFolderUid = fUid
     GlobalScope.launch(Dispatchers.IO) {
       helper.getFilesInFolder(contentFolderUid, GOOGLE_DRIVE_IMAGE_MIME_TYPE).addOnCompleteListener {
@@ -72,10 +70,6 @@ class GDriveRemoteImageFolder(
           contentLoading.set(false)
         }
         GlobalScope.launch { onLoaded() }
-      }.addOnFailureListener {
-        onPendingSyncComplete(logInfo)
-      }.addOnCanceledListener {
-        onPendingSyncComplete(logInfo)
       }
     }
   }
@@ -89,7 +83,6 @@ class GDriveRemoteImageFolder(
     }
 
     if (networkOrAbsoluteFailure.get()) {
-      onPendingSyncComplete(logInfo)
       return
     }
 
@@ -101,7 +94,6 @@ class GDriveRemoteImageFolder(
           save(database)
         }
         onPendingChange()
-        onPendingSyncComplete(logInfo)
       }
       return
     }
@@ -117,10 +109,7 @@ class GDriveRemoteImageFolder(
             contentFiles[id] = file.id
             notifyDriveData(file.id, gDriveUUID, timestamp)
           }
-          onPendingSyncComplete(logInfo)
         }
-        .addOnFailureListener { onPendingSyncComplete(logInfo) }
-        .addOnCanceledListener { onPendingSyncComplete(logInfo) }
   }
 
   fun delete(id: ImageUUID) {
@@ -131,7 +120,6 @@ class GDriveRemoteImageFolder(
     }
 
     if (networkOrAbsoluteFailure.get()) {
-      onPendingSyncComplete(logInfo)
       return
     }
 
@@ -141,7 +129,6 @@ class GDriveRemoteImageFolder(
         if (existing !== null) {
           database.delete(existing)
         }
-        onPendingSyncComplete(logInfo)
       }
       return
     }
@@ -155,10 +142,7 @@ class GDriveRemoteImageFolder(
           .addOnCompleteListener {
             notifyDriveData(fuid, id.name(), timestamp, true)
             contentFiles.remove(id)
-            onPendingSyncComplete(logInfo)
           }
-          .addOnFailureListener { onPendingSyncComplete(logInfo) }
-          .addOnCanceledListener { onPendingSyncComplete(logInfo) }
     }
   }
 }

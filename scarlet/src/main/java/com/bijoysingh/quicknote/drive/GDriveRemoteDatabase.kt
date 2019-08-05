@@ -23,7 +23,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.atomic.AtomicInteger
 
 const val FOLDER_NAME_IMAGES = "images"
 const val FOLDER_NAME_NOTES = "notes"
@@ -95,7 +94,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
   private var imageSync: GDriveRemoteImageFolder? = null
   private var syncing = HashMap<GDriveDataType, AtomicBoolean>()
   private var syncListener: IPendingUploadListener? = null
-  private var pendingSyncs: AtomicInteger = AtomicInteger(0)
   private var databaseUpdateLambda: () -> Unit = { verifyAndNotifyPendingStateChange() }
 
   fun init(helper: GDriveServiceHelper) {
@@ -120,7 +118,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
         database = gDriveDatabase!!,
         helper = helper,
         onPendingChange = { verifyAndNotifyPendingStateChange() },
-        onPendingSyncComplete = { action -> decrementPendingSyncs(action) },
         serialiser = { it },
         uuidToObject = {
           ApplicationBase.instance.notesDatabase().getByUUID(it)?.toExportedMarkdown()
@@ -130,7 +127,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
         database = gDriveDatabase!!,
         helper = helper,
         onPendingChange = { verifyAndNotifyPendingStateChange() },
-        onPendingSyncComplete = { action -> decrementPendingSyncs(action) },
         serialiser = { Gson().toJson(it) },
         uuidToObject = {
           ApplicationBase.instance.notesDatabase().getByUUID(it)?.getExportableNoteMeta()
@@ -140,7 +136,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
         database = gDriveDatabase!!,
         helper = helper,
         onPendingChange = { verifyAndNotifyPendingStateChange() },
-        onPendingSyncComplete = { action -> decrementPendingSyncs(action) },
         serialiser = { Gson().toJson(it) },
         uuidToObject = {
           ApplicationBase.instance.tagsDatabase().getByUUID(it)?.getExportableTag()
@@ -150,7 +145,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
         database = gDriveDatabase!!,
         helper = helper,
         onPendingChange = { verifyAndNotifyPendingStateChange() },
-        onPendingSyncComplete = { action -> decrementPendingSyncs(action) },
         serialiser = { Gson().toJson(it) },
         uuidToObject = {
           ApplicationBase.instance.foldersDatabase().getByUUID(it)?.getExportableFolder()
@@ -159,8 +153,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
         dataType = GDriveDataType.IMAGE,
         database = gDriveDatabase!!,
         helper = helper,
-        onPendingChange = { verifyAndNotifyPendingStateChange() },
-        onPendingSyncComplete = { action -> decrementPendingSyncs(action) })
+        onPendingChange = { verifyAndNotifyPendingStateChange() })
 
     initRootFolder()
   }
@@ -208,16 +201,12 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
   }
 
   private fun initSubRootFolder(folderName: String, folderId: String) {
-    val logInfo = "initSubRootFolder($folderName, $folderId)"
-    log("GDriveRemote", logInfo)
-    incrementPendingSyncs(logInfo)
     when (folderName) {
       FOLDER_NAME_NOTES -> notesSync?.initContentFolderId(folderId) {
         if (!sGDriveFirstSyncNote) {
           GlobalScope.launch { resyncDataSync(GDriveDataType.NOTE) }
           sGDriveFirstSyncNote = true
         }
-        decrementPendingSyncs(logInfo)
       }
       FOLDER_NAME_NOTES_META -> {
         notesMetaSync?.initContentFolderId(folderId) {
@@ -225,7 +214,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
             GlobalScope.launch { resyncDataSync(GDriveDataType.NOTE_META) }
             sGDriveFirstSyncNoteMeta = true
           }
-          decrementPendingSyncs(logInfo)
         }
         notesMetaSync?.initDeletedFolderId(INVALID_FILE_ID) {}
       }
@@ -234,30 +222,27 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
           GlobalScope.launch { resyncDataSync(GDriveDataType.TAG) }
           sGDriveFirstSyncTag = true
         }
-        decrementPendingSyncs(logInfo)
       }
       FOLDER_NAME_FOLDERS -> foldersSync?.initContentFolderId(folderId) {
         if (!sGDriveFirstSyncFolder) {
           GlobalScope.launch { resyncDataSync(GDriveDataType.FOLDER) }
           sGDriveFirstSyncFolder = true
         }
-        decrementPendingSyncs(logInfo)
       }
       FOLDER_NAME_IMAGES -> imageSync?.initContentFolderId(folderId) {
         if (!sGDriveFirstSyncImage) {
           GlobalScope.launch { resyncDataSync(GDriveDataType.IMAGE) }
           sGDriveFirstSyncImage = true
         }
-        decrementPendingSyncs(logInfo)
       }
       FOLDER_NAME_DELETED_NOTES -> notesSync?.initDeletedFolderId(folderId) {
-        decrementPendingSyncs(logInfo)
+
       }
       FOLDER_NAME_DELETED_TAGS -> tagsSync?.initDeletedFolderId(folderId) {
-        decrementPendingSyncs(logInfo)
+
       }
       FOLDER_NAME_DELETED_FOLDERS -> foldersSync?.initDeletedFolderId(folderId) {
-        decrementPendingSyncs(logInfo)
+
       }
     }
   }
@@ -323,24 +308,16 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
 
       val pending = database.getAllPending().map { "type=${it.type}, uuid=${it.uuid}, fid=${it.fileId}" }.joinToString(separator = "\n")
       log("GDrive", "getPendingCount(${database.getPendingCount()})\n$pending")
+      notifyPendingSyncChange("verifyAndNotifyPendingStateChange")
       syncListener?.onPendingStateUpdate(currentPendingState)
     }
   }
 
-  @Synchronized
-  private fun decrementPendingSyncs(action: String) {
-    log("GDriveRemote", "pendingSync: decrement to ${pendingSyncs.get() - 1}, action: $action")
-    if (pendingSyncs.decrementAndGet() <= 0) {
-      pendingSyncs.set(0)
-      syncListener?.onPendingSyncsUpdate(false)
-    }
-  }
-
-  @Synchronized
-  private fun incrementPendingSyncs(action: String) {
-    log("GDriveRemote", "pendingSync: increment to ${pendingSyncs.get() + 1}, action: $action")
-    if (pendingSyncs.incrementAndGet() >= 1) {
-      syncListener?.onPendingSyncsUpdate(true)
+  fun notifyPendingSyncChange(action: String) {
+    val count = sSyncingCount.get()
+    when {
+      count <= 0 -> syncListener?.onPendingSyncsUpdate(false)
+      count >= 1 -> syncListener?.onPendingSyncsUpdate(true)
     }
   }
 
@@ -423,32 +400,31 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     }
 
     val logInfo = "insert(${type.name}, ${data.uuid})"
-    incrementPendingSyncs(logInfo)
     when (type) {
       GDriveDataType.NOTE -> {
         ApplicationBase.instance.notesDatabase().getByUUID(data.uuid)?.toExportedMarkdown()?.apply {
           notesSync?.insert(data.uuid, this)
-        } ?: decrementPendingSyncs(logInfo)
+        }
       }
       GDriveDataType.NOTE_META -> {
         ApplicationBase.instance.notesDatabase().getByUUID(data.uuid)?.getExportableNoteMeta()?.apply {
           notesMetaSync?.insert(data.uuid, this)
-        } ?: decrementPendingSyncs(logInfo)
+        }
       }
       GDriveDataType.TAG -> {
         ApplicationBase.instance.tagsDatabase().getByUUID(data.uuid)?.getExportableTag()?.apply {
           tagsSync?.insert(this.uuid, this)
-        } ?: decrementPendingSyncs(logInfo)
+        }
       }
       GDriveDataType.FOLDER -> {
         ApplicationBase.instance.foldersDatabase().getByUUID(data.uuid)?.getExportableFolder()?.apply {
           foldersSync?.insert(this.uuid, this)
-        } ?: decrementPendingSyncs(logInfo)
+        }
       }
       GDriveDataType.IMAGE -> {
         toImageUUID(data.uuid)?.apply {
           imageSync?.insert(this)
-        } ?: decrementPendingSyncs(logInfo)
+        }
       }
     }
   }
@@ -460,7 +436,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
 
     val logInfo = "remove(${type.name}, ${data.uuid})"
     log("GDriveRemote", logInfo)
-    incrementPendingSyncs(logInfo)
     val uuid = data.uuid
     when (type) {
       GDriveDataType.NOTE -> notesSync?.delete(uuid)
@@ -471,7 +446,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
         val imageUUID = toImageUUID(uuid)
         when {
           imageUUID !== null -> imageSync?.delete(imageUUID)
-          else -> decrementPendingSyncs(logInfo)
         }
       }
     }
@@ -487,9 +461,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
       return
     }
 
-    val logInfo = "onRemoteInsert(${type.name}, ${data.uuid})"
-    log("GDriveRemote", logInfo)
-    incrementPendingSyncs(logInfo)
     when (type) {
       GDriveDataType.NOTE -> {
         onRemoteInsertImpl(data.fileId) {
@@ -505,7 +476,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
             gDriveDbState.remoteDatabaseUpdate(GDriveDataType.NOTE, data.uuid, databaseUpdateLambda)
           } catch (exception: Exception) {
             maybeThrow(exception)
-            decrementPendingSyncs(logInfo)
           }
         }
       }
@@ -524,7 +494,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
             gDriveDbState.remoteDatabaseUpdate(GDriveDataType.NOTE_META, data.uuid, databaseUpdateLambda)
           } catch (exception: Exception) {
             maybeThrow(exception)
-            decrementPendingSyncs(logInfo)
           }
         }
       }
@@ -536,7 +505,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
             gDriveDbState.remoteDatabaseUpdate(GDriveDataType.TAG, data.uuid, databaseUpdateLambda)
           } catch (exception: Exception) {
             maybeThrow(exception)
-            decrementPendingSyncs(logInfo)
           }
         }
       }
@@ -548,7 +516,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
             gDriveDbState.remoteDatabaseUpdate(GDriveDataType.FOLDER, data.uuid, databaseUpdateLambda)
           } catch (exception: Exception) {
             maybeThrow(exception)
-            decrementPendingSyncs(logInfo)
           }
         }
       }
@@ -558,7 +525,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
           val imageFile = noteImagesFolder.getFile(imageUUID.noteUuid, imageUUID.imageUuid)
           if (imageFile.exists()) {
             gDriveDbState.remoteDatabaseUpdate(GDriveDataType.IMAGE, data.uuid, databaseUpdateLambda)
-            decrementPendingSyncs(logInfo)
             return
           }
 
@@ -566,7 +532,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
             if (it.result == true) {
               gDriveDbState.remoteDatabaseUpdate(GDriveDataType.IMAGE, data.uuid, databaseUpdateLambda)
             }
-            decrementPendingSyncs(logInfo)
           }
         }
       }
@@ -585,7 +550,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
 
     val logInfo = "onRemoteRemove(${type.name}, ${data.uuid})"
     log("GDriveRemote", logInfo)
-    incrementPendingSyncs(logInfo)
     when (type) {
       GDriveDataType.NOTE -> {
         IRemoteDatabaseUtils.onRemoteRemoveNote(context, data.uuid)
@@ -604,7 +568,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
       }
     }
     gDriveDbState.remoteDatabaseUpdate(type, data.uuid, databaseUpdateLambda)
-    decrementPendingSyncs(logInfo)
   }
 
   /**
@@ -617,7 +580,6 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
       if (data !== null) {
         onDataAvailable(data)
       }
-      decrementPendingSyncs("onRemoteInsertImpl")
     }
   }
 }
