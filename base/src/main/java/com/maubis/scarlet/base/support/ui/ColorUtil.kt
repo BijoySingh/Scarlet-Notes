@@ -6,6 +6,9 @@ import android.support.v4.graphics.ColorUtils
 object ColorUtil {
 
   fun isLightColored(color: Int): Boolean {
+    if (Color.alpha(color) < 100) {
+      return true
+    }
     return ColorUtils.calculateLuminance(color) > 0.4
   }
 

@@ -2,56 +2,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@drawable/widget_background"
-  android:orientation="vertical"
-  android:paddingBottom="2dp"
-  android:paddingTop="2dp">
+  android:background="@color/transparent"
+  android:orientation="vertical">
 
   <LinearLayout
+    android:id="@+id/widget_background"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp">
 
-    <ImageView
-      android:id="@+id/app_icon"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="@dimen/icon_size_xlarge"
-      android:padding="@dimen/spacing_small"
-      android:src="@drawable/app_icon_round" />
+    <ListView
+      android:id="@+id/list"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1" />
 
-    <TextView
-      android:id="@+id/toolbar_title"
-      android:layout_width="0dp"
-      android:layout_height="match_parent"
-      android:layout_weight="1"
-      android:background="@color/transparent"
-      android:ellipsize="end"
-      android:fontFamily="sans-serif"
-      android:gravity="center_vertical"
-      android:maxLines="1"
-      android:text="@string/recent_notes"
-      android:textColor="@color/light_secondary_text"
-      android:textSize="@dimen/font_size_xlarge" />
+    <LinearLayout
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
 
-    <ImageView
-      android:id="@+id/add_list"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="@dimen/icon_size_xlarge"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_list_white_48dp"
-      android:tint="@color/white" />
+      <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:padding="@dimen/spacing_small"
+        android:src="@drawable/app_icon_round" />
 
-    <ImageView
-      android:id="@+id/add_note"
-      android:layout_width="@dimen/icon_size_xlarge"
-      android:layout_height="@dimen/icon_size_xlarge"
-      android:padding="@dimen/spacing_xsmall"
-      android:src="@drawable/ic_add_new_note"
-      android:tint="@color/white" />
+      <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:text="@string/recent_notes"
+        android:textColor="@color/light_secondary_text"
+        android:textSize="@dimen/font_size_xlarge" />
+
+      <ImageView
+        android:id="@+id/add_list"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:padding="@dimen/spacing_xsmall"
+        android:src="@drawable/ic_list_white_48dp"
+        android:tint="@color/white" />
+
+      <ImageView
+        android:id="@+id/add_note"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:padding="@dimen/spacing_xsmall"
+        android:src="@drawable/ic_add_new_note"
+        android:tint="@color/white" />
+    </LinearLayout>
+
   </LinearLayout>
-
-  <ListView
-    android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
 </LinearLayout>

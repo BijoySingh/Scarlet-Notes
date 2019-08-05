@@ -361,6 +361,14 @@
 
   <string name="widget_option_show_trash_notes">Show Notes in Trash</string>
   <string name="widget_option_show_trash_notes_details">Allow notes in trash to be shown in home screen widgets</string>
+
+  <string name="widget_option_background_color" translatable="false">Widget Background</string>
+  <string name="widget_option_background_color_details" translatable="false">Choose the background color for the multi-notes widget</string>
+
+  <string name="widget_option_show_toolbar" translatable="false">Show Action Toolbar</string>
+  <string name="widget_option_show_toolbar_details" translatable="false">Multi-notes widget shows the toolbar</string>
+
+
   <!-- End: Widget Options Sheet -->
 
   <string name="home_option_faq_title">Help and Common Questions</string>

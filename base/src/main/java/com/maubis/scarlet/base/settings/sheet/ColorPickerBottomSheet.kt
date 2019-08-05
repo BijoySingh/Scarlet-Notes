@@ -34,7 +34,11 @@ object ColorPickerItemSpec {
     val row = Row.create(context)
         .alignItems(YogaAlign.CENTER)
         .child(RoundIcon.create(context)
-            .iconRes(if (isSelected) R.drawable.ic_done_white_48dp else R.drawable.ic_empty)
+            .iconRes(when {
+              isSelected -> R.drawable.ic_done_white_48dp
+              color == Color.TRANSPARENT -> R.drawable.icon_no_color
+              else -> R.drawable.ic_empty
+            })
             .bgColor(color)
             .showBorder(true)
             .iconColorRes(if (ColorUtil.isLightColored(color)) R.color.dark_tertiary_text else R.color.light_secondary_text)

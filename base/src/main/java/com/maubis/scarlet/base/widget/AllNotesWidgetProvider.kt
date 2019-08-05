@@ -14,6 +14,9 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.note.creation.activity.CreateListNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
+import com.maubis.scarlet.base.support.ui.visibility
+import com.maubis.scarlet.base.widget.sheet.sWidgetBackgroundColor
+import com.maubis.scarlet.base.widget.sheet.sWidgetShowToolbar
 
 
 const val STORE_KEY_ALL_NOTE_WIDGET = "all_note_widget"
@@ -33,6 +36,9 @@ class AllNotesWidgetProvider : AppWidgetProvider() {
       intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i])
       intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME))
       views.setRemoteAdapter(R.id.list, intent)
+
+      views.setInt(R.id.widget_background, "setBackgroundColor", sWidgetBackgroundColor)
+      views.setViewVisibility(R.id.toolbar, visibility(sWidgetShowToolbar))
 
       val noteIntent = Intent(context, ViewAdvancedNoteActivity::class.java)
       noteIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i])

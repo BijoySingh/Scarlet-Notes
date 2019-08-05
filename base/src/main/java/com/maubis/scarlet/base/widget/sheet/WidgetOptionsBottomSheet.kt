@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Intent
+import android.graphics.Color
 import com.facebook.litho.ComponentContext
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.MainActivity
@@ -14,11 +15,13 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.note.getFullTextForDirectMarkdownRender
+import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.widget.AllNotesWidgetProvider
 import com.maubis.scarlet.base.widget.NoteWidgetProvider
 import kotlinx.coroutines.GlobalScope
@@ -44,6 +47,16 @@ const val STORE_KEY_WIDGET_SHOW_TRASH_NOTES = "widget_show_trash_notes"
 var sWidgetShowDeletedNotes: Boolean
   get() = ApplicationBase.instance.store().get(STORE_KEY_WIDGET_SHOW_TRASH_NOTES, false)
   set(value) = ApplicationBase.instance.store().put(STORE_KEY_WIDGET_SHOW_TRASH_NOTES, value)
+
+const val STORE_KEY_WIDGET_BACKGROUND_COLOR = "widget_background_color"
+var sWidgetBackgroundColor: Int
+  get() = ApplicationBase.instance.store().get(STORE_KEY_WIDGET_BACKGROUND_COLOR, 0x65000000)
+  set(value) = ApplicationBase.instance.store().put(STORE_KEY_WIDGET_BACKGROUND_COLOR, value)
+
+const val STORE_KEY_WIDGET_SHOW_TOOLBAR = "widget_show_toolbar"
+var sWidgetShowToolbar: Boolean
+  get() = ApplicationBase.instance.store().get(STORE_KEY_WIDGET_SHOW_TOOLBAR, true)
+  set(value) = ApplicationBase.instance.store().put(STORE_KEY_WIDGET_SHOW_TOOLBAR, value)
 
 fun getWidgetNoteText(note: Note): CharSequence {
   if (note.locked && !sWidgetShowLockedNotes) {
@@ -125,12 +138,42 @@ class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
         isSelectable = true,
         selected = sWidgetShowDeletedNotes
     ))
+    options.add(LithoOptionsItem(
+        title = R.string.widget_option_show_toolbar,
+        subtitle = R.string.widget_option_show_toolbar_details,
+        icon = R.drawable.ic_action_grid,
+        listener = {
+          sWidgetShowToolbar = !sWidgetShowToolbar
+          notifyAllNotesConfigChanged(activity)
+          reset(activity, dialog)
+        },
+        isSelectable = true,
+        selected = sWidgetShowToolbar
+    ))
+    options.add(LithoOptionsItem(
+        title = R.string.widget_option_background_color,
+        subtitle = R.string.widget_option_background_color_details,
+        icon = R.drawable.ic_action_color,
+        listener = {
+          openSheet(activity, ColorPickerBottomSheet().apply {
+            config = ColorPickerDefaultController(
+                title = R.string.widget_option_background_color,
+                selectedColor = sWidgetBackgroundColor,
+                colors = listOf(intArrayOf(Color.TRANSPARENT, Color.WHITE, Color.LTGRAY, 0x65000000, Color.DKGRAY, Color.BLACK)),
+                onColorSelected = {
+                  sWidgetBackgroundColor = it
+                  notifyAllNotesConfigChanged(activity)
+                },
+                columns = 6)
+          })
+        }
+    ))
     return options
   }
 
   fun notifyWidgetConfigChanged(activity: MainActivity) {
     GlobalScope.launch {
-      val broadcastIntent = GlobalScope.async {
+      val singleNoteBroadcastIntent = GlobalScope.async {
         val application: Application = activity.applicationContext as Application
         val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(
             ComponentName(application, NoteWidgetProvider::class.java))
@@ -142,7 +185,24 @@ class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
       }
 
       AllNotesWidgetProvider.notifyAllChanged(activity)
-      activity.sendBroadcast(broadcastIntent.await())
+      activity.sendBroadcast(singleNoteBroadcastIntent.await())
+    }
+  }
+
+  fun notifyAllNotesConfigChanged(activity: MainActivity) {
+    GlobalScope.launch {
+      val allNotesBroadcastIntent = GlobalScope.async {
+        val application: Application = activity.applicationContext as Application
+        val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(
+            ComponentName(application, AllNotesWidgetProvider::class.java))
+
+        val intent = Intent(application, AllNotesWidgetProvider::class.java)
+        intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+        intent
+      }
+
+      activity.sendBroadcast(allNotesBroadcastIntent.await())
     }
   }
 }
