@@ -19,6 +19,9 @@ class ScarletTagActor(tag: Tag) : MaterialTagActor(tag) {
 
   override fun delete() {
     super.delete()
-    gDriveDbState?.notifyRemove(tag, notifyChange)
+    when {
+      gDrive?.isValid() == true -> gDriveDbState?.notifyRemove(tag, notifyChange)
+      else -> gDriveDbState?.stopTrackingItem(tag, notifyChange)
+    }
   }
 }

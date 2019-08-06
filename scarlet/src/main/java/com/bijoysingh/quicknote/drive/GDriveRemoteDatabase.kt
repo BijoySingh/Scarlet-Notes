@@ -158,6 +158,10 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     initRootFolder()
   }
 
+  fun isValid(): Boolean {
+    return isValidController
+  }
+
   fun reset() {
     isValidController = false
     driveHelper = null
@@ -370,21 +374,22 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
         continue
       }
 
-      log("GDrive", "resyncDataSync(${type.name}, ${pendingItem.uuid}, ${pendingItem.lastUpdateTimestamp}, ${pendingItem.gDriveUpdateTimestamp})")
       val sameDelete = pendingItem.localStateDeleted == pendingItem.gDriveStateDeleted
       val localDeleted = pendingItem.localStateDeleted
       val remoteDeleted = pendingItem.gDriveStateDeleted
       val sameUpdateTime = pendingItem.lastUpdateTimestamp == pendingItem.gDriveUpdateTimestamp
-      if (!sameUpdateTime || !sameUpdateTime) {
-        when {
-          !sameDelete && remoteDeleted && !sameUpdateTime -> onRemoteRemove(type, pendingItem) // Remote removal more takes precedence to local updates
-          !sameDelete && localDeleted && !sameUpdateTime -> remove(type, pendingItem) // Local removal more takes precedence to remote updates
-          sameDelete && pendingItem.lastUpdateTimestamp > pendingItem.gDriveUpdateTimestamp && localDeleted -> remove(type, pendingItem)
-          sameDelete && pendingItem.lastUpdateTimestamp > pendingItem.gDriveUpdateTimestamp -> insert(type, pendingItem)
-          sameDelete && pendingItem.lastUpdateTimestamp > pendingItem.gDriveUpdateTimestamp && localDeleted -> onRemoteRemove(type, pendingItem)
-          sameDelete && pendingItem.lastUpdateTimestamp < pendingItem.gDriveUpdateTimestamp -> onRemoteInsert(type, pendingItem)
-          !sameDelete && sameUpdateTime -> gDriveDbState.remoteDatabaseUpdate(type, pendingItem.uuid, databaseUpdateLambda) // Ignoring
-        }
+      val isLocalMoreRecent = pendingItem.lastUpdateTimestamp > pendingItem.gDriveUpdateTimestamp
+      val isRemoteMoreRecent = pendingItem.lastUpdateTimestamp < pendingItem.gDriveUpdateTimestamp
+      when {
+        sameUpdateTime -> gDriveDbState.remoteDatabaseUpdate(type, pendingItem.uuid, databaseUpdateLambda)
+        !sameDelete && isRemoteMoreRecent && remoteDeleted -> onRemoteRemove(type, pendingItem)
+        !sameDelete && isLocalMoreRecent && localDeleted -> remove(type, pendingItem)
+        !sameDelete && isLocalMoreRecent && remoteDeleted -> insert(type, pendingItem)
+        !sameDelete && isRemoteMoreRecent && localDeleted -> onRemoteInsert(type, pendingItem)
+        sameDelete && isLocalMoreRecent && localDeleted -> remove(type, pendingItem)
+        sameDelete && isLocalMoreRecent && !localDeleted -> insert(type, pendingItem)
+        sameDelete && isRemoteMoreRecent && localDeleted -> onRemoteRemove(type, pendingItem)
+        sameDelete && isRemoteMoreRecent && !localDeleted -> onRemoteInsert(type, pendingItem)
       }
     }
     syncing[type]?.set(false)

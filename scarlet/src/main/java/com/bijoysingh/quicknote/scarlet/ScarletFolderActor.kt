@@ -18,6 +18,9 @@ class ScarletFolderActor(folder: Folder) : MaterialFolderActor(folder) {
 
   override fun delete() {
     super.delete()
-    gDriveDbState?.notifyRemove(folder, notifyChange)
+    when {
+      gDrive?.isValid() == true -> gDriveDbState?.notifyRemove(folder, notifyChange)
+      else -> gDriveDbState?.stopTrackingItem(folder, notifyChange)
+    }
   }
 }
