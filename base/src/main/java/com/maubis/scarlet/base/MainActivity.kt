@@ -15,6 +15,7 @@ import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.auth.IPendingUploadListener
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.database.room.note.Note
@@ -46,7 +47,7 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
-import com.maubis.scarlet.base.support.SearchConfig
+import com.maubis.scarlet.base.support.*
 import com.maubis.scarlet.base.support.database.HouseKeeperJob
 import com.maubis.scarlet.base.support.database.Migrator
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
@@ -54,9 +55,6 @@ import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.unifiedFolderSearchSynchronous
-import com.maubis.scarlet.base.support.unifiedSearchSynchronous
 import com.maubis.scarlet.base.support.utils.shouldShowWhatsNewSheet
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_toolbar_main.*
@@ -271,20 +269,25 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   private suspend fun unifiedSearchSynchronous(): List<RecyclerItem> {
     val allItems = emptyList<RecyclerItem>().toMutableList()
-    allItems.addAll(unifiedFolderSearchSynchronous(config)
+    if (config.folders.isNotEmpty()) {
+      val allNotes = unifiedSearchSynchronous(config)
+      allItems.addAll(filterOutFolders(allNotes)
+          .map { GlobalScope.async(Dispatchers.IO) { NoteRecyclerItem(this@MainActivity, it) } }
+          .map { it.await() })
+      return allItems
+    }
+
+    val allNotes = unifiedSearchWithoutFolder(config)
+    val directAcceptableFolders = filterDirectlyValidFolders(config)
+    allItems.addAll(CoreConfig.foldersDb.getAll()
         .map {
           GlobalScope.async(Dispatchers.IO) {
-            var notesCount = -1
-            if (config.hasFilter()) {
-              val folderConfig = config.copy()
-              folderConfig.folders.clear()
-              folderConfig.folders.add(it)
-              notesCount = unifiedSearchSynchronous(folderConfig).size
-              if (notesCount == 0) {
-                return@async null
-              }
-              folderConfig.folders.clear()
+            val isDirectFolder = directAcceptableFolders.contains(it)
+            val notesCount = filterFolder(allNotes, it).size
+            if (config.hasFilter() && notesCount == 0 && !isDirectFolder) {
+              return@async null
             }
+
             FolderRecyclerItem(
                 context = this@MainActivity,
                 folder = it,
@@ -303,7 +306,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
         }
         .map { it.await() }
         .filterNotNull())
-    allItems.addAll(unifiedSearchSynchronous(config)
+    allItems.addAll(filterOutFolders(allNotes)
         .map { GlobalScope.async(Dispatchers.IO) { NoteRecyclerItem(this@MainActivity, it) } }
         .map { it.await() })
     return allItems
