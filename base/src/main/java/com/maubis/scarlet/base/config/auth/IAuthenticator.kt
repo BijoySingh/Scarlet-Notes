@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base.config.auth
 
 import android.content.Context
+import com.maubis.scarlet.base.support.ui.ThemedActivity
 
 interface IAuthenticator {
 
@@ -21,6 +22,8 @@ interface IAuthenticator {
   fun openLogoutActivity(context: Context): Runnable?
 
   fun setPendingUploadListener(listener: IPendingUploadListener?)
+
+  fun showPendingSync(activity: ThemedActivity)
 
   fun requestSync(forced: Boolean)
 

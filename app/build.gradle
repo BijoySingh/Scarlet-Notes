@@ -12,8 +12,8 @@ android {
         applicationId "com.bijoysingh.quicknote"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 140
-        versionName '7.0.10'
+        versionCode 141
+        versionName '7.0.11'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

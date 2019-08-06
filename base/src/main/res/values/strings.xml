@@ -376,6 +376,13 @@
 
   <string name="home_syncing_top_layout">Syncing</string>
   <string name="home_pending_backup_top_layout">Pending Backup</string>
+  <string name="pending_backup_local_state" translatable="false">Local</string>
+  <string name="pending_backup_remote_state" translatable="false">Remote</string>
+
+  <string name="pending_backup_state_unavailable" translatable="false">Unavailable</string>
+  <string name="pending_backup_state_created" translatable="false">Created</string>
+  <string name="pending_backup_state_deleted" translatable="false">Deleted</string>
+  <string name="pending_backup_state_updated" translatable="false">Updated</string>
 
   <!-- Start: Internal Settings Strings -->
   <string name="internal_settings_title">Developer Options</string>

@@ -1,8 +1,10 @@
 package com.maubis.scarlet.base.config.auth
 
 import android.content.Context
+import com.maubis.scarlet.base.support.ui.ThemedActivity
 
 class NullAuthenticator : IAuthenticator {
+
   override fun openLoginActivity(context: Context): Runnable? = null
 
   override fun openForgetMeActivity(context: Context): Runnable? = null
@@ -24,4 +26,6 @@ class NullAuthenticator : IAuthenticator {
   override fun setPendingUploadListener(listener: IPendingUploadListener?) {}
 
   override fun requestSync(forced: Boolean) {}
+
+  override fun showPendingSync(activity: ThemedActivity) {}
 }

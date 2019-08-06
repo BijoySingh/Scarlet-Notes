@@ -367,6 +367,11 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
                   instance.authenticator().requestSync(true)
                 }
               }
+              .onLongClick {
+                if (!lastSyncHappening.get()) {
+                  instance.authenticator().showPendingSync(this@MainActivity)
+                }
+              }
               .build()))
       if (!isSyncHappening && isSyncPending) {
         instance.authenticator().requestSync(false)

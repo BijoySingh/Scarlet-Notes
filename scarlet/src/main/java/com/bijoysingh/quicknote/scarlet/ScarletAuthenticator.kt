@@ -5,15 +5,14 @@ import android.content.Intent
 import com.bijoysingh.quicknote.Scarlet
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.database.gDriveDatabase
-import com.bijoysingh.quicknote.drive.GDriveAuthenticator
-import com.bijoysingh.quicknote.drive.GDriveLoginActivity
-import com.bijoysingh.quicknote.drive.GDriveLogoutActivity
-import com.bijoysingh.quicknote.drive.GDriveRemoteDatabaseState
+import com.bijoysingh.quicknote.drive.*
 import com.bijoysingh.quicknote.firebase.activity.FirebaseRemovalActivity
 import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
 import com.bijoysingh.quicknote.firebase.support.FirebaseAuthenticator
 import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.auth.IPendingUploadListener
+import com.maubis.scarlet.base.support.sheets.openSheet
+import com.maubis.scarlet.base.support.ui.ThemedActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -94,5 +93,11 @@ class ScarletAuthenticator() : IAuthenticator {
 
   override fun openLogoutActivity(context: Context) = Runnable {
     context.startActivity(Intent(context, GDriveLogoutActivity::class.java))
+  }
+
+  override fun showPendingSync(activity: ThemedActivity) {
+    if (shouldIgnoreFirebase()) {
+      openSheet(activity, GDrivePendingBottomSheet())
+    }
   }
 }

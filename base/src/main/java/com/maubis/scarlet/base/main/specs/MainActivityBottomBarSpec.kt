@@ -24,7 +24,10 @@ import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.note.folder.sheet.CreateOrEditFolderBottomSheet
 import com.maubis.scarlet.base.support.sheets.openSheet
-import com.maubis.scarlet.base.support.specs.*
+import com.maubis.scarlet.base.support.specs.EmptySpec
+import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
+import com.maubis.scarlet.base.support.specs.bottomBarCard
+import com.maubis.scarlet.base.support.specs.bottomBarRoundIcon
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import kotlinx.coroutines.Dispatchers
@@ -214,8 +217,9 @@ object MainActivitySyncingNowSpec {
             .alignContent(YogaAlign.CENTER)
             .paddingDip(YogaEdge.VERTICAL, 8f)
             .paddingDip(YogaEdge.HORIZONTAL, 12f)
-            .backgroundRes(R.drawable.login_button_disabled)
+            .backgroundRes(R.drawable.secondary_rounded_bg)
             .clickHandler(MainActivitySyncingNow.onClickEvent(context))
+            .longClickHandler(MainActivitySyncingNow.onLongClickEvent(context))
             .child(syncIcon)
             .child(Text.create(context)
                 .typeface(FONT_MONSERRAT)
@@ -228,5 +232,11 @@ object MainActivitySyncingNowSpec {
   @OnEvent(ClickEvent::class)
   fun onClickEvent(context: ComponentContext, @Prop onClick: () -> Unit) {
     onClick()
+  }
+
+  @OnEvent(LongClickEvent::class)
+  fun onLongClickEvent(context: ComponentContext, @Prop onLongClick: () -> Unit): Boolean {
+    onLongClick()
+    return true
   }
 }
