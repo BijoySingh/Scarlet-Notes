@@ -253,15 +253,16 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
     })
   }
 
-  fun removeFileOrFolder(fileUid: String): Task<Void?> {
+  fun removeFileOrFolder(fileUid: String): Task<Boolean?> {
     log("GDrive", "removeFileOrFolder($fileUid)")
-    return execute("removeFileOrFolder", Callable<Void> {
+    return execute("removeFileOrFolder", Callable<Boolean> {
       try {
         mDriveService.files().delete(fileUid).execute()
+        true
       } catch (exception: Exception) {
         maybeThrow(exception)
+        false
       }
-      null
     })
   }
 

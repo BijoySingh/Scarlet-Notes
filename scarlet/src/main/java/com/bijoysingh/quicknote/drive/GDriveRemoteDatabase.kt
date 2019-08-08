@@ -399,13 +399,14 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
    * Core Data Functions
    */
 
+  @Suppress("IMPLICIT_CAST_TO_ANY")
   private fun insert(type: GDriveDataType, data: GDriveUploadData) {
     if (!isValidController) {
       return
     }
 
     val logInfo = "insert(${type.name}, ${data.uuid})"
-    when (type) {
+    val localItem = when (type) {
       GDriveDataType.NOTE -> {
         ApplicationBase.instance.notesDatabase().getByUUID(data.uuid)?.toExportedMarkdown()?.apply {
           notesSync?.insert(data.uuid, this)
@@ -427,10 +428,18 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
         }
       }
       GDriveDataType.IMAGE -> {
-        toImageUUID(data.uuid)?.apply {
-          imageSync?.insert(this)
+        val imageUUID = toImageUUID(data.uuid)
+        if (imageUUID !== null && noteImagesFolder.getFile(imageUUID.noteUuid, imageUUID.imageUuid).exists()) {
+          imageSync?.insert(imageUUID)
+          imageUUID
+        } else {
+          null
         }
       }
+    }
+
+    if (localItem === null) {
+      gDriveDbState.localDatabaseRemove(type, data.uuid, {})
     }
   }
 

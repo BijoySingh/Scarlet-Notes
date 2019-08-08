@@ -55,10 +55,6 @@ fun Note.getFullTextForDirectMarkdownRender(): String {
 
 fun Note.getMarkdownForListView(): CharSequence {
   var text = getFullTextForDirectMarkdownRender()
-  if (sInternalShowUUID) {
-    text = "`$uuid`\n\n$text"
-  }
-
   if (sMarkdownEnabledHome) {
     return markdownFormatForList(text)
   }

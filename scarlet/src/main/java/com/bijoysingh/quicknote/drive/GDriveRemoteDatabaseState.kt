@@ -113,25 +113,12 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
    * in case the user logs out and the data is deleted
    */
   fun stopTrackingItem(data: Any, onExecution: () -> Unit) {
-    val removeFromDatabase = { itemType: GDriveDataType, itemUUID: String ->
-      GlobalScope.launch {
-        val database = gDriveDatabase
-        if (database !== null) {
-          val existing = database.getByUUID(itemType.name, itemUUID)
-          if (existing !== null) {
-            database.delete(existing)
-          }
-        }
-        onExecution()
-      }
-    }
-
     when {
-      data is Tag -> removeFromDatabase(GDriveDataType.TAG, data.uuid)
-      data is Folder -> removeFromDatabase(GDriveDataType.FOLDER, data.uuid)
+      data is Tag -> localDatabaseRemove(GDriveDataType.TAG, data.uuid, onExecution)
+      data is Folder -> localDatabaseRemove(GDriveDataType.FOLDER, data.uuid, onExecution)
       data is Note -> {
-        removeFromDatabase(GDriveDataType.NOTE, data.uuid)
-        removeFromDatabase(GDriveDataType.NOTE_META, data.uuid)
+        localDatabaseRemove(GDriveDataType.NOTE, data.uuid, onExecution)
+        localDatabaseRemove(GDriveDataType.NOTE_META, data.uuid, onExecution)
       }
       else -> maybeThrow("removeFromDb called with unhandled data type")
     }
@@ -205,6 +192,22 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
         lastUpdateTimestamp = Math.max(Math.max(gDriveUpdateTimestamp + 1, lastUpdateTimestamp + 1), getTrueCurrentTime())
         localStateDeleted = removed
         save(database)
+      }
+      onExecution()
+    }
+  }
+
+  fun localDatabaseRemove(
+      itemType: GDriveDataType,
+      itemUUID: String,
+      onExecution: () -> Unit) {
+    GlobalScope.launch {
+      val database = gDriveDatabase
+      if (database !== null) {
+        val existing = database.getByUUID(itemType.name, itemUUID)
+        if (existing !== null) {
+          database.delete(existing)
+        }
       }
       onExecution()
     }

@@ -217,7 +217,7 @@ object MainActivitySyncingNowSpec {
             .alignContent(YogaAlign.CENTER)
             .paddingDip(YogaEdge.VERTICAL, 8f)
             .paddingDip(YogaEdge.HORIZONTAL, 12f)
-            .backgroundRes(R.drawable.secondary_rounded_bg)
+            .backgroundRes(R.drawable.pending_sync_capsule)
             .clickHandler(MainActivitySyncingNow.onClickEvent(context))
             .longClickHandler(MainActivitySyncingNow.onLongClickEvent(context))
             .child(syncIcon)
@@ -225,7 +225,7 @@ object MainActivitySyncingNowSpec {
                 .typeface(FONT_MONSERRAT)
                 .textRes(syncText)
                 .textSizeRes(R.dimen.font_size_normal)
-                .textColor(colorConfig.toolbarIconColor)))
+                .textColorRes(R.color.light_secondary_text)))
     return row.build()
   }
 
