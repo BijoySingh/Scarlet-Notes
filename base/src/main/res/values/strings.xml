@@ -220,6 +220,13 @@
   <string name="whats_new_subtitle">Know what is new in the recent updates of the app</string>
   <string name="whats_new_translate">Translate</string>
 
+  <string name="whats_new_sheet_google_drive" translatable="false">Sign In with Drive. More Privacy.</string>
+  <string name="whats_new_sheet_photo_sync" translatable="false">Now Photos are Synced too.</string>
+  <string name="whats_new_sheet_app_lock" translatable="false">App Lock and Single Unlock.</string>
+  <string name="whats_new_sheet_more_languages" translatable="false">More Languages Supported.</string>
+  <string name="whats_new_sheet_widget" translatable="false">More Widget Settings.</string>
+  <string name="whats_new_sheet_selection" translatable="false">Easier Note Selection.</string>
+
   <string name="format_action_copy">Copy</string>
   <string name="format_action_title">Block Text Actions</string>
   <string name="format_action_gallery">Gallery</string>

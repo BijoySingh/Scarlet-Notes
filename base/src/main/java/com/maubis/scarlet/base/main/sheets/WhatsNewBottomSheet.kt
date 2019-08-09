@@ -1,20 +1,28 @@
 package com.maubis.scarlet.base.main.sheets
 
 import android.app.Dialog
-import android.content.Intent
-import android.net.Uri
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.text.Layout
 import com.facebook.litho.Column
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
+import com.facebook.litho.annotations.LayoutSpec
+import com.facebook.litho.annotations.OnCreateLayout
+import com.facebook.litho.annotations.Prop
+import com.facebook.litho.annotations.ResType
+import com.facebook.litho.widget.Image
 import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaEdge
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
-import com.maubis.scarlet.base.support.specs.BottomSheetBar
+import com.maubis.scarlet.base.support.specs.*
+import com.maubis.scarlet.base.support.ui.LithoCircleDrawable
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 class WhatsNewBottomSheet : LithoBottomSheet() {
@@ -31,58 +39,35 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 16f)
             .text(WHATS_NEW_DETAILS_SUBTITLE)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
-        .child(Text.create(componentContext)
-            .textSizeRes(R.dimen.font_size_xlarge)
-            .marginDip(YogaEdge.BOTTOM, 4f)
-            .text(WHATS_NEW_DETAILS_NEW_FEATURES_TITLE)
             .typeface(FONT_MONSERRAT)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
-        .child(Text.create(componentContext)
-            .textSizeRes(R.dimen.font_size_large)
-            .marginDip(YogaEdge.BOTTOM, 16f)
-            .text(Markdown.render(WHATS_NEW_DETAILS_NEW_FEATURES_MD, true))
             .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
-        .child(Text.create(componentContext)
-            .textSizeRes(R.dimen.font_size_xlarge)
-            .marginDip(YogaEdge.BOTTOM, 4f)
-            .text(WHATS_NEW_DETAILS_COMING_SOON_TITLE)
-            .typeface(FONT_MONSERRAT)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECTION_HEADER)))
-        .child(Text.create(componentContext)
-            .textSizeRes(R.dimen.font_size_large)
-            .marginDip(YogaEdge.BOTTOM, 16f)
-            .text(Markdown.render(WHATS_NEW_DETAILS_COMING_SOON_MD, true))
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+        .child(GridSectionView.create(componentContext)
+            .maxLines(3)
+            .numColumns(2)
+            .iconSizeRes(R.dimen.ultra_large_round_icon_size)
+            .section(GridSectionItem(options = listOf(
+                GridSectionOptionItem(R.drawable.gdrive_icon, R.string.whats_new_sheet_google_drive, {}),
+                GridSectionOptionItem(R.drawable.ic_image_gallery, R.string.whats_new_sheet_photo_sync, {}),
+                GridSectionOptionItem(R.drawable.ic_action_lock, R.string.whats_new_sheet_app_lock, {}),
+                GridSectionOptionItem(R.drawable.ic_action_select, R.string.whats_new_sheet_selection, {}),
+                GridSectionOptionItem(R.drawable.icon_widget, R.string.whats_new_sheet_widget, {}),
+                GridSectionOptionItem(R.drawable.ic_image_gallery, R.string.whats_new_sheet_more_languages, {})
+            )))
+            .showSeparator(false))
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(R.string.import_export_layout_exporting_done)
             .onPrimaryClick {
               dismiss()
             }
-            .onSecondaryClick {
-              val url = GOOGLE_TRANSLATE_URL + "en/" + Uri.encode(WHATS_NEW_DETAILS_NEW_FEATURES_MD)
-              startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-              dismiss()
-            }
-            .secondaryActionRes(R.string.whats_new_translate)
             .paddingDip(YogaEdge.VERTICAL, 8f))
     return component.build()
   }
 
   companion object {
-    val WHATS_NEW_UID = 10
-    val GOOGLE_TRANSLATE_URL = "https://translate.google.com/#auto/"
+    val WHATS_NEW_UID = 11
 
     val WHATS_NEW_DETAILS_SUBTITLE = "A lot has changed in this update, here is a summary of those changes."
     val WHATS_NEW_DETAILS_NEW_FEATURES_TITLE = "New Features"
-    val WHATS_NEW_DETAILS_COMING_SOON_TITLE = "Coming Soon"
-    val WHATS_NEW_DETAILS_NEW_FEATURES_MD =
-        "- **Checked Items:** You can now enable / disable checked items from moving down when checked.\n\n" +
-        "- **Bug Fixes:** This release fixes multiple crash issues throughout the application.\n\n" +
-            "Even more little things which help you enjoy using this app everyday"
-    val WHATS_NEW_DETAILS_COMING_SOON_MD =
-        "- **Google Drive Based Sync:** We are building a secure and private Google Drive based sync\n\n" +
-            "- **Photo Sync:** Drive sync will also allow syncing photos between devices as well.\n\n"
 
 
   }

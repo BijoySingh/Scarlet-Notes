@@ -271,7 +271,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     val allItems = emptyList<RecyclerItem>().toMutableList()
     if (config.folders.isNotEmpty()) {
       val allNotes = unifiedSearchSynchronous(config)
-      allItems.addAll(filterOutFolders(allNotes)
+      allItems.addAll(allNotes
           .map { GlobalScope.async(Dispatchers.IO) { NoteRecyclerItem(this@MainActivity, it) } }
           .map { it.await() })
       return allItems

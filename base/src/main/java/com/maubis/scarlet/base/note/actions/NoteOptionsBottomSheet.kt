@@ -261,12 +261,16 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         }
     ))
     options.add(OptionsItem(
-        title = if (note.pinned) R.string.unpin_note else R.string.pin_note,
-        subtitle = if (note.pinned) R.string.unpin_note else R.string.pin_note,
-        icon = R.drawable.ic_pin,
+        title = if (note.folder.isBlank()) R.string.folder_option_add_to_notebook else R.string.folder_option_change_notebook,
+        subtitle = R.string.folder_option_add_to_notebook,
+        icon = R.drawable.ic_folder,
         listener = View.OnClickListener {
-          note.pinned = !note.pinned
-          activity.updateNote(note)
+          com.maubis.scarlet.base.support.sheets.openSheet(activity, FolderChooserBottomSheet().apply {
+            this.note = note
+            this.dismissListener = {
+              activity.notifyResetOrDismiss()
+            }
+          })
           dismiss()
         }
     ))
@@ -308,16 +312,12 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
     val options = ArrayList<OptionsItem>()
     options.add(OptionsItem(
-        title = if (note.folder.isBlank()) R.string.folder_option_add_to_notebook else R.string.folder_option_change_notebook,
-        subtitle = R.string.folder_option_add_to_notebook,
-        icon = R.drawable.ic_folder,
+        title = if (note.pinned) R.string.unpin_note else R.string.pin_note,
+        subtitle = if (note.pinned) R.string.unpin_note else R.string.pin_note,
+        icon = R.drawable.ic_pin,
         listener = View.OnClickListener {
-          com.maubis.scarlet.base.support.sheets.openSheet(activity, FolderChooserBottomSheet().apply {
-            this.note = note
-            this.dismissListener = {
-              activity.notifyResetOrDismiss()
-            }
-          })
+          note.pinned = !note.pinned
+          activity.updateNote(note)
           dismiss()
         }
     ))

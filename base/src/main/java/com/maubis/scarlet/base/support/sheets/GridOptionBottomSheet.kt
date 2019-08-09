@@ -5,6 +5,7 @@ import com.facebook.litho.Column
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.yoga.YogaEdge
+import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.support.specs.GridSectionItem
 import com.maubis.scarlet.base.support.specs.GridSectionView
 
@@ -28,6 +29,7 @@ abstract class GridOptionBottomSheet : LithoBottomSheet() {
           GridSectionView.create(componentContext)
               .marginDip(YogaEdge.HORIZONTAL, 12f)
               .marginDip(YogaEdge.VERTICAL, 8f)
+              .iconSizeRes(R.dimen.primary_round_icon_size)
               .showSeparator(index != options.size)
               .section(it))
     }

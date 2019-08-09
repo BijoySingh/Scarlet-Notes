@@ -34,6 +34,8 @@ object GridOptionSpec {
       @Prop solidSectionColor: Boolean,
       @Prop(resType = ResType.COLOR) labelColor: Int,
       @Prop(resType = ResType.COLOR) iconColor: Int,
+      @Prop(resType = ResType.DIMEN_SIZE) iconSize: Int,
+      @Prop(resType = ResType.COLOR) maxLines: Int,
       @Prop(resType = ResType.COLOR) sectionColor: Int): Component {
     return Column.create(context)
         .alignItems(YogaAlign.CENTER)
@@ -45,7 +47,7 @@ object GridOptionSpec {
                 .bgColor(sectionColor)
                 .iconColor(iconColor)
                 .iconRes(option.icon)
-                .iconSizeRes(R.dimen.primary_round_icon_size)
+                .iconSizePx(iconSize)
                 .iconPaddingRes(R.dimen.primary_round_icon_padding)
                 .iconMarginVerticalRes(R.dimen.toolbar_round_icon_margin_vertical)
                 .iconMarginHorizontalRes(R.dimen.toolbar_round_icon_margin_horizontal)
@@ -59,8 +61,8 @@ object GridOptionSpec {
             .textSizeRes(R.dimen.font_size_small)
             .paddingDip(YogaEdge.VERTICAL, 8f)
             .paddingDip(YogaEdge.HORIZONTAL, 16f)
-            .minLines(2)
-            .maxLines(2)
+            .minLines(maxLines)
+            .maxLines(maxLines)
             .ellipsize(TextUtils.TruncateAt.END)
             .textColor(labelColor))
         .clickHandler(GridOption.onClick(context))
@@ -79,7 +81,10 @@ object GridSectionViewSpec {
   fun onCreate(
       context: ComponentContext,
       @Prop section: GridSectionItem,
-      @Prop showSeparator: Boolean): Component {
+      @Prop(resType = ResType.DIMEN_SIZE) iconSize: Int,
+      @Prop(optional = true) numColumns: Int?,
+      @Prop(optional = true) maxLines: Int?,
+      @Prop(optional = true) showSeparator: Boolean?): Component {
     val column = Column.create(context)
     val primaryColor = instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
 
@@ -106,6 +111,8 @@ object GridSectionViewSpec {
             .flexBasisDip(1f)
             .solidSectionColor(section.sectionColor != 0)
             .labelColor(primaryColor)
+            .maxLines(maxLines ?: 2)
+            .iconSizePx(iconSize)
             .iconColor(if (section.sectionColor == 0) primaryColor else Color.WHITE)
             .sectionColor(if (section.sectionColor == 0) primaryColor else section.sectionColor)
             .option(visibleOptions[index])
@@ -113,6 +120,7 @@ object GridSectionViewSpec {
       }
     }
 
+    val numberOfColumns = numColumns ?: 3
     var index = 0
     while (true) {
       val row = Row.create(context)
@@ -121,14 +129,14 @@ object GridSectionViewSpec {
         break
       }
 
-      for (delta in 0..2) {
+      for (delta in 0..(numberOfColumns - 1)) {
         row.child(getComponentAtIndex(index))
         index += 1
       }
       column.child(row)
     }
 
-    if (showSeparator) {
+    if (showSeparator == true) {
       column.child(SolidColor.create(context)
           .color(instance.themeController().get(ThemeColorType.PRIMARY_TEXT))
           .heightDip(1.5f)

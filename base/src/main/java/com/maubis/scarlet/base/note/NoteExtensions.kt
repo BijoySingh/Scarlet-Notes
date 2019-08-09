@@ -1,5 +1,6 @@
 package com.maubis.scarlet.base.note
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import com.github.bijoysingh.starter.util.DateFormatter
@@ -28,6 +29,9 @@ import com.maubis.scarlet.base.settings.sheet.sSecurityAppLockEnabled
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import java.util.*
 import kotlin.collections.ArrayList
+import android.support.v4.app.ActivityOptionsCompat
+
+
 
 fun Note.log(): String {
   val log = HashMap<String, Any>()
@@ -254,10 +258,15 @@ fun Note.edit(context: Context) {
   openEdit(context)
 }
 
-fun Note.view(context: Context) {
+fun Note.view(context: Context, options: ActivityOptionsCompat? = null) {
   val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
   intent.putExtra(INTENT_KEY_NOTE_ID, this.uid)
-  context.startActivity(intent)
+
+  when {
+    (options === null) -> context.startActivity(intent)
+    else -> context.startActivity(intent, options.toBundle())
+  }
+
 }
 
 fun Note.viewDistractionFree(context: Context) {
