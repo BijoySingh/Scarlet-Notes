@@ -11,6 +11,10 @@ import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.support.utils.throwOrReturn
 
 const val KEY_APP_THEME = "KEY_APP_THEME"
+var sAppTheme: String
+  get() = ApplicationBase.instance.store().get(KEY_APP_THEME, Theme.DARK.name)
+  set(value) = ApplicationBase.instance.store().put(KEY_APP_THEME, value)
+
 
 // Old Theme Key, remove in future once theme is properly handled
 const val KEY_NIGHT_THEME: String = "KEY_NIGHT_THEME"
@@ -95,11 +99,10 @@ class ThemeManager() : IThemeManager {
     }
 
     fun getThemeFromStore(): Theme {
-      val theme = ApplicationBase.instance.store().get(KEY_APP_THEME, Theme.DARK.name)
-      try {
-        return Theme.valueOf(theme)
+      return try {
+        Theme.valueOf(sAppTheme)
       } catch (exception: Exception) {
-        return throwOrReturn(exception, Theme.DARK)
+        throwOrReturn(exception, Theme.DARK)
       }
     }
   }

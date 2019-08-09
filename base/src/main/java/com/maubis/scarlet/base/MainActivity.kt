@@ -81,6 +81,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+    handleIntent()
 
     // Migrate to the newer version of the tags
     Migrator(this).start()

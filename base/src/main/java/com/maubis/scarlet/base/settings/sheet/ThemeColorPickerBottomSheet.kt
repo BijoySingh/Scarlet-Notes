@@ -103,7 +103,6 @@ class ThemeColorPickerBottomSheet : LithoBottomSheet() {
               .isSelected(theme.name == getThemeFromStore().name)
               .onThemeSelected { newTheme ->
                 onThemeChange(newTheme)
-                reset(componentContext.androidContext, dialog)
               }
               .flexGrow(1f))
     }

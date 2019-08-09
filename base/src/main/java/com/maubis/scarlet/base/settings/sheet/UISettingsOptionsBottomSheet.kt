@@ -3,15 +3,16 @@ package com.maubis.scarlet.base.settings.sheet
 import android.app.Dialog
 import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
+import com.maubis.scarlet.base.MainActivityActions
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
+import com.maubis.scarlet.base.performAction
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingState
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingTechniqueLabel
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
-import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
 import com.maubis.scarlet.base.support.utils.Flavor
 
 class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
@@ -26,14 +27,7 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_theme_color_subtitle,
         icon = if (ApplicationBase.instance.themeController().isNightTheme()) R.drawable.night_mode_white_48dp else R.drawable.ic_action_day_mode,
         listener = {
-          com.maubis.scarlet.base.support.sheets.openSheet(activity, ThemeColorPickerBottomSheet().apply {
-            this.onThemeChange = { theme ->
-              ApplicationBase.instance.store().put(KEY_APP_THEME, theme.name)
-              ApplicationBase.instance.themeController().notifyChange(activity)
-              activity.notifyThemeChange()
-              reset(activity, dialog)
-            }
-          })
+          activity.performAction(MainActivityActions.COLOR_PICKER)
         }
     ))
     val isTablet = resources.getBoolean(R.bool.is_tablet)
