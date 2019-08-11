@@ -17,6 +17,7 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
@@ -24,10 +25,19 @@ import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.*
 import com.maubis.scarlet.base.support.ui.LithoCircleDrawable
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.utils.Flavor
 
 class WhatsNewBottomSheet : LithoBottomSheet() {
 
   override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
+    val options = listOf(
+        if (instance.appFlavor() == Flavor.NONE) null else GridSectionOptionItem(R.drawable.gdrive_icon, R.string.whats_new_sheet_google_drive, {}),
+        if (instance.appFlavor() == Flavor.NONE) null else GridSectionOptionItem(R.drawable.ic_image_gallery, R.string.whats_new_sheet_photo_sync, {}),
+        GridSectionOptionItem(R.drawable.ic_action_lock, R.string.whats_new_sheet_app_lock, {}),
+        GridSectionOptionItem(R.drawable.ic_action_select, R.string.whats_new_sheet_selection, {}),
+        GridSectionOptionItem(R.drawable.icon_widget, R.string.whats_new_sheet_widget, {}),
+        GridSectionOptionItem(R.drawable.ic_image_gallery, R.string.whats_new_sheet_more_languages, {}))
+
     val component = Column.create(componentContext)
         .widthPercent(100f)
         .paddingDip(YogaEdge.VERTICAL, 8f)
@@ -45,14 +55,7 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
             .maxLines(3)
             .numColumns(2)
             .iconSizeRes(R.dimen.ultra_large_round_icon_size)
-            .section(GridSectionItem(options = listOf(
-                GridSectionOptionItem(R.drawable.gdrive_icon, R.string.whats_new_sheet_google_drive, {}),
-                GridSectionOptionItem(R.drawable.ic_image_gallery, R.string.whats_new_sheet_photo_sync, {}),
-                GridSectionOptionItem(R.drawable.ic_action_lock, R.string.whats_new_sheet_app_lock, {}),
-                GridSectionOptionItem(R.drawable.ic_action_select, R.string.whats_new_sheet_selection, {}),
-                GridSectionOptionItem(R.drawable.icon_widget, R.string.whats_new_sheet_widget, {}),
-                GridSectionOptionItem(R.drawable.ic_image_gallery, R.string.whats_new_sheet_more_languages, {})
-            )))
+            .section(GridSectionItem(options = options.filterNotNull()))
             .showSeparator(false))
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(R.string.import_export_layout_exporting_done)
