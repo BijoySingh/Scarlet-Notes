@@ -18,9 +18,6 @@ import com.maubis.scarlet.base.support.ui.visibility
 import com.maubis.scarlet.base.widget.sheet.sWidgetBackgroundColor
 import com.maubis.scarlet.base.widget.sheet.sWidgetShowToolbar
 
-
-const val STORE_KEY_ALL_NOTE_WIDGET = "all_note_widget"
-
 class AllNotesWidgetProvider : AppWidgetProvider() {
 
   override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
@@ -42,15 +39,15 @@ class AllNotesWidgetProvider : AppWidgetProvider() {
 
       val noteIntent = Intent(context, ViewAdvancedNoteActivity::class.java)
       noteIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i])
-      val notePendingIntent = PendingIntent.getActivity(context, 0, noteIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+      val notePendingIntent = getPendingIntentWithStack(context, 0, noteIntent)
       views.setPendingIntentTemplate(R.id.list, notePendingIntent)
 
       val createNoteIntent = Intent(context, CreateNoteActivity::class.java)
-      val createNotePendingIntent = PendingIntent.getActivity(context, 23214, createNoteIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+      val createNotePendingIntent = getPendingIntentWithStack(context, 23214, createNoteIntent)
       views.setOnClickPendingIntent(R.id.add_note, createNotePendingIntent)
 
       val createListNoteIntent = Intent(context, CreateListNoteActivity::class.java)
-      val createListNotePendingIntent = PendingIntent.getActivity(context, 13123, createListNoteIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+      val createListNotePendingIntent = getPendingIntentWithStack(context, 13123, createListNoteIntent)
       views.setOnClickPendingIntent(R.id.add_list, createListNotePendingIntent)
 
       val mainIntent = Intent(context, MainActivity::class.java)

@@ -81,8 +81,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
         return
       }
 
-      val intent = ViewAdvancedNoteActivity.getIntent(context, note)
-      val pendingIntent = PendingIntent.getActivity(context, 5000 + note.uid, intent, 0)
+      val pendingIntent = ViewAdvancedNoteActivity.getIntentWithStack(context, note)
       val views = RemoteViews(context.getPackageName(), R.layout.widget_layout)
 
       views.setTextViewText(R.id.description, getWidgetNoteText(note))

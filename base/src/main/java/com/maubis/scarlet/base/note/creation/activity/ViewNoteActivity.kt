@@ -1,5 +1,6 @@
 package com.maubis.scarlet.base.note.creation.activity
 
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -39,6 +40,7 @@ import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.*
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
 import com.maubis.scarlet.base.support.utils.bind
+import com.maubis.scarlet.base.widget.getPendingIntentWithStack
 import kotlinx.android.synthetic.main.activity_advanced_note.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -362,6 +364,12 @@ open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivit
       val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
       intent.putExtra(INTENT_KEY_NOTE_ID, note.uid)
       return intent
+    }
+
+    fun getIntentWithStack(context: Context, note: Note): PendingIntent? {
+      val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
+      intent.putExtra(INTENT_KEY_NOTE_ID, note.uid)
+      return getPendingIntentWithStack(context, 5000 + note.uid, intent)
     }
   }
 
