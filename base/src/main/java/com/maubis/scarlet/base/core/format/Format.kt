@@ -80,5 +80,16 @@ fun sectionPreservingSort(formats: List<Format>): List<Format> {
     }
     index += 1
   }
+  while (index > 0) {
+    val currentItem = mutableFormats[index]
+    val nextItem = mutableFormats[index - 1]
+
+    if (currentItem.formatType == FormatType.CHECKLIST_UNCHECKED
+            && nextItem.formatType == FormatType.CHECKLIST_CHECKED) {
+      Collections.swap(mutableFormats, index, index - 1)
+      continue
+    }
+    index -= 1
+  }
   return mutableFormats
 }
