@@ -315,6 +315,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   fun notifyFolderChange() {
     val componentContext = ComponentContext(this)
+    setBottomToolbar()
     lithoPreBottomToolbar.removeAllViews()
     if (config.folders.isEmpty()) {
       return
@@ -522,6 +523,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     lithoBottomToolbar.addView(LithoView.create(componentContext,
         MainActivityBottomBar.create(componentContext)
             .colorConfig(ToolbarColorConfig())
+            .isInsideFolder(config.folders.isNotEmpty())
             .build()))
   }
 

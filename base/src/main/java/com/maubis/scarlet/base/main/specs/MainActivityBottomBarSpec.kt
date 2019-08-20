@@ -38,7 +38,8 @@ import kotlinx.coroutines.launch
 object MainActivityBottomBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
-               @Prop colorConfig: ToolbarColorConfig): Component {
+               @Prop colorConfig: ToolbarColorConfig,
+               @Prop isInsideFolder: Boolean): Component {
     val activity = context.androidContext as MainActivity
     val row = Row.create(context)
         .widthPercent(100f)
@@ -52,14 +53,17 @@ object MainActivityBottomBarSpec {
         })
     row.child(EmptySpec.create(context).heightDip(1f).flexGrow(1f))
 
-    row.child(bottomBarRoundIcon(context, colorConfig)
-        .iconRes(R.drawable.icon_add_notebook)
-        .onClick {
-          CreateOrEditFolderBottomSheet.openSheet(
+    if (!isInsideFolder) {
+      row.child(bottomBarRoundIcon(context, colorConfig)
+          .iconRes(R.drawable.icon_add_notebook)
+          .onClick {
+            CreateOrEditFolderBottomSheet.openSheet(
               activity,
               FolderBuilder().emptyFolder(sNoteDefaultColor),
               { _, _ -> activity.setupData() })
-        })
+          })
+    }
+
     row.child(bottomBarRoundIcon(context, colorConfig)
         .iconRes(R.drawable.icon_add_list)
         .onClick {
