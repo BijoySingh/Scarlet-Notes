@@ -5,12 +5,16 @@ import com.facebook.litho.ComponentContext
 import com.github.ajalt.reprint.core.Reprint
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.security.controller.PinLockController.isPinCodeEnabled
 import com.maubis.scarlet.base.security.sheets.openCreateSheet
 import com.maubis.scarlet.base.security.sheets.openVerifySheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.utils.Flavor
 
 const val KEY_SECURITY_CODE = "KEY_SECURITY_CODE"
 const val KEY_FINGERPRINT_ENABLED = "KEY_FINGERPRINT_ENABLED"
@@ -50,11 +54,17 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         selected = isPinCodeEnabled()
     ))
 
+    val isLite = instance.appFlavor() == Flavor.LITE
     options.add(LithoOptionsItem(
         title = R.string.security_option_lock_app,
         subtitle = R.string.security_option_lock_app_details,
         icon = R.drawable.ic_apps_white_48dp,
         listener = {
+          if (isLite && !sSecurityAppLockEnabled) {
+            openSheet(activity, InstallProUpsellBottomSheet())
+            return@LithoOptionsItem
+          }
+
           when {
             isPinCodeEnabled() -> openVerifySheet(
                 activity = activity,
@@ -66,8 +76,11 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
             else -> openCreatePasswordDialog(dialog)
           }
         },
-        isSelectable = true,
-        selected = sSecurityAppLockEnabled
+        actionIcon = when {
+          sSecurityAppLockEnabled -> R.drawable.ic_done_white_48dp
+          isLite -> R.drawable.ic_rating
+          else -> 0
+        }
     ))
 
     options.add(LithoOptionsItem(
@@ -75,6 +88,11 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.security_option_ask_pin_always_details,
         icon = R.drawable.ic_action_grid,
         listener = {
+          if (isLite) {
+            openSheet(activity, InstallProUpsellBottomSheet())
+            return@LithoOptionsItem
+          }
+
           when {
             isPinCodeEnabled() -> openVerifySheet(
                 activity = activity,
@@ -86,8 +104,13 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
             else -> openCreatePasswordDialog(dialog)
           }
         },
-        isSelectable = true,
-        selected = sSecurityAskPinAlways
+        isSelectable = !isLite,
+        selected = sSecurityAskPinAlways,
+        actionIcon = when {
+          isLite -> R.drawable.ic_rating
+          sSecurityAskPinAlways -> R.drawable.ic_done_white_48dp
+          else -> 0
+        }
     ))
 
     val hasFingerprint = Reprint.hasFingerprintRegistered()

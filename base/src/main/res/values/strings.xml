@@ -227,6 +227,13 @@
   <string name="whats_new_sheet_widget" translatable="false">More Widget Settings.</string>
   <string name="whats_new_sheet_selection" translatable="false">Easier Note Selection.</string>
 
+  <string name="install_pro_sheet_latest_updates" translatable="false">Faster Updates and Requests.</string>
+  <string name="install_pro_sheet_app_lock" translatable="false">App Lock and Single Unlock.</string>
+  <string name="install_pro_sheet_app_themes" translatable="false">More App Themes.</string>
+  <string name="install_pro_sheet_font_size" translatable="false">Note Font Size Selection.</string>
+  <string name="install_pro_sheet_viewer_bg" translatable="false">Viewer Background Color.</string>
+  <string name="install_pro_sheet_widget_options" translatable="false">More Widget Options.</string>
+
   <string name="format_action_copy">Copy</string>
   <string name="format_action_title">Block Text Actions</string>
   <string name="format_action_gallery">Gallery</string>
