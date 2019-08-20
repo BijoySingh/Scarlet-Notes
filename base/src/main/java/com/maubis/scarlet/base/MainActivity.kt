@@ -230,6 +230,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   private fun notifyModeChange() {
     val isTrash = config.mode === HomeNavigationState.TRASH
     deleteToolbar.visibility = if (isTrash) View.VISIBLE else GONE
+    setBottomToolbar()
   }
 
   /**
@@ -523,6 +524,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     lithoBottomToolbar.addView(LithoView.create(componentContext,
         MainActivityBottomBar.create(componentContext)
             .colorConfig(ToolbarColorConfig())
+            .hideActions(config.mode == HomeNavigationState.TRASH)
             .isInsideFolder(config.folders.isNotEmpty())
             .build()))
   }

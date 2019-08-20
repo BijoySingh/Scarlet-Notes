@@ -39,6 +39,7 @@ object MainActivityBottomBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop colorConfig: ToolbarColorConfig,
+               @Prop hideActions: Boolean,
                @Prop isInsideFolder: Boolean): Component {
     val activity = context.androidContext as MainActivity
     val row = Row.create(context)
@@ -53,33 +54,36 @@ object MainActivityBottomBarSpec {
         })
     row.child(EmptySpec.create(context).heightDip(1f).flexGrow(1f))
 
-    if (!isInsideFolder) {
+    if (!hideActions) {
+      if (!isInsideFolder) {
+        row.child(bottomBarRoundIcon(context, colorConfig)
+            .iconRes(R.drawable.icon_add_notebook)
+            .onClick {
+              CreateOrEditFolderBottomSheet.openSheet(
+                  activity,
+                  FolderBuilder().emptyFolder(sNoteDefaultColor),
+                  { _, _ -> activity.setupData() })
+            })
+      }
+
       row.child(bottomBarRoundIcon(context, colorConfig)
-          .iconRes(R.drawable.icon_add_notebook)
+          .iconRes(R.drawable.icon_add_list)
           .onClick {
-            CreateOrEditFolderBottomSheet.openSheet(
-              activity,
-              FolderBuilder().emptyFolder(sNoteDefaultColor),
-              { _, _ -> activity.setupData() })
+            val intent = CreateNoteActivity.getNewChecklistNoteIntent(
+                activity,
+                activity.config.folders.firstOrNull()?.uuid ?: "")
+            activity.startActivity(intent)
+          })
+      row.child(bottomBarRoundIcon(context, colorConfig)
+          .iconRes(R.drawable.icon_add_note)
+          .onClick {
+            val intent = CreateNoteActivity.getNewNoteIntent(
+                activity,
+                activity.config.folders.firstOrNull()?.uuid ?: "")
+            activity.startActivity(intent)
           })
     }
 
-    row.child(bottomBarRoundIcon(context, colorConfig)
-        .iconRes(R.drawable.icon_add_list)
-        .onClick {
-          val intent = CreateNoteActivity.getNewChecklistNoteIntent(
-              activity,
-              activity.config.folders.firstOrNull()?.uuid ?: "")
-          activity.startActivity(intent)
-        })
-    row.child(bottomBarRoundIcon(context, colorConfig)
-        .iconRes(R.drawable.icon_add_note)
-        .onClick {
-          val intent = CreateNoteActivity.getNewNoteIntent(
-              activity,
-              activity.config.folders.firstOrNull()?.uuid ?: "")
-          activity.startActivity(intent)
-        })
     return bottomBarCard(context, row.build(), colorConfig).build()
   }
 }
