@@ -54,6 +54,15 @@ class SortingOptionsBottomSheet : LithoChooseOptionBottomSheet() {
         },
         selected = sorting == SortingTechnique.ALPHABETICAL
     ))
+    options.add(LithoChooseOptionsItem(
+        title = getSortingTechniqueLabel(SortingTechnique.NOTE_COLOR),
+        listener = {
+          setSortingState(SortingTechnique.NOTE_COLOR)
+          listener()
+          reset(componentContext.androidContext, dialog)
+        },
+        selected = sorting == SortingTechnique.NOTE_COLOR
+    ))
     return options
   }
 
@@ -62,7 +71,7 @@ class SortingOptionsBottomSheet : LithoChooseOptionBottomSheet() {
     const val KEY_SORTING_TECHNIQUE = "KEY_SORTING_TECHNIQUE"
 
     fun getSortingState(): SortingTechnique {
-      return SortingTechnique.values()[ApplicationBase.instance.store().get(KEY_SORTING_TECHNIQUE, SortingTechnique.NEWEST_FIRST.ordinal)]
+      return SortingTechnique.values()[ApplicationBase.instance.store().get(KEY_SORTING_TECHNIQUE, SortingTechnique.LAST_MODIFIED.ordinal)]
     }
 
     fun getSortingTechniqueLabel(technique: SortingTechnique): Int {
@@ -71,6 +80,7 @@ class SortingOptionsBottomSheet : LithoChooseOptionBottomSheet() {
         SortingTechnique.NEWEST_FIRST -> R.string.sort_sheet_newest_first
         SortingTechnique.OLDEST_FIRST -> R.string.sort_sheet_oldest_first
         SortingTechnique.ALPHABETICAL -> R.string.sort_sheet_alphabetical
+        SortingTechnique.NOTE_COLOR -> R.string.sort_sheet_note_color
       }
     }
 

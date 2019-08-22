@@ -204,6 +204,7 @@
 
   <string name="sort_sheet_title">Sort Notes By</string>
   <string name="sort_sheet_newest_first">Newest First</string>
+  <string name="sort_sheet_note_color" translatable="false">Note Color</string>
   <string name="sort_sheet_oldest_first">Oldest First</string>
   <string name="sort_sheet_last_modified">Most Recently Modified</string>
   <string name="sort_sheet_alphabetical">Alphabetical</string>

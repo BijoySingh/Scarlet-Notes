@@ -8,6 +8,20 @@ enum class SortingTechnique() {
   NEWEST_FIRST,
   OLDEST_FIRST,
   ALPHABETICAL,
+  NOTE_COLOR,
+}
+
+/**
+ * Helper class which allow comparison of a pair of objects
+ */
+class ComparablePair<T : Comparable<T>, U : Comparable<U>>(val first: T, val second: U) : Comparable<ComparablePair<T, U>> {
+  override fun compareTo(other: ComparablePair<T, U>): Int {
+    val firstComparison = first.compareTo(other.first)
+    return when {
+      firstComparison == 0 -> second.compareTo(other.second)
+      else -> firstComparison
+    }
+  }
 }
 
 fun sort(notes: List<Note>, sortingTechnique: SortingTechnique): List<Note> {
@@ -25,8 +39,15 @@ fun sort(notes: List<Note>, sortingTechnique: SortingTechnique): List<Note> {
       val content = note.getFullText().trim().filter {
         ((it in 'a'..'z') || (it in 'A'..'Z'))
       }
-      if (note.pinned || content.isBlank()) 0
-      else content[0].toUpperCase().toInt()
+
+      val sortValue = when {
+        (note.pinned || content.isBlank()) -> 0
+        else -> content[0].toUpperCase().toInt()
+      }
+      ComparablePair(sortValue, note.updateTimestamp)
+    }
+    SortingTechnique.NOTE_COLOR -> notes.sortedBy { note ->
+      ComparablePair(note.color, note.updateTimestamp)
     }
     else -> notes.sortedByDescending { note ->
       if (note.pinned) Long.MAX_VALUE
