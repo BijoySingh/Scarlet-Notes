@@ -240,15 +240,15 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     adapter.clearItems()
     if (!isInSearchMode) {
       adapter.addItem(GenericRecyclerItem(RecyclerItem.Type.TOOLBAR))
+      addInformationItem(1)
     }
     if (notes.isEmpty()) {
-      adapter.addItem(EmptyFolderRecyclerItem())
+      adapter.addItem(EmptyRecyclerItem())
       return
     }
     notes.forEach {
       adapter.addItem(it)
     }
-    addInformationItem(1)
   }
 
   private fun addInformationItem(index: Int) {

@@ -5,7 +5,7 @@ import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewAdapter
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.export.recycler.FileImportViewHolder
-import com.maubis.scarlet.base.main.recycler.EmptyFolderRecyclerHolder
+import com.maubis.scarlet.base.main.recycler.EmptyRecyclerHolder
 import com.maubis.scarlet.base.main.recycler.InformationRecyclerHolder
 import com.maubis.scarlet.base.main.recycler.ToolbarMainRecyclerHolder
 import com.maubis.scarlet.base.note.folder.FolderRecyclerHolder
@@ -37,7 +37,7 @@ fun getRecyclerItemControllerList(
   list.add(MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
       .viewType(RecyclerItem.Type.EMPTY.ordinal)
       .layoutFile(R.layout.item_no_notes)
-      .holderClass(EmptyFolderRecyclerHolder::class.java)
+      .holderClass(EmptyRecyclerHolder::class.java)
       .build())
   list.add(MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
       .viewType(RecyclerItem.Type.INFORMATION.ordinal)
@@ -79,7 +79,7 @@ fun getSelectableRecyclerItemControllerList(
   list.add(MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
       .viewType(RecyclerItem.Type.EMPTY.ordinal)
       .layoutFile(R.layout.item_no_notes)
-      .holderClass(EmptyFolderRecyclerHolder::class.java)
+      .holderClass(EmptyRecyclerHolder::class.java)
       .spanSize(2)
       .build())
   return list

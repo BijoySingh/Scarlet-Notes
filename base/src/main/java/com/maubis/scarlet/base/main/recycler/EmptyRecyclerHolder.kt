@@ -8,7 +8,7 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 
-class EmptyFolderRecyclerHolder(context: Context, itemView: View) : RecyclerViewHolder<RecyclerItem>(context, itemView) {
+class EmptyRecyclerHolder(context: Context, itemView: View) : RecyclerViewHolder<RecyclerItem>(context, itemView) {
 
   override fun populate(data: RecyclerItem, extra: Bundle) {
     setFullSpan()
