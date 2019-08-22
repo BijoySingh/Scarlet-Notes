@@ -47,7 +47,8 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
   }
 
   fun setOptions(layoutGrid: GridLayout, options: List<OptionsItem>) {
-    layoutGrid.columnCount = if (resources.getBoolean(R.bool.is_tablet)) 4 else 3
+    val context = layoutGrid.context
+    layoutGrid.columnCount = if (context.resources.getBoolean(R.bool.is_tablet)) 4 else 3
     for (option in options) {
       if (!option.visible) {
         continue

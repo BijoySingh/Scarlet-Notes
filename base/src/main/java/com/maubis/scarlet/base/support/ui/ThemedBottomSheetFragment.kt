@@ -16,6 +16,8 @@ import com.maubis.scarlet.base.config.ApplicationBase
 
 abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
 
+  var appContext: Context? = null
+
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val isTablet = maybeContext()?.resources?.getBoolean(R.bool.is_tablet) ?: false
     val dialog = when {
@@ -30,14 +32,15 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
     if (dialog == null) {
       return
     }
+    appContext = dialog.context.applicationContext
     resetBackground(dialog)
   }
 
   fun themedActivity(): Activity = activity ?: context as AppCompatActivity
 
-  fun themedContext(): Context = context ?: activity!!
+  fun themedContext(): Context = maybeContext()!!
 
-  fun maybeContext(): Context? = context ?: activity
+  fun maybeContext(): Context? = context ?: activity ?: appContext
 
   abstract fun getBackgroundView(): Int
 
