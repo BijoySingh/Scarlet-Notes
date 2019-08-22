@@ -12,57 +12,23 @@ import com.maubis.scarlet.base.support.sheets.LithoChooseOptionsItem
 class SortingOptionsBottomSheet : LithoChooseOptionBottomSheet() {
   var listener: () -> Unit = {}
 
-  override fun title(): Int =  R.string.sort_sheet_title
+  override fun title(): Int = R.string.sort_sheet_title
 
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoChooseOptionsItem> {
     val sorting = getSortingState()
     val options = ArrayList<LithoChooseOptionsItem>()
 
-    options.add(LithoChooseOptionsItem(
-        title = getSortingTechniqueLabel(SortingTechnique.LAST_MODIFIED),
-        listener = {
-          setSortingState(SortingTechnique.LAST_MODIFIED)
-          listener()
-          reset(componentContext.androidContext, dialog)
-        },
-        selected = sorting == SortingTechnique.LAST_MODIFIED
-    ))
-    options.add(LithoChooseOptionsItem(
-        title = getSortingTechniqueLabel(SortingTechnique.NEWEST_FIRST),
-        listener = {
-          setSortingState(SortingTechnique.NEWEST_FIRST)
-          listener()
-          reset(componentContext.androidContext, dialog)
-        },
-        selected = sorting == SortingTechnique.NEWEST_FIRST
-    ))
-    options.add(LithoChooseOptionsItem(
-        title = getSortingTechniqueLabel(SortingTechnique.OLDEST_FIRST),
-        listener = {
-          setSortingState(SortingTechnique.OLDEST_FIRST)
-          listener()
-          reset(componentContext.androidContext, dialog)
-        },
-        selected = sorting == SortingTechnique.OLDEST_FIRST
-    ))
-    options.add(LithoChooseOptionsItem(
-        title = getSortingTechniqueLabel(SortingTechnique.ALPHABETICAL),
-        listener = {
-          setSortingState(SortingTechnique.ALPHABETICAL)
-          listener()
-          reset(componentContext.androidContext, dialog)
-        },
-        selected = sorting == SortingTechnique.ALPHABETICAL
-    ))
-    options.add(LithoChooseOptionsItem(
-        title = getSortingTechniqueLabel(SortingTechnique.NOTE_COLOR),
-        listener = {
-          setSortingState(SortingTechnique.NOTE_COLOR)
-          listener()
-          reset(componentContext.androidContext, dialog)
-        },
-        selected = sorting == SortingTechnique.NOTE_COLOR
-    ))
+    SortingTechnique.values().forEach { technique ->
+      options.add(LithoChooseOptionsItem(
+          title = getSortingTechniqueLabel(technique),
+          listener = {
+            setSortingState(technique)
+            listener()
+            reset(componentContext.androidContext, dialog)
+          },
+          selected = sorting == technique
+      ))
+    }
     return options
   }
 
@@ -81,6 +47,7 @@ class SortingOptionsBottomSheet : LithoChooseOptionBottomSheet() {
         SortingTechnique.OLDEST_FIRST -> R.string.sort_sheet_oldest_first
         SortingTechnique.ALPHABETICAL -> R.string.sort_sheet_alphabetical
         SortingTechnique.NOTE_COLOR -> R.string.sort_sheet_note_color
+        SortingTechnique.NOTE_TAGS -> R.string.sort_sheet_note_tags
       }
     }
 

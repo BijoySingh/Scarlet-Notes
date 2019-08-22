@@ -9,6 +9,7 @@ enum class SortingTechnique() {
   OLDEST_FIRST,
   ALPHABETICAL,
   NOTE_COLOR,
+  NOTE_TAGS,
 }
 
 /**
@@ -48,6 +49,20 @@ fun sort(notes: List<Note>, sortingTechnique: SortingTechnique): List<Note> {
     }
     SortingTechnique.NOTE_COLOR -> notes.sortedBy { note ->
       ComparablePair(note.color, note.updateTimestamp)
+    }
+    SortingTechnique.NOTE_TAGS -> {
+      val tagCounterMap = HashMap<String, Int>()
+      notes.map { it.getTagUUIDs() }.forEach { tags ->
+        tags.forEach { tag ->
+          tagCounterMap[tag] = (tagCounterMap[tag] ?: 0) + 1
+        }
+      }
+      notes.sortedByDescending {
+        val noteTagScore = it.getTagUUIDs().sumBy { tag ->
+          tagCounterMap[tag] ?: 0
+        }
+        ComparablePair(ComparablePair(noteTagScore, it.tags), it.updateTimestamp)
+      }
     }
     else -> notes.sortedByDescending { note ->
       if (note.pinned) Long.MAX_VALUE
