@@ -15,7 +15,7 @@ import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.main.recycler.EmptyRecyclerItem
+import com.maubis.scarlet.base.main.recycler.EmptyFolderRecyclerItem
 import com.maubis.scarlet.base.note.folder.SelectorFolderRecyclerItem
 import com.maubis.scarlet.base.note.recycler.NoteAppAdapter
 import com.maubis.scarlet.base.note.recycler.NoteRecyclerItem
@@ -70,7 +70,7 @@ abstract class SelectableNotesActivityBase : SecuredActivity(), INoteSelectorAct
         adapter.clearItems()
 
         if (notes.isEmpty()) {
-          adapter.addItem(EmptyRecyclerItem())
+          adapter.addItem(EmptyFolderRecyclerItem())
         }
 
         var lastFolder = ""

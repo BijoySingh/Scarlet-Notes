@@ -2,7 +2,7 @@ package com.maubis.scarlet.base.main.recycler
 
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 
-class EmptyRecyclerItem : RecyclerItem() {
+class EmptyFolderRecyclerItem : RecyclerItem() {
   override val type = RecyclerItem.Type.EMPTY
 }
 

@@ -242,7 +242,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
       adapter.addItem(GenericRecyclerItem(RecyclerItem.Type.TOOLBAR))
     }
     if (notes.isEmpty()) {
-      adapter.addItem(EmptyRecyclerItem())
+      adapter.addItem(EmptyFolderRecyclerItem())
       return
     }
     notes.forEach {
