@@ -437,10 +437,10 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   fun setSearchMode(mode: Boolean) {
     isInSearchMode = mode
-    searchToolbar.visibility = if (isInSearchMode) View.VISIBLE else View.GONE
     searchBox.setText("")
 
     if (isInSearchMode) {
+      searchToolbar.visibility = View.VISIBLE
       tryOpeningTheKeyboard()
       GlobalScope.launch(Dispatchers.Main) {
         GlobalScope.async(Dispatchers.IO) { tagAndColorPicker.reset() }.await()
@@ -449,6 +449,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
       searchBox.requestFocus()
     } else {
       tryClosingTheKeyboard()
+      searchToolbar.visibility = View.GONE
       config.clearSearchBar()
       setupData()
     }
