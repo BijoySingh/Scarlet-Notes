@@ -1,8 +1,6 @@
 package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
-import android.content.Intent
-import android.net.Uri
 import com.facebook.litho.ComponentContext
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
@@ -14,10 +12,8 @@ import com.maubis.scarlet.base.note.creation.sheet.EditorOptionsBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
-import com.maubis.scarlet.base.support.utils.Flavor
-import com.maubis.scarlet.base.support.utils.FlavourUtils
-import com.maubis.scarlet.base.support.utils.FlavourUtils.PRO_APP_PACKAGE_NAME
-import com.maubis.scarlet.base.support.utils.FlavourUtils.hasProAppInstalled
+import com.maubis.scarlet.base.support.utils.FlavorUtils
+import com.maubis.scarlet.base.support.utils.FlavorUtils.PRO_APP_PACKAGE_NAME
 import com.maubis.scarlet.base.widget.sheet.WidgetOptionsBottomSheet
 
 class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
@@ -39,7 +35,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           migrateToPro.function()
           dismiss()
         },
-        visible = ApplicationBase.instance.appFlavor() == Flavor.LITE && FlavourUtils.hasProAppInstalled(activity),
+        visible = FlavorUtils.isLite() && FlavorUtils.hasProAppInstalled(activity),
         selected = true
     ))
     options.add(LithoOptionsItem(
@@ -109,7 +105,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           IntentUtils.openAppPlayStore(context, PRO_APP_PACKAGE_NAME)
           dismiss()
         },
-        visible = ApplicationBase.instance.appFlavor() == Flavor.LITE && !hasProAppInstalled(activity)
+        visible = FlavorUtils.isLite() && !FlavorUtils.hasProAppInstalled(activity)
     ))
     options.add(LithoOptionsItem(
         title = R.string.home_option_rate_and_review,

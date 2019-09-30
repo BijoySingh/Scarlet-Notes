@@ -1,38 +1,29 @@
 package com.maubis.scarlet.base.main.sheets
 
 import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.text.Layout
 import com.facebook.litho.Column
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
-import com.facebook.litho.annotations.LayoutSpec
-import com.facebook.litho.annotations.OnCreateLayout
-import com.facebook.litho.annotations.Prop
-import com.facebook.litho.annotations.ResType
-import com.facebook.litho.widget.Image
 import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaEdge
-import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
-import com.maubis.scarlet.base.support.specs.*
-import com.maubis.scarlet.base.support.ui.LithoCircleDrawable
+import com.maubis.scarlet.base.support.specs.BottomSheetBar
+import com.maubis.scarlet.base.support.specs.GridSectionItem
+import com.maubis.scarlet.base.support.specs.GridSectionOptionItem
+import com.maubis.scarlet.base.support.specs.GridSectionView
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.FlavorUtils
 
 class WhatsNewBottomSheet : LithoBottomSheet() {
 
   override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
     val options = listOf(
-        if (instance.appFlavor() == Flavor.NONE) null else GridSectionOptionItem(R.drawable.gdrive_icon, R.string.whats_new_sheet_google_drive, {}),
-        if (instance.appFlavor() == Flavor.NONE) null else GridSectionOptionItem(R.drawable.ic_image_gallery, R.string.whats_new_sheet_photo_sync, {}),
+        if (FlavorUtils.isOpenSource()) null else GridSectionOptionItem(R.drawable.gdrive_icon, R.string.whats_new_sheet_google_drive, {}),
+        if (FlavorUtils.isOpenSource()) null else GridSectionOptionItem(R.drawable.ic_image_gallery, R.string.whats_new_sheet_photo_sync, {}),
         GridSectionOptionItem(R.drawable.ic_action_lock, R.string.whats_new_sheet_app_lock, {}),
         GridSectionOptionItem(R.drawable.ic_action_select, R.string.whats_new_sheet_selection, {}),
         GridSectionOptionItem(R.drawable.icon_widget, R.string.whats_new_sheet_widget, {}),

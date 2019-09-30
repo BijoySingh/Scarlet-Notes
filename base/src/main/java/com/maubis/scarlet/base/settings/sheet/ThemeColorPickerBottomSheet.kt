@@ -12,16 +12,18 @@ import com.facebook.litho.annotations.Prop
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.support.sheets.*
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.specs.RoundIcon
-import com.maubis.scarlet.base.support.ui.*
+import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeManager.Companion.getThemeFromStore
-import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.ui.sAutomaticTheme
+import com.maubis.scarlet.base.support.ui.setThemeFromSystem
+import com.maubis.scarlet.base.support.utils.FlavorUtils
 
 @LayoutSpec
 object ThemeColorPickerItemSpec {
@@ -90,11 +92,11 @@ class ThemeColorPickerBottomSheet : LithoBottomSheet() {
               listener = {},
               isSelectable = true,
               selected = sAutomaticTheme,
-              actionIcon = if (instance.appFlavor() == Flavor.PRO) 0 else R.drawable.ic_rating
+              actionIcon = if (FlavorUtils.isLite()) R.drawable.ic_rating else 0
           ))
           .onClick {
             val context = componentContext.androidContext as AppCompatActivity
-            if (instance.appFlavor() != Flavor.PRO) {
+            if (FlavorUtils.isLite()) {
               openSheet(context, InstallProUpsellBottomSheet())
               return@onClick
             }
@@ -120,7 +122,7 @@ class ThemeColorPickerBottomSheet : LithoBottomSheet() {
         }
 
         val disabled = when {
-          ApplicationBase.instance.appFlavor() == Flavor.PRO -> false
+          !FlavorUtils.isLite() -> false
           theme == Theme.DARK || theme == Theme.LIGHT -> false
           else -> true
         }

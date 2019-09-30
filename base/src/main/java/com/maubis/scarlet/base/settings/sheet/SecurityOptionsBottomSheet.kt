@@ -5,7 +5,6 @@ import com.facebook.litho.ComponentContext
 import com.github.ajalt.reprint.core.Reprint
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.security.controller.PinLockController.isPinCodeEnabled
 import com.maubis.scarlet.base.security.sheets.openCreateSheet
@@ -14,7 +13,7 @@ import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.FlavorUtils
 
 const val KEY_SECURITY_CODE = "KEY_SECURITY_CODE"
 const val KEY_FINGERPRINT_ENABLED = "KEY_FINGERPRINT_ENABLED"
@@ -54,7 +53,7 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         selected = isPinCodeEnabled()
     ))
 
-    val isLite = instance.appFlavor() == Flavor.LITE
+    val isLite = FlavorUtils.isLite()
     options.add(LithoOptionsItem(
         title = R.string.security_option_lock_app,
         subtitle = R.string.security_option_lock_app_details,

@@ -13,7 +13,7 @@ import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companio
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
-import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.FlavorUtils
 
 class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun title(): Int = R.string.home_option_ui_experience
@@ -68,15 +68,13 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         content = activity.getString(R.string.note_option_font_size_subtitle, sEditorTextSize),
         icon = R.drawable.ic_title_white_48dp,
         listener = {
-          if (flavor == Flavor.PRO) {
-            com.maubis.scarlet.base.support.sheets.openSheet(activity, FontSizeBottomSheet())
-          } else {
-            openSheet(activity, InstallProUpsellBottomSheet())
+          when {
+            FlavorUtils.isLite() -> openSheet(activity, InstallProUpsellBottomSheet())
+            else -> openSheet(activity, FontSizeBottomSheet())
           }
           reset(activity, dialog)
         },
-        visible = flavor != Flavor.NONE,
-        actionIcon = if (flavor == Flavor.PRO) 0 else R.drawable.ic_rating
+        actionIcon = if (FlavorUtils.isLite()) R.drawable.ic_rating else 0
     ))
     options.add(LithoOptionsItem(
         title = R.string.note_option_number_lines,
@@ -95,7 +93,7 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         icon = R.drawable.ic_action_color,
         listener = {
-          if (flavor != Flavor.PRO) {
+          if (FlavorUtils.isLite()) {
             openSheet(activity, InstallProUpsellBottomSheet())
             return@LithoOptionsItem
           }
@@ -103,8 +101,7 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           useNoteColorAsBackground = !useNoteColorAsBackground
           reset(activity, dialog)
         },
-        visible = flavor != Flavor.NONE,
-        actionIcon = if (flavor == Flavor.PRO) 0 else R.drawable.ic_rating
+        actionIcon = if (FlavorUtils.isLite()) R.drawable.ic_rating else 0
     ))
     options.add(LithoOptionsItem(
         title = R.string.markdown_sheet_home_markdown_support,

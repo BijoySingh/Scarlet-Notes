@@ -4,15 +4,13 @@ import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import com.facebook.litho.ComponentContext
-import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.main.sheets.WhatsNewBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
-import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.FlavorUtils
 import com.maubis.scarlet.base.support.utils.maybeThrow
 
 const val PRIVACY_POLICY_LINK = "https://www.iubenda.com/privacy-policy/8213521"
@@ -73,7 +71,7 @@ class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
               Uri.parse(PRIVACY_POLICY_LINK)))
           dismiss()
         },
-        visible = ApplicationBase.instance.appFlavor() != Flavor.NONE
+        visible = FlavorUtils.isPlayStore()
 
     ))
     options.add(LithoOptionsItem(

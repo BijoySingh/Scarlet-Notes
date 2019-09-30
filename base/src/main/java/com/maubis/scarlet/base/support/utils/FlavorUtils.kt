@@ -2,6 +2,7 @@ package com.maubis.scarlet.base.support.utils
 
 import android.content.Context
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -14,7 +15,7 @@ enum class Flavor {
   PRO, // Play Store Pro Version
 }
 
-object FlavourUtils {
+object FlavorUtils {
   const val PRO_APP_PACKAGE_NAME = "com.bijoysingh.quicknote.pro"
   const val KEY_PRO_APP_INSTALLED = "pro_app_installed"
   fun hasProAppInstalled(context: Context): Boolean {
@@ -30,4 +31,9 @@ object FlavourUtils {
     }
     return ApplicationBase.instance.store().get(KEY_PRO_APP_INSTALLED, false)
   }
+
+  fun isPro() = instance.appFlavor() == Flavor.PRO
+  fun isLite() = instance.appFlavor() == Flavor.LITE
+  fun isPlayStore() = instance.appFlavor() != Flavor.NONE
+  fun isOpenSource() = instance.appFlavor() == Flavor.NONE
 }

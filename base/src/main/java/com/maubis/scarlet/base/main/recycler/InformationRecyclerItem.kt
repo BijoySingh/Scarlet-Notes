@@ -13,8 +13,7 @@ import com.maubis.scarlet.base.main.activity.INTENT_KEY_DIRECT_NOTES_TRANSFER
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.sheets.openSheet
-import com.maubis.scarlet.base.support.utils.Flavor
-import com.maubis.scarlet.base.support.utils.FlavourUtils
+import com.maubis.scarlet.base.support.utils.FlavorUtils
 import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -102,7 +101,7 @@ fun getBackupInformationItem(activity: MainActivity): InformationRecyclerItem {
 fun shouldShowInstallProInformationItem(): Boolean {
   return probability(0.01f)
       && ApplicationBase.instance.store().get(KEY_INFO_INSTALL_PRO_v2, 0) < KEY_INFO_INSTALL_PRO_MAX_COUNT
-      && ApplicationBase.instance.appFlavor() != Flavor.PRO
+      && !FlavorUtils.isPro()
 }
 
 fun getInstallProInformationItem(context: Context): InformationRecyclerItem {
@@ -117,8 +116,7 @@ fun getInstallProInformationItem(context: Context): InformationRecyclerItem {
 }
 
 fun shouldShowSignInformationItem(context: Context): Boolean {
-  if (ApplicationBase.instance.authenticator().isLoggedIn(context)
-      || ApplicationBase.instance.appFlavor() == Flavor.NONE) {
+  if (ApplicationBase.instance.authenticator().isLoggedIn(context) || FlavorUtils.isOpenSource()) {
     return false
   }
   if (ApplicationBase.instance.store().get(KEY_FORCE_SHOW_SIGN_IN, false)) {
@@ -147,8 +145,8 @@ fun notifyProUpsellShown() {
 
 
 fun shouldShowMigrateToProAppInformationItem(context: Context): Boolean {
-  return ApplicationBase.instance.appFlavor() == Flavor.LITE
-      && FlavourUtils.hasProAppInstalled(context)
+  return FlavorUtils.isLite()
+      && FlavorUtils.hasProAppInstalled(context)
       && !ApplicationBase.instance.store().get(KEY_MIGRATE_TO_PRO_SUCCESS, false)
 }
 
@@ -163,7 +161,7 @@ fun getMigrateToProAppInformationItem(context: Context): InformationRecyclerItem
       val intent = Intent(Intent.ACTION_SEND)
           .putExtra(INTENT_KEY_DIRECT_NOTES_TRANSFER, notes.await())
           .setType("text/plain")
-          .setPackage(FlavourUtils.PRO_APP_PACKAGE_NAME)
+          .setPackage(FlavorUtils.PRO_APP_PACKAGE_NAME)
       try {
         context.startActivity(intent)
         ApplicationBase.instance.store().put(KEY_MIGRATE_TO_PRO_SUCCESS, true)

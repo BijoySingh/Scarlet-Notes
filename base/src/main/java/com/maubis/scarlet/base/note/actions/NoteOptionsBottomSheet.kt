@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.view.View
-import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.LinearLayout.VERTICAL
@@ -35,7 +34,7 @@ import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.utils.Flavor
+import com.maubis.scarlet.base.support.utils.FlavorUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -382,13 +381,12 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.view_distraction_free,
         icon = R.drawable.ic_action_distraction_free,
         listener = View.OnClickListener {
-          if (ApplicationBase.instance.appFlavor() == Flavor.PRO) {
+          if (!FlavorUtils.isLite()) {
             note.viewDistractionFree(activity)
             return@OnClickListener
           }
           com.maubis.scarlet.base.support.sheets.openSheet(activity, InstallProUpsellBottomSheet())
         },
-        visible = ApplicationBase.instance.appFlavor() != Flavor.NONE,
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
@@ -410,7 +408,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.updateNote(note)
           dismiss()
         },
-        visible = note.disableBackup && ApplicationBase.instance.appFlavor() != Flavor.NONE,
+        visible = note.disableBackup && FlavorUtils.isPlayStore(),
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
@@ -422,7 +420,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.updateNote(note)
           dismiss()
         },
-        visible = !note.disableBackup && ApplicationBase.instance.appFlavor() != Flavor.NONE,
+        visible = !note.disableBackup && FlavorUtils.isPlayStore(),
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
     return options
