@@ -477,4 +477,9 @@
 
   <!-- End: Note Sheet -->
 
+  <!-- Start: Theme Color Sheet -->
+  <string name="theme_use_system_theme" translatable="false">Use System Theme</string>
+  <string name="theme_use_system_theme_details" translatable="false">Use the light or dark theme from the system</string>
+  <!-- End: Theme Color Sheet -->
+
 </resources>

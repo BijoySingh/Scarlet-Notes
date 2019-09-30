@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base.support.ui
 
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.support.v4.content.ContextCompat
@@ -9,23 +10,50 @@ import com.maubis.markdown.MarkdownConfig
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.support.utils.throwOrReturn
+import java.lang.ref.WeakReference
 
 const val KEY_APP_THEME = "KEY_APP_THEME"
 var sAppTheme: String
   get() = ApplicationBase.instance.store().get(KEY_APP_THEME, Theme.DARK.name)
   set(value) = ApplicationBase.instance.store().put(KEY_APP_THEME, value)
 
+const val KEY_AUTOMATIC_THEME = "automatic_theme"
+var sAutomaticTheme: Boolean
+  get() = ApplicationBase.instance.store().get(KEY_AUTOMATIC_THEME, false)
+  set(value) = ApplicationBase.instance.store().put(KEY_AUTOMATIC_THEME, value)
+
+fun setThemeFromSystem(context: Context) {
+  val configuration = context.resources.configuration
+  val systemBasedTheme = when (configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+    Configuration.UI_MODE_NIGHT_NO -> Theme.LIGHT.name
+    Configuration.UI_MODE_NIGHT_YES -> Theme.VERY_DARK.name
+    else -> Theme.VERY_DARK.name
+  }
+  if (systemBasedTheme === sAppTheme) {
+    return
+  }
+  sAppTheme = systemBasedTheme
+}
 
 // Old Theme Key, remove in future once theme is properly handled
 const val KEY_NIGHT_THEME: String = "KEY_NIGHT_THEME"
 
-class ThemeManager() : IThemeManager {
+class ThemeManager : IThemeManager {
   lateinit var theme: Theme
 
+  var listeners = HashSet<WeakReference<IThemeChangeListener>>()
   var map = HashMap<ThemeColorType, Int>()
   override fun setup(context: Context) {
     theme = getThemeFromStore()
     notifyChange(context)
+  }
+
+  override fun get(): Theme {
+    return theme
+  }
+
+  override fun register(listener: IThemeChangeListener) {
+    listeners.add(WeakReference(listener))
   }
 
   override fun isNightTheme() = theme.isNightTheme
@@ -47,10 +75,17 @@ class ThemeManager() : IThemeManager {
     }
 
     if (map[ThemeColorType.TOOLBAR_BACKGROUND] == map[ThemeColorType.BACKGROUND]) {
-      map[ThemeColorType.TOOLBAR_BACKGROUND] = ColorUtil.darkerOrSlightlyDarkerColor(map[ThemeColorType.TOOLBAR_BACKGROUND] ?: 0)
+      map[ThemeColorType.TOOLBAR_BACKGROUND] = ColorUtil.darkerOrSlightlyDarkerColor(map[ThemeColorType.TOOLBAR_BACKGROUND]
+          ?: 0)
     }
 
     setMarkdownConfig(context)
+    for (reference in listeners) {
+      val listener = reference.get()
+      if (listener !== null) {
+        listener.onChange(theme)
+      }
+    }
   }
 
   private fun setMarkdownConfig(context: Context) {

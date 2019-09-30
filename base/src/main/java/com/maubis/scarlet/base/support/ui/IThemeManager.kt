@@ -10,9 +10,13 @@ interface IThemeManager {
 
   fun isNightTheme(): Boolean
 
+  fun get(): Theme
+
   fun get(type: ThemeColorType): Int
 
   fun get(context: Context, theme: Theme, type: ThemeColorType): Int
 
   fun get(context: Context, lightColor: Int, darkColor: Int): Int
+
+  fun register(listener: IThemeChangeListener)
 }

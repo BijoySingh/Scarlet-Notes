@@ -1,18 +1,32 @@
 package com.maubis.scarlet.base.support.ui
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.maubis.scarlet.base.BuildConfig
+import com.maubis.scarlet.base.MainActivityActions
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.settings.sheet.sInternalEnableFullScreen
 import com.maubis.scarlet.base.support.utils.maybeThrow
 
-abstract class ThemedActivity : AppCompatActivity() {
+abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
 
   abstract fun notifyThemeChange()
+
+  override fun onChange(theme: Theme) {
+    notifyThemeChange()
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    instance.themeController().register(this)
+  }
 
   fun setSystemTheme(color: Int = getStatusBarColor()) {
     setStatusBarColor(color)
@@ -22,6 +36,15 @@ abstract class ThemedActivity : AppCompatActivity() {
   override fun onResume() {
     super.onResume()
     fullScreenView()
+  }
+
+  override fun onConfigurationChanged(configuration: Configuration?) {
+    super.onConfigurationChanged(configuration)
+    if (configuration === null || !sAutomaticTheme) {
+      return
+    }
+    setThemeFromSystem(this)
+    instance.themeController().notifyChange(this)
   }
 
   fun fullScreenView() {

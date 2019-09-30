@@ -10,6 +10,7 @@ import com.maubis.scarlet.base.support.ui.sAppTheme
 const val INTENT_KEY_ADDITIONAL_ACTION = "additional_action"
 
 enum class MainActivityActions {
+  NIL,
   COLOR_PICKER;
 
   fun intent(context: Context): Intent {
@@ -40,6 +41,7 @@ fun MainActivity.handleIntent() {
 fun MainActivity.performAction(action: MainActivityActions) {
   val activity = this
   when (action) {
+    MainActivityActions.NIL -> {}
     MainActivityActions.COLOR_PICKER -> {
       openSheet(this, ThemeColorPickerBottomSheet().apply {
         this.onThemeChange = { theme ->

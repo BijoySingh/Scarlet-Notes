@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base
 
 import android.content.BroadcastReceiver
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -55,6 +56,8 @@ import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.ui.sAutomaticTheme
+import com.maubis.scarlet.base.support.ui.setThemeFromSystem
 import com.maubis.scarlet.base.support.utils.shouldShowWhatsNewSheet
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_toolbar_main.*
@@ -90,15 +93,25 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
     setupRecyclerView()
     setListeners()
-    notifyThemeChange()
+
+    if (sAutomaticTheme) {
+      setThemeFromSystem(this)
+    }
+    instance.themeController().notifyChange(this)
 
     if (shouldShowWhatsNewSheet()) {
       openSheet(this, WhatsNewBottomSheet())
     }
   }
 
+  override fun onConfigurationChanged(configuration: Configuration?) {
+    super.onConfigurationChanged(configuration)
+    startActivity(MainActivityActions.NIL.intent(this))
+    finish()
+  }
+
   fun setListeners() {
-    snackbar = MainSnackbar(bottomSnackbar, { setupData() })
+    snackbar = MainSnackbar(bottomSnackbar) { setupData() }
     deleteTrashIcon.setOnClickListener { openDeleteTrashSheet(this@MainActivity) }
     searchBackButton.setOnClickListener {
       onBackPressed()
