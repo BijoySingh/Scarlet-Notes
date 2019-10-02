@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
+import com.bijoysingh.quicknote.database.RemoteDatabaseStateController
 import com.bijoysingh.quicknote.firebase.activity.FirebaseLoginActivity
 import com.bijoysingh.quicknote.scarlet.sGDriveLoggedIn
 import com.facebook.litho.Component
@@ -62,7 +63,7 @@ class GDriveLoginActivity : SecuredActivity(), GoogleApiClient.OnConnectionFaile
 
   private fun resetNotesToUploadStateDB() {
     GlobalScope.launch(Dispatchers.IO) {
-      val remoteDatabaseState = ApplicationBase.instance.remoteDatabaseState() as GDriveRemoteDatabaseState
+      val remoteDatabaseState = ApplicationBase.instance.remoteDatabaseState() as RemoteDatabaseStateController
       ApplicationBase.instance.notesDatabase().getAll().forEach {
         remoteDatabaseState.notifyInsertIfNotPresent(it)
       }

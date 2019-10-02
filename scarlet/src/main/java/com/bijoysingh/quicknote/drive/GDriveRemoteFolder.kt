@@ -1,6 +1,6 @@
 package com.bijoysingh.quicknote.drive
 
-import com.bijoysingh.quicknote.database.GDriveDataType
+import com.bijoysingh.quicknote.database.RemoteDataType
 import com.bijoysingh.quicknote.database.RemoteUploadDataDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 
 class GDriveRemoteFolder<T>(
-    dataType: GDriveDataType,
+    dataType: RemoteDataType,
     database: RemoteUploadDataDao,
     helper: GDriveServiceHelper,
     onPendingChange: () -> Unit,

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.bijoysingh.quicknote.Scarlet
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
+import com.bijoysingh.quicknote.database.RemoteDatabaseStateController
 import com.bijoysingh.quicknote.drive.*
 import com.bijoysingh.quicknote.firebase.activity.FirebaseRemovalActivity
 import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
@@ -35,7 +36,7 @@ class ScarletAuthenticator() : IAuthenticator {
   }
 
   override fun setup(context: Context) {
-    Scarlet.gDriveDbState = GDriveRemoteDatabaseState(context)
+    Scarlet.remoteDatabaseStateController = RemoteDatabaseStateController(context)
     if (shouldIgnoreFirebase()) {
       gdrive.setup(context)
       return

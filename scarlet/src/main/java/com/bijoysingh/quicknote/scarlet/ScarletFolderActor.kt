@@ -1,7 +1,7 @@
 package com.bijoysingh.quicknote.scarlet
 
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
-import com.bijoysingh.quicknote.Scarlet.Companion.gDriveDbState
+import com.bijoysingh.quicknote.Scarlet.Companion.remoteDatabaseStateController
 import com.maubis.scarlet.base.core.folder.MaterialFolderActor
 import com.maubis.scarlet.base.database.room.folder.Folder
 
@@ -13,14 +13,14 @@ class ScarletFolderActor(folder: Folder) : MaterialFolderActor(folder) {
 
   override fun onlineSave() {
     super.onlineSave()
-    gDriveDbState?.notifyInsert(folder, notifyChange)
+    remoteDatabaseStateController?.notifyInsert(folder, notifyChange)
   }
 
   override fun delete() {
     super.delete()
     when {
-      gDrive?.isValid() == true -> gDriveDbState?.notifyRemove(folder, notifyChange)
-      else -> gDriveDbState?.stopTrackingItem(folder, notifyChange)
+      gDrive?.isValid() == true -> remoteDatabaseStateController?.notifyRemove(folder, notifyChange)
+      else -> remoteDatabaseStateController?.stopTrackingItem(folder, notifyChange)
     }
   }
 }

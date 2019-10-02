@@ -1,10 +1,9 @@
-package com.bijoysingh.quicknote.drive
+package com.bijoysingh.quicknote.database
 
 import android.content.Context
-import com.bijoysingh.quicknote.database.GDriveDataType
-import com.bijoysingh.quicknote.database.RemoteDatabaseHelper
-import com.bijoysingh.quicknote.database.remoteDatabase
-import com.bijoysingh.quicknote.database.genRemoteDatabase
+import com.bijoysingh.quicknote.drive.ImageUUID
+import com.bijoysingh.quicknote.drive.getTrueCurrentTime
+import com.bijoysingh.quicknote.drive.toImageUUID
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.database.remote.IRemoteDatabaseState
@@ -16,7 +15,7 @@ import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
+class RemoteDatabaseStateController(context: Context) : IRemoteDatabaseState {
 
   init {
     remoteDatabase = genRemoteDatabase(context)
@@ -27,8 +26,8 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
    */
   override fun notifyInsert(data: Any, onExecution: () -> Unit) {
     when {
-      data is Tag -> localDatabaseUpdate(GDriveDataType.TAG, data.uuid, onExecution)
-      data is Folder -> localDatabaseUpdate(GDriveDataType.FOLDER, data.uuid, onExecution)
+      data is Tag -> localDatabaseUpdate(RemoteDataType.TAG, data.uuid, onExecution)
+      data is Folder -> localDatabaseUpdate(RemoteDataType.FOLDER, data.uuid, onExecution)
       data is Note -> notifyNoteInsertImpl(data, onExecution)
       else -> maybeThrow("notifyInsert called with unhandled data type")
     }
@@ -42,18 +41,18 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
 
     when {
       data is Tag -> {
-        if (database.getByUUID(GDriveDataType.TAG.name, data.uuid) === null) {
+        if (database.getByUUID(RemoteDataType.TAG.name, data.uuid) === null) {
           notifyInsert(data) {}
         }
       }
       data is Folder -> {
-        if (database.getByUUID(GDriveDataType.FOLDER.name, data.uuid) === null) {
+        if (database.getByUUID(RemoteDataType.FOLDER.name, data.uuid) === null) {
           notifyInsert(data) {}
         }
       }
       data is Note -> {
-        if (database.getByUUID(GDriveDataType.NOTE.name, data.uuid) === null
-            || database.getByUUID(GDriveDataType.NOTE_META.name, data.uuid) === null) {
+        if (database.getByUUID(RemoteDataType.NOTE.name, data.uuid) === null
+            || database.getByUUID(RemoteDataType.NOTE_META.name, data.uuid) === null) {
           notifyInsert(data) {}
         }
       }
@@ -63,8 +62,8 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
 
   private fun notifyNoteInsertImpl(note: Note, onExecution: () -> Unit) {
     val noteUuid = note.uuid
-    localDatabaseUpdate(GDriveDataType.NOTE, noteUuid, onExecution)
-    localDatabaseUpdate(GDriveDataType.NOTE_META, noteUuid, onExecution)
+    localDatabaseUpdate(RemoteDataType.NOTE, noteUuid, onExecution)
+    localDatabaseUpdate(RemoteDataType.NOTE_META, noteUuid, onExecution)
 
     val database = remoteDatabase
     if (database === null) {
@@ -75,7 +74,7 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
       val imageUUIDs = HashSet<ImageUUID>()
       notifyImageIds(note) { imageUUIDs.add(it) }
 
-      database.getByType(GDriveDataType.IMAGE.name)
+      database.getByType(RemoteDataType.IMAGE.name)
           .filter {
             val uuid = toImageUUID(it.uuid)
             uuid?.noteUuid == note.uuid && !imageUUIDs.contains(uuid)
@@ -88,9 +87,9 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
           }
 
       imageUUIDs.forEach {
-        val existing = database.getByUUID(GDriveDataType.IMAGE.name, it.name())
+        val existing = database.getByUUID(RemoteDataType.IMAGE.name, it.name())
         if (existing === null) {
-          localDatabaseUpdate(GDriveDataType.IMAGE, it.name(), {}, false)
+          localDatabaseUpdate(RemoteDataType.IMAGE, it.name(), {}, false)
         }
       }
     }
@@ -98,11 +97,11 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
 
   override fun notifyRemove(data: Any, onExecution: () -> Unit) {
     when {
-      data is Tag -> localDatabaseUpdate(GDriveDataType.TAG, data.uuid, onExecution, true)
-      data is Folder -> localDatabaseUpdate(GDriveDataType.FOLDER, data.uuid, onExecution, true)
+      data is Tag -> localDatabaseUpdate(RemoteDataType.TAG, data.uuid, onExecution, true)
+      data is Folder -> localDatabaseUpdate(RemoteDataType.FOLDER, data.uuid, onExecution, true)
       data is Note -> {
-        localDatabaseUpdate(GDriveDataType.NOTE, data.uuid, onExecution, true)
-        localDatabaseUpdate(GDriveDataType.NOTE_META, data.uuid, onExecution, true)
+        localDatabaseUpdate(RemoteDataType.NOTE, data.uuid, onExecution, true)
+        localDatabaseUpdate(RemoteDataType.NOTE_META, data.uuid, onExecution, true)
       }
       else -> maybeThrow("notifyRemove called with unhandled data type")
     }
@@ -114,11 +113,11 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
    */
   fun stopTrackingItem(data: Any, onExecution: () -> Unit) {
     when {
-      data is Tag -> localDatabaseRemove(GDriveDataType.TAG, data.uuid, onExecution)
-      data is Folder -> localDatabaseRemove(GDriveDataType.FOLDER, data.uuid, onExecution)
+      data is Tag -> localDatabaseRemove(RemoteDataType.TAG, data.uuid, onExecution)
+      data is Folder -> localDatabaseRemove(RemoteDataType.FOLDER, data.uuid, onExecution)
       data is Note -> {
-        localDatabaseRemove(GDriveDataType.NOTE, data.uuid, onExecution)
-        localDatabaseRemove(GDriveDataType.NOTE_META, data.uuid, onExecution)
+        localDatabaseRemove(RemoteDataType.NOTE, data.uuid, onExecution)
+        localDatabaseRemove(RemoteDataType.NOTE_META, data.uuid, onExecution)
       }
       else -> maybeThrow("removeFromDb called with unhandled data type")
     }
@@ -130,7 +129,7 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
    *
    * @return if false, the item will be deleted from the database
    */
-  fun notifyAttempt(itemType: GDriveDataType, itemUUID: String): Boolean {
+  fun notifyAttempt(itemType: RemoteDataType, itemUUID: String): Boolean {
     val database = remoteDatabase
     if (database === null) {
       return false
@@ -153,7 +152,7 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
     return existing.attempts < 8
   }
 
-  fun remoteDatabaseUpdate(itemType: GDriveDataType, itemUUID: String, onExecution: () -> Unit) {
+  fun remoteDatabaseUpdate(itemType: RemoteDataType, itemUUID: String, onExecution: () -> Unit) {
     GlobalScope.launch {
       val database = remoteDatabase
       if (database === null) {
@@ -174,7 +173,7 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
   }
 
   fun localDatabaseUpdate(
-      itemType: GDriveDataType,
+      itemType: RemoteDataType,
       itemUUID: String,
       onExecution: () -> Unit,
       removed: Boolean = false) {
@@ -198,7 +197,7 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
   }
 
   fun localDatabaseRemove(
-      itemType: GDriveDataType,
+      itemType: RemoteDataType,
       itemUUID: String,
       onExecution: () -> Unit) {
     GlobalScope.launch {

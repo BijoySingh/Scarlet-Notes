@@ -2,7 +2,6 @@ package com.bijoysingh.quicknote.drive
 
 import android.content.Context
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
-import com.bijoysingh.quicknote.Scarlet.Companion.gDriveDbState
 import com.bijoysingh.quicknote.scarlet.sGDriveLoggedIn
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount

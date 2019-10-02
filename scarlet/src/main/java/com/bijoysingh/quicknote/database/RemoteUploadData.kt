@@ -5,7 +5,7 @@ import com.google.gson.Gson
 import com.maubis.scarlet.base.support.utils.log
 import com.maubis.scarlet.base.support.utils.maybeThrow
 
-enum class GDriveDataType {
+enum class RemoteDataType {
   NOTE,
   NOTE_META,
   TAG,
@@ -57,7 +57,7 @@ class RemoteUploadData {
 }
 
 object RemoteDatabaseHelper {
-  fun getByUUID(type: GDriveDataType, uuid: String): RemoteUploadData {
+  fun getByUUID(type: RemoteDataType, uuid: String): RemoteUploadData {
     return getByUUID(type.name, uuid)
   }
 

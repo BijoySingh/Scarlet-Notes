@@ -3,8 +3,7 @@ package com.bijoysingh.quicknote.scarlet
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import com.bijoysingh.quicknote.BuildConfig
-import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
-import com.bijoysingh.quicknote.Scarlet.Companion.gDriveDbState
+import com.bijoysingh.quicknote.Scarlet.Companion.remoteDatabaseStateController
 import com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity.Companion.openIfNeeded
 import com.bijoysingh.quicknote.firebase.support.RemoteConfigFetcher
 import com.maubis.scarlet.base.config.MaterialNoteConfig
@@ -31,7 +30,7 @@ class ScarletConfig(context: Context) : MaterialNoteConfig(context) {
 
   override fun remoteConfigFetcher(): IRemoteConfigFetcher = RemoteConfigFetcher()
 
-  override fun remoteDatabaseState(): IRemoteDatabaseState = gDriveDbState!!
+  override fun remoteDatabaseState(): IRemoteDatabaseState = remoteDatabaseStateController!!
 
   override fun appFlavor(): Flavor = when (BuildConfig.FLAVOR) {
     "lite" -> Flavor.LITE

@@ -1,6 +1,6 @@
 package com.bijoysingh.quicknote.drive
 
-import com.bijoysingh.quicknote.database.GDriveDataType
+import com.bijoysingh.quicknote.database.RemoteDataType
 import com.bijoysingh.quicknote.database.RemoteDatabaseHelper
 import com.bijoysingh.quicknote.database.RemoteUploadDataDao
 import com.google.api.services.drive.model.File
@@ -8,7 +8,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 abstract class GDriveRemoteFolderBase(
-    val dataType: GDriveDataType,
+    val dataType: RemoteDataType,
     val database: RemoteUploadDataDao,
     val helper: GDriveServiceHelper,
     val onPendingChange: () -> Unit) {

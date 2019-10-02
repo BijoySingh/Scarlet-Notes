@@ -3,7 +3,7 @@ package com.bijoysingh.quicknote.drive
 import android.app.Dialog
 import android.graphics.drawable.Drawable
 import android.text.TextUtils
-import com.bijoysingh.quicknote.database.GDriveDataType
+import com.bijoysingh.quicknote.database.RemoteDataType
 import com.bijoysingh.quicknote.database.RemoteUploadData
 import com.bijoysingh.quicknote.database.remoteDatabase
 import com.facebook.litho.*
@@ -74,19 +74,19 @@ object PendingItemLayoutSpec {
     val uuid = option.state.uuid
     val info = option.info ?: "N/A"
     val icon = when (option.state.type) {
-      GDriveDataType.NOTE.name -> R.drawable.ic_note_white_48dp
-      GDriveDataType.NOTE_META.name -> R.drawable.ic_info
-      GDriveDataType.TAG.name -> R.drawable.ic_action_tags
-      GDriveDataType.FOLDER.name -> R.drawable.ic_folder
-      GDriveDataType.IMAGE.name -> R.drawable.ic_image_gallery
+      RemoteDataType.NOTE.name -> R.drawable.ic_note_white_48dp
+      RemoteDataType.NOTE_META.name -> R.drawable.ic_info
+      RemoteDataType.TAG.name -> R.drawable.ic_action_tags
+      RemoteDataType.FOLDER.name -> R.drawable.ic_folder
+      RemoteDataType.IMAGE.name -> R.drawable.ic_image_gallery
       else -> R.drawable.ic_action_lock
     }
     val label = when (option.state.type) {
-      GDriveDataType.NOTE.name -> "Note"
-      GDriveDataType.NOTE_META.name -> "Info"
-      GDriveDataType.TAG.name -> "Tag"
-      GDriveDataType.FOLDER.name -> "Folder"
-      GDriveDataType.IMAGE.name -> "Image"
+      RemoteDataType.NOTE.name -> "Note"
+      RemoteDataType.NOTE_META.name -> "Info"
+      RemoteDataType.TAG.name -> "Tag"
+      RemoteDataType.FOLDER.name -> "Folder"
+      RemoteDataType.IMAGE.name -> "Image"
       else -> "Invalid"
     }
     val localState = when {
@@ -223,17 +223,17 @@ class GDrivePendingBottomSheet : LithoBottomSheet() {
       data.clear()
       remoteDatabase?.getAllPending()?.forEach {
         val pendingItem = when (it.type) {
-          GDriveDataType.NOTE.name -> PendingItem(state = it, info = instance.notesDatabase().getByUUID(it.uuid)?.getFullText())
-          GDriveDataType.NOTE_META.name -> {
+          RemoteDataType.NOTE.name -> PendingItem(state = it, info = instance.notesDatabase().getByUUID(it.uuid)?.getFullText())
+          RemoteDataType.NOTE_META.name -> {
             val note = instance.notesDatabase().getByUUID(it.uuid)?.getExportableNoteMeta()
             when {
               (note == null) -> PendingItem(state = it, info = null)
               else -> PendingItem(state = it, info = Gson().toJson(note))
             }
           }
-          GDriveDataType.TAG.name -> PendingItem(state = it, info = instance.tagsDatabase().getByUUID(it.uuid)?.title)
-          GDriveDataType.FOLDER.name -> PendingItem(state = it, info = instance.foldersDatabase().getByUUID(it.uuid)?.title)
-          GDriveDataType.IMAGE.name -> PendingItem(state = it, info = "Image")
+          RemoteDataType.TAG.name -> PendingItem(state = it, info = instance.tagsDatabase().getByUUID(it.uuid)?.title)
+          RemoteDataType.FOLDER.name -> PendingItem(state = it, info = instance.foldersDatabase().getByUUID(it.uuid)?.title)
+          RemoteDataType.IMAGE.name -> PendingItem(state = it, info = "Image")
           else -> null
         }
         if (pendingItem !== null) {

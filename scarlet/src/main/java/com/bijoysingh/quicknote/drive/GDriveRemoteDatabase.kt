@@ -3,10 +3,7 @@ package com.bijoysingh.quicknote.drive
 import android.content.Context
 import com.bijoysingh.quicknote.Scarlet
 import com.bijoysingh.quicknote.Scarlet.Companion.gDriveConfig
-import com.bijoysingh.quicknote.database.GDriveDataType
-import com.bijoysingh.quicknote.database.RemoteUploadData
-import com.bijoysingh.quicknote.database.RemoteUploadDataDao
-import com.bijoysingh.quicknote.database.genRemoteDatabase
+import com.bijoysingh.quicknote.database.*
 import com.bijoysingh.quicknote.firebase.data.getFirebaseNote
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.ApplicationBase
@@ -80,7 +77,7 @@ fun folderIdForFolderName(folderName: String, folderId: String = ""): String {
 
 class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
 
-  lateinit var gDriveDbState: GDriveRemoteDatabaseState
+  lateinit var gDriveDbState: RemoteDatabaseStateController
 
   private var gDriveDatabase: RemoteUploadDataDao? = null
 
@@ -92,7 +89,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
   private var foldersSync: GDriveRemoteFolder<ExportableFolder>? = null
   private var tagsSync: GDriveRemoteFolder<ExportableTag>? = null
   private var imageSync: GDriveRemoteImageFolder? = null
-  private var syncing = HashMap<GDriveDataType, AtomicBoolean>()
+  private var syncing = HashMap<RemoteDataType, AtomicBoolean>()
   private var syncListener: IPendingUploadListener? = null
   private var databaseUpdateLambda: () -> Unit = { verifyAndNotifyPendingStateChange() }
 
@@ -105,16 +102,16 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     isValidController = true
     driveHelper = helper
     gDriveDatabase = genRemoteDatabase(context)
-    gDriveDbState = Scarlet.gDriveDbState!!
+    gDriveDbState = Scarlet.remoteDatabaseStateController!!
 
-    syncing[GDriveDataType.NOTE] = AtomicBoolean(false)
-    syncing[GDriveDataType.TAG] = AtomicBoolean(false)
-    syncing[GDriveDataType.FOLDER] = AtomicBoolean(false)
-    syncing[GDriveDataType.NOTE_META] = AtomicBoolean(false)
-    syncing[GDriveDataType.IMAGE] = AtomicBoolean(false)
+    syncing[RemoteDataType.NOTE] = AtomicBoolean(false)
+    syncing[RemoteDataType.TAG] = AtomicBoolean(false)
+    syncing[RemoteDataType.FOLDER] = AtomicBoolean(false)
+    syncing[RemoteDataType.NOTE_META] = AtomicBoolean(false)
+    syncing[RemoteDataType.IMAGE] = AtomicBoolean(false)
 
     notesSync = GDriveRemoteFolder(
-        dataType = GDriveDataType.NOTE,
+        dataType = RemoteDataType.NOTE,
         database = gDriveDatabase!!,
         helper = helper,
         onPendingChange = { verifyAndNotifyPendingStateChange() },
@@ -123,7 +120,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
           ApplicationBase.instance.notesDatabase().getByUUID(it)?.toExportedMarkdown()
         })
     notesMetaSync = GDriveRemoteFolder(
-        dataType = GDriveDataType.NOTE_META,
+        dataType = RemoteDataType.NOTE_META,
         database = gDriveDatabase!!,
         helper = helper,
         onPendingChange = { verifyAndNotifyPendingStateChange() },
@@ -132,7 +129,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
           ApplicationBase.instance.notesDatabase().getByUUID(it)?.getExportableNoteMeta()
         })
     tagsSync = GDriveRemoteFolder(
-        dataType = GDriveDataType.TAG,
+        dataType = RemoteDataType.TAG,
         database = gDriveDatabase!!,
         helper = helper,
         onPendingChange = { verifyAndNotifyPendingStateChange() },
@@ -141,7 +138,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
           ApplicationBase.instance.tagsDatabase().getByUUID(it)?.getExportableTag()
         })
     foldersSync = GDriveRemoteFolder(
-        dataType = GDriveDataType.FOLDER,
+        dataType = RemoteDataType.FOLDER,
         database = gDriveDatabase!!,
         helper = helper,
         onPendingChange = { verifyAndNotifyPendingStateChange() },
@@ -150,7 +147,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
           ApplicationBase.instance.foldersDatabase().getByUUID(it)?.getExportableFolder()
         })
     imageSync = GDriveRemoteImageFolder(
-        dataType = GDriveDataType.IMAGE,
+        dataType = RemoteDataType.IMAGE,
         database = gDriveDatabase!!,
         helper = helper,
         onPendingChange = { verifyAndNotifyPendingStateChange() })
@@ -208,14 +205,14 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     when (folderName) {
       FOLDER_NAME_NOTES -> notesSync?.initContentFolderId(folderId) {
         if (!sGDriveFirstSyncNote) {
-          GlobalScope.launch { resyncDataSync(GDriveDataType.NOTE) }
+          GlobalScope.launch { resyncDataSync(RemoteDataType.NOTE) }
           sGDriveFirstSyncNote = true
         }
       }
       FOLDER_NAME_NOTES_META -> {
         notesMetaSync?.initContentFolderId(folderId) {
           if (!sGDriveFirstSyncNoteMeta) {
-            GlobalScope.launch { resyncDataSync(GDriveDataType.NOTE_META) }
+            GlobalScope.launch { resyncDataSync(RemoteDataType.NOTE_META) }
             sGDriveFirstSyncNoteMeta = true
           }
         }
@@ -223,19 +220,19 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
       }
       FOLDER_NAME_TAGS -> tagsSync?.initContentFolderId(folderId) {
         if (!sGDriveFirstSyncTag) {
-          GlobalScope.launch { resyncDataSync(GDriveDataType.TAG) }
+          GlobalScope.launch { resyncDataSync(RemoteDataType.TAG) }
           sGDriveFirstSyncTag = true
         }
       }
       FOLDER_NAME_FOLDERS -> foldersSync?.initContentFolderId(folderId) {
         if (!sGDriveFirstSyncFolder) {
-          GlobalScope.launch { resyncDataSync(GDriveDataType.FOLDER) }
+          GlobalScope.launch { resyncDataSync(RemoteDataType.FOLDER) }
           sGDriveFirstSyncFolder = true
         }
       }
       FOLDER_NAME_IMAGES -> imageSync?.initContentFolderId(folderId) {
         if (!sGDriveFirstSyncImage) {
-          GlobalScope.launch { resyncDataSync(GDriveDataType.IMAGE) }
+          GlobalScope.launch { resyncDataSync(RemoteDataType.IMAGE) }
           sGDriveFirstSyncImage = true
         }
       }
@@ -355,15 +352,15 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     }
 
     GlobalScope.launch {
-      resyncDataSync(GDriveDataType.NOTE)
-      resyncDataSync(GDriveDataType.NOTE_META)
-      resyncDataSync(GDriveDataType.TAG)
-      resyncDataSync(GDriveDataType.FOLDER)
-      resyncDataSync(GDriveDataType.IMAGE)
+      resyncDataSync(RemoteDataType.NOTE)
+      resyncDataSync(RemoteDataType.NOTE_META)
+      resyncDataSync(RemoteDataType.TAG)
+      resyncDataSync(RemoteDataType.FOLDER)
+      resyncDataSync(RemoteDataType.IMAGE)
     }
   }
 
-  fun resyncDataSync(type: GDriveDataType) {
+  fun resyncDataSync(type: RemoteDataType) {
     if (syncing[type]?.getAndSet(true) == true) {
       return
     }
@@ -400,34 +397,34 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
    */
 
   @Suppress("IMPLICIT_CAST_TO_ANY")
-  private fun insert(type: GDriveDataType, data: RemoteUploadData) {
+  private fun insert(type: RemoteDataType, data: RemoteUploadData) {
     if (!isValidController) {
       return
     }
 
     val logInfo = "insert(${type.name}, ${data.uuid})"
     val localItem = when (type) {
-      GDriveDataType.NOTE -> {
+      RemoteDataType.NOTE -> {
         ApplicationBase.instance.notesDatabase().getByUUID(data.uuid)?.toExportedMarkdown()?.apply {
           notesSync?.insert(data.uuid, this)
         }
       }
-      GDriveDataType.NOTE_META -> {
+      RemoteDataType.NOTE_META -> {
         ApplicationBase.instance.notesDatabase().getByUUID(data.uuid)?.getExportableNoteMeta()?.apply {
           notesMetaSync?.insert(data.uuid, this)
         }
       }
-      GDriveDataType.TAG -> {
+      RemoteDataType.TAG -> {
         ApplicationBase.instance.tagsDatabase().getByUUID(data.uuid)?.getExportableTag()?.apply {
           tagsSync?.insert(this.uuid, this)
         }
       }
-      GDriveDataType.FOLDER -> {
+      RemoteDataType.FOLDER -> {
         ApplicationBase.instance.foldersDatabase().getByUUID(data.uuid)?.getExportableFolder()?.apply {
           foldersSync?.insert(this.uuid, this)
         }
       }
-      GDriveDataType.IMAGE -> {
+      RemoteDataType.IMAGE -> {
         val imageUUID = toImageUUID(data.uuid)
         if (imageUUID !== null && noteImagesFolder.getFile(imageUUID.noteUuid, imageUUID.imageUuid).exists()) {
           imageSync?.insert(imageUUID)
@@ -443,7 +440,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     }
   }
 
-  private fun remove(type: GDriveDataType, data: RemoteUploadData) {
+  private fun remove(type: RemoteDataType, data: RemoteUploadData) {
     if (!isValidController) {
       return
     }
@@ -452,11 +449,11 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     log("GDriveRemote", logInfo)
     val uuid = data.uuid
     when (type) {
-      GDriveDataType.NOTE -> notesSync?.delete(uuid)
-      GDriveDataType.NOTE_META -> notesMetaSync?.delete(uuid)
-      GDriveDataType.TAG -> tagsSync?.delete(uuid)
-      GDriveDataType.FOLDER -> foldersSync?.delete(uuid)
-      GDriveDataType.IMAGE -> {
+      RemoteDataType.NOTE -> notesSync?.delete(uuid)
+      RemoteDataType.NOTE_META -> notesMetaSync?.delete(uuid)
+      RemoteDataType.TAG -> tagsSync?.delete(uuid)
+      RemoteDataType.FOLDER -> foldersSync?.delete(uuid)
+      RemoteDataType.IMAGE -> {
         val imageUUID = toImageUUID(uuid)
         when {
           imageUUID !== null -> imageSync?.delete(imageUUID)
@@ -465,7 +462,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     }
   }
 
-  private fun onRemoteInsert(type: GDriveDataType, data: RemoteUploadData) {
+  private fun onRemoteInsert(type: RemoteDataType, data: RemoteUploadData) {
     if (!isValidController) {
       return
     }
@@ -476,7 +473,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     }
 
     when (type) {
-      GDriveDataType.NOTE -> {
+      RemoteDataType.NOTE -> {
         onRemoteInsertImpl(data.fileId) {
           // TODO: De-duplicate meta data and note update
           try {
@@ -487,13 +484,13 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
             temporaryNote.description = itemDescription
             IRemoteDatabaseUtils.onRemoteInsert(context, temporaryNote.getFirebaseNote())
 
-            gDriveDbState.remoteDatabaseUpdate(GDriveDataType.NOTE, data.uuid, databaseUpdateLambda)
+            gDriveDbState.remoteDatabaseUpdate(RemoteDataType.NOTE, data.uuid, databaseUpdateLambda)
           } catch (exception: Exception) {
             maybeThrow(exception)
           }
         }
       }
-      GDriveDataType.NOTE_META -> {
+      RemoteDataType.NOTE_META -> {
         // TODO: De-duplicate meta data and note update
         onRemoteInsertImpl(data.fileId) {
           try {
@@ -505,46 +502,46 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
             temporaryNote.mergeMetas(item)
             IRemoteDatabaseUtils.onRemoteInsert(context, temporaryNote.getFirebaseNote())
 
-            gDriveDbState.remoteDatabaseUpdate(GDriveDataType.NOTE_META, data.uuid, databaseUpdateLambda)
+            gDriveDbState.remoteDatabaseUpdate(RemoteDataType.NOTE_META, data.uuid, databaseUpdateLambda)
           } catch (exception: Exception) {
             maybeThrow(exception)
           }
         }
       }
-      GDriveDataType.TAG -> {
+      RemoteDataType.TAG -> {
         onRemoteInsertImpl(data.fileId) {
           try {
             val item = Gson().fromJson(it, ExportableTag::class.java)
             IRemoteDatabaseUtils.onRemoteInsert(context, item)
-            gDriveDbState.remoteDatabaseUpdate(GDriveDataType.TAG, data.uuid, databaseUpdateLambda)
+            gDriveDbState.remoteDatabaseUpdate(RemoteDataType.TAG, data.uuid, databaseUpdateLambda)
           } catch (exception: Exception) {
             maybeThrow(exception)
           }
         }
       }
-      GDriveDataType.FOLDER -> {
+      RemoteDataType.FOLDER -> {
         onRemoteInsertImpl(data.fileId) {
           try {
             val item = Gson().fromJson(it, ExportableFolder::class.java)
             IRemoteDatabaseUtils.onRemoteInsert(context, item)
-            gDriveDbState.remoteDatabaseUpdate(GDriveDataType.FOLDER, data.uuid, databaseUpdateLambda)
+            gDriveDbState.remoteDatabaseUpdate(RemoteDataType.FOLDER, data.uuid, databaseUpdateLambda)
           } catch (exception: Exception) {
             maybeThrow(exception)
           }
         }
       }
-      GDriveDataType.IMAGE -> {
+      RemoteDataType.IMAGE -> {
         val imageUUID = toImageUUID(data.uuid)
         if (imageUUID !== null) {
           val imageFile = noteImagesFolder.getFile(imageUUID.noteUuid, imageUUID.imageUuid)
           if (imageFile.exists()) {
-            gDriveDbState.remoteDatabaseUpdate(GDriveDataType.IMAGE, data.uuid, databaseUpdateLambda)
+            gDriveDbState.remoteDatabaseUpdate(RemoteDataType.IMAGE, data.uuid, databaseUpdateLambda)
             return
           }
 
           driveHelper?.readFile(data.fileId, imageFile)?.addOnCompleteListener {
             if (it.result == true) {
-              gDriveDbState.remoteDatabaseUpdate(GDriveDataType.IMAGE, data.uuid, databaseUpdateLambda)
+              gDriveDbState.remoteDatabaseUpdate(RemoteDataType.IMAGE, data.uuid, databaseUpdateLambda)
             }
           }
         }
@@ -552,7 +549,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     }
   }
 
-  private fun onRemoteRemove(type: GDriveDataType, data: RemoteUploadData) {
+  private fun onRemoteRemove(type: RemoteDataType, data: RemoteUploadData) {
     if (!isValidController) {
       return
     }
@@ -565,15 +562,15 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     val logInfo = "onRemoteRemove(${type.name}, ${data.uuid})"
     log("GDriveRemote", logInfo)
     when (type) {
-      GDriveDataType.NOTE -> {
+      RemoteDataType.NOTE -> {
         IRemoteDatabaseUtils.onRemoteRemoveNote(context, data.uuid)
-        gDriveDbState.remoteDatabaseUpdate(GDriveDataType.NOTE_META, data.uuid, databaseUpdateLambda)
+        gDriveDbState.remoteDatabaseUpdate(RemoteDataType.NOTE_META, data.uuid, databaseUpdateLambda)
       }
-      GDriveDataType.NOTE_META -> {
+      RemoteDataType.NOTE_META -> {
       } // Should never happen as note is handling this deletion
-      GDriveDataType.TAG -> IRemoteDatabaseUtils.onRemoteRemoveTag(context, data.uuid)
-      GDriveDataType.FOLDER -> IRemoteDatabaseUtils.onRemoteRemoveFolder(context, data.uuid)
-      GDriveDataType.IMAGE -> {
+      RemoteDataType.TAG -> IRemoteDatabaseUtils.onRemoteRemoveTag(context, data.uuid)
+      RemoteDataType.FOLDER -> IRemoteDatabaseUtils.onRemoteRemoveFolder(context, data.uuid)
+      RemoteDataType.IMAGE -> {
         val imageUUID = toImageUUID(data.uuid)
         if (imageUUID !== null) {
           val imageFile = noteImagesFolder.getFile(imageUUID.noteUuid, imageUUID.imageUuid)
