@@ -1,7 +1,7 @@
 package com.bijoysingh.quicknote.drive
 
 import com.bijoysingh.quicknote.database.GDriveDataType
-import com.bijoysingh.quicknote.database.GDriveUploadDataDao
+import com.bijoysingh.quicknote.database.RemoteUploadDataDao
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -39,7 +39,7 @@ fun toImageUUID(imageUuid: String): ImageUUID? {
 
 class GDriveRemoteImageFolder(
     dataType: GDriveDataType,
-    database: GDriveUploadDataDao,
+    database: RemoteUploadDataDao,
     helper: GDriveServiceHelper,
     onPendingChange: () -> Unit) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange) {
 
@@ -89,8 +89,8 @@ class GDriveRemoteImageFolder(
     if (contentFiles.containsKey(id)) {
       GlobalScope.launch {
         database.getByUUID(dataType.name, id.name())?.apply {
-          gDriveUpdateTimestamp = lastUpdateTimestamp
-          gDriveStateDeleted = localStateDeleted
+          remoteUpdateTimestamp = lastUpdateTimestamp
+          remoteStateDeleted = localStateDeleted
           save(database)
         }
         onPendingChange()

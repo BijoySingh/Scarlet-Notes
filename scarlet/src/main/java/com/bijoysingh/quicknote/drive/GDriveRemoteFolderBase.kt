@@ -1,16 +1,15 @@
 package com.bijoysingh.quicknote.drive
 
 import com.bijoysingh.quicknote.database.GDriveDataType
-import com.bijoysingh.quicknote.database.GDriveDatabaseHelper
-import com.bijoysingh.quicknote.database.GDriveUploadData
-import com.bijoysingh.quicknote.database.GDriveUploadDataDao
+import com.bijoysingh.quicknote.database.RemoteDatabaseHelper
+import com.bijoysingh.quicknote.database.RemoteUploadDataDao
 import com.google.api.services.drive.model.File
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 abstract class GDriveRemoteFolderBase(
     val dataType: GDriveDataType,
-    val database: GDriveUploadDataDao,
+    val database: RemoteUploadDataDao,
     val helper: GDriveServiceHelper,
     val onPendingChange: () -> Unit) {
 
@@ -21,47 +20,47 @@ abstract class GDriveRemoteFolderBase(
 
   protected fun notifyDriveData(uid: String, name: String, modifiedTime: Long, deleted: Boolean = false) {
     GlobalScope.launch {
-      val uploadData = GDriveDatabaseHelper.getByUUID(dataType, name)
+      val uploadData = RemoteDatabaseHelper.getByUUID(dataType, name)
       if (uploadData.unsaved()) {
         uploadData.apply {
           fileId = uid
-          gDriveUpdateTimestamp = modifiedTime
-          gDriveStateDeleted = deleted
+          remoteUpdateTimestamp = modifiedTime
+          remoteStateDeleted = deleted
           save(database)
         }
         onPendingChange()
         return@launch
       }
 
-      if (uploadData.gDriveStateDeleted != deleted) {
+      if (uploadData.remoteStateDeleted != deleted) {
         uploadData.apply {
-          gDriveUpdateTimestamp = modifiedTime
+          remoteUpdateTimestamp = modifiedTime
           fileId = uid
-          gDriveStateDeleted = deleted
+          remoteStateDeleted = deleted
           save(database)
         }
         onPendingChange()
         return@launch
       }
 
-      if (uploadData.fileId != uid && uploadData.gDriveUpdateTimestamp < modifiedTime) {
+      if (uploadData.fileId != uid && uploadData.remoteUpdateTimestamp < modifiedTime) {
         // This is a bit of shit situation to be in, as multiple files are pointing to the
         // same name... Something Google Drive allows for whatever reason
         // To help disambiguate, choose the one with the higher update timestamp
         uploadData.apply {
-          gDriveUpdateTimestamp = modifiedTime
+          remoteUpdateTimestamp = modifiedTime
           fileId = uid
-          gDriveStateDeleted = deleted
+          remoteStateDeleted = deleted
           save(database)
         }
         onPendingChange()
       }
 
-      if (uploadData.fileId == uid && uploadData.gDriveUpdateTimestamp != modifiedTime) {
+      if (uploadData.fileId == uid && uploadData.remoteUpdateTimestamp != modifiedTime) {
         uploadData.apply {
-          gDriveUpdateTimestamp = modifiedTime
+          remoteUpdateTimestamp = modifiedTime
           fileId = uid
-          gDriveStateDeleted = deleted
+          remoteStateDeleted = deleted
           save(database)
         }
         onPendingChange()

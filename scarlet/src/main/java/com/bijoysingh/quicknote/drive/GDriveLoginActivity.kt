@@ -5,9 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
-import com.bijoysingh.quicknote.Scarlet.Companion.gDriveDbState
-import com.bijoysingh.quicknote.database.GDriveDataType
-import com.bijoysingh.quicknote.database.GDriveUploadData
 import com.bijoysingh.quicknote.firebase.activity.FirebaseLoginActivity
 import com.bijoysingh.quicknote.scarlet.sGDriveLoggedIn
 import com.facebook.litho.Component
@@ -28,9 +25,7 @@ import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.drive.Drive
 import com.google.api.services.drive.DriveScopes
 import com.maubis.scarlet.base.config.ApplicationBase
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.support.ui.SecuredActivity
-import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

@@ -4,8 +4,8 @@ import android.app.Dialog
 import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import com.bijoysingh.quicknote.database.GDriveDataType
-import com.bijoysingh.quicknote.database.GDriveUploadData
-import com.bijoysingh.quicknote.database.gDriveDatabase
+import com.bijoysingh.quicknote.database.RemoteUploadData
+import com.bijoysingh.quicknote.database.remoteDatabase
 import com.facebook.litho.*
 import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.Image
@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.atomic.AtomicBoolean
 
 data class PendingItem(
-    val state: GDriveUploadData,
+    val state: RemoteUploadData,
     val info: String?
 )
 
@@ -91,7 +91,7 @@ object PendingItemLayoutSpec {
     }
     val localState = when {
       option.state.lastUpdateTimestamp == 0L -> R.string.pending_backup_state_unavailable
-      option.state.gDriveUpdateTimestamp == 0L && !option.state.localStateDeleted -> R.string.pending_backup_state_created
+      option.state.remoteUpdateTimestamp == 0L && !option.state.localStateDeleted -> R.string.pending_backup_state_created
       option.state.localStateDeleted -> R.string.pending_backup_state_deleted
       else -> R.string.pending_backup_state_updated
     }
@@ -101,14 +101,14 @@ object PendingItemLayoutSpec {
     }
 
     val remoteState = when {
-      option.state.gDriveUpdateTimestamp == 0L -> R.string.pending_backup_state_unavailable
-      option.state.lastUpdateTimestamp == 0L && !option.state.gDriveStateDeleted -> R.string.pending_backup_state_created
-      option.state.gDriveStateDeleted -> R.string.pending_backup_state_deleted
+      option.state.remoteUpdateTimestamp == 0L -> R.string.pending_backup_state_unavailable
+      option.state.lastUpdateTimestamp == 0L && !option.state.remoteStateDeleted -> R.string.pending_backup_state_created
+      option.state.remoteStateDeleted -> R.string.pending_backup_state_deleted
       else -> R.string.pending_backup_state_updated
     }
     val remoteUpdateTime = when {
-      option.state.gDriveUpdateTimestamp == 0L -> ""
-      else -> DateFormatter.getDate(DateFormatter.Formats.HH_MM_A_DD_MMM_YYYY.format, option.state.gDriveUpdateTimestamp)
+      option.state.remoteUpdateTimestamp == 0L -> ""
+      else -> DateFormatter.getDate(DateFormatter.Formats.HH_MM_A_DD_MMM_YYYY.format, option.state.remoteUpdateTimestamp)
     }
 
     val column = Column.create(context)
@@ -221,7 +221,7 @@ class GDrivePendingBottomSheet : LithoBottomSheet() {
   fun requestData(onDataAvailable: () -> Unit) {
     GlobalScope.launch {
       data.clear()
-      gDriveDatabase?.getAllPending()?.forEach {
+      remoteDatabase?.getAllPending()?.forEach {
         val pendingItem = when (it.type) {
           GDriveDataType.NOTE.name -> PendingItem(state = it, info = instance.notesDatabase().getByUUID(it.uuid)?.getFullText())
           GDriveDataType.NOTE_META.name -> {

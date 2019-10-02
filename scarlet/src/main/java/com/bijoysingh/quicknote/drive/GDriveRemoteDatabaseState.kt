@@ -2,9 +2,9 @@ package com.bijoysingh.quicknote.drive
 
 import android.content.Context
 import com.bijoysingh.quicknote.database.GDriveDataType
-import com.bijoysingh.quicknote.database.GDriveDatabaseHelper
-import com.bijoysingh.quicknote.database.gDriveDatabase
-import com.bijoysingh.quicknote.database.genGDriveUploadDatabase
+import com.bijoysingh.quicknote.database.RemoteDatabaseHelper
+import com.bijoysingh.quicknote.database.remoteDatabase
+import com.bijoysingh.quicknote.database.genRemoteDatabase
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.database.remote.IRemoteDatabaseState
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
 
   init {
-    gDriveDatabase = genGDriveUploadDatabase(context)
+    remoteDatabase = genRemoteDatabase(context)
   }
 
   /**
@@ -35,7 +35,7 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
   }
 
   fun notifyInsertIfNotPresent(data: Any) {
-    val database = gDriveDatabase
+    val database = remoteDatabase
     if (database === null) {
       return
     }
@@ -66,7 +66,7 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
     localDatabaseUpdate(GDriveDataType.NOTE, noteUuid, onExecution)
     localDatabaseUpdate(GDriveDataType.NOTE_META, noteUuid, onExecution)
 
-    val database = gDriveDatabase
+    val database = remoteDatabase
     if (database === null) {
       return
     }
@@ -131,12 +131,12 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
    * @return if false, the item will be deleted from the database
    */
   fun notifyAttempt(itemType: GDriveDataType, itemUUID: String): Boolean {
-    val database = gDriveDatabase
+    val database = remoteDatabase
     if (database === null) {
       return false
     }
 
-    val existing = GDriveDatabaseHelper.getByUUID(itemType, itemUUID)
+    val existing = RemoteDatabaseHelper.getByUUID(itemType, itemUUID)
     val lastAttemptedTime = existing.lastAttemptTime
 
     // If it fails 8 times, only re-attempt after hour. This handles situations like no-network conditions
@@ -155,18 +155,18 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
 
   fun remoteDatabaseUpdate(itemType: GDriveDataType, itemUUID: String, onExecution: () -> Unit) {
     GlobalScope.launch {
-      val database = gDriveDatabase
+      val database = remoteDatabase
       if (database === null) {
         return@launch
       }
 
       log("GDrive", "remoteDatabaseUpdate(${itemType.name}, $itemUUID)")
-      val existing = GDriveDatabaseHelper.getByUUID(itemType, itemUUID)
+      val existing = RemoteDatabaseHelper.getByUUID(itemType, itemUUID)
       existing.apply {
         attempts = 0
         lastAttemptTime = 0
-        lastUpdateTimestamp = gDriveUpdateTimestamp
-        localStateDeleted = gDriveStateDeleted
+        lastUpdateTimestamp = remoteUpdateTimestamp
+        localStateDeleted = remoteStateDeleted
         save(database)
       }
       onExecution()
@@ -179,17 +179,17 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
       onExecution: () -> Unit,
       removed: Boolean = false) {
     GlobalScope.launch {
-      val database = gDriveDatabase
+      val database = remoteDatabase
       if (database === null) {
         return@launch
       }
 
       log("GDrive", "localDatabaseUpdate(${itemType.name}, $itemUUID)")
-      val existing = GDriveDatabaseHelper.getByUUID(itemType, itemUUID)
+      val existing = RemoteDatabaseHelper.getByUUID(itemType, itemUUID)
       existing.apply {
         attempts = 0
         lastAttemptTime = 0
-        lastUpdateTimestamp = Math.max(Math.max(gDriveUpdateTimestamp + 1, lastUpdateTimestamp + 1), getTrueCurrentTime())
+        lastUpdateTimestamp = Math.max(Math.max(remoteUpdateTimestamp + 1, lastUpdateTimestamp + 1), getTrueCurrentTime())
         localStateDeleted = removed
         save(database)
       }
@@ -202,7 +202,7 @@ class GDriveRemoteDatabaseState(context: Context) : IRemoteDatabaseState {
       itemUUID: String,
       onExecution: () -> Unit) {
     GlobalScope.launch {
-      val database = gDriveDatabase
+      val database = remoteDatabase
       if (database !== null) {
         val existing = database.getByUUID(itemType.name, itemUUID)
         if (existing !== null) {

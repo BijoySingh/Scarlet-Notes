@@ -4,9 +4,9 @@ import android.content.Context
 import com.bijoysingh.quicknote.Scarlet
 import com.bijoysingh.quicknote.Scarlet.Companion.gDriveConfig
 import com.bijoysingh.quicknote.database.GDriveDataType
-import com.bijoysingh.quicknote.database.GDriveUploadData
-import com.bijoysingh.quicknote.database.GDriveUploadDataDao
-import com.bijoysingh.quicknote.database.genGDriveUploadDatabase
+import com.bijoysingh.quicknote.database.RemoteUploadData
+import com.bijoysingh.quicknote.database.RemoteUploadDataDao
+import com.bijoysingh.quicknote.database.genRemoteDatabase
 import com.bijoysingh.quicknote.firebase.data.getFirebaseNote
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.ApplicationBase
@@ -82,7 +82,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
 
   lateinit var gDriveDbState: GDriveRemoteDatabaseState
 
-  private var gDriveDatabase: GDriveUploadDataDao? = null
+  private var gDriveDatabase: RemoteUploadDataDao? = null
 
   private var isValidController: Boolean = true
   private var driveHelper: GDriveServiceHelper? = null
@@ -104,7 +104,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
 
     isValidController = true
     driveHelper = helper
-    gDriveDatabase = genGDriveUploadDatabase(context)
+    gDriveDatabase = genRemoteDatabase(context)
     gDriveDbState = Scarlet.gDriveDbState!!
 
     syncing[GDriveDataType.NOTE] = AtomicBoolean(false)
@@ -374,12 +374,12 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
         continue
       }
 
-      val sameDelete = pendingItem.localStateDeleted == pendingItem.gDriveStateDeleted
+      val sameDelete = pendingItem.localStateDeleted == pendingItem.remoteStateDeleted
       val localDeleted = pendingItem.localStateDeleted
-      val remoteDeleted = pendingItem.gDriveStateDeleted
-      val sameUpdateTime = pendingItem.lastUpdateTimestamp == pendingItem.gDriveUpdateTimestamp
-      val isLocalMoreRecent = pendingItem.lastUpdateTimestamp > pendingItem.gDriveUpdateTimestamp
-      val isRemoteMoreRecent = pendingItem.lastUpdateTimestamp < pendingItem.gDriveUpdateTimestamp
+      val remoteDeleted = pendingItem.remoteStateDeleted
+      val sameUpdateTime = pendingItem.lastUpdateTimestamp == pendingItem.remoteUpdateTimestamp
+      val isLocalMoreRecent = pendingItem.lastUpdateTimestamp > pendingItem.remoteUpdateTimestamp
+      val isRemoteMoreRecent = pendingItem.lastUpdateTimestamp < pendingItem.remoteUpdateTimestamp
       when {
         sameUpdateTime -> gDriveDbState.remoteDatabaseUpdate(type, pendingItem.uuid, databaseUpdateLambda)
         !sameDelete && isRemoteMoreRecent && remoteDeleted -> onRemoteRemove(type, pendingItem)
@@ -400,7 +400,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
    */
 
   @Suppress("IMPLICIT_CAST_TO_ANY")
-  private fun insert(type: GDriveDataType, data: GDriveUploadData) {
+  private fun insert(type: GDriveDataType, data: RemoteUploadData) {
     if (!isValidController) {
       return
     }
@@ -443,7 +443,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     }
   }
 
-  private fun remove(type: GDriveDataType, data: GDriveUploadData) {
+  private fun remove(type: GDriveDataType, data: RemoteUploadData) {
     if (!isValidController) {
       return
     }
@@ -465,7 +465,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     }
   }
 
-  private fun onRemoteInsert(type: GDriveDataType, data: GDriveUploadData) {
+  private fun onRemoteInsert(type: GDriveDataType, data: RemoteUploadData) {
     if (!isValidController) {
       return
     }
@@ -552,7 +552,7 @@ class GDriveRemoteDatabase(private val weakContext: WeakReference<Context>) {
     }
   }
 
-  private fun onRemoteRemove(type: GDriveDataType, data: GDriveUploadData) {
+  private fun onRemoteRemove(type: GDriveDataType, data: RemoteUploadData) {
     if (!isValidController) {
       return
     }
