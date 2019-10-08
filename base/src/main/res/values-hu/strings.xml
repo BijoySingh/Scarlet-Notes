@@ -1,6 +1,4 @@
 <resources>
-  <string name="maubis_apps" translatable="false">Maubis Apps</string>
-  <string name="timestamp" translatable="false">dd month yyyy, hh:mm aa</string>
   <string name="title">Cím</string>
   <string name="description">Tartalom</string>
   <string name="save">Mentés</string>
@@ -115,10 +113,6 @@
   <string name="security_option_title">Biztonsági beállítások</string>
   <string name="security_option_set_pin_code">Jelkód</string>
   <string name="security_option_set_pin_code_subtitle">Állítson be egy 4 számjegyes PIN-kódot a jegyzetek zárolásához</string>
-  <string name="security_option_lock_app" translatable="false">Enable App Lock</string>
-  <string name="security_option_lock_app_details" translatable="false">Use PIN to unlock the whole application</string>
-  <string name="security_option_ask_pin_always" translatable="false">Always ask for PIN</string>
-  <string name="security_option_ask_pin_always_details" translatable="false">Enter PIN for all notes, even if previously entered</string>
   <string name="security_option_fingerprint_enabled">Feloldás ujjlenyomattal</string>
   <string name="security_option_fingerprint_enabled_subtitle">A jegyzetek ujjlenyomat megadására kerülnek feloldásra</string>
   <string name="security_option_fingerprint_disabled">Ujjlenyomat letiltva</string>
@@ -141,7 +135,6 @@
   <string name="markdown_sheet_markdown_support_subtitle">Markdown támogatott formázás engedélyezése</string>
   <string name="markdown_sheet_home_markdown_support">Markdown a jegyzetlistában</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">Markdown formázás engedélyezése a jegyzetek listájában</string>
-  <string name="markdown_sheet_examples_list" translatable="false"># Heading \n## Subheading \n\n```\nblock of code\n```\n\n> quote\n\n- **bold**\n- *italics*\n- _underline_\n- ~~strike~~\n- `code`\n</string>
 
   <string name="permission_layout_give_permission">Engedélyek megadása</string>
   <string name="permission_layout_give_permission_details">Az importálás és exportálás tároló engedélyt igényel. Adja meg az engedélyt, ha kérésre kerül.</string>
@@ -161,13 +154,7 @@
   <string name="import_export_layout_folder_sync_description">Szinkronizálja az összes jegyzetét, címkéjét és mappáját egy külső mappába. Ez segít, ha más alkalmazásokkal szinkronizál az eszközei közt, valamint másolatot készít, ha törölnie kell az alkalmazást.</string>
   <string name="import_export_layout_folder_sync_folder">Mappába exportálás</string>
   <string name="import_export_layout_folder_sync_details">Az összes jegyzet, címke és egyebek szinkronizálása egy külső mappába</string>
-  <string name="import_export_layout_filename" translatable="false">MaterialNotes/BACKUP.txt</string>
   <string name="import_export_locked">Zárolt jegyzetek exportálása</string>
-  <string name="import_export_locked_details">Biztonsági másolat készítése a zárolt jegyzetekről is</string>
-
-  <string name="file_size_kb" translatable="false">%s kB</string>
-  <string name="file_size_mb" translatable="false">%s MB</string>
-  <string name="file_size_gb" translatable="false">%s GB</string>
 
   <string name="about_page_rate">Értékelés a Play Áruházban</string>
   <string name="about_page_contribute">Közreműködés</string>
@@ -193,7 +180,7 @@
     A %s egy egyszerű jegyzetkészítő alkalmazás. Gyors gazdag szöveges bemenetet tesz lehetővé, anélkül hogy nehezen használható volna. Gyerekjátékká teszi a párhuzamos munkavégzést.
   </string>
   <string name="about_page_about_us_details">Üdv, egy dizájner és programozó páros vagyunk, akik a %s alkalmazást készítették.
-    Arra vállalkoztunk, hogy szép, gondosan tervezett, reklámmentes vagy csak minimális reklámokat tartalmazó alkalmazásokat készítsünk, amelyek mindeki számára hasznosak.</string>
+    Arra vállalkoztunk, hogy szép, gondosan tervezett, reklámmentes vagy csak minimális reklámokat tartalmazó alkalmazásokat készítsünk, amelyek mindenki számára hasznosak.</string>
 
   <string name="tag_sheet_create_title">Új címke hozzáadása&#8230;</string>
   <string name="tag_sheet_edit_title">Címke szerkesztése&#8230;</string>
@@ -204,8 +191,6 @@
 
   <string name="sort_sheet_title">Jegyzetek rendezése</string>
   <string name="sort_sheet_newest_first">Legújabb elől</string>
-  <string name="sort_sheet_note_color" translatable="false">Note Color</string>
-  <string name="sort_sheet_note_tags" translatable="false">Note Tags</string>
   <string name="sort_sheet_oldest_first">Legrégebbi elől</string>
   <string name="sort_sheet_last_modified">Legutóbb módosítva</string>
   <string name="sort_sheet_alphabetical">Betűrendben</string>
@@ -221,21 +206,6 @@
   <string name="whats_new_title">Újdonságok</string>
   <string name="whats_new_subtitle">Tudja meg, hogy mik az újdonságok az alkalmazás legújabb frissítéseiben</string>
   <string name="whats_new_translate">Fordítás</string>
-
-  <string name="whats_new_sheet_google_drive" translatable="false">Sign In with Drive. More Privacy.</string>
-  <string name="whats_new_sheet_photo_sync" translatable="false">Now Photos are Synced too.</string>
-  <string name="whats_new_sheet_app_lock" translatable="false">App Lock and Single Unlock.</string>
-  <string name="whats_new_sheet_more_languages" translatable="false">More Languages Supported.</string>
-  <string name="whats_new_sheet_widget" translatable="false">More Widget Settings.</string>
-  <string name="whats_new_sheet_selection" translatable="false">Easier Note Selection.</string>
-
-  <string name="install_pro_sheet_latest_updates" translatable="false">Faster Updates and Requests.</string>
-  <string name="install_pro_sheet_app_lock" translatable="false">App Lock and Single Unlock.</string>
-  <string name="install_pro_sheet_app_themes" translatable="false">More App Themes.</string>
-  <string name="install_pro_sheet_font_size" translatable="false">Note Font Size Selection.</string>
-  <string name="install_pro_sheet_viewer_bg" translatable="false">Viewer Background Color.</string>
-  <string name="install_pro_sheet_widget_options" translatable="false">More Widget Options.</string>
-
   <string name="format_action_copy">Másolás</string>
   <string name="format_action_title">Szövegblokk műveletek</string>
   <string name="format_action_gallery">Galéria</string>
@@ -274,7 +244,6 @@
   <string name="delete_sheet_are_you_sure">Biztos benne?</string>
   <string name="delete_sheet_delete_trash">Véglegesen törli a jegyzeteket a kuka mappából?</string>
   <string name="delete_sheet_delete_note_permanently">Véglegesen törli ezt a jegyzetet?</string>
-  <string name="delete_sheet_delete_selected_notes_permanently" translatable="false">Would you like to permanently delete these notes?</string>
   <string name="delete_sheet_delete_trash_yes">Törlés</string>
   <string name="delete_sheet_delete_trash_no">Mégse</string>
   <string name="trash_will_delete_automatically">A jegyzetek 7 nap után véglegesen törlésre kerülnek</string>
@@ -305,13 +274,6 @@
   </string>
   <!-- End: Firebase Login Strings -->
 
-  <string name="forget_me_option_title" translatable="false">Forget Me</string>
-  <string name="forget_me_option_details" translatable="false">Logout and remove all online data</string>
-
-  <!-- Start Welcome Page -->
-  <string name="welcome_page_app_name" translatable="false">Scarlet</string>
-  <!-- End Welcome Page -->
-
   <!-- Start Theme Color -->
   <string name="home_option_theme_color">Alkalmazástéma</string>
   <string name="home_option_theme_color_subtitle">Válassza ki a téma háttérszínét</string>
@@ -321,7 +283,7 @@
   <string name="click_to_add_tags">Koppintson a címkék hozzáadásához vagy módosításához</string>
 
   <string name="select_notes">Jegyzetek kiválasztása</string>
-  <string name="select_notes_details">Válasson ki több jegyzetet egyszerre, és végezzen rajtuk műveletet</string>
+  <string name="select_notes_details">Választáson ki több jegyzetet egyszerre, és végezzen rajtuk műveletet</string>
 
   <string name="recent_to_trash_message">A jegyzet át lett helyezve a kukába</string>
   <string name="recent_to_delete_message">A jegyzet törlésre került</string>
@@ -338,10 +300,9 @@
   <string name="folder_sheet_add_note_detail">Jegyzetfüzet hozzáadása</string>
 
   <string name="folder_option_add_to_notebook">Jegyzetfüzet hozzáadása</string>
-  <string name="folder_option_change_notebook">Jegyzetfózet módosítása</string>
+  <string name="folder_option_change_notebook">Jegyzetfőzet módosítása</string>
 
   <string name="recent_notes">Friss jegyzetek</string>
-
 
   <!-- Start: Editor Option Sheet -->
   <string name="home_option_editor_options_title">Szerkesztőbeállítások</string>
@@ -377,14 +338,6 @@
 
   <string name="widget_option_show_trash_notes">Kukában lévő jegyzetek megjelenítése</string>
   <string name="widget_option_show_trash_notes_details">A kukában lévő jegyzetek megjelenhetnek a kezdőképernyőn</string>
-
-  <string name="widget_option_background_color" translatable="false">Widget Background</string>
-  <string name="widget_option_background_color_details" translatable="false">Choose the background color for the multi-notes widget</string>
-
-  <string name="widget_option_show_toolbar" translatable="false">Show Action Toolbar</string>
-  <string name="widget_option_show_toolbar_details" translatable="false">Multi-notes widget shows the toolbar</string>
-
-
   <!-- End: Widget Options Sheet -->
 
   <string name="home_option_faq_title">Súgó és gyakori kérdések</string>
@@ -392,13 +345,6 @@
 
   <string name="home_syncing_top_layout">Szinkronizálás</string>
   <string name="home_pending_backup_top_layout">Biztonsági mentés folyamatban</string>
-  <string name="pending_backup_local_state" translatable="false">Local</string>
-  <string name="pending_backup_remote_state" translatable="false">Remote</string>
-
-  <string name="pending_backup_state_unavailable" translatable="false">Unavailable</string>
-  <string name="pending_backup_state_created" translatable="false">Created</string>
-  <string name="pending_backup_state_deleted" translatable="false">Deleted</string>
-  <string name="pending_backup_state_updated" translatable="false">Updated</string>
 
   <!-- Start: Internal Settings Strings -->
   <string name="internal_settings_title">Fejlesztői beállítások</string>
@@ -461,25 +407,9 @@
   <string name="firebase_removal_page_clearing_button">Törlés és kijelentkezés</string>
   <string name="firebase_removal_page_important_details">Az adatait eddig a Google Firebase-ben tároltuk. A jegyzetei tárolását átvisszük a Google Drive-jába.</string>
   <string name="firebase_removal_page_more_privacy_details">Több adatvédelem.</string>
-  <string name="firebase_removal_page_photo_upload_details">Fényképszinkronizálás.</string>
+  <string name="firebase_removal_page_photo_upload_details">Fénykép-szinkronizálás</string>
   <string name="firebase_removal_page_whats_next_details">Következő lépések</string>
   <string name="firebase_removal_page_remove_details">Először töröljük a jegyzeteit a Firebase-ből és kijelentkeztetjük.</string>
   <string name="firebase_removal_page_next_details">Aztán bejelentkezhet a Google Drive-ba, és feltöltjük az adatait a képeivel együtt.</string>
-
-
-  <!-- Start: App Lock Activity -->
-  <string name="app_lock_title" translatable="false">Unlock App</string>
-  <string name="app_lock_details" translatable="false">Enter 4 digit PIN or use fingerprint to unlock</string>
-  <string name="app_lock_details_no_fingerprint" translatable="false">Enter 4 digit PIN to unlock</string>
-  <!-- End: App Lock Activity -->
-
-  <!-- Start: Note Sheet -->
-
-  <!-- End: Note Sheet -->
-
-  <!-- Start: Theme Color Sheet -->
-  <string name="theme_use_system_theme" translatable="false">Use System Theme</string>
-  <string name="theme_use_system_theme_details" translatable="false">Use the light or dark theme from the system</string>
-  <!-- End: Theme Color Sheet -->
 
 </resources>
