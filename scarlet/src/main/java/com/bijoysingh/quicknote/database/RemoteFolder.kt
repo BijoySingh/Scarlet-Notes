@@ -1,14 +1,14 @@
 package com.bijoysingh.quicknote.database
 
-interface RemoteFolder<T: RemoteResourceId, D> {
+interface RemoteFolder<T, D> {
 
   fun initContentFolder(resourceId: T?, onSuccess: () -> Unit)
 
   fun initDeletedFolder(resourceId: T?, onSuccess: () -> Unit)
 
-  fun insert(remoteDataType: RemoteUploadData, resource: D)
+  fun insert(remoteData: RemoteUploadData, resource: D)
 
-  fun delete(remoteDataType: RemoteUploadData)
+  fun delete(remoteData: RemoteUploadData)
 
   fun invalidate()
 }

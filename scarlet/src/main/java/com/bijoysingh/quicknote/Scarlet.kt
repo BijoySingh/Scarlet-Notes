@@ -13,20 +13,20 @@ class Scarlet : ApplicationBase() {
   override fun onCreate() {
     super.onCreate()
 
-    gDriveConfig = Store.get(this, "gdrive_config")
-    ApplicationBase.instance = ScarletConfig(this)
+    remoteConfig = Store.get(this, "gdrive_config")
 
-    ApplicationBase.instance.themeController().setup(this)
-    ApplicationBase.instance.authenticator().setup(this)
-    ApplicationBase.instance.remoteConfigFetcher().setup(this)
+    instance = ScarletConfig(this)
+    instance.themeController().setup(this)
+    instance.authenticator().setup(this)
+    instance.remoteConfigFetcher().setup(this)
     ExternalFolderSync.setup(this)
   }
 
   companion object {
     var firebase: FirebaseRemoteDatabase? = null
     var gDrive: GDriveRemoteDatabase? = null
-    var gDriveConfig: Store? = null
-
     var remoteDatabaseStateController: RemoteDatabaseStateController? = null
+
+    lateinit var remoteConfig: Store
   }
 }

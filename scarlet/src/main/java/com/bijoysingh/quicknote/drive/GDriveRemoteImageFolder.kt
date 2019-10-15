@@ -1,11 +1,13 @@
 package com.bijoysingh.quicknote.drive
 
 import com.bijoysingh.quicknote.database.RemoteDataType
+import com.bijoysingh.quicknote.database.RemoteUploadData
 import com.bijoysingh.quicknote.database.RemoteUploadDataDao
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.io.File
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -40,25 +42,62 @@ fun toImageUUID(imageUuid: String): ImageUUID? {
 class GDriveRemoteImageFolder(
     dataType: RemoteDataType,
     database: RemoteUploadDataDao,
-    helper: GDriveServiceHelper,
-    onPendingChange: () -> Unit) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange) {
+    service: GDriveServiceHelper,
+    onPendingChange: () -> Unit) : GDriveRemoteFolderBase<File>(dataType, database, service, onPendingChange) {
 
-  var networkOrAbsoluteFailure = AtomicBoolean(false)
+  private val networkOrAbsoluteFailure = AtomicBoolean(false)
 
-  val contentLoading = AtomicBoolean(true)
-  var contentFolderUid: String = INVALID_FILE_ID
-  val contentFiles = emptyMap<ImageUUID, String>().toMutableMap()
+  private val contentLoading = AtomicBoolean(true)
+  private var contentFolderUid: String = INVALID_FILE_ID
+  private val contentFiles = emptyMap<ImageUUID, String>().toMutableMap()
 
-  val contentPendingActions = emptySet<ImageUUID>().toMutableSet()
-  val deletedPendingActions = emptySet<ImageUUID>().toMutableSet()
+  private val contentPendingActions = emptySet<ImageUUID>().toMutableSet()
+  private val deletedPendingActions = emptySet<ImageUUID>().toMutableSet()
 
-  fun initContentFolderId(fUid: String, onLoaded: () -> Unit) {
+  override fun initContentFolder(resourceId: String?, onSuccess: () -> Unit) {
+    if (resourceId === null) {
+      return
+    }
+    initContentFolderId(resourceId, onSuccess)
+  }
+
+  override fun initDeletedFolder(resourceId: String?, onSuccess: () -> Unit) {
+    // Ignore
+  }
+
+  override fun insert(remoteData: RemoteUploadData, resource: File) {
+    val image = toImageUUID(remoteData.uuid)
+    if (image !== null) {
+      insert(image)
+    }
+  }
+
+  override fun delete(remoteData: RemoteUploadData) {
+    val image = toImageUUID(remoteData.uuid)
+    if (image !== null) {
+      delete(image)
+    }
+  }
+
+  override fun invalidate() {
+    networkOrAbsoluteFailure.set(false)
+
+    contentLoading.set(true)
+    contentFolderUid = INVALID_FILE_ID
+    contentFiles.clear()
+
+    contentPendingActions.clear()
+    deletedPendingActions.clear()
+  }
+
+  private fun initContentFolderId(fUid: String, onLoaded: () -> Unit) {
     contentFolderUid = fUid
     GlobalScope.launch(Dispatchers.IO) {
-      helper.getFilesInFolder(contentFolderUid, GOOGLE_DRIVE_IMAGE_MIME_TYPE).addOnCompleteListener {
-        networkOrAbsoluteFailure.set(it.result === null)
 
-        val imageFiles = it.result?.files
+      service.getFilesInFolder(contentFolderUid, GOOGLE_DRIVE_IMAGE_MIME_TYPE) { filesList ->
+        networkOrAbsoluteFailure.set(filesList === null)
+
+        val imageFiles = filesList?.files
         if (imageFiles !== null) {
           imageFiles.forEach { imageFile ->
             val components = toImageUUID(imageFile.name)
@@ -74,9 +113,7 @@ class GDriveRemoteImageFolder(
     }
   }
 
-  fun insert(id: ImageUUID) {
-    val logInfo = "insert($id)"
-
+  private fun insert(id: ImageUUID) {
     if (contentLoading.get()) {
       contentPendingActions.add(id)
       return
@@ -102,18 +139,15 @@ class GDriveRemoteImageFolder(
     val timestamp = database.getByUUID(dataType.name, gDriveUUID)?.lastUpdateTimestamp
         ?: getTrueCurrentTime()
     val imageFile = noteImagesFolder.getFile(id.noteUuid, id.imageUuid)
-    helper.createFileWithData(contentFolderUid, gDriveUUID, imageFile, timestamp)
-        .addOnCompleteListener {
-          val file = it.result
-          if (file !== null) {
-            contentFiles[id] = file.id
-            notifyDriveData(file.id, gDriveUUID, timestamp)
-          }
-        }
+    service.createFileFromFile(contentFolderUid, gDriveUUID, imageFile, timestamp) { file ->
+      if (file !== null) {
+        contentFiles[id] = file.id
+        notifyDriveData(file.id, gDriveUUID, timestamp)
+      }
+    }
   }
 
-  fun delete(id: ImageUUID) {
-    val logInfo = "delete($id)"
+  private fun delete(id: ImageUUID) {
     if (contentLoading.get()) {
       deletedPendingActions.add(id)
       return
@@ -138,11 +172,12 @@ class GDriveRemoteImageFolder(
       val existing = database.getByUUID(dataType.name, id.name())
       val timestamp = existing?.lastUpdateTimestamp ?: getTrueCurrentTime()
 
-      helper.removeFileOrFolder(fuid)
-          .addOnCompleteListener {
-            notifyDriveData(fuid, id.name(), timestamp, true)
-            contentFiles.remove(id)
-          }
+      service.removeFileOrFolder(fuid) { success ->
+        if (success) {
+          notifyDriveData(fuid, id.name(), timestamp, true)
+          contentFiles.remove(id)
+        }
+      }
     }
   }
 }

@@ -6,6 +6,9 @@ import android.os.Bundle
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.database.RemoteDatabaseStateController
+import com.bijoysingh.quicknote.database.sRemoteFirstSyncFolder
+import com.bijoysingh.quicknote.database.sRemoteFirstSyncNote
+import com.bijoysingh.quicknote.database.sRemoteFirstSyncTag
 import com.bijoysingh.quicknote.firebase.activity.FirebaseLoginActivity
 import com.bijoysingh.quicknote.scarlet.sGDriveLoggedIn
 import com.facebook.litho.Component
@@ -144,9 +147,9 @@ class GDriveLoginActivity : SecuredActivity(), GoogleApiClient.OnConnectionFaile
   fun onLoginComplete(account: GoogleSignInAccount) {
     mDriveServiceHelper = getDriveHelper(context, account)
 
-    sGDriveFirstSyncNote = false
-    sGDriveFirstSyncFolder = false
-    sGDriveFirstSyncTag = false
+    sRemoteFirstSyncNote = false
+    sRemoteFirstSyncFolder = false
+    sRemoteFirstSyncTag = false
 
     gDrive?.reset()
     gDrive = GDriveRemoteDatabase(WeakReference(this.applicationContext))

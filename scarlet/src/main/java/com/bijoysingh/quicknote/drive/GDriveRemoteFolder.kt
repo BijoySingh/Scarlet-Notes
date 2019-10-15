@@ -1,6 +1,7 @@
 package com.bijoysingh.quicknote.drive
 
 import com.bijoysingh.quicknote.database.RemoteDataType
+import com.bijoysingh.quicknote.database.RemoteUploadData
 import com.bijoysingh.quicknote.database.RemoteUploadDataDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -11,34 +12,67 @@ import java.util.concurrent.atomic.AtomicBoolean
 class GDriveRemoteFolder<T>(
     dataType: RemoteDataType,
     database: RemoteUploadDataDao,
-    helper: GDriveServiceHelper,
+    service: GDriveServiceHelper,
     onPendingChange: () -> Unit,
     val serialiser: (T) -> String,
-    val uuidToObject: (String) -> T?) : GDriveRemoteFolderBase(dataType, database, helper, onPendingChange) {
+    val uuidToObject: (String) -> T?) : GDriveRemoteFolderBase<T>(dataType, database, service, onPendingChange) {
 
-  var networkOrAbsoluteFailure = AtomicBoolean(false)
+  private var networkOrAbsoluteFailure = AtomicBoolean(false)
 
-  var contentLoading = AtomicBoolean(true)
-  var contentFolderUid: String = INVALID_FILE_ID
-  var contentPendingActions = emptySet<String>().toMutableSet()
-  val contentFiles = emptyMap<String, String>().toMutableMap()
+  private var contentLoading = AtomicBoolean(true)
+  private var contentFolderUid: String = INVALID_FILE_ID
+  private var contentPendingActions = emptySet<String>().toMutableSet()
+  private val contentFiles = emptyMap<String, String>().toMutableMap()
 
-  var deletedLoading = AtomicBoolean(true)
-  var deletedFolderUid: String = INVALID_FILE_ID
-  var deletedPendingActions = emptySet<String>().toMutableSet()
-  val deletedFiles = emptyMap<String, String>().toMutableMap()
+  private var deletedLoading = AtomicBoolean(true)
+  private var deletedFolderUid: String = INVALID_FILE_ID
+  private var deletedPendingActions = emptySet<String>().toMutableSet()
+  private val deletedFiles = emptyMap<String, String>().toMutableMap()
 
-  val duplicateFilesToDelete: MutableList<String> = emptyList<String>().toMutableList()
+  private val duplicateFilesToDelete: MutableList<String> = emptyList<String>().toMutableList()
 
-  fun initContentFolderId(fUid: String, onLoaded: () -> Unit) {
+  override fun initContentFolder(resourceId: String?, onSuccess: () -> Unit) {
+    if (resourceId === null) {
+      return
+    }
+    initContentFolderId(resourceId, onSuccess)
+  }
+
+  override fun initDeletedFolder(resourceId: String?, onSuccess: () -> Unit) {
+    initDeletedFolderId(resourceId ?: INVALID_FILE_ID, onSuccess)
+  }
+
+  override fun insert(remoteData: RemoteUploadData, resource: T) {
+    insert(remoteData.uuid, resource)
+  }
+
+  override fun delete(remoteData: RemoteUploadData) {
+    delete(remoteData.uuid)
+  }
+
+  override fun invalidate() {
+    networkOrAbsoluteFailure.set(false)
+    contentLoading.set(true)
+    contentFolderUid = INVALID_FILE_ID
+    contentPendingActions.clear()
+    contentFiles.clear()
+
+    deletedLoading.set(true)
+    deletedFolderUid = INVALID_FILE_ID
+    deletedPendingActions.clear()
+    deletedFiles.clear()
+    duplicateFilesToDelete.clear()
+  }
+
+  private fun initContentFolderId(fUid: String, onLoaded: () -> Unit) {
     GlobalScope.launch(Dispatchers.IO) {
       contentLoading.set(true)
       contentFolderUid = fUid
-      helper.getFilesInFolder(contentFolderUid).addOnCompleteListener {
-        networkOrAbsoluteFailure.set(it.result === null)
+      service.getFilesInFolder(contentFolderUid, GOOGLE_DRIVE_FILE_MIME_TYPE) { filesList ->
+        networkOrAbsoluteFailure.set(filesList === null)
 
-        val files = it.result?.files ?: emptyList()
         val localFileIds = emptyMap<String, String>().toMutableMap()
+        val files = filesList?.files ?: emptyList()
         files.forEach { file ->
           if (localFileIds.containsKey(file.name)) {
             duplicateFilesToDelete.add(file.id)
@@ -61,7 +95,7 @@ class GDriveRemoteFolder<T>(
     }
   }
 
-  fun initDeletedFolderId(fUid: String, onLoaded: () -> Unit) {
+  private fun initDeletedFolderId(fUid: String, onLoaded: () -> Unit) {
     if (fUid == INVALID_FILE_ID) {
       deletedLoading.set(false)
       GlobalScope.launch {
@@ -75,10 +109,11 @@ class GDriveRemoteFolder<T>(
     GlobalScope.launch(Dispatchers.IO) {
       deletedLoading.set(true)
       deletedFolderUid = fUid
-      helper.getFilesInFolder(deletedFolderUid).addOnCompleteListener {
-        networkOrAbsoluteFailure.set(it.result === null)
 
-        val files = it.result?.files ?: emptyList()
+      service.getFilesInFolder(deletedFolderUid, GOOGLE_DRIVE_FILE_MIME_TYPE) { filesList ->
+        networkOrAbsoluteFailure.set(filesList === null)
+
+        val files = filesList?.files ?: emptyList()
         val localFileIds = emptyMap<String, String>().toMutableMap()
         files.forEach { file ->
           when {
@@ -102,16 +137,16 @@ class GDriveRemoteFolder<T>(
     }
   }
 
-  fun executeAllDuplicateDeletion() {
+  private fun executeAllDuplicateDeletion() {
     val files = ArrayList<String>()
     files.addAll(duplicateFilesToDelete)
     duplicateFilesToDelete.clear()
     files.forEach { fileId ->
-      helper.removeFileOrFolder(fileId)
+      service.removeFileOrFolder(fileId) {}
     }
   }
 
-  fun executeInsertPendingActions() {
+  private fun executeInsertPendingActions() {
     if (deletedLoading.get() || contentLoading.get()) {
       return
     }
@@ -125,7 +160,7 @@ class GDriveRemoteFolder<T>(
     }
   }
 
-  fun executeDeletePendingActions() {
+  private fun executeDeletePendingActions() {
     if (deletedLoading.get() || contentLoading.get()) {
       return
     }
@@ -137,9 +172,7 @@ class GDriveRemoteFolder<T>(
   /**
    * Insert the file on the server based on the insertion on the local device
    */
-  fun insert(uuid: String, item: T) {
-    val logInfo = "insert($uuid)"
-
+  private fun insert(uuid: String, resource: T) {
     if (deletedLoading.get() || contentLoading.get()) {
       return
     }
@@ -151,43 +184,39 @@ class GDriveRemoteFolder<T>(
     if (deletedFiles.containsKey(uuid)) {
       GlobalScope.launch {
         val existingFileUid = deletedFiles[uuid] ?: INVALID_FILE_ID
-        helper.removeFileOrFolder(existingFileUid)
-            .addOnCompleteListener {
-              deletedFiles.remove(uuid)
-            }
+        service.removeFileOrFolder(existingFileUid) { success ->
+          if (success) {
+            deletedFiles.remove(uuid)
+          }
+        }
       }
     }
 
-    val data = serialiser(item)
+    val data = serialiser(resource)
     val fileId = contentFiles[uuid]
     val existing = database.getByUUID(dataType.name, uuid)
     val timestamp = existing?.lastUpdateTimestamp ?: getTrueCurrentTime()
 
     if (fileId !== null) {
-      helper.saveFile(fileId, uuid, data, timestamp)
-          .addOnCompleteListener {
-            val file = it.result
-            if (file !== null) {
-              notifyDriveData(file.id, uuid, timestamp)
-            }
-          }
+      service.updateFileWithData(fileId, uuid, data, timestamp) { file ->
+        if (file !== null) {
+          notifyDriveData(file.id, uuid, timestamp)
+        }
+      }
       return
     }
-    helper.createFileWithData(contentFolderUid, uuid, data, timestamp)
-        .addOnCompleteListener {
-          val file = it.result
-          if (file !== null) {
-            contentFiles[uuid] = file.id
-            notifyDriveData(file.id, uuid, timestamp)
-          }
-        }
-
+    service.createFileWithData(contentFolderUid, uuid, data, timestamp) { file ->
+      if (file !== null) {
+        contentFiles[uuid] = file.id
+        notifyDriveData(file.id, uuid, timestamp)
+      }
+    }
   }
 
   /**
    * Delete the file on the server based on removal on the local device
    */
-  fun delete(uuid: String) {
+  private fun delete(uuid: String) {
     if (deletedLoading.get() || contentLoading.get()) {
       return
     }
@@ -208,25 +237,25 @@ class GDriveRemoteFolder<T>(
       return
     }
 
-    helper.removeFileOrFolder(existingFileUid)
-        .addOnCompleteListener {
-          contentFiles.remove(uuid)
-          if (deletedFolderUid == INVALID_FILE_ID) {
-            return@addOnCompleteListener
-          }
+    service.removeFileOrFolder(existingFileUid) { success ->
+      if (!success) {
+        return@removeFileOrFolder
+      }
 
-          GlobalScope.launch {
-            val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp
-                ?: getTrueCurrentTime()
-            helper.createFileWithData(deletedFolderUid, uuid, uuid, timestamp)
-                .addOnCompleteListener {
-                  val file = it.result
-                  if (file !== null) {
-                    deletedFiles[uuid] = file.id
-                    notifyDriveData(file.id, uuid, timestamp, true)
-                  }
-                }
+      contentFiles.remove(uuid)
+      if (deletedFolderUid == INVALID_FILE_ID) {
+        return@removeFileOrFolder
+      }
+      GlobalScope.launch {
+        val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp
+            ?: getTrueCurrentTime()
+        service.createFileWithData(deletedFolderUid, uuid, uuid, timestamp) { file ->
+          if (file !== null) {
+            deletedFiles[uuid] = file.id
+            notifyDriveData(file.id, uuid, timestamp, true)
           }
         }
+      }
+    }
   }
 }

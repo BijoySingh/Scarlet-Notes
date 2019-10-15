@@ -2,16 +2,23 @@ package com.bijoysingh.quicknote.database
 
 import java.io.File
 
-open class RemoteResourceId
+interface IRemoteService<ResourceIdType, FileType, FileListType> {
 
-interface IRemoteService<T : RemoteResourceId> {
-  fun readFile(remoteDataType: RemoteUploadData, onRead: (String) -> Unit)
+  fun createDirectory(parentResourceId: ResourceIdType?, directoryName: String, onSuccess: (ResourceIdType?) -> Unit)
 
-  fun readIntoFile(remoteDataType: RemoteUploadData, file: File, onRead: (Boolean) -> Unit)
+  fun getOrCreateDirectory(parentResourceId: ResourceIdType?, directoryName: String, onSuccess: (ResourceIdType?) -> Unit)
 
-  fun createDirectory(parentResourceId: T?, directoryName: String, onSuccess: (T?) -> Unit)
+  fun getDirectories(parentResourceId: ResourceIdType, directoryNames: List<String>, onSuccess: (List<Pair<String, ResourceIdType>>) -> Unit)
 
-  fun getOrCreateDirectory(parentResourceId: T?, directoryName: String, onSuccess: (T?) -> Unit)
+  fun createFileWithData(parentResourceId: ResourceIdType, name: String, content: String, updateTime: Long, onSuccess: (FileType?) -> Unit)
+  fun createFileFromFile(parentResourceId: ResourceIdType, name: String, localFile: File, updateTime: Long, onSuccess: (FileType?) -> Unit)
 
-  fun getDirectories(parentResourceId: T, directoryNames: List<String>, onSuccess: (List<Pair<String, T?>>) -> Unit)
+  fun updateFileWithData(resourceId: ResourceIdType, name: String, content: String, updateTime: Long, onSuccess: (FileType?) -> Unit)
+
+  fun readFile(resourceId: ResourceIdType, onRead: (String) -> Unit)
+  fun readIntoFile(resourceId: ResourceIdType, destinationFile: File, onRead: (Boolean) -> Unit)
+
+  fun removeFileOrFolder(resourceId: ResourceIdType, onSuccess: (Boolean) -> Unit)
+
+  fun getFilesInFolder(parentResourceId: ResourceIdType, mimeType: String, onSuccess: (FileListType?) -> Unit)
 }

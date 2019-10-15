@@ -2,6 +2,7 @@ package com.bijoysingh.quicknote.drive
 
 import android.os.SystemClock
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
+import com.bijoysingh.quicknote.database.IRemoteService
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.api.client.http.ByteArrayContent
@@ -104,20 +105,84 @@ fun getTrueCurrentTime(): Long {
   return calendar.timeInMillis
 }
 
-class GDriveServiceHelper(private val mDriveService: Drive) {
+class GDriveServiceHelper(private val mDriveService: Drive) : IRemoteService<String, File, FileList> {
   private val mExecutor = Executors.newFixedThreadPool(4)
-
-  fun <T> execute(action: String = "", callable: Callable<T>): Task<T?> {
+  private fun <T> execute(action: String = "", callable: Callable<T>): Task<T?> {
     return Tasks.call(mExecutor, CountingErrorCallable(action, callable))
   }
 
-  fun createFileWithData(folderId: String, name: String, content: String, updateTime: Long): Task<File?> {
-    log("GDrive", "createFileWithData($folderId, $name)")
+  override fun createDirectory(parentResourceId: String?, directoryName: String, onSuccess: (String?) -> Unit) {
+    val parentUid = parentResourceId ?: ""
+    log("GDrive", "createDirectory($parentUid, $directoryName)")
+    execute("createDirectory", Callable {
+      try {
+        val timestamp = DateTime(getTrueCurrentTime())
+        val metadata = File()
+            .setMimeType(GOOGLE_DRIVE_FOLDER_MIME_TYPE)
+            .setModifiedTime(timestamp)
+            .setName(directoryName)
+        if (!parentUid.isEmpty()) {
+          metadata.parents = listOf(parentUid)
+        }
+        mDriveService.files().create(metadata).execute()
+      } catch (exception: Exception) {
+        throwOrReturn(exception, null)
+      }
+    }).addOnCompleteListener { result ->
+      onSuccess(result.result?.id ?: INVALID_FILE_ID)
+    }
+  }
+
+  override fun getOrCreateDirectory(parentResourceId: String?, directoryName: String, onSuccess: (String?) -> Unit) {
+    val parentUid = parentResourceId ?: ""
+    log("GDrive", "getOrCreateDirectory($parentUid, $directoryName)")
+
+    if (parentResourceId === null) {
+      return createDirectory(null, directoryName, onSuccess)
+    }
+
+    getDirectory(parentResourceId, directoryName).addOnCompleteListener { getTask ->
+      val fid = getTask.result?.files?.firstOrNull()?.id
+      if (fid !== null) {
+        onSuccess(fid)
+        return@addOnCompleteListener
+      }
+
+      createDirectory(parentResourceId, directoryName) { uuid ->
+        onSuccess(uuid ?: INVALID_FILE_ID)
+      }
+    }
+  }
+
+  override fun getDirectories(parentResourceId: String, directoryNames: List<String>, onSuccess: (List<Pair<String, String>>) -> Unit) {
+    log("GDrive", "getSubRootFolders($parentResourceId, $directoryNames)")
+    var nameQueryBuilder = "name = '${directoryNames[0]}'"
+    directoryNames.subList(1, directoryNames.lastIndex + 1).forEach {
+      nameQueryBuilder += " or name = '$it'"
+    }
+    execute("getSubRootFolders", Callable {
+      mDriveService.files().list()
+          .setSpaces("drive")
+          .setQ("mimeType = '$GOOGLE_DRIVE_FOLDER_MIME_TYPE' and ($nameQueryBuilder) and '$parentResourceId' in parents")
+          .setOrderBy("modifiedTime desc")
+          .execute()
+    }).addOnCompleteListener { result ->
+      val files = result.result?.files ?: emptyList()
+      val namesIdList = emptyList<Pair<String, String>>().toMutableList()
+      files.forEach {
+        namesIdList.add(Pair(it.name, it.id))
+      }
+      onSuccess(namesIdList)
+    }
+  }
+
+  override fun createFileWithData(parentResourceId: String, name: String, content: String, updateTime: Long, onSuccess: (File?) -> Unit) {
+    log("GDrive", "createFileWithData($parentResourceId, $name)")
     val contentToSave = if (content.isEmpty()) updateTime.toString() else content
-    return execute("createFileWithData", Callable {
+    execute("createFileWithData", Callable {
       try {
         val metadata = File()
-            .setParents(listOf(folderId))
+            .setParents(listOf(parentResourceId))
             .setMimeType(GOOGLE_DRIVE_FILE_MIME_TYPE)
             .setModifiedTime(DateTime(updateTime))
             .setName(name)
@@ -126,50 +191,46 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
       } catch (exception: Exception) {
         throwOrReturn(exception, null)
       }
-    })
+    }).addOnCompleteListener { result -> onSuccess(result.result) }
   }
 
-  fun createFileWithData(folderId: String, name: String, file: java.io.File, updateTime: Long): Task<File?> {
-    log("GDrive", "createFileWithData($folderId, $name, ${file.absolutePath})")
-    return execute("createFileWithData", Callable {
+  override fun updateFileWithData(resourceId: String, name: String, content: String, updateTime: Long, onSuccess: (File?) -> Unit) {
+    log("GDrive", "saveFile($resourceId, $name)")
+    execute("saveFile", Callable {
       try {
         val metadata = File()
-            .setParents(listOf(folderId))
+            .setModifiedTime(DateTime(updateTime))
+            .setName(name)
+        val contentStream = ByteArrayContent.fromString("text/plain", content)
+        mDriveService.files().update(resourceId, metadata, contentStream).execute()
+      } catch (exception: Exception) {
+        throwOrReturn(exception, null)
+      }
+    }).addOnCompleteListener { result -> onSuccess(result.result) }
+  }
+
+  override fun createFileFromFile(parentResourceId: String, name: String, localFile: java.io.File, updateTime: Long, onSuccess: (File?) -> Unit) {
+    log("GDrive", "createFileWithData($parentResourceId, $name, ${localFile.absolutePath})")
+    execute("createFileWithData", Callable {
+      try {
+        val metadata = File()
+            .setParents(listOf(parentResourceId))
             .setMimeType(GOOGLE_DRIVE_IMAGE_MIME_TYPE)
             .setModifiedTime(DateTime(updateTime))
             .setName(name)
-        val mediaContent = FileContent(GOOGLE_DRIVE_IMAGE_MIME_TYPE, file)
+        val mediaContent = FileContent(GOOGLE_DRIVE_IMAGE_MIME_TYPE, localFile)
         mDriveService.files().create(metadata, mediaContent).execute()
       } catch (exception: Exception) {
         throwOrReturn(exception, null)
       }
-    })
+    }).addOnCompleteListener { result -> onSuccess(result.result) }
   }
 
-  fun createFolder(parentUid: String, folderName: String): Task<File?> {
-    log("GDrive", "createFolder($parentUid, $folderName)")
-    return execute("createFolder", Callable {
+  override fun readFile(resourceId: String, onRead: (String) -> Unit) {
+    log("GDrive", "readFile($resourceId)")
+    execute("readFile", Callable {
       try {
-        val timestamp = DateTime(getTrueCurrentTime())
-        val metadata = File()
-            .setMimeType(GOOGLE_DRIVE_FOLDER_MIME_TYPE)
-            .setModifiedTime(timestamp)
-            .setName(folderName)
-        if (!parentUid.isEmpty()) {
-          metadata.parents = listOf(parentUid)
-        }
-        mDriveService.files().create(metadata).execute()
-      } catch (exception: Exception) {
-        throwOrReturn(exception, null)
-      }
-    })
-  }
-
-  fun readFile(fileId: String): Task<String?> {
-    log("GDrive", "readFile($fileId)")
-    return execute("readFile", Callable {
-      try {
-        mDriveService.files().get(fileId).executeMediaAsInputStream().use { `is` ->
+        mDriveService.files().get(resourceId).executeMediaAsInputStream().use { `is` ->
           BufferedReader(InputStreamReader(`is`)).use { reader ->
             reader.readText()
           }
@@ -177,53 +238,57 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
       } catch (exception: Exception) {
         throwOrReturn(exception, null)
       }
-    })
+    }).addOnCompleteListener { result ->
+      onRead(result.result ?: "")
+    }
   }
 
-  fun readFile(fileId: String, destinationFile: java.io.File): Task<Boolean?> {
-    log("GDrive", "readFile($fileId, ${destinationFile.absolutePath})")
-    return execute("readFile", Callable<Boolean> {
+  override fun readIntoFile(resourceId: String, destinationFile: java.io.File, onRead: (Boolean) -> Unit) {
+    log("GDrive", "readFile($resourceId, ${destinationFile.absolutePath})")
+    execute("readFile", Callable<Boolean> {
       destinationFile.parentFile.mkdirs()
       try {
         val fileStream = FileOutputStream(destinationFile)
-        mDriveService.files().get(fileId).executeMediaAndDownloadTo(fileStream)
+        mDriveService.files().get(resourceId).executeMediaAndDownloadTo(fileStream)
         fileStream.close()
       } catch (exception: Exception) {
         return@Callable throwOrReturn(exception, false)
       }
       destinationFile.exists()
-    })
+    }).addOnCompleteListener { result ->
+      onRead(result.result ?: false)
+    }
   }
 
-  fun saveFile(fileId: String, name: String, content: String, updateTime: Long): Task<File?> {
-    log("GDrive", "saveFile($fileId, $name)")
-    return execute("saveFile", Callable {
+  override fun removeFileOrFolder(resourceId: String, onSuccess: (Boolean) -> Unit) {
+    log("GDrive", "removeFileOrFolder($resourceId)")
+    execute("removeFileOrFolder", Callable<Boolean> {
       try {
-        val metadata = File()
-            .setModifiedTime(DateTime(updateTime))
-            .setName(name)
-        val contentStream = ByteArrayContent.fromString("text/plain", content)
-        mDriveService.files().update(fileId, metadata, contentStream).execute()
+        mDriveService.files().delete(resourceId).execute()
+        true
       } catch (exception: Exception) {
-        throwOrReturn(exception, null)
+        maybeThrow(exception)
+        false
       }
-    })
+    }).addOnCompleteListener { result -> onSuccess(result.result ?: false) }
   }
 
-  fun getFilesInFolder(parentUid: String, mimeType: String = GOOGLE_DRIVE_FILE_MIME_TYPE): Task<FileList?> {
-    log("GDrive", "getFilesInFolder($parentUid, $mimeType)")
-    return execute("getFilesInFolder", Callable {
+  override fun getFilesInFolder(parentResourceId: String, mimeType: String, onSuccess: (FileList?) -> Unit) {
+    log("GDrive", "getFilesInFolder($parentResourceId, $mimeType)")
+    execute("getFilesInFolder", Callable {
       mDriveService.files().list()
           .setSpaces("drive")
           .setPageSize(1000)
           .setFields("files(name, id, modifiedTime, mimeType)")
-          .setQ("mimeType = '$mimeType' and '$parentUid' in parents")
+          .setQ("mimeType = '$mimeType' and '$parentResourceId' in parents")
           .setOrderBy("modifiedTime desc")
           .execute()
-    })
+    }).addOnCompleteListener { result ->
+      onSuccess(result.result)
+    }
   }
 
-  fun getFolderQuery(parentUid: String, name: String): Task<FileList?> {
+  private fun getDirectory(parentUid: String, name: String): Task<FileList?> {
     log("GDrive", "getFolderQuery($parentUid, $name)")
     val query = when {
       parentUid.isEmpty() -> "mimeType = '$GOOGLE_DRIVE_FOLDER_MIME_TYPE' and name = '$name'"
@@ -238,46 +303,4 @@ class GDriveServiceHelper(private val mDriveService: Drive) {
     })
   }
 
-  fun getSubRootFolders(parentUid: String, names: List<String>): Task<FileList?> {
-    log("GDrive", "getSubRootFolders($parentUid, $names)")
-    var nameQueryBuilder = "name = '${names[0]}'"
-    names.subList(1, names.lastIndex + 1).forEach {
-      nameQueryBuilder += " or name = '$it'"
-    }
-    return execute("getSubRootFolders", Callable {
-      mDriveService.files().list()
-          .setSpaces("drive")
-          .setQ("mimeType = '$GOOGLE_DRIVE_FOLDER_MIME_TYPE' and ($nameQueryBuilder) and '$parentUid' in parents")
-          .setOrderBy("modifiedTime desc")
-          .execute()
-    })
-  }
-
-  fun removeFileOrFolder(fileUid: String): Task<Boolean?> {
-    log("GDrive", "removeFileOrFolder($fileUid)")
-    return execute("removeFileOrFolder", Callable<Boolean> {
-      try {
-        mDriveService.files().delete(fileUid).execute()
-        true
-      } catch (exception: Exception) {
-        maybeThrow(exception)
-        false
-      }
-    })
-  }
-
-  fun getOrCreateDirectory(parentUid: String, name: String, onFolderId: (String?) -> Unit) {
-    log("GDrive", "getOrCreateDirectory($parentUid, $name)")
-    getFolderQuery(parentUid, name).addOnCompleteListener { getTask ->
-      val fid = getTask.result?.files?.firstOrNull()?.id
-      if (fid !== null) {
-        onFolderId(fid)
-        return@addOnCompleteListener
-      }
-
-      createFolder(parentUid, name).addOnCompleteListener { createTask ->
-        onFolderId(createTask.result?.id ?: INVALID_FILE_ID)
-      }
-    }
-  }
 }

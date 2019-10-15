@@ -1,8 +1,11 @@
 package com.bijoysingh.quicknote.database
 
 import android.content.Context
-import com.bijoysingh.quicknote.Scarlet
-import com.bijoysingh.quicknote.drive.*
+import com.bijoysingh.quicknote.Scarlet.Companion.remoteConfig
+import com.bijoysingh.quicknote.drive.GOOGLE_DRIVE_ROOT_FOLDER
+import com.bijoysingh.quicknote.drive.getTrueCurrentTime
+import com.bijoysingh.quicknote.drive.sSyncingCount
+import com.bijoysingh.quicknote.drive.toImageUUID
 import com.bijoysingh.quicknote.firebase.data.getFirebaseNote
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.ApplicationBase
@@ -21,25 +24,61 @@ import java.io.File
 import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicBoolean
 
-abstract class RemoteController<T : RemoteResourceId>(private val weakContext: WeakReference<Context>) {
+
+const val FOLDER_NAME_IMAGES = "images"
+const val FOLDER_NAME_NOTES = "notes"
+const val FOLDER_NAME_NOTES_META = "notes_meta"
+const val FOLDER_NAME_TAGS = "tags"
+const val FOLDER_NAME_FOLDERS = "folders"
+const val FOLDER_NAME_DELETED_NOTES = "deleted_notes"
+const val FOLDER_NAME_DELETED_TAGS = "deleted_tags"
+const val FOLDER_NAME_DELETED_FOLDERS = "deleted_folders"
+
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE = "g_drive_first_time_sync_note"
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE_META = "g_drive_first_time_sync_note_meta"
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_TAG = "g_drive_first_time_sync_tag"
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER = "g_drive_first_time_sync_folder"
+const val KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE = "g_drive_first_time_sync_image"
+var sRemoteFirstSyncNoteMeta: Boolean
+  get() = remoteConfig.get(KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE_META, false)
+  set(value) = remoteConfig.put(KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE_META, value)
+var sRemoteFirstSyncNote: Boolean
+  get() = remoteConfig.get(KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE, false)
+  set(value) = remoteConfig.put(KEY_G_DRIVE_FIRST_TIME_SYNC_NOTE, value)
+var sRemoteFirstSyncTag: Boolean
+  get() = remoteConfig.get(KEY_G_DRIVE_FIRST_TIME_SYNC_TAG, false)
+  set(value) = remoteConfig.put(KEY_G_DRIVE_FIRST_TIME_SYNC_TAG, value)
+var sRemoteFirstSyncFolder: Boolean
+  get() = remoteConfig.get(KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER, false)
+  set(value) = remoteConfig.put(KEY_G_DRIVE_FIRST_TIME_SYNC_FOLDER, value)
+var sRemoteFirstSyncImage: Boolean
+  get() = remoteConfig.get(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, false)
+  set(value) = remoteConfig.put(KEY_G_DRIVE_FIRST_TIME_SYNC_IMAGE, value)
+
+const val KEY_G_DRIVE_LAST_FULL_SYNC_TIME = "g_drive_last_full_sync_time"
+var sRemoteLastFullSyncTime: Long
+  get() = remoteConfig.get(KEY_G_DRIVE_LAST_FULL_SYNC_TIME, 0L)
+  set(value) = remoteConfig.put(KEY_G_DRIVE_LAST_FULL_SYNC_TIME, value)
+
+abstract class RemoteController<ResourceId, FileType, FileListType>(private val weakContext: WeakReference<Context>) {
 
   private val isValidController: AtomicBoolean = AtomicBoolean(true)
 
   lateinit var remoteDatabaseController: RemoteDatabaseStateController
-  lateinit var remoteService: IRemoteService<T>
+  lateinit var remoteService: IRemoteService<ResourceId, FileType, FileListType>
   lateinit var remoteDatabase: RemoteUploadDataDao
 
-  lateinit var notesSync: RemoteFolder<T, String>
-  lateinit var notesMetaSync: RemoteFolder<T, ExportableNoteMeta>
-  lateinit var foldersSync: RemoteFolder<T, ExportableFolder>
-  lateinit var tagsSync: RemoteFolder<T, ExportableTag>
-  lateinit var imageSync: RemoteFolder<T, File>
+  lateinit var notesSync: RemoteFolder<ResourceId, String>
+  lateinit var notesMetaSync: RemoteFolder<ResourceId, ExportableNoteMeta>
+  lateinit var foldersSync: RemoteFolder<ResourceId, ExportableFolder>
+  lateinit var tagsSync: RemoteFolder<ResourceId, ExportableTag>
+  lateinit var imageSync: RemoteFolder<ResourceId, File>
 
   private var syncing = HashMap<RemoteDataType, AtomicBoolean>()
   private var syncListener: IPendingUploadListener? = null
   private var databaseUpdateLambda: () -> Unit = { verifyAndNotifyPendingStateChange() }
 
-  fun init(service: IRemoteService<T>) {
+  fun init(service: IRemoteService<ResourceId, FileType, FileListType>) {
     val context = weakContext.get()
     if (context === null) {
       return
@@ -48,6 +87,7 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
     isValidController.set(true)
     remoteService = service
     remoteDatabase = genRemoteDatabase(context)!!
+    remoteDatabaseController = RemoteDatabaseStateController(context)
 
     syncing[RemoteDataType.NOTE] = AtomicBoolean(false)
     syncing[RemoteDataType.TAG] = AtomicBoolean(false)
@@ -59,8 +99,15 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
     initRootFolder()
   }
 
-  private fun isValid(): Boolean {
+  fun isValid(): Boolean {
     return isValidController.get()
+  }
+
+  fun logout() {
+    GlobalScope.launch {
+      reset()
+      remoteConfig.clearSync()
+    }
   }
 
   fun reset() {
@@ -72,22 +119,14 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
     imageSync.invalidate()
   }
 
-
-  fun logout() {
-    GlobalScope.launch {
-      reset()
-      Scarlet.gDriveConfig?.clearSync()
-    }
-  }
-
-
   /**
    * Abstract Methods
    */
 
   abstract fun initSyncs()
-  abstract fun getResourceIdForFolderName(folderName: String): T?
-  abstract fun storeResourceIdForFolderName(folderName: String, resource: T)
+  abstract fun getResourceId(data: RemoteUploadData): ResourceId
+  abstract fun getResourceIdForFolderName(folderName: String): ResourceId?
+  abstract fun storeResourceIdForFolderName(folderName: String, resource: ResourceId)
 
   /**
    * Initialisation Methods
@@ -95,7 +134,7 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
 
   private fun initRootFolder() {
     GlobalScope.launch {
-      sGDriveLastFullSyncTime = getTrueCurrentTime()
+      sRemoteLastFullSyncTime = getTrueCurrentTime()
       val fuid = getResourceIdForFolderName(GOOGLE_DRIVE_ROOT_FOLDER)
       when {
         fuid !== null -> onRootFolderLoaded(fuid)
@@ -114,12 +153,12 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
     }
   }
 
-  private fun onRootFolderLoaded(rootFolderId: T) {
+  private fun onRootFolderLoaded(rootFolderId: ResourceId) {
     createFolders(rootFolderId, listOf(FOLDER_NAME_NOTES, FOLDER_NAME_NOTES_META, FOLDER_NAME_FOLDERS, FOLDER_NAME_TAGS, FOLDER_NAME_IMAGES))
     createFolders(rootFolderId, listOf(FOLDER_NAME_DELETED_NOTES, FOLDER_NAME_DELETED_TAGS, FOLDER_NAME_DELETED_FOLDERS))
   }
 
-  private fun createFolders(rootFolderId: T, expectedFolders: List<String>) {
+  private fun createFolders(rootFolderId: ResourceId, expectedFolders: List<String>) {
     val knownFolderIds = expectedFolders.filter { getResourceIdForFolderName(it) !== null }
     knownFolderIds.forEach {
       GlobalScope.launch { initSubRootFolder(it, getResourceIdForFolderName(it)!!) }
@@ -154,39 +193,39 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
     }
   }
 
-  private fun initSubRootFolder(folderName: String, folderId: T) {
+  private fun initSubRootFolder(folderName: String, folderId: ResourceId) {
     when (folderName) {
       FOLDER_NAME_NOTES -> notesSync.initContentFolder(folderId) {
-        if (!sGDriveFirstSyncNote) {
+        if (!sRemoteFirstSyncNote) {
           GlobalScope.launch { resyncDataSync(RemoteDataType.NOTE) }
-          sGDriveFirstSyncNote = true
+          sRemoteFirstSyncNote = true
         }
       }
       FOLDER_NAME_NOTES_META -> {
         notesMetaSync.initContentFolder(folderId) {
-          if (!sGDriveFirstSyncNoteMeta) {
+          if (!sRemoteFirstSyncNoteMeta) {
             GlobalScope.launch { resyncDataSync(RemoteDataType.NOTE_META) }
-            sGDriveFirstSyncNoteMeta = true
+            sRemoteFirstSyncNoteMeta = true
           }
         }
         notesMetaSync.initDeletedFolder(null) {}
       }
       FOLDER_NAME_TAGS -> tagsSync.initContentFolder(folderId) {
-        if (!sGDriveFirstSyncTag) {
+        if (!sRemoteFirstSyncTag) {
           GlobalScope.launch { resyncDataSync(RemoteDataType.TAG) }
-          sGDriveFirstSyncTag = true
+          sRemoteFirstSyncTag = true
         }
       }
       FOLDER_NAME_FOLDERS -> foldersSync.initContentFolder(folderId) {
-        if (!sGDriveFirstSyncFolder) {
+        if (!sRemoteFirstSyncFolder) {
           GlobalScope.launch { resyncDataSync(RemoteDataType.FOLDER) }
-          sGDriveFirstSyncFolder = true
+          sRemoteFirstSyncFolder = true
         }
       }
       FOLDER_NAME_IMAGES -> imageSync.initContentFolder(folderId) {
-        if (!sGDriveFirstSyncImage) {
+        if (!sRemoteFirstSyncImage) {
           GlobalScope.launch { resyncDataSync(RemoteDataType.IMAGE) }
-          sGDriveFirstSyncImage = true
+          sRemoteFirstSyncImage = true
         }
       }
       FOLDER_NAME_DELETED_NOTES -> notesSync.initDeletedFolder(folderId) {
@@ -212,21 +251,22 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
     }
   }
 
-  private fun verifyAndNotifyPendingStateChange() {
+  fun notifyPendingSyncChange(action: String) {
+    log("GDrive", "notifyPendingSyncChange($action)")
+    val count = sSyncingCount.get()
+    when {
+      count <= 0 -> syncListener?.onPendingSyncsUpdate(false)
+      count >= 1 -> syncListener?.onPendingSyncsUpdate(true)
+    }
+  }
+
+  fun verifyAndNotifyPendingStateChange() {
     GlobalScope.launch {
       val currentPendingState = remoteDatabase.getPendingCount() > 0
       val pending = remoteDatabase.getAllPending().map { "type=${it.type}, uuid=${it.uuid}, fid=${it.fileId}" }.joinToString(separator = "\n")
       log("GDrive", "getPendingCount(${remoteDatabase.getPendingCount()})\n$pending")
       notifyPendingSyncChange("verifyAndNotifyPendingStateChange")
       syncListener?.onPendingStateUpdate(currentPendingState)
-    }
-  }
-
-  fun notifyPendingSyncChange(action: String) {
-    val count = sSyncingCount.get()
-    when {
-      count <= 0 -> syncListener?.onPendingSyncsUpdate(false)
-      count >= 1 -> syncListener?.onPendingSyncsUpdate(true)
     }
   }
 
@@ -251,7 +291,7 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
       return
     }
 
-    if (forced || (getTrueCurrentTime() - sGDriveLastFullSyncTime > 1000 * 60 * 60 * 24)) {
+    if (forced || (getTrueCurrentTime() - sRemoteLastFullSyncTime > 1000 * 60 * 60 * 24)) {
       GlobalScope.launch {
         remoteDatabase.resetAttempts()
         initRootFolder()
@@ -375,7 +415,7 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
 
     when (type) {
       RemoteDataType.NOTE -> {
-        remoteService.readFile(data) { content ->
+        remoteService.readFile(getResourceId(data)) { content ->
           // TODO: De-duplicate meta data and note update
           try {
             val itemDescription = fromExportedMarkdown(content)
@@ -393,7 +433,7 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
       }
       RemoteDataType.NOTE_META -> {
         // TODO: De-duplicate meta data and note update
-        remoteService.readFile(data) { content ->
+        remoteService.readFile(getResourceId(data)) { content ->
           try {
             val item = Gson().fromJson(content, ExportableNoteMeta::class.java)
 
@@ -410,7 +450,7 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
         }
       }
       RemoteDataType.TAG -> {
-        remoteService.readFile(data) { content ->
+        remoteService.readFile(getResourceId(data)) { content ->
           try {
             val item = Gson().fromJson(content, ExportableTag::class.java)
             IRemoteDatabaseUtils.onRemoteInsert(context, item)
@@ -421,7 +461,7 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
         }
       }
       RemoteDataType.FOLDER -> {
-        remoteService.readFile(data) { content ->
+        remoteService.readFile(getResourceId(data)) { content ->
           try {
             val item = Gson().fromJson(content, ExportableFolder::class.java)
             IRemoteDatabaseUtils.onRemoteInsert(context, item)
@@ -440,7 +480,7 @@ abstract class RemoteController<T : RemoteResourceId>(private val weakContext: W
             return
           }
 
-          remoteService.readIntoFile(data, imageFile) { success ->
+          remoteService.readIntoFile(getResourceId(data), imageFile) { success ->
             if (success) {
               remoteDatabaseController.remoteDatabaseUpdate(RemoteDataType.IMAGE, data.uuid, databaseUpdateLambda)
             }
