@@ -46,14 +46,18 @@
   <color name="bg_peach_darkest">#99907d</color>
 
   <array name="bright_colors">
+    <item>@color/black</item>
     <item>@color/material_grey_850</item>
     <item>@color/material_blue_grey_800</item>
+    <item>@color/material_blue_grey_700</item>
     <item>@color/material_purple_700</item>
     <item>@color/material_deep_purple_700</item>
     <item>@color/material_indigo_700</item>
+    <item>@color/material_blue_900</item>
     <item>@color/material_blue_700</item>
     <item>@color/material_light_blue_700</item>
     <item>@color/material_cyan_700</item>
+    <item>@color/material_cyan_800</item>
     <item>@color/material_teal_700</item>
     <item>@color/material_green_700</item>
     <item>@color/material_light_green_700</item>
@@ -64,6 +68,8 @@
     <item>@color/material_deep_orange_700</item>
     <item>@color/material_pink_700</item>
     <item>@color/material_red_700</item>
+    <item>@color/material_red_900</item>
+    <item>@color/material_brown_700</item>
   </array>
 
   <array name="bright_colors_accent">
