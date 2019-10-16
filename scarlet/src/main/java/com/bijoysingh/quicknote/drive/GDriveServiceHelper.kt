@@ -134,14 +134,7 @@ class GDriveServiceHelper(private val mDriveService: Drive) : IRemoteService<Str
   }
 
   override fun getOrCreateDirectory(parentResourceId: String?, directoryName: String, onSuccess: (String?) -> Unit) {
-    val parentUid = parentResourceId ?: ""
-    log("GDrive", "getOrCreateDirectory($parentUid, $directoryName)")
-
-    if (parentResourceId === null) {
-      return createDirectory(null, directoryName, onSuccess)
-    }
-
-    getDirectory(parentResourceId, directoryName).addOnCompleteListener { getTask ->
+    getDirectory(parentResourceId ?: "", directoryName).addOnCompleteListener { getTask ->
       val fid = getTask.result?.files?.firstOrNull()?.id
       if (fid !== null) {
         onSuccess(fid)
@@ -170,7 +163,10 @@ class GDriveServiceHelper(private val mDriveService: Drive) : IRemoteService<Str
       val files = result.result?.files ?: emptyList()
       val namesIdList = emptyList<Pair<String, String>>().toMutableList()
       files.forEach {
-        namesIdList.add(Pair(it.name, it.id))
+        when {
+          (it.id === null || it.id.isBlank()) -> {}
+          else -> namesIdList.add(Pair(it.name, it.id))
+        }
       }
       onSuccess(namesIdList)
     }

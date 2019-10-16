@@ -139,6 +139,15 @@ class GDriveRemoteImageFolder(
     val timestamp = database.getByUUID(dataType.name, gDriveUUID)?.lastUpdateTimestamp
         ?: getTrueCurrentTime()
     val imageFile = noteImagesFolder.getFile(id.noteUuid, id.imageUuid)
+    if (!imageFile.exists()) {
+      // notifyDriveData(id, gDriveUUID, timestamp)
+      val existing = database.getByUUID(RemoteDataType.IMAGE.name, gDriveUUID)
+      if (existing !== null) {
+        database.delete(existing)
+      }
+      onPendingChange()
+      return
+    }
     service.createFileFromFile(contentFolderUid, gDriveUUID, imageFile, timestamp) { file ->
       if (file !== null) {
         contentFiles[id] = file.id

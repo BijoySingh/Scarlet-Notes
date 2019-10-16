@@ -170,7 +170,7 @@ abstract class RemoteController<ResourceId, FileType, FileListType>(private val 
     }
 
     remoteService.getDirectories(rootFolderId, unknownFolderNames) { items ->
-      val pendingNames = emptyList<String>().toMutableList()
+      val pendingNames = unknownFolderNames.toSet().toMutableSet()
       items.forEach { pair ->
         val name = pair.first
         val resourceId = pair.second
@@ -178,8 +178,8 @@ abstract class RemoteController<ResourceId, FileType, FileListType>(private val 
           resourceId !== null -> {
             storeResourceIdForFolderName(name, resourceId)
             initSubRootFolder(name, resourceId)
+            pendingNames.remove(name)
           }
-          else -> pendingNames.add(name)
         }
       }
       pendingNames.forEach { name ->

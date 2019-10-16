@@ -74,7 +74,7 @@ class GDriveRemoteDatabase(weakContext: WeakReference<Context>) : RemoteControll
   }
 
   override fun getResourceId(data: RemoteUploadData): String {
-    return data.uuid
+    return data.fileId
   }
 
   private fun folderIdForFolderName(folderName: String, folderId: String = ""): String {
