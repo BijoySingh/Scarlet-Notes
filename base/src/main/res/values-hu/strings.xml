@@ -1,0 +1,415 @@
+<resources>
+  <string name="title">Cím</string>
+  <string name="description">Tartalom</string>
+  <string name="save">Mentés</string>
+  <string name="import_to_app">Importálás</string>
+  <string name="search_notes">Jegyzetek keresése&#8230;</string>
+  <string name="share_using">Keresés ezzel&#8230;</string>
+
+  <string name="main_no_notes">Nincsenek jegyzetek</string>
+  <string name="main_no_notes_hint">Úgy néz ki, hogy még nem adott hozzá jegyzeteket. Koppintson egy jegyzet hozzáadásához.</string>
+
+  <string name="shortcut_add_note">Jegyzet hozzáadása</string>
+  <string name="shortcut_add_list">Ellenőrzőlista hozzáadása</string>
+
+  <string name="edit_note">Jegyzet szerkesztése</string>
+  <string name="open_in_notification">Értesítés létrehozása</string>
+  <string name="open_in_popup">Megnyitás felugró ablakban</string>
+  <string name="delete_note_permanently">Végleges törlés</string>
+  <string name="copy_note">Jegyzet másolása</string>
+  <string name="send_note">Jegyzet küldése</string>
+  <string name="unarchive_note">Jegyzet archiválásának visszavonása</string>
+  <string name="archive_note">Jegyzet archiválása</string>
+  <string name="not_favourite_note">Kedvencnek jelölés visszavonása</string>
+  <string name="favourite_note">Kedvencnek jelölés</string>
+  <string name="restore_note">Jegyzet visszaállítása</string>
+  <string name="trash_note">Kukába helyezés</string>
+  <string name="choose_note_color">Szín módosítása</string>
+  <string name="lock_note">Jegyzet zárolása</string>
+  <string name="change_tags">Címkék módosítása</string>
+  <string name="unlock_note">Jegyzet zárolása</string>
+  <string name="reminder">Emlékeztető</string>
+  <string name="select">Kiválasztás</string>
+  <string name="duplicate">Kétszerezés</string>
+  <string name="pin_note">Jegyzet rögzítése</string>
+  <string name="unpin_note">Jegyzet rögzítésének feloldása</string>
+  <string name="view_distraction_free">Zavarásmentés</string>
+  <string name="merge_notes">Jegyzetek egyesítése</string>
+  <string name="choose_action">Művelet kiválasztása&#8230;</string>
+
+  <string name="tap_for_action_edit">Koppintson a jegyzet szerkesztésre megnyitásához</string>
+  <string name="tap_for_action_copy">Koppintson a jegyzet tartalmának vágólapra másolásához</string>
+  <string name="tap_for_action_share">Koppintson a jegyzet tartalmának más alkalmazásokkal megosztásához</string>
+  <string name="tap_for_action_popup">Koppintson a jegyzet felugró ablakban megnyitásához</string>
+  <string name="tap_for_action_delete">Koppintson a jegyzet törléséhez</string>
+  <string name="tap_for_action_trash">Koppintson a jegyzet kukába dobásához</string>
+  <string name="tap_for_action_not_trash">Koppintson a jegyzet helyreállításához a kukából</string>
+  <string name="tap_for_action_favourite">Koppintson a jegyzet kedvencként megjelöléséhez</string>
+  <string name="tap_for_action_not_favourite">Koppintson a jegyzet eltávolításához a kedvencekből</string>
+  <string name="tap_for_action_archive">Koppintson a jegyzet archiválásához</string>
+  <string name="tap_for_action_color">Koppintson a jegyzet háttérszínének módosításához</string>
+  <string name="tap_for_action_not_archive">Koppintson a jegyzet helyreállításához az archívumból</string>
+
+  <string name="nav_home">Kezdőlap</string>
+  <string name="nav_favourites">Kedvencek</string>
+  <string name="nav_archived">Archivált</string>
+  <string name="nav_locked">Zárolt</string>
+  <string name="nav_trash">Kuka</string>
+
+  <string name="format_hint_text">Tartalom hozzáadása&#8230;</string>
+  <string name="format_hint_heading">Címsor hozzáadása&#8230;</string>
+  <string name="format_hint_quote">Idézett szöveg hozzáadása&#8230;</string>
+  <string name="format_hint_list">Elem hozzáadása&#8230;</string>
+  <string name="format_hint_code">Kód hozzáadása&#8230;</string>
+  <string name="format_hint_image">Koppintson egy kép hozzáadásához vagy cseréjéhez</string>
+
+  <string name="home_option_sheet_title">Beállítások</string>
+  <string name="home_option_ui_experience">Felület és felhasználói élmény</string>
+  <string name="home_option_ui_experience_subtitle">Válassza ki, hogyan működjön az alkalmazás.</string>
+  <string name="home_option_about">Névjegy</string>
+  <string name="home_option_about_subtitle">Tudjon meg többet rólunk és az alkalmazásról.</string>
+  <string name="home_option_security">Biztonság</string>
+  <string name="home_option_security_subtitle">Jegyzetek zárolása és biztonsági beállítások</string>
+  <string name="home_option_enable_list_view">Listaelrendezés engedélyezése</string>
+  <string name="home_option_enable_list_view_subtitle">Jegyzetek megjelenítése egyetlen oszlopban</string>
+  <string name="home_option_enable_grid_view">Rácsnézet engedélyezése</string>
+  <string name="home_option_enable_grid_view_subtitle">Jegyzetek megjelenítése lépcsőzetes rácsként</string>
+  <string name="home_option_order_notes">Jegyzetek rendezése</string>
+  <string name="home_option_backup_options">Biztonsági mentés és importálás</string>
+  <string name="home_option_backup_options_subtitle">Biztonsági mentési, importálási és exportálási beállítások</string>
+  <string name="home_option_export">Jegyzetek exportálása</string>
+  <string name="home_option_export_subtitle">Jegyzetek exportálása az eszköz tárhelyére megosztás céljából</string>
+  <string name="home_option_import">Jegyzetek importálása</string>
+  <string name="home_option_import_subtitle">Jegyzetek importálása az eszköz tárhelyéről</string>
+  <string name="home_option_export_markdown">Exportálás markdownként</string>
+  <string name="home_option_export_markdown_subtitle">Jegyzetek exportálása markdown formátumban. (Ezeket nem importálhatja vissza az alkalmazásba)</string>
+  <string name="home_option_auto_export">Automatikus exportálás</string>
+  <string name="home_option_auto_export_subtitle">Jegyzetek gyakori exportálása egy külső fájlba biztonsági mentésként</string>
+  <string name="home_option_about_page">Rólunk</string>
+  <string name="home_option_about_page_subtitle">Tudjon meg többet az alkalmazásról és a fejlesztőkről</string>
+  <string name="home_option_open_source_page">Nyílt forráskódú projekt</string>
+  <string name="home_option_open_source_page_subtitle">Tudjon meg többet a nyílt forráskódú projektről</string>
+  <string name="home_option_rate_and_review">Értékelés</string>
+  <string name="home_option_rate_and_review_subtitle">Mondja el, mennyire tetszett az alkalmazás</string>
+  <string name="home_option_install_pro_app">Pro alkalmazás telepítése</string>
+  <string name="home_option_install_pro_app_details">A Pro alkalmazás telepítése funkciók feloldásához és a fejlesztő támogatásához</string>
+  <string name="home_option_migrate_to_pro">Jegyzetek migrálása a Scarlet Próba</string>
+  <string name="home_option_migrate_to_pro_details">Migrálja az összes jegyzetét a pro alkalmazásba</string>
+  <string name="home_option_delete_notes_and_more">Jegyzetek törlése és egyebek</string>
+  <string name="home_option_delete_notes_and_more_details">Jegyzetek, címkék és egyéb adatok törlése az alkalmazásból</string>
+  <string name="home_option_delete_all_notes">Minden jegyzet törlése</string>
+  <string name="home_option_delete_all_notes_details">Az összes jegyzet törlése az alkalmazásból</string>
+  <string name="home_option_delete_all_folders">Minden mappa törlése</string>
+  <string name="home_option_delete_all_folders_details">Az összes mappa törlése az alkalmazásból</string>
+  <string name="home_option_delete_all_tags">Minden címke törlése</string>
+  <string name="home_option_delete_all_tags_details">Az összes címke törlése az alkalmazásból</string>
+  <string name="home_option_delete_everything">Minden törlése</string>
+  <string name="home_option_delete_everything_details">Az összes jegyzet, címke és mappa törlése az alkalmazásból</string>
+
+  <string name="ui_options_note_background_color">Jegyzetmegjelenítő háttere</string>
+  <string name="ui_options_note_background_color_settings_theme">Témaszín használata a háttérhez</string>
+  <string name="ui_options_note_background_color_settings_note">Jegyzetszín használata a háttérhez</string>
+
+  <string name="security_option_title">Biztonsági beállítások</string>
+  <string name="security_option_set_pin_code">Jelkód</string>
+  <string name="security_option_set_pin_code_subtitle">Állítson be egy 4 számjegyes PIN-kódot a jegyzetek zárolásához</string>
+  <string name="security_option_fingerprint_enabled">Feloldás ujjlenyomattal</string>
+  <string name="security_option_fingerprint_enabled_subtitle">A jegyzetek ujjlenyomat megadására kerülnek feloldásra</string>
+  <string name="security_option_fingerprint_disabled">Ujjlenyomat letiltva</string>
+  <string name="security_option_fingerprint_disabled_subtitle">A jegyzetek nem használnak ujjlenyomatot</string>
+
+  <string name="security_sheet_enter_new_pin_title">Adja meg a PIN-kódot</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">A feloldáshoz adja meg a PIN-kódot</string>
+  <string name="security_sheet_enter_current_pin_title">Adja meg a jelenlegi PIN-kódot</string>
+  <string name="security_sheet_button_verify">Ellenőrzés</string>
+  <string name="security_sheet_button_unlock">Zárolás</string>
+  <string name="security_sheet_button_set">Beállítás</string>
+  <string name="security_sheet_button_remove">Eltávolítás</string>
+
+  <string name="note_option_default_color">Alapértelmezett jegyzetszín</string>
+  <string name="note_option_default_color_subtitle">Válassza ki a jegyzetek alapértelmezett színét</string>
+  <string name="note_option_number_lines">Jegyzetek sorainak számának korlátja</string>
+  <string name="note_option_number_lines_subtitle">%d sor a kezdőképernyőn</string>
+
+  <string name="markdown_sheet_markdown_support">Markdown támogatás</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Markdown támogatott formázás engedélyezése</string>
+  <string name="markdown_sheet_home_markdown_support">Markdown a jegyzetlistában</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Markdown formázás engedélyezése a jegyzetek listájában</string>
+
+  <string name="permission_layout_give_permission">Engedélyek megadása</string>
+  <string name="permission_layout_give_permission_details">Az importálás és exportálás tároló engedélyt igényel. Adja meg az engedélyt, ha kérésre kerül.</string>
+  <string name="permission_layout_give_permission_ok">Engedélyezés</string>
+
+  <string name="import_export_import_file_title">Biztonsági mentés importálása fájlból</string>
+  <string name="import_export_import_file">Fájl importálása</string>
+  <string name="import_export_layout_exported">Fájlba exportálva</string>
+  <string name="import_export_layout_export_failed">Exportálás sikertelen</string>
+  <string name="import_export_layout_exporting">Fájlba exportálás&#8230;</string>
+  <string name="import_export_layout_exporting_done">Kész</string>
+  <string name="import_export_layout_exporting_share">Megosztás</string>
+  <string name="import_export_layout_folder_sync_enable">Engedélyezés</string>
+  <string name="import_export_layout_folder_sync_disable">Letiltás</string>
+  <string name="import_export_layout_folder_sync">Mappaszinkronizálás engedélyezése</string>
+  <string name="import_export_layout_folder_sync_title">Mappaszinkronizálás</string>
+  <string name="import_export_layout_folder_sync_description">Szinkronizálja az összes jegyzetét, címkéjét és mappáját egy külső mappába. Ez segít, ha más alkalmazásokkal szinkronizál az eszközei közt, valamint másolatot készít, ha törölnie kell az alkalmazást.</string>
+  <string name="import_export_layout_folder_sync_folder">Mappába exportálás</string>
+  <string name="import_export_layout_folder_sync_details">Az összes jegyzet, címke és egyebek szinkronizálása egy külső mappába</string>
+  <string name="import_export_locked">Zárolt jegyzetek exportálása</string>
+
+  <string name="about_page_rate">Értékelés a Play Áruházban</string>
+  <string name="about_page_contribute">Közreműködés</string>
+  <string name="about_page_app_version">Alkalmazásverzió</string>
+  <string name="about_page_about_app">Az alkalmazás névjegye</string>
+
+  <string name="osp_page_libraries">Programkönyvtárak</string>
+  <string name="osp_page_about_osp">Nyílt forráskódú projekt</string>
+
+  <string name="reminder_sheet_reminder_date">Emlékeztető dátuma</string>
+  <string name="reminder_sheet_reminder_time">Emlékeztető ideje</string>
+  <string name="reminder_sheet_repeat">Ismétlési gyakoriság</string>
+  <string name="reminder_frequency_once">Csak egyszer</string>
+  <string name="reminder_frequency_daily">Naponta</string>
+
+  <string name="notification_channel_label">Jegyzetértesítések</string>
+  <string name="notification_reminder_channel_label">Értesítések és riasztások</string>
+
+  <string name="about_page_description_os">
+    A %s nyílt forráskódú, és bárki közreműködhet a jobbá tételében. Jelenleg %s készíti és tartja karban.
+  </string>
+  <string name="about_page_description">
+    A %s egy egyszerű jegyzetkészítő alkalmazás. Gyors gazdag szöveges bemenetet tesz lehetővé, anélkül hogy nehezen használható volna. Gyerekjátékká teszi a párhuzamos munkavégzést.
+  </string>
+  <string name="about_page_about_us_details">Üdv, egy dizájner és programozó páros vagyunk, akik a %s alkalmazást készítették.
+    Arra vállalkoztunk, hogy szép, gondosan tervezett, reklámmentes vagy csak minimális reklámokat tartalmazó alkalmazásokat készítsünk, amelyek mindenki számára hasznosak.</string>
+
+  <string name="tag_sheet_create_title">Új címke hozzáadása&#8230;</string>
+  <string name="tag_sheet_edit_title">Címke szerkesztése&#8230;</string>
+  <string name="tag_sheet_enter_tag_hint">címke megadása</string>
+
+  <string name="tag_sheet_new_tag_button">Új címke létrehozása</string>
+  <string name="tag_sheet_choose_tag">Címke kiválasztása&#8230;</string>
+
+  <string name="sort_sheet_title">Jegyzetek rendezése</string>
+  <string name="sort_sheet_newest_first">Legújabb elől</string>
+  <string name="sort_sheet_oldest_first">Legrégebbi elől</string>
+  <string name="sort_sheet_last_modified">Legutóbb módosítva</string>
+  <string name="sort_sheet_alphabetical">Betűrendben</string>
+
+  <!-- Start Select Notes -->
+  <string name="select_a_note_title">Jegyzet kiválasztása</string>
+  <string name="select_notes_title">Jegyzetek kiválasztása</string>
+  <string name="nav_settings">Beállítások</string>
+  <string name="widget_no_valid_note">A jegyzet törölt vagy zárolt</string>
+  <!-- End Select Notes -->
+
+  <!-- Start Whats New -->
+  <string name="whats_new_title">Újdonságok</string>
+  <string name="whats_new_subtitle">Tudja meg, hogy mik az újdonságok az alkalmazás legújabb frissítéseiben</string>
+  <string name="whats_new_translate">Fordítás</string>
+  <string name="format_action_copy">Másolás</string>
+  <string name="format_action_title">Szövegblokk műveletek</string>
+  <string name="format_action_gallery">Galéria</string>
+  <string name="format_action_camera">Kamera</string>
+
+  <string name="voice_sheet_title">Jegyzet felolvasása hangosan</string>
+  <string name="voice_action_title">Jegyzet felolvasása</string>
+  <string name="image_delete_all_devices">Az elem törlése az összes eszközről törli a képet.</string>
+  <string name="image_not_on_current_device">A kép nincs ezen az eszközön</string>
+  <string name="image_cannot_be_loaded">A kép nem tölthető be</string>
+  <string name="image_not_uploaded">A képek nincsenek szinkronizálva</string>
+  <string name="image_not_uploaded_details">A képek nincsenek szinkronizálva az eszközök között. A képek nem fognak megjelenni a többi eszközön, amikor megnézni a jegyzetet.</string>
+  <string name="image_not_uploaded_i_understand">Megértettem</string>
+  <!-- End Whats New -->
+
+  <!-- Start Note Text Size -->
+  <string name="note_option_font_size">Jegyzetek betűmérete</string>
+  <string name="note_option_font_size_example">A betűméret módosítása a jegyzetek lapon. Az előnézetben láthatja, hogyan nézne ki.</string>
+  <string name="note_option_font_size_subtitle">%d képpontos betűk a jegyzetmegjelenítőben</string>
+  <!-- End Note Text Size -->
+
+  <!-- Start Cloud Backup Hint -->
+  <string name="home_option_install_from_store">Telepítés az Áruházból</string>
+  <string name="home_option_install_from_store_subtitle">Alkalmazás telepítése a Google áruházból a felhős szinkronizáció miatt</string>
+  <!-- End -->
+
+  <!-- Start No Pincode -->
+  <string name="no_pincode_sheet_title">Nincs PIN-kód megadva</string>
+  <string name="no_pincode_sheet_details">Nem állított be PIN-kódot. Szeretné most beállítani?</string>
+  <string name="no_pincode_sheet_not_now">Később</string>
+  <string name="no_pincode_sheet_dont_ask">Ne kérdezze többet</string>
+  <string name="no_pincode_sheet_set_up">Beállítás</string>
+  <!-- End No Pincode -->
+
+  <!-- Start Delete Notes -->
+  <string name="delete_sheet_are_you_sure">Biztos benne?</string>
+  <string name="delete_sheet_delete_trash">Véglegesen törli a jegyzeteket a kuka mappából?</string>
+  <string name="delete_sheet_delete_note_permanently">Véglegesen törli ezt a jegyzetet?</string>
+  <string name="delete_sheet_delete_trash_yes">Törlés</string>
+  <string name="delete_sheet_delete_trash_no">Mégse</string>
+  <string name="trash_will_delete_automatically">A jegyzetek 7 nap után véglegesen törlésre kerülnek</string>
+  <!-- End Delete Notes -->
+
+  <!-- Start Information -->
+  <string name="information_card_title">Információk</string>
+  <string name="information_new_app_update">Koppintson a legfrissebb alkalmazásverzió telepítéséhez</string>
+  <string name="information_install_pro">Koppintson a Scarlet Próra történő frissítéshez</string>
+  <!-- End Information -->
+
+  <!-- Start: Firebase Login Strings -->
+  <string name="home_option_login_with_app">Bejelentkezés az alkalmazásba</string>
+  <string name="home_option_login_with_app_subtitle">Jelentkezzen be felhős biztonsági mentéshez és szinkronizáláshoz</string>
+  <string name="home_option_logout_of_app">Kijelentkezés</string>
+  <string name="home_option_logout_of_app_subtitle">Kijelentkezés a felhős biztonsági mentés leállításához</string>
+  <string name="login_to_google_failed">Google bejelentkezés sikertelen</string>
+
+  <string name="material_notes_privacy_policy">Adatvédelmi irányelvek</string>
+  <string name="material_notes_privacy_policy_subtitle">Az alkalmazás adatvédelmi irányelvei a tartalomhoz</string>
+
+  <string name="install_pro_app">Pro alkalmazás telepítése</string>
+  <string name="available_in_pro_only">A Scarlet Próban elérhető</string>
+
+  <string name="why_install_pro">Miért telepítse a Pro verziót</string>
+  <string name="why_install_pro_details">
+     &#10004; Támogassa a fejlesztőt a felhős szinkronizálás jelentős kiszolgálóköltségeiben \n\n&#10004; Kapja meg először a legfrissebb funkciókat \n\n&#10004; Egyes további funkciók csak a Pro felhasználók számára lesz elérhetők
+  </string>
+  <!-- End: Firebase Login Strings -->
+
+  <!-- Start Theme Color -->
+  <string name="home_option_theme_color">Alkalmazástéma</string>
+  <string name="home_option_theme_color_subtitle">Válassza ki a téma háttérszínét</string>
+  <string name="theme_page_title">Alkalmazástéma kiválasztása</string>
+  <!-- End Theme Color-->
+
+  <string name="click_to_add_tags">Koppintson a címkék hozzáadásához vagy módosításához</string>
+
+  <string name="select_notes">Jegyzetek kiválasztása</string>
+  <string name="select_notes_details">Választáson ki több jegyzetet egyszerre, és végezzen rajtuk műveletet</string>
+
+  <string name="recent_to_trash_message">A jegyzet át lett helyezve a kukába</string>
+  <string name="recent_to_delete_message">A jegyzet törlésre került</string>
+  <string name="recent_to_trash_undo">Visszavonás</string>
+
+  <string name="backup_note_disable">Biztonsági mentés kikapcsolása</string>
+  <string name="backup_note_enable">Biztonsági mentés bekapcsolása</string>
+
+  <string name="folder_card_title">Üres jegyzetfüzet</string>
+  <string name="folder_card_title_single_note">1 jegyzet</string>
+  <string name="folder_card_title_notes">%d jegyzet</string>
+  <string name="folder_sheet_add_note">Új jegyzetfüzet hozzáadása</string>
+  <string name="folder_sheet_edit_note">Jegyzetfüzet szerkesztése</string>
+  <string name="folder_sheet_add_note_detail">Jegyzetfüzet hozzáadása</string>
+
+  <string name="folder_option_add_to_notebook">Jegyzetfüzet hozzáadása</string>
+  <string name="folder_option_change_notebook">Jegyzetfőzet módosítása</string>
+
+  <string name="recent_notes">Friss jegyzetek</string>
+
+  <!-- Start: Editor Option Sheet -->
+  <string name="home_option_editor_options_title">Szerkesztőbeállítások</string>
+  <string name="home_option_editor_options_description">A jegyzetszerkesztőt beállításainak és használatának módosítása</string>
+
+  <string name="editor_option_enable_markdown_mode_default">Markdown lehetőséget alapértelmezetten</string>
+  <string name="editor_option_enable_markdown_mode_default_details">A markdown gyorsgombok megjelenítése az eszköztáron alapértelmezetten</string>
+
+  <string name="editor_option_enable_live_markdown">Valós idejű markdown</string>
+  <string name="editor_option_enable_live_markdown_description">Akkor válassza, ha gépelés közben szeretné látni a markdownt. Bekapcsolása befolyásolhatja a teljesítményt a nagy jegyzeteknél.</string>
+
+  <string name="editor_option_move_checked_items">Bejelölt elem áthelyezése</string>
+  <string name="editor_option_move_checked_items_description">A bejelölt elemek a lista végére kerülnek. A jelölés eltávolítása nem állítja vissza a pozíciót.</string>
+
+  <string name="editor_option_enable_move_handle">Mozgatási kezelőszervek megjelenítése</string>
+  <string name="editor_option_enable_move_handle_description">Fogantyú megjelenítése az elemek fel és le mozgatásához. A sarkoknál megérintéssel továbbra is átrendezheti a dolgokat.</string>
+
+  <string name="markdown_help_sheet_title">Markdown példák</string>
+  <!-- End: Editor Option Sheet -->
+
+  <!-- Start: Widget Options Sheet -->
+  <string name="home_option_widget_options_title">Felületi elem beállítások</string>
+  <string name="home_option_widget_options_description">A kezdőképernyő felületi elemeinek beállításainak módosítása</string>
+
+  <string name="widget_option_enable_formatting">Formázás engedélyezése</string>
+  <string name="widget_option_enable_formatting_details">A jegyzetek formázva jelennek meg a kezdőképernyőn</string>
+
+  <string name="widget_option_show_locked_notes">Zárolt jegyzetek megjelenítése</string>
+  <string name="widget_option_show_locked_notes_details">A zárolt jegyzetek megjelenhetnek a kezdőképernyőn</string>
+
+  <string name="widget_option_show_archived_notes">Archivált jegyzetek megjelenítése</string>
+  <string name="widget_option_show_archived_notes_details">Az archivált jegyzetek megjelenhetnek a kezdőképernyőn</string>
+
+  <string name="widget_option_show_trash_notes">Kukában lévő jegyzetek megjelenítése</string>
+  <string name="widget_option_show_trash_notes_details">A kukában lévő jegyzetek megjelenhetnek a kezdőképernyőn</string>
+  <!-- End: Widget Options Sheet -->
+
+  <string name="home_option_faq_title">Súgó és gyakori kérdések</string>
+  <string name="home_option_faq_description">Kapjon segítséget az alkalmazás funkcióinak használatához</string>
+
+  <string name="home_syncing_top_layout">Szinkronizálás</string>
+  <string name="home_pending_backup_top_layout">Biztonsági mentés folyamatban</string>
+
+  <!-- Start: Internal Settings Strings -->
+  <string name="internal_settings_title">Fejlesztői beállítások</string>
+  <string name="internal_settings_description">Az alkalmazás belső beállításainak módosítása hibakeresés céljából</string>
+
+  <string name="internal_settings_enable_log_exceptions_title">Kivételek naplózása</string>
+  <string name="internal_settings_enable_log_exceptions_description">Elkapott kivételek naplózása egy rögzített bejegyzésbe, hogy továbbküldhesse a fejlesztőnek</string>
+
+  <string name="internal_settings_enable_show_exceptions_title">Kivételek megjelenítése egy lapon</string>
+  <string name="internal_settings_enable_show_exceptions_description">Elkapott kivételek megjelenítése egy lapon, ha az lehetséges, hogy továbbküldhesse a fejlesztőnek</string>
+
+  <string name="internal_settings_enable_throw_exceptions_title">Kivételek továbbdobása</string>
+  <string name="internal_settings_enable_throw_exceptions_description">Kivételek továbbdobása és az alkalmazás összeomlasztása. 5 összeomlás után vissza lesz állítva</string>
+
+  <string name="internal_settings_enable_fullscreen_title">Teljes képernyő engedélyezése</string>
+  <string name="internal_settings_enable_fullscreen_description">Az alkalmazás teljes képernyősre állítása, hogy képernyőképeket és -felvételeket készíthessen</string>
+
+  <string name="internal_settings_show_uuid_title">Jegyzetek UUID azonosítójának megjelenítése</string>
+  <string name="internal_settings_show_uuid_description">A jegyzetek egyedi azonosítójának megjelenítése a kezdőképernyőn</string>
+
+  <string name="internal_settings_fake_exceptions_title">Hamis kivételek</string>
+  <string name="internal_settings_fake_exceptions_description">Hamis kivétel dobása a kivételfunkciók teszteléséhez</string>
+
+  <string name="exception_sheet_title">Kivétel dobva</string>
+  <string name="exception_sheet_crash_app">Alkalmazás összeomlasztása</string>
+  <string name="exception_sheet_mail">E-mail</string>
+
+  <!-- Start: Google Login Strings -->
+  <string name="google_drive_page_connection_failed">Kapcsolódás sikertelen</string>
+  <string name="google_drive_page_login_title">Szinkronizálás a Google Drive-on</string>
+  <string name="google_drive_page_login_details">A Google Drive-val szinkronizálhatja a jegyzeteit az eszközei között a saját Google Drive fiókjával.</string>
+  <string name="google_drive_page_login_firebase_button">Már bejelentkezett a Google Firebase-be?</string>
+  <string name="google_drive_page_login_button">Bejelentkezés a Google Drive-ba</string>
+  <string name="google_drive_page_logging_in_button">Bejelentkezés&#8230;</string>
+
+  <string name="google_drive_page_logout_title">Kijelentkezés a Scarletből</string>
+  <string name="google_drive_page_logout_details">Jegyzetek, címkék és mappák szinkronizálásának leállítása.</string>
+  <string name="google_drive_page_logout_no_sync_details">Jegyzetek, címkék és mappák Google Drive szinkronizálásának leállítása.</string>
+  <string name="google_drive_page_logout_data_persists_details">Az adatai megmaradnak az alkalmazásban és a Google Drive-on.</string>
+  <string name="google_drive_page_logout_button">Kijelentkezés a Drive-ból</string>
+  <string name="google_drive_page_logging_out_button">Kijelentkezés&#8230;</string>
+
+  <string name="google_drive_page_login_lock_details">A jegyzetei, címkéi és mappái a saját Google Drive-jában lesznek tárolva, így a hozzáférésük felett Ön rendelkezik.</string>
+  <string name="google_drive_page_photo_details">A fényképei is fel lesznek töltve, és szinkronizálásra kerülnek a többi eszközével.</string>
+
+  <!-- Start: New Firebase Login Strings -->
+  <string name="firebase_page_login_title">Adatok visszaállítása a Firebase-ből</string>
+  <string name="firebase_page_login_button">Google bejelentkezés</string>
+  <string name="firebase_page_logging_in_button">Bejelentkezés&#8230;</string>
+
+  <string name="firebase_page_important_details">Az adatait a Google Firebase-ben tároltuk. Bejelentkezés után visszaállítjuk ezeket az eszközére</string>
+  <string name="firebase_page_not_sync_details">Az új jegyzetek NEM lesznek szinkronizálva a Google Firebase-be, és be kell jelentkeznie a Google Drive-ba</string>
+  <string name="firebase_page_remove_details">Ha helyreállításra kerültek a jegyzetei, törölheti azokat a Google Firebase-ből, és átválthat</string>
+
+  <string name="firebase_no_sync_warning">Az adatai nem szinkronizáltak.</string>
+  <string name="firebase_no_sync_warning_details">A régi bejelentkezésre épülő adatszinkronizálás letiltásra került, fontolja meg, hogy a Google Drive-alapú szinkronizálásra vált.</string>
+
+  <string name="firebase_removal_page_login_title">Adatok átvitele a Firebase-ből a Drive-ba</string>
+  <string name="firebase_removal_page_clear_button">Adatok törlése és kijelentkezés</string>
+  <string name="firebase_removal_page_clearing_button">Törlés és kijelentkezés</string>
+  <string name="firebase_removal_page_important_details">Az adatait eddig a Google Firebase-ben tároltuk. A jegyzetei tárolását átvisszük a Google Drive-jába.</string>
+  <string name="firebase_removal_page_more_privacy_details">Több adatvédelem.</string>
+  <string name="firebase_removal_page_photo_upload_details">Fénykép-szinkronizálás</string>
+  <string name="firebase_removal_page_whats_next_details">Következő lépések</string>
+  <string name="firebase_removal_page_remove_details">Először töröljük a jegyzeteit a Firebase-ből és kijelentkeztetjük.</string>
+  <string name="firebase_removal_page_next_details">Aztán bejelentkezhet a Google Drive-ba, és feltöltjük az adatait a képeivel együtt.</string>
+
+</resources>
