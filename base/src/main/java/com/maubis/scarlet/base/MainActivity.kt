@@ -253,6 +253,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     adapter.clearItems()
     if (!isInSearchMode) {
       adapter.addItem(GenericRecyclerItem(RecyclerItem.Type.TOOLBAR))
+      addInformationItem(1)
     }
     if (notes.isEmpty()) {
       adapter.addItem(EmptyRecyclerItem())
@@ -261,7 +262,6 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     notes.forEach {
       adapter.addItem(it)
     }
-    addInformationItem(1)
   }
 
   private fun addInformationItem(index: Int) {
@@ -450,10 +450,10 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   fun setSearchMode(mode: Boolean) {
     isInSearchMode = mode
-    searchToolbar.visibility = if (isInSearchMode) View.VISIBLE else View.GONE
     searchBox.setText("")
 
     if (isInSearchMode) {
+      searchToolbar.visibility = View.VISIBLE
       tryOpeningTheKeyboard()
       GlobalScope.launch(Dispatchers.Main) {
         GlobalScope.async(Dispatchers.IO) { tagAndColorPicker.reset() }.await()
@@ -462,6 +462,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
       searchBox.requestFocus()
     } else {
       tryClosingTheKeyboard()
+      searchToolbar.visibility = View.GONE
       config.clearSearchBar()
       setupData()
     }
