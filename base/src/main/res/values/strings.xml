@@ -115,10 +115,10 @@
   <string name="security_option_title">Security Options</string>
   <string name="security_option_set_pin_code">Pass Code</string>
   <string name="security_option_set_pin_code_subtitle">Set a 4 digit PIN to lock notes</string>
-  <string name="security_option_lock_app">Enable App Lock</string>
-  <string name="security_option_lock_app_details">Use PIN to unlock the whole application</string>
-  <string name="security_option_ask_pin_always">Always ask for PIN</string>
-  <string name="security_option_ask_pin_always_details">Enter PIN for all notes, even if previously entered</string>
+  <string name="security_option_lock_app" translatable="false">Enable App Lock</string>
+  <string name="security_option_lock_app_details" translatable="false">Use PIN to unlock the whole application</string>
+  <string name="security_option_ask_pin_always" translatable="false">Always ask for PIN</string>
+  <string name="security_option_ask_pin_always_details" translatable="false">Enter PIN for all notes, even if previously entered</string>
   <string name="security_option_fingerprint_enabled">Unlock with Fingerprint</string>
   <string name="security_option_fingerprint_enabled_subtitle">The notes will unlock with the fingerprint</string>
   <string name="security_option_fingerprint_disabled">Fingerprint disabled</string>
@@ -204,8 +204,8 @@
 
   <string name="sort_sheet_title">Sort Notes By</string>
   <string name="sort_sheet_newest_first">Newest First</string>
-  <string name="sort_sheet_note_color">Note Color</string>
-  <string name="sort_sheet_note_tags">Note Tags</string>
+  <string name="sort_sheet_note_color" translatable="false">Note Color</string>
+  <string name="sort_sheet_note_tags" translatable="false">Note Tags</string>
   <string name="sort_sheet_oldest_first">Oldest First</string>
   <string name="sort_sheet_last_modified">Most Recently Modified</string>
   <string name="sort_sheet_alphabetical">Alphabetical</string>
@@ -229,12 +229,12 @@
   <string name="whats_new_sheet_widget" translatable="false">More Widget Settings.</string>
   <string name="whats_new_sheet_selection" translatable="false">Easier Note Selection.</string>
 
-  <string name="install_pro_sheet_latest_updates">Faster Updates and Requests.</string>
-  <string name="install_pro_sheet_app_lock">App Lock and Single Unlock.</string>
-  <string name="install_pro_sheet_app_themes">More App Themes.</string>
-  <string name="install_pro_sheet_font_size">Note Font Size Selection.</string>
-  <string name="install_pro_sheet_viewer_bg">Viewer Background Color.</string>
-  <string name="install_pro_sheet_widget_options">More Widget Options.</string>
+  <string name="install_pro_sheet_latest_updates" translatable="false">Faster Updates and Requests.</string>
+  <string name="install_pro_sheet_app_lock" translatable="false">App Lock and Single Unlock.</string>
+  <string name="install_pro_sheet_app_themes" translatable="false">More App Themes.</string>
+  <string name="install_pro_sheet_font_size" translatable="false">Note Font Size Selection.</string>
+  <string name="install_pro_sheet_viewer_bg" translatable="false">Viewer Background Color.</string>
+  <string name="install_pro_sheet_widget_options" translatable="false">More Widget Options.</string>
 
   <string name="format_action_copy">Copy</string>
   <string name="format_action_title">Block Text Actions</string>
@@ -274,7 +274,7 @@
   <string name="delete_sheet_are_you_sure">Are you sure?</string>
   <string name="delete_sheet_delete_trash">Would you like to permanently delete the notes in the trash folder?</string>
   <string name="delete_sheet_delete_note_permanently">Would you like to permanently delete this note?</string>
-  <string name="delete_sheet_delete_selected_notes_permanently">Would you like to permanently delete these notes?</string>
+  <string name="delete_sheet_delete_selected_notes_permanently" translatable="false">Would you like to permanently delete these notes?</string>
   <string name="delete_sheet_delete_trash_yes">Delete</string>
   <string name="delete_sheet_delete_trash_no">Cancel</string>
   <string name="trash_will_delete_automatically">Notes are deleted forever after 7 days</string>
@@ -305,8 +305,8 @@
   </string>
   <!-- End: Firebase Login Strings -->
 
-  <string name="forget_me_option_title">Forget Me</string>
-  <string name="forget_me_option_details">Logout and remove all online data</string>
+  <string name="forget_me_option_title" translatable="false">Forget Me</string>
+  <string name="forget_me_option_details" translatable="false">Logout and remove all online data</string>
 
   <!-- Start Welcome Page -->
   <string name="welcome_page_app_name" translatable="false">Scarlet</string>
@@ -378,11 +378,11 @@
   <string name="widget_option_show_trash_notes">Show Notes in Trash</string>
   <string name="widget_option_show_trash_notes_details">Allow notes in trash to be shown in home screen widgets</string>
 
-  <string name="widget_option_background_color">Widget Background</string>
-  <string name="widget_option_background_color_details">Choose the background color for the multi-notes widget</string>
+  <string name="widget_option_background_color" translatable="false">Widget Background</string>
+  <string name="widget_option_background_color_details" translatable="false">Choose the background color for the multi-notes widget</string>
 
-  <string name="widget_option_show_toolbar">Show Action Toolbar</string>
-  <string name="widget_option_show_toolbar_details">Multi-notes widget shows the toolbar</string>
+  <string name="widget_option_show_toolbar" translatable="false">Show Action Toolbar</string>
+  <string name="widget_option_show_toolbar_details" translatable="false">Multi-notes widget shows the toolbar</string>
 
 
   <!-- End: Widget Options Sheet -->
@@ -392,13 +392,13 @@
 
   <string name="home_syncing_top_layout">Syncing</string>
   <string name="home_pending_backup_top_layout">Pending Backup</string>
-  <string name="pending_backup_local_state">Local</string>
-  <string name="pending_backup_remote_state">Remote</string>
+  <string name="pending_backup_local_state" translatable="false">Local</string>
+  <string name="pending_backup_remote_state" translatable="false">Remote</string>
 
-  <string name="pending_backup_state_unavailable">Unavailable</string>
-  <string name="pending_backup_state_created">Created</string>
-  <string name="pending_backup_state_deleted">Deleted</string>
-  <string name="pending_backup_state_updated">Updated</string>
+  <string name="pending_backup_state_unavailable" translatable="false">Unavailable</string>
+  <string name="pending_backup_state_created" translatable="false">Created</string>
+  <string name="pending_backup_state_deleted" translatable="false">Deleted</string>
+  <string name="pending_backup_state_updated" translatable="false">Updated</string>
 
   <!-- Start: Internal Settings Strings -->
   <string name="internal_settings_title">Developer Options</string>
@@ -468,9 +468,9 @@
 
 
   <!-- Start: App Lock Activity -->
-  <string name="app_lock_title">Unlock App</string>
-  <string name="app_lock_details">Enter 4 digit PIN or use fingerprint to unlock</string>
-  <string name="app_lock_details_no_fingerprint">Enter 4 digit PIN to unlock</string>
+  <string name="app_lock_title" translatable="false">Unlock App</string>
+  <string name="app_lock_details" translatable="false">Enter 4 digit PIN or use fingerprint to unlock</string>
+  <string name="app_lock_details_no_fingerprint" translatable="false">Enter 4 digit PIN to unlock</string>
   <!-- End: App Lock Activity -->
 
   <!-- Start: Note Sheet -->
