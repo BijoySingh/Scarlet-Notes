@@ -37,6 +37,7 @@ import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.security.sheets.openUnlockSheet
 import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
 import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
+import com.maubis.scarlet.base.support.addShortcut
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.sheets.openSheet
@@ -364,24 +365,14 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
               title = note.getFullText().split("\n").firstOrNull() ?: "Note"
             }
 
-            val shortcutManager = activity.getSystemService(ShortcutManager::class.java)
-            val shortcut = ShortcutInfo.Builder(activity, note.uuid)
+            val shortcut = ShortcutInfo.Builder(activity, "scarlet_notes___${note.uuid}")
                 .setShortLabel(title)
                 .setLongLabel(title)
                 .setIcon(Icon.createWithResource(activity, R.mipmap.open_note_launcher))
                 .setIntent(Intent(Intent.ACTION_VIEW,
                     Uri.parse("scarlet://open_note?uuid=" + note.uuid)))
                 .build()
-
-            shortcutManager.dynamicShortcuts = Arrays.asList(shortcut)
-            if (shortcutManager.isRequestPinShortcutSupported) {
-              val pinShortcutInfo = ShortcutInfo.Builder(activity, note.uuid).build()
-              val pinnedShortcutCallbackIntent = shortcutManager.createShortcutResultIntent(pinShortcutInfo)
-
-              val successCallback = PendingIntent.getBroadcast(activity, 0,
-                  pinnedShortcutCallbackIntent, 0)
-              shortcutManager.requestPinShortcut(pinShortcutInfo, successCallback.intentSender)
-            }
+            addShortcut(activity, shortcut)
             return@OnClickListener
           }
           openSheet(activity, InstallProUpsellBottomSheet())

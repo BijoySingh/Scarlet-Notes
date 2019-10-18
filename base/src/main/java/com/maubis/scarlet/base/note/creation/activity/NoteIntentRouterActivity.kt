@@ -15,19 +15,35 @@ class NoteIntentRouterActivity : AppCompatActivity() {
       return
     }
 
+    handleOpenNote(data)
+    handleCreateNote(data)
+  }
+
+  fun handleOpenNote(data: Uri): Boolean {
+    if (data.host != "open_note") {
+      return false
+    }
+
     val noteUUID = data.getQueryParameter("uuid")
     if (noteUUID === null) {
-      finish()
-      return
+      return false
     }
 
     val note = instance.notesDatabase().getByUUID(noteUUID)
     if (note === null) {
-      finish()
-      return
+      return false
     }
 
     startActivity(ViewAdvancedNoteActivity.getIntent(this, note))
-    finish()
+    return true
+  }
+
+  fun handleCreateNote(data: Uri): Boolean {
+    if (data.host != "create_note") {
+      return false
+    }
+
+    startActivity(CreateNoteActivity.getNewNoteIntent(this))
+    return true
   }
 }

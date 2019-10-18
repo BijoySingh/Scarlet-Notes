@@ -2,10 +2,7 @@ package com.maubis.scarlet.base.support.specs
 
 import android.graphics.Color
 import android.graphics.drawable.Drawable
-import com.facebook.litho.ClickEvent
-import com.facebook.litho.Column
-import com.facebook.litho.Component
-import com.facebook.litho.ComponentContext
+import com.facebook.litho.*
 import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.Image
 import com.facebook.yoga.YogaAlign
@@ -27,6 +24,7 @@ object RoundIconSpec {
       @Prop(optional = true) iconAlpha: Float?,
       @Prop(optional = true) bgAlpha: Int?,
       @Prop(optional = true) isClickDisabled: Boolean?,
+      @Prop(optional = true) isLongClickEnabled: Boolean?,
       @Prop(optional = true) showBorder: Boolean?): Component {
     val image = Image.create(context)
         .heightPx(iconSize)
@@ -40,6 +38,9 @@ object RoundIconSpec {
     if (isClickDisabled === null || !isClickDisabled) {
       image.clickHandler(RoundIcon.onClickEvent(context))
     }
+    if (isLongClickEnabled !== null && isLongClickEnabled) {
+      image.longClickHandler(RoundIcon.onLongClickEvent(context))
+    }
     return Column.create(context)
         .alignItems(YogaAlign.CENTER)
         .child(image)
@@ -49,5 +50,11 @@ object RoundIconSpec {
   @OnEvent(ClickEvent::class)
   fun onClickEvent(context: ComponentContext, @Prop(optional = true) onClick: () -> Unit) {
     onClick()
+  }
+
+  @OnEvent(LongClickEvent::class)
+  fun onLongClickEvent(context: ComponentContext, @Prop(optional = true) onLongClick: () -> Unit): Boolean {
+    onLongClick()
+    return true
   }
 }

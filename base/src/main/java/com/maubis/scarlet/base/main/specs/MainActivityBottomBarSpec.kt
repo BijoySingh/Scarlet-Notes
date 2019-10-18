@@ -1,6 +1,11 @@
 package com.maubis.scarlet.base.main.specs
 
+import android.content.Intent
+import android.content.pm.ShortcutInfo
 import android.graphics.Color
+import android.graphics.drawable.Icon
+import android.net.Uri
+import android.os.Build
 import android.text.Layout
 import com.facebook.litho.*
 import com.facebook.litho.annotations.LayoutSpec
@@ -23,6 +28,7 @@ import com.maubis.scarlet.base.main.sheets.HomeOptionsBottomSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.note.folder.sheet.CreateOrEditFolderBottomSheet
+import com.maubis.scarlet.base.support.addShortcut
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
@@ -70,6 +76,20 @@ object MainActivityBottomBarSpec {
         })
     row.child(bottomBarRoundIcon(context, colorConfig)
         .iconRes(R.drawable.icon_add_note)
+        .isLongClickEnabled(true)
+        .onLongClick {
+          if (Build.VERSION.SDK_INT < 26) {
+            return@onLongClick
+          }
+
+          val shortcut = ShortcutInfo.Builder(activity, "scarlet_notes___create_note")
+              .setShortLabel(activity.getString(R.string.shortcut_add_note))
+              .setLongLabel(activity.getString(R.string.shortcut_add_note))
+              .setIcon(Icon.createWithResource(activity, R.mipmap.create_launcher))
+              .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("scarlet://create_note")))
+              .build()
+          addShortcut(activity, shortcut)
+        }
         .onClick {
           val intent = CreateNoteActivity.getNewNoteIntent(
               activity,

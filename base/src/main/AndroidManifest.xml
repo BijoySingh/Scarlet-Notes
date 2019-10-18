@@ -46,6 +46,7 @@
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
         <data android:scheme="scarlet" android:host="open_note" />
+        <data android:scheme="scarlet" android:host="create_note" />
       </intent-filter>
     </activity>
     <activity android:name=".export.activity.ImportNoteActivity" />
