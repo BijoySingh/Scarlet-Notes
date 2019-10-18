@@ -32,10 +32,9 @@ class HouseKeeper(val context: Context) {
     }
   }
 
-  private fun removeOlderClips() {
+  fun removeOlderClips(deltaTimeMs: Long = 604800000L) {
     val notes = notesDb.database()
-        .getOldTrashedNotes(
-            Calendar.getInstance().timeInMillis - 1000 * 60 * 60 * 24 * 7)
+        .getOldTrashedNotes(Calendar.getInstance().timeInMillis - deltaTimeMs)
     for (note in notes) {
       note.delete(context)
     }

@@ -49,6 +49,7 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
 import com.maubis.scarlet.base.support.*
+import com.maubis.scarlet.base.support.database.HouseKeeper
 import com.maubis.scarlet.base.support.database.HouseKeeperJob
 import com.maubis.scarlet.base.support.database.Migrator
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
@@ -506,6 +507,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   override fun onStop() {
     super.onStop()
     if (PermissionUtils().getStoragePermissionManager(this).hasAllPermissions()) {
+      HouseKeeper(this).removeOlderClips()
       NoteExporter().tryAutoExport()
     }
   }
