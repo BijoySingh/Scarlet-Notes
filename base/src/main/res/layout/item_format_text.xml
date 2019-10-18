@@ -9,12 +9,10 @@
     android:id="@+id/text"
     style="@style/FormatText"
     android:autoLink="web"
-    android:hint="@string/format_hint_text"
     android:linksClickable="true" />
 
   <EditText
     android:id="@+id/edit"
     style="@style/FormatEdit"
-    android:hint="@string/format_hint_text"
     android:minLines="3" />
 </LinearLayout>

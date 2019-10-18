@@ -13,5 +13,5 @@ enum class FormatType {
   CODE,
   QUOTE,
   SEPARATOR,
-  EMPTY,
+  EMPTY
 }

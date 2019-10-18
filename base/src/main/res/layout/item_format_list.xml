@@ -17,11 +17,9 @@
     android:id="@+id/text"
     style="@style/FormatEdit"
     android:autoLink="web"
-    android:hint="@string/format_hint_list"
     android:linksClickable="true" />
 
   <EditText
     android:id="@+id/edit"
-    style="@style/FormatText"
-    android:hint="@string/format_hint_list" />
+    style="@style/FormatText" />
 </LinearLayout>

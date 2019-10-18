@@ -17,7 +17,6 @@
     android:id="@+id/text"
     style="@style/FormatText"
     android:autoLink="web"
-    android:hint="@string/format_hint_quote"
     android:linksClickable="true"
     android:paddingStart="@dimen/spacing_xxsmall"
     android:paddingBottom="@dimen/spacing_small"
@@ -26,7 +25,6 @@
   <EditText
     android:id="@+id/edit"
     style="@style/FormatEdit"
-    android:hint="@string/format_hint_quote"
     android:textStyle="italic" />
 
 </LinearLayout>
