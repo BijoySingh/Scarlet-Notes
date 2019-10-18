@@ -48,24 +48,28 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
     val hintTextColor: Int
     val theme = ApplicationBase.instance.themeController()
     val isLightBackground = ColorUtil.isLightColored(noteColor)
+    val linkColor: Int
     when {
       !useNoteColorAsBackground -> {
         secondaryTextColor = theme.get(ThemeColorType.SECONDARY_TEXT)
         tertiaryTextColor = theme.get(ThemeColorType.TERTIARY_TEXT)
         iconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
         hintTextColor = theme.get(ThemeColorType.HINT_TEXT)
+        linkColor = theme.get(ThemeColorType.ACCENT_TEXT)
       }
       isLightBackground -> {
         secondaryTextColor = theme.get(context, Theme.LIGHT, ThemeColorType.SECONDARY_TEXT)
         tertiaryTextColor = theme.get(context, Theme.LIGHT, ThemeColorType.TERTIARY_TEXT)
         iconColor = theme.get(context, Theme.LIGHT, ThemeColorType.TOOLBAR_ICON)
         hintTextColor = theme.get(context, Theme.LIGHT, ThemeColorType.HINT_TEXT)
+        linkColor = ContextCompat.getColor(context, R.color.colorAccentYellowLight)
       }
       else -> {
         secondaryTextColor = theme.get(context, Theme.DARK, ThemeColorType.SECONDARY_TEXT)
         tertiaryTextColor = theme.get(context, Theme.DARK, ThemeColorType.TERTIARY_TEXT)
         iconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
         hintTextColor = theme.get(context, Theme.DARK, ThemeColorType.HINT_TEXT)
+        linkColor = ContextCompat.getColor(context, R.color.colorAccentYellowDark)
       }
     }
     val
@@ -93,7 +97,7 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
         tertiaryTextColor = tertiaryTextColor,
         iconColor = iconColor,
         hintTextColor = hintTextColor,
-        accentColor = theme.get(ThemeColorType.ACCENT_TEXT),
+        accentColor = linkColor,
         noteUUID = extra?.getString(INTENT_KEY_NOTE_ID) ?: "default")
 
     populate(data, config)

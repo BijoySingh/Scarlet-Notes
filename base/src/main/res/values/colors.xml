@@ -6,8 +6,11 @@
 
   <color name="colorPrimary">#07575B</color>
   <color name="colorPrimaryDark">#003B46</color>
+
   <color name="colorAccent">#F52549</color>
   <color name="colorAccentDark">@color/material_pink_accent_200</color>
+  <color name="colorAccentYellowDark">#FFFFCD</color>
+  <color name="colorAccentYellowLight">#505000</color>
 
   <color name="welcome_page_bg">#C62828</color>
 
