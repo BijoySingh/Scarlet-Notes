@@ -30,7 +30,7 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
   protected val edit: EditText = root.findViewById(R.id.edit)
   protected val actionMove: ImageView = root.findViewById(R.id.action_move_icon)
 
-  protected var format: Format? = null
+  protected lateinit var format: Format
 
   init {
     edit.addTextChangedListener(this)
@@ -66,7 +66,7 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     edit.setBackgroundColor(config.backgroundColor)
     edit.visibility = visibility(config.editable)
     edit.isEnabled = config.editable
-
+    showHintWhenTextIsEmpty()
 
     when {
       config.editable -> edit.setText(data.text)
@@ -87,22 +87,33 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     }
   }
 
-  override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+  override fun beforeTextChanged(text: CharSequence, start: Int, count: Int, after: Int) {
 
   }
 
-  override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-    if (format === null || !edit.isFocused) {
+  override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
+    if (!edit.isFocused) {
       return
     }
-    format!!.text = s.toString()
-    activity.setFormat(format!!)
+
+    format.text = text.toString()
+    activity.setFormat(format)
+    showHintWhenTextIsEmpty()
+  }
+
+  // Workaround to avoid this holder being higher than the text contained in it when hint text
+  // occupies more lines than the text inserted by the user
+  private fun showHintWhenTextIsEmpty() {
+    edit.hint = when {
+      format.text.isEmpty() -> format.getHint()
+      else -> ""
+    }
   }
 
   override fun afterTextChanged(text: Editable) {
     text.clearMarkdownSpans()
     if (sEditorLiveMarkdown) {
-      text.setFormats(Markdown.getSpanInfo(format!!.text).spans)
+      text.setFormats(Markdown.getSpanInfo(format.text).spans)
     }
   }
 
@@ -134,6 +145,23 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
       edit.setSelection(Math.min(startString.length + additionTokenLength, edit.text.length))
     } catch (exception: Exception) {
       maybeThrow(context as AppCompatActivity, exception)
+    }
+  }
+
+  private fun Format.getHint(): String {
+    return when (formatType) {
+      FormatType.TEXT, FormatType.TAG -> context.getString(R.string.format_hint_text)
+      FormatType.HEADING,
+      FormatType.SUB_HEADING,
+      FormatType.HEADING_3
+          -> context.getString(R.string.format_hint_heading)
+      FormatType.NUMBERED_LIST,
+      FormatType.CHECKLIST_UNCHECKED,
+      FormatType.CHECKLIST_CHECKED
+          -> context.getString(R.string.format_hint_list)
+      FormatType.CODE -> context.getString(R.string.format_hint_code)
+      FormatType.QUOTE -> context.getString(R.string.format_hint_quote)
+      else -> ""
     }
   }
 }
