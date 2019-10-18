@@ -14,8 +14,9 @@
     <activity
       android:name=".security.activity.AppLockActivity"
       android:windowSoftInputMode="adjustResize" />
+
     <provider
-      android:name="com.maubis.scarlet.base.export.support.GenericFileProvider"
+      android:name=".export.support.GenericFileProvider"
       android:authorities="@string/file_provider_name"
       android:exported="false"
       android:grantUriPermissions="true">
@@ -24,26 +25,36 @@
         android:resource="@xml/provider_paths" />
     </provider>
 
-    <service android:name="com.maubis.scarlet.base.service.FloatingNoteService" />
-    <service android:name="com.maubis.scarlet.base.notification.NotificationIntentService" />
+    <service android:name=".service.FloatingNoteService" />
+    <service android:name=".notification.NotificationIntentService" />
 
     <activity
-      android:name="com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity"
+      android:name=".note.creation.activity.ViewAdvancedNoteActivity"
       android:configChanges="uiMode"
       android:windowSoftInputMode="stateAlwaysHidden" />
     <activity
-      android:name="com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity"
+      android:name=".note.creation.activity.CreateNoteActivity"
       android:configChanges="uiMode"
       android:windowSoftInputMode="stateVisible" />
     <activity
-      android:name="com.maubis.scarlet.base.note.creation.activity.CreateListNoteActivity"
+      android:name=".note.creation.activity.CreateListNoteActivity"
       android:configChanges="uiMode"
       android:windowSoftInputMode="stateHidden" />
-    <activity android:name="com.maubis.scarlet.base.export.activity.ImportNoteActivity" />
-    <activity android:name="com.maubis.scarlet.base.main.activity.OpenTextIntentOrFileActivity">
+    <activity android:name=".note.creation.activity.NoteIntentRouterActivity">
+      <intent-filter android:label="Open Note in App">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="scarlet" android:host="open_note" />
+      </intent-filter>
+    </activity>
+    <activity android:name=".export.activity.ImportNoteActivity" />
+    <activity android:name=".main.activity.OpenTextIntentOrFileActivity">
       <intent-filter>
         <action android:name="android.intent.action.SEND" />
+
         <category android:name="android.intent.category.DEFAULT" />
+
         <data android:mimeType="text/plain" />
       </intent-filter>
       <intent-filter>
@@ -61,7 +72,7 @@
       </intent-filter>
     </activity>
 
-    <receiver android:name="com.maubis.scarlet.base.widget.NoteWidgetProvider">
+    <receiver android:name=".widget.NoteWidgetProvider">
       <intent-filter>
         <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
       </intent-filter>
@@ -70,8 +81,7 @@
         android:name="android.appwidget.provider"
         android:resource="@xml/widget_info" />
     </receiver>
-
-    <receiver android:name="com.maubis.scarlet.base.widget.CreateNoteWidgetProvider">
+    <receiver android:name=".widget.CreateNoteWidgetProvider">
       <intent-filter>
         <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
       </intent-filter>
@@ -81,20 +91,20 @@
         android:resource="@xml/create_note_widget_info" />
     </receiver>
 
-    <activity android:name="com.maubis.scarlet.base.main.activity.WidgetConfigureActivity">
+    <activity android:name=".main.activity.WidgetConfigureActivity">
       <intent-filter>
         <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
       </intent-filter>
     </activity>
-
     <activity
-      android:name="com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity"
+      android:name=".note.selection.activity.SelectNotesActivity"
       android:configChanges="uiMode" />
 
     <service
-      android:name="com.maubis.scarlet.base.widget.AllNotesWidgetService"
+      android:name=".widget.AllNotesWidgetService"
       android:permission="android.permission.BIND_REMOTEVIEWS" />
-    <receiver android:name="com.maubis.scarlet.base.widget.AllNotesWidgetProvider">
+
+    <receiver android:name=".widget.AllNotesWidgetProvider">
       <intent-filter>
         <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
       </intent-filter>

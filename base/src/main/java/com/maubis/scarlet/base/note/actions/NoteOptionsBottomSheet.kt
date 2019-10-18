@@ -1,7 +1,13 @@
 package com.maubis.scarlet.base.note.actions
 
 import android.app.Dialog
+import android.app.PendingIntent
 import android.content.Intent
+import android.content.pm.ShortcutInfo
+import android.content.pm.ShortcutManager
+import android.graphics.drawable.Icon
+import android.net.Uri
+import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.GridLayout
@@ -33,12 +39,16 @@ import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
 import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.FlavorUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
@@ -342,6 +352,43 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         visible = note.getNoteState() !== NoteState.TRASH,
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
+
+    options.add(OptionsItem(
+        title = R.string.pin_to_launcher,
+        subtitle = R.string.pin_to_launcher,
+        icon = R.drawable.icon_shortcut,
+        listener = View.OnClickListener {
+          if (!FlavorUtils.isLite() && Build.VERSION.SDK_INT >= 26) {
+            var title = note.getTitleForSharing()
+            if (title.isBlank()) {
+              title = note.getFullText().split("\n").firstOrNull() ?: "Note"
+            }
+
+            val shortcutManager = activity.getSystemService(ShortcutManager::class.java)
+            val shortcut = ShortcutInfo.Builder(activity, note.uuid)
+                .setShortLabel(title)
+                .setLongLabel(title)
+                .setIcon(Icon.createWithResource(activity, R.mipmap.open_note_launcher))
+                .setIntent(Intent(Intent.ACTION_VIEW,
+                    Uri.parse("scarlet://open_note?uuid=" + note.uuid)))
+                .build()
+
+            shortcutManager.dynamicShortcuts = Arrays.asList(shortcut)
+            if (shortcutManager.isRequestPinShortcutSupported) {
+              val pinShortcutInfo = ShortcutInfo.Builder(activity, note.uuid).build()
+              val pinnedShortcutCallbackIntent = shortcutManager.createShortcutResultIntent(pinShortcutInfo)
+
+              val successCallback = PendingIntent.getBroadcast(activity, 0,
+                  pinnedShortcutCallbackIntent, 0)
+              shortcutManager.requestPinShortcut(pinShortcutInfo, successCallback.intentSender)
+            }
+            return@OnClickListener
+          }
+          openSheet(activity, InstallProUpsellBottomSheet())
+        },
+        visible = Build.VERSION.SDK_INT >= 26,
+        invalid = activity.lockedContentIsHidden() && note.locked
+    ))
     options.add(OptionsItem(
         title = R.string.reminder,
         subtitle = R.string.reminder,
@@ -385,7 +432,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
             note.viewDistractionFree(activity)
             return@OnClickListener
           }
-          com.maubis.scarlet.base.support.sheets.openSheet(activity, InstallProUpsellBottomSheet())
+          openSheet(activity, InstallProUpsellBottomSheet())
         },
         invalid = activity.lockedContentIsHidden() && note.locked
     ))

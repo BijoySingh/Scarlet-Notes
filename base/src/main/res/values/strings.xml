@@ -31,6 +31,7 @@
   <string name="change_tags">Change Tags</string>
   <string name="unlock_note">Unlock Note</string>
   <string name="reminder">Reminder</string>
+  <string name="pin_to_launcher" translatable="false">Launcher Shortcut</string>
   <string name="select">Select</string>
   <string name="duplicate">Duplicate</string>
   <string name="pin_note">Pin Note</string>
