@@ -25,6 +25,7 @@ class InstallProUpsellBottomSheet : LithoBottomSheet() {
         GridSectionOptionItem(R.drawable.ic_action_lock, R.string.install_pro_sheet_app_lock, {}),
         GridSectionOptionItem(R.drawable.ic_action_day_mode, R.string.install_pro_sheet_app_themes, {}),
         GridSectionOptionItem(R.drawable.ic_title_white_48dp, R.string.install_pro_sheet_font_size, {}),
+        GridSectionOptionItem(R.drawable.ic_note_white_48dp, R.string.install_pro_sheet_note_options, {}),
         GridSectionOptionItem(R.drawable.ic_action_color, R.string.install_pro_sheet_viewer_bg, {}),
         GridSectionOptionItem(R.drawable.icon_widget, R.string.install_pro_sheet_widget_options, {}))
 

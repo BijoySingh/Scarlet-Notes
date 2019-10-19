@@ -236,6 +236,7 @@
   <string name="install_pro_sheet_font_size" translatable="false">Note Font Size Selection.</string>
   <string name="install_pro_sheet_viewer_bg" translatable="false">Viewer Background Color.</string>
   <string name="install_pro_sheet_widget_options" translatable="false">More Widget Options.</string>
+  <string name="install_pro_sheet_note_options" translatable="false">More Note Actions.</string>
 
   <string name="format_action_copy">Copy</string>
   <string name="format_action_title">Block Text Actions</string>

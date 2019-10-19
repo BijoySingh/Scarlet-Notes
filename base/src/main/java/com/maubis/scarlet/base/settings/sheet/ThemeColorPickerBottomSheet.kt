@@ -83,7 +83,7 @@ class ThemeColorPickerBottomSheet : LithoBottomSheet() {
             .textRes(R.string.theme_page_title)
             .marginDip(YogaEdge.HORIZONTAL, 0f))
 
-    if (Build.VERSION.SDK_INT >= 28) {
+    if (Build.VERSION.SDK_INT >= 29) {
       column.child(OptionItemLayout.create(componentContext)
           .option(LithoOptionsItem(
               title = R.string.theme_use_system_theme,
