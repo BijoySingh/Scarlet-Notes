@@ -21,6 +21,7 @@ import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.auth.IPendingUploadListener
 import com.maubis.scarlet.base.core.note.NoteState
+import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.export.support.NoteExporter
@@ -228,6 +229,28 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     deleteToolbar.visibility = if (isTrash) View.VISIBLE else GONE
   }
 
+  fun onFolderChange(folder: Folder?) {
+    GlobalScope.launch(Dispatchers.Main) {
+      state.currentFolder = folder
+      unifiedSearch()
+      notifyFolderChange()
+    }
+  }
+
+  private fun notifyFolderChange() {
+    val componentContext = ComponentContext(this)
+    lithoPreBottomToolbar.removeAllViews()
+    state.currentFolder?.let {
+      lithoPreBottomToolbar.addView(LithoView.create(componentContext,
+          MainActivityFolderBottomBar.create(componentContext)
+              .folder(it)
+              .build()))
+      return
+    }
+
+    notifyDisabledLegacySync()
+  }
+
   private fun handleNewItems(notes: List<RecyclerItem>) {
     adapter.clearItems()
     if (!isInSearchMode) {
@@ -284,11 +307,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
                           FolderRecyclerItem(
                             context = this@MainActivity,
                             folder = it,
-                            click = {
-                              state.currentFolder = it
-                              unifiedSearch()
-                              notifyFolderChange()
-                            },
+                            click = { onFolderChange(it) },
                             longClick = {
                               CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> loadData() })
                             },
@@ -304,18 +323,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     return allItems
   }
 
-  fun notifyFolderChange() {
-    val componentContext = ComponentContext(this)
-    lithoPreBottomToolbar.removeAllViews()
-    state.currentFolder?.let {
-      lithoPreBottomToolbar.addView(LithoView.create(componentContext,
-        MainActivityFolderBottomBar.create(componentContext)
-            .folder(it)
-            .build()))
-    }
-  }
-
-  fun notifyDisabledSync() {
+  private fun notifyDisabledLegacySync() {
     val componentContext = ComponentContext(this)
     lithoPreBottomToolbar.removeAllViews()
     if (!instance.authenticator().isLegacyLoggedIn()) {
@@ -371,7 +379,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     }
   }
 
-  fun unifiedSearch() {
+  private fun unifiedSearch() {
     GlobalScope.launch(Dispatchers.Main) {
       val items = GlobalScope.async(Dispatchers.IO) { unifiedSearchSynchronous() }
       handleNewItems(items.await())
@@ -391,7 +399,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     loadData()
     registerNoteReceiver()
 
-    notifyDisabledSync()
+    notifyDisabledLegacySync()
     instance.authenticator().setPendingUploadListener(object : IPendingUploadListener {
       override fun onPendingSyncsUpdate(isSyncHappening: Boolean) {
         notifySyncingInformation(isSyncHappening, lastSyncPending.get())
@@ -448,11 +456,11 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     when {
       isInSearchMode && searchBox.text.toString().isBlank() -> setSearchMode(false)
       isInSearchMode -> searchBox.setText("")
+      state.currentFolder != null -> onFolderChange(null)
       state.hasFilter() -> {
         state.clear()
         onModeChange(HomeNavigationMode.DEFAULT)
         notifyFolderChange()
-        notifyDisabledSync()
       }
       else -> super.onBackPressed()
     }

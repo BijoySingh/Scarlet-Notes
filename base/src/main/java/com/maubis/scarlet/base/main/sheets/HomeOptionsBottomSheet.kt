@@ -245,7 +245,6 @@ class HomeOptionsBottomSheet : LithoBottomSheet() {
         tag = tag,
         usages = CoreConfig.notesDb.getNoteCountByTag(tag.uuid),
         listener = {
-          activity.state.clear()
           activity.openTag(tag)
           dismiss()
         },

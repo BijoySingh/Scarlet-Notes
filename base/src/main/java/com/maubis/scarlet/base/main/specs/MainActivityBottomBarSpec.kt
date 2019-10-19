@@ -123,15 +123,7 @@ object MainActivityFolderBottomBarSpec {
     row.child(bottomBarRoundIcon(context, colorConfig)
                 .bgColor(Color.TRANSPARENT)
                 .iconRes(R.drawable.ic_close_white_48dp)
-                .onClick {
-                  GlobalScope.launch {
-                    activity.state.currentFolder = null
-                    activity.unifiedSearch()
-                    GlobalScope.launch(Dispatchers.Main) {
-                      activity.notifyFolderChange()
-                    }
-                  }
-                })
+                .onClick { activity.onFolderChange(null) })
     row.child(
       Text.create(context)
         .typeface(sAppTypeface.title())
