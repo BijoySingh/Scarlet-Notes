@@ -34,7 +34,7 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
         openDeleteAllXSheet(activity, R.string.home_option_delete_all_notes_details) {
           GlobalScope.launch(Dispatchers.Main) {
             withContext(Dispatchers.IO) { notesDb.getAll().forEach { it.delete(activity) } }
-            activity.resetAndSetupData()
+            activity.resetAndLoadData()
             dismiss()
           }
         }
@@ -48,7 +48,7 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
         openDeleteAllXSheet(activity, R.string.home_option_delete_all_tags_details) {
           GlobalScope.launch(Dispatchers.Main) {
             withContext(Dispatchers.IO) { tagsDb.getAll().forEach { it.delete() } }
-            activity.resetAndSetupData()
+            activity.resetAndLoadData()
             dismiss()
           }
         }
@@ -62,7 +62,7 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
         openDeleteAllXSheet(activity, R.string.home_option_delete_all_folders_details) {
           GlobalScope.launch(Dispatchers.Main) {
             withContext(Dispatchers.IO) { foldersDb.getAll().forEach { it.delete() } }
-            activity.resetAndSetupData()
+            activity.resetAndLoadData()
             dismiss()
           }
         }
@@ -83,7 +83,7 @@ class DeleteAndMoreOptionsBottomSheet : LithoOptionBottomSheet() {
             tags.await()
             folders.await()
 
-            activity.resetAndSetupData()
+            activity.resetAndLoadData()
             dismiss()
           }
         }

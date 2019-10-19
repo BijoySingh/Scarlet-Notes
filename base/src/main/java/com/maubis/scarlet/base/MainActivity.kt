@@ -25,7 +25,9 @@ import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.export.support.PermissionUtils
-import com.maubis.scarlet.base.main.HomeNavigationState
+import com.maubis.scarlet.base.main.*
+import com.maubis.scarlet.base.main.HomeNavigationMode
+import com.maubis.scarlet.base.main.SearchState
 import com.maubis.scarlet.base.main.recycler.EmptyRecyclerItem
 import com.maubis.scarlet.base.main.recycler.GenericRecyclerItem
 import com.maubis.scarlet.base.main.recycler.getAppUpdateInformationItem
@@ -65,13 +67,9 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
 import com.maubis.scarlet.base.settings.sheet.sUIUseGridView
-import com.maubis.scarlet.base.support.SearchConfig
 import com.maubis.scarlet.base.support.database.HouseKeeper
 import com.maubis.scarlet.base.support.database.HouseKeeperJob
 import com.maubis.scarlet.base.support.database.Migrator
-import com.maubis.scarlet.base.support.filterDirectlyValidFolders
-import com.maubis.scarlet.base.support.filterFolder
-import com.maubis.scarlet.base.support.filterOutFolders
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
@@ -79,8 +77,6 @@ import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.sThemeIsAutomatic
 import com.maubis.scarlet.base.support.ui.setThemeFromSystem
-import com.maubis.scarlet.base.support.unifiedSearchSynchronous
-import com.maubis.scarlet.base.support.unifiedSearchWithoutFolder
 import com.maubis.scarlet.base.support.utils.shouldShowWhatsNewSheet
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_toolbar_main.*
@@ -105,7 +101,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   private var lastSyncPending: AtomicBoolean = AtomicBoolean(false)
   private var lastSyncHappening: AtomicBoolean = AtomicBoolean(false)
 
-  var config: SearchConfig = SearchConfig(mode = HomeNavigationState.DEFAULT)
+  val state: SearchState = SearchState(mode = HomeNavigationMode.DEFAULT)
   var isInSearchMode: Boolean = false
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,7 +112,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     // Migrate to the newer version of the tags
     Migrator(this).start()
 
-    config.mode = HomeNavigationState.DEFAULT
+    state.mode = HomeNavigationMode.DEFAULT
 
     setupRecyclerView()
     setListeners()
@@ -138,33 +134,29 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   }
 
   fun setListeners() {
-    snackbar = MainSnackbar(bottomSnackbar) { setupData() }
+    snackbar = MainSnackbar(bottomSnackbar) { loadData() }
     deleteTrashIcon.setOnClickListener { openDeleteTrashSheet(this@MainActivity) }
     searchBackButton.setOnClickListener {
       onBackPressed()
     }
     searchCloseIcon.setOnClickListener { onBackPressed() }
     searchBox.addTextChangedListener(object : TextWatcher {
-      override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-
-      }
+      override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
 
       override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
         startSearch(charSequence.toString())
       }
 
-      override fun afterTextChanged(editable: Editable) {
-
-      }
+      override fun afterTextChanged(editable: Editable) {}
     })
     tagAndColorPicker = TagsAndColorPickerViewHolder(
       this,
       tagsFlexBox,
       { tag ->
-        val isTagSelected = config.tags.filter { it.uuid == tag.uuid }.isNotEmpty()
+        val isTagSelected = state.tags.filter { it.uuid == tag.uuid }.isNotEmpty()
         when (isTagSelected) {
           true -> {
-            config.tags.removeAll { it.uuid == tag.uuid }
+            state.tags.removeAll { it.uuid == tag.uuid }
             startSearch(searchBox.text.toString())
             tagAndColorPicker.notifyChanged()
           }
@@ -175,9 +167,9 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
         }
       },
       { color ->
-        when (config.colors.contains(color)) {
-          true -> config.colors.remove(color)
-          false -> config.colors.add(color)
+        when (state.colors.contains(color)) {
+          true -> state.colors.remove(color)
+          false -> state.colors.add(color)
         }
         tagAndColorPicker.notifyChanged()
         startSearch(searchBox.text.toString())
@@ -220,60 +212,21 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   fun notifyAdapterExtraChanged() {
     setupRecyclerView()
-    resetAndSetupData()
+    resetAndLoadData()
   }
 
-  /**
-   * Start: Home Navigation Clicks
-   */
-  fun onHomeClick() {
+  fun onModeChange(mode: HomeNavigationMode) {
     GlobalScope.launch(Dispatchers.Main) {
-      config.resetMode(HomeNavigationState.DEFAULT)
-      unifiedSearch()
-      notifyModeChange()
-    }
-  }
-
-  fun onFavouritesClick() {
-    GlobalScope.launch(Dispatchers.Main) {
-      config.resetMode(HomeNavigationState.FAVOURITE)
-      unifiedSearch()
-      notifyModeChange()
-    }
-  }
-
-  fun onArchivedClick() {
-    GlobalScope.launch(Dispatchers.Main) {
-      config.resetMode(HomeNavigationState.ARCHIVED)
-      unifiedSearch()
-      notifyModeChange()
-    }
-  }
-
-  fun onTrashClick() {
-    GlobalScope.launch(Dispatchers.Main) {
-      config.resetMode(HomeNavigationState.TRASH)
-      unifiedSearch()
-      notifyModeChange()
-    }
-  }
-
-  fun onLockedClick() {
-    GlobalScope.launch(Dispatchers.Main) {
-      config.resetMode(HomeNavigationState.LOCKED)
+      state.mode = mode
       unifiedSearch()
       notifyModeChange()
     }
   }
 
   private fun notifyModeChange() {
-    val isTrash = config.mode === HomeNavigationState.TRASH
+    val isTrash = state.mode === HomeNavigationMode.TRASH
     deleteToolbar.visibility = if (isTrash) View.VISIBLE else GONE
   }
-
-  /**
-   * End: Home Navigation Clicks
-   */
 
   private fun handleNewItems(notes: List<RecyclerItem>) {
     adapter.clearItems()
@@ -309,22 +262,22 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   private suspend fun unifiedSearchSynchronous(): List<RecyclerItem> {
     val allItems = emptyList<RecyclerItem>().toMutableList()
-    if (config.folders.isNotEmpty()) {
-      val allNotes = unifiedSearchSynchronous(config)
+    if (state.currentFolder != null) {
+      val allNotes = unifiedSearchSynchronous(state)
       allItems.addAll(allNotes
                         .map { GlobalScope.async(Dispatchers.IO) { NoteRecyclerItem(this@MainActivity, it) } }
                         .map { it.await() })
       return allItems
     }
 
-    val allNotes = unifiedSearchWithoutFolder(config)
-    val directAcceptableFolders = filterDirectlyValidFolders(config)
+    val allNotes = unifiedSearchWithoutFolder(state)
+    val directAcceptableFolders = filterDirectlyValidFolders(state)
     allItems.addAll(CoreConfig.foldersDb.getAll()
                       .map {
                         GlobalScope.async(Dispatchers.IO) {
                           val isDirectFolder = directAcceptableFolders.contains(it)
                           val notesCount = filterFolder(allNotes, it).size
-                          if (config.hasFilter() && notesCount == 0 && !isDirectFolder) {
+                          if (state.hasFilter() && notesCount == 0 && !isDirectFolder) {
                             return@async null
                           }
 
@@ -332,15 +285,14 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
                             context = this@MainActivity,
                             folder = it,
                             click = {
-                              config.folders.clear()
-                              config.folders.add(it)
+                              state.currentFolder = it
                               unifiedSearch()
                               notifyFolderChange()
                             },
                             longClick = {
-                              CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> setupData() })
+                              CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> loadData() })
                             },
-                            selected = config.hasFolder(it),
+                            selected = state.currentFolder?.uuid == it.uuid,
                             contents = notesCount)
                         }
                       }
@@ -355,17 +307,12 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   fun notifyFolderChange() {
     val componentContext = ComponentContext(this)
     lithoPreBottomToolbar.removeAllViews()
-    if (config.folders.isEmpty()) {
-      return
-    }
-
-    val folder = config.folders.first()
-    lithoPreBottomToolbar.addView(
-      LithoView.create(
-        componentContext,
+    state.currentFolder?.let {
+      lithoPreBottomToolbar.addView(LithoView.create(componentContext,
         MainActivityFolderBottomBar.create(componentContext)
-          .folder(folder)
-          .build()))
+            .folder(it)
+            .build()))
+    }
   }
 
   fun notifyDisabledSync() {
@@ -432,8 +379,8 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   }
 
   fun openTag(tag: Tag) {
-    config.mode = if (config.mode == HomeNavigationState.LOCKED) HomeNavigationState.DEFAULT else config.mode
-    config.tags.add(tag)
+    state.mode = if (state.mode == HomeNavigationMode.LOCKED) HomeNavigationMode.DEFAULT else state.mode
+    state.tags.add(tag)
     unifiedSearch()
     notifyModeChange()
   }
@@ -441,7 +388,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   override fun onResume() {
     super.onResume()
     ApplicationBase.instance.startListener(this)
-    setupData()
+    loadData()
     registerNoteReceiver()
 
     notifyDisabledSync()
@@ -460,20 +407,12 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     instance.authenticator().requestSync(false)
   }
 
-  fun resetAndSetupData() {
-    config.clear()
-    setupData()
+  fun resetAndLoadData() {
+    state.clear()
+    loadData()
   }
 
-  fun setupData() {
-    return when (config.mode) {
-      HomeNavigationState.FAVOURITE -> onFavouritesClick()
-      HomeNavigationState.ARCHIVED -> onArchivedClick()
-      HomeNavigationState.TRASH -> onTrashClick()
-      HomeNavigationState.LOCKED -> onLockedClick()
-      HomeNavigationState.DEFAULT -> onHomeClick()
-    }
-  }
+  fun loadData() = onModeChange(state.mode)
 
   fun setSearchMode(mode: Boolean) {
     isInSearchMode = mode
@@ -490,14 +429,14 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     } else {
       tryClosingTheKeyboard()
       searchToolbar.visibility = View.GONE
-      config.clearSearchBar()
-      setupData()
+      state.clearSearchBar()
+      loadData()
     }
   }
 
   private fun startSearch(keyword: String) {
     GlobalScope.launch(singleThreadDispatcher) {
-      config.text = keyword
+      state.text = keyword
       val items = GlobalScope.async(Dispatchers.IO) { unifiedSearchSynchronous() }
       GlobalScope.launch(Dispatchers.Main) {
         handleNewItems(items.await())
@@ -509,9 +448,9 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     when {
       isInSearchMode && searchBox.text.toString().isBlank() -> setSearchMode(false)
       isInSearchMode -> searchBox.setText("")
-      config.hasFilter() -> {
-        config.clear()
-        onHomeClick()
+      state.hasFilter() -> {
+        state.clear()
+        onModeChange(HomeNavigationMode.DEFAULT)
         notifyFolderChange()
         notifyDisabledSync()
       }
@@ -551,7 +490,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   private fun registerNoteReceiver() {
     receiver = SyncedNoteBroadcastReceiver {
-      setupData()
+      loadData()
     }
     registerReceiver(receiver, getNoteIntentFilter())
   }
@@ -572,30 +511,30 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
    */
   override fun updateNote(note: Note) {
     note.save(this)
-    setupData()
+    loadData()
   }
 
   override fun markItem(note: Note, state: NoteState) {
     note.mark(this, state)
-    setupData()
+    loadData()
   }
 
   override fun moveItemToTrashOrDelete(note: Note) {
     snackbar.softUndo(this, note)
     note.softDelete(this)
-    setupData()
+    loadData()
   }
 
   override fun notifyTagsChanged(note: Note) {
-    setupData()
+    loadData()
   }
 
   override fun getSelectMode(note: Note): String {
-    return config.mode.name
+    return state.mode.name
   }
 
   override fun notifyResetOrDismiss() {
-    setupData()
+    loadData()
   }
 
   override fun lockedContentIsHidden() = true

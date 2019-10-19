@@ -66,16 +66,16 @@ object MainActivityBottomBarSpec {
                 .iconRes(R.drawable.icon_add_notebook)
                 .onClick {
                   CreateOrEditFolderBottomSheet.openSheet(
-                    activity,
-                    FolderBuilder().emptyFolder(sNoteDefaultColor),
-                    { _, _ -> activity.setupData() })
+                      activity,
+                      FolderBuilder().emptyFolder(sNoteDefaultColor),
+                      { _, _ -> activity.loadData() })
                 })
     row.child(bottomBarRoundIcon(context, colorConfig)
                 .iconRes(R.drawable.icon_add_list)
                 .onClick {
                   val intent = CreateNoteActivity.getNewChecklistNoteIntent(
-                    activity,
-                    activity.config.folders.firstOrNull()?.uuid ?: "")
+                      activity,
+                      activity.state.currentFolder?.uuid ?: "")
                   activity.startActivity(intent)
                 })
     row.child(bottomBarRoundIcon(context, colorConfig)
@@ -97,7 +97,7 @@ object MainActivityBottomBarSpec {
                 .onClick {
                   val intent = CreateNoteActivity.getNewNoteIntent(
                     activity,
-                    activity.config.folders.firstOrNull()?.uuid ?: "")
+                    activity.state.currentFolder?.uuid ?: "")
                   activity.startActivity(intent)
                 })
     return bottomBarCard(context, row.build(), colorConfig).build()
@@ -125,7 +125,7 @@ object MainActivityFolderBottomBarSpec {
                 .iconRes(R.drawable.ic_close_white_48dp)
                 .onClick {
                   GlobalScope.launch {
-                    activity.config.folders.clear()
+                    activity.state.currentFolder = null
                     activity.unifiedSearch()
                     GlobalScope.launch(Dispatchers.Main) {
                       activity.notifyFolderChange()
@@ -152,10 +152,9 @@ object MainActivityFolderBottomBarSpec {
   @OnEvent(ClickEvent::class)
   fun onClickEvent(context: ComponentContext, @Prop folder: Folder) {
     val activity = context.androidContext as MainActivity
-    if (activity.config.folders.isEmpty()) {
-      return
+    if (activity.state.currentFolder != null) {
+      CreateOrEditFolderBottomSheet.openSheet(activity, folder) { _, _ -> activity.loadData() }
     }
-    CreateOrEditFolderBottomSheet.openSheet(activity, folder) { _, _ -> activity.setupData() }
   }
 }
 

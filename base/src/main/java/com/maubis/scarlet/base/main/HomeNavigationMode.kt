@@ -3,7 +3,7 @@ package com.maubis.scarlet.base.main
 /**
  * Superset of the Note State class
  */
-enum class HomeNavigationState {
+enum class HomeNavigationMode {
   DEFAULT,
   TRASH,
   FAVOURITE,

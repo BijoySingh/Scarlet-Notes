@@ -135,7 +135,7 @@ fun openDeleteTrashSheet(activity: MainActivity) {
         for (note in notes) {
           note.delete(activity)
         }
-        activity.setupData()
+        activity.loadData()
       },
       onNegativeClick = {})
   })

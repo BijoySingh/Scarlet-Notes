@@ -80,7 +80,7 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
       subtitle = getSortingTechniqueLabel(getSortingState()),
       icon = R.drawable.ic_sort,
       listener = {
-        SortingOptionsBottomSheet.openSheet(activity, { activity.setupData() })
+        SortingOptionsBottomSheet.openSheet(activity, { activity.loadData() })
         reset(activity, dialog)
       }
     ))
