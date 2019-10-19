@@ -90,6 +90,15 @@ import kotlinx.coroutines.newSingleThreadContext
 import java.util.concurrent.atomic.AtomicBoolean
 
 class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
+  companion object {
+    private const val IS_IN_SEARCH_MODE: String = "IS_IN_SEARCH_MODE"
+    private const val NAVIGATION_MODE: String = "NAVIGATION_MODE"
+    private const val SEARCH_TEXT: String = "SEARCH_TEXT"
+    private const val CURRENT_FOLDER_UUID: String = "CURRENT_FOLDER_UUID"
+    private const val TAGS_UUIDS: String = "TAGS_UUIDS"
+    private const val SEARCH_COLORS: String = "SEARCH_COLORS"
+  }
+
   private val singleThreadDispatcher = newSingleThreadContext("singleThreadDispatcher")
 
   private lateinit var recyclerView: RecyclerView
@@ -125,6 +134,34 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
     if (shouldShowWhatsNewSheet()) {
       openSheet(this, WhatsNewBottomSheet())
+    }
+  }
+
+  override fun onSaveInstanceState(outState: Bundle) {
+    super.onSaveInstanceState(outState)
+
+    outState.putBoolean(IS_IN_SEARCH_MODE, isInSearchMode)
+    outState.putString(SEARCH_TEXT, state.text)
+    outState.putIntegerArrayList(SEARCH_COLORS, ArrayList(state.colors))
+    outState.putInt(NAVIGATION_MODE, state.mode.ordinal)
+    outState.putString(CURRENT_FOLDER_UUID, state.currentFolder?.uuid)
+    outState.putStringArrayList(TAGS_UUIDS, ArrayList(state.tags.map { it.uuid }))
+  }
+
+  override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+    super.onRestoreInstanceState(savedInstanceState)
+
+    if (savedInstanceState != null) {
+      isInSearchMode = savedInstanceState.getBoolean(IS_IN_SEARCH_MODE)
+      state.text = savedInstanceState.getString(SEARCH_TEXT, "")
+      state.colors = savedInstanceState.getIntegerArrayList(SEARCH_COLORS) ?: ArrayList()
+      state.mode = HomeNavigationMode.values()[savedInstanceState.getInt(NAVIGATION_MODE)]
+      savedInstanceState.getString(CURRENT_FOLDER_UUID)?.let {
+        state.currentFolder = instance.foldersDatabase().getByUUID(it)
+      }
+      savedInstanceState.getStringArrayList(TAGS_UUIDS)?.forEach {
+        instance.tagsDatabase().getByUUID(it)?.let { state.tags.add(it) }
+      }
     }
   }
 
@@ -240,15 +277,16 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   private fun notifyFolderChange() {
     val componentContext = ComponentContext(this)
     lithoPreBottomToolbar.removeAllViews()
-    state.currentFolder?.let {
+
+    val currentFolder = state.currentFolder
+    if (currentFolder != null) {
       lithoPreBottomToolbar.addView(LithoView.create(componentContext,
           MainActivityFolderBottomBar.create(componentContext)
-              .folder(it)
+              .folder(currentFolder)
               .build()))
-      return
     }
-
-    notifyDisabledLegacySync()
+    else
+      notifyDisabledLegacySync()
   }
 
   private fun handleNewItems(notes: List<RecyclerItem>) {
@@ -395,11 +433,14 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   override fun onResume() {
     super.onResume()
-    ApplicationBase.instance.startListener(this)
+    instance.startListener(this)
     loadData()
     registerNoteReceiver()
+    notifyFolderChange()
 
-    notifyDisabledLegacySync()
+    if (isInSearchMode)
+      enterSearchMode()
+
     instance.authenticator().setPendingUploadListener(object : IPendingUploadListener {
       override fun onPendingSyncsUpdate(isSyncHappening: Boolean) {
         notifySyncingInformation(isSyncHappening, lastSyncPending.get())
@@ -422,24 +463,25 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   fun loadData() = onModeChange(state.mode)
 
-  fun setSearchMode(mode: Boolean) {
-    isInSearchMode = mode
-    searchBox.setText("")
-
-    if (isInSearchMode) {
-      searchToolbar.visibility = View.VISIBLE
-      tryOpeningTheKeyboard()
-      GlobalScope.launch(Dispatchers.Main) {
-        GlobalScope.async(Dispatchers.IO) { tagAndColorPicker.reset() }.await()
-        tagAndColorPicker.notifyChanged()
-      }
-      searchBox.requestFocus()
-    } else {
-      tryClosingTheKeyboard()
-      searchToolbar.visibility = View.GONE
-      state.clearSearchBar()
-      loadData()
+  fun enterSearchMode() {
+    isInSearchMode = true
+    searchBox.setText(state.text)
+    searchToolbar.visibility = View.VISIBLE
+    tryOpeningTheKeyboard()
+    GlobalScope.launch(Dispatchers.Main) {
+      GlobalScope.async(Dispatchers.IO) { tagAndColorPicker.reset() }.await()
+      tagAndColorPicker.notifyChanged()
     }
+    searchBox.requestFocus()
+  }
+
+  fun quitSearchMode() {
+    isInSearchMode = false
+    searchBox.setText("")
+    tryClosingTheKeyboard()
+    searchToolbar.visibility = View.GONE
+    state.clearSearchBar()
+    loadData()
   }
 
   private fun startSearch(keyword: String) {
@@ -454,7 +496,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   override fun onBackPressed() {
     when {
-      isInSearchMode && searchBox.text.toString().isBlank() -> setSearchMode(false)
+      isInSearchMode && searchBox.text.toString().isBlank() -> quitSearchMode()
       isInSearchMode -> searchBox.setText("")
       state.currentFolder != null -> onFolderChange(null)
       state.hasFilter() -> {
@@ -503,7 +545,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     registerReceiver(receiver, getNoteIntentFilter())
   }
 
-  fun setBottomToolbar() {
+  private fun setBottomToolbar() {
     val componentContext = ComponentContext(this)
     lithoBottomToolbar.removeAllViews()
     lithoBottomToolbar.addView(

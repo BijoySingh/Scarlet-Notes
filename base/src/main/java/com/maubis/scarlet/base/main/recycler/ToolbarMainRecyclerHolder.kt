@@ -31,7 +31,7 @@ class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerView
   override fun populate(data: RecyclerItem, extra: Bundle) {
     setFullSpan()
     toolbarIconSearch.setOnClickListener {
-      (context as MainActivity).setSearchMode(true)
+      (context as MainActivity).enterSearchMode()
     }
 
     toolbarIconSettings.setOnClickListener {
