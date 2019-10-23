@@ -26,6 +26,10 @@ fun Note.toExportedMarkdown(): String {
     val formatMarkdown = when (format.formatType) {
       FormatType.NUMBERED_LIST -> "- $text"
       FormatType.HEADING -> "# $text"
+      FormatType.HEADING_3 -> "### $text"
+      FormatType.BULLET_1 -> "- $text"
+      FormatType.BULLET_2 -> "  - $text"
+      FormatType.BULLET_3 -> "    - $text"
       FormatType.CHECKLIST_CHECKED -> "[x] $text"
       FormatType.CHECKLIST_UNCHECKED -> "[ ] $text"
       FormatType.SUB_HEADING -> "## $text"
@@ -37,7 +41,7 @@ fun Note.toExportedMarkdown(): String {
       FormatType.TEXT -> text
 
       // NOTE: All the following states should never happen at this place
-      FormatType.HEADING_3 -> text
+
       FormatType.TAG -> ""
       FormatType.EMPTY -> ""
     }

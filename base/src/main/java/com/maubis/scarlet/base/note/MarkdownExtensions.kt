@@ -9,6 +9,10 @@ fun String.toInternalFormats(): List<Format> {
   return toInternalFormats(arrayOf(
       MarkdownSegmentType.HEADING_1,
       MarkdownSegmentType.HEADING_2,
+      MarkdownSegmentType.HEADING_3,
+      MarkdownSegmentType.BULLET_1,
+      MarkdownSegmentType.BULLET_2,
+      MarkdownSegmentType.BULLET_3,
       MarkdownSegmentType.CODE,
       MarkdownSegmentType.QUOTE,
       MarkdownSegmentType.CHECKLIST_UNCHECKED,
@@ -32,6 +36,10 @@ fun String.toInternalFormats(whitelistedSegments: Array<MarkdownSegmentType>): L
       !isSegmentWhitelisted -> null
       segment.type() == MarkdownSegmentType.HEADING_1 -> Format(FormatType.HEADING, segment.strip())
       segment.type() == MarkdownSegmentType.HEADING_2 -> Format(FormatType.SUB_HEADING, segment.strip())
+      segment.type() == MarkdownSegmentType.HEADING_3 -> Format(FormatType.HEADING_3, segment.strip())
+      segment.type() == MarkdownSegmentType.BULLET_1 -> Format(FormatType.BULLET_1, segment.strip())
+      segment.type() == MarkdownSegmentType.BULLET_2 -> Format(FormatType.BULLET_2, segment.strip())
+      segment.type() == MarkdownSegmentType.BULLET_3 -> Format(FormatType.BULLET_3, segment.strip())
       segment.type() == MarkdownSegmentType.CODE -> Format(FormatType.CODE, segment.strip())
       segment.type() == MarkdownSegmentType.QUOTE -> Format(FormatType.QUOTE, segment.strip())
       segment.type() == MarkdownSegmentType.CHECKLIST_UNCHECKED -> Format(FormatType.CHECKLIST_UNCHECKED, segment.strip())
