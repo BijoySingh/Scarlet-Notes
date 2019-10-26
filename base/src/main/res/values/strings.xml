@@ -164,7 +164,7 @@
   <string name="import_export_layout_folder_sync_details">Sync all the notes, tags, etc to an external folder</string>
   <string name="import_export_layout_filename" translatable="false">MaterialNotes/BACKUP.txt</string>
   <string name="import_export_locked">Export locked notes</string>
-  <string name="import_export_locked_details">Also backup the notes which are locked</string>
+  <string name="import_export_locked_details" translatable="false">Also backup the notes which are locked</string>
 
   <string name="file_size_kb" translatable="false">%s KB</string>
   <string name="file_size_mb" translatable="false">%s MB</string>
@@ -483,5 +483,13 @@
   <string name="theme_use_system_theme" translatable="false">Use System Theme</string>
   <string name="theme_use_system_theme_details" translatable="false">Use the light or dark theme from the system</string>
   <!-- End: Theme Color Sheet -->
+
+  <string name="folder_delete_option_sheet_title" translatable="false">Remove Options</string>
+  <string name="folder_delete_option_sheet_remove_folder" translatable="false">Remove Notebook</string>
+  <string name="folder_delete_option_sheet_remove_folder_details" translatable="false">Only Remove Notebook. Notes move outside folder.</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content" translatable="false">Remove Notebook and Notes</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details" translatable="false">Remove Notebook. All notes move to trash or are deleted.</string>
+  <string name="folder_delete_option_sheet_remove_folder_content" translatable="false">Remove Notes</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details" translatable="false">Keep Notebook but all notes move to trash or are deleted.</string>
 
 </resources>

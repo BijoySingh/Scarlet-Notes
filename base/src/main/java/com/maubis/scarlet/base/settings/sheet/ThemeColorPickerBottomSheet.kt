@@ -33,7 +33,7 @@ object ThemeColorPickerItemSpec {
                @Prop isDisabled: Boolean,
                @Prop isSelected: Boolean): Component {
 
-    var icon = RoundIcon.create(context)
+    val icon = RoundIcon.create(context)
         .showBorder(true)
         .iconSizeDip(64f)
         .iconPaddingDip(16f)
