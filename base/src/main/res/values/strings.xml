@@ -16,6 +16,7 @@
 
   <string name="edit_note">Edit Note</string>
   <string name="open_in_notification">Create Notification</string>
+  <string name="share_images" translatable="false">Share Photos</string>
   <string name="open_in_popup">Open In Popup</string>
   <string name="delete_note_permanently">Delete Permanently</string>
   <string name="copy_note">Copy Note</string>

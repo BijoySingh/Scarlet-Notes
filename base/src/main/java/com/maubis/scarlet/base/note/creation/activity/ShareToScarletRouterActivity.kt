@@ -20,6 +20,7 @@ import com.maubis.scarlet.base.export.support.NoteImporter
 import com.maubis.scarlet.base.main.activity.INTENT_KEY_DIRECT_NOTES_TRANSFER
 import com.maubis.scarlet.base.main.activity.KEEP_PACKAGE
 import com.maubis.scarlet.base.note.save
+import com.maubis.scarlet.base.support.BitmapHelper
 import java.io.File
 import java.io.FileOutputStream
 import java.util.*
@@ -72,7 +73,7 @@ class ShareToScarletRouterActivity : AppCompatActivity() {
         inputStream?.close()
 
         val temporaryImage = createTempFile()
-        saveToCache(temporaryImage, bitmap)
+        BitmapHelper.saveToFile(temporaryImage, bitmap)
 
         images.add(noteImagesFolder.renameOrCopy(note, temporaryImage))
         temporaryImage.delete()
@@ -86,13 +87,6 @@ class ShareToScarletRouterActivity : AppCompatActivity() {
     note.description = FormatBuilder().getSmarterDescription(formats)
     note.save(this)
     return note
-  }
-
-  private fun saveToCache(cacheFile: File, bitmap: Bitmap) {
-    val fOut = FileOutputStream(cacheFile)
-    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fOut)
-    fOut.flush()
-    fOut.close()
   }
 
   private fun handleDirectSendText(intent: Intent): Boolean {

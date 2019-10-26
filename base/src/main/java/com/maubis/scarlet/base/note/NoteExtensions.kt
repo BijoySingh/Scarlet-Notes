@@ -3,6 +3,7 @@ package com.maubis.scarlet.base.note
 import android.content.Context
 import android.content.Intent
 import android.support.v4.app.ActivityOptionsCompat
+import android.widget.Toast
 import com.google.gson.Gson
 import com.maubis.markdown.Markdown
 import com.maubis.markdown.MarkdownConfig
@@ -25,8 +26,8 @@ import com.maubis.scarlet.base.security.sheets.openUnlockSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.sMarkdownEnabledHome
 import com.maubis.scarlet.base.settings.sheet.sInternalShowUUID
 import com.maubis.scarlet.base.settings.sheet.sSecurityAppLockEnabled
+import com.maubis.scarlet.base.support.BitmapHelper
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.utils.DateFormatUtils
 import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -284,6 +285,24 @@ fun Note.openEdit(context: Context) {
 
 fun Note.share(context: Context) {
   ApplicationBase.instance.noteActions(this).share(context)
+}
+
+
+fun Note.hasImages(): Boolean {
+  val imageFormats = getFormats().filter { it.formatType == FormatType.IMAGE }
+  return imageFormats.isNotEmpty()
+}
+fun Note.shareImages(context: Context) {
+  val imageFormats = getFormats().filter { it.formatType == FormatType.IMAGE }
+  val bitmaps = imageFormats
+      .map { ApplicationBase.noteImagesFolder.getFile(uuid, it.text) }
+      .filter { it.exists() }
+      .map { BitmapHelper.loadFromFile(it) }
+      .filterNotNull()
+  when {
+    bitmaps.size == 1 -> BitmapHelper.send(context, bitmaps.first())
+    bitmaps.size > 1 -> BitmapHelper.send(context, bitmaps)
+  }
 }
 
 fun Note.copy(context: Context) {

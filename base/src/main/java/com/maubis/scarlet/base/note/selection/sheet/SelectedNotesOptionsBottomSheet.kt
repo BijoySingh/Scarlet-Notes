@@ -159,31 +159,27 @@ class SelectedNotesOptionsBottomSheet : GridOptionBottomSheet() {
         }
     ))
 
-    val allItemsPinned = !activity.getAllSelectedNotes().any { !it.pinned }
+
     options.add(GridSectionOptionItem(
-        label = R.string.pin_note,
-        icon = R.drawable.ic_pin,
+        label = R.string.folder_option_change_notebook,
+        icon = R.drawable.ic_folder,
         listener = lockAwareFunctionRunner(activity) {
-          activity.runNoteFunction {
-            it.pinned = true
-            it.save(activity)
-          }
-          activity.finish()
-        },
-        visible = !allItemsPinned
+          openSheet(activity, SelectedFolderChooseOptionsBottomSheet().apply {
+            this.dismissListener = {}
+            this.onActionListener = { folder, selectFolder ->
+              activity.runNoteFunction {
+                when (selectFolder) {
+                  true -> it.folder = folder.uuid
+                  false -> it.folder = ""
+                }
+                it.save(activity)
+              }
+              activity.finish()
+            }
+          })
+        }
     ))
-    options.add(GridSectionOptionItem(
-        label = R.string.unpin_note,
-        icon = R.drawable.ic_pin,
-        listener = lockAwareFunctionRunner(activity) {
-          activity.runNoteFunction {
-            it.pinned = false
-            it.save(activity)
-          }
-          activity.finish()
-        },
-        visible = allItemsPinned
-    ))
+
 
     val allLocked = !activity.getAllSelectedNotes().any { !it.locked }
     options.add(GridSectionOptionItem(
@@ -220,25 +216,30 @@ class SelectedNotesOptionsBottomSheet : GridOptionBottomSheet() {
     val activity = componentContext.androidContext as SelectNotesActivity
     val options = ArrayList<GridSectionOptionItem>()
 
-
+    val allItemsPinned = !activity.getAllSelectedNotes().any { !it.pinned }
     options.add(GridSectionOptionItem(
-        label = R.string.folder_option_change_notebook,
-        icon = R.drawable.ic_folder,
+        label = R.string.pin_note,
+        icon = R.drawable.ic_pin,
         listener = lockAwareFunctionRunner(activity) {
-          openSheet(activity, SelectedFolderChooseOptionsBottomSheet().apply {
-            this.dismissListener = {}
-            this.onActionListener = { folder, selectFolder ->
-              activity.runNoteFunction {
-                when (selectFolder) {
-                  true -> it.folder = folder.uuid
-                  false -> it.folder = ""
-                }
-                it.save(activity)
-              }
-              activity.finish()
-            }
-          })
-        }
+          activity.runNoteFunction {
+            it.pinned = true
+            it.save(activity)
+          }
+          activity.finish()
+        },
+        visible = !allItemsPinned
+    ))
+    options.add(GridSectionOptionItem(
+        label = R.string.unpin_note,
+        icon = R.drawable.ic_pin,
+        listener = lockAwareFunctionRunner(activity) {
+          activity.runNoteFunction {
+            it.pinned = false
+            it.save(activity)
+          }
+          activity.finish()
+        },
+        visible = allItemsPinned
     ))
 
     options.add(GridSectionOptionItem(

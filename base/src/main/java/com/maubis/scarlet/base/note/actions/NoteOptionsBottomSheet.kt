@@ -117,7 +117,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
       }
     }
     tagCardLayout.setOnClickListener {
-      com.maubis.scarlet.base.support.sheets.openSheet(activity, TagChooserBottomSheet().apply {
+      openSheet(activity, TagChooserBottomSheet().apply {
         this.note = note
         dismissListener = { activity.notifyTagsChanged(note) }
       })
@@ -330,6 +330,17 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           activity.updateNote(note)
           dismiss()
         }
+    ))
+    options.add(OptionsItem(
+        title = R.string.share_images,
+        subtitle = R.string.share_images,
+        icon = R.drawable.icon_share_image,
+        listener = View.OnClickListener {
+          note.shareImages(activity)
+          dismiss()
+        },
+        visible = note.hasImages(),
+        invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(
         title = R.string.open_in_notification,
