@@ -7,13 +7,14 @@ import android.os.Environment
 import android.view.View
 import android.widget.TextView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
-import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.starter.util.LocaleManager
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.export.activity.ImportNoteActivity
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.utils.DateFormatUtils
+import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.io.File
 
 class FileImportViewHolder(context: Context, root: View)
@@ -54,7 +55,7 @@ class FileImportViewHolder(context: Context, root: View)
   }
 
   private fun getSubtitleText(file: File): String {
-    return DateFormatter.getDate("dd MMM yy \u00B7 hh:mm a", file.lastModified())
+    return sDateFormat.readableFullTime(file.lastModified())
   }
 
   private fun getMetaText(file: File): String {

@@ -21,6 +21,8 @@ import com.maubis.scarlet.base.support.sheets.LithoChooseOptionsItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
+import com.maubis.scarlet.base.support.utils.DateFormatUtils
+import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.util.*
 
 
@@ -198,8 +200,8 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
 
     val date = Date(reminder.timestamp)
     reminderRepeat.setSubtitle(getReminderIntervalLabel(reminder.interval))
-    reminderTime.setSubtitle(DateFormatter.getDate(DateFormatter.Formats.HH_MM_A.format, date))
-    reminderDate.setSubtitle(DateFormatter.getDate(DateFormatter.Formats.DD_MMM_YYYY.format, date))
+    reminderTime.setSubtitle(sDateFormat.readableTime(DateFormatter.Formats.HH_MM_A.format, reminder.timestamp))
+    reminderDate.setSubtitle(sDateFormat.readableTime(DateFormatter.Formats.DD_MMM_YYYY.format, reminder.timestamp))
     reminderDate.alpha = if (reminder.interval == ReminderInterval.ONCE) 1.0f else 0.5f
   }
 

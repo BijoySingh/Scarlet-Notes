@@ -1,9 +1,8 @@
 package com.maubis.scarlet.base.note
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import com.github.bijoysingh.starter.util.DateFormatter
+import android.support.v4.app.ActivityOptionsCompat
 import com.google.gson.Gson
 import com.maubis.markdown.Markdown
 import com.maubis.markdown.MarkdownConfig
@@ -27,10 +26,10 @@ import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Compa
 import com.maubis.scarlet.base.settings.sheet.sInternalShowUUID
 import com.maubis.scarlet.base.settings.sheet.sSecurityAppLockEnabled
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.utils.DateFormatUtils
+import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import android.support.v4.app.ActivityOptionsCompat
-
 
 
 fun Note.log(): String {
@@ -189,7 +188,7 @@ fun Note.getDisplayTime(): String {
     Calendar.getInstance().timeInMillis - time < 1000 * 60 * 60 * 2 -> "hh:mm aa"
     else -> "dd MMMM"
   }
-  return DateFormatter.getDate(format, time)
+  return sDateFormat.readableTime(format, time)
 }
 
 fun Note.getTagString(): String {

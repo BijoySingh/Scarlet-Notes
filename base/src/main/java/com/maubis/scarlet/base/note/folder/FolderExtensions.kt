@@ -1,9 +1,10 @@
 package com.maubis.scarlet.base.note.folder
 
-import com.github.bijoysingh.starter.util.DateFormatter
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.database.room.folder.Folder
+import com.maubis.scarlet.base.support.utils.DateFormatUtils
+import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.util.*
 
 fun Folder.saveIfUnique() {
@@ -34,7 +35,7 @@ fun Folder.getDisplayTime(): String {
     Calendar.getInstance().timeInMillis - time < 1000 * 60 * 60 * 2 -> "hh:mm aa"
     else -> "dd MMMM"
   }
-  return DateFormatter.getDate(format, time)
+  return sDateFormat.readableTime(format, time)
 }
 
 /**************************************************************************************

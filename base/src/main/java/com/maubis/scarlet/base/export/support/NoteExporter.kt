@@ -2,7 +2,6 @@ package com.maubis.scarlet.base.export.support
 
 import android.os.AsyncTask
 import android.os.Environment
-import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.starter.util.FileManager
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.ApplicationBase
@@ -12,8 +11,8 @@ import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.export.data.*
 import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FILENAME
 import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FOLDER
+import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.io.File
-import java.util.*
 
 const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
 const val KEY_BACKUP_LOCATION = "KEY_BACKUP_LOCATION"
@@ -79,17 +78,20 @@ class NoteExporter() {
         return@execute
       }
 
-      val exportFile = getOrCreateFileForExport(AUTO_BACKUP_FILENAME + " " + DateFormatter.getDate("dd_MMM_yyyy", Calendar.getInstance()))
+      val exportFile = getOrCreateFileForExport(
+          "$AUTO_BACKUP_FILENAME ${sDateFormat.getDateForBackup()}")
       if (exportFile === null) {
         return@execute
       }
       saveToFile(exportFile, getExportContent())
-      ApplicationBase.instance.store().put(KEY_AUTO_BACKUP_LAST_TIMESTAMP, System.currentTimeMillis())
+      ApplicationBase.instance.store()
+          .put(KEY_AUTO_BACKUP_LAST_TIMESTAMP, System.currentTimeMillis())
     }
   }
 
   fun getOrCreateManualExportFile(): File? {
-    return getOrCreateFileForExport(NOTES_EXPORT_FILENAME + " " + DateFormatter.getDate("dd_MMM_yyyy HH_mm", Calendar.getInstance()))
+    return getOrCreateFileForExport(
+        "$NOTES_EXPORT_FILENAME ${sDateFormat.getTimestampForBackup()}")
   }
 
   fun getOrCreateFileForExport(filename: String): File? {

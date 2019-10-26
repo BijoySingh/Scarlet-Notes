@@ -13,7 +13,6 @@ import com.facebook.litho.widget.SolidColor
 import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
-import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
@@ -25,6 +24,8 @@ import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.color
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.utils.DateFormatUtils
+import com.maubis.scarlet.base.support.utils.sDateFormat
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -97,7 +98,7 @@ object PendingItemLayoutSpec {
     }
     val localUpdateTime = when {
       option.state.lastUpdateTimestamp == 0L -> ""
-      else -> DateFormatter.getDate(DateFormatter.Formats.HH_MM_A_DD_MMM_YYYY.format, option.state.lastUpdateTimestamp)
+      else -> sDateFormat.readableFullTime(option.state.lastUpdateTimestamp)
     }
 
     val remoteState = when {
@@ -108,7 +109,7 @@ object PendingItemLayoutSpec {
     }
     val remoteUpdateTime = when {
       option.state.remoteUpdateTimestamp == 0L -> ""
-      else -> DateFormatter.getDate(DateFormatter.Formats.HH_MM_A_DD_MMM_YYYY.format, option.state.remoteUpdateTimestamp)
+      else -> sDateFormat.readableFullTime(option.state.remoteUpdateTimestamp)
     }
 
     val column = Column.create(context)
