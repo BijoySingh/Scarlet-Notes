@@ -61,12 +61,12 @@ fun sort(notes: List<Note>, sortingTechnique: SortingTechnique): List<Note> {
         val noteTagScore = it.getTagUUIDs().sumBy { tag ->
           tagCounterMap[tag] ?: 0
         }
-        ComparablePair(ComparablePair(noteTagScore, it.tags), it.updateTimestamp)
+        ComparablePair(ComparablePair(noteTagScore, it.tags ?: ""), it.updateTimestamp)
       }
     }
-    else -> notes.sortedByDescending { note ->
+    SortingTechnique.NEWEST_FIRST -> notes.sortedByDescending { note ->
       if (note.pinned) Long.MAX_VALUE
-      else note.timestamp
+      else note.timestamp ?: note.updateTimestamp
     }
   }
 }

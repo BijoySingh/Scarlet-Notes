@@ -29,7 +29,7 @@ public class Note {
 
   public boolean locked;
 
-  public String tags;
+  public String tags = "";
 
   public long updateTimestamp;
 

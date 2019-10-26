@@ -82,15 +82,18 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
     noImageMessage.setBackgroundColor(imageToolbarBg)
 
     val fileName = data.text
-    if (!fileName.isBlank()) {
-      val file = noteImagesFolder.getFile(config.noteUUID, data)
-      when (file.exists()) {
-        true -> populateFile(file)
-        false -> {
-          noImageMessage.setText(R.string.image_not_on_current_device)
-          noImageMessage.visibility = visibility(config.editable)
-          image.visibility = View.GONE
-          imageToolbar.visibility = View.GONE
+    when {
+      fileName.isBlank() -> image.visibility = View.GONE
+      else -> {
+        val file = noteImagesFolder.getFile(config.noteUUID, data)
+        when (file.exists()) {
+          true -> populateFile(file)
+          false -> {
+            noImageMessage.setText(R.string.image_not_on_current_device)
+            noImageMessage.visibility = visibility(config.editable)
+            image.visibility = View.GONE
+            imageToolbar.visibility = View.GONE
+          }
         }
       }
     }
