@@ -2,7 +2,6 @@ package com.maubis.scarlet.base.main.activity
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableString
@@ -25,7 +24,6 @@ import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.bind
 import java.io.InputStreamReader
 
@@ -84,7 +82,6 @@ class OpenTextIntentOrFileActivity : SecuredActivity() {
       override fun afterTextChanged(text: Editable) {
 
       }
-
     })
   }
 
@@ -114,45 +111,11 @@ class OpenTextIntentOrFileActivity : SecuredActivity() {
   }
 
   fun handleIntent(): Boolean {
-    val hasDirectIntent = handleDirectSendText(intent)
-    if (hasDirectIntent) {
-      return false
-    }
-
-    val hasSendIntent = handleSendText(intent)
-    if (hasSendIntent) {
-      val note = when (isCallerKeep()) {
-        true -> NoteBuilder().gen(titleText, NoteBuilder().genFromKeep(contentText))
-        false -> NoteBuilder().gen(titleText, contentText)
-      }
-      note.save(this)
-      startActivity(ViewAdvancedNoteActivity.getIntent(this, note))
-      return false
-    }
     val hasFileIntent = handleFileIntent(intent)
     if (hasFileIntent) {
       return true
     }
     return false
-  }
-
-  fun handleSendText(intent: Intent): Boolean {
-    val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
-    val sharedTitle = intent.getStringExtra(Intent.EXTRA_TITLE)
-    val sharedSubject = intent.getStringExtra(Intent.EXTRA_SUBJECT)
-
-    titleText = sharedSubject ?: sharedTitle ?: ""
-    contentText = sharedText ?: ""
-    return sharedText != null
-  }
-
-  fun handleDirectSendText(intent: Intent): Boolean {
-    val sharedText = intent.getStringExtra(INTENT_KEY_DIRECT_NOTES_TRANSFER)
-    if (sharedText === null || sharedText.isBlank()) {
-      return false
-    }
-    NoteImporter().gen(this, sharedText)
-    return true
   }
 
   fun handleFileIntent(intent: Intent): Boolean {
@@ -170,15 +133,6 @@ class OpenTextIntentOrFileActivity : SecuredActivity() {
       return true
     } catch (exception: Exception) {
       return false
-    }
-  }
-
-  fun isCallerKeep(): Boolean {
-    return when {
-      Build.VERSION.SDK_INT >= 22 && (referrer?.toString() ?: "").contains(KEEP_PACKAGE) -> true
-      callingPackage?.contains(KEEP_PACKAGE) ?: false -> true
-      (intent?.`package` ?: "").contains(KEEP_PACKAGE) -> true
-      else -> false
     }
   }
 

@@ -43,21 +43,34 @@
     <activity android:name=".note.creation.activity.NoteIntentRouterActivity">
       <intent-filter android:label="Open Note in App">
         <action android:name="android.intent.action.VIEW" />
+
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="scarlet" android:host="open_note" />
-        <data android:scheme="scarlet" android:host="create_note" />
+
+        <data
+          android:host="open_note"
+          android:scheme="scarlet" />
+        <data
+          android:host="create_note"
+          android:scheme="scarlet" />
       </intent-filter>
     </activity>
     <activity android:name=".export.activity.ImportNoteActivity" />
-    <activity android:name=".main.activity.OpenTextIntentOrFileActivity">
+    <activity android:name=".note.creation.activity.ShareToScarletRouterActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.SEND_MULTIPLE" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="image/jpeg" />
+      </intent-filter>
       <intent-filter>
         <action android:name="android.intent.action.SEND" />
-
         <category android:name="android.intent.category.DEFAULT" />
 
         <data android:mimeType="text/plain" />
+        <data android:mimeType="image/jpeg" />
       </intent-filter>
+    </activity>
+    <activity android:name=".main.activity.OpenTextIntentOrFileActivity">
       <intent-filter>
         <action android:name="android.intent.action.VIEW" />
 
