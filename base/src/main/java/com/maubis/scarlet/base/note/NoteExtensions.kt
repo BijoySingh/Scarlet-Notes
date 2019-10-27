@@ -3,7 +3,6 @@ package com.maubis.scarlet.base.note
 import android.content.Context
 import android.content.Intent
 import android.support.v4.app.ActivityOptionsCompat
-import android.widget.Toast
 import com.google.gson.Gson
 import com.maubis.markdown.Markdown
 import com.maubis.markdown.MarkdownConfig
@@ -82,6 +81,12 @@ internal fun markdownFormatForList(text: String): CharSequence {
             .bold(s, e)
         true
       }
+      MarkdownType.HEADING_3 -> {
+        spannable.relativeSize(1.0f, s, e)
+            .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
+            .bold(s, e)
+        true
+      }
       MarkdownType.CHECKLIST_CHECKED -> {
         spannable.strike(s, e)
         true
@@ -98,9 +103,9 @@ fun Note.getTitleForSharing(): String {
     return ""
   }
   val format = formats.first()
+  val headingFormats = listOf(FormatType.HEADING, FormatType.SUB_HEADING, FormatType.HEADING_3)
   return when {
-    format.formatType === FormatType.HEADING -> format.text
-    format.formatType === FormatType.SUB_HEADING -> format.text
+    headingFormats.contains(format.formatType) -> format.text
     else -> ""
   }
 }
@@ -292,6 +297,7 @@ fun Note.hasImages(): Boolean {
   val imageFormats = getFormats().filter { it.formatType == FormatType.IMAGE }
   return imageFormats.isNotEmpty()
 }
+
 fun Note.shareImages(context: Context) {
   val imageFormats = getFormats().filter { it.formatType == FormatType.IMAGE }
   val bitmaps = imageFormats
