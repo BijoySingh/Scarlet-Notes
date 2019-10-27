@@ -9,11 +9,13 @@ import android.widget.ImageView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
+import com.maubis.scarlet.base.support.ui.visibility
 import com.maubis.scarlet.base.support.utils.getEditorActionListener
 
 class FormatListViewHolder(context: Context, view: View) : FormatTextViewHolder(context, view) {
 
   private val icon: ImageView = root.findViewById(R.id.icon)
+  private val close: ImageView = root.findViewById(R.id.close)
 
   init {
     edit.setOnEditorActionListener(getEditorActionListener(
@@ -44,6 +46,13 @@ class FormatListViewHolder(context: Context, view: View) : FormatTextViewHolder(
       }
       else -> {
       } // Ignore other cases
+    }
+
+    close.visibility = visibility(config.editable)
+    close.setColorFilter(config.iconColor)
+    close.alpha = 0.8f
+    close.setOnClickListener {
+      activity.deleteFormat(format)
     }
 
     itemView.setOnClickListener {
