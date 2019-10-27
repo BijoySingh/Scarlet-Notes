@@ -45,8 +45,8 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
   private var historyIndex = 0
   private var historySize = 0L
-
-  val history: MutableList<Note> = emptyList<Note>().toMutableList()
+  private var historyModified = false
+  private val history: MutableList<Note> = emptyList<Note>().toMutableList()
 
   override val editModeValue: Boolean get() = true
 
@@ -193,11 +193,11 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     currentNote.description = FormatBuilder().getSmarterDescription(formats)
 
     // Ignore update if nothing changed. It allows for one undo per few seconds
-    if (currentNote.isEqual(vLastNoteInstance)) {
-      return
+    when {
+      !historyModified  && currentNote.isEqual(vLastNoteInstance) -> return
+      !historyModified -> addNoteToHistory(NoteBuilder().copy(currentNote))
+      else -> historyModified = false
     }
-
-    addNoteToHistory(NoteBuilder().copy(currentNote))
     currentNote.updateTimestamp = Calendar.getInstance().timeInMillis
     maybeSaveNote(false)
   }
@@ -313,12 +313,14 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
         historyIndex = if (historyIndex == 0) 0 else (historyIndex - 1)
         note = NoteBuilder().copy(history.get(historyIndex))
         setNote()
+        historyModified = true
       }
       false -> {
         val maxHistoryIndex = history.size - 1
         historyIndex = if (historyIndex == maxHistoryIndex) maxHistoryIndex else (historyIndex + 1)
         note = NoteBuilder().copy(history.get(historyIndex))
         setNote()
+        historyModified = true
       }
     }
   }
