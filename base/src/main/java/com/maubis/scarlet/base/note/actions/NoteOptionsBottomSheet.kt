@@ -43,6 +43,7 @@ import com.maubis.scarlet.base.support.sheets.GridBottomSheetBase
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.FlavorUtils
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -370,7 +371,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         subtitle = R.string.pin_to_launcher,
         icon = R.drawable.icon_shortcut,
         listener = View.OnClickListener {
-          if (!FlavorUtils.isLite() && Build.VERSION.SDK_INT >= 26) {
+          if (!FlavorUtils.isLite() && OsVersionUtils.canAddLauncherShortcuts()) {
             var title = note.getTitleForSharing()
             if (title.isBlank()) {
               title = note.getFullText().split("\n").firstOrNull() ?: "Note"
@@ -388,7 +389,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
           }
           openSheet(activity, InstallProUpsellBottomSheet())
         },
-        visible = Build.VERSION.SDK_INT >= 26,
+        visible = OsVersionUtils.canAddLauncherShortcuts(),
         invalid = activity.lockedContentIsHidden() && note.locked
     ))
     options.add(OptionsItem(

@@ -4,7 +4,6 @@ import android.app.*
 import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
-import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -22,6 +21,7 @@ import com.maubis.scarlet.base.note.getTextForSharing
 import com.maubis.scarlet.base.note.getTitleForSharing
 import com.maubis.scarlet.base.support.INTENT_KEY_ACTION
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
 
 const val REQUEST_CODE_BASE = 3200;
 const val REQUEST_CODE_MULTIPLIER = 250;
@@ -65,13 +65,15 @@ class NotificationHandler(val context: Context) {
   }
 
   private fun createNotificationChannel() {
-    if (Build.VERSION.SDK_INT < 26) {
+    if (!OsVersionUtils.canAddNotificationChannels()) {
       return
     }
+
     val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
     if (manager === null) {
       return
     }
+
     val channel = NotificationChannel(
         NOTE_NOTIFICATION_CHANNEL_ID,
         context.getString(R.string.notification_channel_label),

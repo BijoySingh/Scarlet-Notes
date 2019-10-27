@@ -9,6 +9,7 @@ import com.github.bijoysingh.starter.util.DimensionManager
 import com.maubis.markdown.MarkdownConfig
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import com.maubis.scarlet.base.support.utils.throwOrReturn
 import java.lang.ref.WeakReference
 
@@ -107,7 +108,7 @@ class ThemeManager : IThemeManager {
     val colorResource = when (type) {
       ThemeColorType.BACKGROUND -> theme.background
       ThemeColorType.STATUS_BAR -> {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) theme.background
+        if (OsVersionUtils.canSetStatusBarTheme()) theme.background
         else theme.statusBarColorFallback ?: theme.background
       }
       ThemeColorType.PRIMARY_TEXT -> theme.primaryText

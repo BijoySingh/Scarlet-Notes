@@ -224,12 +224,14 @@
   <string name="whats_new_subtitle">Know what is new in the recent updates of the app</string>
   <string name="whats_new_translate">Translate</string>
 
+  <string name="whats_new_sheet_subtitle" translatable="false">A lot has changed in this update, here is a summary of those changes.</string>
   <string name="whats_new_sheet_google_drive" translatable="false">Sign In with Drive. More Privacy.</string>
-  <string name="whats_new_sheet_photo_sync" translatable="false">Now Photos are Synced too.</string>
-  <string name="whats_new_sheet_app_lock" translatable="false">App Lock and Single Unlock.</string>
+  <string name="whats_new_sheet_photo_share" translatable="false">Share Photos. To and From.</string>
+  <string name="whats_new_sheet_note_color" translatable="false">More Note Colors.</string>
+  <string name="whats_new_sheet_launcher_shortcuts" translatable="false">Launcher Shortcuts.</string>
   <string name="whats_new_sheet_more_languages" translatable="false">More Languages Supported.</string>
-  <string name="whats_new_sheet_widget" translatable="false">More Widget Settings.</string>
-  <string name="whats_new_sheet_selection" translatable="false">Easier Note Selection.</string>
+  <string name="whats_new_sheet_markdown_improvements" translatable="false">H3 and Bullet Support.</string>
+  <string name="whats_new_sheet_ui_improvements" translatable="false">UI Improvements.</string>
 
   <string name="install_pro_sheet_latest_updates" translatable="false">Faster Updates and Requests.</string>
   <string name="install_pro_sheet_app_lock" translatable="false">App Lock and Single Unlock.</string>

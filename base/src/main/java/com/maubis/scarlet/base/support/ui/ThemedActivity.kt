@@ -13,6 +13,7 @@ import com.maubis.scarlet.base.MainActivityActions
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.settings.sheet.sInternalEnableFullScreen
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import com.maubis.scarlet.base.support.utils.maybeThrow
 
 abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
@@ -65,13 +66,13 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
   }
 
   fun setStatusBarColor(color: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    if (OsVersionUtils.canSetStatusBarColor()) {
       window.statusBarColor = color
     }
   }
 
   fun setStatusBarTextColor() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    if (OsVersionUtils.canSetStatusBarTheme()) {
       val view = window.decorView
       var flags = view.systemUiVisibility
       flags = when (ApplicationBase.instance.themeController().isNightTheme()) {

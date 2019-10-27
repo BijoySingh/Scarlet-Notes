@@ -5,16 +5,20 @@ import android.content.Context
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.os.Build
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import java.util.*
 
 fun addShortcut(context: Context, shortcut: ShortcutInfo) {
-  if (Build.VERSION.SDK_INT < 26) {
+  if (!OsVersionUtils.canAddLauncherShortcuts()) {
     return
   }
 
   val shortcutManager = context.getSystemService(ShortcutManager::class.java)
-  shortcutManager.dynamicShortcuts = Arrays.asList(shortcut)
+  if (shortcutManager === null) {
+    return
+  }
 
+  shortcutManager.dynamicShortcuts = listOf(shortcut)
   if (shortcutManager.isRequestPinShortcutSupported) {
     val pinShortcutInfo = ShortcutInfo.Builder(context, shortcut.id).build()
     val pinnedShortcutCallbackIntent = shortcutManager.createShortcutResultIntent(pinShortcutInfo)
@@ -23,5 +27,4 @@ fun addShortcut(context: Context, shortcut: ShortcutInfo) {
         pinnedShortcutCallbackIntent, 0)
     shortcutManager.requestPinShortcut(pinShortcutInfo, successCallback.intentSender)
   }
-
 }

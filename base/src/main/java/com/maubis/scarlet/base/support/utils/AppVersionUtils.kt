@@ -3,7 +3,7 @@ package com.maubis.scarlet.base.support.utils
 import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
-import com.maubis.scarlet.base.main.sheets.WhatsNewBottomSheet.Companion.WHATS_NEW_UID
+import com.maubis.scarlet.base.main.sheets.WHATS_NEW_SHEET_INDEX
 import java.util.*
 
 const val KEY_LAST_KNOWN_APP_VERSION = "KEY_LAST_KNOWN_APP_VERSION"
@@ -30,7 +30,7 @@ fun getLastUsedAppVersionCode(): Int {
 
 fun shouldShowWhatsNewSheet(): Boolean {
   val lastShownWhatsNew = ApplicationBase.instance.store().get(KEY_LAST_SHOWN_WHATS_NEW, 0)
-  if (lastShownWhatsNew >= WHATS_NEW_UID) {
+  if (lastShownWhatsNew >= WHATS_NEW_SHEET_INDEX) {
     // Already shown the latest
     return false
   }
@@ -38,7 +38,7 @@ fun shouldShowWhatsNewSheet(): Boolean {
   val lastUsedAppVersion = getLastUsedAppVersionCode()
 
   // Update the values independent of the decision
-  ApplicationBase.instance.store().put(KEY_LAST_SHOWN_WHATS_NEW, WHATS_NEW_UID)
+  ApplicationBase.instance.store().put(KEY_LAST_SHOWN_WHATS_NEW, WHATS_NEW_SHEET_INDEX)
   ApplicationBase.instance.store().put(KEY_LAST_KNOWN_APP_VERSION, getCurrentVersionCode())
 
   // New users don't need to see the whats new screen

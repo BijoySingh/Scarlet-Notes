@@ -1,7 +1,6 @@
 package com.maubis.scarlet.base.note.actions
 
 import android.app.Dialog
-import android.os.Build
 import android.speech.tts.TextToSpeech
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,6 +12,7 @@ import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
 
 fun Note.getTextToSpeechText(): String {
@@ -63,11 +63,10 @@ class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
     makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
-  fun speak(note: Note) {
-    if (Build.VERSION.SDK_INT >= 21) {
-      textToSpeech?.speak(note.getTextToSpeechText(), TextToSpeech.QUEUE_FLUSH, null, "NOTE")
-    } else {
-      textToSpeech?.speak(note.getTextToSpeechText(), TextToSpeech.QUEUE_FLUSH, null)
+  private fun speak(note: Note) {
+    when (OsVersionUtils.requiresTTSUtteranceId()) {
+      true -> textToSpeech?.speak(note.getTextToSpeechText(), TextToSpeech.QUEUE_FLUSH, null, "NOTE")
+      false -> textToSpeech?.speak(note.getTextToSpeechText(), TextToSpeech.QUEUE_FLUSH, null)
     }
   }
 

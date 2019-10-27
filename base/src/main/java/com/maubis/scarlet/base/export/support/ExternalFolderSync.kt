@@ -14,6 +14,7 @@ import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
 import com.maubis.scarlet.base.export.remote.FolderRemoteDatabase
 import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FOLDER
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -40,7 +41,8 @@ var sFolderSyncBackupLocked: Boolean
 object ExternalFolderSync {
 
   fun hasPermission(context: Context): Boolean {
-    return !(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+    return !(OsVersionUtils.requiresPermissions()
+        && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
   }
 
   fun enable(context: Context, enabled: Boolean) {

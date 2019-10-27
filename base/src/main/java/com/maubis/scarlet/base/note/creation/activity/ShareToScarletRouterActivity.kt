@@ -21,6 +21,7 @@ import com.maubis.scarlet.base.main.activity.INTENT_KEY_DIRECT_NOTES_TRANSFER
 import com.maubis.scarlet.base.main.activity.KEEP_PACKAGE
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.support.BitmapHelper
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import java.io.File
 import java.io.FileOutputStream
 import java.util.*
@@ -121,7 +122,7 @@ class ShareToScarletRouterActivity : AppCompatActivity() {
   private fun isCallerKeep(): Boolean {
     return try {
       when {
-        Build.VERSION.SDK_INT >= 22 && (referrer?.toString() ?: "").contains(KEEP_PACKAGE) -> true
+        OsVersionUtils.canExtractReferrer() && (referrer?.toString() ?: "").contains(KEEP_PACKAGE) -> true
         callingPackage?.contains(KEEP_PACKAGE) ?: false -> true
         (intent?.`package` ?: "").contains(KEEP_PACKAGE) -> true
         else -> false

@@ -20,6 +20,7 @@ import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.service.FloatingNoteService
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import com.maubis.scarlet.base.widget.AllNotesWidgetProvider.Companion.notifyAllChanged
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -115,7 +116,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     WidgetConfigureActivity.notifyNoteChange(context, note)
     notifyAllChanged(context)
     val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
-    if (Build.VERSION.SDK_INT >= 23 && notificationManager != null) {
+    if (OsVersionUtils.canExtractActiveNotifications() && notificationManager != null) {
       for (notification in notificationManager.activeNotifications) {
         if (notification.id == note.uid) {
           val handler = NotificationHandler(context)

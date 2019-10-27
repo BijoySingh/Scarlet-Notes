@@ -17,17 +17,21 @@ import com.maubis.scarlet.base.support.specs.GridSectionOptionItem
 import com.maubis.scarlet.base.support.specs.GridSectionView
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.utils.FlavorUtils
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
+
+const val WHATS_NEW_SHEET_INDEX = 11
 
 class WhatsNewBottomSheet : LithoBottomSheet() {
 
   override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
     val options = listOf(
         if (FlavorUtils.isOpenSource()) null else GridSectionOptionItem(R.drawable.gdrive_icon, R.string.whats_new_sheet_google_drive, {}),
-        if (FlavorUtils.isOpenSource()) null else GridSectionOptionItem(R.drawable.ic_image_gallery, R.string.whats_new_sheet_photo_sync, {}),
-        GridSectionOptionItem(R.drawable.ic_action_lock, R.string.whats_new_sheet_app_lock, {}),
-        GridSectionOptionItem(R.drawable.ic_action_select, R.string.whats_new_sheet_selection, {}),
-        GridSectionOptionItem(R.drawable.icon_widget, R.string.whats_new_sheet_widget, {}),
-        GridSectionOptionItem(R.drawable.ic_image_gallery, R.string.whats_new_sheet_more_languages, {}))
+        GridSectionOptionItem(R.drawable.icon_share_image, R.string.whats_new_sheet_photo_share, {}),
+        GridSectionOptionItem(R.drawable.ic_action_color, R.string.whats_new_sheet_note_color, {}),
+        GridSectionOptionItem(R.drawable.icon_languages, R.string.whats_new_sheet_more_languages, {}),
+        if (!OsVersionUtils.canAddLauncherShortcuts()) null else GridSectionOptionItem(R.drawable.icon_shortcut, R.string.whats_new_sheet_launcher_shortcuts, {}),
+        GridSectionOptionItem(R.drawable.ic_markdown_logo, R.string.whats_new_sheet_markdown_improvements, {}),
+        GridSectionOptionItem(R.drawable.icon_widget, R.string.whats_new_sheet_ui_improvements, {}))
 
     val component = Column.create(componentContext)
         .widthPercent(100f)
@@ -39,7 +43,7 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 16f)
-            .text(WHATS_NEW_DETAILS_SUBTITLE)
+            .textRes(R.string.whats_new_sheet_subtitle)
             .typeface(FONT_MONSERRAT)
             .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
         .child(GridSectionView.create(componentContext)
@@ -55,14 +59,5 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
             }
             .paddingDip(YogaEdge.VERTICAL, 8f))
     return component.build()
-  }
-
-  companion object {
-    val WHATS_NEW_UID = 11
-
-    val WHATS_NEW_DETAILS_SUBTITLE = "A lot has changed in this update, here is a summary of those changes."
-    val WHATS_NEW_DETAILS_NEW_FEATURES_TITLE = "New Features"
-
-
   }
 }

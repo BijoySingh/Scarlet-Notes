@@ -36,6 +36,7 @@ import com.maubis.scarlet.base.support.specs.bottomBarCard
 import com.maubis.scarlet.base.support.specs.bottomBarRoundIcon
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -78,7 +79,7 @@ object MainActivityBottomBarSpec {
         .iconRes(R.drawable.icon_add_note)
         .isLongClickEnabled(true)
         .onLongClick {
-          if (Build.VERSION.SDK_INT < 26) {
+          if (!OsVersionUtils.canAddLauncherShortcuts()) {
             return@onLongClick
           }
 

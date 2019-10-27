@@ -24,6 +24,7 @@ import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.sAutomaticTheme
 import com.maubis.scarlet.base.support.ui.setThemeFromSystem
 import com.maubis.scarlet.base.support.utils.FlavorUtils
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
 
 @LayoutSpec
 object ThemeColorPickerItemSpec {
@@ -83,7 +84,7 @@ class ThemeColorPickerBottomSheet : LithoBottomSheet() {
             .textRes(R.string.theme_page_title)
             .marginDip(YogaEdge.HORIZONTAL, 0f))
 
-    if (Build.VERSION.SDK_INT >= 29) {
+    if (OsVersionUtils.canUseSystemTheme()) {
       column.child(OptionItemLayout.create(componentContext)
           .option(LithoOptionsItem(
               title = R.string.theme_use_system_theme,
