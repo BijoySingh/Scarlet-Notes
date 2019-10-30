@@ -36,7 +36,7 @@ class NoPincodeBottomSheet : LithoBottomSheet() {
             .textSizeRes(R.dimen.font_size_large)
             .textRes(R.string.no_pincode_sheet_details)
             .marginDip(YogaEdge.BOTTOM, 16f)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(R.string.no_pincode_sheet_set_up)
             .onPrimaryClick {

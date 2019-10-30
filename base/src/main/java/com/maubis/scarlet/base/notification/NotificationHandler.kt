@@ -95,17 +95,16 @@ class NotificationHandler(val context: Context) {
     contentView.setTextViewText(R.id.description, config.note.getTextForSharing())
     contentView.setTextViewText(R.id.timestamp, config.note.getDisplayTime())
 
-    val theme = ApplicationBase.instance.themeController()
-    val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
-    val descColor = theme.get(ThemeColorType.TERTIARY_TEXT)
+    val titleColor = ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
+    val descColor = ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)
     contentView.setTextColor(R.id.title, titleColor)
     contentView.setTextColor(R.id.description, titleColor)
     contentView.setTextColor(R.id.timestamp, descColor)
 
-    val backgroundColor = theme.get(ThemeColorType.BACKGROUND)
+    val backgroundColor = ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND)
     contentView.setInt(R.id.root_layout, "setBackgroundColor", backgroundColor)
 
-    val iconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
+    val iconColor = ApplicationBase.sAppTheme.get(ThemeColorType.TOOLBAR_ICON)
     contentView.setInt(R.id.options_button, "setColorFilter", iconColor)
     contentView.setInt(R.id.copy_button, "setColorFilter", iconColor)
     contentView.setInt(R.id.share_button, "setColorFilter", iconColor)

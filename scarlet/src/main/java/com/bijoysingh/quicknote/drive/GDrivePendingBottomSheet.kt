@@ -41,7 +41,7 @@ object PendingItemIconSpec {
   fun onCreate(context: ComponentContext,
                @Prop(resType = ResType.STRING) label: String,
                @Prop(resType = ResType.DRAWABLE) icon: Drawable): Component {
-    val secondaryColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
+    val secondaryColor = ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     return Row.create(context)
         .paddingDip(YogaEdge.HORIZONTAL, 8f)
         .paddingDip(YogaEdge.VERTICAL, 4f)

@@ -28,8 +28,6 @@ import com.maubis.scarlet.base.support.ui.ThemedActivity
 class ExternalFolderSyncBottomSheet : LithoBottomSheet() {
 
   override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
-    val activity = componentContext.androidContext as ThemedActivity
-
     val component = Column.create(componentContext)
         .widthPercent(100f)
         .paddingDip(YogaEdge.VERTICAL, 8f)
@@ -58,7 +56,7 @@ class ExternalFolderSyncBottomSheet : LithoBottomSheet() {
             .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(separatorSpec(componentContext).alpha(0.5f))
 
-    getOptions(componentContext).forEach {
+    getOptions().forEach {
       if (it.visible) {
         component.child(OptionItemLayout.create(componentContext)
             .option(it)
@@ -82,8 +80,7 @@ class ExternalFolderSyncBottomSheet : LithoBottomSheet() {
     return component.build()
   }
 
-  fun getOptions(componentContext: ComponentContext): List<LithoOptionsItem> {
-    val activity = componentContext.androidContext as MainActivity
+  fun getOptions(): List<LithoOptionsItem> {
     val options = ArrayList<LithoOptionsItem>()
     options.add(LithoOptionsItem(
         title = R.string.import_export_locked,

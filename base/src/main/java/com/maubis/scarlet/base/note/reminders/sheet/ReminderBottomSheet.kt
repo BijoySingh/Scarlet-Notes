@@ -197,7 +197,6 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     val reminderTime = dialog.findViewById<UIActionView>(R.id.reminder_time)
     val reminderRepeat = dialog.findViewById<UIActionView>(R.id.reminder_repeat)
 
-    val date = Date(reminder.timestamp)
     reminderRepeat.setSubtitle(getReminderIntervalLabel(reminder.interval))
     reminderTime.setSubtitle(sDateFormat.readableTime(DateFormatter.Formats.HH_MM_A.format, reminder.timestamp))
     reminderDate.setSubtitle(sDateFormat.readableTime(DateFormatter.Formats.DD_MMM_YYYY.format, reminder.timestamp))

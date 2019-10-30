@@ -73,7 +73,6 @@ abstract class SelectableNotesActivityBase : SecuredActivity(), INoteSelectorAct
           adapter.addItem(EmptyRecyclerItem())
         }
 
-        var lastFolder = ""
         notes.forEach {
           adapter.addItem(it)
         }

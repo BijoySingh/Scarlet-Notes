@@ -21,11 +21,10 @@ object FlavorUtils {
   fun hasProAppInstalled(context: Context): Boolean {
     val reference = WeakReference(context)
     GlobalScope.launch(Dispatchers.IO) {
-      var found = false
-      try {
-        found = reference.get()?.packageManager?.getPackageInfo(PRO_APP_PACKAGE_NAME, 0) != null
+      val found = try {
+        reference.get()?.packageManager?.getPackageInfo(PRO_APP_PACKAGE_NAME, 0) != null
       } catch (e: Exception) {
-        found = throwOrReturn(e, false)
+        throwOrReturn(e, false)
       }
       ApplicationBase.instance.store().put(KEY_PRO_APP_INSTALLED, found)
     }

@@ -21,11 +21,10 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = componentContext.androidContext as MainActivity
     val options = ArrayList<LithoOptionsItem>()
-    val flavor = ApplicationBase.instance.appFlavor()
     options.add(LithoOptionsItem(
         title = R.string.home_option_theme_color,
         subtitle = R.string.home_option_theme_color_subtitle,
-        icon = if (ApplicationBase.instance.themeController().isNightTheme()) R.drawable.night_mode_white_48dp else R.drawable.ic_action_day_mode,
+        icon = if (ApplicationBase.sAppTheme.isNightTheme()) R.drawable.night_mode_white_48dp else R.drawable.ic_action_day_mode,
         listener = {
           activity.performAction(MainActivityActions.COLOR_PICKER)
         }

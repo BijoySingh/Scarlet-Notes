@@ -49,7 +49,6 @@ class CreateOrEditFolderBottomSheet : ThemedBottomSheetFragment() {
     val enterFolder = dialog.findViewById<EditText>(R.id.enter_folder)
     val removeBtn = dialog.findViewById<TextView>(R.id.action_remove_button)
     val colorFlexbox = dialog.findViewById<FlexboxLayout>(R.id.color_flexbox)
-    val colorCard = dialog.findViewById<View>(R.id.core_color_card)
 
     title.setTextColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
     enterFolder.setTextColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))

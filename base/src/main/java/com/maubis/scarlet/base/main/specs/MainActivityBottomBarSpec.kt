@@ -162,7 +162,6 @@ object MainActivityDisabledSyncSpec {
         toolbarBackgroundColor = context.getColor(R.color.material_blue_grey_800),
         toolbarIconColor = context.getColor(R.color.light_secondary_text)
     )
-    val activity = context.androidContext as MainActivity
     val row = Row.create(context)
         .widthPercent(100f)
         .alignItems(YogaAlign.CENTER)

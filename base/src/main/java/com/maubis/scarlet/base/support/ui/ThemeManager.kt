@@ -13,7 +13,7 @@ import com.maubis.scarlet.base.support.utils.throwOrReturn
 import java.lang.ref.WeakReference
 
 const val KEY_APP_THEME = "KEY_APP_THEME"
-var sAppTheme: String
+var sAppThemeLabel: String
   get() = ApplicationBase.instance.store().get(KEY_APP_THEME, Theme.DARK.name)
   set(value) = ApplicationBase.instance.store().put(KEY_APP_THEME, value)
 
@@ -29,10 +29,10 @@ fun setThemeFromSystem(context: Context) {
     Configuration.UI_MODE_NIGHT_YES -> Theme.VERY_DARK.name
     else -> Theme.VERY_DARK.name
   }
-  if (systemBasedTheme === sAppTheme) {
+  if (systemBasedTheme === sAppThemeLabel) {
     return
   }
-  sAppTheme = systemBasedTheme
+  sAppThemeLabel = systemBasedTheme
 }
 
 // Old Theme Key, remove in future once theme is properly handled
@@ -135,7 +135,7 @@ class ThemeManager : IThemeManager {
 
     fun getThemeFromStore(): Theme {
       return try {
-        Theme.valueOf(sAppTheme)
+        Theme.valueOf(sAppThemeLabel)
       } catch (exception: Exception) {
         throwOrReturn(exception, Theme.DARK)
       }

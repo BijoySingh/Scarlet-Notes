@@ -445,7 +445,6 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
       HomeNavigationState.TRASH -> onTrashClick()
       HomeNavigationState.LOCKED -> onLockedClick()
       HomeNavigationState.DEFAULT -> onHomeClick()
-      else -> onHomeClick()
     }
   }
 

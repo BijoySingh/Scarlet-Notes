@@ -61,9 +61,7 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
   }
 
   fun setStatusBarColor(color: Int) {
-    if (OsVersionUtils.canSetStatusBarColor()) {
-      window.statusBarColor = color
-    }
+    window.statusBarColor = color
   }
 
   fun setStatusBarTextColor() {

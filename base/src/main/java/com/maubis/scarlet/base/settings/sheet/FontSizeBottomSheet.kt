@@ -39,7 +39,7 @@ class FontSizeBottomSheet : LithoBottomSheet() {
             .textSizeDip(sEditorTextSize.toFloat())
             .marginDip(YogaEdge.BOTTOM, 16f)
             .textRes(R.string.note_option_font_size_example)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(CounterChooser.create(componentContext)
             .value(sEditorTextSize)
             .minValue(TEXT_SIZE_MIN)

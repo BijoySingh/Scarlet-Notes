@@ -20,10 +20,10 @@ class FormatListViewHolder(context: Context, view: View) : FormatTextViewHolder(
   init {
     edit.setOnEditorActionListener(getEditorActionListener(
         runnable = {
-          activity.createOrChangeToNextFormat(format!!)
+          activity.createOrChangeToNextFormat(format)
           true
         },
-        preConditions = { format === null || !edit.isFocused }
+        preConditions = {!edit.isFocused }
     ))
     edit.imeOptions = EditorInfo.IME_ACTION_DONE
     edit.setRawInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE)

@@ -12,7 +12,7 @@ import com.maubis.scarlet.base.note.saveWithoutSync
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.KEY_LIST_VIEW
 import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
 import com.maubis.scarlet.base.support.ui.Theme
-import com.maubis.scarlet.base.support.ui.sAppTheme
+import com.maubis.scarlet.base.support.ui.sAppThemeLabel
 import com.maubis.scarlet.base.support.utils.getLastUsedAppVersionCode
 import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.GlobalScope
@@ -31,7 +31,7 @@ class Migrator(val context: Context) {
   fun start() {
     runTask(KEY_MIGRATE_THEME) {
       val isNightMode = ApplicationBase.instance.store().get(KEY_NIGHT_THEME, true)
-      sAppTheme = if (isNightMode) Theme.DARK.name else Theme.LIGHT.name
+      sAppThemeLabel = if (isNightMode) Theme.DARK.name else Theme.LIGHT.name
       ApplicationBase.sAppTheme.notifyChange(context)
     }
     runTask(key = KEY_MIGRATE_REMINDERS) {
@@ -63,7 +63,7 @@ class Migrator(val context: Context) {
     runTaskIf(
         getLastUsedAppVersionCode() == 0,
         KEY_MIGRATE_DEFAULT_VALUES) {
-      sAppTheme = Theme.DARK.name
+      sAppThemeLabel = Theme.DARK.name
       ApplicationBase.instance.store().put(KEY_LIST_VIEW, true)
     }
 

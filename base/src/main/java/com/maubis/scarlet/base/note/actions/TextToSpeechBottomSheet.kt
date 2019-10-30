@@ -64,10 +64,7 @@ class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
   }
 
   private fun speak(note: Note) {
-    when (OsVersionUtils.requiresTTSUtteranceId()) {
-      true -> textToSpeech?.speak(note.getTextToSpeechText(), TextToSpeech.QUEUE_FLUSH, null, "NOTE")
-      false -> textToSpeech?.speak(note.getTextToSpeechText(), TextToSpeech.QUEUE_FLUSH, null)
-    }
+    textToSpeech?.speak(note.getTextToSpeechText(), TextToSpeech.QUEUE_FLUSH, null, "NOTE")
   }
 
   override fun getBackgroundView(): Int = R.id.container_layout

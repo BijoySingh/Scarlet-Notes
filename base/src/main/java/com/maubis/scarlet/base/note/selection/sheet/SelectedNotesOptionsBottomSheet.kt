@@ -27,13 +27,13 @@ class SelectedNotesOptionsBottomSheet : GridOptionBottomSheet() {
 
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<GridSectionItem> {
     val options = ArrayList<GridSectionItem>()
-    options.add(getQuickActions(componentContext, dialog))
+    options.add(getQuickActions(componentContext))
     options.add(getSecondaryActions(componentContext, dialog))
     options.add(getTertiaryActions(componentContext, dialog))
     return options
   }
 
-  private fun getQuickActions(componentContext: ComponentContext, dialog: Dialog): GridSectionItem {
+  private fun getQuickActions(componentContext: ComponentContext): GridSectionItem {
     val activity = componentContext.androidContext as SelectNotesActivity
     val options = ArrayList<GridSectionOptionItem>()
 
