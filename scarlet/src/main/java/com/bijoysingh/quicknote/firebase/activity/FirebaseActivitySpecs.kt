@@ -12,6 +12,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.specs.color
 import com.maubis.scarlet.base.support.ui.LithoCircleDrawable
@@ -27,7 +28,7 @@ object FirebaseRootViewSpec {
       else -> R.string.firebase_page_login_button
     }
     return Column.create(context)
-        .backgroundColor(ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND))
+        .backgroundColor(sAppTheme.get(ThemeColorType.BACKGROUND))
         .child(VerticalScroll.create(context)
             .flexGrow(1f)
             .marginDip(YogaEdge.ALL, 8f)
@@ -66,15 +67,15 @@ object FirebaseContentViewSpec {
   fun onCreate(context: ComponentContext): Component {
     return Column.create(context)
         .paddingDip(YogaEdge.ALL, 16f)
-        .backgroundColor(ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND))
+        .backgroundColor(sAppTheme.get(ThemeColorType.BACKGROUND))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_xxlarge)
             .textRes(R.string.firebase_page_login_title)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
             .typeface(CoreConfig.FONT_MONSERRAT_BOLD))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_large)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
             .textRes(R.string.firebase_page_important_details)
             .typeface(CoreConfig.FONT_MONSERRAT))
         .child(FirebaseIconView.create(context)
@@ -101,7 +102,7 @@ object FirebaseIconViewSpec {
         .paddingDip(YogaEdge.HORIZONTAL, 32f)
         .paddingDip(YogaEdge.VERTICAL, 24f)
         .child(Image.create(context)
-            .drawable(icon.color(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT)))
+            .drawable(icon.color(sAppTheme.get(ThemeColorType.SECONDARY_TEXT)))
             .background(LithoCircleDrawable(bgColor, Color.alpha(bgColor)))
             .paddingDip(YogaEdge.ALL, 12f)
             .marginDip(YogaEdge.BOTTOM, 12f)
@@ -110,7 +111,7 @@ object FirebaseIconViewSpec {
             .text(title)
             .textAlignment(Layout.Alignment.ALIGN_CENTER)
             .textSizeRes(R.dimen.font_size_normal)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
             .typeface(CoreConfig.FONT_MONSERRAT))
         .build()
   }

@@ -3,7 +3,7 @@ package com.bijoysingh.quicknote.drive
 import com.bijoysingh.quicknote.database.RemoteDataType
 import com.bijoysingh.quicknote.database.RemoteUploadData
 import com.bijoysingh.quicknote.database.RemoteUploadDataDao
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppImageStorage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -138,7 +138,7 @@ class GDriveRemoteImageFolder(
     val gDriveUUID = id.name()
     val timestamp = database.getByUUID(dataType.name, gDriveUUID)?.lastUpdateTimestamp
         ?: getTrueCurrentTime()
-    val imageFile = noteImagesFolder.getFile(id.noteUuid, id.imageUuid)
+    val imageFile = sAppImageStorage.getFile(id.noteUuid, id.imageUuid)
     if (!imageFile.exists()) {
       // notifyDriveData(id, gDriveUUID, timestamp)
       val existing = database.getByUUID(RemoteDataType.IMAGE.name, gDriveUUID)

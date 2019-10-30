@@ -12,6 +12,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.support.sheets.*
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
@@ -104,7 +105,7 @@ class ThemeColorPickerBottomSheet : LithoBottomSheet() {
             sAutomaticTheme = !sAutomaticTheme
             if (sAutomaticTheme) {
               setThemeFromSystem(context)
-              onThemeChange(ApplicationBase.sAppTheme.get())
+              onThemeChange(sAppTheme.get())
             }
             reset(context, dialog)
           })

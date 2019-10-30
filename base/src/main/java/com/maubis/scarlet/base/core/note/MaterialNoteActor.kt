@@ -9,7 +9,7 @@ import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.folderSync
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppImageStorage
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.database.room.note.Note
@@ -69,7 +69,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
   }
 
   override fun offlineDelete(context: Context) {
-    noteImagesFolder.deleteAllFiles(note)
+    sAppImageStorage.deleteAllFiles(note)
     if (note.isUnsaved()) {
       return
     }
@@ -108,7 +108,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     notifyAllChanged(context)
     val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
     notificationManager?.cancel(note.uid)
-    ApplicationBase.sImageCache.deleteNote(note.uuid)
+    ApplicationBase.sAppImageCache.deleteNote(note.uuid)
   }
 
   protected fun onNoteUpdated(context: Context) {

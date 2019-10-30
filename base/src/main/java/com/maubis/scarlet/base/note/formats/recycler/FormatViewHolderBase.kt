@@ -7,6 +7,7 @@ import android.view.View
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
@@ -46,29 +47,28 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
     val tertiaryTextColor: Int
     val iconColor: Int
     val hintTextColor: Int
-    val theme = ApplicationBase.sAppTheme
     val isLightBackground = ColorUtil.isLightColored(noteColor)
     val linkColor: Int
     when {
       !useNoteColorAsBackground -> {
-        secondaryTextColor = theme.get(ThemeColorType.SECONDARY_TEXT)
-        tertiaryTextColor = theme.get(ThemeColorType.TERTIARY_TEXT)
-        iconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
-        hintTextColor = theme.get(ThemeColorType.HINT_TEXT)
-        linkColor = theme.get(ThemeColorType.ACCENT_TEXT)
+        secondaryTextColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
+        tertiaryTextColor = sAppTheme.get(ThemeColorType.TERTIARY_TEXT)
+        iconColor = sAppTheme.get(ThemeColorType.TOOLBAR_ICON)
+        hintTextColor = sAppTheme.get(ThemeColorType.HINT_TEXT)
+        linkColor = sAppTheme.get(ThemeColorType.ACCENT_TEXT)
       }
       isLightBackground -> {
-        secondaryTextColor = theme.get(context, Theme.LIGHT, ThemeColorType.SECONDARY_TEXT)
-        tertiaryTextColor = theme.get(context, Theme.LIGHT, ThemeColorType.TERTIARY_TEXT)
-        iconColor = theme.get(context, Theme.LIGHT, ThemeColorType.TOOLBAR_ICON)
-        hintTextColor = theme.get(context, Theme.LIGHT, ThemeColorType.HINT_TEXT)
+        secondaryTextColor = sAppTheme.get(context, Theme.LIGHT, ThemeColorType.SECONDARY_TEXT)
+        tertiaryTextColor = sAppTheme.get(context, Theme.LIGHT, ThemeColorType.TERTIARY_TEXT)
+        iconColor = sAppTheme.get(context, Theme.LIGHT, ThemeColorType.TOOLBAR_ICON)
+        hintTextColor = sAppTheme.get(context, Theme.LIGHT, ThemeColorType.HINT_TEXT)
         linkColor = ContextCompat.getColor(context, R.color.colorAccentYellowLight)
       }
       else -> {
-        secondaryTextColor = theme.get(context, Theme.DARK, ThemeColorType.SECONDARY_TEXT)
-        tertiaryTextColor = theme.get(context, Theme.DARK, ThemeColorType.TERTIARY_TEXT)
-        iconColor = theme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
-        hintTextColor = theme.get(context, Theme.DARK, ThemeColorType.HINT_TEXT)
+        secondaryTextColor = sAppTheme.get(context, Theme.DARK, ThemeColorType.SECONDARY_TEXT)
+        tertiaryTextColor = sAppTheme.get(context, Theme.DARK, ThemeColorType.TERTIARY_TEXT)
+        iconColor = sAppTheme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
+        hintTextColor = sAppTheme.get(context, Theme.DARK, ThemeColorType.HINT_TEXT)
         linkColor = ContextCompat.getColor(context, R.color.colorAccentYellowDark)
       }
     }
@@ -90,7 +90,7 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
           }
         }(),
         backgroundColor = when (data.formatType) {
-          FormatType.CODE, FormatType.IMAGE -> ApplicationBase.sAppTheme.get(context, R.color.code_light, R.color.code_dark)
+          FormatType.CODE, FormatType.IMAGE -> sAppTheme.get(context, R.color.code_light, R.color.code_dark)
           else -> ContextCompat.getColor(context, R.color.transparent)
         },
         secondaryTextColor = secondaryTextColor,

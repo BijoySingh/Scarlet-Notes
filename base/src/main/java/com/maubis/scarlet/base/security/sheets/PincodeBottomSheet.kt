@@ -18,6 +18,7 @@ import com.github.ajalt.reprint.core.Reprint
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.security.controller.PinLockController
 import com.maubis.scarlet.base.security.controller.PinLockController.isPinCodeEnabled
@@ -61,7 +62,7 @@ object PincodeSheetViewSpec {
                @Prop data: PincodeSheetData,
                @Prop dismiss: () -> Unit): Component {
     val editBackground = when {
-      ApplicationBase.sAppTheme.isNightTheme() -> R.drawable.light_secondary_rounded_bg
+      sAppTheme.isNightTheme() -> R.drawable.light_secondary_rounded_bg
       else -> R.drawable.secondary_rounded_bg
     }
 
@@ -76,7 +77,7 @@ object PincodeSheetViewSpec {
             .textSizeRes(R.dimen.font_size_large)
             .textRes(R.string.app_lock_details)
             .marginDip(YogaEdge.BOTTOM, 16f)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(EditText.create(context)
             .backgroundRes(editBackground)
             .textSizeRes(R.dimen.font_size_xlarge)
@@ -87,7 +88,7 @@ object PincodeSheetViewSpec {
             .inputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
             .textAlignment(Layout.Alignment.ALIGN_CENTER)
             .typeface(CoreConfig.FONT_OPEN_SANS)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
             .paddingDip(YogaEdge.HORIZONTAL, 22f)
             .paddingDip(YogaEdge.VERTICAL, 6f)
             .marginDip(YogaEdge.VERTICAL, 8f)
@@ -114,7 +115,7 @@ object PincodeSheetViewSpec {
                 when {
                   data.isRemoveButtonEnabled -> Text.create(context)
                       .textSizeRes(R.dimen.font_size_large)
-                      .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.HINT_TEXT))
+                      .textColor(sAppTheme.get(ThemeColorType.HINT_TEXT))
                       .textRes(R.string.security_sheet_button_remove)
                       .textAlignment(Layout.Alignment.ALIGN_CENTER)
                       .paddingDip(YogaEdge.VERTICAL, 12f)

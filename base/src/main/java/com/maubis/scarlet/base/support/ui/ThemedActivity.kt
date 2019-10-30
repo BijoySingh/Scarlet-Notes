@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.settings.sheet.sInternalEnableFullScreen
 import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import com.maubis.scarlet.base.support.utils.maybeThrow
@@ -21,7 +22,7 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    ApplicationBase.sAppTheme.register(this)
+    sAppTheme.register(this)
   }
 
   fun setSystemTheme(color: Int = getStatusBarColor()) {
@@ -40,7 +41,7 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
       return
     }
     setThemeFromSystem(this)
-    ApplicationBase.sAppTheme.notifyChange(this)
+    sAppTheme.notifyChange(this)
   }
 
   fun fullScreenView() {
@@ -68,7 +69,7 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
     if (OsVersionUtils.canSetStatusBarTheme()) {
       val view = window.decorView
       var flags = view.systemUiVisibility
-      flags = when (ApplicationBase.sAppTheme.isNightTheme()) {
+      flags = when (sAppTheme.isNightTheme()) {
         true -> flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
         false -> flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
       }
@@ -76,9 +77,9 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
     }
   }
 
-  fun getThemeColor(): Int = ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND)
+  fun getThemeColor(): Int = sAppTheme.get(ThemeColorType.BACKGROUND)
 
-  fun getStatusBarColor(): Int = ApplicationBase.sAppTheme.get(ThemeColorType.STATUS_BAR)
+  fun getStatusBarColor(): Int = sAppTheme.get(ThemeColorType.STATUS_BAR)
 
   fun tryClosingTheKeyboard() {
     try {

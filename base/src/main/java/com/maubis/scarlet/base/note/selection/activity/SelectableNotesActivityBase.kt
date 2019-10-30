@@ -13,6 +13,8 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.core.note.sort
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.main.recycler.EmptyRecyclerItem
@@ -89,11 +91,11 @@ abstract class SelectableNotesActivityBase : SecuredActivity(), INoteSelectorAct
   open fun getLayoutUI(): Int = R.layout.activity_select_note
 
   fun setupRecyclerView() {
-    val staggeredView = ApplicationBase.instance.store().get(UISettingsOptionsBottomSheet.KEY_LIST_VIEW, false)
+    val staggeredView = sAppPreferences.get(UISettingsOptionsBottomSheet.KEY_LIST_VIEW, false)
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
-    val isMarkdownEnabled = ApplicationBase.instance.store().get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
-    val isMarkdownHomeEnabled = ApplicationBase.instance.store().get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, true)
+    val isMarkdownEnabled = sAppPreferences.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
+    val isMarkdownHomeEnabled = sAppPreferences.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_HOME_ENABLED, true)
     val adapterExtra = Bundle()
     adapterExtra.putBoolean(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
     adapterExtra.putInt(STORE_KEY_LINE_COUNT, sNoteItemLineCount)
@@ -113,7 +115,7 @@ abstract class SelectableNotesActivityBase : SecuredActivity(), INoteSelectorAct
     val containerLayout = findViewById<View>(R.id.container_layout)
     containerLayout.setBackgroundColor(getThemeColor())
 
-    val toolbarIconColor = ApplicationBase.sAppTheme.get(ThemeColorType.TOOLBAR_ICON);
+    val toolbarIconColor = sAppTheme.get(ThemeColorType.TOOLBAR_ICON);
     findViewById<ImageView>(R.id.back_button).setColorFilter(toolbarIconColor)
     findViewById<TextView>(R.id.toolbar_title).setTextColor(toolbarIconColor)
   }

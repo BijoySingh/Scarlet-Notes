@@ -7,7 +7,7 @@ import com.facebook.litho.ComponentContext
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
@@ -22,8 +22,8 @@ const val LINE_COUNT_MIN = 2
 const val LINE_COUNT_MAX = 15
 
 var sNoteItemLineCount: Int
-  get() = ApplicationBase.instance.store().get(STORE_KEY_LINE_COUNT, LINE_COUNT_DEFAULT)
-  set(value) = ApplicationBase.instance.store().put(STORE_KEY_LINE_COUNT, value)
+  get() = sAppPreferences.get(STORE_KEY_LINE_COUNT, LINE_COUNT_DEFAULT)
+  set(value) = sAppPreferences.put(STORE_KEY_LINE_COUNT, value)
 
 class LineCountBottomSheet : LithoBottomSheet() {
 

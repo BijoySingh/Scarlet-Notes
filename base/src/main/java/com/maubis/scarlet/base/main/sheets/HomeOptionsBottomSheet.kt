@@ -13,6 +13,7 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.tag.TagBuilder
 import com.maubis.scarlet.base.database.room.tag.Tag
@@ -37,9 +38,8 @@ class LithoTagOptionsItem(
 object TagItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext, @Prop option: LithoTagOptionsItem): Component {
-    val theme = ApplicationBase.sAppTheme
-    val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
-    val selectedColor = when (theme.isNightTheme()) {
+    val titleColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
+    val selectedColor = when (sAppTheme.isNightTheme()) {
       true -> context.getColor(R.color.material_blue_400)
       false -> context.getColor(R.color.material_blue_700)
     }

@@ -1,8 +1,8 @@
 package com.maubis.scarlet.base.support.utils
 
 import android.content.Context
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,9 +26,9 @@ object FlavorUtils {
       } catch (e: Exception) {
         throwOrReturn(e, false)
       }
-      ApplicationBase.instance.store().put(KEY_PRO_APP_INSTALLED, found)
+      sAppPreferences.put(KEY_PRO_APP_INSTALLED, found)
     }
-    return ApplicationBase.instance.store().get(KEY_PRO_APP_INSTALLED, false)
+    return sAppPreferences.get(KEY_PRO_APP_INSTALLED, false)
   }
 
   fun isPro() = instance.appFlavor() == Flavor.PRO

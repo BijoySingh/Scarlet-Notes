@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.core.tag.isUnsaved
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.note.tag.delete
@@ -43,9 +44,9 @@ class CreateOrEditTagBottomSheet : ThemedBottomSheetFragment() {
     val enterTag = dialog.findViewById<EditText>(R.id.enter_tag)
     val removeBtn = dialog.findViewById<TextView>(R.id.action_remove_button)
 
-    title.setTextColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
-    enterTag.setTextColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
-    enterTag.setHintTextColor(ApplicationBase.sAppTheme.get(ThemeColorType.HINT_TEXT))
+    title.setTextColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
+    enterTag.setTextColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
+    enterTag.setHintTextColor(sAppTheme.get(ThemeColorType.HINT_TEXT))
 
     title.setText(if (tag.isUnsaved()) R.string.tag_sheet_create_title else R.string.tag_sheet_edit_title)
     action.setOnClickListener {

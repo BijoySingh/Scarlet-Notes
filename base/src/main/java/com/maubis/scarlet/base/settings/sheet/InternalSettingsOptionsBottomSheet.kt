@@ -4,20 +4,20 @@ import android.app.Dialog
 import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.utils.*
 
 const val KEY_INTERNAL_ENABLE_FULL_SCREEN = "internal_enable_full_screen"
 var sInternalEnableFullScreen: Boolean
-  get() = ApplicationBase.instance.store().get(KEY_INTERNAL_ENABLE_FULL_SCREEN, false)
-  set(value) = ApplicationBase.instance.store().put(KEY_INTERNAL_ENABLE_FULL_SCREEN, value)
+  get() = sAppPreferences.get(KEY_INTERNAL_ENABLE_FULL_SCREEN, false)
+  set(value) = sAppPreferences.put(KEY_INTERNAL_ENABLE_FULL_SCREEN, value)
 
 const val KEY_INTERNAL_SHOW_UUID = "internal_show_uuid"
 var sInternalShowUUID: Boolean
-  get() = ApplicationBase.instance.store().get(KEY_INTERNAL_SHOW_UUID, false)
-  set(value) = ApplicationBase.instance.store().put(KEY_INTERNAL_SHOW_UUID, value)
+  get() = sAppPreferences.get(KEY_INTERNAL_SHOW_UUID, false)
+  set(value) = sAppPreferences.put(KEY_INTERNAL_SHOW_UUID, value)
 
 class InternalSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun title(): Int = R.string.internal_settings_title

@@ -7,20 +7,20 @@ import android.support.v4.content.ContextCompat
 import com.github.bijoysingh.starter.util.DimensionManager
 import com.maubis.markdown.MarkdownConfig
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import com.maubis.scarlet.base.support.utils.throwOrReturn
 import java.lang.ref.WeakReference
 
 const val KEY_APP_THEME = "KEY_APP_THEME"
 var sAppThemeLabel: String
-  get() = ApplicationBase.instance.store().get(KEY_APP_THEME, Theme.DARK.name)
-  set(value) = ApplicationBase.instance.store().put(KEY_APP_THEME, value)
+  get() = sAppPreferences.get(KEY_APP_THEME, Theme.DARK.name)
+  set(value) = sAppPreferences.put(KEY_APP_THEME, value)
 
 const val KEY_AUTOMATIC_THEME = "automatic_theme"
 var sAutomaticTheme: Boolean
-  get() = ApplicationBase.instance.store().get(KEY_AUTOMATIC_THEME, false)
-  set(value) = ApplicationBase.instance.store().put(KEY_AUTOMATIC_THEME, value)
+  get() = sAppPreferences.get(KEY_AUTOMATIC_THEME, false)
+  set(value) = sAppPreferences.put(KEY_AUTOMATIC_THEME, value)
 
 fun setThemeFromSystem(context: Context) {
   val configuration = context.resources.configuration

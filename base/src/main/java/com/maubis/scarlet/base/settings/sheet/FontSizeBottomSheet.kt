@@ -9,6 +9,8 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
@@ -21,8 +23,8 @@ const val TEXT_SIZE_MIN = 12
 const val TEXT_SIZE_MAX = 24
 
 var sEditorTextSize: Int
-  get() = ApplicationBase.instance.store().get(STORE_KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT)
-  set(value) = ApplicationBase.instance.store().put(STORE_KEY_TEXT_SIZE, value)
+  get() = sAppPreferences.get(STORE_KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT)
+  set(value) = sAppPreferences.put(STORE_KEY_TEXT_SIZE, value)
 
 class FontSizeBottomSheet : LithoBottomSheet() {
 
@@ -39,7 +41,7 @@ class FontSizeBottomSheet : LithoBottomSheet() {
             .textSizeDip(sEditorTextSize.toFloat())
             .marginDip(YogaEdge.BOTTOM, 16f)
             .textRes(R.string.note_option_font_size_example)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(CounterChooser.create(componentContext)
             .value(sEditorTextSize)
             .minValue(TEXT_SIZE_MIN)

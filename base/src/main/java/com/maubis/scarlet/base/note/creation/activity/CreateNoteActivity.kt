@@ -9,7 +9,7 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppImageStorage
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
@@ -137,7 +137,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
           return
         }
 
-        val targetFile = noteImagesFolder.renameOrCopy(note!!, imageFile)
+        val targetFile = sAppImageStorage.renameOrCopy(note!!, imageFile)
         val index = getFormatIndex(type)
         triggerImageLoaded(index, targetFile)
       }
@@ -300,7 +300,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
     val formatToChange = formats[position]
     if (!formatToChange.text.isBlank()) {
-      val noteImage = noteImagesFolder
+      val noteImage = sAppImageStorage
       deleteIfExist(noteImage.getFile(note!!.uuid, formatToChange.text))
     }
     formatToChange.text = file.name

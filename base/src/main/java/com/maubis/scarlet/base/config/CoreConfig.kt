@@ -60,8 +60,6 @@ abstract class CoreConfig(context: Context) {
 
   abstract fun appFlavor(): Flavor
 
-  abstract fun store(): Store
-
   companion object {
     val notesDb get() = instance.notesDatabase()
     val tagsDb get() = instance.tagsDatabase()

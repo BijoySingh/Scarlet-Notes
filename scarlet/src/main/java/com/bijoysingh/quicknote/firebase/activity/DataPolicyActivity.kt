@@ -12,6 +12,7 @@ import com.bijoysingh.quicknote.R
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.settings.sheet.PRIVACY_POLICY_LINK
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.visibility
@@ -86,9 +87,9 @@ class DataPolicyActivity : ThemedActivity() {
     const val DATA_POLICY_VERSION = 4
     const val DATA_POLICY_ACCEPTED = "DATA_POLICY_ACCEPTED_VERSION"
 
-    fun hasAcceptedThePolicy() = ApplicationBase.instance.store().get(DATA_POLICY_ACCEPTED, 0) == DATA_POLICY_VERSION
+    fun hasAcceptedThePolicy() = sAppPreferences.get(DATA_POLICY_ACCEPTED, 0) == DATA_POLICY_VERSION
 
-    fun acceptThePolicy() = ApplicationBase.instance.store().put(DATA_POLICY_ACCEPTED, DATA_POLICY_VERSION)
+    fun acceptThePolicy() = sAppPreferences.put(DATA_POLICY_ACCEPTED, DATA_POLICY_VERSION)
 
     fun openIfNeeded(activity: AppCompatActivity) {
       if (!hasAcceptedThePolicy() && ApplicationBase.instance.authenticator().isLegacyLoggedIn()) {

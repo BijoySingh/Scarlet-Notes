@@ -9,7 +9,7 @@ import com.bijoysingh.quicknote.drive.toImageUUID
 import com.bijoysingh.quicknote.firebase.data.getFirebaseNote
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.ApplicationBase
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppImageStorage
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.auth.IPendingUploadListener
 import com.maubis.scarlet.base.core.note.NoteBuilder
@@ -374,7 +374,7 @@ abstract class RemoteController<ResourceId, FileType, FileListType>(private val 
       RemoteDataType.IMAGE -> {
         val imageUUID = toImageUUID(data.uuid)
         when {
-          imageUUID !== null -> noteImagesFolder.getFile(imageUUID.noteUuid, imageUUID.imageUuid).apply {
+          imageUUID !== null -> sAppImageStorage.getFile(imageUUID.noteUuid, imageUUID.imageUuid).apply {
             imageSync.insert(data, this)
           }
           else -> null
@@ -474,7 +474,7 @@ abstract class RemoteController<ResourceId, FileType, FileListType>(private val 
       RemoteDataType.IMAGE -> {
         val imageUUID = toImageUUID(data.uuid)
         if (imageUUID !== null) {
-          val imageFile = ApplicationBase.noteImagesFolder.getFile(imageUUID.noteUuid, imageUUID.imageUuid)
+          val imageFile = ApplicationBase.sAppImageStorage.getFile(imageUUID.noteUuid, imageUUID.imageUuid)
           if (imageFile.exists()) {
             remoteDatabaseController.remoteDatabaseUpdate(RemoteDataType.IMAGE, data.uuid, databaseUpdateLambda)
             return
@@ -514,7 +514,7 @@ abstract class RemoteController<ResourceId, FileType, FileListType>(private val 
       RemoteDataType.IMAGE -> {
         val imageUUID = toImageUUID(data.uuid)
         if (imageUUID !== null) {
-          val imageFile = ApplicationBase.noteImagesFolder.getFile(imageUUID.noteUuid, imageUUID.imageUuid)
+          val imageFile = ApplicationBase.sAppImageStorage.getFile(imageUUID.noteUuid, imageUUID.imageUuid)
           imageFile.delete()
         }
       }

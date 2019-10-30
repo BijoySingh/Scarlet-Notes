@@ -3,6 +3,8 @@ package com.maubis.scarlet.base.config
 import android.app.Application
 import com.evernote.android.job.JobManager
 import com.facebook.soloader.SoLoader
+import com.github.bijoysingh.starter.prefs.Store
+import com.github.bijoysingh.starter.prefs.VersionedStore
 import com.maubis.scarlet.base.core.note.NoteImage
 import com.maubis.scarlet.base.export.remote.FolderRemoteDatabase
 import com.maubis.scarlet.base.note.reminders.ReminderJobCreator
@@ -15,6 +17,10 @@ import com.maubis.scarlet.base.support.utils.sDateFormat
 abstract class ApplicationBase : Application() {
   override fun onCreate() {
     super.onCreate()
+
+    // Preferences
+    sAppPreferences = VersionedStore.get(this, "USER_PREFERENCES", 1)
+
     sDateFormat = DateFormatUtils(this)
     SoLoader.init(this, false)
     try {
@@ -22,10 +28,10 @@ abstract class ApplicationBase : Application() {
     } catch (exception: Exception) {
       maybeThrow(exception)
     }
-    noteImagesFolder = NoteImage(this)
 
     // Setup Image Cache
-    sImageCache = ImageCache(this)
+    sAppImageStorage = NoteImage(this)
+    sAppImageCache = ImageCache(this)
 
     // Setup Application Theme
     sAppTheme = ThemeManager()
@@ -33,10 +39,13 @@ abstract class ApplicationBase : Application() {
   }
 
   companion object {
-    lateinit var noteImagesFolder: NoteImage
     lateinit var instance: CoreConfig
 
-    lateinit var sImageCache: ImageCache
+    lateinit var sAppImageStorage: NoteImage
+    lateinit var sAppImageCache: ImageCache
+
+    lateinit var sAppPreferences: Store
+
     lateinit var sAppTheme: ThemeManager
 
     var folderSync: FolderRemoteDatabase? = null

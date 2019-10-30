@@ -4,7 +4,7 @@ import android.os.AsyncTask
 import android.os.Environment
 import com.github.bijoysingh.starter.util.FileManager
 import com.google.gson.Gson
-import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
@@ -26,18 +26,18 @@ const val AUTO_BACKUP_INTERVAL_MS = 1000 * 60 * 60 * 6 // 6 hours update
 
 const val STORE_KEY_BACKUP_MARKDOWN = "KEY_BACKUP_MARKDOWN"
 var sBackupMarkdown: Boolean
-  get() = ApplicationBase.instance.store().get(STORE_KEY_BACKUP_MARKDOWN, false)
-  set(value) = ApplicationBase.instance.store().put(STORE_KEY_BACKUP_MARKDOWN, value)
+  get() = sAppPreferences.get(STORE_KEY_BACKUP_MARKDOWN, false)
+  set(value) = sAppPreferences.put(STORE_KEY_BACKUP_MARKDOWN, value)
 
 const val STORE_KEY_BACKUP_LOCKED = "KEY_BACKUP_LOCKED"
 var sBackupLockedNotes: Boolean
-  get() = ApplicationBase.instance.store().get(STORE_KEY_BACKUP_LOCKED, true)
-  set(value) = ApplicationBase.instance.store().put(STORE_KEY_BACKUP_LOCKED, value)
+  get() = sAppPreferences.get(STORE_KEY_BACKUP_LOCKED, true)
+  set(value) = sAppPreferences.put(STORE_KEY_BACKUP_LOCKED, value)
 
 const val STORE_KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
 var sAutoBackupMode: Boolean
-  get() = ApplicationBase.instance.store().get(STORE_KEY_AUTO_BACKUP_MODE, false)
-  set(value) = ApplicationBase.instance.store().put(STORE_KEY_AUTO_BACKUP_MODE, value)
+  get() = sAppPreferences.get(STORE_KEY_AUTO_BACKUP_MODE, false)
+  set(value) = sAppPreferences.put(STORE_KEY_AUTO_BACKUP_MODE, value)
 
 class NoteExporter() {
 
@@ -72,7 +72,7 @@ class NoteExporter() {
       if (!sAutoBackupMode) {
         return@execute
       }
-      val lastBackup = ApplicationBase.instance.store().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
+      val lastBackup = sAppPreferences.get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
       val lastTimestamp = notesDb.getLastTimestamp()
       if (lastBackup + AUTO_BACKUP_INTERVAL_MS >= lastTimestamp) {
         return@execute
@@ -84,7 +84,7 @@ class NoteExporter() {
         return@execute
       }
       saveToFile(exportFile, getExportContent())
-      ApplicationBase.instance.store()
+      sAppPreferences
           .put(KEY_AUTO_BACKUP_LAST_TIMESTAMP, System.currentTimeMillis())
     }
   }

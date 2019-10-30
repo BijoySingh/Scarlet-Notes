@@ -6,6 +6,7 @@ import android.util.Log
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
@@ -20,23 +21,23 @@ import kotlinx.coroutines.launch
 
 const val KEY_INTERNAL_LOG_TRACES_TO_NOTE = "internal_log_traces_to_note"
 var sInternalLogTracesToNote: Boolean
-  get() = instance.store().get(KEY_INTERNAL_LOG_TRACES_TO_NOTE, false)
-  set(value) = instance.store().put(KEY_INTERNAL_LOG_TRACES_TO_NOTE, value)
+  get() = sAppPreferences.get(KEY_INTERNAL_LOG_TRACES_TO_NOTE, false)
+  set(value) = sAppPreferences.put(KEY_INTERNAL_LOG_TRACES_TO_NOTE, value)
 
 const val KEY_INTERNAL_SHOW_TRACES_IN_SHEET = "internal_show_traces_in_sheet"
 var sInternalShowTracesInSheet: Boolean
-  get() = instance.store().get(KEY_INTERNAL_SHOW_TRACES_IN_SHEET, false)
-  set(value) = instance.store().put(KEY_INTERNAL_SHOW_TRACES_IN_SHEET, value)
+  get() = sAppPreferences.get(KEY_INTERNAL_SHOW_TRACES_IN_SHEET, false)
+  set(value) = sAppPreferences.put(KEY_INTERNAL_SHOW_TRACES_IN_SHEET, value)
 
 const val KEY_INTERNAL_THROW_ON_EXCEPTION = "internal_throw_on_exception"
 var sInternalThrowOnException: Boolean
-  get() = instance.store().get(KEY_INTERNAL_THROW_ON_EXCEPTION, false)
-  set(value) = instance.store().put(KEY_INTERNAL_THROW_ON_EXCEPTION, value)
+  get() = sAppPreferences.get(KEY_INTERNAL_THROW_ON_EXCEPTION, false)
+  set(value) = sAppPreferences.put(KEY_INTERNAL_THROW_ON_EXCEPTION, value)
 
 const val KEY_INTERNAL_THROWN_EXCEPTION_COUNT = "internal_thrown_exception_count"
 var sInternalThrownExceptionCount: Int
-  get() = instance.store().get(KEY_INTERNAL_THROWN_EXCEPTION_COUNT, 0)
-  set(value) = instance.store().put(KEY_INTERNAL_THROWN_EXCEPTION_COUNT, value)
+  get() = sAppPreferences.get(KEY_INTERNAL_THROWN_EXCEPTION_COUNT, 0)
+  set(value) = sAppPreferences.put(KEY_INTERNAL_THROWN_EXCEPTION_COUNT, value)
 
 /**
  * Throws in debug builds and stores the log trace to a fixed note in case of 'internal debug mode'.

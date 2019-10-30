@@ -24,16 +24,12 @@ import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.support.utils.Flavor
 
-const val USER_PREFERENCES_STORE_NAME = "USER_PREFERENCES";
-const val USER_PREFERENCES_VERSION = 1;
-
 open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   val db = AppDatabase.createDatabase(context)
 
   val notesProvider = NotesProvider()
   val tagsProvider = TagsProvider()
   val foldersProvider = FoldersProvider()
-  val store = VersionedStore.get(context, USER_PREFERENCES_STORE_NAME, USER_PREFERENCES_VERSION)
 
   override fun database(): AppDatabase = db
 
@@ -63,6 +59,4 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   override fun startListener(activity: AppCompatActivity) {}
 
   override fun appFlavor(): Flavor = Flavor.NONE
-
-  override fun store(): Store = store
 }

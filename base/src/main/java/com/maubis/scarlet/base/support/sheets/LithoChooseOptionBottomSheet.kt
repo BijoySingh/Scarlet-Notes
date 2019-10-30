@@ -13,6 +13,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.specs.RoundIcon
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -27,8 +28,7 @@ object ChooseOptionItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop option: LithoChooseOptionsItem): Component {
-    val theme = ApplicationBase.sAppTheme
-    val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
+    val titleColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     val selectedColor = context.getColor(R.color.colorAccent)
 
     val row = Row.create(context)

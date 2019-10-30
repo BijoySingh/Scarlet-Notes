@@ -10,6 +10,7 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.export.support.ExternalFolderSync
 import com.maubis.scarlet.base.export.support.sExternalFolderSync
@@ -39,21 +40,21 @@ class ExternalFolderSyncBottomSheet : LithoBottomSheet() {
             .textSizeRes(R.dimen.font_size_large)
             .textRes(R.string.import_export_layout_folder_sync_description)
             .paddingDip(YogaEdge.HORIZONTAL, 20f)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(separatorSpec(componentContext).alpha(0.5f))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_xlarge)
             .typeface(FONT_MONSERRAT)
             .textRes(R.string.import_export_layout_folder_sync_folder)
             .paddingDip(YogaEdge.HORIZONTAL, 20f)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECTION_HEADER)))
+            .textColor(sAppTheme.get(ThemeColorType.SECTION_HEADER)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_large)
             .text(sFolderSyncPath)
             .typeface(Typeface.MONOSPACE)
             .paddingDip(YogaEdge.HORIZONTAL, 20f)
             .paddingDip(YogaEdge.VERTICAL, 8f)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(separatorSpec(componentContext).alpha(0.5f))
 
     getOptions().forEach {

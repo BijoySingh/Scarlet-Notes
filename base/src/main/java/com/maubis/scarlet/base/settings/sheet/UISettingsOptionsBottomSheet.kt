@@ -6,6 +6,8 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.MainActivityActions
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.performAction
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet.Companion.getSortingState
@@ -24,7 +26,7 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
     options.add(LithoOptionsItem(
         title = R.string.home_option_theme_color,
         subtitle = R.string.home_option_theme_color_subtitle,
-        icon = if (ApplicationBase.sAppTheme.isNightTheme()) R.drawable.night_mode_white_48dp else R.drawable.ic_action_day_mode,
+        icon = if (sAppTheme.isNightTheme()) R.drawable.night_mode_white_48dp else R.drawable.ic_action_day_mode,
         listener = {
           activity.performAction(MainActivityActions.COLOR_PICKER)
         }
@@ -128,15 +130,15 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
     }
 
     var useGridView: Boolean
-      get() = ApplicationBase.instance.store().get(KEY_LIST_VIEW, true)
-      set(isGrid) = ApplicationBase.instance.store().put(KEY_LIST_VIEW, isGrid)
+      get() = sAppPreferences.get(KEY_LIST_VIEW, true)
+      set(isGrid) = sAppPreferences.put(KEY_LIST_VIEW, isGrid)
 
     var useNoteColorAsBackground: Boolean
-      get() = ApplicationBase.instance.store().get(KEY_NOTE_VIEWER_BG_COLOR, false)
-      set(value) = ApplicationBase.instance.store().put(KEY_NOTE_VIEWER_BG_COLOR, value)
+      get() = sAppPreferences.get(KEY_NOTE_VIEWER_BG_COLOR, false)
+      set(value) = sAppPreferences.put(KEY_NOTE_VIEWER_BG_COLOR, value)
 
     var sMarkdownEnabledHome: Boolean
-      get() = ApplicationBase.instance.store().get(KEY_MARKDOWN_HOME_ENABLED, true)
-      set(value) = ApplicationBase.instance.store().put(KEY_MARKDOWN_HOME_ENABLED, value)
+      get() = sAppPreferences.get(KEY_MARKDOWN_HOME_ENABLED, true)
+      set(value) = sAppPreferences.put(KEY_MARKDOWN_HOME_ENABLED, value)
   }
 }

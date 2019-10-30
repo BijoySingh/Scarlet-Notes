@@ -14,6 +14,7 @@ import com.bsk.floatingbubblelib.FloatingBubbleService
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.database.room.note.Note
@@ -36,7 +37,6 @@ class FloatingNoteService : FloatingBubbleService() {
   private lateinit var panel: View
 
   override fun getConfig(): FloatingBubbleConfig {
-    val theme = ApplicationBase.sAppTheme
     return FloatingBubbleConfig.Builder()
         .bubbleIcon(ContextCompat.getDrawable(context, R.drawable.app_icon))
         .removeBubbleIcon(ContextCompat.getDrawable(
@@ -47,8 +47,8 @@ class FloatingNoteService : FloatingBubbleService() {
         .paddingDp(8)
         .borderRadiusDp(4)
         .physicsEnabled(true)
-        .expandableColor(theme.get(ThemeColorType.BACKGROUND))
-        .triangleColor(theme.get(ThemeColorType.BACKGROUND))
+        .expandableColor(sAppTheme.get(ThemeColorType.BACKGROUND))
+        .triangleColor(sAppTheme.get(ThemeColorType.BACKGROUND))
         .gravity(Gravity.END)
         .expandableView(loadView())
         .removeBubbleAlpha(0.7f)
@@ -69,13 +69,12 @@ class FloatingNoteService : FloatingBubbleService() {
       stopSelf()
     }
 
-    val theme = ApplicationBase.sAppTheme
     val rootView = getInflater().inflate(R.layout.layout_add_note_overlay, null)
 
     description = rootView.findViewById<View>(R.id.description) as TextView
     timestamp = rootView.findViewById<View>(R.id.timestamp) as TextView
 
-    description.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
+    description.setTextColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
 
     val noteItem = note!!
 
@@ -108,7 +107,7 @@ class FloatingNoteService : FloatingBubbleService() {
     }
 
     panel = rootView.findViewById(R.id.panel_layout)
-    panel.setBackgroundColor(theme.get(ThemeColorType.BACKGROUND))
+    panel.setBackgroundColor(sAppTheme.get(ThemeColorType.BACKGROUND))
 
     setNote(noteItem)
     return rootView

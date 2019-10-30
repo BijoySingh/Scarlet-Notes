@@ -3,6 +3,8 @@ package com.maubis.scarlet.base.support.database
 import android.content.Context
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteMeta
 import com.maubis.scarlet.base.core.note.Reminder
@@ -30,9 +32,9 @@ class Migrator(val context: Context) {
 
   fun start() {
     runTask(KEY_MIGRATE_THEME) {
-      val isNightMode = ApplicationBase.instance.store().get(KEY_NIGHT_THEME, true)
+      val isNightMode = sAppPreferences.get(KEY_NIGHT_THEME, true)
       sAppThemeLabel = if (isNightMode) Theme.DARK.name else Theme.LIGHT.name
-      ApplicationBase.sAppTheme.notifyChange(context)
+      sAppTheme.notifyChange(context)
     }
     runTask(key = KEY_MIGRATE_REMINDERS) {
       val notes = notesDb.getAll()
@@ -64,7 +66,7 @@ class Migrator(val context: Context) {
         getLastUsedAppVersionCode() == 0,
         KEY_MIGRATE_DEFAULT_VALUES) {
       sAppThemeLabel = Theme.DARK.name
-      ApplicationBase.instance.store().put(KEY_LIST_VIEW, true)
+      sAppPreferences.put(KEY_LIST_VIEW, true)
     }
 
     runTask(KEY_MIGRATE_TO_GDRIVE_DATABASE) {
@@ -84,7 +86,7 @@ class Migrator(val context: Context) {
   }
 
   private fun runTask(key: String, task: () -> Unit) {
-    if (ApplicationBase.instance.store().get(key, false)) {
+    if (sAppPreferences.get(key, false)) {
       return
     }
 
@@ -93,7 +95,7 @@ class Migrator(val context: Context) {
     } catch (exception: Exception) {
       maybeThrow(exception)
     }
-    ApplicationBase.instance.store().put(key, true)
+    sAppPreferences.put(key, true)
   }
 
   private fun runTaskIf(condition: Boolean, key: String, task: () -> Unit) {

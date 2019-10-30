@@ -8,6 +8,7 @@ import com.github.bijoysingh.starter.util.ToastHelper
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.folderSync
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
@@ -26,16 +27,16 @@ const val KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED = "external_folder_sync_backup_
 const val KEY_EXTERNAL_FOLDER_SYNC_PATH = "external_folder_sync_path"
 
 var sExternalFolderSync: Boolean
-  get() = ApplicationBase.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, false)
-  set(value) = ApplicationBase.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, value)
+  get() = sAppPreferences.get(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, false)
+  set(value) = sAppPreferences.put(KEY_EXTERNAL_FOLDER_SYNC_ENABLED, value)
 
 var sFolderSyncPath: String
-  get() = ApplicationBase.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_PATH, "$NOTES_EXPORT_FOLDER/Sync/")
-  set(value) = ApplicationBase.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_PATH, value)
+  get() = sAppPreferences.get(KEY_EXTERNAL_FOLDER_SYNC_PATH, "$NOTES_EXPORT_FOLDER/Sync/")
+  set(value) = sAppPreferences.put(KEY_EXTERNAL_FOLDER_SYNC_PATH, value)
 
 var sFolderSyncBackupLocked: Boolean
-  get() = ApplicationBase.instance.store().get(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, true)
-  set(value) = ApplicationBase.instance.store().put(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, value)
+  get() = sAppPreferences.get(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, true)
+  set(value) = sAppPreferences.put(KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED, value)
 
 object ExternalFolderSync {
 

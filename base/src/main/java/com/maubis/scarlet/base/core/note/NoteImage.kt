@@ -67,7 +67,7 @@ class NoteImage(context: Context) {
         return@launch
       }
 
-      val bitmap = ApplicationBase.sImageCache.loadFromCache(file)
+      val bitmap = ApplicationBase.sAppImageCache.loadFromCache(file)
       if (bitmap === null) {
         deleteIfExist(file)
         GlobalScope.launch(Dispatchers.Main) {
@@ -88,8 +88,8 @@ class NoteImage(context: Context) {
                                    image: ImageView,
                                    callback: ImageLoadCallback? = null) {
     GlobalScope.launch {
-      val thumbnailFile = ApplicationBase.sImageCache.thumbnailFile(noteUUID, imageUuid)
-      val persistentFile = ApplicationBase.sImageCache.persistentFile(noteUUID, imageUuid)
+      val thumbnailFile = ApplicationBase.sAppImageCache.thumbnailFile(noteUUID, imageUuid)
+      val persistentFile = ApplicationBase.sAppImageCache.persistentFile(noteUUID, imageUuid)
 
       if (!persistentFile.exists()) {
         GlobalScope.launch(Dispatchers.Main) {
@@ -100,7 +100,7 @@ class NoteImage(context: Context) {
       }
 
       if (thumbnailFile.exists()) {
-        val bitmap = ApplicationBase.sImageCache.loadFromCache(thumbnailFile)
+        val bitmap = ApplicationBase.sAppImageCache.loadFromCache(thumbnailFile)
         if (bitmap === null) {
           deleteIfExist(thumbnailFile)
           GlobalScope.launch(Dispatchers.Main) {
@@ -117,7 +117,7 @@ class NoteImage(context: Context) {
         return@launch
       }
 
-      val persistentBitmap = ApplicationBase.sImageCache.loadFromCache(persistentFile)
+      val persistentBitmap = ApplicationBase.sAppImageCache.loadFromCache(persistentFile)
       if (persistentBitmap === null) {
         deleteIfExist(persistentFile)
         GlobalScope.launch(Dispatchers.Main) {
@@ -127,7 +127,7 @@ class NoteImage(context: Context) {
         return@launch
       }
 
-      val compressedBitmap = ApplicationBase.sImageCache.saveThumbnail(thumbnailFile, persistentBitmap)
+      val compressedBitmap = ApplicationBase.sAppImageCache.saveThumbnail(thumbnailFile, persistentBitmap)
       GlobalScope.launch(Dispatchers.Main) {
         image.visibility = View.VISIBLE
         image.setImageBitmap(compressedBitmap)

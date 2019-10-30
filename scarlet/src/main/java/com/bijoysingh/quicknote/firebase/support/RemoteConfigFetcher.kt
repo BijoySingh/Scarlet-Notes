@@ -9,6 +9,7 @@ import com.android.volley.toolbox.Volley
 import com.bijoysingh.quicknote.BuildConfig
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher
 import com.maubis.scarlet.base.config.remote.RemoteConfig
 import com.maubis.scarlet.base.support.utils.Flavor
@@ -22,7 +23,7 @@ const val KEY_RC_FULL_VERSION = "KEY_RC_FULL_VERSION"
 
 class RemoteConfigFetcher() : IRemoteConfigFetcher {
   override fun setup(context: Context) {
-    val lastFetched = ApplicationBase.instance.store().get(KEY_REMOTE_CONFIG_FETCH_TIME, 0L)
+    val lastFetched = sAppPreferences.get(KEY_REMOTE_CONFIG_FETCH_TIME, 0L)
     if (System.currentTimeMillis() > lastFetched + REMOTE_CONFIG_REFETCH_TIME_MS) {
       fetchConfig(context)
     }
@@ -30,8 +31,8 @@ class RemoteConfigFetcher() : IRemoteConfigFetcher {
 
   override fun isLatestVersion(): Boolean {
     val latestVersion = when (ApplicationBase.instance.appFlavor()) {
-      Flavor.PRO -> ApplicationBase.instance.store().get(KEY_RC_FULL_VERSION, 0)
-      Flavor.LITE -> ApplicationBase.instance.store().get(KEY_RC_LITE_VERSION, 0)
+      Flavor.PRO -> sAppPreferences.get(KEY_RC_FULL_VERSION, 0)
+      Flavor.LITE -> sAppPreferences.get(KEY_RC_LITE_VERSION, 0)
       else -> 0
     }
     return BuildConfig.VERSION_CODE >= latestVersion
@@ -56,11 +57,11 @@ class RemoteConfigFetcher() : IRemoteConfigFetcher {
       return
     }
 
-    ApplicationBase.instance.store().put(KEY_REMOTE_CONFIG_FETCH_TIME, System.currentTimeMillis())
+    sAppPreferences.put(KEY_REMOTE_CONFIG_FETCH_TIME, System.currentTimeMillis())
     try {
       val config = Gson().fromJson<RemoteConfig>(response, RemoteConfig::class.java)
-      ApplicationBase.instance.store().put(KEY_RC_LITE_VERSION, config.rc_lite_production_version ?: 0)
-      ApplicationBase.instance.store().put(KEY_RC_FULL_VERSION, config.rc_full_production_version ?: 0)
+      sAppPreferences.put(KEY_RC_LITE_VERSION, config.rc_lite_production_version ?: 0)
+      sAppPreferences.put(KEY_RC_FULL_VERSION, config.rc_full_production_version ?: 0)
     } catch (exception: Exception) {
       maybeThrow(exception)
       return

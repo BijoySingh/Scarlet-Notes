@@ -13,6 +13,7 @@ import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 
 abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
 
@@ -45,7 +46,7 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
   abstract fun getBackgroundView(): Int
 
   fun resetBackground(dialog: Dialog) {
-    val backgroundColor = ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND)
+    val backgroundColor = sAppTheme.get(ThemeColorType.BACKGROUND)
     val containerLayout = dialog.findViewById<View>(getBackgroundView())
     containerLayout.setBackgroundColor(backgroundColor)
     for (viewId in getBackgroundCardViewIds()) {
@@ -56,8 +57,8 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
 
   open fun getOptionsTitleColor(selected: Boolean): Int {
     val colorResource = when {
-      ApplicationBase.sAppTheme.isNightTheme() && selected -> R.color.material_blue_300
-      ApplicationBase.sAppTheme.isNightTheme() -> R.color.light_secondary_text
+      sAppTheme.isNightTheme() && selected -> R.color.material_blue_300
+      sAppTheme.isNightTheme() -> R.color.light_secondary_text
       selected -> R.color.material_blue_700
       else -> R.color.dark_secondary_text
     }
@@ -66,8 +67,8 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
 
   open fun getOptionsSubtitleColor(selected: Boolean): Int {
     val colorResource = when {
-      ApplicationBase.sAppTheme.isNightTheme() && selected -> R.color.material_blue_200
-      ApplicationBase.sAppTheme.isNightTheme() -> R.color.light_tertiary_text
+      sAppTheme.isNightTheme() && selected -> R.color.material_blue_200
+      sAppTheme.isNightTheme() -> R.color.light_tertiary_text
       selected -> R.color.material_blue_500
       else -> R.color.dark_tertiary_text
     }

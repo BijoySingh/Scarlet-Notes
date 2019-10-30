@@ -13,6 +13,7 @@ import com.github.bijoysingh.starter.util.ToastHelper
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.export.support.*
 import com.maubis.scarlet.base.support.sheets.*
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
@@ -52,7 +53,7 @@ class ExportNotesBottomSheet : LithoBottomSheet() {
             .text(filenameRender)
             .typeface(Typeface.MONOSPACE)
             .paddingDip(YogaEdge.HORIZONTAL, 20f)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(separatorSpec(componentContext).alpha(0.5f))
 
     getOptions(componentContext).forEach {

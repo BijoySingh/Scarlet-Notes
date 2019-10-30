@@ -301,7 +301,7 @@ fun Note.hasImages(): Boolean {
 fun Note.shareImages(context: Context) {
   val imageFormats = getFormats().filter { it.formatType == FormatType.IMAGE }
   val bitmaps = imageFormats
-      .map { ApplicationBase.noteImagesFolder.getFile(uuid, it.text) }
+      .map { ApplicationBase.sAppImageStorage.getFile(uuid, it.text) }
       .filter { it.exists() }
       .map { BitmapHelper.loadFromFile(it) }
       .filterNotNull()

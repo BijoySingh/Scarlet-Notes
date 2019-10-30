@@ -26,7 +26,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.main.recycler.KEY_FORCE_SHOW_SIGN_IN
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.maybeThrow
@@ -138,7 +138,7 @@ class FirebaseLoginActivity : ThemedActivity() {
       return
     }
 
-    ApplicationBase.instance.store().put(KEY_FORCE_SHOW_SIGN_IN, true)
+    sAppPreferences.put(KEY_FORCE_SHOW_SIGN_IN, true)
     setButton(false)
     initFirebaseDatabase(context, user.uid)
     finish()

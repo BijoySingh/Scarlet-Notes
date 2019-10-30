@@ -13,6 +13,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -27,7 +28,7 @@ object AppLockViewSpec {
                @Prop onTextChange: (String) -> Unit,
                @Prop onClick: () -> Unit): Component {
     return Column.create(context)
-        .backgroundColor(ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND))
+        .backgroundColor(sAppTheme.get(ThemeColorType.BACKGROUND))
         .child(AppLockContentView.create(context)
             .fingerprintEnabled(fingerprintEnabled)
             .onTextChange(onTextChange)
@@ -78,21 +79,21 @@ object AppLockContentViewSpec {
       else -> R.string.app_lock_details_no_fingerprint
     }
     val editBackground = when {
-      ApplicationBase.sAppTheme.isNightTheme() -> R.drawable.light_secondary_rounded_bg
+      sAppTheme.isNightTheme() -> R.drawable.light_secondary_rounded_bg
       else -> R.drawable.secondary_rounded_bg
     }
 
     return Column.create(context)
         .paddingDip(YogaEdge.ALL, 16f)
-        .backgroundColor(ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND))
+        .backgroundColor(sAppTheme.get(ThemeColorType.BACKGROUND))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_xxlarge)
             .textRes(R.string.app_lock_title)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
             .typeface(CoreConfig.FONT_MONSERRAT_BOLD))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_large)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
             .textRes(description)
             .typeface(CoreConfig.FONT_MONSERRAT))
         .child(EmptySpec.create(context).flexGrow(1f))
@@ -106,7 +107,7 @@ object AppLockContentViewSpec {
             .inputType(InputType.TYPE_CLASS_NUMBER  or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
             .textAlignment(Layout.Alignment.ALIGN_CENTER)
             .typeface(CoreConfig.FONT_OPEN_SANS)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
             .paddingDip(YogaEdge.HORIZONTAL, 22f)
             .paddingDip(YogaEdge.VERTICAL, 6f)
             .imeOptions(EditorInfo.IME_ACTION_DONE)

@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import com.maubis.scarlet.base.MainActivity
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppImageStorage
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
@@ -72,7 +72,7 @@ class ShareToScarletRouterActivity : AppCompatActivity() {
         val temporaryImage = createTempFile()
         BitmapHelper.saveToFile(temporaryImage, bitmap)
 
-        images.add(noteImagesFolder.renameOrCopy(note, temporaryImage))
+        images.add(sAppImageStorage.renameOrCopy(note, temporaryImage))
         temporaryImage.delete()
       } catch (exception: Exception) {
       }

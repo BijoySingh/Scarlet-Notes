@@ -10,6 +10,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetButton
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -36,7 +37,7 @@ object BottomSheetBarSpec {
           .textSizeRes(R.dimen.font_size_large)
           .paddingDip(YogaEdge.VERTICAL, 6f)
           .paddingDip(YogaEdge.HORIZONTAL, 16f)
-          .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
+          .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
           .clickHandler(BottomSheetBar.onSecondaryClickEvent(context)))
     }
     row.child(EmptySpec.create(context).flexGrow(1f))
@@ -48,7 +49,7 @@ object BottomSheetBarSpec {
           .textSizeRes(R.dimen.font_size_large)
           .paddingDip(YogaEdge.VERTICAL, 6f)
           .paddingDip(YogaEdge.HORIZONTAL, 16f)
-          .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
+          .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
           .clickHandler(BottomSheetBar.onTertiaryClickEvent(context)))
     }
 

@@ -11,7 +11,7 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.noteImagesFolder
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppImageStorage
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.isNoteLockedButAppUnlocked
@@ -83,7 +83,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
     val isImageAvailable = !note.imageSource.isBlank()
     image.visibility = visibility(isImageAvailable)
     if (isImageAvailable) {
-      noteImagesFolder.loadThumbnailFileToImageView(note.note.uuid, note.imageSource, image)
+      sAppImageStorage.loadThumbnailFileToImageView(note.note.uuid, note.imageSource, image)
     }
   }
 

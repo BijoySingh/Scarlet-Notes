@@ -9,6 +9,7 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -28,7 +29,7 @@ class MarkdownHelpBottomSheet : LithoBottomSheet() {
               .textSizeRes(R.dimen.font_size_normal)
               .marginDip(YogaEdge.HORIZONTAL, 20f)
               .paddingDip(YogaEdge.VERTICAL, 4f)
-              .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT)))
+              .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT)))
     }
 
     return column.build()

@@ -16,6 +16,8 @@ import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.auth.IPendingUploadListener
 import com.maubis.scarlet.base.core.note.NoteState
@@ -98,7 +100,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     if (sAutomaticTheme) {
       setThemeFromSystem(this)
     }
-    ApplicationBase.sAppTheme.notifyChange(this)
+    sAppTheme.notifyChange(this)
 
     if (shouldShowWhatsNewSheet()) {
       openSheet(this, WhatsNewBottomSheet())
@@ -162,8 +164,8 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     val staggeredView = UISettingsOptionsBottomSheet.useGridView
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
-    val isMarkdownEnabled = ApplicationBase.instance.store().get(KEY_MARKDOWN_ENABLED, true)
-    val isMarkdownHomeEnabled = ApplicationBase.instance.store().get(KEY_MARKDOWN_HOME_ENABLED, true)
+    val isMarkdownEnabled = sAppPreferences.get(KEY_MARKDOWN_ENABLED, true)
+    val isMarkdownHomeEnabled = sAppPreferences.get(KEY_MARKDOWN_HOME_ENABLED, true)
     val adapterExtra = Bundle()
     adapterExtra.putBoolean(KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
     adapterExtra.putInt(STORE_KEY_LINE_COUNT, sNoteItemLineCount)
@@ -513,11 +515,9 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   override fun notifyThemeChange() {
     setSystemTheme()
-
-    val theme = ApplicationBase.sAppTheme
     containerLayoutMain.setBackgroundColor(getThemeColor())
 
-    val toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)
+    val toolbarIconColor = sAppTheme.get(ThemeColorType.TOOLBAR_ICON)
     deleteTrashIcon.setColorFilter(toolbarIconColor)
     deletesAutomatically.setTextColor(toolbarIconColor)
 

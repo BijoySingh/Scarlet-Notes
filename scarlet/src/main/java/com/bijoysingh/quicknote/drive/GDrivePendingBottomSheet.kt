@@ -17,6 +17,7 @@ import com.google.gson.Gson
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.data.getExportableNoteMeta
 import com.maubis.scarlet.base.note.getFullText
@@ -41,7 +42,7 @@ object PendingItemIconSpec {
   fun onCreate(context: ComponentContext,
                @Prop(resType = ResType.STRING) label: String,
                @Prop(resType = ResType.DRAWABLE) icon: Drawable): Component {
-    val secondaryColor = ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
+    val secondaryColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     return Row.create(context)
         .paddingDip(YogaEdge.HORIZONTAL, 8f)
         .paddingDip(YogaEdge.VERTICAL, 4f)
@@ -66,10 +67,9 @@ object PendingItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop option: PendingItem): Component {
-    val theme = ApplicationBase.sAppTheme
-    val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
-    val subtitleColor = theme.get(ThemeColorType.TERTIARY_TEXT)
-    val hintColor = theme.get(ThemeColorType.HINT_TEXT)
+    val titleColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
+    val subtitleColor = sAppTheme.get(ThemeColorType.TERTIARY_TEXT)
+    val hintColor = sAppTheme.get(ThemeColorType.HINT_TEXT)
 
     val uuid = option.state.uuid
     val info = option.info ?: "N/A"

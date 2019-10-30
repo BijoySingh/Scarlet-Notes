@@ -14,6 +14,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.database.room.folder.Folder
@@ -34,9 +35,8 @@ data class FolderOptionsItem(
 object FolderItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext, @Prop option: FolderOptionsItem): Component {
-    val theme = ApplicationBase.sAppTheme
-    val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
-    val selectedColor = when (theme.isNightTheme()) {
+    val titleColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
+    val selectedColor = when (sAppTheme.isNightTheme()) {
       true -> context.getColor(R.color.material_blue_400)
       false -> context.getColor(R.color.material_blue_700)
     }

@@ -13,6 +13,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
@@ -26,7 +27,7 @@ object FirebaseRemovalRootViewSpec {
       else -> R.string.firebase_removal_page_clear_button
     }
     return Column.create(context)
-        .backgroundColor(ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND))
+        .backgroundColor(sAppTheme.get(ThemeColorType.BACKGROUND))
         .child(VerticalScroll.create(context)
             .flexGrow(1f)
             .marginDip(YogaEdge.ALL, 8f)
@@ -65,15 +66,15 @@ object FirebaseRemovalContentViewSpec {
   fun onCreate(context: ComponentContext): Component {
     return Column.create(context)
         .paddingDip(YogaEdge.ALL, 16f)
-        .backgroundColor(ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND))
+        .backgroundColor(sAppTheme.get(ThemeColorType.BACKGROUND))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_xxlarge)
             .textRes(R.string.firebase_removal_page_login_title)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
             .typeface(CoreConfig.FONT_MONSERRAT_BOLD))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_large)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
             .textRes(R.string.firebase_removal_page_important_details)
             .typeface(CoreConfig.FONT_MONSERRAT))
         .child(Row.create(context)
@@ -95,7 +96,7 @@ object FirebaseRemovalContentViewSpec {
             .paddingDip(YogaEdge.BOTTOM, 10f)
             .paddingDip(YogaEdge.TOP, 20f)
             .textSizeRes(R.dimen.font_size_normal)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
             .textRes(R.string.firebase_removal_page_whats_next_details)
             .typeface(CoreConfig.FONT_MONSERRAT_BOLD))
         .child(Text.create(context)
@@ -104,7 +105,7 @@ object FirebaseRemovalContentViewSpec {
             .marginDip(YogaEdge.HORIZONTAL, 16f)
             .paddingDip(YogaEdge.ALL, 12f)
             .textSizeRes(R.dimen.font_size_normal)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
             .textRes(R.string.firebase_removal_page_remove_details)
             .typeface(CoreConfig.FONT_MONSERRAT))
         .child(Text.create(context)
@@ -113,7 +114,7 @@ object FirebaseRemovalContentViewSpec {
             .marginDip(YogaEdge.HORIZONTAL, 16f)
             .paddingDip(YogaEdge.ALL, 12f)
             .textSizeRes(R.dimen.font_size_normal)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
             .textRes(R.string.firebase_removal_page_next_details)
             .typeface(CoreConfig.FONT_MONSERRAT))
         .build()

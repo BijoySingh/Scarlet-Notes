@@ -12,6 +12,7 @@ import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.settings.sheet.InternalSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
@@ -37,10 +38,10 @@ class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerView
       SettingsOptionsBottomSheet.openSheet((context as MainActivity))
     }
 
-    val titleColor = ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
+    val titleColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     toolbarTitle.setTextColor(titleColor)
 
-    val toolbarIconColor = ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
+    val toolbarIconColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     toolbarIconSearch.setColorFilter(toolbarIconColor)
     toolbarIconSettings.setColorFilter(toolbarIconColor)
 

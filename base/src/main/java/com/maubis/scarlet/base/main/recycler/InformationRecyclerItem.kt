@@ -7,6 +7,7 @@ import com.github.bijoysingh.starter.util.ToastHelper
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.main.activity.INTENT_KEY_DIRECT_NOTES_TRANSFER
@@ -51,7 +52,7 @@ fun getAppUpdateInformationItem(context: Context): InformationRecyclerItem {
 
 fun shouldShowReviewInformationItem(): Boolean {
   return probability(0.01f)
-      && !ApplicationBase.instance.store().get(KEY_INFO_RATE_AND_REVIEW, false)
+      && !sAppPreferences.get(KEY_INFO_RATE_AND_REVIEW, false)
 }
 
 fun getReviewInformationItem(context: Context): InformationRecyclerItem {
@@ -60,14 +61,14 @@ fun getReviewInformationItem(context: Context): InformationRecyclerItem {
       R.string.home_option_rate_and_review,
       R.string.home_option_rate_and_review_subtitle
   ) {
-    ApplicationBase.instance.store().put(KEY_INFO_RATE_AND_REVIEW, true)
+    sAppPreferences.put(KEY_INFO_RATE_AND_REVIEW, true)
     IntentUtils.openAppPlayStore(context)
   }
 }
 
 fun shouldShowThemeInformationItem(): Boolean {
   return probability(0.01f)
-      && !ApplicationBase.instance.store().get(KEY_THEME_OPTIONS, false)
+      && !sAppPreferences.get(KEY_THEME_OPTIONS, false)
 }
 
 fun getThemeInformationItem(activity: MainActivity): InformationRecyclerItem {
@@ -76,14 +77,14 @@ fun getThemeInformationItem(activity: MainActivity): InformationRecyclerItem {
       R.string.home_option_ui_experience,
       R.string.home_option_ui_experience_subtitle
   ) {
-    ApplicationBase.instance.store().put(KEY_THEME_OPTIONS, true)
+    sAppPreferences.put(KEY_THEME_OPTIONS, true)
     UISettingsOptionsBottomSheet.openSheet(activity)
   }
 }
 
 fun shouldShowBackupInformationItem(): Boolean {
   return probability(0.01f)
-      && !ApplicationBase.instance.store().get(KEY_BACKUP_OPTIONS, false)
+      && !sAppPreferences.get(KEY_BACKUP_OPTIONS, false)
 }
 
 fun getBackupInformationItem(activity: MainActivity): InformationRecyclerItem {
@@ -92,7 +93,7 @@ fun getBackupInformationItem(activity: MainActivity): InformationRecyclerItem {
       R.string.home_option_backup_options,
       R.string.home_option_backup_options_subtitle
   ) {
-    ApplicationBase.instance.store().put(KEY_BACKUP_OPTIONS, true)
+    sAppPreferences.put(KEY_BACKUP_OPTIONS, true)
     openSheet(activity, BackupSettingsOptionsBottomSheet())
   }
 }
@@ -100,7 +101,7 @@ fun getBackupInformationItem(activity: MainActivity): InformationRecyclerItem {
 
 fun shouldShowInstallProInformationItem(): Boolean {
   return probability(0.01f)
-      && ApplicationBase.instance.store().get(KEY_INFO_INSTALL_PRO_v2, 0) < KEY_INFO_INSTALL_PRO_MAX_COUNT
+      && sAppPreferences.get(KEY_INFO_INSTALL_PRO_v2, 0) < KEY_INFO_INSTALL_PRO_MAX_COUNT
       && !FlavorUtils.isPro()
 }
 
@@ -119,12 +120,12 @@ fun shouldShowSignInformationItem(context: Context): Boolean {
   if (ApplicationBase.instance.authenticator().isLoggedIn(context) || FlavorUtils.isOpenSource()) {
     return false
   }
-  if (ApplicationBase.instance.store().get(KEY_FORCE_SHOW_SIGN_IN, false)) {
-    ApplicationBase.instance.store().put(KEY_FORCE_SHOW_SIGN_IN, false)
+  if (sAppPreferences.get(KEY_FORCE_SHOW_SIGN_IN, false)) {
+    sAppPreferences.put(KEY_FORCE_SHOW_SIGN_IN, false)
     return true
   }
   return probability(0.01f)
-      && !ApplicationBase.instance.store().get(KEY_INFO_SIGN_IN, false)
+      && !sAppPreferences.get(KEY_INFO_SIGN_IN, false)
 }
 
 fun getSignInInformationItem(context: Context): InformationRecyclerItem {
@@ -139,15 +140,15 @@ fun getSignInInformationItem(context: Context): InformationRecyclerItem {
 }
 
 fun notifyProUpsellShown() {
-  val proUpsellCount = ApplicationBase.instance.store().get(KEY_INFO_INSTALL_PRO_v2, 0)
-  ApplicationBase.instance.store().put(KEY_INFO_INSTALL_PRO_v2, proUpsellCount + 1)
+  val proUpsellCount = sAppPreferences.get(KEY_INFO_INSTALL_PRO_v2, 0)
+  sAppPreferences.put(KEY_INFO_INSTALL_PRO_v2, proUpsellCount + 1)
 }
 
 
 fun shouldShowMigrateToProAppInformationItem(context: Context): Boolean {
   return FlavorUtils.isLite()
       && FlavorUtils.hasProAppInstalled(context)
-      && !ApplicationBase.instance.store().get(KEY_MIGRATE_TO_PRO_SUCCESS, false)
+      && !sAppPreferences.get(KEY_MIGRATE_TO_PRO_SUCCESS, false)
 }
 
 fun getMigrateToProAppInformationItem(context: Context): InformationRecyclerItem {
@@ -164,7 +165,7 @@ fun getMigrateToProAppInformationItem(context: Context): InformationRecyclerItem
           .setPackage(FlavorUtils.PRO_APP_PACKAGE_NAME)
       try {
         context.startActivity(intent)
-        ApplicationBase.instance.store().put(KEY_MIGRATE_TO_PRO_SUCCESS, true)
+        sAppPreferences.put(KEY_MIGRATE_TO_PRO_SUCCESS, true)
       } catch (exception: Exception) {
         ToastHelper.show(context, "Failed transferring notes to Scarlet Pro")
         maybeThrow(exception)

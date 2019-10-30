@@ -19,6 +19,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.support.ui.BottomSheetTabletDialog
@@ -36,7 +37,7 @@ fun getLithoBottomSheetTitle(context: ComponentContext): Text.Builder {
       .marginDip(YogaEdge.TOP, 18f)
       .marginDip(YogaEdge.BOTTOM, 8f)
       .textStyle(Typeface.BOLD)
-      .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
+      .textColor(sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
 }
 
 fun getLithoBottomSheetButton(context: ComponentContext): Text.Builder {
@@ -82,7 +83,7 @@ abstract class LithoBottomSheet : BottomSheetDialogFragment() {
   }
 
   fun getFullComponent(componentContext: ComponentContext, dialog: Dialog, childComponent: Component) {
-    val topHandle = when (ApplicationBase.sAppTheme.isNightTheme()) {
+    val topHandle = when (sAppTheme.isNightTheme()) {
       true -> R.drawable.bottom_sheet_top_handle_dark
       false -> R.drawable.bottom_sheet_top_handle_light
     }
@@ -118,7 +119,7 @@ abstract class LithoBottomSheet : BottomSheetDialogFragment() {
 
   abstract fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component
 
-  open fun backgroundColor(componentContext: ComponentContext) = ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND)
+  open fun backgroundColor(componentContext: ComponentContext) = sAppTheme.get(ThemeColorType.BACKGROUND)
 
   open fun topMargin() = 16f
 

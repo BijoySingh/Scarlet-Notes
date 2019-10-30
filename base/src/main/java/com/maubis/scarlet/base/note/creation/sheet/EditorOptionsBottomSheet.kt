@@ -4,7 +4,7 @@ import android.app.Dialog
 import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.settings.sheet.ColorPickerBottomSheet
 import com.maubis.scarlet.base.settings.sheet.ColorPickerDefaultController
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
@@ -19,28 +19,28 @@ const val STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES = "editor_move_handles"
 const val STORE_KEY_NOTE_DEFAULT_COLOR = "KEY_NOTE_DEFAULT_COLOR"
 
 var sEditorLiveMarkdown: Boolean
-  get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, true)
-  set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, value)
+  get() = sAppPreferences.get(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, true)
+  set(value) = sAppPreferences.put(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, value)
 
 var sEditorMoveChecked: Boolean
-  get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MOVE_CHECKED_ITEMS, true)
-  set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MOVE_CHECKED_ITEMS, value)
+  get() = sAppPreferences.get(STORE_KEY_EDITOR_OPTIONS_MOVE_CHECKED_ITEMS, true)
+  set(value) = sAppPreferences.put(STORE_KEY_EDITOR_OPTIONS_MOVE_CHECKED_ITEMS, value)
 
 var sEditorMarkdownDefault: Boolean
-  get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT, false)
-  set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT, value)
+  get() = sAppPreferences.get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT, false)
+  set(value) = sAppPreferences.put(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT, value)
 
 var sEditorMoveHandles: Boolean
-  get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES, true)
-  set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES, value)
+  get() = sAppPreferences.get(STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES, true)
+  set(value) = sAppPreferences.put(STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES, value)
 
 var sEditorMarkdownEnabled: Boolean
-  get() = ApplicationBase.instance.store().get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, true)
-  set(value) = ApplicationBase.instance.store().put(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, value)
+  get() = sAppPreferences.get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, true)
+  set(value) = sAppPreferences.put(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, value)
 
 var sNoteDefaultColor: Int
-  get() = ApplicationBase.instance.store().get(STORE_KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
-  set(value) = ApplicationBase.instance.store().put(STORE_KEY_NOTE_DEFAULT_COLOR, value)
+  get() = sAppPreferences.get(STORE_KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
+  set(value) = sAppPreferences.put(STORE_KEY_NOTE_DEFAULT_COLOR, value)
 
 class EditorOptionsBottomSheet : LithoOptionBottomSheet() {
 

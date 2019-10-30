@@ -13,6 +13,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_OPEN_SANS
 import com.maubis.scarlet.base.support.specs.RoundIcon
@@ -34,10 +35,9 @@ object OptionItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop option: LithoOptionsItem): Component {
-    val theme = ApplicationBase.sAppTheme
-    val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
-    val subtitleColor = theme.get(ThemeColorType.HINT_TEXT)
-    val selectedColor = theme.get(ThemeColorType.ACCENT_TEXT)
+    val titleColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
+    val subtitleColor = sAppTheme.get(ThemeColorType.HINT_TEXT)
+    val selectedColor = sAppTheme.get(ThemeColorType.ACCENT_TEXT)
 
     val subtitle = when (option.subtitle) {
       0 -> option.content
@@ -123,8 +123,7 @@ object OptionLabelItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop option: LithoLabelOptionsItem): Component {
-    val theme = ApplicationBase.sAppTheme
-    val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
+    val titleColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
 
     val row = Column.create(context)
         .widthPercent(100f)

@@ -10,6 +10,7 @@ import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
@@ -45,29 +46,29 @@ class AboutUsBottomSheet : LithoBottomSheet() {
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 16f)
             .text(aboutUsDetails)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_xlarge)
             .marginDip(YogaEdge.BOTTOM, 4f)
             .textRes(R.string.about_page_about_app)
             .typeface(CoreConfig.FONT_MONSERRAT)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECTION_HEADER)))
+            .textColor(sAppTheme.get(ThemeColorType.SECTION_HEADER)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 16f)
             .text(aboutAppDetails)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_xlarge)
             .marginDip(YogaEdge.BOTTOM, 4f)
             .textRes(R.string.about_page_app_version)
             .typeface(CoreConfig.FONT_MONSERRAT)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECTION_HEADER)))
+            .textColor(sAppTheme.get(ThemeColorType.SECTION_HEADER)))
         .child(Text.create(componentContext)
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 16f)
             .text(version)
-            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(R.string.about_page_rate)
             .onPrimaryClick {
