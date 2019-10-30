@@ -152,7 +152,7 @@ open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivit
     val bundle = Bundle()
     bundle.putBoolean(KEY_EDITABLE, editModeValue)
     bundle.putBoolean(KEY_MARKDOWN_ENABLED, ApplicationBase.instance.store().get(KEY_MARKDOWN_ENABLED, true))
-    bundle.putBoolean(KEY_NIGHT_THEME, ApplicationBase.instance.themeController().isNightTheme())
+    bundle.putBoolean(KEY_NIGHT_THEME, ApplicationBase.sAppTheme.isNightTheme())
     bundle.putInt(STORE_KEY_TEXT_SIZE, sEditorTextSize)
     bundle.putInt(KEY_NOTE_COLOR, currentNote?.color ?: sNoteDefaultColor)
     bundle.putString(INTENT_KEY_NOTE_ID, currentNote?.uuid ?: generateUUID())
@@ -257,7 +257,7 @@ open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivit
       return
     }
 
-    val theme = ApplicationBase.instance.themeController()
+    val theme = ApplicationBase.sAppTheme
     when {
       !useNoteColorAsBackground -> {
         colorConfig.backgroundColor = theme.get(ThemeColorType.BACKGROUND)

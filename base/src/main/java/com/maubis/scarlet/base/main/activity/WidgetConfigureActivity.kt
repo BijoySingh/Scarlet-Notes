@@ -2,7 +2,6 @@ package com.maubis.scarlet.base.main.activity
 
 import android.app.Activity
 import android.app.Application
-import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context

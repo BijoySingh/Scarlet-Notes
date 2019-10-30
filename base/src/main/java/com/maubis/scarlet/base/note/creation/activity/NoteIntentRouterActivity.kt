@@ -1,8 +1,8 @@
 package com.maubis.scarlet.base.note.creation.activity
 
 import android.net.Uri
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 
 class NoteIntentRouterActivity : AppCompatActivity() {

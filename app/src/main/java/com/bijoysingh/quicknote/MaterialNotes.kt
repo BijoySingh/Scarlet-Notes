@@ -9,7 +9,6 @@ class MaterialNotes : ApplicationBase() {
   override fun onCreate() {
     super.onCreate()
     ApplicationBase.instance = MaterialNoteConfig(this)
-    ApplicationBase.instance.themeController().setup(this)
     ExternalFolderSync.setup(this)
   }
 }

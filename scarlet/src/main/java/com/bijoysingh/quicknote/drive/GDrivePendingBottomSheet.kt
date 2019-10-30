@@ -24,7 +24,6 @@ import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.color
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.utils.DateFormatUtils
 import com.maubis.scarlet.base.support.utils.sDateFormat
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
@@ -42,7 +41,7 @@ object PendingItemIconSpec {
   fun onCreate(context: ComponentContext,
                @Prop(resType = ResType.STRING) label: String,
                @Prop(resType = ResType.DRAWABLE) icon: Drawable): Component {
-    val secondaryColor = instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
+    val secondaryColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     return Row.create(context)
         .paddingDip(YogaEdge.HORIZONTAL, 8f)
         .paddingDip(YogaEdge.VERTICAL, 4f)
@@ -67,7 +66,7 @@ object PendingItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop option: PendingItem): Component {
-    val theme = ApplicationBase.instance.themeController()
+    val theme = ApplicationBase.sAppTheme
     val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
     val subtitleColor = theme.get(ThemeColorType.TERTIARY_TEXT)
     val hintColor = theme.get(ThemeColorType.HINT_TEXT)

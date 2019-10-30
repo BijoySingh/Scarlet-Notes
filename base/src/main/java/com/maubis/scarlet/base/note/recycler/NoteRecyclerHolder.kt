@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.View
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.note.*
-
 import com.maubis.scarlet.base.note.actions.NoteOptionsBottomSheet
+import com.maubis.scarlet.base.note.copy
+import com.maubis.scarlet.base.note.edit
+import com.maubis.scarlet.base.note.share
+import com.maubis.scarlet.base.note.view
 import com.maubis.scarlet.base.security.sheets.openUnlockSheet
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 

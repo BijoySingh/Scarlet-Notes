@@ -7,7 +7,6 @@ import android.os.Handler
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity.Companion.firebaseForgetMe
 import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity.Companion.forgettingInProcess
-import com.bijoysingh.quicknote.scarlet.sFirebaseKilled
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
@@ -16,9 +15,6 @@ import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.common.api.Scope
-import com.google.api.services.drive.DriveScopes
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import java.util.concurrent.atomic.AtomicBoolean

@@ -34,7 +34,7 @@ object CounterChooserSpec {
             .typeface(CoreConfig.FONT_MONSERRAT)
             .textSizeRes(R.dimen.font_size_xxxlarge)
             .paddingDip(YogaEdge.HORIZONTAL, 12f)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(bottomBarRoundIcon(context, ToolbarColorConfig())
             .iconRes(R.drawable.icon_more_counter)
             .onClick { onValueChange(Math.min(value + 1, maxValue)) })

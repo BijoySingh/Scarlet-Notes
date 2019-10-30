@@ -5,7 +5,10 @@ import android.content.Intent
 import com.bijoysingh.quicknote.Scarlet
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
 import com.bijoysingh.quicknote.database.RemoteDatabaseStateController
-import com.bijoysingh.quicknote.drive.*
+import com.bijoysingh.quicknote.drive.GDriveAuthenticator
+import com.bijoysingh.quicknote.drive.GDriveLoginActivity
+import com.bijoysingh.quicknote.drive.GDriveLogoutActivity
+import com.bijoysingh.quicknote.drive.GDrivePendingBottomSheet
 import com.bijoysingh.quicknote.firebase.activity.FirebaseRemovalActivity
 import com.bijoysingh.quicknote.firebase.activity.ForgetMeActivity
 import com.bijoysingh.quicknote.firebase.support.FirebaseAuthenticator

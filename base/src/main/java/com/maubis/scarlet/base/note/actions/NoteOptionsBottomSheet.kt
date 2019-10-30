@@ -1,13 +1,10 @@
 package com.maubis.scarlet.base.note.actions
 
 import android.app.Dialog
-import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ShortcutInfo
-import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.net.Uri
-import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.GridLayout
@@ -48,8 +45,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class NoteOptionsBottomSheet() : GridBottomSheetBase() {

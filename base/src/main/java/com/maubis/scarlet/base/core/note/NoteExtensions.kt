@@ -6,7 +6,6 @@ import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.support.utils.throwOrReturn
-import java.util.*
 
 fun Note.isUnsaved(): Boolean {
   return this.uid === null || this.uid == 0

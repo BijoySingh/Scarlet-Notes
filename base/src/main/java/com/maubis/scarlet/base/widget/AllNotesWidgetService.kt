@@ -10,7 +10,6 @@ import android.widget.RemoteViewsService
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
-import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.widget.sheet.getWidgetNoteText
 import com.maubis.scarlet.base.widget.sheet.getWidgetNotes

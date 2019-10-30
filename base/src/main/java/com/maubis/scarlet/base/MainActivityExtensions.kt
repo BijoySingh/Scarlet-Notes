@@ -47,7 +47,7 @@ fun MainActivity.performAction(action: MainActivityActions) {
         this.onThemeChange = { theme ->
           if (sAppTheme != theme.name) {
             sAppTheme = theme.name
-            ApplicationBase.instance.themeController().notifyChange(activity)
+            ApplicationBase.sAppTheme.notifyChange(activity)
             activity.startActivity(MainActivityActions.COLOR_PICKER.intent(activity))
             activity.finish()
           }

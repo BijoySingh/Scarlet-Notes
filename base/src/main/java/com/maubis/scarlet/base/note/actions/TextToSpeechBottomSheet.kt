@@ -34,10 +34,10 @@ class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
 
     val nonNullNote = note!!
     val title = dialog.findViewById<TextView>(R.id.options_title)
-    title.setTextColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    title.setTextColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
 
     val speakPlayPause = dialog.findViewById<ImageView>(R.id.speak_play_pause)
-    speakPlayPause.setColorFilter(ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_ICON))
+    speakPlayPause.setColorFilter(ApplicationBase.sAppTheme.get(ThemeColorType.TOOLBAR_ICON))
     speakPlayPause.setOnClickListener {
       val tts = textToSpeech
       if (tts === null) {

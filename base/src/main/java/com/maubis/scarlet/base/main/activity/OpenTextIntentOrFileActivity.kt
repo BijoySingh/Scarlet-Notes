@@ -142,15 +142,15 @@ class OpenTextIntentOrFileActivity : SecuredActivity() {
     val containerLayout = findViewById<View>(R.id.container_layout);
     containerLayout.setBackgroundColor(getThemeColor());
 
-    val toolbarIconColor = ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_ICON);
+    val toolbarIconColor = ApplicationBase.sAppTheme.get(ThemeColorType.TOOLBAR_ICON);
     backButton.setColorFilter(toolbarIconColor)
 
-    val textColor = ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
+    val textColor = ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     filename.setTextColor(textColor)
     title.setTextColor(textColor)
     content.setTextColor(textColor)
 
-    val actionColor = ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
+    val actionColor = ApplicationBase.sAppTheme.get(ThemeColorType.TOOLBAR_ICON)
     actionDone.setImageTint(actionColor)
     actionDone.setTextColor(actionColor)
   }

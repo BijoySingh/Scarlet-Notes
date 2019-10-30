@@ -3,7 +3,6 @@ package com.maubis.scarlet.base.core.note
 import android.app.NotificationManager
 import android.content.Context
 import android.os.AsyncTask
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
@@ -109,7 +108,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     notifyAllChanged(context)
     val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
     notificationManager?.cancel(note.uid)
-    ApplicationBase.instance.imageCache().deleteNote(note.uuid)
+    ApplicationBase.sImageCache.deleteNote(note.uuid)
   }
 
   protected fun onNoteUpdated(context: Context) {

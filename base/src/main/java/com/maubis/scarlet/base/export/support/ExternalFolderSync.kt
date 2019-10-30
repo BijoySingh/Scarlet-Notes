@@ -3,7 +3,6 @@ package com.maubis.scarlet.base.export.support
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
 import android.support.v4.content.ContextCompat
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.maubis.scarlet.base.R

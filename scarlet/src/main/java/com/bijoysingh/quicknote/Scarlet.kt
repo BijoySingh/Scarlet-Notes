@@ -1,7 +1,7 @@
 package com.bijoysingh.quicknote
 
-import com.bijoysingh.quicknote.drive.GDriveRemoteDatabase
 import com.bijoysingh.quicknote.database.RemoteDatabaseStateController
+import com.bijoysingh.quicknote.drive.GDriveRemoteDatabase
 import com.bijoysingh.quicknote.firebase.FirebaseRemoteDatabase
 import com.bijoysingh.quicknote.scarlet.ScarletConfig
 import com.github.bijoysingh.starter.prefs.Store
@@ -16,7 +16,6 @@ class Scarlet : ApplicationBase() {
     remoteConfig = Store.get(this, "gdrive_config")
 
     instance = ScarletConfig(this)
-    instance.themeController().setup(this)
     instance.authenticator().setup(this)
     instance.remoteConfigFetcher().setup(this)
     ExternalFolderSync.setup(this)

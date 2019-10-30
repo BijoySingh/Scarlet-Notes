@@ -14,7 +14,7 @@ class LithoCircleDrawable(color: Int, alpha: Int = 255, val showBorder: Boolean 
     this.mPaint.color = color
     this.mPaint.alpha = alpha
 
-    val isNightTheme = ApplicationBase.instance.themeController().isNightTheme()
+    val isNightTheme = ApplicationBase.sAppTheme.isNightTheme()
     this.mBorderPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     this.mBorderPaint.color = when {
       !showBorder -> Color.TRANSPARENT

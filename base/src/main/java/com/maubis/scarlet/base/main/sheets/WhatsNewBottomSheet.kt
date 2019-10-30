@@ -45,7 +45,7 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
             .marginDip(YogaEdge.BOTTOM, 16f)
             .textRes(R.string.whats_new_sheet_subtitle)
             .typeface(FONT_MONSERRAT)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(GridSectionView.create(componentContext)
             .maxLines(3)
             .numColumns(2)

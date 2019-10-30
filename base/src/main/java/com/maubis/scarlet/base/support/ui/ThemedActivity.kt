@@ -2,16 +2,11 @@ package com.maubis.scarlet.base.support.ui
 
 import android.content.Context
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.maubis.scarlet.base.BuildConfig
-import com.maubis.scarlet.base.MainActivityActions
 import com.maubis.scarlet.base.config.ApplicationBase
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.settings.sheet.sInternalEnableFullScreen
 import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import com.maubis.scarlet.base.support.utils.maybeThrow
@@ -26,7 +21,7 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    instance.themeController().register(this)
+    ApplicationBase.sAppTheme.register(this)
   }
 
   fun setSystemTheme(color: Int = getStatusBarColor()) {
@@ -45,7 +40,7 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
       return
     }
     setThemeFromSystem(this)
-    instance.themeController().notifyChange(this)
+    ApplicationBase.sAppTheme.notifyChange(this)
   }
 
   fun fullScreenView() {
@@ -75,7 +70,7 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
     if (OsVersionUtils.canSetStatusBarTheme()) {
       val view = window.decorView
       var flags = view.systemUiVisibility
-      flags = when (ApplicationBase.instance.themeController().isNightTheme()) {
+      flags = when (ApplicationBase.sAppTheme.isNightTheme()) {
         true -> flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
         false -> flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
       }
@@ -83,9 +78,9 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
     }
   }
 
-  fun getThemeColor(): Int = ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND)
+  fun getThemeColor(): Int = ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND)
 
-  fun getStatusBarColor(): Int = ApplicationBase.instance.themeController().get(ThemeColorType.STATUS_BAR)
+  fun getStatusBarColor(): Int = ApplicationBase.sAppTheme.get(ThemeColorType.STATUS_BAR)
 
   fun tryClosingTheKeyboard() {
     try {

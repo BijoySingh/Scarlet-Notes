@@ -2,7 +2,6 @@ package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
 import android.graphics.Color
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import com.facebook.litho.*
 import com.facebook.litho.annotations.LayoutSpec
@@ -12,7 +11,7 @@ import com.facebook.litho.annotations.Prop
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.support.sheets.*
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
@@ -105,7 +104,7 @@ class ThemeColorPickerBottomSheet : LithoBottomSheet() {
             sAutomaticTheme = !sAutomaticTheme
             if (sAutomaticTheme) {
               setThemeFromSystem(context)
-              onThemeChange(instance.themeController().get())
+              onThemeChange(ApplicationBase.sAppTheme.get())
             }
             reset(context, dialog)
           })

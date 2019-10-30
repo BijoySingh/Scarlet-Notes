@@ -22,9 +22,7 @@ import com.maubis.scarlet.base.database.room.AppDatabase
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
-import com.maubis.scarlet.base.support.ui.IThemeManager
 import com.maubis.scarlet.base.support.utils.Flavor
-import com.maubis.scarlet.base.support.utils.ImageCache
 
 abstract class CoreConfig(context: Context) {
 
@@ -54,8 +52,6 @@ abstract class CoreConfig(context: Context) {
 
   abstract fun folderActions(folder: Folder): IFolderActor
 
-  abstract fun themeController(): IThemeManager
-
   abstract fun remoteConfigFetcher(): IRemoteConfigFetcher
 
   abstract fun remoteDatabaseState(): IRemoteDatabaseState
@@ -65,8 +61,6 @@ abstract class CoreConfig(context: Context) {
   abstract fun appFlavor(): Flavor
 
   abstract fun store(): Store
-
-  abstract fun imageCache(): ImageCache
 
   companion object {
     val notesDb get() = instance.notesDatabase()

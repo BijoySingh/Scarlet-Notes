@@ -41,7 +41,7 @@ class InstallProUpsellBottomSheet : LithoBottomSheet() {
             .marginDip(YogaEdge.BOTTOM, 16f)
             .textRes(R.string.why_install_pro)
             .typeface(FONT_MONSERRAT)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(GridSectionView.create(componentContext)
             .maxLines(3)
             .numColumns(2)

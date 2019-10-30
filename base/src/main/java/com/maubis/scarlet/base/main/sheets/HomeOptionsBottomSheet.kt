@@ -37,7 +37,7 @@ class LithoTagOptionsItem(
 object TagItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext, @Prop option: LithoTagOptionsItem): Component {
-    val theme = ApplicationBase.instance.themeController()
+    val theme = ApplicationBase.sAppTheme
     val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
     val selectedColor = when (theme.isNightTheme()) {
       true -> context.getColor(R.color.material_blue_400)

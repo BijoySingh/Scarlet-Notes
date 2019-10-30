@@ -6,9 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import com.facebook.litho.Column
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
-import com.facebook.litho.widget.EmptyComponent
 import com.facebook.yoga.YogaEdge
-import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.note.getTagUUIDs

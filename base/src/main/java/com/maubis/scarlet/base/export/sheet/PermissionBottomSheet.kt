@@ -29,7 +29,7 @@ class PermissionBottomSheet : LithoBottomSheet() {
             .textSizeRes(R.dimen.font_size_large)
             .marginDip(YogaEdge.BOTTOM, 16f)
             .textRes(R.string.permission_layout_give_permission_details)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(R.string.permission_layout_give_permission_ok)
             .onPrimaryClick {

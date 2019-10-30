@@ -36,7 +36,7 @@ object BottomSheetBarSpec {
           .textSizeRes(R.dimen.font_size_large)
           .paddingDip(YogaEdge.VERTICAL, 6f)
           .paddingDip(YogaEdge.HORIZONTAL, 16f)
-          .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
+          .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
           .clickHandler(BottomSheetBar.onSecondaryClickEvent(context)))
     }
     row.child(EmptySpec.create(context).flexGrow(1f))
@@ -48,7 +48,7 @@ object BottomSheetBarSpec {
           .textSizeRes(R.dimen.font_size_large)
           .paddingDip(YogaEdge.VERTICAL, 6f)
           .paddingDip(YogaEdge.HORIZONTAL, 16f)
-          .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT))
+          .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
           .clickHandler(BottomSheetBar.onTertiaryClickEvent(context)))
     }
 

@@ -13,7 +13,6 @@ import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.export.activity.ImportNoteActivity
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.utils.DateFormatUtils
 import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.io.File
 
@@ -26,7 +25,7 @@ class FileImportViewHolder(context: Context, root: View)
   private val fileSize: TextView = findViewById(R.id.file_size)
 
   init {
-    val theme = ApplicationBase.instance.themeController()
+    val theme = ApplicationBase.sAppTheme
     fileName.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
     filePath.setTextColor(theme.get(ThemeColorType.HINT_TEXT))
     fileDate.setTextColor(theme.get(ThemeColorType.TERTIARY_TEXT))
@@ -44,7 +43,7 @@ class FileImportViewHolder(context: Context, root: View)
       (context as ImportNoteActivity).select(item)
     }
     root.setBackgroundColor(
-        if (item.selected) ApplicationBase.instance.themeController().get(
+        if (item.selected) ApplicationBase.sAppTheme.get(
             context, R.color.material_grey_100, R.color.dark_hint_text) else Color.TRANSPARENT)
   }
 

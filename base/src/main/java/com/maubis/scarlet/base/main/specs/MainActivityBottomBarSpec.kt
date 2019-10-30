@@ -5,7 +5,6 @@ import android.content.pm.ShortcutInfo
 import android.graphics.Color
 import android.graphics.drawable.Icon
 import android.net.Uri
-import android.os.Build
 import android.text.Layout
 import com.facebook.litho.*
 import com.facebook.litho.annotations.LayoutSpec
@@ -19,7 +18,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT_MEDIUM
 import com.maubis.scarlet.base.core.folder.FolderBuilder
@@ -205,8 +204,8 @@ object MainActivitySyncingNowSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext, @Prop isSyncHappening: Boolean): Component {
     val colorConfig = ToolbarColorConfig(
-        toolbarBackgroundColor = instance.themeController().get(ThemeColorType.TOOLBAR_BACKGROUND),
-        toolbarIconColor = instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
+        toolbarBackgroundColor = ApplicationBase.sAppTheme.get(ThemeColorType.TOOLBAR_BACKGROUND),
+        toolbarIconColor = ApplicationBase.sAppTheme.get(ThemeColorType.TOOLBAR_ICON)
     )
     val syncText = when (isSyncHappening) {
       true -> R.string.home_syncing_top_layout

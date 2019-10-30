@@ -60,7 +60,7 @@ class AlertBottomSheet : LithoBottomSheet() {
             .textSizeRes(R.dimen.font_size_large)
             .textRes(config.description)
             .marginDip(YogaEdge.BOTTOM, 16f)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(config.positiveText)
             .onPrimaryClick {

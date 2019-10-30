@@ -52,7 +52,7 @@ class ExportNotesBottomSheet : LithoBottomSheet() {
             .text(filenameRender)
             .typeface(Typeface.MONOSPACE)
             .paddingDip(YogaEdge.HORIZONTAL, 20f)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(separatorSpec(componentContext).alpha(0.5f))
 
     getOptions(componentContext).forEach {

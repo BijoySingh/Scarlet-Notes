@@ -13,7 +13,7 @@ class CircleDrawable(color: Int, showBorder: Boolean = true) : Drawable() {
     this.paint = Paint(Paint.ANTI_ALIAS_FLAG)
     this.paint.color = color
 
-    val isNightTheme = ApplicationBase.instance.themeController().isNightTheme()
+    val isNightTheme = ApplicationBase.sAppTheme.isNightTheme()
     this.borderPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     this.borderPaint.color = when {
       !showBorder -> Color.TRANSPARENT

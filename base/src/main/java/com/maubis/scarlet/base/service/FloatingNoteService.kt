@@ -36,7 +36,7 @@ class FloatingNoteService : FloatingBubbleService() {
   private lateinit var panel: View
 
   override fun getConfig(): FloatingBubbleConfig {
-    val theme = ApplicationBase.instance.themeController()
+    val theme = ApplicationBase.sAppTheme
     return FloatingBubbleConfig.Builder()
         .bubbleIcon(ContextCompat.getDrawable(context, R.drawable.app_icon))
         .removeBubbleIcon(ContextCompat.getDrawable(
@@ -69,7 +69,7 @@ class FloatingNoteService : FloatingBubbleService() {
       stopSelf()
     }
 
-    val theme = ApplicationBase.instance.themeController()
+    val theme = ApplicationBase.sAppTheme
     val rootView = getInflater().inflate(R.layout.layout_add_note_overlay, null)
 
     description = rootView.findViewById<View>(R.id.description) as TextView

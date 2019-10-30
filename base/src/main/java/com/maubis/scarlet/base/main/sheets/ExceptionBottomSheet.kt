@@ -1,6 +1,8 @@
 package com.maubis.scarlet.base.main.sheets
 
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import com.facebook.litho.Column
 import com.facebook.litho.Component
@@ -14,8 +16,6 @@ import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import android.content.Intent
-import android.net.Uri
 
 class ExceptionBottomSheet : LithoBottomSheet() {
   var exception: Exception = RuntimeException()
@@ -32,7 +32,7 @@ class ExceptionBottomSheet : LithoBottomSheet() {
             .textSizeRes(R.dimen.font_size_small)
             .text(Markdown.render("```\n${Log.getStackTraceString(exception)}\n```", true))
             .marginDip(YogaEdge.BOTTOM, 16f)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)))
+            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
         .child(BottomSheetBar.create(componentContext)
             .primaryActionRes(R.string.exception_sheet_crash_app)
             .onPrimaryClick {

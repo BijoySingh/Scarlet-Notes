@@ -41,8 +41,8 @@ fun separatorSpec(context: ComponentContext): Component.Builder<*> {
 
 
 data class ToolbarColorConfig(
-    var toolbarBackgroundColor: Int = ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_BACKGROUND),
-    var toolbarIconColor: Int = ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_ICON))
+    var toolbarBackgroundColor: Int = ApplicationBase.sAppTheme.get(ThemeColorType.TOOLBAR_BACKGROUND),
+    var toolbarIconColor: Int = ApplicationBase.sAppTheme.get(ThemeColorType.TOOLBAR_ICON))
 
 
 fun bottomBarRoundIcon(context: ComponentContext, colorConfig: ToolbarColorConfig): RoundIcon.Builder {

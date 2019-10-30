@@ -46,7 +46,7 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
     val tertiaryTextColor: Int
     val iconColor: Int
     val hintTextColor: Int
-    val theme = ApplicationBase.instance.themeController()
+    val theme = ApplicationBase.sAppTheme
     val isLightBackground = ColorUtil.isLightColored(noteColor)
     val linkColor: Int
     when {
@@ -90,7 +90,7 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
           }
         }(),
         backgroundColor = when (data.formatType) {
-          FormatType.CODE, FormatType.IMAGE -> ApplicationBase.instance.themeController().get(context, R.color.code_light, R.color.code_dark)
+          FormatType.CODE, FormatType.IMAGE -> ApplicationBase.sAppTheme.get(context, R.color.code_light, R.color.code_dark)
           else -> ContextCompat.getColor(context, R.color.transparent)
         },
         secondaryTextColor = secondaryTextColor,

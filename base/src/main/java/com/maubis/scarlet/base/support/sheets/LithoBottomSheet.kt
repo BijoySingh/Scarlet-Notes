@@ -36,7 +36,7 @@ fun getLithoBottomSheetTitle(context: ComponentContext): Text.Builder {
       .marginDip(YogaEdge.TOP, 18f)
       .marginDip(YogaEdge.BOTTOM, 8f)
       .textStyle(Typeface.BOLD)
-      .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.PRIMARY_TEXT))
+      .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
 }
 
 fun getLithoBottomSheetButton(context: ComponentContext): Text.Builder {
@@ -82,7 +82,7 @@ abstract class LithoBottomSheet : BottomSheetDialogFragment() {
   }
 
   fun getFullComponent(componentContext: ComponentContext, dialog: Dialog, childComponent: Component) {
-    val topHandle = when (ApplicationBase.instance.themeController().isNightTheme()) {
+    val topHandle = when (ApplicationBase.sAppTheme.isNightTheme()) {
       true -> R.drawable.bottom_sheet_top_handle_dark
       false -> R.drawable.bottom_sheet_top_handle_light
     }
@@ -118,7 +118,7 @@ abstract class LithoBottomSheet : BottomSheetDialogFragment() {
 
   abstract fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component
 
-  open fun backgroundColor(componentContext: ComponentContext) = ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND)
+  open fun backgroundColor(componentContext: ComponentContext) = ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND)
 
   open fun topMargin() = 16f
 

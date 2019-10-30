@@ -3,7 +3,6 @@ package com.maubis.scarlet.base.support.ui
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
-import android.os.Build
 import android.support.v4.content.ContextCompat
 import com.github.bijoysingh.starter.util.DimensionManager
 import com.maubis.markdown.MarkdownConfig

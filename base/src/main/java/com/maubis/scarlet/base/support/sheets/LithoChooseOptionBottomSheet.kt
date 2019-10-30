@@ -27,7 +27,7 @@ object ChooseOptionItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop option: LithoChooseOptionsItem): Component {
-    val theme = ApplicationBase.instance.themeController()
+    val theme = ApplicationBase.sAppTheme
     val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
     val selectedColor = context.getColor(R.color.colorAccent)
 

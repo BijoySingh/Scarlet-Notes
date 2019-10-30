@@ -1,21 +1,19 @@
 package com.maubis.scarlet.base.security.activity
 
-import android.graphics.Color
 import android.text.InputType
 import android.text.Layout
-import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import com.facebook.litho.*
 import com.facebook.litho.annotations.*
-import com.facebook.litho.widget.*
-import com.facebook.litho.widget.Spinner.onClick
+import com.facebook.litho.widget.EditText
+import com.facebook.litho.widget.Image
+import com.facebook.litho.widget.Text
+import com.facebook.litho.widget.TextChangedEvent
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.security.sheets.PincodeSheetData
-import com.maubis.scarlet.base.security.sheets.PincodeSheetViewSpec
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.utils.getEditorActionListener

@@ -32,7 +32,7 @@ class Migrator(val context: Context) {
     runTask(KEY_MIGRATE_THEME) {
       val isNightMode = ApplicationBase.instance.store().get(KEY_NIGHT_THEME, true)
       sAppTheme = if (isNightMode) Theme.DARK.name else Theme.LIGHT.name
-      ApplicationBase.instance.themeController().notifyChange(context)
+      ApplicationBase.sAppTheme.notifyChange(context)
     }
     runTask(key = KEY_MIGRATE_REMINDERS) {
       val notes = notesDb.getAll()

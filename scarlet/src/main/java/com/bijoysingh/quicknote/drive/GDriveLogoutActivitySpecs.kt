@@ -26,7 +26,7 @@ object GDriveLogoutRootViewSpec {
       else -> R.string.google_drive_page_logout_button
     }
     return Column.create(context)
-        .backgroundColor(ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND))
+        .backgroundColor(ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND))
         .child(VerticalScroll.create(context)
             .flexGrow(1f)
             .marginDip(YogaEdge.ALL, 8f)
@@ -65,15 +65,15 @@ object GDriveLogoutContentViewSpec {
   fun onCreate(context: ComponentContext): Component {
     return Column.create(context)
         .paddingDip(YogaEdge.ALL, 16f)
-        .backgroundColor(ApplicationBase.instance.themeController().get(ThemeColorType.BACKGROUND))
+        .backgroundColor(ApplicationBase.sAppTheme.get(ThemeColorType.BACKGROUND))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_xxlarge)
             .textRes(R.string.google_drive_page_logout_title)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
             .typeface(CoreConfig.FONT_MONSERRAT_BOLD))
         .child(Text.create(context)
             .textSizeRes(R.dimen.font_size_large)
-            .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+            .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
             .textRes(R.string.google_drive_page_logout_details)
             .typeface(CoreConfig.FONT_MONSERRAT))
         .child(GDriveIconView.create(context)

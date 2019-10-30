@@ -28,7 +28,7 @@ class MarkdownHelpBottomSheet : LithoBottomSheet() {
               .textSizeRes(R.dimen.font_size_normal)
               .marginDip(YogaEdge.HORIZONTAL, 20f)
               .paddingDip(YogaEdge.VERTICAL, 4f)
-              .textColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)))
+              .textColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT)))
     }
 
     return column.build()

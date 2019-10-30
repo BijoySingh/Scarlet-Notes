@@ -4,9 +4,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
-import android.os.Build
 import com.maubis.scarlet.base.support.utils.OsVersionUtils
-import java.util.*
 
 fun addShortcut(context: Context, shortcut: ShortcutInfo) {
   if (!OsVersionUtils.canAddLauncherShortcuts()) {

@@ -21,7 +21,6 @@ import com.maubis.scarlet.base.support.sheets.LithoChooseOptionsItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
-import com.maubis.scarlet.base.support.utils.DateFormatUtils
 import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.util.*
 
@@ -210,9 +209,9 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
     val reminderTime = dialog.findViewById<UIActionView>(R.id.reminder_time)
     val reminderRepeat = dialog.findViewById<UIActionView>(R.id.reminder_repeat)
 
-    val iconColor = ApplicationBase.instance.themeController().get(ThemeColorType.TOOLBAR_ICON)
-    val textColor = ApplicationBase.instance.themeController().get(ThemeColorType.TERTIARY_TEXT)
-    val titleColor = ApplicationBase.instance.themeController().get(ThemeColorType.SECTION_HEADER)
+    val iconColor = ApplicationBase.sAppTheme.get(ThemeColorType.TOOLBAR_ICON)
+    val textColor = ApplicationBase.sAppTheme.get(ThemeColorType.TERTIARY_TEXT)
+    val titleColor = ApplicationBase.sAppTheme.get(ThemeColorType.SECTION_HEADER)
 
     reminderDate.setTitleColor(titleColor)
     reminderDate.setSubtitleColor(textColor)

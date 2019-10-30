@@ -98,7 +98,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     if (sAutomaticTheme) {
       setThemeFromSystem(this)
     }
-    instance.themeController().notifyChange(this)
+    ApplicationBase.sAppTheme.notifyChange(this)
 
     if (shouldShowWhatsNewSheet()) {
       openSheet(this, WhatsNewBottomSheet())
@@ -515,7 +515,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   override fun notifyThemeChange() {
     setSystemTheme()
 
-    val theme = ApplicationBase.instance.themeController()
+    val theme = ApplicationBase.sAppTheme
     containerLayoutMain.setBackgroundColor(getThemeColor())
 
     val toolbarIconColor = theme.get(ThemeColorType.TOOLBAR_ICON)

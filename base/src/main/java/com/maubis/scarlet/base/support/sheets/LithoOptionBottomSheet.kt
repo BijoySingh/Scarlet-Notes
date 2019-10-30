@@ -34,7 +34,7 @@ object OptionItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop option: LithoOptionsItem): Component {
-    val theme = ApplicationBase.instance.themeController()
+    val theme = ApplicationBase.sAppTheme
     val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
     val subtitleColor = theme.get(ThemeColorType.HINT_TEXT)
     val selectedColor = theme.get(ThemeColorType.ACCENT_TEXT)
@@ -123,7 +123,7 @@ object OptionLabelItemLayoutSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext,
                @Prop option: LithoLabelOptionsItem): Component {
-    val theme = ApplicationBase.instance.themeController()
+    val theme = ApplicationBase.sAppTheme
     val titleColor = theme.get(ThemeColorType.SECONDARY_TEXT)
 
     val row = Column.create(context)

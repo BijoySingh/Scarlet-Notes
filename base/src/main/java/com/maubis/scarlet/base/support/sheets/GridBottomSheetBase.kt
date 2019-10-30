@@ -36,7 +36,7 @@ abstract class GridBottomSheetBase : ThemedBottomSheetFragment() {
   fun setOptionTitle(dialog: Dialog, title: Int) {
     GlobalScope.launch(Dispatchers.Main) {
       val titleView = dialog.findViewById<TextView>(R.id.options_title)
-      titleView.setTextColor(ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+      titleView.setTextColor(ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
       titleView.setText(title)
     }
   }

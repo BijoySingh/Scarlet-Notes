@@ -37,10 +37,10 @@ class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerView
       SettingsOptionsBottomSheet.openSheet((context as MainActivity))
     }
 
-    val titleColor = ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
+    val titleColor = ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     toolbarTitle.setTextColor(titleColor)
 
-    val toolbarIconColor = ApplicationBase.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
+    val toolbarIconColor = ApplicationBase.sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     toolbarIconSearch.setColorFilter(toolbarIconColor)
     toolbarIconSettings.setColorFilter(toolbarIconColor)
 
