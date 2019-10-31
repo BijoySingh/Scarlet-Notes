@@ -18,6 +18,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.database.room.folder.Folder
@@ -55,14 +56,14 @@ object FolderItemLayoutSpec {
         bgColor = selectedColor
         bgAlpha = 200
         textColor = selectedColor
-        typeface = CoreConfig.FONT_MONSERRAT_MEDIUM
+        typeface = sAppTypeface.subHeading()
       }
       false -> {
         icon = R.drawable.ic_folder
         bgColor = titleColor
         bgAlpha = 15
         textColor = titleColor
-        typeface = CoreConfig.FONT_MONSERRAT
+        typeface = sAppTypeface.title()
       }
     }
 

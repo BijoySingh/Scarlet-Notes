@@ -24,8 +24,7 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
-import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
-import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT_MEDIUM
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.main.sheets.HomeOptionsBottomSheet
@@ -136,7 +135,7 @@ object MainActivityFolderBottomBarSpec {
                 })
     row.child(
       Text.create(context)
-        .typeface(FONT_MONSERRAT)
+        .typeface(sAppTypeface.title())
         .textAlignment(Layout.Alignment.ALIGN_CENTER)
         .flexGrow(1f)
         .text(folder.title)
@@ -187,13 +186,13 @@ object MainActivityDisabledSyncSpec {
         .paddingDip(YogaEdge.ALL, 8f)
         .child(
           Text.create(context)
-            .typeface(FONT_MONSERRAT_MEDIUM)
+            .typeface(sAppTypeface.subHeading())
             .textRes(R.string.firebase_no_sync_warning)
             .textSizeRes(R.dimen.font_size_normal)
             .textColor(colorConfig.toolbarIconColor))
         .child(
           Text.create(context)
-            .typeface(FONT_MONSERRAT)
+            .typeface(sAppTypeface.title())
             .textRes(R.string.firebase_no_sync_warning_details)
             .textSizeRes(R.dimen.font_size_small)
             .textColor(colorConfig.toolbarIconColor)))
@@ -252,7 +251,7 @@ object MainActivitySyncingNowSpec {
           .child(syncIcon)
           .child(
             Text.create(context)
-              .typeface(FONT_MONSERRAT)
+              .typeface(sAppTypeface.title())
               .textRes(syncText)
               .textSizeRes(R.dimen.font_size_normal)
               .textColorRes(R.color.light_secondary_text)))

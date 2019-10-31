@@ -26,7 +26,7 @@ import com.github.ajalt.reprint.core.Reprint
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.security.controller.PinLockController
 import com.maubis.scarlet.base.security.controller.PinLockController.isPinCodeEnabled
 import com.maubis.scarlet.base.security.controller.PinLockController.needsLockCheck
@@ -98,7 +98,7 @@ object PincodeSheetViewSpec {
           .hint("****")
           .inputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
           .textAlignment(Layout.Alignment.ALIGN_CENTER)
-          .typeface(CoreConfig.FONT_OPEN_SANS)
+          .typeface(sAppTypeface.text())
           .textColor(sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
           .paddingDip(YogaEdge.HORIZONTAL, 22f)
           .paddingDip(YogaEdge.VERTICAL, 6f)
@@ -132,7 +132,7 @@ object PincodeSheetViewSpec {
                 .textAlignment(Layout.Alignment.ALIGN_CENTER)
                 .paddingDip(YogaEdge.VERTICAL, 12f)
                 .paddingDip(YogaEdge.HORIZONTAL, 20f)
-                .typeface(CoreConfig.FONT_MONSERRAT)
+                .typeface(sAppTypeface.title())
                 .clickHandler(PincodeSheetView.onRemoveClick(context))
               else -> null
             }
@@ -147,7 +147,7 @@ object PincodeSheetViewSpec {
               .textAlignment(Layout.Alignment.ALIGN_CENTER)
               .paddingDip(YogaEdge.VERTICAL, 12f)
               .paddingDip(YogaEdge.HORIZONTAL, 20f)
-              .typeface(CoreConfig.FONT_MONSERRAT)
+              .typeface(sAppTypeface.title())
               .clickHandler(PincodeSheetView.onActionClick(context))))
     return component.build()
   }

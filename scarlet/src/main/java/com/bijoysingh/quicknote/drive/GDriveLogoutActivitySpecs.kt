@@ -17,6 +17,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
@@ -56,7 +57,7 @@ object GDriveLogoutRootViewSpec {
               .textRes(buttonTitle)
               .textAlignment(Layout.Alignment.ALIGN_CENTER)
               .flexGrow(1f)
-              .typeface(CoreConfig.FONT_MONSERRAT))
+              .typeface(sAppTypeface.title()))
           .clickHandler(GDriveLogoutRootView.onLogoutClick(context)))
       .build()
   }
@@ -79,13 +80,13 @@ object GDriveLogoutContentViewSpec {
           .textSizeRes(R.dimen.font_size_xxlarge)
           .textRes(R.string.google_drive_page_logout_title)
           .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
-          .typeface(CoreConfig.FONT_MONSERRAT_BOLD))
+          .typeface(sAppTypeface.heading()))
       .child(
         Text.create(context)
           .textSizeRes(R.dimen.font_size_large)
           .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
           .textRes(R.string.google_drive_page_logout_details)
-          .typeface(CoreConfig.FONT_MONSERRAT))
+          .typeface(sAppTypeface.title()))
       .child(
         GDriveIconView.create(context)
           .marginDip(YogaEdge.TOP, 24f)

@@ -9,7 +9,7 @@ import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
-import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.export.support.ExternalFolderSync
 import com.maubis.scarlet.base.export.support.sExternalFolderSync
 import com.maubis.scarlet.base.export.support.sFolderSyncBackupLocked
@@ -43,7 +43,7 @@ class ExternalFolderSyncBottomSheet : LithoBottomSheet() {
       .child(
         Text.create(componentContext)
           .textSizeRes(R.dimen.font_size_xlarge)
-          .typeface(FONT_MONSERRAT)
+          .typeface(sAppTypeface.title())
           .textRes(R.string.import_export_layout_folder_sync_folder)
           .paddingDip(YogaEdge.HORIZONTAL, 20f)
           .textColor(sAppTheme.get(ThemeColorType.SECTION_HEADER)))

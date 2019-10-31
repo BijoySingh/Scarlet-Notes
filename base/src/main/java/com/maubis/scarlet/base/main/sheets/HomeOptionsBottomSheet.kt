@@ -17,6 +17,7 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.tag.TagBuilder
 import com.maubis.scarlet.base.database.room.tag.Tag
@@ -63,14 +64,14 @@ object TagItemLayoutSpec {
         bgColor = selectedColor
         bgAlpha = 200
         textColor = selectedColor
-        typeface = CoreConfig.FONT_MONSERRAT_MEDIUM
+        typeface = sAppTypeface.subHeading()
       }
       false -> {
         icon = R.drawable.ic_action_label_unselected
         bgColor = titleColor
         bgAlpha = 15
         textColor = titleColor
-        typeface = CoreConfig.FONT_MONSERRAT
+        typeface = sAppTypeface.title()
       }
     }
 

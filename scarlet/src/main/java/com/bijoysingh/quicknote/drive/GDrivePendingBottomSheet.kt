@@ -25,6 +25,7 @@ import com.google.gson.Gson
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.data.getExportableNoteMeta
 import com.maubis.scarlet.base.note.getFullText
@@ -66,7 +67,7 @@ object PendingItemIconSpec {
         Text.create(context)
           .text(label)
           .textSizeRes(R.dimen.font_size_xsmall)
-          .typeface(CoreConfig.FONT_MONSERRAT_MEDIUM)
+          .typeface(sAppTypeface.subHeading())
           .textColor(secondaryColor))
       .build()
   }
@@ -140,7 +141,7 @@ object PendingItemLayoutSpec {
               .maxLines(1)
               .ellipsize(TextUtils.TruncateAt.END)
               .textSizeRes(R.dimen.font_size_small)
-              .typeface(CoreConfig.FONT_OPEN_SANS)
+              .typeface(sAppTypeface.text())
               .textColor(subtitleColor)))
       .child(
         Text.create(context)
@@ -150,7 +151,7 @@ object PendingItemLayoutSpec {
           .marginDip(YogaEdge.ALL, 8f)
           .ellipsize(TextUtils.TruncateAt.MIDDLE)
           .textSizeRes(R.dimen.font_size_small)
-          .typeface(CoreConfig.FONT_MONSERRAT)
+          .typeface(sAppTypeface.title())
           .backgroundRes(R.drawable.pending_note_background)
           .textColor(subtitleColor))
       .child(
@@ -162,13 +163,13 @@ object PendingItemLayoutSpec {
               .textRes(R.string.pending_backup_local_state)
               .textSizeRes(R.dimen.font_size_small)
               .flexGrow(1f)
-              .typeface(CoreConfig.FONT_MONSERRAT_MEDIUM)
+              .typeface(sAppTypeface.subHeading())
               .textColor(hintColor))
           .child(
             Text.create(context)
               .textRes(localState)
               .textSizeRes(R.dimen.font_size_small)
-              .typeface(CoreConfig.FONT_OPEN_SANS)
+              .typeface(sAppTypeface.text())
               .paddingDip(YogaEdge.HORIZONTAL, 6f)
               .paddingDip(YogaEdge.VERTICAL, 2f)
               .marginDip(YogaEdge.HORIZONTAL, 4f)
@@ -178,7 +179,7 @@ object PendingItemLayoutSpec {
             Text.create(context)
               .text(localUpdateTime)
               .textSizeRes(R.dimen.font_size_small)
-              .typeface(CoreConfig.FONT_OPEN_SANS)
+              .typeface(sAppTypeface.text())
               .paddingDip(YogaEdge.HORIZONTAL, 6f)
               .paddingDip(YogaEdge.VERTICAL, 2f)
               .backgroundRes(R.drawable.pending_note_background)
@@ -193,13 +194,13 @@ object PendingItemLayoutSpec {
               .textRes(R.string.pending_backup_remote_state)
               .textSizeRes(R.dimen.font_size_small)
               .flexGrow(1f)
-              .typeface(CoreConfig.FONT_MONSERRAT_MEDIUM)
+              .typeface(sAppTypeface.subHeading())
               .textColor(hintColor))
           .child(
             Text.create(context)
               .textRes(remoteState)
               .textSizeRes(R.dimen.font_size_small)
-              .typeface(CoreConfig.FONT_OPEN_SANS)
+              .typeface(sAppTypeface.text())
               .paddingDip(YogaEdge.HORIZONTAL, 6f)
               .paddingDip(YogaEdge.VERTICAL, 2f)
               .marginDip(YogaEdge.HORIZONTAL, 4f)
@@ -209,7 +210,7 @@ object PendingItemLayoutSpec {
             Text.create(context)
               .text(remoteUpdateTime)
               .textSizeRes(R.dimen.font_size_small)
-              .typeface(CoreConfig.FONT_OPEN_SANS)
+              .typeface(sAppTypeface.text())
               .paddingDip(YogaEdge.HORIZONTAL, 6f)
               .paddingDip(YogaEdge.VERTICAL, 2f)
               .backgroundRes(R.drawable.pending_note_background)

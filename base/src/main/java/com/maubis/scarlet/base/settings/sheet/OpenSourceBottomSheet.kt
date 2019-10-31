@@ -12,7 +12,7 @@ import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
@@ -45,7 +45,7 @@ class OpenSourceBottomSheet : LithoBottomSheet() {
           .textSizeRes(R.dimen.font_size_xlarge)
           .marginDip(YogaEdge.BOTTOM, 4f)
           .textRes(R.string.osp_page_libraries)
-          .typeface(CoreConfig.FONT_MONSERRAT)
+          .typeface(sAppTypeface.title())
           .textColor(sAppTheme.get(ThemeColorType.SECTION_HEADER)))
       .child(
         Text.create(componentContext)

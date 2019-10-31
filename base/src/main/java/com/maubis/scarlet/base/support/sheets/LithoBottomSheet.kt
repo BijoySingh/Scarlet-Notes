@@ -19,8 +19,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.ui.BottomSheetTabletDialog
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
@@ -31,7 +30,7 @@ fun openSheet(activity: AppCompatActivity, sheet: LithoBottomSheet) {
 fun getLithoBottomSheetTitle(context: ComponentContext): Text.Builder {
   return Text.create(context)
     .textSizeRes(R.dimen.font_size_xxxlarge)
-    .typeface(CoreConfig.FONT_MONSERRAT_BOLD)
+    .typeface(sAppTypeface.heading())
     .marginDip(YogaEdge.HORIZONTAL, 20f)
     .marginDip(YogaEdge.TOP, 18f)
     .marginDip(YogaEdge.BOTTOM, 8f)
@@ -41,7 +40,7 @@ fun getLithoBottomSheetTitle(context: ComponentContext): Text.Builder {
 
 fun getLithoBottomSheetButton(context: ComponentContext): Text.Builder {
   return Text.create(context)
-    .typeface(FONT_MONSERRAT)
+    .typeface(sAppTypeface.title())
     .textSizeRes(R.dimen.font_size_large)
     .paddingDip(YogaEdge.VERTICAL, 12f)
     .paddingDip(YogaEdge.HORIZONTAL, 24f)

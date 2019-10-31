@@ -21,7 +21,6 @@ import com.maubis.scarlet.base.database.room.AppDatabase
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
-import com.maubis.scarlet.base.support.utils.Flavor
 
 abstract class CoreConfig(context: Context) {
 
@@ -29,12 +28,6 @@ abstract class CoreConfig(context: Context) {
     Reprint.initialize(context)
     config.spanConfig.headingTypeface = ResourcesCompat.getFont(context, R.font.monserrat)
       ?: Typeface.DEFAULT
-    FONT_MONSERRAT = config.spanConfig.headingTypeface
-    FONT_MONSERRAT_MEDIUM = ResourcesCompat.getFont(context, R.font.monserrat_medium)
-      ?: Typeface.DEFAULT
-    FONT_MONSERRAT_BOLD = ResourcesCompat.getFont(context, R.font.monserrat_bold)
-      ?: Typeface.DEFAULT
-    FONT_OPEN_SANS = ResourcesCompat.getFont(context, R.font.open_sans) ?: Typeface.DEFAULT
   }
 
   abstract fun database(): AppDatabase
@@ -63,10 +56,5 @@ abstract class CoreConfig(context: Context) {
     val notesDb get() = instance.notesDatabase()
     val tagsDb get() = instance.tagsDatabase()
     val foldersDb get() = instance.foldersDatabase()
-
-    var FONT_MONSERRAT: Typeface = Typeface.DEFAULT
-    var FONT_MONSERRAT_MEDIUM: Typeface = Typeface.DEFAULT
-    var FONT_MONSERRAT_BOLD: Typeface = Typeface.DEFAULT
-    var FONT_OPEN_SANS: Typeface = Typeface.DEFAULT
   }
 }

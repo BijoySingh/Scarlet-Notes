@@ -1,8 +1,6 @@
 package com.maubis.scarlet.base.support.utils
 
 import android.content.Context
-import com.maubis.scarlet.base.config.ApplicationBase
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppFlavor
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import kotlinx.coroutines.Dispatchers

@@ -21,7 +21,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.specs.EmptySpec
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.utils.getEditorActionListener
@@ -67,7 +67,7 @@ object AppLockViewSpec {
               .textAlignment(Layout.Alignment.ALIGN_CENTER)
               .paddingDip(YogaEdge.VERTICAL, 12f)
               .paddingDip(YogaEdge.HORIZONTAL, 20f)
-              .typeface(CoreConfig.FONT_MONSERRAT)
+              .typeface(sAppTypeface.title())
               .clickHandler(AppLockView.onUnlockClick(context))))
       .build()
   }
@@ -103,13 +103,13 @@ object AppLockContentViewSpec {
           .textSizeRes(R.dimen.font_size_xxlarge)
           .textRes(R.string.app_lock_title)
           .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
-          .typeface(CoreConfig.FONT_MONSERRAT_BOLD))
+          .typeface(sAppTypeface.heading()))
       .child(
         Text.create(context)
           .textSizeRes(R.dimen.font_size_large)
           .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
           .textRes(description)
-          .typeface(CoreConfig.FONT_MONSERRAT))
+          .typeface(sAppTypeface.title()))
       .child(EmptySpec.create(context).flexGrow(1f))
       .child(
         EditText.create(context)
@@ -121,7 +121,7 @@ object AppLockContentViewSpec {
           .alignSelf(YogaAlign.CENTER)
           .inputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
           .textAlignment(Layout.Alignment.ALIGN_CENTER)
-          .typeface(CoreConfig.FONT_OPEN_SANS)
+          .typeface(sAppTypeface.text())
           .textColor(sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
           .paddingDip(YogaEdge.HORIZONTAL, 22f)
           .paddingDip(YogaEdge.VERTICAL, 6f)

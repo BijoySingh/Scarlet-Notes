@@ -11,7 +11,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 @LayoutSpec
@@ -32,7 +32,7 @@ object CounterChooserSpec {
       .child(
         Text.create(context)
           .text(value.toString())
-          .typeface(CoreConfig.FONT_MONSERRAT)
+          .typeface(sAppTypeface.title())
           .textSizeRes(R.dimen.font_size_xxxlarge)
           .paddingDip(YogaEdge.HORIZONTAL, 12f)
           .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))

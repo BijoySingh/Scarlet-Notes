@@ -17,7 +17,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.specs.RoundIcon
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
@@ -44,7 +44,7 @@ object ChooseOptionItemLayoutSpec {
         Text.create(context)
           .textRes(option.title)
           .textSizeRes(R.dimen.font_size_normal)
-          .typeface(CoreConfig.FONT_MONSERRAT)
+          .typeface(sAppTypeface.title())
           .textStyle(Typeface.BOLD)
           .textColor(titleColor)
           .flexGrow(1f))

@@ -19,7 +19,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
 data class GridSectionItem(
@@ -66,7 +66,7 @@ object GridOptionSpec {
         Text.create(context)
           .textRes(option.label)
           .textAlignment(Layout.Alignment.ALIGN_CENTER)
-          .typeface(CoreConfig.FONT_MONSERRAT)
+          .typeface(sAppTypeface.title())
           .textSizeRes(R.dimen.font_size_small)
           .paddingDip(YogaEdge.VERTICAL, 8f)
           .paddingDip(YogaEdge.HORIZONTAL, 16f)
@@ -101,7 +101,7 @@ object GridSectionViewSpec {
       column.child(
         Text.create(context)
           .textRes(section.title)
-          .typeface(CoreConfig.FONT_MONSERRAT)
+          .typeface(sAppTypeface.title())
           .textSizeRes(R.dimen.font_size_normal)
           .maxLines(1)
           .ellipsize(TextUtils.TruncateAt.END)

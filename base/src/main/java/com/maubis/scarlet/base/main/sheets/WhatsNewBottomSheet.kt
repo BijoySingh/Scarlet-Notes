@@ -8,7 +8,7 @@ import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
-import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
@@ -47,7 +47,7 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
           .textSizeRes(R.dimen.font_size_large)
           .marginDip(YogaEdge.BOTTOM, 16f)
           .textRes(R.string.whats_new_sheet_subtitle)
-          .typeface(FONT_MONSERRAT)
+          .typeface(sAppTypeface.title())
           .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
       .child(
         GridSectionView.create(componentContext)

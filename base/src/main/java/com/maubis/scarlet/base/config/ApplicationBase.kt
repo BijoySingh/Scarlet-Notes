@@ -9,6 +9,7 @@ import com.maubis.scarlet.base.core.note.NoteImage
 import com.maubis.scarlet.base.export.remote.FolderRemoteDatabase
 import com.maubis.scarlet.base.note.reminders.ReminderJobCreator
 import com.maubis.scarlet.base.support.ui.ThemeManager
+import com.maubis.scarlet.base.support.ui.font.TypefaceController
 import com.maubis.scarlet.base.support.utils.DateFormatUtils
 import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.utils.ImageCache
@@ -37,6 +38,7 @@ abstract class ApplicationBase : Application() {
     // Setup Application Theme
     sAppTheme = ThemeManager()
     sAppTheme.setup(this)
+    sAppTypeface = TypefaceController(this)
   }
 
   companion object {
@@ -50,6 +52,7 @@ abstract class ApplicationBase : Application() {
     lateinit var sAppPreferences: Store
 
     lateinit var sAppTheme: ThemeManager
+    lateinit var sAppTypeface: TypefaceController
 
     var folderSync: FolderRemoteDatabase? = null
   }

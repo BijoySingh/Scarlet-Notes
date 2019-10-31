@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.main.recycler.setFullSpan
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.CircleDrawable
@@ -28,7 +28,7 @@ class SelectorFolderRecyclerHolder(context: Context, view: View) : RecyclerViewH
     val item = itemData as SelectorFolderRecyclerItem
     title.text = item.title
     title.setTextColor(item.titleColor)
-    title.typeface = FONT_MONSERRAT
+    title.typeface = sAppTypeface.title()
     title.alpha = 0.8f
 
     icon.setColorFilter(item.iconColor)

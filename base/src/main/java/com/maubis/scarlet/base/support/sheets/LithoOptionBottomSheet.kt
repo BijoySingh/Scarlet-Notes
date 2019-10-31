@@ -17,8 +17,7 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
-import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
-import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_OPEN_SANS
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.specs.RoundIcon
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
@@ -71,14 +70,14 @@ object OptionItemLayoutSpec {
             Text.create(context)
               .textRes(option.title)
               .textSizeRes(R.dimen.font_size_normal)
-              .typeface(FONT_MONSERRAT)
+              .typeface(sAppTypeface.title())
               .textStyle(BOLD)
               .textColor(titleColor))
           .child(
             Text.create(context)
               .text(subtitle)
               .textSizeRes(R.dimen.font_size_small)
-              .typeface(FONT_OPEN_SANS)
+              .typeface(sAppTypeface.title())
               .textColor(subtitleColor)))
 
     if (option.isSelectable) {
@@ -150,7 +149,7 @@ object OptionLabelItemLayoutSpec {
         Text.create(context)
           .textRes(option.title)
           .textSizeRes(R.dimen.font_size_normal)
-          .typeface(FONT_MONSERRAT)
+          .typeface(sAppTypeface.title())
           .textStyle(BOLD)
           .textColor(titleColor))
     row.clickHandler(OptionItemLayout.onItemClick(context))
