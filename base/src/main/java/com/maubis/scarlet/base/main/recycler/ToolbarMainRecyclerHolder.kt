@@ -11,7 +11,6 @@ import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.settings.sheet.InternalSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet

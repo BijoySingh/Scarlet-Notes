@@ -9,10 +9,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 abstract class GDriveRemoteFolderBase<T>(
-    val dataType: RemoteDataType,
-    val database: RemoteUploadDataDao,
-    val service: GDriveServiceHelper,
-    val onPendingChange: () -> Unit): RemoteFolder<String, T> {
+  val dataType: RemoteDataType,
+  val database: RemoteUploadDataDao,
+  val service: GDriveServiceHelper,
+  val onPendingChange: () -> Unit) : RemoteFolder<String, T> {
 
   protected fun notifyDriveData(file: File, deleted: Boolean = false) {
     val modifiedTime = file.modifiedTime?.value ?: file.modifiedByMeTime?.value ?: 0L

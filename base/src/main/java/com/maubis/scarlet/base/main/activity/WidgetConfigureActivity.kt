@@ -35,8 +35,8 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
     val extras = intent.extras
     if (extras != null) {
       appWidgetId = extras.getInt(
-          AppWidgetManager.EXTRA_APPWIDGET_ID,
-          AppWidgetManager.INVALID_APPWIDGET_ID)
+        AppWidgetManager.EXTRA_APPWIDGET_ID,
+        AppWidgetManager.INVALID_APPWIDGET_ID)
     }
 
     if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
@@ -100,7 +100,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
     private fun notifyNoteChangeBroadcast(context: Context, note: Note): Intent? {
       val application: Application = context.applicationContext as Application
       val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(
-          ComponentName(application, NoteWidgetProvider::class.java))
+        ComponentName(application, NoteWidgetProvider::class.java))
       val widgets = ApplicationBase.instance.database().widgets().getByNote(note.uuid)
 
       val widgetIds = ArrayList<Int>()

@@ -53,21 +53,21 @@ fun Note.toExportedMarkdown(): String {
 
 fun Note.getExportableSplitNote(): ExportableSplitNote {
   return ExportableSplitNote(
-      toExportedMarkdown(),
-      getExportableNoteMeta())
+    toExportedMarkdown(),
+    getExportableNoteMeta())
 }
 
 fun Note.getExportableNoteMeta(): ExportableNoteMeta {
   return ExportableNoteMeta(
-      uuid,
-      timestamp,
-      updateTimestamp,
-      color,
-      state,
-      if (tags == null) "" else tags,
-      locked,
-      pinned,
-      folder
+    uuid,
+    timestamp,
+    updateTimestamp,
+    color,
+    state,
+    if (tags == null) "" else tags,
+    locked,
+    pinned,
+    folder
   )
 }
 
@@ -83,14 +83,13 @@ fun Note.mergeMetas(meta: ExportableNoteMeta) {
   folder = meta.folder
 }
 
-
 fun Folder.getExportableFolder(): ExportableFolder {
   return ExportableFolder(
-      uuid,
-      title,
-      timestamp,
-      updateTimestamp,
-      color
+    uuid,
+    title,
+    timestamp,
+    updateTimestamp,
+    color
   )
 }
 

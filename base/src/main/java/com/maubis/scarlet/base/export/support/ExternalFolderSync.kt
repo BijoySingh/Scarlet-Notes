@@ -20,7 +20,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
 
-
 const val KEY_EXTERNAL_FOLDER_SYNC_ENABLED = "external_folder_sync_enabled"
 const val KEY_EXTERNAL_FOLDER_SYNC_LAST_SCAN = "external_folder_sync_last_sync"
 const val KEY_EXTERNAL_FOLDER_SYNC_BACKUP_LOCKED = "external_folder_sync_backup_locked"
@@ -42,7 +41,7 @@ object ExternalFolderSync {
 
   fun hasPermission(context: Context): Boolean {
     return !(OsVersionUtils.requiresPermissions()
-        && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+      && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
   }
 
   fun enable(context: Context, enabled: Boolean) {
@@ -64,21 +63,21 @@ object ExternalFolderSync {
 
   fun loadFirstTime() {
     folderSync?.init(
-        {
-          ApplicationBase.instance.notesDatabase().getAll().forEach {
-            folderSync?.insert(ExportableNote(it))
-          }
-        },
-        {
-          ApplicationBase.instance.tagsDatabase().getAll().forEach {
-            folderSync?.insert(ExportableTag(it))
-          }
-        },
-        {
-          ApplicationBase.instance.foldersDatabase().getAll().forEach {
-            folderSync?.insert(ExportableFolder(it))
-          }
-        })
+      {
+        ApplicationBase.instance.notesDatabase().getAll().forEach {
+          folderSync?.insert(ExportableNote(it))
+        }
+      },
+      {
+        ApplicationBase.instance.tagsDatabase().getAll().forEach {
+          folderSync?.insert(ExportableTag(it))
+        }
+      },
+      {
+        ApplicationBase.instance.foldersDatabase().getAll().forEach {
+          folderSync?.insert(ExportableFolder(it))
+        }
+      })
   }
 
   fun setup(context: Context) {

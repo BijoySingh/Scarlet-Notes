@@ -12,7 +12,6 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.note.creation.activity.CreateListNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 
-
 class CreateNoteWidgetProvider : AppWidgetProvider() {
 
   override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
@@ -39,10 +38,11 @@ class CreateNoteWidgetProvider : AppWidgetProvider() {
   }
 }
 
-fun getPendingIntentWithStack(context: Context,  requestCode: Int, resultIntent: Intent, flags: Int = PendingIntent.FLAG_UPDATE_CURRENT): PendingIntent {
+fun getPendingIntentWithStack(
+  context: Context, requestCode: Int, resultIntent: Intent, flags: Int = PendingIntent.FLAG_UPDATE_CURRENT): PendingIntent {
   return TaskStackBuilder.create(context)
-      .addNextIntentWithParentStack(Intent(context, MainActivity::class.java))
-      .addNextIntent(resultIntent)
-      .getPendingIntent(requestCode, flags)
-      ?: PendingIntent.getActivity(context, requestCode, resultIntent, 0)
+    .addNextIntentWithParentStack(Intent(context, MainActivity::class.java))
+    .addNextIntent(resultIntent)
+    .getPendingIntent(requestCode, flags)
+    ?: PendingIntent.getActivity(context, requestCode, resultIntent, 0)
 }

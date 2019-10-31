@@ -14,8 +14,8 @@ class EmptyRecyclerHolder(context: Context, itemView: View) : RecyclerViewHolder
     setFullSpan()
     itemView.setOnClickListener {
       val newNoteIntent = CreateNoteActivity.getNewNoteIntent(
-          context,
-          folder = (context as MainActivity).config.folders.firstOrNull()?.uuid ?: ""
+        context,
+        folder = (context as MainActivity).config.folders.firstOrNull()?.uuid ?: ""
       )
       context.startActivity(newNoteIntent)
     }

@@ -14,7 +14,6 @@ import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.widget.sheet.getWidgetNoteText
 import com.maubis.scarlet.base.widget.sheet.getWidgetNotes
 
-
 class AllNotesWidgetService : RemoteViewsService() {
   override fun onGetViewFactory(intent: Intent?): RemoteViewsFactory {
     return AllNotesRemoteViewsFactory(applicationContext)
@@ -33,7 +32,7 @@ class AllNotesRemoteViewsFactory(val context: Context) : RemoteViewsService.Remo
   }
 
   override fun getItemId(position: Int): Long {
-    return if(position < notes.size) notes[position].uid.toLong() else 0
+    return if (position < notes.size) notes[position].uid.toLong() else 0
   }
 
   override fun onDataSetChanged() {

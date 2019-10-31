@@ -25,33 +25,34 @@ class SelectedTagChooserBottomSheet : LithoBottomSheet() {
   override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
     val activity = context as SelectNotesActivity
     val component = Column.create(componentContext)
-        .widthPercent(100f)
+      .widthPercent(100f)
     val tagsComponent = Column.create(componentContext)
-        .paddingDip(YogaEdge.TOP, 8f)
-        .paddingDip(YogaEdge.BOTTOM, 8f)
-        .paddingDip(YogaEdge.HORIZONTAL, 20f)
-        .child(getLithoBottomSheetTitle(componentContext)
-            .textRes(R.string.tag_sheet_choose_tag)
-            .marginDip(YogaEdge.BOTTOM, 12f))
+      .paddingDip(YogaEdge.TOP, 8f)
+      .paddingDip(YogaEdge.BOTTOM, 8f)
+      .paddingDip(YogaEdge.HORIZONTAL, 20f)
+      .child(
+        getLithoBottomSheetTitle(componentContext)
+          .textRes(R.string.tag_sheet_choose_tag)
+          .marginDip(YogaEdge.BOTTOM, 12f))
     getTagOptions().forEach {
       tagsComponent.child(TagItemLayout.create(componentContext).option(it))
     }
 
     val addTag = LithoOptionsItem(
-        title = R.string.tag_sheet_new_tag_button,
-        subtitle = 0,
-        icon = R.drawable.icon_add_note,
-        listener = {
-          CreateOrEditTagBottomSheet.openSheet(activity, TagBuilder().emptyTag()) { tag, _ ->
-            onActionListener(tag, true)
-            reset(activity, dialog)
-          }
-        })
+      title = R.string.tag_sheet_new_tag_button,
+      subtitle = 0,
+      icon = R.drawable.icon_add_note,
+      listener = {
+        CreateOrEditTagBottomSheet.openSheet(activity, TagBuilder().emptyTag()) { tag, _ ->
+          onActionListener(tag, true)
+          reset(activity, dialog)
+        }
+      })
     tagsComponent.child(OptionItemLayout.create(componentContext)
-        .option(addTag)
-        .backgroundRes(R.drawable.accent_rounded_bg)
-        .marginDip(YogaEdge.TOP, 16f)
-        .onClick { addTag.listener() })
+                          .option(addTag)
+                          .backgroundRes(R.drawable.accent_rounded_bg)
+                          .marginDip(YogaEdge.TOP, 16f)
+                          .onClick { addTag.listener() })
 
     component.child(tagsComponent)
     return component.build()
@@ -75,7 +76,8 @@ class SelectedTagChooserBottomSheet : LithoBottomSheet() {
       tags.removeAll(uuidsToRemove)
     }
     for (tag in CoreConfig.tagsDb.getAll()) {
-      options.add(LithoTagOptionsItem(
+      options.add(
+        LithoTagOptionsItem(
           tag = tag,
           listener = {
             onActionListener(tag, !tags.contains(tag.uuid))
@@ -83,7 +85,7 @@ class SelectedTagChooserBottomSheet : LithoBottomSheet() {
             reset(activity, dialog)
           },
           isSelected = tags.contains(tag.uuid)
-      ))
+        ))
     }
     options.sortByDescending { if (it.isSelected) 1 else 0 }
     return options

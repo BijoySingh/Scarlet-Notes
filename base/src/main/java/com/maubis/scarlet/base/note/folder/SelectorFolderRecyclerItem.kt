@@ -9,7 +9,6 @@ import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 
-
 class SelectorFolderRecyclerItem(context: Context, val folder: Folder) : RecyclerItem() {
 
   val isLightShaded = ColorUtil.isLightColored(folder.color)

@@ -26,8 +26,8 @@ class AllNotesWidgetProvider : AppWidgetProvider() {
       val appWidgetId = appWidgetIds[i]
 
       val views = RemoteViews(
-          context.packageName,
-          R.layout.widget_layout_all_notes
+        context.packageName,
+        R.layout.widget_layout_all_notes
       )
       val intent = Intent(context, AllNotesWidgetService::class.java)
       intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i])
@@ -62,7 +62,7 @@ class AllNotesWidgetProvider : AppWidgetProvider() {
     fun notifyAllChanged(context: Context) {
       val application: Application = context.applicationContext as Application
       val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(
-          ComponentName(application, AllNotesWidgetProvider::class.java))
+        ComponentName(application, AllNotesWidgetProvider::class.java))
       if (ids.isEmpty()) {
         return
       }

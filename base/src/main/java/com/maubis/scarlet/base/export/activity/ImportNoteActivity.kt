@@ -9,7 +9,6 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.export.recycler.FileRecyclerItem
 import com.maubis.scarlet.base.export.support.NoteImporter
@@ -20,7 +19,6 @@ import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.utils.bind
 import java.io.File
 import java.io.FileReader
-
 
 class ImportNoteActivity : SecuredActivity() {
   val adapter = NoteAppAdapter(this)
@@ -36,9 +34,9 @@ class ImportNoteActivity : SecuredActivity() {
     setContentView(R.layout.activity_import_note_from_file)
 
     RecyclerViewBuilder(this)
-        .setView(this, R.id.recycler_view)
-        .setAdapter(adapter)
-        .build()
+      .setView(this, R.id.recycler_view)
+      .setAdapter(adapter)
+      .build()
 
     val activity = this
     backButton.setOnClickListener { onBackPressed() }
@@ -68,8 +66,8 @@ class ImportNoteActivity : SecuredActivity() {
     MultiAsyncTask.execute(object : MultiAsyncTask.Task<List<RecyclerItem>> {
       override fun run(): List<RecyclerItem> {
         return NoteImporter().getImportableFiles()
-            .map { FileRecyclerItem(it.name, it.lastModified(), it.absolutePath, it) }
-            .sorted()
+          .map { FileRecyclerItem(it.name, it.lastModified(), it.absolutePath, it) }
+          .sorted()
       }
 
       override fun handle(result: List<RecyclerItem>) {
@@ -101,7 +99,7 @@ class ImportNoteActivity : SecuredActivity() {
     pageTitle.setTextColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
     importFile.setTextColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT))
     importFile.setBackgroundResource(
-        if (sAppTheme.isNightTheme()) R.drawable.light_circular_border_bg
-        else R.drawable.dark_circular_border_bg)
+      if (sAppTheme.isNightTheme()) R.drawable.light_circular_border_bg
+      else R.drawable.dark_circular_border_bg)
   }
 }

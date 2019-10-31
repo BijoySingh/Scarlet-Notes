@@ -12,11 +12,12 @@ import java.io.File
 
 const val LAST_MODIFIED_ERROR_MARGIN = 7 * 1000 * 60 * 60 * 24L
 
-class RemoteFolder<T>(val folder: File,
-                      val klass: Class<T>,
-                      val onRemoteInsert: (T) -> Unit,
-                      val onRemoteDelete: (String) -> Unit,
-                      val onInitComplete: () -> Unit) {
+class RemoteFolder<T>(
+  val folder: File,
+  val klass: Class<T>,
+  val onRemoteInsert: (T) -> Unit,
+  val onRemoteDelete: (String) -> Unit,
+  val onInitComplete: () -> Unit) {
 
   val deletedFolder = File(folder, "deleted")
   val uuids = HashSet<String>()

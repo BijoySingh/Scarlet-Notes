@@ -14,10 +14,10 @@ import com.maubis.scarlet.base.support.utils.maybeThrow
  */
 fun FirebaseRemoteDatabase.initNoteReference(userId: String) {
   firebaseNote = FirebaseDatabase
-      .getInstance()
-      .getReference()
-      .child("notes")
-      .child(userId)
+    .getInstance()
+    .getReference()
+    .child("notes")
+    .child(userId)
   setNoteListener()
 }
 

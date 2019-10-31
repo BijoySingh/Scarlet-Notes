@@ -9,7 +9,6 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.LocaleManager
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.export.activity.ImportNoteActivity
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
@@ -43,8 +42,8 @@ class FileImportViewHolder(context: Context, root: View)
       (context as ImportNoteActivity).select(item)
     }
     root.setBackgroundColor(
-        if (item.selected) sAppTheme.get(
-            context, R.color.material_grey_100, R.color.dark_hint_text) else Color.TRANSPARENT)
+      if (item.selected) sAppTheme.get(
+        context, R.color.material_grey_100, R.color.dark_hint_text) else Color.TRANSPARENT)
   }
 
   private fun getPath(item: FileRecyclerItem): String {

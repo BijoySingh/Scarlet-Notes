@@ -19,46 +19,46 @@ import java.lang.ref.WeakReference
 class GDriveRemoteDatabase(weakContext: WeakReference<Context>) : RemoteController<String, File, FileList>(weakContext) {
   override fun initSyncs() {
     notesSync = GDriveRemoteFolder(
-        dataType = RemoteDataType.NOTE,
-        database = remoteDatabase,
-        service = remoteService as GDriveServiceHelper,
-        onPendingChange = { verifyAndNotifyPendingStateChange() },
-        serialiser = { it },
-        uuidToObject = {
-          ApplicationBase.instance.notesDatabase().getByUUID(it)?.toExportedMarkdown()
-        })
+      dataType = RemoteDataType.NOTE,
+      database = remoteDatabase,
+      service = remoteService as GDriveServiceHelper,
+      onPendingChange = { verifyAndNotifyPendingStateChange() },
+      serialiser = { it },
+      uuidToObject = {
+        ApplicationBase.instance.notesDatabase().getByUUID(it)?.toExportedMarkdown()
+      })
     notesMetaSync = GDriveRemoteFolder(
-        dataType = RemoteDataType.NOTE_META,
-        database = remoteDatabase,
-        service = remoteService as GDriveServiceHelper,
-        onPendingChange = { verifyAndNotifyPendingStateChange() },
-        serialiser = { Gson().toJson(it) },
-        uuidToObject = {
-          ApplicationBase.instance.notesDatabase().getByUUID(it)?.getExportableNoteMeta()
-        })
+      dataType = RemoteDataType.NOTE_META,
+      database = remoteDatabase,
+      service = remoteService as GDriveServiceHelper,
+      onPendingChange = { verifyAndNotifyPendingStateChange() },
+      serialiser = { Gson().toJson(it) },
+      uuidToObject = {
+        ApplicationBase.instance.notesDatabase().getByUUID(it)?.getExportableNoteMeta()
+      })
     tagsSync = GDriveRemoteFolder(
-        dataType = RemoteDataType.TAG,
-        database = remoteDatabase,
-        service = remoteService as GDriveServiceHelper,
-        onPendingChange = { verifyAndNotifyPendingStateChange() },
-        serialiser = { Gson().toJson(it) },
-        uuidToObject = {
-          ApplicationBase.instance.tagsDatabase().getByUUID(it)?.getExportableTag()
-        })
+      dataType = RemoteDataType.TAG,
+      database = remoteDatabase,
+      service = remoteService as GDriveServiceHelper,
+      onPendingChange = { verifyAndNotifyPendingStateChange() },
+      serialiser = { Gson().toJson(it) },
+      uuidToObject = {
+        ApplicationBase.instance.tagsDatabase().getByUUID(it)?.getExportableTag()
+      })
     foldersSync = GDriveRemoteFolder(
-        dataType = RemoteDataType.FOLDER,
-        database = remoteDatabase,
-        service = remoteService as GDriveServiceHelper,
-        onPendingChange = { verifyAndNotifyPendingStateChange() },
-        serialiser = { Gson().toJson(it) },
-        uuidToObject = {
-          ApplicationBase.instance.foldersDatabase().getByUUID(it)?.getExportableFolder()
-        })
+      dataType = RemoteDataType.FOLDER,
+      database = remoteDatabase,
+      service = remoteService as GDriveServiceHelper,
+      onPendingChange = { verifyAndNotifyPendingStateChange() },
+      serialiser = { Gson().toJson(it) },
+      uuidToObject = {
+        ApplicationBase.instance.foldersDatabase().getByUUID(it)?.getExportableFolder()
+      })
     imageSync = GDriveRemoteImageFolder(
-        dataType = RemoteDataType.IMAGE,
-        database = remoteDatabase,
-        service = remoteService as GDriveServiceHelper,
-        onPendingChange = { verifyAndNotifyPendingStateChange() })
+      dataType = RemoteDataType.IMAGE,
+      database = remoteDatabase,
+      service = remoteService as GDriveServiceHelper,
+      onPendingChange = { verifyAndNotifyPendingStateChange() })
   }
 
   override fun getResourceIdForFolderName(folderName: String): String? {

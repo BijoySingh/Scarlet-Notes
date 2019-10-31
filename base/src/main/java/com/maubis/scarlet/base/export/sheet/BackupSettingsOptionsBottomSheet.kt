@@ -21,7 +21,8 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<LithoOptionsItem>()
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = R.string.home_option_install_from_store,
         subtitle = R.string.home_option_install_from_store_subtitle,
         icon = R.drawable.ic_action_play,
@@ -30,57 +31,57 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           dismiss()
         },
         visible = FlavorUtils.isOpenSource()
-    ))
+      ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_export,
-        subtitle = R.string.home_option_export_subtitle,
-        icon = R.drawable.ic_export,
-        listener = {
-          val manager = PermissionUtils().getStoragePermissionManager(activity)
-          val hasAllPermissions = manager.hasAllPermissions()
-          when (hasAllPermissions) {
-            true -> {
-              openExportSheet(activity)
-              dismiss()
-            }
-            false -> {
-              openSheet(activity, PermissionBottomSheet())
-            }
+      title = R.string.home_option_export,
+      subtitle = R.string.home_option_export_subtitle,
+      icon = R.drawable.ic_export,
+      listener = {
+        val manager = PermissionUtils().getStoragePermissionManager(activity)
+        val hasAllPermissions = manager.hasAllPermissions()
+        when (hasAllPermissions) {
+          true -> {
+            openExportSheet(activity)
+            dismiss()
+          }
+          false -> {
+            openSheet(activity, PermissionBottomSheet())
           }
         }
+      }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_import,
-        subtitle = R.string.home_option_import_subtitle,
-        icon = R.drawable.ic_import,
-        listener = {
-          val manager = PermissionUtils().getStoragePermissionManager(activity)
-          val hasAllPermissions = manager.hasAllPermissions()
-          when (hasAllPermissions) {
-            true -> {
-              IntentUtils.startActivity(activity, ImportNoteActivity::class.java)
-              dismiss()
-            }
-            false -> {
-              openSheet(activity, PermissionBottomSheet())
-            }
+      title = R.string.home_option_import,
+      subtitle = R.string.home_option_import_subtitle,
+      icon = R.drawable.ic_import,
+      listener = {
+        val manager = PermissionUtils().getStoragePermissionManager(activity)
+        val hasAllPermissions = manager.hasAllPermissions()
+        when (hasAllPermissions) {
+          true -> {
+            IntentUtils.startActivity(activity, ImportNoteActivity::class.java)
+            dismiss()
+          }
+          false -> {
+            openSheet(activity, PermissionBottomSheet())
           }
         }
+      }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.import_export_layout_folder_sync,
-        subtitle = R.string.import_export_layout_folder_sync_details,
-        icon = R.drawable.icon_folder_sync,
-        listener = {
-          val manager = PermissionUtils().getStoragePermissionManager(activity)
-          val hasAllPermissions = manager.hasAllPermissions()
-          when (hasAllPermissions) {
-            true -> {
-              openSheet(activity, ExternalFolderSyncBottomSheet())
-            }
-            false -> openSheet(activity, PermissionBottomSheet())
+      title = R.string.import_export_layout_folder_sync,
+      subtitle = R.string.import_export_layout_folder_sync_details,
+      icon = R.drawable.icon_folder_sync,
+      listener = {
+        val manager = PermissionUtils().getStoragePermissionManager(activity)
+        val hasAllPermissions = manager.hasAllPermissions()
+        when (hasAllPermissions) {
+          true -> {
+            openSheet(activity, ExternalFolderSyncBottomSheet())
           }
+          false -> openSheet(activity, PermissionBottomSheet())
         }
+      }
     ))
     return options
   }
@@ -91,8 +92,8 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
       return
     }
     openUnlockSheet(
-        activity = activity as ThemedActivity,
-        onUnlockSuccess = { openSheet(activity, ExportNotesBottomSheet()) },
-        onUnlockFailure = { openExportSheet(activity) })
+      activity = activity as ThemedActivity,
+      onUnlockSuccess = { openSheet(activity, ExportNotesBottomSheet()) },
+      onUnlockFailure = { openExportSheet(activity) })
   }
 }

@@ -14,20 +14,20 @@ import com.maubis.scarlet.base.note.isNoteLockedButAppUnlocked
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 
 class SearchConfig(
-    var text: String = "",
-    var mode: HomeNavigationState = HomeNavigationState.DEFAULT,
-    var colors: MutableList<Int> = emptyList<Int>().toMutableList(),
-    var tags: MutableList<Tag> = emptyList<Tag>().toMutableList(),
-    var folders: MutableList<Folder> = emptyList<Folder>().toMutableList()) {
+  var text: String = "",
+  var mode: HomeNavigationState = HomeNavigationState.DEFAULT,
+  var colors: MutableList<Int> = emptyList<Int>().toMutableList(),
+  var tags: MutableList<Tag> = emptyList<Tag>().toMutableList(),
+  var folders: MutableList<Folder> = emptyList<Folder>().toMutableList()) {
 
   fun hasFolder(folder: Folder) = folders.firstOrNull { it.uuid == folder.uuid } !== null
 
   fun hasFilter(): Boolean {
     return folders.isNotEmpty()
-        || tags.isNotEmpty()
-        || colors.isNotEmpty()
-        || text.isNotBlank()
-        || mode !== HomeNavigationState.DEFAULT;
+      || tags.isNotEmpty()
+      || colors.isNotEmpty()
+      || text.isNotBlank()
+      || mode !== HomeNavigationState.DEFAULT;
   }
 
   fun clear(): SearchConfig {
@@ -53,23 +53,23 @@ class SearchConfig(
 
   fun copy(): SearchConfig {
     return SearchConfig(
-        text,
-        mode,
-        colors.filter { true }.toMutableList(),
-        tags.filter { true }.toMutableList(),
-        folders.filter { true }.toMutableList())
+      text,
+      mode,
+      colors.filter { true }.toMutableList(),
+      tags.filter { true }.toMutableList(),
+      folders.filter { true }.toMutableList())
   }
 }
 
 fun unifiedSearchSynchronous(config: SearchConfig): List<Note> {
   val sorting = SortingOptionsBottomSheet.getSortingState()
   val notes = unifiedSearchWithoutFolder(config)
-      .filter {
-        when (config.folders.isEmpty()) {
-          true -> it.folder.isBlank()
-          false -> config.folders.map { it.uuid }.contains(it.folder)
-        }
+    .filter {
+      when (config.folders.isEmpty()) {
+        true -> it.folder.isBlank()
+        false -> config.folders.map { it.uuid }.contains(it.folder)
       }
+    }
   return sort(notes, sorting)
 }
 
@@ -88,15 +88,15 @@ fun filterOutFolders(notes: List<Note>): List<Note> {
 
 fun unifiedSearchWithoutFolder(config: SearchConfig): List<Note> {
   return getNotesForMode(config)
-      .filter { config.colors.isEmpty() || config.colors.contains(it.color) }
-      .filter { note -> config.tags.isEmpty() || config.tags.filter { note.tags !== null && note.tags.contains(it.uuid) }.isNotEmpty() }
-      .filter {
-        when {
-          config.text.isBlank() -> true
-          it.locked && !it.isNoteLockedButAppUnlocked() -> false
-          else -> it.getFullText().contains(config.text, true)
-        }
+    .filter { config.colors.isEmpty() || config.colors.contains(it.color) }
+    .filter { note -> config.tags.isEmpty() || config.tags.filter { note.tags !== null && note.tags.contains(it.uuid) }.isNotEmpty() }
+    .filter {
+      when {
+        config.text.isBlank() -> true
+        it.locked && !it.isNoteLockedButAppUnlocked() -> false
+        else -> it.getFullText().contains(config.text, true)
       }
+    }
 }
 
 fun filterDirectlyValidFolders(config: SearchConfig): List<Folder> {
@@ -105,8 +105,8 @@ fun filterDirectlyValidFolders(config: SearchConfig): List<Folder> {
   }
 
   return foldersDb.getAll()
-      .filter { config.colors.isEmpty() || config.colors.contains(it.color) }
-      .filter { it.title.contains(config.text, true) }
+    .filter { config.colors.isEmpty() || config.colors.contains(it.color) }
+    .filter { it.title.contains(config.text, true) }
 }
 
 fun getNotesForMode(config: SearchConfig): List<Note> {

@@ -40,14 +40,14 @@ class RemoteConfigFetcher() : IRemoteConfigFetcher {
 
   fun fetchConfig(context: Context) {
     val request = object : StringRequest(
-        Request.Method.GET,
-        REMOTE_CONFIG_URL,
-        Response.Listener { response -> onSuccess(response) },
-        Response.ErrorListener { _ -> }) {}
+      Request.Method.GET,
+      REMOTE_CONFIG_URL,
+      Response.Listener { response -> onSuccess(response) },
+      Response.ErrorListener { _ -> }) {}
     request.retryPolicy = DefaultRetryPolicy(
-        DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
-        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
+      DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+      DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+      DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
     request.setShouldCache(false)
     Volley.newRequestQueue(context).add(request)
   }

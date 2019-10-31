@@ -12,11 +12,10 @@ class NoteReminder() {
   var interval: ReminderInterval = ReminderInterval.ONCE
   var daysOfWeek: IntArray = intArrayOf()
 
-
   constructor(
-      alarmTimestamp: Long,
-      interval: ReminderInterval,
-      daysOfWeek: IntArray) : this() {
+    alarmTimestamp: Long,
+    interval: ReminderInterval,
+    daysOfWeek: IntArray) : this() {
     this.alarmTimestamp = alarmTimestamp
     this.interval = interval
     this.daysOfWeek = daysOfWeek
@@ -50,9 +49,10 @@ class NoteReminder() {
   }
 }
 
-class Reminder(var uid: Int = 0,
-               var timestamp: Long = 0,
-               var interval: ReminderInterval = ReminderInterval.ONCE) {
+class Reminder(
+  var uid: Int = 0,
+  var timestamp: Long = 0,
+  var interval: ReminderInterval = ReminderInterval.ONCE) {
 
   fun toCalendar(): Calendar {
     val calendar = Calendar.getInstance()

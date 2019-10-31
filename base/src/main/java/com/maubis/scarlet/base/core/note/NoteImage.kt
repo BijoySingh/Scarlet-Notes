@@ -84,9 +84,10 @@ class NoteImage(context: Context) {
     }
   }
 
-  fun loadThumbnailFileToImageView(noteUUID: String, imageUuid: String,
-                                   image: ImageView,
-                                   callback: ImageLoadCallback? = null) {
+  fun loadThumbnailFileToImageView(
+    noteUUID: String, imageUuid: String,
+    image: ImageView,
+    callback: ImageLoadCallback? = null) {
     GlobalScope.launch {
       val thumbnailFile = ApplicationBase.sAppImageCache.thumbnailFile(noteUUID, imageUuid)
       val persistentFile = ApplicationBase.sAppImageCache.persistentFile(noteUUID, imageUuid)

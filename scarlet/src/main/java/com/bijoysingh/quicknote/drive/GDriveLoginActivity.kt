@@ -38,7 +38,6 @@ import java.lang.ref.WeakReference
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 
-
 // TODO: This is not ready... Recent changes in Drive API make this sh*t a little difficult and
 // inconclusive. I want to do this because it's safer than Firebase, but f*ck Google for
 // changing the API So much
@@ -81,17 +80,17 @@ class GDriveLoginActivity : SecuredActivity(), GoogleApiClient.OnConnectionFaile
 
   private fun setupGoogleLogin() {
     val gso = GoogleSignInOptions.Builder(
-        GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestScopes(Scope(DriveScopes.DRIVE_FILE))
-        .requestIdToken(getString(R.string.default_web_client_id))
-        .requestEmail()
-        .build()
+      GoogleSignInOptions.DEFAULT_SIGN_IN)
+      .requestScopes(Scope(DriveScopes.DRIVE_FILE))
+      .requestIdToken(getString(R.string.default_web_client_id))
+      .requestEmail()
+      .build()
 
     mGoogleApiClient = GoogleApiClient
-        .Builder(this)
-        .enableAutoManage(this, this)
-        .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-        .build()
+      .Builder(this)
+      .enableAutoManage(this, this)
+      .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+      .build()
   }
 
   private fun signIn() {
@@ -125,18 +124,18 @@ class GDriveLoginActivity : SecuredActivity(), GoogleApiClient.OnConnectionFaile
   private fun setButton(state: Boolean) {
     loggingIn.set(state)
     component = GDriveRootView.create(componentContext)
-        .onClick {
-          if (!loggingIn.get()) {
-            setButton(true)
-            signIn()
-          }
+      .onClick {
+        if (!loggingIn.get()) {
+          setButton(true)
+          signIn()
         }
-        .onFirebaseClick {
-          context.startActivity(Intent(context, FirebaseLoginActivity::class.java))
-          finish()
-        }
-        .loggingIn(state)
-        .build()
+      }
+      .onFirebaseClick {
+        context.startActivity(Intent(context, FirebaseLoginActivity::class.java))
+        finish()
+      }
+      .loggingIn(state)
+      .build()
     setContentView(LithoView.create(componentContext, component))
   }
 
@@ -167,15 +166,15 @@ class GDriveLoginActivity : SecuredActivity(), GoogleApiClient.OnConnectionFaile
   companion object {
     fun getDriveHelper(context: Context, account: GoogleSignInAccount): GDriveServiceHelper {
       val credential = GoogleAccountCredential.usingOAuth2(
-          context,
-          Collections.singleton(DriveScopes.DRIVE_FILE))
+        context,
+        Collections.singleton(DriveScopes.DRIVE_FILE))
       credential.selectedAccount = account.account
       val googleDriveService = Drive.Builder(
-          AndroidHttp.newCompatibleTransport(),
-          GsonFactory(),
-          credential)
-          .setApplicationName(context.getString(R.string.app_name))
-          .build()
+        AndroidHttp.newCompatibleTransport(),
+        GsonFactory(),
+        credential)
+        .setApplicationName(context.getString(R.string.app_name))
+        .build()
       return GDriveServiceHelper(googleDriveService)
     }
   }

@@ -29,7 +29,6 @@ class ImageCache(context: Context) {
     }
   }
 
-
   fun imagesForNote(noteUUID: String): Array<File> {
     val folder = File(persistentFolder, noteUUID)
     return folder.listFiles() ?: emptyArray<File>()

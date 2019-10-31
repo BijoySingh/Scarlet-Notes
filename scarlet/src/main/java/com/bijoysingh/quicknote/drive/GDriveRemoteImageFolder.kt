@@ -12,8 +12,8 @@ import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 
 data class ImageUUID(
-    val noteUuid: String,
-    val imageUuid: String) {
+  val noteUuid: String,
+  val imageUuid: String) {
 
   fun name(): String = "$noteUuid::$imageUuid"
 
@@ -40,10 +40,10 @@ fun toImageUUID(imageUuid: String): ImageUUID? {
 }
 
 class GDriveRemoteImageFolder(
-    dataType: RemoteDataType,
-    database: RemoteUploadDataDao,
-    service: GDriveServiceHelper,
-    onPendingChange: () -> Unit) : GDriveRemoteFolderBase<File>(dataType, database, service, onPendingChange) {
+  dataType: RemoteDataType,
+  database: RemoteUploadDataDao,
+  service: GDriveServiceHelper,
+  onPendingChange: () -> Unit) : GDriveRemoteFolderBase<File>(dataType, database, service, onPendingChange) {
 
   private val networkOrAbsoluteFailure = AtomicBoolean(false)
 
@@ -137,7 +137,7 @@ class GDriveRemoteImageFolder(
 
     val gDriveUUID = id.name()
     val timestamp = database.getByUUID(dataType.name, gDriveUUID)?.lastUpdateTimestamp
-        ?: getTrueCurrentTime()
+      ?: getTrueCurrentTime()
     val imageFile = sAppImageStorage.getFile(id.noteUuid, id.imageUuid)
     if (!imageFile.exists()) {
       // notifyDriveData(id, gDriveUUID, timestamp)

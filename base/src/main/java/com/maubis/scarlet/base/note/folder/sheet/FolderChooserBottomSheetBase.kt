@@ -4,7 +4,11 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
-import com.facebook.litho.*
+import com.facebook.litho.ClickEvent
+import com.facebook.litho.Column
+import com.facebook.litho.Component
+import com.facebook.litho.ComponentContext
+import com.facebook.litho.Row
 import com.facebook.litho.annotations.LayoutSpec
 import com.facebook.litho.annotations.OnCreateLayout
 import com.facebook.litho.annotations.OnEvent
@@ -13,7 +17,6 @@ import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.folder.FolderBuilder
@@ -27,9 +30,9 @@ import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 
 data class FolderOptionsItem(
-    val folder: Folder,
-    val isSelected: Boolean = false,
-    val listener: () -> Unit = {})
+  val folder: Folder,
+  val isSelected: Boolean = false,
+  val listener: () -> Unit = {})
 
 @LayoutSpec
 object FolderItemLayoutSpec {
@@ -64,28 +67,29 @@ object FolderItemLayoutSpec {
     }
 
     val row = Row.create(context)
-        .widthPercent(100f)
-        .alignItems(YogaAlign.CENTER)
-        .paddingDip(YogaEdge.HORIZONTAL, 20f)
-        .paddingDip(YogaEdge.VERTICAL, 12f)
-        .child(
-            RoundIcon.create(context)
-                .iconRes(icon)
-                .bgColor(bgColor)
-                .iconColor(titleColor)
-                .iconSizeRes(R.dimen.toolbar_round_icon_size)
-                .iconPaddingRes(R.dimen.toolbar_round_icon_padding)
-                .bgAlpha(bgAlpha)
-                .onClick { }
-                .isClickDisabled(true)
-                .marginDip(YogaEdge.END, 16f))
-        .child(Text.create(context)
-            .flexGrow(1f)
-            .text(option.folder.title)
-            .textSizeRes(R.dimen.font_size_normal)
-            .typeface(typeface)
-            .textStyle(Typeface.BOLD)
-            .textColor(textColor))
+      .widthPercent(100f)
+      .alignItems(YogaAlign.CENTER)
+      .paddingDip(YogaEdge.HORIZONTAL, 20f)
+      .paddingDip(YogaEdge.VERTICAL, 12f)
+      .child(
+        RoundIcon.create(context)
+          .iconRes(icon)
+          .bgColor(bgColor)
+          .iconColor(titleColor)
+          .iconSizeRes(R.dimen.toolbar_round_icon_size)
+          .iconPaddingRes(R.dimen.toolbar_round_icon_padding)
+          .bgAlpha(bgAlpha)
+          .onClick { }
+          .isClickDisabled(true)
+          .marginDip(YogaEdge.END, 16f))
+      .child(
+        Text.create(context)
+          .flexGrow(1f)
+          .text(option.folder.title)
+          .textSizeRes(R.dimen.font_size_normal)
+          .typeface(typeface)
+          .textStyle(Typeface.BOLD)
+          .textColor(textColor))
     row.clickHandler(OptionItemLayout.onItemClick(context))
     return row.build()
   }
@@ -95,7 +99,6 @@ object FolderItemLayoutSpec {
     option.listener()
   }
 }
-
 
 abstract class FolderChooserBottomSheetBase : LithoBottomSheet() {
 
@@ -109,33 +112,34 @@ abstract class FolderChooserBottomSheetBase : LithoBottomSheet() {
     preComponentRender(componentContext)
     val activity = context as ThemedActivity
     val component = Column.create(componentContext)
-        .widthPercent(100f)
+      .widthPercent(100f)
     val foldersComponent = Column.create(componentContext)
-        .paddingDip(YogaEdge.TOP, 8f)
-        .paddingDip(YogaEdge.BOTTOM, 8f)
-        .paddingDip(YogaEdge.HORIZONTAL, 20f)
-        .child(getLithoBottomSheetTitle(componentContext)
-            .textRes(R.string.folder_option_change_notebook)
-            .marginDip(YogaEdge.BOTTOM, 12f))
+      .paddingDip(YogaEdge.TOP, 8f)
+      .paddingDip(YogaEdge.BOTTOM, 8f)
+      .paddingDip(YogaEdge.HORIZONTAL, 20f)
+      .child(
+        getLithoBottomSheetTitle(componentContext)
+          .textRes(R.string.folder_option_change_notebook)
+          .marginDip(YogaEdge.BOTTOM, 12f))
     getFolderOptions().forEach {
       foldersComponent.child(FolderItemLayout.create(componentContext).option(it))
     }
 
     val addTag = LithoOptionsItem(
-        title = R.string.folder_sheet_add_note,
-        subtitle = 0,
-        icon = R.drawable.icon_add_notebook,
-        listener = {
-          CreateOrEditFolderBottomSheet.openSheet(activity, FolderBuilder().emptyFolder()) { folder, _ ->
-            onFolderSelected(folder)
-            reset(activity, dialog)
-          }
-        })
+      title = R.string.folder_sheet_add_note,
+      subtitle = 0,
+      icon = R.drawable.icon_add_notebook,
+      listener = {
+        CreateOrEditFolderBottomSheet.openSheet(activity, FolderBuilder().emptyFolder()) { folder, _ ->
+          onFolderSelected(folder)
+          reset(activity, dialog)
+        }
+      })
     foldersComponent.child(OptionItemLayout.create(componentContext)
-        .option(addTag)
-        .backgroundRes(R.drawable.accent_rounded_bg)
-        .marginDip(YogaEdge.TOP, 16f)
-        .onClick { addTag.listener() })
+                             .option(addTag)
+                             .backgroundRes(R.drawable.accent_rounded_bg)
+                             .marginDip(YogaEdge.TOP, 16f)
+                             .onClick { addTag.listener() })
 
     component.child(foldersComponent)
     return component.build()
@@ -145,14 +149,15 @@ abstract class FolderChooserBottomSheetBase : LithoBottomSheet() {
     val activity = context as AppCompatActivity
     val options = ArrayList<FolderOptionsItem>()
     for (folder in CoreConfig.foldersDb.getAll()) {
-      options.add(FolderOptionsItem(
+      options.add(
+        FolderOptionsItem(
           folder = folder,
           listener = {
             onFolderSelected(folder)
             reset(activity, dialog)
           },
           isSelected = isFolderSelected(folder)
-      ))
+        ))
     }
     options.sortByDescending { if (it.isSelected) 1 else 0 }
     return options

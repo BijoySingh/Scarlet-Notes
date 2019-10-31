@@ -20,9 +20,12 @@ import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.core.format.sectionPreservingSort
-import com.maubis.scarlet.base.core.note.*
+import com.maubis.scarlet.base.core.note.NoteBuilder
+import com.maubis.scarlet.base.core.note.NoteState
+import com.maubis.scarlet.base.core.note.generateUUID
+import com.maubis.scarlet.base.core.note.getFormats
+import com.maubis.scarlet.base.core.note.isUnsaved
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.note.*
 import com.maubis.scarlet.base.note.actions.NoteOptionsBottomSheet
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
 import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
@@ -33,13 +36,24 @@ import com.maubis.scarlet.base.note.formats.IFormatRecyclerViewActivity
 import com.maubis.scarlet.base.note.formats.getFormatControllerItems
 import com.maubis.scarlet.base.note.formats.recycler.KEY_EDITABLE
 import com.maubis.scarlet.base.note.formats.recycler.KEY_NOTE_COLOR
+import com.maubis.scarlet.base.note.getSmartFormats
+import com.maubis.scarlet.base.note.getTagString
+import com.maubis.scarlet.base.note.mark
+import com.maubis.scarlet.base.note.openEdit
+import com.maubis.scarlet.base.note.save
+import com.maubis.scarlet.base.note.saveWithoutSync
+import com.maubis.scarlet.base.note.softDelete
 import com.maubis.scarlet.base.settings.sheet.STORE_KEY_TEXT_SIZE
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
 import com.maubis.scarlet.base.settings.sheet.sEditorTextSize
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
-import com.maubis.scarlet.base.support.ui.*
+import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
+import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
+import com.maubis.scarlet.base.support.ui.SecuredActivity
+import com.maubis.scarlet.base.support.ui.Theme
+import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.widget.getPendingIntentWithStack
 import kotlinx.android.synthetic.main.activity_advanced_note.*
@@ -49,16 +63,14 @@ import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 
-
 const val INTENT_KEY_NOTE_ID = "NOTE_ID"
 const val INTENT_KEY_DISTRACTION_FREE = "DISTRACTION_FREE"
 
-
 data class NoteViewColorConfig(
-    var backgroundColor: Int = Color.BLACK,
-    var toolbarBackgroundColor: Int = Color.BLACK,
-    var toolbarIconColor: Int = Color.BLACK,
-    var statusBarColor: Int = Color.BLACK)
+  var backgroundColor: Int = Color.BLACK,
+  var toolbarBackgroundColor: Int = Color.BLACK,
+  var toolbarIconColor: Int = Color.BLACK,
+  var statusBarColor: Int = Color.BLACK)
 
 open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivity, IFormatRecyclerViewActivity {
 
@@ -141,11 +153,11 @@ open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivit
 
   private fun startDistractionFreeMode() {
     val uiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        or View.SYSTEM_UI_FLAG_FULLSCREEN
-        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+      or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+      or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+      or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+      or View.SYSTEM_UI_FLAG_FULLSCREEN
+      or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
     window.decorView.systemUiVisibility = uiVisibility
   }
 
@@ -209,9 +221,9 @@ open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivit
   private fun setRecyclerView() {
     adapter = FormatAdapter(this)
     formatsView = RecyclerViewBuilder(this)
-        .setAdapter(adapter)
-        .setView(this, R.id.advanced_note_recycler)
-        .build()
+      .setAdapter(adapter)
+      .setView(this, R.id.advanced_note_recycler)
+      .build()
   }
 
   open fun setFormat(format: Format) {
@@ -295,18 +307,20 @@ open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivit
     lithoBottomToolbar.removeAllViews()
     val componentContext = ComponentContext(this)
     lithoBottomToolbar.addView(
-        LithoView.create(componentContext,
-            NoteViewBottomBar.create(componentContext)
-                .colorConfig(ToolbarColorConfig(colorConfig.toolbarBackgroundColor, colorConfig.toolbarIconColor))
-                .build()))
+      LithoView.create(
+        componentContext,
+        NoteViewBottomBar.create(componentContext)
+          .colorConfig(ToolbarColorConfig(colorConfig.toolbarBackgroundColor, colorConfig.toolbarIconColor))
+          .build()))
   }
 
   protected open fun setTopToolbar() {
     lithoTopToolbar.removeAllViews()
     val componentContext = ComponentContext(this)
     lithoTopToolbar.addView(
-        LithoView.create(componentContext,
-            NoteViewTopBar.create(componentContext).build()))
+      LithoView.create(
+        componentContext,
+        NoteViewTopBar.create(componentContext).build()))
   }
 
   protected open fun setNoteColor(color: Int) {
@@ -406,7 +420,6 @@ open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivit
   /**
    * End : INoteOptionSheetActivity
    */
-
 
   /**
    * Start : IFormatRecyclerView Functions

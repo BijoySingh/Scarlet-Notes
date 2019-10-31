@@ -33,19 +33,21 @@ class FormatActionBottomSheet : GridOptionBottomSheet() {
     }
 
     val format: Format = this.format!!
-    options.add(GridSectionOptionItem(
+    options.add(
+      GridSectionOptionItem(
         label = R.string.import_export_layout_exporting_share,
         icon = R.drawable.ic_share_white_48dp,
         listener = {
           IntentUtils.ShareBuilder(activity)
-              .setChooserText(activity.getString(R.string.share_using))
-              .setText(format.text)
-              .share()
+            .setChooserText(activity.getString(R.string.share_using))
+            .setText(format.text)
+            .share()
           dismiss()
         },
         visible = !arrayOf(FormatType.IMAGE, FormatType.SEPARATOR).contains(format.formatType)
-    ))
-    options.add(GridSectionOptionItem(
+      ))
+    options.add(
+      GridSectionOptionItem(
         label = R.string.format_action_copy,
         icon = R.drawable.ic_content_copy_white_48dp,
         listener = {
@@ -53,33 +55,35 @@ class FormatActionBottomSheet : GridOptionBottomSheet() {
           dismiss()
         },
         visible = !arrayOf(FormatType.IMAGE, FormatType.SEPARATOR).contains(format.formatType)
-    ))
-    options.add(GridSectionOptionItem(
+      ))
+    options.add(
+      GridSectionOptionItem(
         label = R.string.format_action_camera,
         icon = R.drawable.ic_image_camera,
         listener = {
           EasyImage.openCamera(activity, format.uid)
         },
         visible = format.formatType === FormatType.IMAGE
-    ))
-    options.add(GridSectionOptionItem(
+      ))
+    options.add(
+      GridSectionOptionItem(
         label = R.string.format_action_gallery,
         icon = R.drawable.ic_image_gallery,
         listener = {
           EasyImage.openGallery(activity, format.uid)
         },
         visible = format.formatType === FormatType.IMAGE
-    ))
+      ))
     options.add(GridSectionOptionItem(
-        label = R.string.delete_sheet_delete_trash_yes,
-        icon = R.drawable.ic_delete_white_48dp,
-        listener = {
-          activity.deleteFormat(format)
-          if (format.formatType === FormatType.IMAGE && !format.text.isBlank()) {
-            deleteIfExist(sAppImageStorage.getFile(noteUUID, format))
-          }
-          dismiss()
+      label = R.string.delete_sheet_delete_trash_yes,
+      icon = R.drawable.ic_delete_white_48dp,
+      listener = {
+        activity.deleteFormat(format)
+        if (format.formatType === FormatType.IMAGE && !format.text.isBlank()) {
+          deleteIfExist(sAppImageStorage.getFile(noteUUID, format))
         }
+        dismiss()
+      }
     ))
 
     sections.add(GridSectionItem(options = options))

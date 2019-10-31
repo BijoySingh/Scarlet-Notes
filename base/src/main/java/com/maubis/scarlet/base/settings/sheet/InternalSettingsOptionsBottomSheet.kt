@@ -7,7 +7,11 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
-import com.maubis.scarlet.base.support.utils.*
+import com.maubis.scarlet.base.support.utils.maybeThrow
+import com.maubis.scarlet.base.support.utils.sInternalLogTracesToNote
+import com.maubis.scarlet.base.support.utils.sInternalShowTracesInSheet
+import com.maubis.scarlet.base.support.utils.sInternalThrowOnException
+import com.maubis.scarlet.base.support.utils.sInternalThrownExceptionCount
 
 const val KEY_INTERNAL_ENABLE_FULL_SCREEN = "internal_enable_full_screen"
 var sInternalEnableFullScreen: Boolean
@@ -25,7 +29,8 @@ class InternalSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<LithoOptionsItem>()
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = R.string.internal_settings_enable_fullscreen_title,
         subtitle = R.string.internal_settings_enable_fullscreen_description,
         icon = R.drawable.ic_action_grid,
@@ -35,8 +40,9 @@ class InternalSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         isSelectable = true,
         selected = sInternalEnableFullScreen
-    ))
-    options.add(LithoOptionsItem(
+      ))
+    options.add(
+      LithoOptionsItem(
         title = R.string.internal_settings_show_uuid_title,
         subtitle = R.string.internal_settings_show_uuid_description,
         icon = R.drawable.ic_code_white_48dp,
@@ -46,8 +52,9 @@ class InternalSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         isSelectable = true,
         selected = sInternalShowUUID
-    ))
-    options.add(LithoOptionsItem(
+      ))
+    options.add(
+      LithoOptionsItem(
         title = R.string.internal_settings_enable_log_exceptions_title,
         subtitle = R.string.internal_settings_enable_log_exceptions_description,
         icon = R.drawable.ic_note_white_48dp,
@@ -57,8 +64,9 @@ class InternalSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         isSelectable = true,
         selected = sInternalLogTracesToNote
-    ))
-    options.add(LithoOptionsItem(
+      ))
+    options.add(
+      LithoOptionsItem(
         title = R.string.internal_settings_enable_show_exceptions_title,
         subtitle = R.string.internal_settings_enable_show_exceptions_description,
         icon = R.drawable.icon_add_list,
@@ -68,8 +76,9 @@ class InternalSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         isSelectable = true,
         selected = sInternalShowTracesInSheet
-    ))
-    options.add(LithoOptionsItem(
+      ))
+    options.add(
+      LithoOptionsItem(
         title = R.string.internal_settings_enable_throw_exceptions_title,
         subtitle = R.string.internal_settings_enable_throw_exceptions_description,
         icon = R.drawable.ic_whats_new,
@@ -80,14 +89,14 @@ class InternalSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         isSelectable = true,
         selected = sInternalThrowOnException
-    ))
+      ))
     options.add(LithoOptionsItem(
-        title = R.string.internal_settings_fake_exceptions_title,
-        subtitle = R.string.internal_settings_fake_exceptions_description,
-        icon = R.drawable.ic_info,
-        listener = {
-          maybeThrow(activity, RuntimeException("Fake Exception for Testing"))
-        }
+      title = R.string.internal_settings_fake_exceptions_title,
+      subtitle = R.string.internal_settings_fake_exceptions_description,
+      icon = R.drawable.ic_info,
+      listener = {
+        maybeThrow(activity, RuntimeException("Fake Exception for Testing"))
+      }
     ))
     return options
   }

@@ -63,8 +63,8 @@ class Migrator(val context: Context) {
       File(context.cacheDir, "images").renameTo(File(context.filesDir, "images"))
     }
     runTaskIf(
-        getLastUsedAppVersionCode() == 0,
-        KEY_MIGRATE_DEFAULT_VALUES) {
+      getLastUsedAppVersionCode() == 0,
+      KEY_MIGRATE_DEFAULT_VALUES) {
       sAppThemeLabel = Theme.DARK.name
       sAppPreferences.put(KEY_LIST_VIEW, true)
     }

@@ -52,7 +52,7 @@ class FoldersProvider {
   fun search(string: String): List<Folder> {
     maybeLoadFromDB()
     return folders.values
-        .filter { string.isBlank() || it.title.contains(string, true) }
+      .filter { string.isBlank() || it.title.contains(string, true) }
   }
 
   @Synchronized

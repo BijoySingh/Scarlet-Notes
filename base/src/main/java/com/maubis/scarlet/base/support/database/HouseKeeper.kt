@@ -19,11 +19,11 @@ import java.util.concurrent.TimeUnit
 class HouseKeeper(val context: Context) {
 
   private val houseKeeperTasks: Array<() -> Unit> = arrayOf(
-      { removeOlderClips() },
-      { removeDecoupledFolders() },
-      { removeOldReminders() },
-      { deleteRedundantImageFiles() },
-      { migrateZeroUidNotes() }
+    { removeOlderClips() },
+    { removeDecoupledFolders() },
+    { removeOldReminders() },
+    { deleteRedundantImageFiles() },
+    { migrateZeroUidNotes() }
   )
 
   fun execute() {
@@ -34,7 +34,7 @@ class HouseKeeper(val context: Context) {
 
   fun removeOlderClips(deltaTimeMs: Long = 604800000L) {
     val notes = notesDb.database()
-        .getOldTrashedNotes(Calendar.getInstance().timeInMillis - deltaTimeMs)
+      .getOldTrashedNotes(Calendar.getInstance().timeInMillis - deltaTimeMs)
     for (note in notes) {
       note.delete(context)
     }
@@ -43,13 +43,13 @@ class HouseKeeper(val context: Context) {
   private fun removeDecoupledFolders() {
     val folders = foldersDb.getAll().map { it.uuid }
     notesDb.getAll()
-        .filter { it.folder.isNotBlank() }
-        .forEach {
-          if (!folders.contains(it.folder)) {
-            it.folder = ""
-            it.save(context)
-          }
+      .filter { it.folder.isNotBlank() }
+      .forEach {
+        if (!folders.contains(it.folder)) {
+          it.folder = ""
+          it.save(context)
         }
+      }
   }
 
   private fun removeOldReminders() {

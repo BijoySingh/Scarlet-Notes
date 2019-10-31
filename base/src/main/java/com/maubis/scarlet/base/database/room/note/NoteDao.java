@@ -38,8 +38,7 @@ public interface NoteDao {
   @Query("SELECT * FROM note WHERE tags LIKE :uuidRegex ORDER BY pinned DESC, timestamp DESC")
   List<Note> getNoteByTag(String uuidRegex);
 
-  @Query("SELECT COUNT(*) FROM note WHERE tags LIKE :uuidRegex ORDER BY pinned DESC, timestamp "
-      + "DESC")
+  @Query("SELECT COUNT(*) FROM note WHERE tags LIKE :uuidRegex ORDER BY pinned DESC, timestamp " + "DESC")
   int getNoteCountByTag(String uuidRegex);
 
   @Query("SELECT * FROM note WHERE uid = :uid LIMIT 1")

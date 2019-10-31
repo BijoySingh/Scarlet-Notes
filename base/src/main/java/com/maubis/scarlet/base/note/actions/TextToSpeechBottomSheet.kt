@@ -6,14 +6,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
-import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
 
 fun Note.getTextToSpeechText(): String {

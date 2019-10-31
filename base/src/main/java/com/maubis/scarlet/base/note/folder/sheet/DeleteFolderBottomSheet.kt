@@ -30,48 +30,48 @@ class DeleteFolderBottomSheet : LithoOptionBottomSheet() {
     val activity = context as AppCompatActivity
     val options = ArrayList<LithoOptionsItem>()
     options.add(LithoOptionsItem(
-        title = R.string.folder_delete_option_sheet_remove_folder,
-        subtitle = R.string.folder_delete_option_sheet_remove_folder_details,
-        icon = R.drawable.icon_delete,
-        listener = {
-          folder.delete()
-          executeForFolderContent(folder) {
-            it.folder = ""
-            it.save(activity)
-          }
-
-          sheetOnFolderListener(folder, true)
-          dismiss()
+      title = R.string.folder_delete_option_sheet_remove_folder,
+      subtitle = R.string.folder_delete_option_sheet_remove_folder_details,
+      icon = R.drawable.icon_delete,
+      listener = {
+        folder.delete()
+        executeForFolderContent(folder) {
+          it.folder = ""
+          it.save(activity)
         }
+
+        sheetOnFolderListener(folder, true)
+        dismiss()
+      }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.folder_delete_option_sheet_remove_folder_content,
-        subtitle = R.string.folder_delete_option_sheet_remove_folder_content_details,
-        icon = R.drawable.icon_delete_content,
-        listener = {
-          executeForFolderContent(folder) {
-            it.folder = ""
-            it.softDelete(activity)
-          }
-
-          sheetOnFolderListener(folder, false)
-          dismiss()
+      title = R.string.folder_delete_option_sheet_remove_folder_content,
+      subtitle = R.string.folder_delete_option_sheet_remove_folder_content_details,
+      icon = R.drawable.icon_delete_content,
+      listener = {
+        executeForFolderContent(folder) {
+          it.folder = ""
+          it.softDelete(activity)
         }
+
+        sheetOnFolderListener(folder, false)
+        dismiss()
+      }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.folder_delete_option_sheet_remove_folder_and_content,
-        subtitle = R.string.folder_delete_option_sheet_remove_folder_and_content_details,
-        icon = R.drawable.ic_delete_permanently,
-        listener = {
-          folder.delete()
-          executeForFolderContent(folder) {
-            it.folder = ""
-            it.softDelete(activity)
-          }
-
-          sheetOnFolderListener(folder, true)
-          dismiss()
+      title = R.string.folder_delete_option_sheet_remove_folder_and_content,
+      subtitle = R.string.folder_delete_option_sheet_remove_folder_and_content_details,
+      icon = R.drawable.ic_delete_permanently,
+      listener = {
+        folder.delete()
+        executeForFolderContent(folder) {
+          it.folder = ""
+          it.softDelete(activity)
         }
+
+        sheetOnFolderListener(folder, true)
+        dismiss()
+      }
     ))
     return options
   }

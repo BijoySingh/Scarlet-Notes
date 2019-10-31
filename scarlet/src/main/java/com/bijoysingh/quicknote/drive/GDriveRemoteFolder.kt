@@ -10,12 +10,12 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 
 class GDriveRemoteFolder<T>(
-    dataType: RemoteDataType,
-    database: RemoteUploadDataDao,
-    service: GDriveServiceHelper,
-    onPendingChange: () -> Unit,
-    val serialiser: (T) -> String,
-    val uuidToObject: (String) -> T?) : GDriveRemoteFolderBase<T>(dataType, database, service, onPendingChange) {
+  dataType: RemoteDataType,
+  database: RemoteUploadDataDao,
+  service: GDriveServiceHelper,
+  onPendingChange: () -> Unit,
+  val serialiser: (T) -> String,
+  val uuidToObject: (String) -> T?) : GDriveRemoteFolderBase<T>(dataType, database, service, onPendingChange) {
 
   private var networkOrAbsoluteFailure = AtomicBoolean(false)
 
@@ -119,7 +119,7 @@ class GDriveRemoteFolder<T>(
           when {
             localFileIds.containsKey(file.name) -> duplicateFilesToDelete.add(file.id)
             getTrueCurrentTime() - (file.modifiedTime?.value
-                ?: 0L) > TimeUnit.DAYS.toMillis(7) -> duplicateFilesToDelete.add(file.id)
+              ?: 0L) > TimeUnit.DAYS.toMillis(7) -> duplicateFilesToDelete.add(file.id)
             else -> {
               localFileIds[file.name] = file.id
               notifyDriveData(file, true)
@@ -248,7 +248,7 @@ class GDriveRemoteFolder<T>(
       }
       GlobalScope.launch {
         val timestamp = database.getByUUID(dataType.name, uuid)?.lastUpdateTimestamp
-            ?: getTrueCurrentTime()
+          ?: getTrueCurrentTime()
         service.createFileWithData(deletedFolderUid, uuid, uuid, timestamp) { file ->
           if (file !== null) {
             deletedFiles[uuid] = file.id

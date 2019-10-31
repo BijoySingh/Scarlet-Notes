@@ -29,9 +29,9 @@ fun getNoteIntentFilter(): IntentFilter {
 }
 
 fun sendNoteBroadcast(
-    context: Context,
-    broadcast: NoteBroadcast,
-    uuid: String) {
+  context: Context,
+  broadcast: NoteBroadcast,
+  uuid: String) {
   val intent = Intent()
   intent.action = broadcast.name
   intent.putExtra(KEY_UUID, uuid)

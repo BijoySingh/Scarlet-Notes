@@ -6,7 +6,8 @@ import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
 
 fun String.toInternalFormats(): List<Format> {
-  return toInternalFormats(arrayOf(
+  return toInternalFormats(
+    arrayOf(
       MarkdownSegmentType.HEADING_1,
       MarkdownSegmentType.HEADING_2,
       MarkdownSegmentType.HEADING_3,

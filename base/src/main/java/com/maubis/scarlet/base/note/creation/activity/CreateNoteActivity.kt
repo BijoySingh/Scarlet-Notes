@@ -55,7 +55,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     setTouchListener()
     startHandler()
   }
-  
+
   override fun onCreationFinished() {
     super.onCreationFinished()
     history.add(NoteBuilder().copy(note!!))
@@ -94,8 +94,8 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
         addDefaultItem()
       }
       !formats[0].text.startsWith("# ") &&
-          formats[0].formatType !== FormatType.HEADING
-          && formats[0].formatType !== FormatType.IMAGE -> {
+        formats[0].formatType !== FormatType.HEADING
+        && formats[0].formatType !== FormatType.IMAGE -> {
         addEmptyItem(0, FormatType.HEADING)
       }
     }
@@ -114,19 +114,20 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     lithoTopToolbar.removeAllViews()
     val componentContext = ComponentContext(this)
     lithoTopToolbar.addView(
-        LithoView.create(componentContext,
-            NoteCreationTopBar.create(componentContext).build()))
+      LithoView.create(
+        componentContext,
+        NoteCreationTopBar.create(componentContext).build()))
   }
 
   override fun setBottomToolbar() {
     val componentContext = ComponentContext(this)
     lithoBottomToolbar.removeAllViews()
     lithoBottomToolbar.addView(
-        LithoView.create(
-            componentContext,
-            NoteCreationBottomBar.create(componentContext)
-                .colorConfig(ToolbarColorConfig(colorConfig.toolbarBackgroundColor, colorConfig.toolbarIconColor))
-                .build()))
+      LithoView.create(
+        componentContext,
+        NoteCreationBottomBar.create(componentContext)
+          .colorConfig(ToolbarColorConfig(colorConfig.toolbarBackgroundColor, colorConfig.toolbarIconColor))
+          .build()))
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -194,7 +195,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
     // Ignore update if nothing changed. It allows for one undo per few seconds
     when {
-      !historyModified  && currentNote.isEqual(vLastNoteInstance) -> return
+      !historyModified && currentNote.isEqual(vLastNoteInstance) -> return
       !historyModified -> addNoteToHistory(NoteBuilder().copy(currentNote))
       else -> historyModified = false
     }
@@ -219,7 +220,6 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
       historyIndex -= 1
     }
   }
-
 
   private fun startHandler() {
     val handler = Handler()
@@ -327,12 +327,12 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
 
   fun onColorChangeClick() {
     val config = ColorPickerDefaultController(
-        title = R.string.choose_note_color,
-        colors = listOf(resources.getIntArray(R.array.bright_colors), resources.getIntArray(R.array.bright_colors_accent)),
-        selectedColor = note!!.color,
-        onColorSelected = { color ->
-          setNoteColor(color)
-        }
+      title = R.string.choose_note_color,
+      colors = listOf(resources.getIntArray(R.array.bright_colors), resources.getIntArray(R.array.bright_colors_accent)),
+      selectedColor = note!!.color,
+      onColorSelected = { color ->
+        setNoteColor(color)
+      }
     )
     com.maubis.scarlet.base.support.sheets.openSheet(this, ColorPickerBottomSheet().apply { this.config = config })
   }
@@ -410,8 +410,8 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     }
 
     val isCheckList =
-        (format.formatType === FormatType.CHECKLIST_UNCHECKED
-            || format.formatType === FormatType.CHECKLIST_CHECKED)
+      (format.formatType === FormatType.CHECKLIST_UNCHECKED
+        || format.formatType === FormatType.CHECKLIST_CHECKED)
     val newPosition = position + 1
     when {
       isCheckList -> addEmptyItemAtFocused(FormatBuilder().getNextFormatType(FormatType.CHECKLIST_UNCHECKED))
@@ -424,16 +424,16 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     private const val INTENT_KEY_FOLDER = "key_folder"
 
     fun getNewNoteIntent(
-        context: Context,
-        folder: String = ""): Intent {
+      context: Context,
+      folder: String = ""): Intent {
       val intent = Intent(context, CreateNoteActivity::class.java)
       intent.putExtra(INTENT_KEY_FOLDER, folder)
       return intent
     }
 
     fun getNewChecklistNoteIntent(
-        context: Context,
-        folder: String = ""): Intent {
+      context: Context,
+      folder: String = ""): Intent {
       val intent = Intent(context, CreateListNoteActivity::class.java)
       intent.putExtra(INTENT_KEY_FOLDER, folder)
       return intent

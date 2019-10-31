@@ -52,7 +52,7 @@ class TagsProvider {
   fun search(string: String): List<Tag> {
     maybeLoadFromDB()
     return tags.values
-        .filter { string.isBlank() || it.title.contains(string, true) }
+      .filter { string.isBlank() || it.title.contains(string, true) }
   }
 
   @Synchronized

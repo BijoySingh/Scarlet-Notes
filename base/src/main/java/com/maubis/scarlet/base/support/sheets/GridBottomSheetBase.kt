@@ -6,7 +6,6 @@ import android.widget.GridLayout
 import android.widget.TextView
 import com.github.bijoysingh.uibasics.views.UILabelView
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.support.option.OptionsItem
 import com.maubis.scarlet.base.support.ui.ThemeColorType

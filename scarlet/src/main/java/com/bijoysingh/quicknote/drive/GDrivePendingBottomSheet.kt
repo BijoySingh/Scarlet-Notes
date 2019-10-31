@@ -6,8 +6,16 @@ import android.text.TextUtils
 import com.bijoysingh.quicknote.database.RemoteDataType
 import com.bijoysingh.quicknote.database.RemoteUploadData
 import com.bijoysingh.quicknote.database.remoteDatabase
-import com.facebook.litho.*
-import com.facebook.litho.annotations.*
+import com.facebook.litho.ClickEvent
+import com.facebook.litho.Column
+import com.facebook.litho.Component
+import com.facebook.litho.ComponentContext
+import com.facebook.litho.Row
+import com.facebook.litho.annotations.LayoutSpec
+import com.facebook.litho.annotations.OnCreateLayout
+import com.facebook.litho.annotations.OnEvent
+import com.facebook.litho.annotations.Prop
+import com.facebook.litho.annotations.ResType
 import com.facebook.litho.widget.Image
 import com.facebook.litho.widget.SolidColor
 import com.facebook.litho.widget.Text
@@ -15,7 +23,6 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.google.gson.Gson
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
@@ -32,41 +39,45 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.atomic.AtomicBoolean
 
 data class PendingItem(
-    val state: RemoteUploadData,
-    val info: String?
+  val state: RemoteUploadData,
+  val info: String?
 )
 
 @LayoutSpec
 object PendingItemIconSpec {
   @OnCreateLayout
-  fun onCreate(context: ComponentContext,
-               @Prop(resType = ResType.STRING) label: String,
-               @Prop(resType = ResType.DRAWABLE) icon: Drawable): Component {
+  fun onCreate(
+    context: ComponentContext,
+    @Prop(resType = ResType.STRING) label: String,
+    @Prop(resType = ResType.DRAWABLE) icon: Drawable): Component {
     val secondaryColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     return Row.create(context)
-        .paddingDip(YogaEdge.HORIZONTAL, 8f)
-        .paddingDip(YogaEdge.VERTICAL, 4f)
-        .alignItems(YogaAlign.CENTER)
-        .alignContent(YogaAlign.CENTER)
-        .backgroundRes(R.drawable.secondary_rounded_bg)
-        .child(Image.create(context)
-            .drawable(icon.color(secondaryColor))
-            .marginDip(YogaEdge.HORIZONTAL, 4f)
-            .heightDip(24f))
-        .child(Text.create(context)
-            .text(label)
-            .textSizeRes(R.dimen.font_size_xsmall)
-            .typeface(CoreConfig.FONT_MONSERRAT_MEDIUM)
-            .textColor(secondaryColor))
-        .build()
+      .paddingDip(YogaEdge.HORIZONTAL, 8f)
+      .paddingDip(YogaEdge.VERTICAL, 4f)
+      .alignItems(YogaAlign.CENTER)
+      .alignContent(YogaAlign.CENTER)
+      .backgroundRes(R.drawable.secondary_rounded_bg)
+      .child(
+        Image.create(context)
+          .drawable(icon.color(secondaryColor))
+          .marginDip(YogaEdge.HORIZONTAL, 4f)
+          .heightDip(24f))
+      .child(
+        Text.create(context)
+          .text(label)
+          .textSizeRes(R.dimen.font_size_xsmall)
+          .typeface(CoreConfig.FONT_MONSERRAT_MEDIUM)
+          .textColor(secondaryColor))
+      .build()
   }
 }
 
 @LayoutSpec
 object PendingItemLayoutSpec {
   @OnCreateLayout
-  fun onCreate(context: ComponentContext,
-               @Prop option: PendingItem): Component {
+  fun onCreate(
+    context: ComponentContext,
+    @Prop option: PendingItem): Component {
     val titleColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     val subtitleColor = sAppTheme.get(ThemeColorType.TERTIARY_TEXT)
     val hintColor = sAppTheme.get(ThemeColorType.HINT_TEXT)
@@ -112,99 +123,106 @@ object PendingItemLayoutSpec {
     }
 
     val column = Column.create(context)
-        .widthPercent(100f)
-        .paddingDip(YogaEdge.VERTICAL, 12f)
-        .child(
-            Row.create(context)
-                .paddingDip(YogaEdge.ALL, 2f)
-                .alignItems(YogaAlign.CENTER)
-                .child(
-                    PendingItemIcon.create(context)
-                        .iconRes(icon)
-                        .label(label)
-                        .marginDip(YogaEdge.END, 16f))
-                .child(
-                    Text.create(context)
-                        .text(uuid)
-                        .maxLines(1)
-                        .ellipsize(TextUtils.TruncateAt.END)
-                        .textSizeRes(R.dimen.font_size_small)
-                        .typeface(CoreConfig.FONT_OPEN_SANS)
-                        .textColor(subtitleColor)))
-        .child(
+      .widthPercent(100f)
+      .paddingDip(YogaEdge.VERTICAL, 12f)
+      .child(
+        Row.create(context)
+          .paddingDip(YogaEdge.ALL, 2f)
+          .alignItems(YogaAlign.CENTER)
+          .child(
+            PendingItemIcon.create(context)
+              .iconRes(icon)
+              .label(label)
+              .marginDip(YogaEdge.END, 16f))
+          .child(
             Text.create(context)
-                .text(info)
-                .maxLines(5)
-                .paddingDip(YogaEdge.ALL, 8f)
-                .marginDip(YogaEdge.ALL, 8f)
-                .ellipsize(TextUtils.TruncateAt.MIDDLE)
-                .textSizeRes(R.dimen.font_size_small)
-                .typeface(CoreConfig.FONT_MONSERRAT)
-                .backgroundRes(R.drawable.pending_note_background)
-                .textColor(subtitleColor))
-        .child(
-            Row.create(context)
-                .widthPercent(100f)
-                .paddingDip(YogaEdge.ALL, 4f)
-                .child(Text.create(context)
-                    .textRes(R.string.pending_backup_local_state)
-                    .textSizeRes(R.dimen.font_size_small)
-                    .flexGrow(1f)
-                    .typeface(CoreConfig.FONT_MONSERRAT_MEDIUM)
-                    .textColor(hintColor))
-                .child(Text.create(context)
-                    .textRes(localState)
-                    .textSizeRes(R.dimen.font_size_small)
-                    .typeface(CoreConfig.FONT_OPEN_SANS)
-                    .paddingDip(YogaEdge.HORIZONTAL, 6f)
-                    .paddingDip(YogaEdge.VERTICAL, 2f)
-                    .marginDip(YogaEdge.HORIZONTAL, 4f)
-                    .backgroundRes(R.drawable.pending_note_background)
-                    .textColor(hintColor))
-                .child(Text.create(context)
-                    .text(localUpdateTime)
-                    .textSizeRes(R.dimen.font_size_small)
-                    .typeface(CoreConfig.FONT_OPEN_SANS)
-                    .paddingDip(YogaEdge.HORIZONTAL, 6f)
-                    .paddingDip(YogaEdge.VERTICAL, 2f)
-                    .backgroundRes(R.drawable.pending_note_background)
-                    .textColor(hintColor))
-        )
-        .child(
-            Row.create(context)
-                .widthPercent(100f)
-                .paddingDip(YogaEdge.ALL, 4f)
-                .child(Text.create(context)
-                    .textRes(R.string.pending_backup_remote_state)
-                    .textSizeRes(R.dimen.font_size_small)
-                    .flexGrow(1f)
-                    .typeface(CoreConfig.FONT_MONSERRAT_MEDIUM)
-                    .textColor(hintColor))
-                .child(Text.create(context)
-                    .textRes(remoteState)
-                    .textSizeRes(R.dimen.font_size_small)
-                    .typeface(CoreConfig.FONT_OPEN_SANS)
-                    .paddingDip(YogaEdge.HORIZONTAL, 6f)
-                    .paddingDip(YogaEdge.VERTICAL, 2f)
-                    .marginDip(YogaEdge.HORIZONTAL, 4f)
-                    .backgroundRes(R.drawable.pending_note_background)
-                    .textColor(hintColor))
-                .child(Text.create(context)
-                    .text(remoteUpdateTime)
-                    .textSizeRes(R.dimen.font_size_small)
-                    .typeface(CoreConfig.FONT_OPEN_SANS)
-                    .paddingDip(YogaEdge.HORIZONTAL, 6f)
-                    .paddingDip(YogaEdge.VERTICAL, 2f)
-                    .backgroundRes(R.drawable.pending_note_background)
-                    .textColor(hintColor))
-        )
-        .child(SolidColor.create(context)
-            .color(hintColor)
-            .heightDip(0.5f)
-            .widthDip(196f)
-            .alignSelf(YogaAlign.CENTER)
-            .marginDip(YogaEdge.TOP, 12f)
-            .alpha(0.4f))
+              .text(uuid)
+              .maxLines(1)
+              .ellipsize(TextUtils.TruncateAt.END)
+              .textSizeRes(R.dimen.font_size_small)
+              .typeface(CoreConfig.FONT_OPEN_SANS)
+              .textColor(subtitleColor)))
+      .child(
+        Text.create(context)
+          .text(info)
+          .maxLines(5)
+          .paddingDip(YogaEdge.ALL, 8f)
+          .marginDip(YogaEdge.ALL, 8f)
+          .ellipsize(TextUtils.TruncateAt.MIDDLE)
+          .textSizeRes(R.dimen.font_size_small)
+          .typeface(CoreConfig.FONT_MONSERRAT)
+          .backgroundRes(R.drawable.pending_note_background)
+          .textColor(subtitleColor))
+      .child(
+        Row.create(context)
+          .widthPercent(100f)
+          .paddingDip(YogaEdge.ALL, 4f)
+          .child(
+            Text.create(context)
+              .textRes(R.string.pending_backup_local_state)
+              .textSizeRes(R.dimen.font_size_small)
+              .flexGrow(1f)
+              .typeface(CoreConfig.FONT_MONSERRAT_MEDIUM)
+              .textColor(hintColor))
+          .child(
+            Text.create(context)
+              .textRes(localState)
+              .textSizeRes(R.dimen.font_size_small)
+              .typeface(CoreConfig.FONT_OPEN_SANS)
+              .paddingDip(YogaEdge.HORIZONTAL, 6f)
+              .paddingDip(YogaEdge.VERTICAL, 2f)
+              .marginDip(YogaEdge.HORIZONTAL, 4f)
+              .backgroundRes(R.drawable.pending_note_background)
+              .textColor(hintColor))
+          .child(
+            Text.create(context)
+              .text(localUpdateTime)
+              .textSizeRes(R.dimen.font_size_small)
+              .typeface(CoreConfig.FONT_OPEN_SANS)
+              .paddingDip(YogaEdge.HORIZONTAL, 6f)
+              .paddingDip(YogaEdge.VERTICAL, 2f)
+              .backgroundRes(R.drawable.pending_note_background)
+              .textColor(hintColor))
+      )
+      .child(
+        Row.create(context)
+          .widthPercent(100f)
+          .paddingDip(YogaEdge.ALL, 4f)
+          .child(
+            Text.create(context)
+              .textRes(R.string.pending_backup_remote_state)
+              .textSizeRes(R.dimen.font_size_small)
+              .flexGrow(1f)
+              .typeface(CoreConfig.FONT_MONSERRAT_MEDIUM)
+              .textColor(hintColor))
+          .child(
+            Text.create(context)
+              .textRes(remoteState)
+              .textSizeRes(R.dimen.font_size_small)
+              .typeface(CoreConfig.FONT_OPEN_SANS)
+              .paddingDip(YogaEdge.HORIZONTAL, 6f)
+              .paddingDip(YogaEdge.VERTICAL, 2f)
+              .marginDip(YogaEdge.HORIZONTAL, 4f)
+              .backgroundRes(R.drawable.pending_note_background)
+              .textColor(hintColor))
+          .child(
+            Text.create(context)
+              .text(remoteUpdateTime)
+              .textSizeRes(R.dimen.font_size_small)
+              .typeface(CoreConfig.FONT_OPEN_SANS)
+              .paddingDip(YogaEdge.HORIZONTAL, 6f)
+              .paddingDip(YogaEdge.VERTICAL, 2f)
+              .backgroundRes(R.drawable.pending_note_background)
+              .textColor(hintColor))
+      )
+      .child(
+        SolidColor.create(context)
+          .color(hintColor)
+          .heightDip(0.5f)
+          .widthDip(196f)
+          .alignSelf(YogaAlign.CENTER)
+          .marginDip(YogaEdge.TOP, 12f)
+          .alpha(0.4f))
     return column.build()
   }
 
@@ -250,17 +268,18 @@ class GDrivePendingBottomSheet : LithoBottomSheet() {
   override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
     try {
       val component = Column.create(componentContext)
-          .widthPercent(100f)
-          .paddingDip(YogaEdge.VERTICAL, 8f)
-          .paddingDip(YogaEdge.HORIZONTAL, 20f)
-          .child(getLithoBottomSheetTitle(componentContext)
-              .textRes(R.string.home_pending_backup_top_layout)
-              .marginDip(YogaEdge.HORIZONTAL, 0f))
+        .widthPercent(100f)
+        .paddingDip(YogaEdge.VERTICAL, 8f)
+        .paddingDip(YogaEdge.HORIZONTAL, 20f)
+        .child(
+          getLithoBottomSheetTitle(componentContext)
+            .textRes(R.string.home_pending_backup_top_layout)
+            .marginDip(YogaEdge.HORIZONTAL, 0f))
       data.forEach {
         component.child(
-            PendingItemLayout.create(componentContext)
-                .option(it)
-                .onClick {})
+          PendingItemLayout.create(componentContext)
+            .option(it)
+            .onClick {})
       }
       return component.build()
     } finally {

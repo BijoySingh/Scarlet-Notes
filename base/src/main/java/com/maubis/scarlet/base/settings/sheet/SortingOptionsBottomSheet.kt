@@ -19,7 +19,8 @@ class SortingOptionsBottomSheet : LithoChooseOptionBottomSheet() {
     val options = ArrayList<LithoChooseOptionsItem>()
 
     SortingTechnique.values().forEach { technique ->
-      options.add(LithoChooseOptionsItem(
+      options.add(
+        LithoChooseOptionsItem(
           title = getSortingTechniqueLabel(technique),
           listener = {
             setSortingState(technique)
@@ -27,7 +28,7 @@ class SortingOptionsBottomSheet : LithoChooseOptionBottomSheet() {
             reset(componentContext.androidContext, dialog)
           },
           selected = sorting == technique
-      ))
+        ))
     }
     return options
   }

@@ -8,7 +8,11 @@ import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
-import com.maubis.scarlet.base.export.data.*
+import com.maubis.scarlet.base.export.data.ExportableFileFormat
+import com.maubis.scarlet.base.export.data.ExportableFolder
+import com.maubis.scarlet.base.export.data.ExportableNote
+import com.maubis.scarlet.base.export.data.ExportableTag
+import com.maubis.scarlet.base.export.data.toExportedMarkdown
 import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FILENAME
 import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FOLDER
 import com.maubis.scarlet.base.support.utils.sDateFormat
@@ -47,9 +51,9 @@ class NoteExporter() {
     }
 
     val notes = notesDb
-        .getAll()
-        .filter { sBackupLockedNotes || !it.locked }
-        .map { ExportableNote(it) }
+      .getAll()
+      .filter { sBackupLockedNotes || !it.locked }
+      .map { ExportableNote(it) }
     val tags = tagsDb.getAll().map { ExportableTag(it) }
     val folders = foldersDb.getAll().map { ExportableFolder(it) }
     val fileContent = ExportableFileFormat(EXPORT_VERSION, notes, tags, folders)
@@ -59,11 +63,11 @@ class NoteExporter() {
   private fun getMarkdownExportContent(): String {
     var totalText = "$EXPORT_NOTE_SEPARATOR\n\n"
     notesDb.getAll()
-        .map { it.toExportedMarkdown() }
-        .forEach {
-          totalText += it
-          totalText += "\n\n$EXPORT_NOTE_SEPARATOR\n\n"
-        }
+      .map { it.toExportedMarkdown() }
+      .forEach {
+        totalText += it
+        totalText += "\n\n$EXPORT_NOTE_SEPARATOR\n\n"
+      }
     return totalText
   }
 
@@ -79,19 +83,19 @@ class NoteExporter() {
       }
 
       val exportFile = getOrCreateFileForExport(
-          "$AUTO_BACKUP_FILENAME ${sDateFormat.getDateForBackup()}")
+        "$AUTO_BACKUP_FILENAME ${sDateFormat.getDateForBackup()}")
       if (exportFile === null) {
         return@execute
       }
       saveToFile(exportFile, getExportContent())
       sAppPreferences
-          .put(KEY_AUTO_BACKUP_LAST_TIMESTAMP, System.currentTimeMillis())
+        .put(KEY_AUTO_BACKUP_LAST_TIMESTAMP, System.currentTimeMillis())
     }
   }
 
   fun getOrCreateManualExportFile(): File? {
     return getOrCreateFileForExport(
-        "$NOTES_EXPORT_FILENAME ${sDateFormat.getTimestampForBackup()}")
+      "$NOTES_EXPORT_FILENAME ${sDateFormat.getTimestampForBackup()}")
   }
 
   fun getOrCreateFileForExport(filename: String): File? {

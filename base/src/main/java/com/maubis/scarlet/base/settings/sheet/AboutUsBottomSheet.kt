@@ -9,7 +9,6 @@ import com.facebook.yoga.YogaEdge
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
@@ -36,49 +35,55 @@ class AboutUsBottomSheet : LithoBottomSheet() {
     val aboutAppDetails = getString(R.string.about_page_description, appName)
 
     val component = Column.create(componentContext)
-        .widthPercent(100f)
-        .paddingDip(YogaEdge.VERTICAL, 8f)
-        .paddingDip(YogaEdge.HORIZONTAL, 20f)
-        .child(getLithoBottomSheetTitle(componentContext)
-            .textRes(R.string.home_option_about_page)
-            .marginDip(YogaEdge.HORIZONTAL, 0f))
-        .child(Text.create(componentContext)
-            .textSizeRes(R.dimen.font_size_large)
-            .marginDip(YogaEdge.BOTTOM, 16f)
-            .text(aboutUsDetails)
-            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
-        .child(Text.create(componentContext)
-            .textSizeRes(R.dimen.font_size_xlarge)
-            .marginDip(YogaEdge.BOTTOM, 4f)
-            .textRes(R.string.about_page_about_app)
-            .typeface(CoreConfig.FONT_MONSERRAT)
-            .textColor(sAppTheme.get(ThemeColorType.SECTION_HEADER)))
-        .child(Text.create(componentContext)
-            .textSizeRes(R.dimen.font_size_large)
-            .marginDip(YogaEdge.BOTTOM, 16f)
-            .text(aboutAppDetails)
-            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
-        .child(Text.create(componentContext)
-            .textSizeRes(R.dimen.font_size_xlarge)
-            .marginDip(YogaEdge.BOTTOM, 4f)
-            .textRes(R.string.about_page_app_version)
-            .typeface(CoreConfig.FONT_MONSERRAT)
-            .textColor(sAppTheme.get(ThemeColorType.SECTION_HEADER)))
-        .child(Text.create(componentContext)
-            .textSizeRes(R.dimen.font_size_large)
-            .marginDip(YogaEdge.BOTTOM, 16f)
-            .text(version)
-            .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
-        .child(BottomSheetBar.create(componentContext)
-            .primaryActionRes(R.string.about_page_rate)
-            .onPrimaryClick {
-              try {
-                IntentUtils.openAppPlayStore(activity)
-                dismiss()
-              } catch (exception: Exception) {
-                maybeThrow(activity, exception)
-              }
-            }.paddingDip(YogaEdge.VERTICAL, 8f))
+      .widthPercent(100f)
+      .paddingDip(YogaEdge.VERTICAL, 8f)
+      .paddingDip(YogaEdge.HORIZONTAL, 20f)
+      .child(
+        getLithoBottomSheetTitle(componentContext)
+          .textRes(R.string.home_option_about_page)
+          .marginDip(YogaEdge.HORIZONTAL, 0f))
+      .child(
+        Text.create(componentContext)
+          .textSizeRes(R.dimen.font_size_large)
+          .marginDip(YogaEdge.BOTTOM, 16f)
+          .text(aboutUsDetails)
+          .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
+      .child(
+        Text.create(componentContext)
+          .textSizeRes(R.dimen.font_size_xlarge)
+          .marginDip(YogaEdge.BOTTOM, 4f)
+          .textRes(R.string.about_page_about_app)
+          .typeface(CoreConfig.FONT_MONSERRAT)
+          .textColor(sAppTheme.get(ThemeColorType.SECTION_HEADER)))
+      .child(
+        Text.create(componentContext)
+          .textSizeRes(R.dimen.font_size_large)
+          .marginDip(YogaEdge.BOTTOM, 16f)
+          .text(aboutAppDetails)
+          .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
+      .child(
+        Text.create(componentContext)
+          .textSizeRes(R.dimen.font_size_xlarge)
+          .marginDip(YogaEdge.BOTTOM, 4f)
+          .textRes(R.string.about_page_app_version)
+          .typeface(CoreConfig.FONT_MONSERRAT)
+          .textColor(sAppTheme.get(ThemeColorType.SECTION_HEADER)))
+      .child(
+        Text.create(componentContext)
+          .textSizeRes(R.dimen.font_size_large)
+          .marginDip(YogaEdge.BOTTOM, 16f)
+          .text(version)
+          .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
+      .child(BottomSheetBar.create(componentContext)
+               .primaryActionRes(R.string.about_page_rate)
+               .onPrimaryClick {
+                 try {
+                   IntentUtils.openAppPlayStore(activity)
+                   dismiss()
+                 } catch (exception: Exception) {
+                   maybeThrow(activity, exception)
+                 }
+               }.paddingDip(YogaEdge.VERTICAL, 8f))
     return component.build()
   }
 }

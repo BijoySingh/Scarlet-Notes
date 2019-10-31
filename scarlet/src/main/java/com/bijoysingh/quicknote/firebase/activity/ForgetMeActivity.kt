@@ -61,13 +61,13 @@ class ForgetMeActivity : ThemedActivity() {
 
       forgettingInProcess = true
       firebaseForgetMe(
-          onComplete = {
-            sFirebaseKilled = true
-            finish()
-          },
-          onFailure = {
-            reauthAndDelete()
-          })
+        onComplete = {
+          sFirebaseKilled = true
+          finish()
+        },
+        onFailure = {
+          reauthAndDelete()
+        })
 
     }
     cancelBtn.setOnClickListener {
@@ -86,30 +86,29 @@ class ForgetMeActivity : ThemedActivity() {
       firebase?.deleteEverything()
 
       FirebaseAuth.getInstance().currentUser
-          ?.delete()
-          ?.addOnCompleteListener {
-            if (it.isSuccessful) {
-              firebase?.logout()
-              gDrive?.logout()
-              sFirebaseKilled = true
-              sGDriveLoggedIn = false
-              onComplete()
-              return@addOnCompleteListener
-            }
-            onFailure()
+        ?.delete()
+        ?.addOnCompleteListener {
+          if (it.isSuccessful) {
+            firebase?.logout()
+            gDrive?.logout()
+            sFirebaseKilled = true
+            sGDriveLoggedIn = false
+            onComplete()
+            return@addOnCompleteListener
           }
+          onFailure()
+        }
     }
   }
-
 
   /**
    * Google Login for reauth
    */
   private fun setupGoogleLogin() {
     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken(getString(R.string.default_web_client_id))
-        .requestEmail()
-        .build()
+      .requestIdToken(getString(R.string.default_web_client_id))
+      .requestEmail()
+      .build()
 
     googleSignInClient = GoogleSignIn.getClient(this, gso);
   }
@@ -145,26 +144,26 @@ class ForgetMeActivity : ThemedActivity() {
 
     val user = FirebaseAuth.getInstance().currentUser
     user?.reauthenticate(credential)
-        ?.addOnCompleteListener {
-          if (!it.isSuccessful) {
-            ToastHelper.show(this, "Reauthentication of account failed.")
-            return@addOnCompleteListener
-          }
-          deleteUser(user)
+      ?.addOnCompleteListener {
+        if (!it.isSuccessful) {
+          ToastHelper.show(this, "Reauthentication of account failed.")
+          return@addOnCompleteListener
         }
+        deleteUser(user)
+      }
   }
 
   protected fun deleteUser(user: FirebaseUser) {
     user.delete()
-        .addOnCompleteListener {
-          if (!it.isSuccessful) {
-            ToastHelper.show(this, "Deletion of account failed")
-            return@addOnCompleteListener
-          }
-
-          ApplicationBase.instance.authenticator().logout()
-          finish()
+      .addOnCompleteListener {
+        if (!it.isSuccessful) {
+          ToastHelper.show(this, "Deletion of account failed")
+          return@addOnCompleteListener
         }
+
+        ApplicationBase.instance.authenticator().logout()
+        finish()
+      }
   }
 
 }

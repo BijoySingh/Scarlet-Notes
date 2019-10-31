@@ -44,7 +44,7 @@ object IRemoteDatabaseUtils {
     val notifiedTag = TagBuilder().copy(tag)
     val existingTag = CoreConfig.tagsDb.getByUUID(tag.uuid())
     var isSameAsExisting = existingTag !== null
-        && TextUtils.areEqualNullIsEmpty(notifiedTag.title, existingTag.title)
+      && TextUtils.areEqualNullIsEmpty(notifiedTag.title, existingTag.title)
 
     if (existingTag === null) {
       notifiedTag.saveWithoutSync()
@@ -62,10 +62,10 @@ object IRemoteDatabaseUtils {
     val notifiedFolder = FolderBuilder().copy(folder)
     val existingFolder = CoreConfig.foldersDb.getByUUID(folder.uuid())
     var isSameAsExisting = existingFolder !== null
-        && TextUtils.areEqualNullIsEmpty(notifiedFolder.title, existingFolder.title)
-        && (notifiedFolder.color == existingFolder.color)
-        && (notifiedFolder.timestamp == existingFolder.timestamp)
-        && (notifiedFolder.updateTimestamp == existingFolder.updateTimestamp)
+      && TextUtils.areEqualNullIsEmpty(notifiedFolder.title, existingFolder.title)
+      && (notifiedFolder.color == existingFolder.color)
+      && (notifiedFolder.timestamp == existingFolder.timestamp)
+      && (notifiedFolder.updateTimestamp == existingFolder.updateTimestamp)
 
     if (existingFolder === null) {
       notifiedFolder.saveWithoutSync()

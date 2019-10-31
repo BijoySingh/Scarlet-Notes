@@ -28,7 +28,6 @@ import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.utils.bind
 import java.io.InputStreamReader
 
-
 const val KEEP_PACKAGE = "com.google.android.keep"
 const val INTENT_KEY_DIRECT_NOTES_TRANSFER = "direct_notes_transfer"
 
@@ -58,7 +57,6 @@ class OpenTextIntentOrFileActivity : SecuredActivity() {
     setContentView(R.layout.activity_external_intent)
     setView()
     notifyThemeChange()
-
 
     val spannable = SpannableString(contentText)
     spannable.setFormats(Markdown.getSpanInfo(contentText).spans)

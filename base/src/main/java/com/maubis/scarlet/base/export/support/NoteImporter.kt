@@ -66,14 +66,14 @@ class NoteImporter() {
 
   private fun importNoteFallback(content: String, context: Context) {
     content
-        .split(EXPORT_NOTE_SEPARATOR)
-        .map {
-          it.trim()
-        }
-        .filter { it.isNotBlank() }
-        .forEach {
-          NoteBuilder().gen("", it).save(context)
-        }
+      .split(EXPORT_NOTE_SEPARATOR)
+      .map {
+        it.trim()
+      }
+      .filter { it.isNotBlank() }
+      .forEach {
+        NoteBuilder().gen("", it).save(context)
+      }
   }
 
   fun getImportableFiles(): List<File> {
@@ -109,7 +109,6 @@ class NoteImporter() {
     return files
   }
 
-
   fun readFileInputStream(inputStreamReader: InputStreamReader): String {
     lateinit var reader: BufferedReader
     try {
@@ -134,7 +133,7 @@ class NoteImporter() {
 
   private fun isValidFile(filePath: String, validExtension: String): Boolean {
     return filePath.endsWith("." + validExtension)
-        || filePath.endsWith("." + validExtension.toUpperCase())
+      || filePath.endsWith("." + validExtension.toUpperCase())
   }
 
 }

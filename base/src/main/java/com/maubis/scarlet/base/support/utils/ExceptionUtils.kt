@@ -49,7 +49,6 @@ fun maybeThrow(activity: AppCompatActivity, thrownException: Exception) {
   maybeThrow(thrownException)
 }
 
-
 /**
  * Throws in debug builds and stores the log trace to a fixed note in case of 'internal debug mode'.
  */
@@ -100,7 +99,6 @@ fun <DataType> throwOrReturn(exception: Exception, result: DataType): DataType {
   return result
 }
 
-
 private fun storeToDebugNote(trace: String) {
   GlobalScope.launch {
     storeToDebugNoteSync(trace)
@@ -114,10 +112,10 @@ const val EXCEPTION_NOTE_MAX_EXCEPTIONS = 20
 @Synchronized
 private fun storeToDebugNoteSync(trace: String) {
   val note = instance.notesDatabase().getByUUID(EXCEPTION_NOTE_KEY)
-      ?: NoteBuilder().emptyNote().apply {
-        uuid = EXCEPTION_NOTE_KEY
-        disableBackup = true
-      }
+    ?: NoteBuilder().emptyNote().apply {
+      uuid = EXCEPTION_NOTE_KEY
+      disableBackup = true
+    }
 
   val initialFormats = note.getFormats().toMutableList()
   if (note.isUnsaved() || initialFormats.isEmpty()) {
@@ -126,10 +124,12 @@ private fun storeToDebugNoteSync(trace: String) {
 
   val additionalFormats = emptyList<Format>().toMutableList()
   additionalFormats.add(Format(FormatType.SUB_HEADING, "Exception"))
-  additionalFormats.add(Format(
+  additionalFormats.add(
+    Format(
       FormatType.QUOTE,
       "Throw at ${DateFormatter.getDate(System.currentTimeMillis())}"))
-  additionalFormats.add(Format(
+  additionalFormats.add(
+    Format(
       FormatType.CODE,
       trace))
   additionalFormats.add(Format(FormatType.SEPARATOR))

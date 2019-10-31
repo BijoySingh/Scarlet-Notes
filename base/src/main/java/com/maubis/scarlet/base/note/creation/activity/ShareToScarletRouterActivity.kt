@@ -46,7 +46,7 @@ class ShareToScarletRouterActivity : AppCompatActivity() {
   private fun handleSendText(intent: Intent): Note? {
     val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT) ?: ""
     val sharedSubject = intent.getStringExtra(Intent.EXTRA_SUBJECT)
-        ?: intent.getStringExtra(Intent.EXTRA_TITLE) ?: ""
+      ?: intent.getStringExtra(Intent.EXTRA_TITLE) ?: ""
     val sharedImages = when {
       intent.action == Intent.ACTION_SEND -> handleSendImage(intent)
       intent.action == Intent.ACTION_SEND_MULTIPLE -> handleSendMultipleImages(intent)
@@ -118,7 +118,8 @@ class ShareToScarletRouterActivity : AppCompatActivity() {
   private fun isCallerKeep(): Boolean {
     return try {
       when {
-        OsVersionUtils.canExtractReferrer() && (referrer?.toString() ?: "").contains(KEEP_PACKAGE) -> true
+        OsVersionUtils.canExtractReferrer() && (referrer?.toString()
+          ?: "").contains(KEEP_PACKAGE) -> true
         callingPackage?.contains(KEEP_PACKAGE) ?: false -> true
         (intent?.`package` ?: "").contains(KEEP_PACKAGE) -> true
         else -> false

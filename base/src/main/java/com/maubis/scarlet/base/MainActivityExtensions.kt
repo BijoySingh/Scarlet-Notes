@@ -2,7 +2,6 @@ package com.maubis.scarlet.base
 
 import android.content.Context
 import android.content.Intent
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.settings.sheet.ThemeColorPickerBottomSheet
 import com.maubis.scarlet.base.support.sheets.openSheet
@@ -42,7 +41,8 @@ fun MainActivity.handleIntent() {
 fun MainActivity.performAction(action: MainActivityActions) {
   val activity = this
   when (action) {
-    MainActivityActions.NIL -> {}
+    MainActivityActions.NIL -> {
+    }
     MainActivityActions.COLOR_PICKER -> {
       openSheet(this, ThemeColorPickerBottomSheet().apply {
         this.onThemeChange = { theme ->

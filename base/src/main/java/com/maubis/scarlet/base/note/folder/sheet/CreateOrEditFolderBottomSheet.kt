@@ -3,14 +3,12 @@ package com.maubis.scarlet.base.note.folder.sheet
 import android.app.Dialog
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.EditText
 import android.widget.TextView
 import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.core.folder.isUnsaved
 import com.maubis.scarlet.base.database.room.folder.Folder
@@ -22,7 +20,6 @@ import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 import com.maubis.scarlet.base.support.utils.getEditorActionListener
-
 
 class CreateOrEditFolderBottomSheet : ThemedBottomSheetFragment() {
 
@@ -73,12 +70,12 @@ class CreateOrEditFolderBottomSheet : ThemedBottomSheetFragment() {
     }
     enterFolder.setText(folder.title)
     enterFolder.setOnEditorActionListener(getEditorActionListener(
-        runnable = {
-          val updated = onActionClick(folder, enterFolder.text.toString())
-          sheetOnFolderListener(folder, !updated)
-          dismiss()
-          return@getEditorActionListener true
-        }))
+      runnable = {
+        val updated = onActionClick(folder, enterFolder.text.toString())
+        sheetOnFolderListener(folder, !updated)
+        dismiss()
+        return@getEditorActionListener true
+      }))
 
     setColorsList(dialog.context, folder, colorFlexbox)
     makeBackgroundTransparent(dialog, R.id.root_layout)

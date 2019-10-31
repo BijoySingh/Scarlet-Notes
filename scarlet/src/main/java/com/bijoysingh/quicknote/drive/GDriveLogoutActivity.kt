@@ -39,17 +39,17 @@ class GDriveLogoutActivity : ThemedActivity(), GoogleApiClient.OnConnectionFaile
 
   private fun setupGoogleLogin() {
     val gso = GoogleSignInOptions.Builder(
-        GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestScopes(Scope(DriveScopes.DRIVE_FILE))
-        .requestIdToken(getString(R.string.default_web_client_id))
-        .requestEmail()
-        .build()
+      GoogleSignInOptions.DEFAULT_SIGN_IN)
+      .requestScopes(Scope(DriveScopes.DRIVE_FILE))
+      .requestIdToken(getString(R.string.default_web_client_id))
+      .requestEmail()
+      .build()
 
     mGoogleApiClient = GoogleApiClient
-        .Builder(this)
-        .enableAutoManage(this, this)
-        .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-        .build()
+      .Builder(this)
+      .enableAutoManage(this, this)
+      .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+      .build()
   }
 
   private fun signOut() {
@@ -69,14 +69,14 @@ class GDriveLogoutActivity : ThemedActivity(), GoogleApiClient.OnConnectionFaile
   private fun setButton(state: Boolean) {
     signingOut.set(state)
     component = GDriveLogoutRootView.create(componentContext)
-        .onClick {
-          if (!signingOut.get()) {
-            setButton(true)
-            signOut()
-          }
+      .onClick {
+        if (!signingOut.get()) {
+          setButton(true)
+          signOut()
         }
-        .loggingIn(state)
-        .build()
+      }
+      .loggingIn(state)
+      .build()
     setContentView(LithoView.create(componentContext, component))
   }
 

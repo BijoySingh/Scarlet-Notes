@@ -10,9 +10,9 @@ import java.io.File
 import java.io.FileOutputStream
 
 object BitmapHelper {
-   fun send(context: Context, bitmap: Bitmap) {
+  fun send(context: Context, bitmap: Bitmap) {
     val path = MediaStore.Images.Media.insertImage(
-        context.contentResolver, bitmap, "Scarlet Image", "Scarlet Image")
+      context.contentResolver, bitmap, "Scarlet Image", "Scarlet Image")
     val uri = Uri.parse(path)
 
     val intent = Intent(Intent.ACTION_SEND)
@@ -21,15 +21,15 @@ object BitmapHelper {
     context.startActivity(Intent.createChooser(intent, "Share Image"))
   }
 
-   fun send(context: Context, bitmaps: List<Bitmap>) {
+  fun send(context: Context, bitmaps: List<Bitmap>) {
     val fileUris = ArrayList<Uri>()
     bitmaps
-        .mapIndexed { index, bitmap ->
-          MediaStore.Images.Media.insertImage(
-              context.contentResolver, bitmap, "Scarlet Image ($index)", "Scarlet Image ($index)")
-        }.map {
-          Uri.parse(it)
-        }.forEach { fileUris.add(it) }
+      .mapIndexed { index, bitmap ->
+        MediaStore.Images.Media.insertImage(
+          context.contentResolver, bitmap, "Scarlet Image ($index)", "Scarlet Image ($index)")
+      }.map {
+        Uri.parse(it)
+      }.forEach { fileUris.add(it) }
     val intent = Intent(Intent.ACTION_SEND_MULTIPLE)
     intent.type = "image/jpeg"
     intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, fileUris)
@@ -45,7 +45,7 @@ object BitmapHelper {
     return null
   }
 
-   fun saveToFile(cacheFile: File, bitmap: Bitmap) {
+  fun saveToFile(cacheFile: File, bitmap: Bitmap) {
     val fOut = FileOutputStream(cacheFile)
     bitmap.compress(Bitmap.CompressFormat.PNG, 90, fOut)
     fOut.flush()

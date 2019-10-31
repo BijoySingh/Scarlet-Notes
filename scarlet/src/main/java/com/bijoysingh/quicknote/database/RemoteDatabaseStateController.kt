@@ -52,7 +52,7 @@ class RemoteDatabaseStateController(context: Context) : IRemoteDatabaseState {
       }
       data is Note -> {
         if (database.getByUUID(RemoteDataType.NOTE.name, data.uuid) === null
-            || database.getByUUID(RemoteDataType.NOTE_META.name, data.uuid) === null) {
+          || database.getByUUID(RemoteDataType.NOTE_META.name, data.uuid) === null) {
           notifyInsert(data) {}
         }
       }
@@ -75,16 +75,16 @@ class RemoteDatabaseStateController(context: Context) : IRemoteDatabaseState {
       notifyImageIds(note) { imageUUIDs.add(it) }
 
       database.getByType(RemoteDataType.IMAGE.name)
-          .filter {
-            val uuid = toImageUUID(it.uuid)
-            uuid?.noteUuid == note.uuid && !imageUUIDs.contains(uuid)
-          }.forEach {
-            it.apply {
-              lastUpdateTimestamp = getTrueCurrentTime()
-              localStateDeleted = true
-              save(database)
-            }
+        .filter {
+          val uuid = toImageUUID(it.uuid)
+          uuid?.noteUuid == note.uuid && !imageUUIDs.contains(uuid)
+        }.forEach {
+          it.apply {
+            lastUpdateTimestamp = getTrueCurrentTime()
+            localStateDeleted = true
+            save(database)
           }
+        }
 
       imageUUIDs.forEach {
         val existing = database.getByUUID(RemoteDataType.IMAGE.name, it.name())
@@ -173,10 +173,10 @@ class RemoteDatabaseStateController(context: Context) : IRemoteDatabaseState {
   }
 
   fun localDatabaseUpdate(
-      itemType: RemoteDataType,
-      itemUUID: String,
-      onExecution: () -> Unit,
-      removed: Boolean = false) {
+    itemType: RemoteDataType,
+    itemUUID: String,
+    onExecution: () -> Unit,
+    removed: Boolean = false) {
     GlobalScope.launch {
       val database = remoteDatabase
       if (database === null) {
@@ -197,9 +197,9 @@ class RemoteDatabaseStateController(context: Context) : IRemoteDatabaseState {
   }
 
   fun localDatabaseRemove(
-      itemType: RemoteDataType,
-      itemUUID: String,
-      onExecution: () -> Unit) {
+    itemType: RemoteDataType,
+    itemUUID: String,
+    onExecution: () -> Unit) {
     GlobalScope.launch {
       val database = remoteDatabase
       if (database !== null) {
@@ -214,9 +214,9 @@ class RemoteDatabaseStateController(context: Context) : IRemoteDatabaseState {
 
   private fun notifyImageIds(note: Note, onImageUUID: (ImageUUID) -> Unit) {
     val imageIds = note.getFormats()
-        .filter { it.formatType == FormatType.IMAGE }
-        .map { it.text }
-        .toSet()
+      .filter { it.formatType == FormatType.IMAGE }
+      .map { it.text }
+      .toSet()
     imageIds.forEach {
       onImageUUID(ImageUUID(note.uuid, it))
     }

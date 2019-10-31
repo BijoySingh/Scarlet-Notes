@@ -18,7 +18,6 @@ import com.facebook.litho.widget.VerticalScroll
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
@@ -31,23 +30,23 @@ fun openSheet(activity: AppCompatActivity, sheet: LithoBottomSheet) {
 
 fun getLithoBottomSheetTitle(context: ComponentContext): Text.Builder {
   return Text.create(context)
-      .textSizeRes(R.dimen.font_size_xxxlarge)
-      .typeface(CoreConfig.FONT_MONSERRAT_BOLD)
-      .marginDip(YogaEdge.HORIZONTAL, 20f)
-      .marginDip(YogaEdge.TOP, 18f)
-      .marginDip(YogaEdge.BOTTOM, 8f)
-      .textStyle(Typeface.BOLD)
-      .textColor(sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
+    .textSizeRes(R.dimen.font_size_xxxlarge)
+    .typeface(CoreConfig.FONT_MONSERRAT_BOLD)
+    .marginDip(YogaEdge.HORIZONTAL, 20f)
+    .marginDip(YogaEdge.TOP, 18f)
+    .marginDip(YogaEdge.BOTTOM, 8f)
+    .textStyle(Typeface.BOLD)
+    .textColor(sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
 }
 
 fun getLithoBottomSheetButton(context: ComponentContext): Text.Builder {
   return Text.create(context)
-      .typeface(FONT_MONSERRAT)
-      .textSizeRes(R.dimen.font_size_large)
-      .paddingDip(YogaEdge.VERTICAL, 12f)
-      .paddingDip(YogaEdge.HORIZONTAL, 24f)
-      .textColorRes(R.color.light_secondary_text)
-      .backgroundRes(R.drawable.accent_rounded_bg)
+    .typeface(FONT_MONSERRAT)
+    .textSizeRes(R.dimen.font_size_large)
+    .paddingDip(YogaEdge.VERTICAL, 12f)
+    .paddingDip(YogaEdge.HORIZONTAL, 24f)
+    .textColorRes(R.color.light_secondary_text)
+    .backgroundRes(R.drawable.accent_rounded_bg)
 }
 
 abstract class LithoBottomSheet : BottomSheetDialogFragment() {
@@ -89,24 +88,25 @@ abstract class LithoBottomSheet : BottomSheetDialogFragment() {
     }
 
     val baseComponent = Column.create(componentContext)
-        .paddingDip(YogaEdge.TOP, topMargin())
-        .paddingDip(YogaEdge.BOTTOM, bottomMargin())
-        .widthPercent(100f)
-        .alignItems(YogaAlign.CENTER)
-        .backgroundColor(backgroundColor(componentContext))
-        .child(
-            Image.create(componentContext)
-                .drawableRes(topHandle)
-                .widthDip(72f)
-                .heightDip(6f)
-                .alpha(0.8f)
-                .marginDip(YogaEdge.BOTTOM, 8f)
-                .build()
-        )
-        .child(VerticalScroll.create(componentContext)
-            .nestedScrollingEnabled(true)
-            .childComponent(childComponent))
-        .build()
+      .paddingDip(YogaEdge.TOP, topMargin())
+      .paddingDip(YogaEdge.BOTTOM, bottomMargin())
+      .widthPercent(100f)
+      .alignItems(YogaAlign.CENTER)
+      .backgroundColor(backgroundColor(componentContext))
+      .child(
+        Image.create(componentContext)
+          .drawableRes(topHandle)
+          .widthDip(72f)
+          .heightDip(6f)
+          .alpha(0.8f)
+          .marginDip(YogaEdge.BOTTOM, 8f)
+          .build()
+      )
+      .child(
+        VerticalScroll.create(componentContext)
+          .nestedScrollingEnabled(true)
+          .childComponent(childComponent))
+      .build()
 
     val contentView = LithoView.create(componentContext.androidContext, baseComponent)
     dialog.setContentView(contentView)

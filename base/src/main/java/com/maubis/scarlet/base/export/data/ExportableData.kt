@@ -16,48 +16,48 @@ import java.util.*
  * readable format (markdown) and meta data object
  */
 class ExportableSplitNote(
-    val content: String,
-    val meta: ExportableNoteMeta) {
+  val content: String,
+  val meta: ExportableNoteMeta) {
 
   // Default failsafe constructor for Gson to use
   constructor() : this(
-      "",
-      ExportableNoteMeta())
+    "",
+    ExportableNoteMeta())
 }
 
 /**
  * Data class containing only the meta data for the note which makes it unique to Scarlet
  */
 class ExportableNoteMeta(
-    val uuid: String,
-    val timestamp: Long,
-    val updateTimestamp: Long,
-    val color: Int,
-    val state: String,
-    val tags: String,
-    val locked: Boolean,
-    val pinned: Boolean,
-    val folder: String) {
+  val uuid: String,
+  val timestamp: Long,
+  val updateTimestamp: Long,
+  val color: Int,
+  val state: String,
+  val tags: String,
+  val locked: Boolean,
+  val pinned: Boolean,
+  val folder: String) {
 
   // Default failsafe constructor for Gson to use
   constructor() : this(
-      "invalid",
-      Calendar.getInstance().timeInMillis,
-      Calendar.getInstance().timeInMillis,
-      -0xff8695,
-      NoteState.DEFAULT.name,
-      "",
-      false,
-      false,
-      "")
+    "invalid",
+    Calendar.getInstance().timeInMillis,
+    Calendar.getInstance().timeInMillis,
+    -0xff8695,
+    NoteState.DEFAULT.name,
+    "",
+    false,
+    false,
+    "")
 }
 
 /**
  * Data class for the exportability of tags
  */
 class ExportableTag(
-    var uuid: String,
-    var title: String
+  var uuid: String,
+  var title: String
 ) : Serializable, ITagContainer {
 
   override fun title(): String = title
@@ -68,8 +68,8 @@ class ExportableTag(
   constructor() : this("invalid", "")
 
   constructor(tag: Tag) : this(
-      tag.uuid,
-      tag.title
+    tag.uuid,
+    tag.title
   )
 
   companion object {
@@ -83,8 +83,8 @@ class ExportableTag(
 
     fun fromJSONObjectV1(json: JSONObject): ExportableTag {
       return ExportableTag(
-          generateUUID(),
-          json["title"] as String)
+        generateUUID(),
+        json["title"] as String)
     }
 
     fun getBestPossibleTagObject(json: JSONObject): Tag {
@@ -97,11 +97,11 @@ class ExportableTag(
  * Data class for the exportability of folder
  */
 class ExportableFolder(
-    val uuid: String,
-    val title: String,
-    val timestamp: Long,
-    val updateTimestamp: Long,
-    val color: Int
+  val uuid: String,
+  val title: String,
+  val timestamp: Long,
+  val updateTimestamp: Long,
+  val color: Int
 ) : Serializable, IFolderContainer {
   override fun timestamp(): Long = timestamp
   override fun updateTimestamp(): Long = updateTimestamp
@@ -110,17 +110,17 @@ class ExportableFolder(
   override fun uuid(): String = uuid
 
   constructor(folder: Folder) : this(
-      folder.uuid ?: "",
-      folder.title ?: "",
-      folder.timestamp ?: 0,
-      folder.updateTimestamp,
-      folder.color ?: 0)
+    folder.uuid ?: "",
+    folder.title ?: "",
+    folder.timestamp ?: 0,
+    folder.updateTimestamp,
+    folder.color ?: 0)
 
   // Default failsafe constructor for Gson to use
   constructor() : this(
-      "invalid",
-      "",
-      Calendar.getInstance().timeInMillis,
-      Calendar.getInstance().timeInMillis,
-      -0xff8695)
+    "invalid",
+    "",
+    Calendar.getInstance().timeInMillis,
+    Calendar.getInstance().timeInMillis,
+    -0xff8695)
 }

@@ -26,7 +26,22 @@ import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.export.support.NoteExporter
 import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.main.HomeNavigationState
-import com.maubis.scarlet.base.main.recycler.*
+import com.maubis.scarlet.base.main.recycler.EmptyRecyclerItem
+import com.maubis.scarlet.base.main.recycler.GenericRecyclerItem
+import com.maubis.scarlet.base.main.recycler.getAppUpdateInformationItem
+import com.maubis.scarlet.base.main.recycler.getBackupInformationItem
+import com.maubis.scarlet.base.main.recycler.getInstallProInformationItem
+import com.maubis.scarlet.base.main.recycler.getMigrateToProAppInformationItem
+import com.maubis.scarlet.base.main.recycler.getReviewInformationItem
+import com.maubis.scarlet.base.main.recycler.getSignInInformationItem
+import com.maubis.scarlet.base.main.recycler.getThemeInformationItem
+import com.maubis.scarlet.base.main.recycler.shouldShowAppUpdateInformationItem
+import com.maubis.scarlet.base.main.recycler.shouldShowBackupInformationItem
+import com.maubis.scarlet.base.main.recycler.shouldShowInstallProInformationItem
+import com.maubis.scarlet.base.main.recycler.shouldShowMigrateToProAppInformationItem
+import com.maubis.scarlet.base.main.recycler.shouldShowReviewInformationItem
+import com.maubis.scarlet.base.main.recycler.shouldShowSignInformationItem
+import com.maubis.scarlet.base.main.recycler.shouldShowThemeInformationItem
 import com.maubis.scarlet.base.main.sheets.WhatsNewBottomSheet
 import com.maubis.scarlet.base.main.sheets.openDeleteTrashSheet
 import com.maubis.scarlet.base.main.specs.MainActivityBottomBar
@@ -50,10 +65,13 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
-import com.maubis.scarlet.base.support.*
+import com.maubis.scarlet.base.support.SearchConfig
 import com.maubis.scarlet.base.support.database.HouseKeeper
 import com.maubis.scarlet.base.support.database.HouseKeeperJob
 import com.maubis.scarlet.base.support.database.Migrator
+import com.maubis.scarlet.base.support.filterDirectlyValidFolders
+import com.maubis.scarlet.base.support.filterFolder
+import com.maubis.scarlet.base.support.filterOutFolders
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
@@ -61,11 +79,17 @@ import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.sAutomaticTheme
 import com.maubis.scarlet.base.support.ui.setThemeFromSystem
+import com.maubis.scarlet.base.support.unifiedSearchSynchronous
+import com.maubis.scarlet.base.support.unifiedSearchWithoutFolder
 import com.maubis.scarlet.base.support.utils.shouldShowWhatsNewSheet
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.search_toolbar_main.*
 import kotlinx.android.synthetic.main.toolbar_trash_info.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.newSingleThreadContext
 import java.util.concurrent.atomic.AtomicBoolean
 
 class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
@@ -134,30 +158,30 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
       }
     })
     tagAndColorPicker = TagsAndColorPickerViewHolder(
-        this,
-        tagsFlexBox,
-        { tag ->
-          val isTagSelected = config.tags.filter { it.uuid == tag.uuid }.isNotEmpty()
-          when (isTagSelected) {
-            true -> {
-              config.tags.removeAll { it.uuid == tag.uuid }
-              startSearch(searchBox.text.toString())
-              tagAndColorPicker.notifyChanged()
-            }
-            false -> {
-              openTag(tag)
-              tagAndColorPicker.notifyChanged()
-            }
+      this,
+      tagsFlexBox,
+      { tag ->
+        val isTagSelected = config.tags.filter { it.uuid == tag.uuid }.isNotEmpty()
+        when (isTagSelected) {
+          true -> {
+            config.tags.removeAll { it.uuid == tag.uuid }
+            startSearch(searchBox.text.toString())
+            tagAndColorPicker.notifyChanged()
           }
-        },
-        { color ->
-          when (config.colors.contains(color)) {
-            true -> config.colors.remove(color)
-            false -> config.colors.add(color)
+          false -> {
+            openTag(tag)
+            tagAndColorPicker.notifyChanged()
           }
-          tagAndColorPicker.notifyChanged()
-          startSearch(searchBox.text.toString())
-        })
+        }
+      },
+      { color ->
+        when (config.colors.contains(color)) {
+          true -> config.colors.remove(color)
+          false -> config.colors.add(color)
+        }
+        tagAndColorPicker.notifyChanged()
+        startSearch(searchBox.text.toString())
+      })
   }
 
   fun setupRecyclerView() {
@@ -173,16 +197,16 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     adapter = NoteAppAdapter(this, staggeredView, isTablet)
     adapter.setExtra(adapterExtra)
     recyclerView = RecyclerViewBuilder(this)
-        .setView(this, R.id.recycler_view)
-        .setAdapter(adapter)
-        .setLayoutManager(getLayoutManager(staggeredView, isTablet))
-        .build()
+      .setView(this, R.id.recycler_view)
+      .setAdapter(adapter)
+      .setLayoutManager(getLayoutManager(staggeredView, isTablet))
+      .build()
 
     vSwipeToRefresh.setOnRefreshListener {
       when {
         instance.authenticator().isLoggedIn(this)
-            && !instance.authenticator().isLegacyLoggedIn()
-            && !lastSyncHappening.get() -> instance.authenticator().requestSync(true)
+          && !instance.authenticator().isLegacyLoggedIn()
+          && !lastSyncHappening.get() -> instance.authenticator().requestSync(true)
         else -> vSwipeToRefresh.isRefreshing = false
       }
     }
@@ -289,43 +313,43 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     if (config.folders.isNotEmpty()) {
       val allNotes = unifiedSearchSynchronous(config)
       allItems.addAll(allNotes
-          .map { GlobalScope.async(Dispatchers.IO) { NoteRecyclerItem(this@MainActivity, it) } }
-          .map { it.await() })
+                        .map { GlobalScope.async(Dispatchers.IO) { NoteRecyclerItem(this@MainActivity, it) } }
+                        .map { it.await() })
       return allItems
     }
 
     val allNotes = unifiedSearchWithoutFolder(config)
     val directAcceptableFolders = filterDirectlyValidFolders(config)
     allItems.addAll(CoreConfig.foldersDb.getAll()
-        .map {
-          GlobalScope.async(Dispatchers.IO) {
-            val isDirectFolder = directAcceptableFolders.contains(it)
-            val notesCount = filterFolder(allNotes, it).size
-            if (config.hasFilter() && notesCount == 0 && !isDirectFolder) {
-              return@async null
-            }
+                      .map {
+                        GlobalScope.async(Dispatchers.IO) {
+                          val isDirectFolder = directAcceptableFolders.contains(it)
+                          val notesCount = filterFolder(allNotes, it).size
+                          if (config.hasFilter() && notesCount == 0 && !isDirectFolder) {
+                            return@async null
+                          }
 
-            FolderRecyclerItem(
-                context = this@MainActivity,
-                folder = it,
-                click = {
-                  config.folders.clear()
-                  config.folders.add(it)
-                  unifiedSearch()
-                  notifyFolderChange()
-                },
-                longClick = {
-                  CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> setupData() })
-                },
-                selected = config.hasFolder(it),
-                contents = notesCount)
-          }
-        }
-        .map { it.await() }
-        .filterNotNull())
+                          FolderRecyclerItem(
+                            context = this@MainActivity,
+                            folder = it,
+                            click = {
+                              config.folders.clear()
+                              config.folders.add(it)
+                              unifiedSearch()
+                              notifyFolderChange()
+                            },
+                            longClick = {
+                              CreateOrEditFolderBottomSheet.openSheet(this@MainActivity, it, { _, _ -> setupData() })
+                            },
+                            selected = config.hasFolder(it),
+                            contents = notesCount)
+                        }
+                      }
+                      .map { it.await() }
+                      .filterNotNull())
     allItems.addAll(filterOutFolders(allNotes)
-        .map { GlobalScope.async(Dispatchers.IO) { NoteRecyclerItem(this@MainActivity, it) } }
-        .map { it.await() })
+                      .map { GlobalScope.async(Dispatchers.IO) { NoteRecyclerItem(this@MainActivity, it) } }
+                      .map { it.await() })
     return allItems
   }
 
@@ -337,10 +361,12 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     }
 
     val folder = config.folders.first()
-    lithoPreBottomToolbar.addView(LithoView.create(componentContext,
+    lithoPreBottomToolbar.addView(
+      LithoView.create(
+        componentContext,
         MainActivityFolderBottomBar.create(componentContext)
-            .folder(folder)
-            .build()))
+          .folder(folder)
+          .build()))
   }
 
   fun notifyDisabledSync() {
@@ -351,22 +377,22 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     }
 
     lithoPreBottomToolbar.addView(LithoView.create(componentContext,
-        MainActivityDisabledSync.create(componentContext)
-            .onClick {
-              instance.authenticator().openTransferDataActivity(componentContext.androidContext)?.run()
-            }
-            .build()))
+                                                   MainActivityDisabledSync.create(componentContext)
+                                                     .onClick {
+                                                       instance.authenticator().openTransferDataActivity(componentContext.androidContext)?.run()
+                                                     }
+                                                     .build()))
   }
 
   fun notifySyncingInformation(isSyncHappening: Boolean, isSyncPending: Boolean) {
     val componentContext = ComponentContext(this)
     if (!instance.authenticator().isLoggedIn(this)
-        || instance.authenticator().isLegacyLoggedIn()) {
+      || instance.authenticator().isLegacyLoggedIn()) {
       return
     }
 
     if (lastSyncPending.getAndSet(isSyncPending) == isSyncPending
-        && lastSyncHappening.getAndSet(isSyncHappening) == isSyncHappening) {
+      && lastSyncHappening.getAndSet(isSyncHappening) == isSyncHappening) {
       return
     }
 
@@ -380,19 +406,19 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     GlobalScope.launch(Dispatchers.Main) {
       lithoSyncingBottomToolbar.removeAllViews()
       lithoSyncingBottomToolbar.addView(LithoView.create(componentContext,
-          MainActivitySyncingNow.create(componentContext)
-              .isSyncHappening(isSyncHappening)
-              .onClick {
-                if (!lastSyncHappening.get()) {
-                  instance.authenticator().requestSync(true)
-                }
-              }
-              .onLongClick {
-                if (!lastSyncHappening.get()) {
-                  instance.authenticator().showPendingSync(this@MainActivity)
-                }
-              }
-              .build()))
+                                                         MainActivitySyncingNow.create(componentContext)
+                                                           .isSyncHappening(isSyncHappening)
+                                                           .onClick {
+                                                             if (!lastSyncHappening.get()) {
+                                                               instance.authenticator().requestSync(true)
+                                                             }
+                                                           }
+                                                           .onLongClick {
+                                                             if (!lastSyncHappening.get()) {
+                                                               instance.authenticator().showPendingSync(this@MainActivity)
+                                                             }
+                                                           }
+                                                           .build()))
       if (!isSyncHappening && isSyncPending) {
         instance.authenticator().requestSync(false)
       }
@@ -534,10 +560,12 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   fun setBottomToolbar() {
     val componentContext = ComponentContext(this)
     lithoBottomToolbar.removeAllViews()
-    lithoBottomToolbar.addView(LithoView.create(componentContext,
+    lithoBottomToolbar.addView(
+      LithoView.create(
+        componentContext,
         MainActivityBottomBar.create(componentContext)
-            .colorConfig(ToolbarColorConfig())
-            .build()))
+          .colorConfig(ToolbarColorConfig())
+          .build()))
   }
 
   /**

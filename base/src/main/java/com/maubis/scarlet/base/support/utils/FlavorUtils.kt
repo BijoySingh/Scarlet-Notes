@@ -8,7 +8,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
 
-
 enum class Flavor {
   NONE, // FDroid, Master Builds
   LITE, // Play Store Version

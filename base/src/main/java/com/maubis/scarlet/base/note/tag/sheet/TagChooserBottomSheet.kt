@@ -35,28 +35,29 @@ class TagChooserBottomSheet : LithoBottomSheet() {
 
     val activity = context as ThemedActivity
     val component = Column.create(componentContext)
-        .widthPercent(100f)
+      .widthPercent(100f)
     val tagsComponent = Column.create(componentContext)
-        .paddingDip(YogaEdge.TOP, 8f)
-        .paddingDip(YogaEdge.BOTTOM, 8f)
-        .paddingDip(YogaEdge.HORIZONTAL, 20f)
-        .child(getLithoBottomSheetTitle(componentContext)
-            .textRes(R.string.tag_sheet_choose_tag)
-            .marginDip(YogaEdge.BOTTOM, 12f))
+      .paddingDip(YogaEdge.TOP, 8f)
+      .paddingDip(YogaEdge.BOTTOM, 8f)
+      .paddingDip(YogaEdge.HORIZONTAL, 20f)
+      .child(
+        getLithoBottomSheetTitle(componentContext)
+          .textRes(R.string.tag_sheet_choose_tag)
+          .marginDip(YogaEdge.BOTTOM, 12f))
     getTagOptions().forEach {
       tagsComponent.child(TagItemLayout.create(componentContext).option(it))
     }
 
     val addTag = LithoOptionsItem(
-        title = R.string.tag_sheet_new_tag_button,
-        subtitle = 0,
-        icon = R.drawable.icon_add_note,
-        listener = { CreateOrEditTagBottomSheet.openSheet(activity, TagBuilder().emptyTag()) { _, _ -> reset(activity, dialog) } })
+      title = R.string.tag_sheet_new_tag_button,
+      subtitle = 0,
+      icon = R.drawable.icon_add_note,
+      listener = { CreateOrEditTagBottomSheet.openSheet(activity, TagBuilder().emptyTag()) { _, _ -> reset(activity, dialog) } })
     tagsComponent.child(OptionItemLayout.create(componentContext)
-        .option(addTag)
-        .backgroundRes(R.drawable.accent_rounded_bg)
-        .marginDip(YogaEdge.TOP, 16f)
-        .onClick { addTag.listener() })
+                          .option(addTag)
+                          .backgroundRes(R.drawable.accent_rounded_bg)
+                          .marginDip(YogaEdge.TOP, 16f)
+                          .onClick { addTag.listener() })
 
     component.child(tagsComponent)
     return component.build()
@@ -67,7 +68,8 @@ class TagChooserBottomSheet : LithoBottomSheet() {
     val options = ArrayList<LithoTagOptionsItem>()
     val tags = note!!.getTagUUIDs()
     for (tag in CoreConfig.tagsDb.getAll()) {
-      options.add(LithoTagOptionsItem(
+      options.add(
+        LithoTagOptionsItem(
           tag = tag,
           listener = {
             note!!.toggleTag(tag)
@@ -75,7 +77,7 @@ class TagChooserBottomSheet : LithoBottomSheet() {
             reset(activity, dialog)
           },
           isSelected = tags.contains(tag.uuid)
-      ))
+        ))
     }
     options.sortByDescending { if (it.isSelected) 1 else 0 }
     return options

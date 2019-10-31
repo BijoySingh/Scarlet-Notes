@@ -8,7 +8,6 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.uibasics.views.UIActionView
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.core.note.Reminder
 import com.maubis.scarlet.base.core.note.ReminderInterval
@@ -25,14 +24,13 @@ import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.util.*
 
-
 class ReminderBottomSheet : ThemedBottomSheetFragment() {
 
   var selectedNote: Note? = null
   var reminder: Reminder = Reminder(
-      0,
-      Calendar.getInstance().timeInMillis,
-      ReminderInterval.ONCE)
+    0,
+    Calendar.getInstance().timeInMillis,
+    ReminderInterval.ONCE)
 
   override fun getBackgroundView(): Int {
     return R.id.container_layout
@@ -51,9 +49,9 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
 
     val calendar = Calendar.getInstance()
     reminder = note.getReminderV2() ?: Reminder(
-        0,
-        calendar.timeInMillis,
-        ReminderInterval.ONCE)
+      0,
+      calendar.timeInMillis,
+      ReminderInterval.ONCE)
 
     val isNewReminder = reminder.uid == 0
     if (isNewReminder) {
@@ -132,64 +130,64 @@ class ReminderBottomSheet : ThemedBottomSheetFragment() {
   fun openFrequencyDialog() {
     val isSelected = fun(interval: ReminderInterval): Boolean = interval == reminder.interval
     com.maubis.scarlet.base.support.sheets.openSheet(
-        themedActivity() as ThemedActivity,
-        GenericOptionsBottomSheet().apply {
-          title = R.string.reminder_sheet_repeat
-          options = arrayListOf(
-              LithoChooseOptionsItem(
-                  title = getReminderIntervalLabel(ReminderInterval.ONCE),
-                  listener = {
-                    reminder.interval = ReminderInterval.ONCE
-                    setContent(reminder)
-                  },
-                  selected = isSelected(ReminderInterval.ONCE)
-              ),
-              LithoChooseOptionsItem(
-                  title = getReminderIntervalLabel(ReminderInterval.DAILY),
-                  listener = {
-                    reminder.interval = ReminderInterval.DAILY
-                    setContent(reminder)
-                  },
-                  selected = isSelected(ReminderInterval.DAILY)
-              )
+      themedActivity() as ThemedActivity,
+      GenericOptionsBottomSheet().apply {
+        title = R.string.reminder_sheet_repeat
+        options = arrayListOf(
+          LithoChooseOptionsItem(
+            title = getReminderIntervalLabel(ReminderInterval.ONCE),
+            listener = {
+              reminder.interval = ReminderInterval.ONCE
+              setContent(reminder)
+            },
+            selected = isSelected(ReminderInterval.ONCE)
+          ),
+          LithoChooseOptionsItem(
+            title = getReminderIntervalLabel(ReminderInterval.DAILY),
+            listener = {
+              reminder.interval = ReminderInterval.DAILY
+              setContent(reminder)
+            },
+            selected = isSelected(ReminderInterval.DAILY)
           )
-        }
+        )
+      }
     )
   }
 
   fun openDatePickerDialog() {
     val calendar = reminder.toCalendar()
     val dialog = DatePickerDialog(
-        themedContext(),
-        R.style.DialogTheme,
-        DatePickerDialog.OnDateSetListener { _, year, month, day ->
-          calendar.set(Calendar.YEAR, year)
-          calendar.set(Calendar.MONTH, month)
-          calendar.set(Calendar.DAY_OF_MONTH, day)
-          reminder.timestamp = calendar.timeInMillis
-          setContent(reminder)
-        },
-        calendar.get(Calendar.YEAR),
-        calendar.get(Calendar.MONTH),
-        calendar.get(Calendar.DAY_OF_MONTH))
+      themedContext(),
+      R.style.DialogTheme,
+      DatePickerDialog.OnDateSetListener { _, year, month, day ->
+        calendar.set(Calendar.YEAR, year)
+        calendar.set(Calendar.MONTH, month)
+        calendar.set(Calendar.DAY_OF_MONTH, day)
+        reminder.timestamp = calendar.timeInMillis
+        setContent(reminder)
+      },
+      calendar.get(Calendar.YEAR),
+      calendar.get(Calendar.MONTH),
+      calendar.get(Calendar.DAY_OF_MONTH))
     dialog.show()
   }
 
   fun openTimePickerDialog() {
     val calendar = reminder.toCalendar()
     val dialog = TimePickerDialog(
-        themedContext(),
-        R.style.DialogTheme,
-        TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-          calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-          calendar.set(Calendar.MINUTE, minute)
-          calendar.set(Calendar.SECOND, 0)
-          reminder.timestamp = calendar.timeInMillis
-          setContent(reminder)
-        },
-        calendar.get(Calendar.HOUR_OF_DAY),
-        calendar.get(Calendar.MINUTE),
-        false)
+      themedContext(),
+      R.style.DialogTheme,
+      TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+        calendar.set(Calendar.MINUTE, minute)
+        calendar.set(Calendar.SECOND, 0)
+        reminder.timestamp = calendar.timeInMillis
+        setContent(reminder)
+      },
+      calendar.get(Calendar.HOUR_OF_DAY),
+      calendar.get(Calendar.MINUTE),
+      false)
     dialog.show()
   }
 

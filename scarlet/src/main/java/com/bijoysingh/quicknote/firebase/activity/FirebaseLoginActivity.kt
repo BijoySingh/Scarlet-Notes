@@ -58,29 +58,29 @@ class FirebaseLoginActivity : ThemedActivity() {
   private fun setButton(state: Boolean) {
     loggingIn.set(state)
     component = FirebaseRootView.create(componentContext)
-        .onClick {
-          if (!hasAcceptedThePolicy()) {
-            IntentUtils.startActivity(this, DataPolicyActivity::class.java)
-            return@onClick
-          }
-          if (!loggingIn.get()) {
-            setButton(true)
-            sFirebaseKilled = false
-            signIn()
-          }
+      .onClick {
+        if (!hasAcceptedThePolicy()) {
+          IntentUtils.startActivity(this, DataPolicyActivity::class.java)
+          return@onClick
         }
-        .loggingIn(state)
-        .build()
+        if (!loggingIn.get()) {
+          setButton(true)
+          sFirebaseKilled = false
+          signIn()
+        }
+      }
+      .loggingIn(state)
+      .build()
     setContentView(LithoView.create(componentContext, component))
   }
 
   private fun setupGoogleLogin() {
     val gso = GoogleSignInOptions.Builder(
-        GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestScopes(Scope(DriveScopes.DRIVE_FILE))
-        .requestIdToken(getString(R.string.default_web_client_id))
-        .requestEmail()
-        .build()
+      GoogleSignInOptions.DEFAULT_SIGN_IN)
+      .requestScopes(Scope(DriveScopes.DRIVE_FILE))
+      .requestIdToken(getString(R.string.default_web_client_id))
+      .requestEmail()
+      .build()
 
     googleSignInClient = GoogleSignIn.getClient(this, gso)
   }
@@ -120,17 +120,17 @@ class FirebaseLoginActivity : ThemedActivity() {
   private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
     firebaseAuth.signInWithCredential(credential)
-        .addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
-          override fun onComplete(task: Task<AuthResult>) {
-            if (task.isSuccessful()) {
-              val user = firebaseAuth.currentUser
-              onLoginSuccess(user)
-            } else {
-              Log.e("Firebase", "Failed")
-              onLoginFailure()
-            }
+      .addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
+        override fun onComplete(task: Task<AuthResult>) {
+          if (task.isSuccessful()) {
+            val user = firebaseAuth.currentUser
+            onLoginSuccess(user)
+          } else {
+            Log.e("Firebase", "Failed")
+            onLoginFailure()
           }
-        })
+        }
+      })
   }
 
   private fun onLoginSuccess(user: FirebaseUser?) {

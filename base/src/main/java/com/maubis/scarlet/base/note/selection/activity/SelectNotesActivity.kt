@@ -49,9 +49,9 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     primaryFab.setOnClickListener {
       runTextFunction { text ->
         IntentUtils.ShareBuilder(this)
-            .setChooserText(getString(R.string.share_using))
-            .setText(text)
-            .share()
+          .setChooserText(getString(R.string.share_using))
+          .setText(text)
+          .share()
       }
     }
     secondaryFab.setOnClickListener {

@@ -21,8 +21,9 @@ fun addShortcut(context: Context, shortcut: ShortcutInfo) {
     val pinShortcutInfo = ShortcutInfo.Builder(context, shortcut.id).build()
     val pinnedShortcutCallbackIntent = shortcutManager.createShortcutResultIntent(pinShortcutInfo)
 
-    val successCallback = PendingIntent.getBroadcast(context, 0,
-        pinnedShortcutCallbackIntent, 0)
+    val successCallback = PendingIntent.getBroadcast(
+      context, 0,
+      pinnedShortcutCallbackIntent, 0)
     shortcutManager.requestPinShortcut(pinShortcutInfo, successCallback.intentSender)
   }
 }

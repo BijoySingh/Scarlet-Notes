@@ -118,9 +118,9 @@ class GDriveServiceHelper(private val mDriveService: Drive) : IRemoteService<Str
       try {
         val timestamp = DateTime(getTrueCurrentTime())
         val metadata = File()
-            .setMimeType(GOOGLE_DRIVE_FOLDER_MIME_TYPE)
-            .setModifiedTime(timestamp)
-            .setName(directoryName)
+          .setMimeType(GOOGLE_DRIVE_FOLDER_MIME_TYPE)
+          .setModifiedTime(timestamp)
+          .setName(directoryName)
         if (!parentUid.isEmpty()) {
           metadata.parents = listOf(parentUid)
         }
@@ -155,16 +155,17 @@ class GDriveServiceHelper(private val mDriveService: Drive) : IRemoteService<Str
     }
     execute("getSubRootFolders", Callable {
       mDriveService.files().list()
-          .setSpaces("drive")
-          .setQ("mimeType = '$GOOGLE_DRIVE_FOLDER_MIME_TYPE' and ($nameQueryBuilder) and '$parentResourceId' in parents")
-          .setOrderBy("modifiedTime desc")
-          .execute()
+        .setSpaces("drive")
+        .setQ("mimeType = '$GOOGLE_DRIVE_FOLDER_MIME_TYPE' and ($nameQueryBuilder) and '$parentResourceId' in parents")
+        .setOrderBy("modifiedTime desc")
+        .execute()
     }).addOnCompleteListener { result ->
       val files = result.result?.files ?: emptyList()
       val namesIdList = emptyList<Pair<String, String>>().toMutableList()
       files.forEach {
         when {
-          (it.id === null || it.id.isBlank()) -> {}
+          (it.id === null || it.id.isBlank()) -> {
+          }
           else -> namesIdList.add(Pair(it.name, it.id))
         }
       }
@@ -178,10 +179,10 @@ class GDriveServiceHelper(private val mDriveService: Drive) : IRemoteService<Str
     execute("createFileWithData", Callable {
       try {
         val metadata = File()
-            .setParents(listOf(parentResourceId))
-            .setMimeType(GOOGLE_DRIVE_FILE_MIME_TYPE)
-            .setModifiedTime(DateTime(updateTime))
-            .setName(name)
+          .setParents(listOf(parentResourceId))
+          .setMimeType(GOOGLE_DRIVE_FILE_MIME_TYPE)
+          .setModifiedTime(DateTime(updateTime))
+          .setName(name)
         val contentStream = ByteArrayContent.fromString("text/plain", contentToSave)
         mDriveService.files().create(metadata, contentStream).execute()
       } catch (exception: Exception) {
@@ -195,8 +196,8 @@ class GDriveServiceHelper(private val mDriveService: Drive) : IRemoteService<Str
     execute("saveFile", Callable {
       try {
         val metadata = File()
-            .setModifiedTime(DateTime(updateTime))
-            .setName(name)
+          .setModifiedTime(DateTime(updateTime))
+          .setName(name)
         val contentStream = ByteArrayContent.fromString("text/plain", content)
         mDriveService.files().update(resourceId, metadata, contentStream).execute()
       } catch (exception: Exception) {
@@ -210,10 +211,10 @@ class GDriveServiceHelper(private val mDriveService: Drive) : IRemoteService<Str
     execute("createFileWithData", Callable {
       try {
         val metadata = File()
-            .setParents(listOf(parentResourceId))
-            .setMimeType(GOOGLE_DRIVE_IMAGE_MIME_TYPE)
-            .setModifiedTime(DateTime(updateTime))
-            .setName(name)
+          .setParents(listOf(parentResourceId))
+          .setMimeType(GOOGLE_DRIVE_IMAGE_MIME_TYPE)
+          .setModifiedTime(DateTime(updateTime))
+          .setName(name)
         val mediaContent = FileContent(GOOGLE_DRIVE_IMAGE_MIME_TYPE, localFile)
         mDriveService.files().create(metadata, mediaContent).execute()
       } catch (exception: Exception) {
@@ -273,12 +274,12 @@ class GDriveServiceHelper(private val mDriveService: Drive) : IRemoteService<Str
     log("GDrive", "getFilesInFolder($parentResourceId, $mimeType)")
     execute("getFilesInFolder", Callable {
       mDriveService.files().list()
-          .setSpaces("drive")
-          .setPageSize(1000)
-          .setFields("files(name, id, modifiedTime, mimeType)")
-          .setQ("mimeType = '$mimeType' and '$parentResourceId' in parents")
-          .setOrderBy("modifiedTime desc")
-          .execute()
+        .setSpaces("drive")
+        .setPageSize(1000)
+        .setFields("files(name, id, modifiedTime, mimeType)")
+        .setQ("mimeType = '$mimeType' and '$parentResourceId' in parents")
+        .setOrderBy("modifiedTime desc")
+        .execute()
     }).addOnCompleteListener { result ->
       onSuccess(result.result)
     }
@@ -292,10 +293,10 @@ class GDriveServiceHelper(private val mDriveService: Drive) : IRemoteService<Str
     }
     return execute("getFolderQuery", Callable {
       mDriveService.files().list()
-          .setSpaces("drive")
-          .setQ(query)
-          .setOrderBy("modifiedTime desc")
-          .execute()
+        .setSpaces("drive")
+        .setQ(query)
+        .setOrderBy("modifiedTime desc")
+        .execute()
     })
   }
 

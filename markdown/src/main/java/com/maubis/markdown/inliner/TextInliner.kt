@@ -1,6 +1,5 @@
 package com.maubis.markdown.inliner
 
-import android.util.Log
 import com.maubis.markdown.MarkdownConfig.Companion.config
 
 class TextInliner(val text: String) {

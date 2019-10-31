@@ -11,7 +11,7 @@ class BottomSheetTabletDialog(context: Context, theme: Int) : BottomSheetDialog(
     super.onCreate(savedInstanceState);
     val width = context.resources.getDimensionPixelSize(R.dimen.bottom_sheet_width_for_tablets)
     window?.setLayout(
-        if (width > 0) width else ViewGroup.LayoutParams.MATCH_PARENT,
-        ViewGroup.LayoutParams.MATCH_PARENT);
+      if (width > 0) width else ViewGroup.LayoutParams.MATCH_PARENT,
+      ViewGroup.LayoutParams.MATCH_PARENT);
   }
 }

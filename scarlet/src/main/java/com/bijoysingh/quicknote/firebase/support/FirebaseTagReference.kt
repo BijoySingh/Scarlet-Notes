@@ -9,17 +9,16 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.maubis.scarlet.base.support.utils.maybeThrow
 
-
 /**
  * Functions for Database Reference for Firebase Notes
  */
 
 fun FirebaseRemoteDatabase.initTagReference(userId: String) {
   firebaseTag = FirebaseDatabase
-      .getInstance()
-      .getReference()
-      .child("tags")
-      .child(userId)
+    .getInstance()
+    .getReference()
+    .child("tags")
+    .child(userId)
   setTagListener()
 }
 

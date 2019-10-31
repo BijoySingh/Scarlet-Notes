@@ -65,7 +65,8 @@ class DataPolicyActivity : ThemedActivity() {
     refuseBtn.visibility = visibility(ApplicationBase.instance.authenticator().isLegacyLoggedIn())
 
     privacyPolicy.setOnClickListener {
-      startActivity(Intent(
+      startActivity(
+        Intent(
           Intent.ACTION_VIEW,
           Uri.parse(PRIVACY_POLICY_LINK)))
     }

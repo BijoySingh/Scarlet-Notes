@@ -11,7 +11,6 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.async.MultiAsyncTask
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
@@ -22,7 +21,11 @@ import com.maubis.scarlet.base.note.folder.SelectorFolderRecyclerItem
 import com.maubis.scarlet.base.note.recycler.NoteAppAdapter
 import com.maubis.scarlet.base.note.recycler.NoteRecyclerItem
 import com.maubis.scarlet.base.note.recycler.getSelectableRecyclerItemControllerList
-import com.maubis.scarlet.base.settings.sheet.*
+import com.maubis.scarlet.base.settings.sheet.STORE_KEY_LINE_COUNT
+import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
+import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
+import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
+import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -45,8 +48,8 @@ abstract class SelectableNotesActivityBase : SecuredActivity(), INoteSelectorAct
       override fun run(): List<RecyclerItem> {
         val sorting = SortingOptionsBottomSheet.getSortingState()
         val notes = sort(getNotes(), sorting)
-            .sortedBy { it.folder }
-            .map { NoteRecyclerItem(this@SelectableNotesActivityBase, it) }
+          .sortedBy { it.folder }
+          .map { NoteRecyclerItem(this@SelectableNotesActivityBase, it) }
 
         if (notes.isEmpty()) {
           return notes
@@ -103,10 +106,10 @@ abstract class SelectableNotesActivityBase : SecuredActivity(), INoteSelectorAct
     adapter = NoteAppAdapter(this, getSelectableRecyclerItemControllerList(staggeredView, isTablet))
     adapter.setExtra(adapterExtra)
     recyclerView = RecyclerViewBuilder(this)
-        .setView(this, R.id.recycler_view)
-        .setAdapter(adapter)
-        .setLayoutManager(getLayoutManager(staggeredView, isTablet))
-        .build()
+      .setView(this, R.id.recycler_view)
+      .setAdapter(adapter)
+      .setLayoutManager(getLayoutManager(staggeredView, isTablet))
+      .build()
   }
 
   override fun notifyThemeChange() {

@@ -48,9 +48,9 @@ class NoteRecyclerHolder(context: Context, view: View) : NoteRecyclerViewHolderB
   private fun actionOrUnlockNote(data: Note, runnable: Runnable) {
     if (context is ThemedActivity && data.locked) {
       openUnlockSheet(
-          activity = context as ThemedActivity,
-          onUnlockSuccess = { runnable.run() },
-          onUnlockFailure = { actionOrUnlockNote(data, runnable) })
+        activity = context as ThemedActivity,
+        onUnlockSuccess = { runnable.run() },
+        onUnlockFailure = { actionOrUnlockNote(data, runnable) })
       return
     } else if (data.locked) {
       return

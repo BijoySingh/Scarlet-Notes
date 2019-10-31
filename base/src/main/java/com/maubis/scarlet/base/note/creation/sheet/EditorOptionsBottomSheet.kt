@@ -50,76 +50,76 @@ class EditorOptionsBottomSheet : LithoOptionBottomSheet() {
     val items = ArrayList<LithoOptionsItem>()
     val activity = context as MainActivity
     items.add(LithoOptionsItem(
-        title = R.string.note_option_default_color,
-        subtitle = R.string.note_option_default_color_subtitle,
-        icon = R.drawable.ic_action_color,
-        listener = {
-          val config = ColorPickerDefaultController(
-              title = R.string.note_option_default_color,
-              colors = listOf(
-                  activity.resources.getIntArray(R.array.bright_colors),
-                  activity.resources.getIntArray(R.array.bright_colors_accent)),
-              selectedColor = sNoteDefaultColor,
-              onColorSelected = { sNoteDefaultColor = it }
-          )
-          openSheet(activity, ColorPickerBottomSheet().apply { this.config = config })
-          dismiss()
-        }
+      title = R.string.note_option_default_color,
+      subtitle = R.string.note_option_default_color_subtitle,
+      icon = R.drawable.ic_action_color,
+      listener = {
+        val config = ColorPickerDefaultController(
+          title = R.string.note_option_default_color,
+          colors = listOf(
+            activity.resources.getIntArray(R.array.bright_colors),
+            activity.resources.getIntArray(R.array.bright_colors_accent)),
+          selectedColor = sNoteDefaultColor,
+          onColorSelected = { sNoteDefaultColor = it }
+        )
+        openSheet(activity, ColorPickerBottomSheet().apply { this.config = config })
+        dismiss()
+      }
     ))
     items.add(LithoOptionsItem(
-        title = R.string.markdown_sheet_markdown_support,
-        subtitle = R.string.markdown_sheet_markdown_support_subtitle,
-        icon = R.drawable.ic_markdown_logo,
-        selected = sEditorMarkdownEnabled,
-        isSelectable = true,
-        listener = {
-          sEditorMarkdownEnabled = !sEditorMarkdownEnabled
-          reset(componentContext.androidContext, dialog)
-        }
+      title = R.string.markdown_sheet_markdown_support,
+      subtitle = R.string.markdown_sheet_markdown_support_subtitle,
+      icon = R.drawable.ic_markdown_logo,
+      selected = sEditorMarkdownEnabled,
+      isSelectable = true,
+      listener = {
+        sEditorMarkdownEnabled = !sEditorMarkdownEnabled
+        reset(componentContext.androidContext, dialog)
+      }
     ))
     items.add(LithoOptionsItem(
-        title = R.string.editor_option_enable_live_markdown,
-        subtitle = R.string.editor_option_enable_live_markdown_description,
-        icon = R.drawable.icon_realtime_markdown,
-        selected = sEditorLiveMarkdown,
-        isSelectable = true,
-        listener = {
-          sEditorLiveMarkdown = !sEditorLiveMarkdown
-          reset(componentContext.androidContext, dialog)
-        }
+      title = R.string.editor_option_enable_live_markdown,
+      subtitle = R.string.editor_option_enable_live_markdown_description,
+      icon = R.drawable.icon_realtime_markdown,
+      selected = sEditorLiveMarkdown,
+      isSelectable = true,
+      listener = {
+        sEditorLiveMarkdown = !sEditorLiveMarkdown
+        reset(componentContext.androidContext, dialog)
+      }
     ))
     items.add(LithoOptionsItem(
-        title = R.string.editor_option_enable_markdown_mode_default,
-        subtitle = R.string.editor_option_enable_markdown_mode_default_details,
-        icon = R.drawable.ic_formats_logo,
-        selected = sEditorMarkdownDefault,
-        isSelectable = true,
-        listener = {
-          sEditorMarkdownDefault = !sEditorMarkdownDefault
-          reset(componentContext.androidContext, dialog)
-        }
+      title = R.string.editor_option_enable_markdown_mode_default,
+      subtitle = R.string.editor_option_enable_markdown_mode_default_details,
+      icon = R.drawable.ic_formats_logo,
+      selected = sEditorMarkdownDefault,
+      isSelectable = true,
+      listener = {
+        sEditorMarkdownDefault = !sEditorMarkdownDefault
+        reset(componentContext.androidContext, dialog)
+      }
     ))
     items.add(LithoOptionsItem(
-        title = R.string.editor_option_move_checked_items,
-        subtitle = R.string.editor_option_move_checked_items_description,
-        icon = R.drawable.ic_check_box_white_24dp,
-        selected = sEditorMoveChecked,
-        isSelectable = true,
-        listener = {
-          sEditorMoveChecked = !sEditorMoveChecked
-          reset(componentContext.androidContext, dialog)
-        }
+      title = R.string.editor_option_move_checked_items,
+      subtitle = R.string.editor_option_move_checked_items_description,
+      icon = R.drawable.ic_check_box_white_24dp,
+      selected = sEditorMoveChecked,
+      isSelectable = true,
+      listener = {
+        sEditorMoveChecked = !sEditorMoveChecked
+        reset(componentContext.androidContext, dialog)
+      }
     ))
     items.add(LithoOptionsItem(
-        title = R.string.editor_option_enable_move_handle,
-        subtitle = R.string.editor_option_enable_move_handle_description,
-        icon = R.drawable.icon_drag_indicator,
-        selected = sEditorMoveHandles,
-        isSelectable = true,
-        listener = {
-          sEditorMoveHandles = !sEditorMoveHandles
-          reset(componentContext.androidContext, dialog)
-        }
+      title = R.string.editor_option_enable_move_handle,
+      subtitle = R.string.editor_option_enable_move_handle_description,
+      icon = R.drawable.icon_drag_indicator,
+      selected = sEditorMoveHandles,
+      isSelectable = true,
+      listener = {
+        sEditorMoveHandles = !sEditorMoveHandles
+        reset(componentContext.androidContext, dialog)
+      }
     ))
     return items
   }

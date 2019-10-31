@@ -2,8 +2,6 @@ package com.maubis.scarlet.base.config
 
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
-import com.github.bijoysingh.starter.prefs.Store
-import com.github.bijoysingh.starter.prefs.VersionedStore
 import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.auth.NullAuthenticator
 import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher
@@ -50,7 +48,7 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   override fun remoteConfigFetcher(): IRemoteConfigFetcher = NullRemoteConfigFetcher()
 
   override fun remoteDatabaseState(): IRemoteDatabaseState {
-    return object: IRemoteDatabaseState {
+    return object : IRemoteDatabaseState {
       override fun notifyInsert(data: Any, onExecution: () -> Unit) {}
       override fun notifyRemove(data: Any, onExecution: () -> Unit) {}
     }

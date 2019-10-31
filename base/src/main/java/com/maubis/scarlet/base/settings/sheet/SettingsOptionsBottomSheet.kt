@@ -27,7 +27,8 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
     val isLoggedIn = ApplicationBase.instance.authenticator().isLoggedIn(activity)
 
     val migrateToPro = getMigrateToProAppInformationItem(activity)
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = migrateToPro.title,
         subtitle = migrateToPro.source,
         icon = migrateToPro.icon,
@@ -37,8 +38,9 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         visible = FlavorUtils.isLite() && FlavorUtils.hasProAppInstalled(activity),
         selected = true
-    ))
-    options.add(LithoOptionsItem(
+      ))
+    options.add(
+      LithoOptionsItem(
         title = R.string.home_option_login_with_app,
         subtitle = R.string.home_option_login_with_app_subtitle,
         icon = R.drawable.ic_sign_in_options,
@@ -47,57 +49,58 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           dismiss()
         },
         visible = loginClick !== null && !isLoggedIn
+      ))
+    options.add(LithoOptionsItem(
+      title = R.string.home_option_ui_experience,
+      subtitle = R.string.home_option_ui_experience_subtitle,
+      icon = R.drawable.ic_action_grid,
+      listener = {
+        UISettingsOptionsBottomSheet.openSheet(activity)
+      }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_ui_experience,
-        subtitle = R.string.home_option_ui_experience_subtitle,
-        icon = R.drawable.ic_action_grid,
-        listener = {
-          UISettingsOptionsBottomSheet.openSheet(activity)
-        }
+      title = R.string.home_option_editor_options_title,
+      subtitle = R.string.home_option_editor_options_description,
+      icon = R.drawable.ic_edit_white_48dp,
+      listener = {
+        openSheet(activity, EditorOptionsBottomSheet())
+      }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_editor_options_title,
-        subtitle = R.string.home_option_editor_options_description,
-        icon = R.drawable.ic_edit_white_48dp,
-        listener = {
-          openSheet(activity, EditorOptionsBottomSheet())
-        }
+      title = R.string.home_option_backup_options,
+      subtitle = R.string.home_option_backup_options_subtitle,
+      icon = R.drawable.ic_export,
+      listener = {
+        openSheet(activity, BackupSettingsOptionsBottomSheet())
+      }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_backup_options,
-        subtitle = R.string.home_option_backup_options_subtitle,
-        icon = R.drawable.ic_export,
-        listener = {
-          openSheet(activity, BackupSettingsOptionsBottomSheet())
-        }
+      title = R.string.home_option_security,
+      subtitle = R.string.home_option_security_subtitle,
+      icon = R.drawable.ic_option_security,
+      listener = {
+        openSheet(activity, SecurityOptionsBottomSheet())
+        dismiss()
+      }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_security,
-        subtitle = R.string.home_option_security_subtitle,
-        icon = R.drawable.ic_option_security,
-        listener = {
-          openSheet(activity, SecurityOptionsBottomSheet())
-          dismiss()
-        }
+      title = R.string.home_option_widget_options_title,
+      subtitle = R.string.home_option_widget_options_description,
+      icon = R.drawable.icon_widget,
+      listener = {
+        openSheet(activity, WidgetOptionsBottomSheet())
+      }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_widget_options_title,
-        subtitle = R.string.home_option_widget_options_description,
-        icon = R.drawable.icon_widget,
-        listener = {
-          openSheet(activity, WidgetOptionsBottomSheet())
-        }
+      title = R.string.home_option_about,
+      subtitle = R.string.home_option_about_subtitle,
+      icon = R.drawable.ic_info,
+      listener = {
+        openSheet(activity, AboutSettingsOptionsBottomSheet())
+      }
     ))
-    options.add(LithoOptionsItem(
-        title = R.string.home_option_about,
-        subtitle = R.string.home_option_about_subtitle,
-        icon = R.drawable.ic_info,
-        listener = {
-          openSheet(activity, AboutSettingsOptionsBottomSheet())
-        }
-    ))
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = R.string.home_option_install_pro_app,
         subtitle = R.string.home_option_install_pro_app_details,
         icon = R.drawable.ic_favorite_white_48dp,
@@ -106,25 +109,26 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           dismiss()
         },
         visible = FlavorUtils.isLite() && !FlavorUtils.hasProAppInstalled(activity)
+      ))
+    options.add(LithoOptionsItem(
+      title = R.string.home_option_rate_and_review,
+      subtitle = R.string.home_option_rate_and_review_subtitle,
+      icon = R.drawable.ic_rating,
+      listener = {
+        IntentUtils.openAppPlayStore(activity)
+        dismiss()
+      }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_rate_and_review,
-        subtitle = R.string.home_option_rate_and_review_subtitle,
-        icon = R.drawable.ic_rating,
-        listener = {
-          IntentUtils.openAppPlayStore(activity)
-          dismiss()
-        }
+      title = R.string.home_option_delete_notes_and_more,
+      subtitle = R.string.home_option_delete_notes_and_more_details,
+      icon = R.drawable.ic_delete_permanently,
+      listener = {
+        openSheet(activity, DeleteAndMoreOptionsBottomSheet())
+      }
     ))
-    options.add(LithoOptionsItem(
-        title = R.string.home_option_delete_notes_and_more,
-        subtitle = R.string.home_option_delete_notes_and_more_details,
-        icon = R.drawable.ic_delete_permanently,
-        listener = {
-          openSheet(activity, DeleteAndMoreOptionsBottomSheet())
-        }
-    ))
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = R.string.home_option_logout_of_app,
         subtitle = R.string.home_option_logout_of_app_subtitle,
         icon = R.drawable.ic_sign_in_options,
@@ -139,7 +143,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
           dismiss()
         },
         visible = isLoggedIn
-    ))
+      ))
     return options
   }
 

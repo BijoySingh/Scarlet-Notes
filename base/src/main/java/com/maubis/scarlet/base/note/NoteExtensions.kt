@@ -6,13 +6,21 @@ import android.support.v4.app.ActivityOptionsCompat
 import com.google.gson.Gson
 import com.maubis.markdown.Markdown
 import com.maubis.markdown.MarkdownConfig
-import com.maubis.markdown.spannable.*
+import com.maubis.markdown.spannable.MarkdownType
+import com.maubis.markdown.spannable.bold
+import com.maubis.markdown.spannable.font
+import com.maubis.markdown.spannable.relativeSize
+import com.maubis.markdown.spannable.strike
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
-import com.maubis.scarlet.base.core.note.*
+import com.maubis.scarlet.base.core.note.NoteState
+import com.maubis.scarlet.base.core.note.generateUUID
+import com.maubis.scarlet.base.core.note.getFormats
+import com.maubis.scarlet.base.core.note.getTagUUIDs
+import com.maubis.scarlet.base.core.note.isUnsaved
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
@@ -30,7 +38,6 @@ import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-
 
 fun Note.log(): String {
   val log = HashMap<String, Any>()
@@ -71,20 +78,20 @@ internal fun markdownFormatForList(text: String): CharSequence {
     when (spanInfo.markdownType) {
       MarkdownType.HEADING_1 -> {
         spannable.relativeSize(1.2f, s, e)
-            .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
-            .bold(s, e)
+          .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
+          .bold(s, e)
         true
       }
       MarkdownType.HEADING_2 -> {
         spannable.relativeSize(1.1f, s, e)
-            .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
-            .bold(s, e)
+          .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
+          .bold(s, e)
         true
       }
       MarkdownType.HEADING_3 -> {
         spannable.relativeSize(1.0f, s, e)
-            .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
-            .bold(s, e)
+          .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
+          .bold(s, e)
         true
       }
       MarkdownType.CHECKLIST_CHECKED -> {
@@ -95,7 +102,6 @@ internal fun markdownFormatForList(text: String): CharSequence {
     }
   }
 }
-
 
 fun Note.getTitleForSharing(): String {
   val formats = getFormats()
@@ -254,9 +260,9 @@ fun Note.edit(context: Context) {
   if (this.locked) {
     if (context is ThemedActivity) {
       openUnlockSheet(
-          activity = context,
-          onUnlockSuccess = { openEdit(context) },
-          onUnlockFailure = { edit(context) })
+        activity = context,
+        onUnlockSuccess = { openEdit(context) },
+        onUnlockFailure = { edit(context) })
     }
     return
   }
@@ -287,11 +293,9 @@ fun Note.openEdit(context: Context) {
   context.startActivity(intent)
 }
 
-
 fun Note.share(context: Context) {
   ApplicationBase.instance.noteActions(this).share(context)
 }
-
 
 fun Note.hasImages(): Boolean {
   val imageFormats = getFormats().filter { it.formatType == FormatType.IMAGE }
@@ -301,10 +305,10 @@ fun Note.hasImages(): Boolean {
 fun Note.shareImages(context: Context) {
   val imageFormats = getFormats().filter { it.formatType == FormatType.IMAGE }
   val bitmaps = imageFormats
-      .map { ApplicationBase.sAppImageStorage.getFile(uuid, it.text) }
-      .filter { it.exists() }
-      .map { BitmapHelper.loadFromFile(it) }
-      .filterNotNull()
+    .map { ApplicationBase.sAppImageStorage.getFile(uuid, it.text) }
+    .filter { it.exists() }
+    .map { BitmapHelper.loadFromFile(it) }
+    .filterNotNull()
   when {
     bitmaps.size == 1 -> BitmapHelper.send(context, bitmaps.first())
     bitmaps.size > 1 -> BitmapHelper.send(context, bitmaps)

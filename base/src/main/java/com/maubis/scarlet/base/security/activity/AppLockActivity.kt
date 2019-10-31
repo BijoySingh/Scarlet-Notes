@@ -28,19 +28,20 @@ class AppLockActivity : ThemedActivity() {
     setView()
     notifyThemeChange()
   }
+
   private fun setView() {
     component = AppLockView.create(componentContext)
-        .fingerprintEnabled(Reprint.hasFingerprintRegistered() && sSecurityFingerprintEnabled)
-        .onTextChange { text ->
-          passCodeEntered = text
+      .fingerprintEnabled(Reprint.hasFingerprintRegistered() && sSecurityFingerprintEnabled)
+      .onTextChange { text ->
+        passCodeEntered = text
+      }
+      .onClick {
+        if (passCodeEntered.length == 4 && sSecurityCode == passCodeEntered) {
+          PinLockController.notifyPinVerified()
+          finish()
         }
-        .onClick {
-          if (passCodeEntered.length == 4 && sSecurityCode == passCodeEntered) {
-            PinLockController.notifyPinVerified()
-            finish()
-          }
-        }
-        .build()
+      }
+      .build()
     setContentView(LithoView.create(componentContext, component))
   }
 
@@ -54,15 +55,16 @@ class AppLockActivity : ThemedActivity() {
       }
 
       override fun onFailure(
-          failureReason: AuthenticationFailureReason?,
-          fatal: Boolean,
-          errorMessage: CharSequence?,
-          moduleTag: Int,
-          errorCode: Int) {
+        failureReason: AuthenticationFailureReason?,
+        fatal: Boolean,
+        errorMessage: CharSequence?,
+        moduleTag: Int,
+        errorCode: Int) {
         // Ignore
       }
     })
   }
+
   override fun onPause() {
     super.onPause()
     Reprint.cancelAuthentication()

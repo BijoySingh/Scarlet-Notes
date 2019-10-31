@@ -39,53 +39,53 @@ class FirebaseRemovalActivity : ThemedActivity(), GoogleApiClient.OnConnectionFa
   private fun setButton(state: Boolean) {
     loggingIn.set(state)
     component = FirebaseRemovalRootView.create(componentContext)
-        .onClick {
-          if (loggingIn.get()) {
-            return@onClick
-          }
-
-          setButton(true)
-          forgettingInProcess = true
-          firebaseForgetMe(
-              onComplete = {
-                signOut {
-                  forgettingInProcess = false
-                  instance.authenticator().openLoginActivity(context)?.run()
-                  finish()
-                }
-              },
-              onFailure = {
-                forgettingInProcess = false
-                ToastHelper.show(context, "Failed logging you out. Try logging in again.")
-                context.startActivity(Intent(context, FirebaseLoginActivity::class.java))
-                finish()
-              })
+      .onClick {
+        if (loggingIn.get()) {
+          return@onClick
         }
-        .removingItems(state)
-        .build()
+
+        setButton(true)
+        forgettingInProcess = true
+        firebaseForgetMe(
+          onComplete = {
+            signOut {
+              forgettingInProcess = false
+              instance.authenticator().openLoginActivity(context)?.run()
+              finish()
+            }
+          },
+          onFailure = {
+            forgettingInProcess = false
+            ToastHelper.show(context, "Failed logging you out. Try logging in again.")
+            context.startActivity(Intent(context, FirebaseLoginActivity::class.java))
+            finish()
+          })
+      }
+      .removingItems(state)
+      .build()
     setContentView(LithoView.create(componentContext, component))
   }
 
   lateinit var mGoogleApiClient: GoogleApiClient
   private fun setupGoogleLogin() {
     val gso = GoogleSignInOptions.Builder(
-        GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken(getString(R.string.default_web_client_id))
-        .requestEmail()
-        .build()
+      GoogleSignInOptions.DEFAULT_SIGN_IN)
+      .requestIdToken(getString(R.string.default_web_client_id))
+      .requestEmail()
+      .build()
 
     mGoogleApiClient = GoogleApiClient
-        .Builder(this)
-        .enableAutoManage(this, this)
-        .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-        .build()
+      .Builder(this)
+      .enableAutoManage(this, this)
+      .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+      .build()
   }
 
   private fun signOut(onSuccess: () -> Unit) {
     if (mGoogleApiClient.isConnecting) {
       Handler().postDelayed({
-        signOut(onSuccess)
-      }, 500)
+                              signOut(onSuccess)
+                            }, 500)
       return
     }
 
@@ -102,7 +102,6 @@ class FirebaseRemovalActivity : ThemedActivity(), GoogleApiClient.OnConnectionFa
   override fun onConnectionFailed(p0: ConnectionResult) {
     ToastHelper.show(context, "Failed logging you out properly. Try again later.")
   }
-
 
   override fun onBackPressed() {
     super.onBackPressed()

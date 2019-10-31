@@ -22,66 +22,68 @@ class AboutSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
     val activity = context as MainActivity
     val options = ArrayList<LithoOptionsItem>()
     options.add(LithoOptionsItem(
-        title = R.string.home_option_about_page,
-        subtitle = R.string.home_option_about_page_subtitle,
-        icon = R.drawable.ic_info,
-        listener = {
-          openSheet(activity, AboutUsBottomSheet())
+      title = R.string.home_option_about_page,
+      subtitle = R.string.home_option_about_page_subtitle,
+      icon = R.drawable.ic_info,
+      listener = {
+        openSheet(activity, AboutUsBottomSheet())
+        dismiss()
+      }
+    ))
+    options.add(LithoOptionsItem(
+      title = R.string.home_option_open_source_page,
+      subtitle = R.string.home_option_open_source_page_subtitle,
+      icon = R.drawable.ic_code_white_48dp,
+      listener = {
+        openSheet(activity, OpenSourceBottomSheet())
+        dismiss()
+      }
+    ))
+    options.add(LithoOptionsItem(
+      title = R.string.home_option_faq_title,
+      subtitle = R.string.home_option_faq_description,
+      icon = R.drawable.icon_help,
+      listener = {
+        try {
+          activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(SettingsOptionsBottomSheet.GITHUB_FAQ_URL)))
           dismiss()
+        } catch (exception: Exception) {
+          maybeThrow(activity, exception)
         }
+      }
     ))
     options.add(LithoOptionsItem(
-        title = R.string.home_option_open_source_page,
-        subtitle = R.string.home_option_open_source_page_subtitle,
-        icon = R.drawable.ic_code_white_48dp,
-        listener = {
-          openSheet(activity, OpenSourceBottomSheet())
-          dismiss()
-        }
+      title = R.string.whats_new_title,
+      subtitle = R.string.whats_new_subtitle,
+      icon = R.drawable.ic_whats_new,
+      listener = {
+        openSheet(activity, WhatsNewBottomSheet())
+        dismiss()
+      }
     ))
-    options.add(LithoOptionsItem(
-        title = R.string.home_option_faq_title,
-        subtitle = R.string.home_option_faq_description,
-        icon = R.drawable.icon_help,
-        listener = {
-          try {
-            activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(SettingsOptionsBottomSheet.GITHUB_FAQ_URL)))
-            dismiss()
-          } catch (exception: Exception) {
-            maybeThrow(activity, exception)
-          }
-        }
-    ))
-    options.add(LithoOptionsItem(
-        title = R.string.whats_new_title,
-        subtitle = R.string.whats_new_subtitle,
-        icon = R.drawable.ic_whats_new,
-        listener = {
-          openSheet(activity, WhatsNewBottomSheet())
-          dismiss()
-        }
-    ))
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = R.string.material_notes_privacy_policy,
         subtitle = R.string.material_notes_privacy_policy_subtitle,
         icon = R.drawable.ic_privacy_policy,
         listener = {
-          activity.startActivity(Intent(
+          activity.startActivity(
+            Intent(
               Intent.ACTION_VIEW,
               Uri.parse(PRIVACY_POLICY_LINK)))
           dismiss()
         },
         visible = FlavorUtils.isPlayStore()
 
-    ))
+      ))
     options.add(LithoOptionsItem(
-        title = R.string.internal_settings_title,
-        subtitle = R.string.internal_settings_description,
-        icon = R.drawable.icon_code_block,
-        listener = {
-          openSheet(activity, InternalSettingsOptionsBottomSheet())
-          dismiss()
-        }
+      title = R.string.internal_settings_title,
+      subtitle = R.string.internal_settings_description,
+      icon = R.drawable.icon_code_block,
+      listener = {
+        openSheet(activity, InternalSettingsOptionsBottomSheet())
+        dismiss()
+      }
     ))
     return options
   }

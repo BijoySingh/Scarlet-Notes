@@ -13,14 +13,14 @@ fun Note.isUnsaved(): Boolean {
 
 fun Note.isEqual(note: Note): Boolean {
   return TextUtils.areEqualNullIsEmpty(this.state, note.state)
-      && TextUtils.areEqualNullIsEmpty(this.description, note.description)
-      && TextUtils.areEqualNullIsEmpty(this.uuid, note.uuid)
-      && TextUtils.areEqualNullIsEmpty(this.tags, note.tags)
-      && this.timestamp.toLong() == note.timestamp.toLong()
-      && this.color.toInt() == note.color.toInt()
-      && this.locked == note.locked
-      && this.pinned == note.pinned
-      && this.folder == note.folder
+    && TextUtils.areEqualNullIsEmpty(this.description, note.description)
+    && TextUtils.areEqualNullIsEmpty(this.uuid, note.uuid)
+    && TextUtils.areEqualNullIsEmpty(this.tags, note.tags)
+    && this.timestamp.toLong() == note.timestamp.toLong()
+    && this.color.toInt() == note.color.toInt()
+    && this.locked == note.locked
+    && this.pinned == note.pinned
+    && this.folder == note.folder
 }
 
 /**************************************************************************************

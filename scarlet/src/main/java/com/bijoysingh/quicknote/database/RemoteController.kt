@@ -14,7 +14,15 @@ import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.auth.IPendingUploadListener
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.database.remote.IRemoteDatabaseUtils
-import com.maubis.scarlet.base.export.data.*
+import com.maubis.scarlet.base.export.data.ExportableFolder
+import com.maubis.scarlet.base.export.data.ExportableNoteMeta
+import com.maubis.scarlet.base.export.data.ExportableTag
+import com.maubis.scarlet.base.export.data.fromExportedMarkdown
+import com.maubis.scarlet.base.export.data.getExportableFolder
+import com.maubis.scarlet.base.export.data.getExportableNoteMeta
+import com.maubis.scarlet.base.export.data.getExportableTag
+import com.maubis.scarlet.base.export.data.mergeMetas
+import com.maubis.scarlet.base.export.data.toExportedMarkdown
 import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.support.utils.log
 import com.maubis.scarlet.base.support.utils.maybeThrow
@@ -23,7 +31,6 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicBoolean
-
 
 const val FOLDER_NAME_IMAGES = "images"
 const val FOLDER_NAME_NOTES = "notes"
@@ -124,6 +131,7 @@ abstract class RemoteController<ResourceId, FileType, FileListType>(private val 
    */
 
   abstract fun initSyncs()
+
   abstract fun getResourceId(data: RemoteUploadData): ResourceId
   abstract fun getResourceIdForFolderName(folderName: String): ResourceId?
   abstract fun storeResourceIdForFolderName(folderName: String, resource: ResourceId)
@@ -420,7 +428,7 @@ abstract class RemoteController<ResourceId, FileType, FileListType>(private val 
           try {
             val itemDescription = fromExportedMarkdown(content)
             val existingNote = CoreConfig.notesDb.getByUUID(data.uuid)
-                ?: NoteBuilder().emptyNote(sNoteDefaultColor).apply { uuid = data.uuid }
+              ?: NoteBuilder().emptyNote(sNoteDefaultColor).apply { uuid = data.uuid }
             val temporaryNote = NoteBuilder().copy(existingNote)
             temporaryNote.description = itemDescription
             IRemoteDatabaseUtils.onRemoteInsert(context, temporaryNote.getFirebaseNote())
@@ -438,7 +446,7 @@ abstract class RemoteController<ResourceId, FileType, FileListType>(private val 
             val item = Gson().fromJson(content, ExportableNoteMeta::class.java)
 
             val existingNote = CoreConfig.notesDb.getByUUID(data.uuid)
-                ?: NoteBuilder().emptyNote(sNoteDefaultColor).apply { uuid = data.uuid }
+              ?: NoteBuilder().emptyNote(sNoteDefaultColor).apply { uuid = data.uuid }
             val temporaryNote = NoteBuilder().copy(existingNote)
             temporaryNote.mergeMetas(item)
             IRemoteDatabaseUtils.onRemoteInsert(context, temporaryNote.getFirebaseNote())

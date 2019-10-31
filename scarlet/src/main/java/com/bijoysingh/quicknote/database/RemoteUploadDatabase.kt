@@ -9,8 +9,8 @@ var remoteDatabase: RemoteUploadDataDao? = null
 fun genRemoteDatabase(context: Context): RemoteUploadDataDao? {
   if (remoteDatabase === null) {
     remoteDatabase = Room.databaseBuilder(context, RemoteUploadDatabase::class.java, "google_drive_db")
-        .fallbackToDestructiveMigration()
-        .build().remote()
+      .fallbackToDestructiveMigration()
+      .build().remote()
   }
   return remoteDatabase
 }

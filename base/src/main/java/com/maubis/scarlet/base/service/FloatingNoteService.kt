@@ -13,14 +13,17 @@ import com.bsk.floatingbubblelib.FloatingBubblePermissions
 import com.bsk.floatingbubblelib.FloatingBubbleService
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.note.*
+import com.maubis.scarlet.base.note.copy
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
+import com.maubis.scarlet.base.note.getDisplayTime
+import com.maubis.scarlet.base.note.getFullTextForDirectMarkdownRender
+import com.maubis.scarlet.base.note.getTextForSharing
+import com.maubis.scarlet.base.note.getTitleForSharing
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.utils.maybeThrow
 
@@ -38,21 +41,22 @@ class FloatingNoteService : FloatingBubbleService() {
 
   override fun getConfig(): FloatingBubbleConfig {
     return FloatingBubbleConfig.Builder()
-        .bubbleIcon(ContextCompat.getDrawable(context, R.drawable.app_icon))
-        .removeBubbleIcon(ContextCompat.getDrawable(
-            context,
-            com.bsk.floatingbubblelib.R.drawable.close_default_icon))
-        .bubbleIconDp(72)
-        .removeBubbleIconDp(72)
-        .paddingDp(8)
-        .borderRadiusDp(4)
-        .physicsEnabled(true)
-        .expandableColor(sAppTheme.get(ThemeColorType.BACKGROUND))
-        .triangleColor(sAppTheme.get(ThemeColorType.BACKGROUND))
-        .gravity(Gravity.END)
-        .expandableView(loadView())
-        .removeBubbleAlpha(0.7f)
-        .build()
+      .bubbleIcon(ContextCompat.getDrawable(context, R.drawable.app_icon))
+      .removeBubbleIcon(
+        ContextCompat.getDrawable(
+          context,
+          com.bsk.floatingbubblelib.R.drawable.close_default_icon))
+      .bubbleIconDp(72)
+      .removeBubbleIconDp(72)
+      .paddingDp(8)
+      .borderRadiusDp(4)
+      .physicsEnabled(true)
+      .expandableColor(sAppTheme.get(ThemeColorType.BACKGROUND))
+      .triangleColor(sAppTheme.get(ThemeColorType.BACKGROUND))
+      .gravity(Gravity.END)
+      .expandableView(loadView())
+      .removeBubbleAlpha(0.7f)
+      .build()
   }
 
   override fun onGetIntent(intent: Intent): Boolean {

@@ -36,10 +36,10 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     edit.addTextChangedListener(this)
     edit.onFocusChangeListener = View.OnFocusChangeListener { _, _ -> activity.focusedFormat = format }
     edit.setRawInputType(
-        InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
-            or InputType.TYPE_TEXT_FLAG_MULTI_LINE
-            or InputType.TYPE_CLASS_TEXT
-            or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE
+      InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        or InputType.TYPE_TEXT_FLAG_MULTI_LINE
+        or InputType.TYPE_CLASS_TEXT
+        or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE
     )
   }
 
@@ -154,11 +154,11 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
       FormatType.HEADING,
       FormatType.SUB_HEADING,
       FormatType.HEADING_3
-          -> context.getString(R.string.format_hint_heading)
+      -> context.getString(R.string.format_hint_heading)
       FormatType.NUMBERED_LIST,
       FormatType.CHECKLIST_UNCHECKED,
       FormatType.CHECKLIST_CHECKED
-          -> context.getString(R.string.format_hint_list)
+      -> context.getString(R.string.format_hint_list)
       FormatType.CODE -> context.getString(R.string.format_hint_code)
       FormatType.QUOTE -> context.getString(R.string.format_hint_quote)
       else -> ""

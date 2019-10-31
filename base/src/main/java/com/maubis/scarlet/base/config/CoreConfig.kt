@@ -5,7 +5,6 @@ import android.graphics.Typeface
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import com.github.ajalt.reprint.core.Reprint
-import com.github.bijoysingh.starter.prefs.Store
 import com.maubis.markdown.MarkdownConfig.Companion.config
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
@@ -29,10 +28,12 @@ abstract class CoreConfig(context: Context) {
   init {
     Reprint.initialize(context)
     config.spanConfig.headingTypeface = ResourcesCompat.getFont(context, R.font.monserrat)
-        ?: Typeface.DEFAULT
+      ?: Typeface.DEFAULT
     FONT_MONSERRAT = config.spanConfig.headingTypeface
-    FONT_MONSERRAT_MEDIUM = ResourcesCompat.getFont(context, R.font.monserrat_medium) ?: Typeface.DEFAULT
-    FONT_MONSERRAT_BOLD = ResourcesCompat.getFont(context, R.font.monserrat_bold) ?: Typeface.DEFAULT
+    FONT_MONSERRAT_MEDIUM = ResourcesCompat.getFont(context, R.font.monserrat_medium)
+      ?: Typeface.DEFAULT
+    FONT_MONSERRAT_BOLD = ResourcesCompat.getFont(context, R.font.monserrat_bold)
+      ?: Typeface.DEFAULT
     FONT_OPEN_SANS = ResourcesCompat.getFont(context, R.font.open_sans) ?: Typeface.DEFAULT
   }
 

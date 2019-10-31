@@ -6,7 +6,12 @@ import android.graphics.Color
 import android.graphics.drawable.Icon
 import android.net.Uri
 import android.text.Layout
-import com.facebook.litho.*
+import com.facebook.litho.ClickEvent
+import com.facebook.litho.Column
+import com.facebook.litho.Component
+import com.facebook.litho.ComponentContext
+import com.facebook.litho.LongClickEvent
+import com.facebook.litho.Row
 import com.facebook.litho.annotations.LayoutSpec
 import com.facebook.litho.annotations.OnCreateLayout
 import com.facebook.litho.annotations.OnEvent
@@ -18,7 +23,6 @@ import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT
 import com.maubis.scarlet.base.config.CoreConfig.Companion.FONT_MONSERRAT_MEDIUM
@@ -44,59 +48,60 @@ import kotlinx.coroutines.launch
 @LayoutSpec
 object MainActivityBottomBarSpec {
   @OnCreateLayout
-  fun onCreate(context: ComponentContext,
-               @Prop colorConfig: ToolbarColorConfig): Component {
+  fun onCreate(
+    context: ComponentContext,
+    @Prop colorConfig: ToolbarColorConfig): Component {
     val activity = context.androidContext as MainActivity
     val row = Row.create(context)
-        .widthPercent(100f)
-        .alignItems(YogaAlign.CENTER)
-        .paddingDip(YogaEdge.HORIZONTAL, 4f)
+      .widthPercent(100f)
+      .alignItems(YogaAlign.CENTER)
+      .paddingDip(YogaEdge.HORIZONTAL, 4f)
     row.child(bottomBarRoundIcon(context, colorConfig)
-        .bgColor(Color.TRANSPARENT)
-        .iconRes(R.drawable.ic_apps_white_48dp)
-        .onClick {
-          openSheet(activity, HomeOptionsBottomSheet())
-        })
+                .bgColor(Color.TRANSPARENT)
+                .iconRes(R.drawable.ic_apps_white_48dp)
+                .onClick {
+                  openSheet(activity, HomeOptionsBottomSheet())
+                })
     row.child(EmptySpec.create(context).heightDip(1f).flexGrow(1f))
 
     row.child(bottomBarRoundIcon(context, colorConfig)
-        .iconRes(R.drawable.icon_add_notebook)
-        .onClick {
-          CreateOrEditFolderBottomSheet.openSheet(
-              activity,
-              FolderBuilder().emptyFolder(sNoteDefaultColor),
-              { _, _ -> activity.setupData() })
-        })
+                .iconRes(R.drawable.icon_add_notebook)
+                .onClick {
+                  CreateOrEditFolderBottomSheet.openSheet(
+                    activity,
+                    FolderBuilder().emptyFolder(sNoteDefaultColor),
+                    { _, _ -> activity.setupData() })
+                })
     row.child(bottomBarRoundIcon(context, colorConfig)
-        .iconRes(R.drawable.icon_add_list)
-        .onClick {
-          val intent = CreateNoteActivity.getNewChecklistNoteIntent(
-              activity,
-              activity.config.folders.firstOrNull()?.uuid ?: "")
-          activity.startActivity(intent)
-        })
+                .iconRes(R.drawable.icon_add_list)
+                .onClick {
+                  val intent = CreateNoteActivity.getNewChecklistNoteIntent(
+                    activity,
+                    activity.config.folders.firstOrNull()?.uuid ?: "")
+                  activity.startActivity(intent)
+                })
     row.child(bottomBarRoundIcon(context, colorConfig)
-        .iconRes(R.drawable.icon_add_note)
-        .isLongClickEnabled(true)
-        .onLongClick {
-          if (!OsVersionUtils.canAddLauncherShortcuts()) {
-            return@onLongClick
-          }
+                .iconRes(R.drawable.icon_add_note)
+                .isLongClickEnabled(true)
+                .onLongClick {
+                  if (!OsVersionUtils.canAddLauncherShortcuts()) {
+                    return@onLongClick
+                  }
 
-          val shortcut = ShortcutInfo.Builder(activity, "scarlet_notes___create_note")
-              .setShortLabel(activity.getString(R.string.shortcut_add_note))
-              .setLongLabel(activity.getString(R.string.shortcut_add_note))
-              .setIcon(Icon.createWithResource(activity, R.mipmap.create_launcher))
-              .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("scarlet://create_note")))
-              .build()
-          addShortcut(activity, shortcut)
-        }
-        .onClick {
-          val intent = CreateNoteActivity.getNewNoteIntent(
-              activity,
-              activity.config.folders.firstOrNull()?.uuid ?: "")
-          activity.startActivity(intent)
-        })
+                  val shortcut = ShortcutInfo.Builder(activity, "scarlet_notes___create_note")
+                    .setShortLabel(activity.getString(R.string.shortcut_add_note))
+                    .setLongLabel(activity.getString(R.string.shortcut_add_note))
+                    .setIcon(Icon.createWithResource(activity, R.mipmap.create_launcher))
+                    .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("scarlet://create_note")))
+                    .build()
+                  addShortcut(activity, shortcut)
+                }
+                .onClick {
+                  val intent = CreateNoteActivity.getNewNoteIntent(
+                    activity,
+                    activity.config.folders.firstOrNull()?.uuid ?: "")
+                  activity.startActivity(intent)
+                })
     return bottomBarCard(context, row.build(), colorConfig).build()
   }
 }
@@ -106,30 +111,31 @@ object MainActivityFolderBottomBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext, @Prop folder: Folder): Component {
     val colorConfig = ToolbarColorConfig(
-        toolbarBackgroundColor = folder.color,
-        toolbarIconColor = when (ColorUtil.isLightColored(folder.color)) {
-          true -> context.getColor(R.color.dark_tertiary_text)
-          false -> context.getColor(R.color.light_secondary_text)
-        }
+      toolbarBackgroundColor = folder.color,
+      toolbarIconColor = when (ColorUtil.isLightColored(folder.color)) {
+        true -> context.getColor(R.color.dark_tertiary_text)
+        false -> context.getColor(R.color.light_secondary_text)
+      }
     )
     val activity = context.androidContext as MainActivity
     val row = Row.create(context)
-        .widthPercent(100f)
-        .alignItems(YogaAlign.CENTER)
-        .paddingDip(YogaEdge.HORIZONTAL, 4f)
+      .widthPercent(100f)
+      .alignItems(YogaAlign.CENTER)
+      .paddingDip(YogaEdge.HORIZONTAL, 4f)
     row.child(bottomBarRoundIcon(context, colorConfig)
-        .bgColor(Color.TRANSPARENT)
-        .iconRes(R.drawable.ic_close_white_48dp)
-        .onClick {
-          GlobalScope.launch {
-            activity.config.folders.clear()
-            activity.unifiedSearch()
-            GlobalScope.launch(Dispatchers.Main) {
-              activity.notifyFolderChange()
-            }
-          }
-        })
-    row.child(Text.create(context)
+                .bgColor(Color.TRANSPARENT)
+                .iconRes(R.drawable.ic_close_white_48dp)
+                .onClick {
+                  GlobalScope.launch {
+                    activity.config.folders.clear()
+                    activity.unifiedSearch()
+                    GlobalScope.launch(Dispatchers.Main) {
+                      activity.notifyFolderChange()
+                    }
+                  }
+                })
+    row.child(
+      Text.create(context)
         .typeface(FONT_MONSERRAT)
         .textAlignment(Layout.Alignment.ALIGN_CENTER)
         .flexGrow(1f)
@@ -138,10 +144,10 @@ object MainActivityFolderBottomBarSpec {
         .textColor(colorConfig.toolbarIconColor)
         .clickHandler(MainActivityFolderBottomBar.onClickEvent(context)))
     row.child(bottomBarRoundIcon(context, colorConfig)
-        .iconRes(R.drawable.ic_more_options)
-        .isClickDisabled(true)
-        .clickHandler(MainActivityFolderBottomBar.onClickEvent(context))
-        .onClick {})
+                .iconRes(R.drawable.ic_more_options)
+                .isClickDisabled(true)
+                .clickHandler(MainActivityFolderBottomBar.onClickEvent(context))
+                .onClick {})
     return bottomBarCard(context, row.build(), colorConfig).build()
   }
 
@@ -160,35 +166,37 @@ object MainActivityDisabledSyncSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext): Component {
     val colorConfig = ToolbarColorConfig(
-        toolbarBackgroundColor = context.getColor(R.color.material_blue_grey_800),
-        toolbarIconColor = context.getColor(R.color.light_secondary_text)
+      toolbarBackgroundColor = context.getColor(R.color.material_blue_grey_800),
+      toolbarIconColor = context.getColor(R.color.light_secondary_text)
     )
     val row = Row.create(context)
-        .widthPercent(100f)
-        .alignItems(YogaAlign.CENTER)
-        .paddingDip(YogaEdge.HORIZONTAL, 4f)
+      .widthPercent(100f)
+      .alignItems(YogaAlign.CENTER)
+      .paddingDip(YogaEdge.HORIZONTAL, 4f)
     row.child(bottomBarRoundIcon(context, colorConfig)
-        .bgColor(Color.TRANSPARENT)
-        .iconRes(R.drawable.ic_info)
-        .onClick {
-          GlobalScope.launch {
+                .bgColor(Color.TRANSPARENT)
+                .iconRes(R.drawable.ic_info)
+                .onClick {
+                  GlobalScope.launch {
 
-          }
-        })
+                  }
+                })
     row.child(
-        Column.create(context)
-            .flexGrow(1f)
-            .paddingDip(YogaEdge.ALL, 8f)
-            .child(Text.create(context)
-                .typeface(FONT_MONSERRAT_MEDIUM)
-                .textRes(R.string.firebase_no_sync_warning)
-                .textSizeRes(R.dimen.font_size_normal)
-                .textColor(colorConfig.toolbarIconColor))
-            .child(Text.create(context)
-                .typeface(FONT_MONSERRAT)
-                .textRes(R.string.firebase_no_sync_warning_details)
-                .textSizeRes(R.dimen.font_size_small)
-                .textColor(colorConfig.toolbarIconColor)))
+      Column.create(context)
+        .flexGrow(1f)
+        .paddingDip(YogaEdge.ALL, 8f)
+        .child(
+          Text.create(context)
+            .typeface(FONT_MONSERRAT_MEDIUM)
+            .textRes(R.string.firebase_no_sync_warning)
+            .textSizeRes(R.dimen.font_size_normal)
+            .textColor(colorConfig.toolbarIconColor))
+        .child(
+          Text.create(context)
+            .typeface(FONT_MONSERRAT)
+            .textRes(R.string.firebase_no_sync_warning_details)
+            .textSizeRes(R.dimen.font_size_small)
+            .textColor(colorConfig.toolbarIconColor)))
     row.clickHandler(MainActivityDisabledSync.onClickEvent(context))
     return bottomBarCard(context, row.build(), colorConfig).build()
   }
@@ -204,8 +212,8 @@ object MainActivitySyncingNowSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext, @Prop isSyncHappening: Boolean): Component {
     val colorConfig = ToolbarColorConfig(
-        toolbarBackgroundColor = sAppTheme.get(ThemeColorType.TOOLBAR_BACKGROUND),
-        toolbarIconColor = sAppTheme.get(ThemeColorType.TOOLBAR_ICON)
+      toolbarBackgroundColor = sAppTheme.get(ThemeColorType.TOOLBAR_BACKGROUND),
+      toolbarIconColor = sAppTheme.get(ThemeColorType.TOOLBAR_ICON)
     )
     val syncText = when (isSyncHappening) {
       true -> R.string.home_syncing_top_layout
@@ -213,39 +221,41 @@ object MainActivitySyncingNowSpec {
     }
     val syncIcon = when (isSyncHappening) {
       true -> Progress.create(context)
-          .widthDip(24f)
-          .alpha(0.8f)
-          .marginDip(YogaEdge.END, 8f)
-          .color(colorConfig.toolbarIconColor)
+        .widthDip(24f)
+        .alpha(0.8f)
+        .marginDip(YogaEdge.END, 8f)
+        .color(colorConfig.toolbarIconColor)
       false -> Image.create(context)
-          .heightDip(24f)
-          .widthDip(24f)
-          .marginDip(YogaEdge.END, 8f)
-          .alpha(0.8f)
-          .drawableRes(R.drawable.icon_folder_sync)
+        .heightDip(24f)
+        .widthDip(24f)
+        .marginDip(YogaEdge.END, 8f)
+        .alpha(0.8f)
+        .drawableRes(R.drawable.icon_folder_sync)
     }
 
     val row = Row.create(context)
-        .widthPercent(100f)
-        .alignItems(YogaAlign.CENTER)
-        .paddingDip(YogaEdge.HORIZONTAL, 8f)
-        .paddingDip(YogaEdge.VERTICAL, 8f)
-        .alpha(0.8f)
-        .child(EmptySpec.create(context).flexGrow(1f))
-        .child(Row.create(context)
-            .alignItems(YogaAlign.CENTER)
-            .alignContent(YogaAlign.CENTER)
-            .paddingDip(YogaEdge.VERTICAL, 8f)
-            .paddingDip(YogaEdge.HORIZONTAL, 12f)
-            .backgroundRes(R.drawable.pending_sync_capsule)
-            .clickHandler(MainActivitySyncingNow.onClickEvent(context))
-            .longClickHandler(MainActivitySyncingNow.onLongClickEvent(context))
-            .child(syncIcon)
-            .child(Text.create(context)
-                .typeface(FONT_MONSERRAT)
-                .textRes(syncText)
-                .textSizeRes(R.dimen.font_size_normal)
-                .textColorRes(R.color.light_secondary_text)))
+      .widthPercent(100f)
+      .alignItems(YogaAlign.CENTER)
+      .paddingDip(YogaEdge.HORIZONTAL, 8f)
+      .paddingDip(YogaEdge.VERTICAL, 8f)
+      .alpha(0.8f)
+      .child(EmptySpec.create(context).flexGrow(1f))
+      .child(
+        Row.create(context)
+          .alignItems(YogaAlign.CENTER)
+          .alignContent(YogaAlign.CENTER)
+          .paddingDip(YogaEdge.VERTICAL, 8f)
+          .paddingDip(YogaEdge.HORIZONTAL, 12f)
+          .backgroundRes(R.drawable.pending_sync_capsule)
+          .clickHandler(MainActivitySyncingNow.onClickEvent(context))
+          .longClickHandler(MainActivitySyncingNow.onLongClickEvent(context))
+          .child(syncIcon)
+          .child(
+            Text.create(context)
+              .typeface(FONT_MONSERRAT)
+              .textRes(syncText)
+              .textSizeRes(R.dimen.font_size_normal)
+              .textColorRes(R.color.light_secondary_text)))
     return row.build()
   }
 

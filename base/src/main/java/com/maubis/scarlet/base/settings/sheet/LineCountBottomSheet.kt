@@ -30,27 +30,28 @@ class LineCountBottomSheet : LithoBottomSheet() {
   override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
     val activity = context as MainActivity
     val component = Column.create(componentContext)
-        .widthPercent(100f)
-        .paddingDip(YogaEdge.VERTICAL, 8f)
-        .paddingDip(YogaEdge.HORIZONTAL, 20f)
-        .child(getLithoBottomSheetTitle(componentContext)
-            .textRes(R.string.note_option_number_lines)
-            .marginDip(YogaEdge.HORIZONTAL, 0f))
-        .child(CounterChooser.create(componentContext)
-            .value(sNoteItemLineCount)
-            .minValue(LINE_COUNT_MIN)
-            .maxValue(LINE_COUNT_MAX)
-            .onValueChange { value ->
-              sNoteItemLineCount = value
-              GlobalScope.launch(Dispatchers.Main) { reset(activity, dialog) }
-              GlobalScope.launch(Dispatchers.Main) { activity.notifyAdapterExtraChanged() }
-            }
-            .paddingDip(YogaEdge.VERTICAL, 16f))
-        .child(BottomSheetBar.create(componentContext)
-            .primaryActionRes(R.string.import_export_layout_exporting_done)
-            .onPrimaryClick {
-              dismiss()
-            }.paddingDip(YogaEdge.VERTICAL, 8f))
+      .widthPercent(100f)
+      .paddingDip(YogaEdge.VERTICAL, 8f)
+      .paddingDip(YogaEdge.HORIZONTAL, 20f)
+      .child(
+        getLithoBottomSheetTitle(componentContext)
+          .textRes(R.string.note_option_number_lines)
+          .marginDip(YogaEdge.HORIZONTAL, 0f))
+      .child(CounterChooser.create(componentContext)
+               .value(sNoteItemLineCount)
+               .minValue(LINE_COUNT_MIN)
+               .maxValue(LINE_COUNT_MAX)
+               .onValueChange { value ->
+                 sNoteItemLineCount = value
+                 GlobalScope.launch(Dispatchers.Main) { reset(activity, dialog) }
+                 GlobalScope.launch(Dispatchers.Main) { activity.notifyAdapterExtraChanged() }
+               }
+               .paddingDip(YogaEdge.VERTICAL, 16f))
+      .child(BottomSheetBar.create(componentContext)
+               .primaryActionRes(R.string.import_export_layout_exporting_done)
+               .onPrimaryClick {
+                 dismiss()
+               }.paddingDip(YogaEdge.VERTICAL, 8f))
     return component.build()
   }
 }

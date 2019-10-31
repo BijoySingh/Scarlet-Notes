@@ -39,7 +39,8 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = context as ThemedActivity
     val options = ArrayList<LithoOptionsItem>()
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = R.string.security_option_set_pin_code,
         subtitle = R.string.security_option_set_pin_code_subtitle,
         icon = R.drawable.ic_option_security,
@@ -51,10 +52,11 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         isSelectable = true,
         selected = isPinCodeEnabled()
-    ))
+      ))
 
     val isLite = FlavorUtils.isLite()
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = R.string.security_option_lock_app,
         subtitle = R.string.security_option_lock_app_details,
         icon = R.drawable.ic_apps_white_48dp,
@@ -66,11 +68,11 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
 
           when {
             isPinCodeEnabled() -> openVerifySheet(
-                activity = activity,
-                onVerifySuccess = {
-                  sSecurityAppLockEnabled = !sSecurityAppLockEnabled
-                  reset(componentContext.androidContext, dialog)
-                }
+              activity = activity,
+              onVerifySuccess = {
+                sSecurityAppLockEnabled = !sSecurityAppLockEnabled
+                reset(componentContext.androidContext, dialog)
+              }
             )
             else -> openCreatePasswordDialog(dialog)
           }
@@ -80,9 +82,10 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
           isLite -> R.drawable.ic_rating
           else -> 0
         }
-    ))
+      ))
 
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = R.string.security_option_ask_pin_always,
         subtitle = R.string.security_option_ask_pin_always_details,
         icon = R.drawable.ic_action_grid,
@@ -94,11 +97,11 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
 
           when {
             isPinCodeEnabled() -> openVerifySheet(
-                activity = activity,
-                onVerifySuccess = {
-                  sSecurityAskPinAlways = !sSecurityAskPinAlways
-                  reset(componentContext.androidContext, dialog)
-                }
+              activity = activity,
+              onVerifySuccess = {
+                sSecurityAskPinAlways = !sSecurityAskPinAlways
+                reset(componentContext.androidContext, dialog)
+              }
             )
             else -> openCreatePasswordDialog(dialog)
           }
@@ -110,21 +113,22 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
           sSecurityAskPinAlways -> R.drawable.ic_done_white_48dp
           else -> 0
         }
-    ))
+      ))
 
     val hasFingerprint = Reprint.hasFingerprintRegistered()
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = R.string.security_option_fingerprint_enabled,
         subtitle = R.string.security_option_fingerprint_enabled_subtitle,
         icon = R.drawable.ic_option_fingerprint,
         listener = {
           when {
             isPinCodeEnabled() -> openVerifySheet(
-                activity = activity,
-                onVerifySuccess = {
-                  sSecurityFingerprintEnabled = false
-                  reset(componentContext.androidContext, dialog)
-                }
+              activity = activity,
+              onVerifySuccess = {
+                sSecurityFingerprintEnabled = false
+                reset(componentContext.androidContext, dialog)
+              }
             )
             else -> {
               sSecurityFingerprintEnabled = false
@@ -135,19 +139,20 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         visible = sSecurityFingerprintEnabled && hasFingerprint,
         isSelectable = true,
         selected = true
-    ))
-    options.add(LithoOptionsItem(
+      ))
+    options.add(
+      LithoOptionsItem(
         title = R.string.security_option_fingerprint_disabled,
         subtitle = R.string.security_option_fingerprint_disabled_subtitle,
         icon = R.drawable.ic_option_fingerprint,
         listener = {
           when {
             isPinCodeEnabled() -> openVerifySheet(
-                activity = activity,
-                onVerifySuccess = {
-                  sSecurityFingerprintEnabled = true
-                  reset(componentContext.androidContext, dialog)
-                }
+              activity = activity,
+              onVerifySuccess = {
+                sSecurityFingerprintEnabled = true
+                reset(componentContext.androidContext, dialog)
+              }
             )
             else -> {
               sSecurityFingerprintEnabled = true
@@ -156,26 +161,26 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
           }
         },
         visible = !sSecurityFingerprintEnabled && hasFingerprint
-    ))
+      ))
     return options
   }
 
   fun openCreatePasswordDialog(dialog: Dialog) {
     val activity = context as ThemedActivity
     openCreateSheet(
-        activity = activity,
-        onCreateSuccess = { reset(dialog.context, dialog) })
+      activity = activity,
+      onCreateSuccess = { reset(dialog.context, dialog) })
   }
 
   fun openResetPasswordDialog(dialog: Dialog) {
     val activity = context as ThemedActivity
     openVerifySheet(
-        activity,
-        onVerifySuccess = {
-          openCreatePasswordDialog(dialog)
-        },
-        onVerifyFailure = {
-          openResetPasswordDialog(dialog)
-        })
+      activity,
+      onVerifySuccess = {
+        openCreatePasswordDialog(dialog)
+      },
+      onVerifyFailure = {
+        openResetPasswordDialog(dialog)
+      })
   }
 }

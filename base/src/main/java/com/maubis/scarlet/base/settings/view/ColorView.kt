@@ -22,7 +22,6 @@ class ColorView : LinearLayout {
     init(context)
   }
 
-
   constructor(context: Context, layout: Int) : super(context) {
     init(context, layout)
   }

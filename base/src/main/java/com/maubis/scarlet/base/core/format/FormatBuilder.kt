@@ -39,7 +39,8 @@ class FormatBuilder {
         continue
       }
 
-      val moreFormats = format.text.toInternalFormats(arrayOf(
+      val moreFormats = format.text.toInternalFormats(
+        arrayOf(
           MarkdownSegmentType.CHECKLIST_CHECKED,
           MarkdownSegmentType.CHECKLIST_UNCHECKED))
       extractedFormats.addAll(moreFormats)

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.settings.sheet.sInternalEnableFullScreen
 import com.maubis.scarlet.base.support.utils.OsVersionUtils
@@ -50,7 +49,7 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
     }
 
     window.decorView.systemUiVisibility = (
-        View.SYSTEM_UI_FLAG_IMMERSIVE
+      View.SYSTEM_UI_FLAG_IMMERSIVE
         // Set the content to appear under the system bars so that the
         // content doesn't resize when the system bars hide and show.
         or View.SYSTEM_UI_FLAG_LAYOUT_STABLE

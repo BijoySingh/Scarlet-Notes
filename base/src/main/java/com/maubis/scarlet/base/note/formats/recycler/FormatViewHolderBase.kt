@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
@@ -25,17 +24,16 @@ const val KEY_EDITABLE = "KEY_EDITABLE"
 const val KEY_NOTE_COLOR = "KEY_NOTE_COLOR"
 
 data class FormatViewHolderConfig(
-    val editable: Boolean,
-    val isMarkdownEnabled: Boolean,
-    val fontSize: Float,
-    val backgroundColor: Int,
-    val secondaryTextColor: Int,
-    val tertiaryTextColor: Int,
-    val iconColor: Int,
-    val hintTextColor: Int,
-    val accentColor: Int,
-    val noteUUID: String)
-
+  val editable: Boolean,
+  val isMarkdownEnabled: Boolean,
+  val fontSize: Float,
+  val backgroundColor: Int,
+  val secondaryTextColor: Int,
+  val tertiaryTextColor: Int,
+  val iconColor: Int,
+  val hintTextColor: Int,
+  val accentColor: Int,
+  val noteUUID: String)
 
 abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerViewHolder<Format>(context, view) {
 
@@ -73,32 +71,32 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
       }
     }
     val
-        config = FormatViewHolderConfig(
-        editable = !(extra != null
-            && extra.containsKey(KEY_EDITABLE)
-            && !extra.getBoolean(KEY_EDITABLE)),
-        isMarkdownEnabled = (extra == null
-            || extra.getBoolean(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
-            || data.forcedMarkdown) && (data.formatType != FormatType.CODE),
-        fontSize = {
-          val fontSize = extra?.getInt(STORE_KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT)
-              ?: TEXT_SIZE_DEFAULT
-          when (data.formatType) {
-            FormatType.HEADING -> fontSize.toFloat() + 4
-            FormatType.SUB_HEADING -> fontSize.toFloat() + 2
-            else -> fontSize.toFloat()
-          }
-        }(),
-        backgroundColor = when (data.formatType) {
-          FormatType.CODE, FormatType.IMAGE -> sAppTheme.get(context, R.color.code_light, R.color.code_dark)
-          else -> ContextCompat.getColor(context, R.color.transparent)
-        },
-        secondaryTextColor = secondaryTextColor,
-        tertiaryTextColor = tertiaryTextColor,
-        iconColor = iconColor,
-        hintTextColor = hintTextColor,
-        accentColor = linkColor,
-        noteUUID = extra?.getString(INTENT_KEY_NOTE_ID) ?: "default")
+      config = FormatViewHolderConfig(
+      editable = !(extra != null
+        && extra.containsKey(KEY_EDITABLE)
+        && !extra.getBoolean(KEY_EDITABLE)),
+      isMarkdownEnabled = (extra == null
+        || extra.getBoolean(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
+        || data.forcedMarkdown) && (data.formatType != FormatType.CODE),
+      fontSize = {
+        val fontSize = extra?.getInt(STORE_KEY_TEXT_SIZE, TEXT_SIZE_DEFAULT)
+          ?: TEXT_SIZE_DEFAULT
+        when (data.formatType) {
+          FormatType.HEADING -> fontSize.toFloat() + 4
+          FormatType.SUB_HEADING -> fontSize.toFloat() + 2
+          else -> fontSize.toFloat()
+        }
+      }(),
+      backgroundColor = when (data.formatType) {
+        FormatType.CODE, FormatType.IMAGE -> sAppTheme.get(context, R.color.code_light, R.color.code_dark)
+        else -> ContextCompat.getColor(context, R.color.transparent)
+      },
+      secondaryTextColor = secondaryTextColor,
+      tertiaryTextColor = tertiaryTextColor,
+      iconColor = iconColor,
+      hintTextColor = hintTextColor,
+      accentColor = linkColor,
+      noteUUID = extra?.getString(INTENT_KEY_NOTE_ID) ?: "default")
 
     populate(data, config)
 

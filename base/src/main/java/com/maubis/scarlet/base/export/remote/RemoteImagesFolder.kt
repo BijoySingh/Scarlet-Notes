@@ -76,7 +76,6 @@ class RemoteImagesFolder(context: Context, val folder: File) {
       val imageFiles = noteFolder.listFiles() ?: emptyArray()
       imageFiles.filter { it.isFile }
 
-
       val imagesKnown = internalCache.imagesForNote(note.uuid()).map { it.name }
       imageFiles.forEach {
         if (!imagesKnown.contains(it.name)) {

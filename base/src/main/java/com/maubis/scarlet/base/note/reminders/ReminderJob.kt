@@ -17,7 +17,6 @@ import com.maubis.scarlet.base.support.utils.maybeThrow
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-
 class ReminderJob : Job() {
 
   override fun onRunJob(params: Params): Job.Result {
@@ -34,9 +33,9 @@ class ReminderJob : Job() {
       val reminder = note.getReminderV2()
       if (reminder?.interval == ReminderInterval.DAILY) {
         val reminderV2 = Reminder(
-            0,
-            nextJobTimestamp(reminder.timestamp, System.currentTimeMillis()),
-            ReminderInterval.DAILY)
+          0,
+          nextJobTimestamp(reminder.timestamp, System.currentTimeMillis()),
+          ReminderInterval.DAILY)
         reminderV2.uid = scheduleJob(note.uuid, reminderV2)
         note.setReminderV2(reminderV2)
         note.saveWithoutSync(context)
@@ -65,10 +64,10 @@ class ReminderJob : Job() {
       }
 
       return JobRequest.Builder(ReminderJob.TAG)
-          .setExact(deltaTime)
-          .setExtras(extras)
-          .build()
-          .schedule()
+        .setExact(deltaTime)
+        .setExtras(extras)
+        .build()
+        .schedule()
     }
 
     fun nextJobTimestamp(timestamp: Long, currentTimestamp: Long): Long {

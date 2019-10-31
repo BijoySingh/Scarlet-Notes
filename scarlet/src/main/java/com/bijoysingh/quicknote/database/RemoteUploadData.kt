@@ -1,6 +1,15 @@
 package com.bijoysingh.quicknote.database
 
-import android.arch.persistence.room.*
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Delete
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
+import android.arch.persistence.room.Index
+import android.arch.persistence.room.Insert
+import android.arch.persistence.room.OnConflictStrategy
+import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.Query
 import com.google.gson.Gson
 import com.maubis.scarlet.base.support.utils.log
 import com.maubis.scarlet.base.support.utils.maybeThrow
@@ -28,10 +37,10 @@ class RemoteUploadData {
 
   var localStateDeleted: Boolean = false
 
-  @ColumnInfo(name="gDriveUpdateTimestamp")
+  @ColumnInfo(name = "gDriveUpdateTimestamp")
   var remoteUpdateTimestamp: Long = 0L
 
-  @ColumnInfo(name="gDriveStateDeleted")
+  @ColumnInfo(name = "gDriveStateDeleted")
   var remoteStateDeleted: Boolean = false
 
   var attempts: Long = 0L
@@ -66,7 +75,8 @@ object RemoteDatabaseHelper {
       this.uuid = itemUuid
       this.type = itemType
     }
-  }}
+  }
+}
 
 @Dao
 interface RemoteUploadDataDao {
@@ -82,34 +92,40 @@ interface RemoteUploadDataDao {
   @Delete
   fun delete(note: RemoteUploadData)
 
-  @Query("SELECT * " +
+  @Query(
+    "SELECT * " +
       "FROM gdrive_upload " +
       "WHERE uid = :uid " +
       "LIMIT 1")
   fun getByID(uid: Int): RemoteUploadData?
 
-  @Query("SELECT * " +
+  @Query(
+    "SELECT * " +
       "FROM gdrive_upload " +
       "WHERE uuid = :uuid AND type = :type " +
       "LIMIT 1")
   fun getByUUID(type: String, uuid: String): RemoteUploadData?
 
-  @Query("SELECT * " +
+  @Query(
+    "SELECT * " +
       "FROM gdrive_upload " +
       "WHERE type = :type")
   fun getByType(type: String): List<RemoteUploadData>
 
-  @Query("SELECT COUNT(*) " +
+  @Query(
+    "SELECT COUNT(*) " +
       "FROM gdrive_upload " +
       "WHERE (lastUpdateTimestamp != gDriveUpdateTimestamp OR localStateDeleted != gDriveStateDeleted)")
   fun getPendingCount(): Int
 
-  @Query("SELECT * " +
+  @Query(
+    "SELECT * " +
       "FROM gdrive_upload " +
       "WHERE (lastUpdateTimestamp != gDriveUpdateTimestamp OR localStateDeleted != gDriveStateDeleted)")
   fun getAllPending(): List<RemoteUploadData>
 
-  @Query("SELECT * " +
+  @Query(
+    "SELECT * " +
       "FROM gdrive_upload " +
       "WHERE type = :type AND (lastUpdateTimestamp != gDriveUpdateTimestamp OR localStateDeleted != gDriveStateDeleted)")
   fun getPendingByType(type: String): List<RemoteUploadData>

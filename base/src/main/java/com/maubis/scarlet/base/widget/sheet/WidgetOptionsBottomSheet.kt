@@ -83,7 +83,7 @@ fun getWidgetNotes(): List<Note> {
 
   val sorting = SortingOptionsBottomSheet.getSortingState()
   return sort(CoreConfig.notesDb.getByNoteState(state.toTypedArray())
-      .filter { note -> (!note.locked || sWidgetShowLockedNotes) }, sorting)
+                .filter { note -> (!note.locked || sWidgetShowLockedNotes) }, sorting)
 }
 
 class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
@@ -92,7 +92,8 @@ class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun getOptions(componentContext: ComponentContext, dialog: Dialog): List<LithoOptionsItem> {
     val activity = context as MainActivity
     val options = ArrayList<LithoOptionsItem>()
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = R.string.widget_option_enable_formatting,
         subtitle = R.string.widget_option_enable_formatting_details,
         icon = R.drawable.ic_markdown_logo,
@@ -103,8 +104,9 @@ class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         isSelectable = true,
         selected = sWidgetEnableFormatting
-    ))
-    options.add(LithoOptionsItem(
+      ))
+    options.add(
+      LithoOptionsItem(
         title = R.string.widget_option_show_locked_notes,
         subtitle = R.string.widget_option_show_locked_notes_details,
         icon = R.drawable.ic_action_lock,
@@ -115,8 +117,9 @@ class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         isSelectable = true,
         selected = sWidgetShowLockedNotes
-    ))
-    options.add(LithoOptionsItem(
+      ))
+    options.add(
+      LithoOptionsItem(
         title = R.string.widget_option_show_archived_notes,
         subtitle = R.string.widget_option_show_archived_notes_details,
         icon = R.drawable.ic_archive_white_48dp,
@@ -127,8 +130,9 @@ class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         isSelectable = true,
         selected = sWidgetShowArchivedNotes
-    ))
-    options.add(LithoOptionsItem(
+      ))
+    options.add(
+      LithoOptionsItem(
         title = R.string.widget_option_show_trash_notes,
         subtitle = R.string.widget_option_show_trash_notes_details,
         icon = R.drawable.icon_delete,
@@ -139,8 +143,9 @@ class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         isSelectable = true,
         selected = sWidgetShowDeletedNotes
-    ))
-    options.add(LithoOptionsItem(
+      ))
+    options.add(
+      LithoOptionsItem(
         title = R.string.widget_option_show_toolbar,
         subtitle = R.string.widget_option_show_toolbar_details,
         icon = R.drawable.ic_action_grid,
@@ -151,10 +156,11 @@ class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
         },
         isSelectable = true,
         selected = sWidgetShowToolbar
-    ))
+      ))
 
     val isLite = FlavorUtils.isLite()
-    options.add(LithoOptionsItem(
+    options.add(
+      LithoOptionsItem(
         title = R.string.widget_option_background_color,
         subtitle = R.string.widget_option_background_color_details,
         icon = R.drawable.ic_action_color,
@@ -166,18 +172,18 @@ class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
 
           openSheet(activity, ColorPickerBottomSheet().apply {
             config = ColorPickerDefaultController(
-                title = R.string.widget_option_background_color,
-                selectedColor = sWidgetBackgroundColor,
-                colors = listOf(intArrayOf(Color.TRANSPARENT, Color.WHITE, Color.LTGRAY, 0x65000000, Color.DKGRAY, Color.BLACK)),
-                onColorSelected = {
-                  sWidgetBackgroundColor = it
-                  notifyAllNotesConfigChanged(activity)
-                },
-                columns = 6)
+              title = R.string.widget_option_background_color,
+              selectedColor = sWidgetBackgroundColor,
+              colors = listOf(intArrayOf(Color.TRANSPARENT, Color.WHITE, Color.LTGRAY, 0x65000000, Color.DKGRAY, Color.BLACK)),
+              onColorSelected = {
+                sWidgetBackgroundColor = it
+                notifyAllNotesConfigChanged(activity)
+              },
+              columns = 6)
           })
         },
         actionIcon = if (!isLite) 0 else R.drawable.ic_rating
-    ))
+      ))
     return options
   }
 
@@ -186,7 +192,7 @@ class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
       val singleNoteBroadcastIntent = GlobalScope.async {
         val application: Application = activity.applicationContext as Application
         val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(
-            ComponentName(application, NoteWidgetProvider::class.java))
+          ComponentName(application, NoteWidgetProvider::class.java))
 
         val intent = Intent(application, NoteWidgetProvider::class.java)
         intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
@@ -204,7 +210,7 @@ class WidgetOptionsBottomSheet : LithoOptionBottomSheet() {
       val allNotesBroadcastIntent = GlobalScope.async {
         val application: Application = activity.applicationContext as Application
         val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(
-            ComponentName(application, AllNotesWidgetProvider::class.java))
+          ComponentName(application, AllNotesWidgetProvider::class.java))
 
         val intent = Intent(application, AllNotesWidgetProvider::class.java)
         intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE

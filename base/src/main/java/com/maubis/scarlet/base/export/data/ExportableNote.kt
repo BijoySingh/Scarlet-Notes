@@ -14,15 +14,15 @@ import org.json.JSONObject
 import java.io.Serializable
 
 class ExportableNote(
-    var uuid: String,
-    var description: String,
-    var timestamp: Long,
-    var updateTimestamp: Long,
-    var color: Int,
-    var state: String,
-    var tags: String,
-    var meta: Map<String, Any>,
-    var folder: String
+  var uuid: String,
+  var description: String,
+  var timestamp: Long,
+  var updateTimestamp: Long,
+  var color: Int,
+  var state: String,
+  var tags: String,
+  var meta: Map<String, Any>,
+  var folder: String
 ) : Serializable, INoteContainer {
 
   override fun uuid(): String = uuid
@@ -48,15 +48,15 @@ class ExportableNote(
   override fun folder(): String = folder
 
   constructor(note: Note) : this(
-      note.uuid,
-      note.description,
-      note.timestamp,
-      note.updateTimestamp,
-      note.color,
-      note.state,
-      note.tags ?: "",
-      emptyMap(),
-      note.folder
+    note.uuid,
+    note.description,
+    note.timestamp,
+    note.updateTimestamp,
+    note.color,
+    note.state,
+    note.tags ?: "",
+    emptyMap(),
+    note.folder
   )
 
   fun saveIfNeeded(context: Context) {
@@ -75,41 +75,41 @@ class ExportableNote(
 
     fun fromJSONObjectV2(json: JSONObject): ExportableNote {
       return ExportableNote(
-          generateUUID(),
-          json["description"] as String,
-          json["timestamp"] as Long,
-          json["timestamp"] as Long,
-          json["color"] as Int,
-          "",
-          "",
-          emptyMap(),
-          "")
+        generateUUID(),
+        json["description"] as String,
+        json["timestamp"] as Long,
+        json["timestamp"] as Long,
+        json["color"] as Int,
+        "",
+        "",
+        emptyMap(),
+        "")
     }
 
     fun fromJSONObjectV3(json: JSONObject): ExportableNote {
       return ExportableNote(
-          generateUUID(),
-          json["description"] as String,
-          json["timestamp"] as Long,
-          json["timestamp"] as Long,
-          json["color"] as Int,
-          json["state"] as String,
-          convertTagsJSONArrayToString(json["tags"] as JSONArray),
-          emptyMap(),
-          "")
+        generateUUID(),
+        json["description"] as String,
+        json["timestamp"] as Long,
+        json["timestamp"] as Long,
+        json["color"] as Int,
+        json["state"] as String,
+        convertTagsJSONArrayToString(json["tags"] as JSONArray),
+        emptyMap(),
+        "")
     }
 
     fun fromJSONObjectV4(json: JSONObject): ExportableNote {
       return ExportableNote(
-          json["uuid"] as String,
-          json["description"] as String,
-          json["timestamp"] as Long,
-          json["timestamp"] as Long,
-          json["color"] as Int,
-          json["state"] as String,
-          convertTagsJSONArrayToString(json["tags"] as JSONArray),
-          emptyMap(),
-          "")
+        json["uuid"] as String,
+        json["description"] as String,
+        json["timestamp"] as Long,
+        json["timestamp"] as Long,
+        json["color"] as Int,
+        json["state"] as String,
+        convertTagsJSONArrayToString(json["tags"] as JSONArray),
+        emptyMap(),
+        "")
     }
 
     private fun convertTagsJSONArrayToString(tags: JSONArray): String {

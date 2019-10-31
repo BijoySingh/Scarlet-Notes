@@ -13,8 +13,8 @@ object NoteViewTopBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext): Component {
     val row = Row.create(context)
-        .widthPercent(100f)
-        .alignItems(YogaAlign.CENTER)
+      .widthPercent(100f)
+      .alignItems(YogaAlign.CENTER)
     row.child(EmptySpec.create(context).heightDip(10f))
     return row.build()
   }
@@ -25,8 +25,8 @@ object NoteCreationTopBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext): Component {
     val row = Row.create(context)
-        .widthPercent(100f)
-        .alignItems(YogaAlign.CENTER)
+      .widthPercent(100f)
+      .alignItems(YogaAlign.CENTER)
     row.child(EmptySpec.create(context).heightDip(10f))
     return row.build()
   }

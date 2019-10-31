@@ -11,19 +11,19 @@ class DateFormatUtils(context: Context) {
   private val is24HourFormat = DateFormat.is24HourFormat(context)
 
   fun readableFullTime(timestamp: Long): String = readableTime(
-      DateFormatter.Formats.HH_MM_A_DD_MMM_YYYY.format,
-      timestamp)
+    DateFormatter.Formats.HH_MM_A_DD_MMM_YYYY.format,
+    timestamp)
 
   fun readableTime(format: String, timestamp: Long): String {
     val hourFormatSafe = when {
       is24HourFormat -> format
-          .replace("a", "")
-          .replace("h", "H")
+        .replace("a", "")
+        .replace("h", "H")
       else -> format
     }
     return DateFormatter.getDate(
-        DateFormat.getBestDateTimePattern(Locale.getDefault(), hourFormatSafe),
-        timestamp)
+      DateFormat.getBestDateTimePattern(Locale.getDefault(), hourFormatSafe),
+      timestamp)
   }
 
   fun getDateForBackup(): String = DateFormatter.getDate("dd_MMM_yyyy", Calendar.getInstance())

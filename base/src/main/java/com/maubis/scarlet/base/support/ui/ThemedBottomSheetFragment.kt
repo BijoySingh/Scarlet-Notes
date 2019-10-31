@@ -12,7 +12,6 @@ import android.view.View
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 
 abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {

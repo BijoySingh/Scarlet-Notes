@@ -1,6 +1,5 @@
 package com.maubis.scarlet.base.support.ui
 
-
 enum class ThemeColorType {
   BACKGROUND,
   STATUS_BAR,
