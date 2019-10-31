@@ -59,8 +59,6 @@ abstract class CoreConfig(context: Context) {
 
   abstract fun startListener(activity: AppCompatActivity)
 
-  abstract fun appFlavor(): Flavor
-
   companion object {
     val notesDb get() = instance.notesDatabase()
     val tagsDb get() = instance.tagsDatabase()

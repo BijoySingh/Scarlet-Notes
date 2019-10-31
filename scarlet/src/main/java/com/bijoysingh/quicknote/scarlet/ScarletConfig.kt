@@ -32,12 +32,6 @@ class ScarletConfig(context: Context) : MaterialNoteConfig(context) {
 
   override fun remoteDatabaseState(): IRemoteDatabaseState = remoteDatabaseStateController!!
 
-  override fun appFlavor(): Flavor = when (BuildConfig.FLAVOR) {
-    "lite" -> Flavor.LITE
-    "full" -> Flavor.PRO
-    else -> Flavor.NONE
-  }
-
   override fun startListener(activity: AppCompatActivity) {
     openIfNeeded(activity)
   }

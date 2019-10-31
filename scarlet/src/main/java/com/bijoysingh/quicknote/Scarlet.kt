@@ -7,11 +7,17 @@ import com.bijoysingh.quicknote.scarlet.ScarletConfig
 import com.github.bijoysingh.starter.prefs.Store
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.export.support.ExternalFolderSync
+import com.maubis.scarlet.base.support.utils.Flavor
 
 class Scarlet : ApplicationBase() {
 
   override fun onCreate() {
     super.onCreate()
+    sAppFlavor = when (BuildConfig.FLAVOR) {
+      "lite" -> Flavor.LITE
+      "full" -> Flavor.PRO
+      else -> Flavor.NONE
+    }
 
     remoteConfig = Store.get(this, "gdrive_config")
 

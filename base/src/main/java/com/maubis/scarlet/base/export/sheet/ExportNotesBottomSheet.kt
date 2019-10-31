@@ -12,7 +12,7 @@ import com.facebook.yoga.YogaEdge
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppFlavor
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.export.support.GenericFileProvider
 import com.maubis.scarlet.base.export.support.NoteExporter
@@ -35,7 +35,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 val NOTES_EXPORT_FOLDER
-  get() = when (ApplicationBase.instance.appFlavor()) {
+  get() = when (sAppFlavor) {
     Flavor.NONE -> "MaterialNotes"
     Flavor.LITE -> "Scarlet"
     Flavor.PRO -> "ScarletPro"

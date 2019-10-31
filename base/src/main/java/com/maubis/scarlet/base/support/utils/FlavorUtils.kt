@@ -1,7 +1,9 @@
 package com.maubis.scarlet.base.support.utils
 
 import android.content.Context
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppFlavor
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -30,8 +32,8 @@ object FlavorUtils {
     return sAppPreferences.get(KEY_PRO_APP_INSTALLED, false)
   }
 
-  fun isPro() = instance.appFlavor() == Flavor.PRO
-  fun isLite() = instance.appFlavor() == Flavor.LITE
-  fun isPlayStore() = instance.appFlavor() != Flavor.NONE
-  fun isOpenSource() = instance.appFlavor() == Flavor.NONE
+  fun isPro() = sAppFlavor == Flavor.PRO
+  fun isLite() = sAppFlavor == Flavor.LITE
+  fun isPlayStore() = sAppFlavor != Flavor.NONE
+  fun isOpenSource() = sAppFlavor == Flavor.NONE
 }

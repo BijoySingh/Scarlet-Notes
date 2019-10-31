@@ -10,6 +10,7 @@ import com.maubis.scarlet.base.export.remote.FolderRemoteDatabase
 import com.maubis.scarlet.base.note.reminders.ReminderJobCreator
 import com.maubis.scarlet.base.support.ui.ThemeManager
 import com.maubis.scarlet.base.support.utils.DateFormatUtils
+import com.maubis.scarlet.base.support.utils.Flavor
 import com.maubis.scarlet.base.support.utils.ImageCache
 import com.maubis.scarlet.base.support.utils.maybeThrow
 import com.maubis.scarlet.base.support.utils.sDateFormat
@@ -40,6 +41,8 @@ abstract class ApplicationBase : Application() {
 
   companion object {
     lateinit var instance: CoreConfig
+
+    lateinit var sAppFlavor: Flavor
 
     lateinit var sAppImageStorage: NoteImage
     lateinit var sAppImageCache: ImageCache

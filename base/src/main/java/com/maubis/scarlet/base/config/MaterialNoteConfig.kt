@@ -55,6 +55,4 @@ open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
   }
 
   override fun startListener(activity: AppCompatActivity) {}
-
-  override fun appFlavor(): Flavor = Flavor.NONE
 }

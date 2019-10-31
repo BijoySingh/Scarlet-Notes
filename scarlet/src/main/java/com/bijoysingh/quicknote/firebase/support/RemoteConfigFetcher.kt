@@ -8,7 +8,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bijoysingh.quicknote.BuildConfig
 import com.google.gson.Gson
-import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppFlavor
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher
 import com.maubis.scarlet.base.config.remote.RemoteConfig
@@ -30,7 +30,7 @@ class RemoteConfigFetcher() : IRemoteConfigFetcher {
   }
 
   override fun isLatestVersion(): Boolean {
-    val latestVersion = when (ApplicationBase.instance.appFlavor()) {
+    val latestVersion = when (sAppFlavor) {
       Flavor.PRO -> sAppPreferences.get(KEY_RC_FULL_VERSION, 0)
       Flavor.LITE -> sAppPreferences.get(KEY_RC_LITE_VERSION, 0)
       else -> 0
