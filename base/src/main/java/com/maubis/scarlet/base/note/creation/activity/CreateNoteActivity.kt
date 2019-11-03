@@ -99,6 +99,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
         addEmptyItem(0, FormatType.HEADING)
       }
     }
+    focus(0)
   }
 
   protected open fun addDefaultItem() {
