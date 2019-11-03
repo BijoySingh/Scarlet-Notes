@@ -356,6 +356,9 @@
   <string name="editor_option_enable_markdown_mode_default">Markdown Options as Default</string>
   <string name="editor_option_enable_markdown_mode_default_details">Show the markdown quick buttons on the toolbar as default</string>
 
+  <string name="editor_option_skip_view_note" translatable="false">Skip Note Viewer</string>
+  <string name="editor_option_skip_view_note_details" translatable="false">Skip the note viewer and jump to the note editor directly</string>
+
   <string name="editor_option_enable_live_markdown">Realtime Markdown</string>
   <string name="editor_option_enable_live_markdown_description">Choose if you want markdown to be visible as your type. Enabling can effect performance on large notes.</string>
 
@@ -478,10 +481,6 @@
   <string name="app_lock_details" translatable="false">Enter 4 digit PIN or use fingerprint to unlock</string>
   <string name="app_lock_details_no_fingerprint" translatable="false">Enter 4 digit PIN to unlock</string>
   <!-- End: App Lock Activity -->
-
-  <!-- Start: Note Sheet -->
-
-  <!-- End: Note Sheet -->
 
   <!-- Start: Theme Color Sheet -->
   <string name="theme_use_system_theme" translatable="false">Use System Theme</string>

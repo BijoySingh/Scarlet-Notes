@@ -29,6 +29,7 @@ import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.main.sheets.HomeOptionsBottomSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
+import com.maubis.scarlet.base.note.creation.activity.NoteIntentRouterActivity
 import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.note.folder.sheet.CreateOrEditFolderBottomSheet
 import com.maubis.scarlet.base.support.addShortcut
@@ -91,7 +92,7 @@ object MainActivityBottomBarSpec {
                     .setShortLabel(activity.getString(R.string.shortcut_add_note))
                     .setLongLabel(activity.getString(R.string.shortcut_add_note))
                     .setIcon(Icon.createWithResource(activity, R.mipmap.create_launcher))
-                    .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse("scarlet://create_note")))
+                    .setIntent(NoteIntentRouterActivity.create())
                     .build()
                   addShortcut(activity, shortcut)
                 }

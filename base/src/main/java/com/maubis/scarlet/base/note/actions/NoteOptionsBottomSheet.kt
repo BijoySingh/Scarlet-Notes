@@ -24,6 +24,7 @@ import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
 import com.maubis.scarlet.base.main.sheets.openDeleteNotePermanentlySheet
 import com.maubis.scarlet.base.note.activity.INoteOptionSheetActivity
 import com.maubis.scarlet.base.note.copy
+import com.maubis.scarlet.base.note.creation.activity.NoteIntentRouterActivity
 import com.maubis.scarlet.base.note.edit
 import com.maubis.scarlet.base.note.folder.sheet.FolderChooserBottomSheet
 import com.maubis.scarlet.base.note.getFullText
@@ -38,7 +39,6 @@ import com.maubis.scarlet.base.note.selection.activity.SelectNotesActivity
 import com.maubis.scarlet.base.note.share
 import com.maubis.scarlet.base.note.shareImages
 import com.maubis.scarlet.base.note.tag.sheet.TagChooserBottomSheet
-import com.maubis.scarlet.base.note.viewDistractionFree
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.security.sheets.openUnlockSheet
@@ -409,10 +409,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
               .setShortLabel(title)
               .setLongLabel(title)
               .setIcon(Icon.createWithResource(activity, R.mipmap.open_note_launcher))
-              .setIntent(
-                Intent(
-                  Intent.ACTION_VIEW,
-                  Uri.parse("scarlet://open_note?uuid=" + note.uuid)))
+              .setIntent(NoteIntentRouterActivity.view(note))
               .build()
             addShortcut(activity, shortcut)
             return@OnClickListener
@@ -466,7 +463,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         icon = R.drawable.ic_action_distraction_free,
         listener = View.OnClickListener {
           if (!FlavorUtils.isLite()) {
-            note.viewDistractionFree(activity)
+            activity.startActivity(NoteIntentRouterActivity.view(activity, note, isDistractionFree = true))
             return@OnClickListener
           }
           openSheet(activity, InstallProUpsellBottomSheet())

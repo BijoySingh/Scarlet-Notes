@@ -39,7 +39,6 @@ import com.maubis.scarlet.base.note.formats.recycler.KEY_NOTE_COLOR
 import com.maubis.scarlet.base.note.getSmartFormats
 import com.maubis.scarlet.base.note.getTagString
 import com.maubis.scarlet.base.note.mark
-import com.maubis.scarlet.base.note.openEdit
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.note.saveWithoutSync
 import com.maubis.scarlet.base.note.softDelete
@@ -262,7 +261,7 @@ open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivit
   }
 
   fun openEditor() {
-    note!!.openEdit(context)
+    context.startActivity(NoteIntentRouterActivity.edit(context, note!!))
   }
 
   protected open fun notifyToolbarColor() {

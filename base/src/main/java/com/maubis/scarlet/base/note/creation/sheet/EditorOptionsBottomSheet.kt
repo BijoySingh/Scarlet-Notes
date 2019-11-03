@@ -11,36 +11,33 @@ import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 
-const val STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED = "KEY_MARKDOWN_ENABLED"
-const val STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN = "editor_live_markdown"
-const val STORE_KEY_EDITOR_OPTIONS_MOVE_CHECKED_ITEMS = "editor_move_checked_items"
-const val STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT = "editor_markdown_default"
-const val STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES = "editor_move_handles"
-const val STORE_KEY_NOTE_DEFAULT_COLOR = "KEY_NOTE_DEFAULT_COLOR"
-
 var sEditorLiveMarkdown: Boolean
-  get() = sAppPreferences.get(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, true)
-  set(value) = sAppPreferences.put(STORE_KEY_EDITOR_OPTIONS_LIVE_MARKDOWN, value)
+  get() = sAppPreferences.get("editor_live_markdown", true)
+  set(value) = sAppPreferences.put("editor_live_markdown", value)
 
 var sEditorMoveChecked: Boolean
-  get() = sAppPreferences.get(STORE_KEY_EDITOR_OPTIONS_MOVE_CHECKED_ITEMS, true)
-  set(value) = sAppPreferences.put(STORE_KEY_EDITOR_OPTIONS_MOVE_CHECKED_ITEMS, value)
+  get() = sAppPreferences.get("editor_move_checked_items", true)
+  set(value) = sAppPreferences.put("editor_move_checked_items", value)
 
 var sEditorMarkdownDefault: Boolean
-  get() = sAppPreferences.get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT, false)
-  set(value) = sAppPreferences.put(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_DEFAULT, value)
+  get() = sAppPreferences.get("editor_markdown_default", false)
+  set(value) = sAppPreferences.put("editor_markdown_default", value)
+
+var sEditorSkipNoteViewer: Boolean
+  get() = sAppPreferences.get("skip_note_viewer", false)
+  set(value) = sAppPreferences.put("skip_note_viewer", value)
 
 var sEditorMoveHandles: Boolean
-  get() = sAppPreferences.get(STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES, true)
-  set(value) = sAppPreferences.put(STORE_KEY_EDITOR_OPTIONS_MOVE_HANDLES, value)
+  get() = sAppPreferences.get("editor_move_handles", true)
+  set(value) = sAppPreferences.put("editor_move_handles", value)
 
 var sEditorMarkdownEnabled: Boolean
-  get() = sAppPreferences.get(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, true)
-  set(value) = sAppPreferences.put(STORE_KEY_EDITOR_OPTIONS_MARKDOWN_ENABLED, value)
+  get() = sAppPreferences.get("KEY_MARKDOWN_ENABLED", true)
+  set(value) = sAppPreferences.put("KEY_MARKDOWN_ENABLED", value)
 
 var sNoteDefaultColor: Int
-  get() = sAppPreferences.get(STORE_KEY_NOTE_DEFAULT_COLOR, (0xFFD32F2F).toInt())
-  set(value) = sAppPreferences.put(STORE_KEY_NOTE_DEFAULT_COLOR, value)
+  get() = sAppPreferences.get("KEY_NOTE_DEFAULT_COLOR", (0xFFD32F2F).toInt())
+  set(value) = sAppPreferences.put("KEY_NOTE_DEFAULT_COLOR", value)
 
 class EditorOptionsBottomSheet : LithoOptionBottomSheet() {
 
@@ -96,6 +93,18 @@ class EditorOptionsBottomSheet : LithoOptionBottomSheet() {
       isSelectable = true,
       listener = {
         sEditorMarkdownDefault = !sEditorMarkdownDefault
+        reset(componentContext.androidContext, dialog)
+      }
+    ))
+
+    items.add(LithoOptionsItem(
+      title = R.string.editor_option_skip_view_note,
+      subtitle = R.string.editor_option_skip_view_note_details,
+      icon = R.drawable.ic_redo_history,
+      selected = sEditorSkipNoteViewer,
+      isSelectable = true,
+      listener = {
+        sEditorSkipNoteViewer = !sEditorSkipNoteViewer
         reset(componentContext.androidContext, dialog)
       }
     ))

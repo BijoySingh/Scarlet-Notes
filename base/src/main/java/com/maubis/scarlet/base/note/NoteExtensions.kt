@@ -1,8 +1,6 @@
 package com.maubis.scarlet.base.note
 
 import android.content.Context
-import android.content.Intent
-import android.support.v4.app.ActivityOptionsCompat
 import com.google.gson.Gson
 import com.maubis.markdown.Markdown
 import com.maubis.markdown.MarkdownConfig
@@ -23,10 +21,7 @@ import com.maubis.scarlet.base.core.note.getTagUUIDs
 import com.maubis.scarlet.base.core.note.isUnsaved
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
-import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
-import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FREE
-import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
-import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
+import com.maubis.scarlet.base.note.creation.activity.NoteIntentRouterActivity
 import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.security.controller.PinLockController.needsLockCheck
 import com.maubis.scarlet.base.security.sheets.openUnlockSheet
@@ -261,36 +256,12 @@ fun Note.edit(context: Context) {
     if (context is ThemedActivity) {
       openUnlockSheet(
         activity = context,
-        onUnlockSuccess = { openEdit(context) },
+        onUnlockSuccess = { context.startActivity(NoteIntentRouterActivity.edit(context, this)) },
         onUnlockFailure = { edit(context) })
     }
     return
   }
-  openEdit(context)
-}
-
-fun Note.view(context: Context, options: ActivityOptionsCompat? = null) {
-  val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
-  intent.putExtra(INTENT_KEY_NOTE_ID, this.uid)
-
-  when {
-    (options === null) -> context.startActivity(intent)
-    else -> context.startActivity(intent, options.toBundle())
-  }
-
-}
-
-fun Note.viewDistractionFree(context: Context) {
-  val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
-  intent.putExtra(INTENT_KEY_NOTE_ID, this.uid)
-  intent.putExtra(INTENT_KEY_DISTRACTION_FREE, true)
-  context.startActivity(intent)
-}
-
-fun Note.openEdit(context: Context) {
-  val intent = Intent(context, CreateNoteActivity::class.java)
-  intent.putExtra(INTENT_KEY_NOTE_ID, this.uid)
-  context.startActivity(intent)
+  context.startActivity(NoteIntentRouterActivity.edit(context, this))
 }
 
 fun Note.share(context: Context) {

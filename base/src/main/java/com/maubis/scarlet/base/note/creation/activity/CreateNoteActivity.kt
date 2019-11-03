@@ -422,7 +422,7 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
   }
 
   companion object {
-    private const val INTENT_KEY_FOLDER = "key_folder"
+    const val INTENT_KEY_FOLDER = "key_folder"
 
     fun getNewNoteIntent(
       context: Context,
