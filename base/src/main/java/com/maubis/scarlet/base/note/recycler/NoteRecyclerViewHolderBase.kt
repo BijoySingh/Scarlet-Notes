@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base.note.recycler
 
 import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v7.widget.CardView
 import android.view.View
@@ -75,6 +76,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
   }
 
   private fun setDescription(note: NoteRecyclerItem) {
+    description.setTypeface(sAppTypeface.text(), Typeface.NORMAL)
     description.text = note.description
     description.maxLines = note.lineCount
     description.setTextColor(note.descriptionColor)

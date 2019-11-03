@@ -72,14 +72,12 @@ object TypefacePickerItemSpec {
           .textColor(fontColor)
           .typeface(typefaceSet.text))
       .background(LithoCircleDrawable(sAppTheme.get(ThemeColorType.BACKGROUND), 255, true))
-    if (isDisabled) {
-      content.alpha(0.6f)
-    }
 
     val data = Column.create(context)
       .alignSelf(YogaAlign.CENTER)
       .alignContent(YogaAlign.CENTER)
       .alignItems(YogaAlign.CENTER)
+      .marginAuto(YogaEdge.HORIZONTAL)
       .child(content)
       .child(
         Text.create(context)
@@ -88,6 +86,10 @@ object TypefacePickerItemSpec {
           .textColor(sAppTheme.get(ThemeColorType.PRIMARY_TEXT))
           .typeface(sAppTypeface.title())
           .marginDip(YogaEdge.TOP, 12f))
+    if (isDisabled) {
+      data.alpha(0.4f)
+    }
+
 
     val row = Row.create(context)
       .widthPercent(100f)
