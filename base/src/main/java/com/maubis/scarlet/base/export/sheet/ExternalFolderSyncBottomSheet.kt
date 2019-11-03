@@ -36,6 +36,7 @@ class ExternalFolderSyncBottomSheet : LithoBottomSheet() {
       .child(
         Text.create(componentContext)
           .textSizeRes(R.dimen.font_size_large)
+          .typeface(sAppTypeface.text())
           .textRes(R.string.import_export_layout_folder_sync_description)
           .paddingDip(YogaEdge.HORIZONTAL, 20f)
           .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))

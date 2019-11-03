@@ -8,7 +8,6 @@
     android:id="@+id/text"
     style="@style/FormatText"
     android:padding="@dimen/spacing_normal"
-    android:fontFamily="monospace"
     android:textColor="@color/transparent"
     android:textColorHint="@color/transparent" />
 
@@ -16,7 +15,6 @@
     android:id="@+id/edit"
     style="@style/FormatText"
     android:padding="@dimen/spacing_normal"
-    android:fontFamily="monospace"
     android:textColor="@color/transparent"
     android:textColorHint="@color/transparent" />
 </LinearLayout>

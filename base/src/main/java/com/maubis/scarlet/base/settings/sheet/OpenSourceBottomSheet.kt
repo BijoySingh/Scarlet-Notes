@@ -36,6 +36,7 @@ class OpenSourceBottomSheet : LithoBottomSheet() {
           .marginDip(YogaEdge.HORIZONTAL, 0f))
       .child(
         Text.create(componentContext)
+          .typeface(sAppTypeface.text())
           .textSizeRes(R.dimen.font_size_large)
           .marginDip(YogaEdge.BOTTOM, 16f)
           .text(openSourceDetails)
@@ -49,6 +50,7 @@ class OpenSourceBottomSheet : LithoBottomSheet() {
           .textColor(sAppTheme.get(ThemeColorType.SECTION_HEADER)))
       .child(
         Text.create(componentContext)
+          .typeface(sAppTypeface.text())
           .textSizeRes(R.dimen.font_size_large)
           .marginDip(YogaEdge.BOTTOM, 4f)
           .text(Markdown.render(LIBRARY_DETAILS_MD, true))

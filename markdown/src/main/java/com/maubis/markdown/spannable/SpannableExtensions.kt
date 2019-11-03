@@ -5,21 +5,33 @@ import android.graphics.Typeface
 import android.text.Editable
 import android.text.Spannable
 import android.text.Spanned
-import android.text.style.*
+import android.text.style.BackgroundColorSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.QuoteSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StrikethroughSpan
+import android.text.style.StyleSpan
+import android.text.style.TypefaceSpan
+import android.text.style.UnderlineSpan
 import com.maubis.markdown.MarkdownConfig.Companion.config
-import com.maubis.markdown.spans.*
+import com.maubis.markdown.spans.CodeSegmentSpan
+import com.maubis.markdown.spans.CodeSpan
+import com.maubis.markdown.spans.CustomTypefaceSpan
+import com.maubis.markdown.spans.ICustomSpan
+import com.maubis.markdown.spans.QuoteSegmentSpan
+import com.maubis.markdown.spans.SeparatorSegmentSpan
 
 fun Editable.clearMarkdownSpans() {
   val spans = getSpans(0, length, Any::class.java)
   for (span in spans) {
     if (span is RelativeSizeSpan
-        || span is QuoteSpan
-        || span is StyleSpan
-        || span is TypefaceSpan
-        || span is UnderlineSpan
-        || span is ICustomSpan
-        || span is ForegroundColorSpan
-        || span is BackgroundColorSpan) {
+      || span is QuoteSpan
+      || span is StyleSpan
+      || span is TypefaceSpan
+      || span is UnderlineSpan
+      || span is ICustomSpan
+      || span is ForegroundColorSpan
+      || span is BackgroundColorSpan) {
       removeSpan(span)
     }
   }
@@ -94,19 +106,11 @@ fun Spannable.setDefaultFormats(info: SpanInfo) {
   val s = info.start
   val e = info.end
   when (info.markdownType) {
-    MarkdownType.HEADING_1 -> relativeSize(1.75f, s, e)
-        .font(config.spanConfig.headingTypeface, s, e)
-        .bold(s, e)
-    MarkdownType.HEADING_2 -> relativeSize(1.5f, s, e)
-        .font(config.spanConfig.headingTypeface, s, e)
-        .bold(s, e)
-    MarkdownType.HEADING_3 -> relativeSize(1.25f, s, e)
-        .font(config.spanConfig.headingTypeface, s, e)
-        .bold(s, e)
-    MarkdownType.CODE -> monospace(s, e)
-        .code(s, e)
-    MarkdownType.QUOTE -> quote(s, e)
-        .italic(s, e)
+    MarkdownType.HEADING_1 -> relativeSize(1.75f, s, e).font(config.spanConfig.headingTypeface, s, e).bold(s, e)
+    MarkdownType.HEADING_2 -> relativeSize(1.5f, s, e).font(config.spanConfig.heading2Typeface, s, e).bold(s, e)
+    MarkdownType.HEADING_3 -> relativeSize(1.25f, s, e).font(config.spanConfig.heading3Typeface, s, e).bold(s, e)
+    MarkdownType.CODE -> font(config.spanConfig.codeTypeface, s, e).code(s, e)
+    MarkdownType.QUOTE -> quote(s, e).italic(s, e)
     MarkdownType.BOLD -> bold(s, e)
     MarkdownType.ITALICS -> italic(s, e)
     MarkdownType.UNDERLINE -> underline(s, e)
@@ -114,8 +118,7 @@ fun Spannable.setDefaultFormats(info: SpanInfo) {
     MarkdownType.STRIKE -> strike(s, e)
     MarkdownType.SEPARATOR -> separator(s, e)
     MarkdownType.IMAGE -> monospace(s, e).code(s, e)
-    else -> {
-    }
+    else -> {}
   }
 }
 

@@ -12,6 +12,7 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
@@ -31,6 +32,7 @@ class ExceptionBottomSheet : LithoBottomSheet() {
           .marginDip(YogaEdge.HORIZONTAL, 0f))
       .child(
         Text.create(componentContext)
+          .typeface(sAppTypeface.code())
           .textSizeRes(R.dimen.font_size_small)
           .text(Markdown.render("```\n${Log.getStackTraceString(exception)}\n```", true))
           .marginDip(YogaEdge.BOTTOM, 16f)

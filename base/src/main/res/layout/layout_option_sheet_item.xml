@@ -12,9 +12,7 @@
   ui:iconTint="@color/dark_tertiary_text"
   ui:subtitleColor="@color/dark_tertiary_text"
   ui:subtitleSize="@dimen/font_size_small"
-  ui:subtitleStyle="@style/FontText"
   ui:titleColor="@color/dark_secondary_text"
   ui:titleSize="@dimen/font_size_normal"
-  ui:titleStyle="@style/FontText"
   ui:actionSize="@dimen/icon_size_normal"
   ui:actionTint="@color/material_blue_400"/>

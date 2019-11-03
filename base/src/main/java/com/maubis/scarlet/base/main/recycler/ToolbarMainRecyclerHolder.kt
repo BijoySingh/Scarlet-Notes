@@ -10,8 +10,11 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.MainActivity
+import com.maubis.scarlet.base.MainActivityActions
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
+import com.maubis.scarlet.base.performAction
 import com.maubis.scarlet.base.settings.sheet.InternalSettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
@@ -39,6 +42,7 @@ class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerView
 
     val titleColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     toolbarTitle.setTextColor(titleColor)
+    toolbarTitle.typeface = sAppTypeface.heading()
 
     val toolbarIconColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     toolbarIconSearch.setColorFilter(toolbarIconColor)
@@ -47,7 +51,7 @@ class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerView
     toolbarIconDebug.visibility = visibility(BuildConfig.DEBUG)
     toolbarIconDebug.setColorFilter(toolbarIconColor)
     toolbarIconDebug.setOnClickListener {
-      openSheet((context as MainActivity), InternalSettingsOptionsBottomSheet())
+      (context as MainActivity).performAction(MainActivityActions.TYPEFACE_PICKER)
     }
   }
 }

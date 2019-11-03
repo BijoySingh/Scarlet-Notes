@@ -11,5 +11,4 @@
   ui:iconTextGap="@dimen/spacing_normal"
   ui:iconTint="@color/dark_tertiary_text"
   ui:textColor="@color/dark_secondary_text"
-  ui:textSize="@dimen/font_size_normal"
-  ui:textStyle="@style/FontText"/>
+  ui:textSize="@dimen/font_size_normal"/>

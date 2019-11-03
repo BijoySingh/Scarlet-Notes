@@ -3,15 +3,19 @@ package com.maubis.scarlet.base
 import android.content.Context
 import android.content.Intent
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.settings.sheet.ThemeColorPickerBottomSheet
+import com.maubis.scarlet.base.settings.sheet.TypefacePickerBottomSheet
 import com.maubis.scarlet.base.support.sheets.openSheet
+import com.maubis.scarlet.base.support.ui.font.sPreferenceTypeface
 import com.maubis.scarlet.base.support.ui.sAppThemeLabel
 
 const val INTENT_KEY_ADDITIONAL_ACTION = "additional_action"
 
 enum class MainActivityActions {
   NIL,
-  COLOR_PICKER;
+  COLOR_PICKER,
+  TYPEFACE_PICKER;
 
   fun intent(context: Context): Intent {
     val intent = Intent(context, MainActivity::class.java)
@@ -50,6 +54,18 @@ fun MainActivity.performAction(action: MainActivityActions) {
             sAppThemeLabel = theme.name
             sAppTheme.notifyChange(activity)
             activity.startActivity(MainActivityActions.COLOR_PICKER.intent(activity))
+            activity.finish()
+          }
+        }
+      })
+    }
+    MainActivityActions.TYPEFACE_PICKER -> {
+      openSheet(this, TypefacePickerBottomSheet().apply {
+        this.onTypefaceChange = { typeface ->
+          if (sPreferenceTypeface != typeface.name) {
+            sPreferenceTypeface = typeface.name
+            sAppTypeface.notifyChange(activity)
+            activity.startActivity(MainActivityActions.TYPEFACE_PICKER.intent(activity))
             activity.finish()
           }
         }

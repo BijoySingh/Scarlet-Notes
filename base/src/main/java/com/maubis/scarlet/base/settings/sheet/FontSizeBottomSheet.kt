@@ -10,6 +10,7 @@ import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
@@ -41,6 +42,7 @@ class FontSizeBottomSheet : LithoBottomSheet() {
         Text.create(componentContext)
           .textSizeDip(sEditorTextSize.toFloat())
           .marginDip(YogaEdge.BOTTOM, 16f)
+          .typeface(sAppTypeface.text())
           .textRes(R.string.note_option_font_size_example)
           .textColor(sAppTheme.get(ThemeColorType.TERTIARY_TEXT)))
       .child(CounterChooser.create(componentContext)

@@ -13,7 +13,7 @@ class CodeSpan : MetricAffectingSpan(), ICustomSpan {
   override fun updateDrawState(paint: TextPaint) {
     setTextColor(paint)
     paint.bgColor = config.spanConfig.codeBackgroundColor
-    paint.typeface = Typeface.MONOSPACE
+    paint.typeface = config.spanConfig.codeTypeface
     paint.textSize = paint.textSize * 0.87f
   }
 

@@ -495,4 +495,16 @@
   <string name="folder_delete_option_sheet_remove_folder_content" translatable="false">Remove Notes</string>
   <string name="folder_delete_option_sheet_remove_folder_content_details" translatable="false">Keep Notebook but all notes move to trash or are deleted.</string>
 
+  <!-- Start Typeface-->
+  <string name="home_option_typeface" translatable="false">Fonts</string>
+  <string name="home_option_typeface_subtitle" translatable="false">Select the app and note fonts</string>
+  <string name="typeface_page_title" translatable="false">Select Font</string>
+  <string name="typeface_page_description" translatable="false">Note: Fonts might not work properly with all languages</string>
+
+  <string name="typeface_title_app_default" translatable="false">App Default</string>
+  <string name="typeface_title_os_default" translatable="false">Device Default</string>
+  <string name="typeface_title_monospace" translatable="false">Mono</string>
+  <string name="typeface_title_serif" translatable="false">Serif</string>
+  <!-- End Typeface-->
+
 </resources>

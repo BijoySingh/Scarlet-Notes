@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.LocaleManager
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.export.activity.ImportNoteActivity
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
@@ -34,9 +35,16 @@ class FileImportViewHolder(context: Context, root: View)
   override fun populate(data: RecyclerItem, extra: Bundle?) {
     val item = data as FileRecyclerItem
     fileName.text = item.name
+    fileName.typeface = ApplicationBase.sAppTypeface.title()
+
     filePath.text = getPath(item)
+    filePath.typeface = ApplicationBase.sAppTypeface.text()
+
     fileDate.text = getSubtitleText(item.file)
+    fileDate.typeface = ApplicationBase.sAppTypeface.text()
+
     fileSize.text = getMetaText(item.file)
+    fileSize.typeface = ApplicationBase.sAppTypeface.text()
 
     root.setOnClickListener {
       (context as ImportNoteActivity).select(item)

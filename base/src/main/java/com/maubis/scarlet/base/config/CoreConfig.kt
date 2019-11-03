@@ -8,6 +8,7 @@ import com.github.ajalt.reprint.core.Reprint
 import com.maubis.markdown.MarkdownConfig.Companion.config
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher
 import com.maubis.scarlet.base.core.folder.IFolderActor
@@ -26,8 +27,6 @@ abstract class CoreConfig(context: Context) {
 
   init {
     Reprint.initialize(context)
-    config.spanConfig.headingTypeface = ResourcesCompat.getFont(context, R.font.monserrat)
-      ?: Typeface.DEFAULT
   }
 
   abstract fun database(): AppDatabase

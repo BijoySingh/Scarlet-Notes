@@ -7,12 +7,10 @@
   <TextView
     android:id="@+id/text"
     style="@style/FormatText"
-    android:fontFamily="@font/monserrat"
     android:textStyle="bold" />
 
   <EditText
     android:id="@+id/edit"
     style="@style/FormatEdit"
-    android:fontFamily="@font/monserrat"
     android:textStyle="bold" />
 </LinearLayout>

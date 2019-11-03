@@ -7,8 +7,10 @@ import com.facebook.litho.ComponentContext
 import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.specs.BottomSheetBar
@@ -35,6 +37,7 @@ class NoPincodeBottomSheet : LithoBottomSheet() {
           .marginDip(YogaEdge.HORIZONTAL, 0f))
       .child(
         Text.create(componentContext)
+          .typeface(sAppTypeface.text())
           .textSizeRes(R.dimen.font_size_large)
           .textRes(R.string.no_pincode_sheet_details)
           .marginDip(YogaEdge.BOTTOM, 16f)

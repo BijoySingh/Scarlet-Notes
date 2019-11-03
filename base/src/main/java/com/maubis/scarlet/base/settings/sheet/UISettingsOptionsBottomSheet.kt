@@ -30,6 +30,14 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         activity.performAction(MainActivityActions.COLOR_PICKER)
       }
     ))
+    options.add(LithoOptionsItem(
+      title = R.string.home_option_typeface,
+      subtitle = R.string.home_option_typeface_subtitle,
+      icon = R.drawable.icon_typeface,
+      listener = {
+        activity.performAction(MainActivityActions.TYPEFACE_PICKER)
+      }
+    ))
     val isTablet = resources.getBoolean(R.bool.is_tablet)
     options.add(
       LithoOptionsItem(

@@ -1,12 +1,14 @@
 package com.maubis.scarlet.base.note.formats.recycler
 
 import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
@@ -19,6 +21,7 @@ import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Compa
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import java.lang.reflect.Type
 
 const val KEY_EDITABLE = "KEY_EDITABLE"
 const val KEY_NOTE_COLOR = "KEY_NOTE_COLOR"
@@ -33,7 +36,9 @@ data class FormatViewHolderConfig(
   val iconColor: Int,
   val hintTextColor: Int,
   val accentColor: Int,
-  val noteUUID: String)
+  val noteUUID: String,
+  val typeface: Typeface,
+  val typefaceStyle: Int)
 
 abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerViewHolder<Format>(context, view) {
 
@@ -96,7 +101,18 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
       iconColor = iconColor,
       hintTextColor = hintTextColor,
       accentColor = linkColor,
-      noteUUID = extra?.getString(INTENT_KEY_NOTE_ID) ?: "default")
+      noteUUID = extra?.getString(INTENT_KEY_NOTE_ID) ?: "default",
+      typeface = when (data.formatType) {
+        FormatType.HEADING -> sAppTypeface.subHeading()
+        FormatType.SUB_HEADING -> sAppTypeface.title()
+        FormatType.HEADING_3 -> sAppTypeface.title()
+        FormatType.CODE -> sAppTypeface.code()
+        else -> sAppTypeface.text()
+      },
+      typefaceStyle = when (data.formatType) {
+        FormatType.HEADING, FormatType.SUB_HEADING, FormatType.HEADING_3 -> Typeface.BOLD
+        else -> Typeface.NORMAL
+      })
 
     populate(data, config)
 

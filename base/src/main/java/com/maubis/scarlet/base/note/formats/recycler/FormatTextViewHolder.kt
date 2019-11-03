@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base.note.formats.recycler
 
 import android.content.Context
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.InputType
@@ -58,12 +59,14 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     text.setBackgroundColor(config.backgroundColor)
     text.setLinkTextColor(config.accentColor)
     text.setTextIsSelectable(true)
+    text.setTypeface(config.typeface, config.typefaceStyle)
     text.visibility = visibility(!config.editable)
 
     edit.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize)
     edit.setTextColor(config.secondaryTextColor)
     edit.setHintTextColor(config.hintTextColor)
     edit.setBackgroundColor(config.backgroundColor)
+    edit.setTypeface(config.typeface, config.typefaceStyle)
     edit.visibility = visibility(config.editable)
     edit.isEnabled = config.editable
     showHintWhenTextIsEmpty()

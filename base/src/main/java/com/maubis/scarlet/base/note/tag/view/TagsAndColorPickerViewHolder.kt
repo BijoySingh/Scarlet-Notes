@@ -6,6 +6,7 @@ import android.widget.TextView
 import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.database.room.tag.Tag
@@ -54,6 +55,7 @@ class TagsAndColorPickerViewHolder(
         }
 
         text.text = it.title
+        text.typeface = sAppTypeface.title()
         tagView.setOnClickListener {
           onTagClick(tag)
         }

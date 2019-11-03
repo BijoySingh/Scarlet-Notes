@@ -84,6 +84,7 @@ object PincodeSheetViewSpec {
           .marginDip(YogaEdge.HORIZONTAL, 0f))
       .child(
         Text.create(context)
+          .typeface(sAppTypeface.text())
           .textSizeRes(R.dimen.font_size_large)
           .textRes(R.string.app_lock_details)
           .marginDip(YogaEdge.BOTTOM, 16f)

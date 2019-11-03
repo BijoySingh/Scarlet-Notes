@@ -15,6 +15,7 @@ import com.github.bijoysingh.starter.util.RandomHelper
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.getNoteState
@@ -100,15 +101,22 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
     val tagCardLayout = dialog.findViewById<View>(R.id.tag_card_layout)
     val selectCardLayout = dialog.findViewById<View>(R.id.select_notes_layout)
 
+    val selectCardTitle = dialog.findViewById<TextView>(R.id.select_notes_title)
+    selectCardTitle.typeface = sAppTypeface.title()
+    val selectCardSubtitle = dialog.findViewById<TextView>(R.id.select_notes_subtitle)
+    selectCardSubtitle.typeface = sAppTypeface.title()
+
     val tags = tagCardLayout.findViewById<TextView>(R.id.tags_content)
+    tags.typeface = sAppTypeface.title()
     val tagSubtitle = tagCardLayout.findViewById<TextView>(R.id.tags_subtitle)
+    tagSubtitle.typeface = sAppTypeface.title()
+
     val tagContent = note.getTagString()
     if (tagContent.isNotBlank()) {
       GlobalScope.launch(Dispatchers.Main) {
         val text = GlobalScope.async(Dispatchers.IO) { Markdown.renderSegment(tagContent, true) }
         tags.visibility = View.VISIBLE
         tagSubtitle.visibility = View.GONE
-
         tags.text = text.await()
 
         groupCardLayout.orientation = VERTICAL
@@ -117,6 +125,7 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
         val margin = activity.resources.getDimension(R.dimen.spacing_xxsmall).toInt()
         params.setMargins(margin, margin, margin, margin)
         tagCardLayout.layoutParams = params
+
         selectCardLayout.layoutParams = params
       }
     }

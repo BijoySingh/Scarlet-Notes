@@ -8,7 +8,6 @@
     <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
     <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
     <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>
-    <item name="android:fontFamily">@font/open_sans</item>
   </style>
 
   <style name="AppTheme" parent="AppThemeBase">
@@ -24,25 +23,13 @@
   </style>
 
   <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
-    <item name="android:fontFamily">@font/open_sans</item>
   </style>
 
   <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
-    <item name="android:fontFamily">@font/open_sans</item>
   </style>
 
   <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
-    <item name="android:fontFamily">@font/open_sans</item>
   </style>
-
-  <style name="FontText">
-    <item name="android:fontFamily">@font/open_sans</item>
-  </style>
-
-  <style name="FontTitle">
-    <item name="android:fontFamily">@font/monserrat</item>
-  </style>
-
 
   <style name="NoteItemActionIcon" parent="BorderlessBackgroundView">
     <item name="android:layout_width">@dimen/icon_size_large</item>
@@ -92,7 +79,7 @@
     <item name="android:layout_marginEnd">8dp</item>
   </style>
 
-  <style name="FormatText" parent="FontText">
+  <style name="FormatText">
     <item name="android:layout_width">0dp</item>
     <item name="android:layout_weight">1</item>
     <item name="android:layout_height">wrap_content</item>
@@ -117,7 +104,7 @@
     <item name="android:layout_marginEnd">@dimen/spacing_xxsmall</item>
   </style>
 
-  <style name="GridText" parent="FontText">
+  <style name="GridText">
     <item name="android:gravity">center</item>
     <item name="android:layout_gravity">center</item>
     <item name="android:foregroundGravity">center</item>
