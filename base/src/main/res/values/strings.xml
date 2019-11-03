@@ -228,6 +228,7 @@
   <string name="whats_new_sheet_google_drive" translatable="false">Sign In with Drive. More Privacy.</string>
   <string name="whats_new_sheet_photo_share" translatable="false">Share Photos. To and From.</string>
   <string name="whats_new_sheet_note_color" translatable="false">More Note Colors.</string>
+  <string name="whats_new_sheet_choose_fonts" translatable="false">Customise Fonts.</string>
   <string name="whats_new_sheet_launcher_shortcuts" translatable="false">Launcher Shortcuts.</string>
   <string name="whats_new_sheet_more_languages" translatable="false">More Languages Supported.</string>
   <string name="whats_new_sheet_markdown_improvements" translatable="false">H3 and Bullet Support.</string>
@@ -496,9 +497,9 @@
   <string name="folder_delete_option_sheet_remove_folder_content_details" translatable="false">Keep Notebook but all notes move to trash or are deleted.</string>
 
   <!-- Start Typeface-->
-  <string name="home_option_typeface" translatable="false">Fonts</string>
+  <string name="home_option_typeface" translatable="false">Customise Fonts</string>
   <string name="home_option_typeface_subtitle" translatable="false">Select the app and note fonts</string>
-  <string name="typeface_page_title" translatable="false">Select Font</string>
+  <string name="typeface_page_title" translatable="false">Select a Font Set</string>
   <string name="typeface_page_description" translatable="false">Note: Fonts might not work properly with all languages</string>
 
   <string name="typeface_title_app_default" translatable="false">App Default</string>

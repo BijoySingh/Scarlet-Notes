@@ -28,6 +28,7 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
       if (FlavorUtils.isOpenSource()) null else GridSectionOptionItem(R.drawable.gdrive_icon, R.string.whats_new_sheet_google_drive, {}),
       GridSectionOptionItem(R.drawable.icon_share_image, R.string.whats_new_sheet_photo_share, {}),
       GridSectionOptionItem(R.drawable.ic_action_color, R.string.whats_new_sheet_note_color, {}),
+      GridSectionOptionItem(R.drawable.icon_typeface, R.string.whats_new_sheet_choose_fonts, {}),
       GridSectionOptionItem(R.drawable.icon_languages, R.string.whats_new_sheet_more_languages, {}),
       if (!OsVersionUtils.canAddLauncherShortcuts()) null else GridSectionOptionItem(
         R.drawable.icon_shortcut, R.string.whats_new_sheet_launcher_shortcuts, {}),
