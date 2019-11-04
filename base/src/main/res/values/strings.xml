@@ -485,6 +485,9 @@
   <!-- Start: Theme Color Sheet -->
   <string name="theme_use_system_theme" translatable="false">Use System Theme</string>
   <string name="theme_use_system_theme_details" translatable="false">Use the light or dark theme from the system</string>
+
+  <string name="theme_dark_notes" translatable="false">Dark Notes</string>
+  <string name="theme_dark_notes_details" translatable="false">Automatically darken note and folder colors</string>
   <!-- End: Theme Color Sheet -->
 
   <string name="folder_delete_option_sheet_title" translatable="false">Remove Options</string>

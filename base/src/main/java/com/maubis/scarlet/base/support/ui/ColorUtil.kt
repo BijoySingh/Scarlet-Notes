@@ -17,8 +17,8 @@ object ColorUtil {
     ColorUtils.RGBToHSL(Color.red(color), Color.green(color), Color.blue(color), hsl)
 
     val luminance = hsl[2]
-    if (luminance > 0.2) {
-      return luminantColor(color, 0.2f)
+    if (luminance > 0.25) {
+      return luminantColor(color, 0.25f)
     }
     return luminantColor(color, luminance * 0.8f)
   }

@@ -29,7 +29,9 @@ import com.maubis.scarlet.base.settings.sheet.sInternalShowUUID
 import com.maubis.scarlet.base.settings.sheet.sSecurityAppLockEnabled
 import com.maubis.scarlet.base.settings.sheet.sUIMarkdownEnabledOnHome
 import com.maubis.scarlet.base.support.BitmapHelper
+import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.ThemedActivity
+import com.maubis.scarlet.base.support.ui.sThemeDarkenNoteColor
 import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -239,6 +241,13 @@ fun Note.removeTag(tag: Tag) {
     false -> return
   }
   this.tags = tags.joinToString(separator = ",")
+}
+
+fun Note.adjustedColor(): Int {
+  return when(sThemeDarkenNoteColor) {
+    true -> ColorUtil.darkOrDarkerColor(color ?: sNoteDefaultColor)
+    false -> color ?: sNoteDefaultColor
+  }
 }
 
 /**************************************************************************************

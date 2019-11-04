@@ -20,6 +20,11 @@ var sThemeIsAutomatic: Boolean
   get() = sAppPreferences.get("automatic_theme", false)
   set(value) = sAppPreferences.put("automatic_theme", value)
 
+var sThemeDarkenNoteColor: Boolean
+  get() = sAppPreferences.get("darken_note_color", false)
+  set(value) = sAppPreferences.put("darken_note_color", value)
+
+
 fun setThemeFromSystem(context: Context) {
   val configuration = context.resources.configuration
   val systemBasedTheme = when (configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {

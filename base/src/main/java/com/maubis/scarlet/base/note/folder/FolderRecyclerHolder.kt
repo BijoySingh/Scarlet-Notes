@@ -10,6 +10,8 @@ import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
+import com.maubis.scarlet.base.support.ui.ColorUtil.darkOrDarkerColor
+import com.maubis.scarlet.base.support.ui.sThemeDarkenNoteColor
 
 class FolderRecyclerHolder(context: Context, view: View) : RecyclerViewHolder<RecyclerItem>(context, view) {
 
@@ -40,7 +42,11 @@ class FolderRecyclerHolder(context: Context, view: View) : RecyclerViewHolder<Re
     timestamp.setTextColor(item.timestampColor)
     timestamp.typeface = sAppTypeface.text()
 
-    view.setCardBackgroundColor(item.folder.color)
+    val folderColor = when(sThemeDarkenNoteColor) {
+      true -> darkOrDarkerColor(item.folder.color)
+      false -> item.folder.color
+    }
+    view.setCardBackgroundColor(folderColor)
     view.setOnClickListener {
       item.click()
     }
