@@ -7,6 +7,7 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.core.note.getNoteState
 import com.maubis.scarlet.base.core.note.getReminderV2
 import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.note.getDisplayTime
 import com.maubis.scarlet.base.note.getImageFile
 import com.maubis.scarlet.base.note.getLockedAwareTextForHomeList
@@ -14,11 +15,14 @@ import com.maubis.scarlet.base.note.getTagString
 import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.ColorUtil
+import com.maubis.scarlet.base.support.ui.ColorUtil.darkOrDarkerColor
 
 class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
 
-  private val isLightShaded = ColorUtil.isLightColored(note.color)
   val lineCount = sNoteItemLineCount
+  val backgroundColor = note.color ?: sNoteDefaultColor
+  val isLightShaded = ColorUtil.isLightColored(backgroundColor)
+
 
   val description = note.getLockedAwareTextForHomeList()
   val descriptionColor = when (isLightShaded) {
@@ -54,5 +58,5 @@ class NoteRecyclerItem(context: Context, val note: Note) : RecyclerItem() {
   val imageSource = note.getImageFile()
   val disableBackup = note.disableBackup
 
-  override val type = RecyclerItem.Type.NOTE
+  override val type = Type.NOTE
 }

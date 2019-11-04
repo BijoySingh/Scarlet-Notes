@@ -75,7 +75,7 @@ class ThemeManager : IThemeManager {
     }
 
     if (map[ThemeColorType.TOOLBAR_BACKGROUND] == map[ThemeColorType.BACKGROUND]) {
-      map[ThemeColorType.TOOLBAR_BACKGROUND] = ColorUtil.darkerOrSlightlyDarkerColor(
+      map[ThemeColorType.TOOLBAR_BACKGROUND] = ColorUtil.darkOrDarkerColor(
         map[ThemeColorType.TOOLBAR_BACKGROUND]
           ?: 0)
     }

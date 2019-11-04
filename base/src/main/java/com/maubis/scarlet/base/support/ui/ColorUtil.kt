@@ -12,11 +12,7 @@ object ColorUtil {
     return ColorUtils.calculateLuminance(color) > 0.4
   }
 
-  fun darkerColor(color: Int): Int {
-    return luminantColor(color, 0.2f)
-  }
-
-  fun darkerOrSlightlyDarkerColor(color: Int): Int {
+  fun darkOrDarkerColor(color: Int): Int {
     val hsl = floatArrayOf(0.0f, 0.0f, 0.0f)
     ColorUtils.RGBToHSL(Color.red(color), Color.green(color), Color.blue(color), hsl)
 

@@ -48,7 +48,7 @@ import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Compa
 import com.maubis.scarlet.base.settings.sheet.sEditorTextSize
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.ColorUtil
-import com.maubis.scarlet.base.support.ui.ColorUtil.darkerColor
+import com.maubis.scarlet.base.support.ui.ColorUtil.darkOrDarkerColor
 import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
 import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.Theme
@@ -280,13 +280,13 @@ open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivit
       ColorUtil.isLightColored(currentNote.color) -> {
         colorConfig.backgroundColor = currentNote.color
         colorConfig.toolbarIconColor = sAppTheme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
-        colorConfig.statusBarColor = darkerColor(currentNote.color)
+        colorConfig.statusBarColor = darkOrDarkerColor(currentNote.color)
         colorConfig.toolbarBackgroundColor = colorConfig.statusBarColor
       }
       else -> {
         colorConfig.backgroundColor = currentNote.color
         colorConfig.toolbarIconColor = sAppTheme.get(context, Theme.DARK, ThemeColorType.TOOLBAR_ICON)
-        colorConfig.statusBarColor = darkerColor(currentNote.color)
+        colorConfig.statusBarColor = darkOrDarkerColor(currentNote.color)
         colorConfig.toolbarBackgroundColor = colorConfig.statusBarColor
       }
     }

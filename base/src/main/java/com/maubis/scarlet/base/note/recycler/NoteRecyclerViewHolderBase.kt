@@ -71,7 +71,7 @@ open class NoteRecyclerViewHolderBase(context: Context, view: View) : RecyclerVi
       viewLongClick(item.note, extra)
       false
     }
-    view.setCardBackgroundColor(item.note.color)
+    view.setCardBackgroundColor(item.backgroundColor)
     setActionBar(item, extra)
   }
 
