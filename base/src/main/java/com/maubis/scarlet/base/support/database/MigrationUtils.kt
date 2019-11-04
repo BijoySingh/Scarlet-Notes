@@ -14,7 +14,7 @@ import com.maubis.scarlet.base.note.saveWithoutSync
 import com.maubis.scarlet.base.settings.sheet.sUIUseGridView
 import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
 import com.maubis.scarlet.base.support.ui.Theme
-import com.maubis.scarlet.base.support.ui.sAppThemeLabel
+import com.maubis.scarlet.base.support.ui.sThemeLabel
 import com.maubis.scarlet.base.support.utils.getLastUsedAppVersionCode
 import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.GlobalScope
@@ -22,7 +22,6 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.*
 
-const val KEY_MIGRATE_THEME = "KEY_MIGRATE_THEME"
 const val KEY_MIGRATE_DEFAULT_VALUES = "KEY_MIGRATE_DEFAULT_VALUES"
 const val KEY_MIGRATE_REMINDERS = "KEY_MIGRATE_REMINDERS"
 const val KEY_MIGRATE_IMAGES = "KEY_MIGRATE_IMAGES"
@@ -31,11 +30,6 @@ const val KEY_MIGRATE_TO_GDRIVE_DATABASE = "KEY_MIGRATE_TO_GDRIVE_DATABASE_v2"
 class Migrator(val context: Context) {
 
   fun start() {
-    runTask(KEY_MIGRATE_THEME) {
-      val isNightMode = sAppPreferences.get(KEY_NIGHT_THEME, true)
-      sAppThemeLabel = if (isNightMode) Theme.DARK.name else Theme.LIGHT.name
-      sAppTheme.notifyChange(context)
-    }
     runTask(key = KEY_MIGRATE_REMINDERS) {
       val notes = notesDb.getAll()
       for (note in notes) {
@@ -65,7 +59,7 @@ class Migrator(val context: Context) {
     runTaskIf(
       getLastUsedAppVersionCode() == 0,
       KEY_MIGRATE_DEFAULT_VALUES) {
-      sAppThemeLabel = Theme.DARK.name
+      sThemeLabel = Theme.DARK.name
       sUIUseGridView = true
     }
 

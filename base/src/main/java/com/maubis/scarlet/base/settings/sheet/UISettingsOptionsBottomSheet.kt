@@ -16,7 +16,6 @@ import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.utils.FlavorUtils
 
-
 var sUIUseGridView: Boolean
   get() = sAppPreferences.get("KEY_LIST_VIEW", true)
   set(isGrid) = sAppPreferences.put("KEY_LIST_VIEW", isGrid)

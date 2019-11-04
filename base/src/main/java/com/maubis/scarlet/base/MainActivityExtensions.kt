@@ -8,7 +8,7 @@ import com.maubis.scarlet.base.settings.sheet.ThemeColorPickerBottomSheet
 import com.maubis.scarlet.base.settings.sheet.TypefacePickerBottomSheet
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.font.sPreferenceTypeface
-import com.maubis.scarlet.base.support.ui.sAppThemeLabel
+import com.maubis.scarlet.base.support.ui.sThemeLabel
 
 const val INTENT_KEY_ADDITIONAL_ACTION = "additional_action"
 
@@ -50,8 +50,8 @@ fun MainActivity.performAction(action: MainActivityActions) {
     MainActivityActions.COLOR_PICKER -> {
       openSheet(this, ThemeColorPickerBottomSheet().apply {
         this.onThemeChange = { theme ->
-          if (sAppThemeLabel != theme.name) {
-            sAppThemeLabel = theme.name
+          if (sThemeLabel != theme.name) {
+            sThemeLabel = theme.name
             sAppTheme.notifyChange(activity)
             activity.startActivity(MainActivityActions.COLOR_PICKER.intent(activity))
             activity.finish()

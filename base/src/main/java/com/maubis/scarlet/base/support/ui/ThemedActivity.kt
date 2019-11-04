@@ -36,7 +36,7 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
 
   override fun onConfigurationChanged(configuration: Configuration?) {
     super.onConfigurationChanged(configuration)
-    if (configuration === null || !sAutomaticTheme) {
+    if (configuration === null || !sThemeIsAutomatic) {
       return
     }
     setThemeFromSystem(this)

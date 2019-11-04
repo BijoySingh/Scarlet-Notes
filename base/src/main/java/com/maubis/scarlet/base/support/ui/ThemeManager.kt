@@ -12,15 +12,13 @@ import com.maubis.scarlet.base.support.utils.OsVersionUtils
 import com.maubis.scarlet.base.support.utils.throwOrReturn
 import java.lang.ref.WeakReference
 
-const val KEY_APP_THEME = "KEY_APP_THEME"
-var sAppThemeLabel: String
-  get() = sAppPreferences.get(KEY_APP_THEME, Theme.DARK.name)
-  set(value) = sAppPreferences.put(KEY_APP_THEME, value)
+var sThemeLabel: String
+  get() = sAppPreferences.get("KEY_APP_THEME", Theme.DARK.name)
+  set(value) = sAppPreferences.put("KEY_APP_THEME", value)
 
-const val KEY_AUTOMATIC_THEME = "automatic_theme"
-var sAutomaticTheme: Boolean
-  get() = sAppPreferences.get(KEY_AUTOMATIC_THEME, false)
-  set(value) = sAppPreferences.put(KEY_AUTOMATIC_THEME, value)
+var sThemeIsAutomatic: Boolean
+  get() = sAppPreferences.get("automatic_theme", false)
+  set(value) = sAppPreferences.put("automatic_theme", value)
 
 fun setThemeFromSystem(context: Context) {
   val configuration = context.resources.configuration
@@ -29,10 +27,10 @@ fun setThemeFromSystem(context: Context) {
     Configuration.UI_MODE_NIGHT_YES -> Theme.VERY_DARK.name
     else -> Theme.VERY_DARK.name
   }
-  if (systemBasedTheme === sAppThemeLabel) {
+  if (systemBasedTheme === sThemeLabel) {
     return
   }
-  sAppThemeLabel = systemBasedTheme
+  sThemeLabel = systemBasedTheme
 }
 
 // Old Theme Key, remove in future once theme is properly handled
@@ -136,7 +134,7 @@ class ThemeManager : IThemeManager {
 
     fun getThemeFromStore(): Theme {
       return try {
-        Theme.valueOf(sAppThemeLabel)
+        Theme.valueOf(sThemeLabel)
       } catch (exception: Exception) {
         throwOrReturn(exception, Theme.DARK)
       }

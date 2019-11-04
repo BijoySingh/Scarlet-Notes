@@ -63,7 +63,6 @@ import com.maubis.scarlet.base.service.getNoteIntentFilter
 import com.maubis.scarlet.base.settings.sheet.STORE_KEY_LINE_COUNT
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
-import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
 import com.maubis.scarlet.base.settings.sheet.sUIUseGridView
 import com.maubis.scarlet.base.support.SearchConfig
@@ -78,7 +77,7 @@ import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.ui.sAutomaticTheme
+import com.maubis.scarlet.base.support.ui.sThemeIsAutomatic
 import com.maubis.scarlet.base.support.ui.setThemeFromSystem
 import com.maubis.scarlet.base.support.unifiedSearchSynchronous
 import com.maubis.scarlet.base.support.unifiedSearchWithoutFolder
@@ -122,7 +121,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     setupRecyclerView()
     setListeners()
 
-    if (sAutomaticTheme) {
+    if (sThemeIsAutomatic) {
       setThemeFromSystem(this)
     }
     sAppTheme.notifyChange(this)

@@ -28,7 +28,7 @@ import com.maubis.scarlet.base.support.specs.RoundIcon
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeManager.Companion.getThemeFromStore
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.ui.sAutomaticTheme
+import com.maubis.scarlet.base.support.ui.sThemeIsAutomatic
 import com.maubis.scarlet.base.support.ui.setThemeFromSystem
 import com.maubis.scarlet.base.support.utils.FlavorUtils
 import com.maubis.scarlet.base.support.utils.OsVersionUtils
@@ -103,7 +103,7 @@ class ThemeColorPickerBottomSheet : LithoBottomSheet() {
                          icon = R.drawable.ic_action_color,
                          listener = {},
                          isSelectable = true,
-                         selected = sAutomaticTheme,
+                         selected = sThemeIsAutomatic,
                          actionIcon = if (FlavorUtils.isLite()) R.drawable.ic_rating else 0
                        ))
                      .onClick {
@@ -113,8 +113,8 @@ class ThemeColorPickerBottomSheet : LithoBottomSheet() {
                          return@onClick
                        }
 
-                       sAutomaticTheme = !sAutomaticTheme
-                       if (sAutomaticTheme) {
+                       sThemeIsAutomatic = !sThemeIsAutomatic
+                       if (sThemeIsAutomatic) {
                          setThemeFromSystem(context)
                          onThemeChange(sAppTheme.get())
                        }
@@ -122,7 +122,7 @@ class ThemeColorPickerBottomSheet : LithoBottomSheet() {
                      })
     }
 
-    if (!sAutomaticTheme) {
+    if (!sThemeIsAutomatic) {
       var flex: Row.Builder? = null
       Theme.values().forEachIndexed { index, theme ->
         if (index % 4 == 0) {
