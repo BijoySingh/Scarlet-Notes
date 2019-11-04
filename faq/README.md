@@ -4,6 +4,31 @@ It is a curated list of questions asked by users. We plan to add more questions 
 ## How to add notes?
 Simply press the "Add Note" button in the bottom right of the home screen. You can then start adding your notes in the new screen.
 
+---
+
+## App Theme
+### How do I switch themes?
+You can choose from a variety of color choices.
+- Go to `App Settings > Interface and Experience > App Theme`
+- Choose a Theme
+
+### How can I choose theme automatically from system theme
+**App newer than v7.3.0, `Android 10` and above devices**
+- Go to `App Settings > Interface and Experience > App Theme`
+- Choose `Use System Theme`
+
+### Can I choose alternate fonts
+**App newer than v7.3.0**
+- Go to `App Settings > Interface and Experience > Customise Fonts`
+- Choose a Font Scheme
+- Note that all languages don't support fonts properly
+
+### Change the order of the notes on the home screen
+- Go to `App Settings > Interface and Experience > Order Notes`
+- Pick a choice of sorting order
+
+---
+
 ## Locking Notes and Security
 ### How do I setup a new PIN?
 **App newer than v7.0.5**
