@@ -55,7 +55,7 @@ class SettingsOptionsBottomSheet : LithoOptionBottomSheet() {
       subtitle = R.string.home_option_ui_experience_subtitle,
       icon = R.drawable.ic_action_grid,
       listener = {
-        UISettingsOptionsBottomSheet.openSheet(activity)
+        openSheet(activity, UISettingsOptionsBottomSheet())
       }
     ))
     options.add(LithoOptionsItem(

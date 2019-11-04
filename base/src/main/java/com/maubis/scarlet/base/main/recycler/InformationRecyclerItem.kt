@@ -78,7 +78,7 @@ fun getThemeInformationItem(activity: MainActivity): InformationRecyclerItem {
     R.string.home_option_ui_experience_subtitle
   ) {
     sAppPreferences.put(KEY_THEME_OPTIONS, true)
-    UISettingsOptionsBottomSheet.openSheet(activity)
+    openSheet(activity, UISettingsOptionsBottomSheet())
   }
 }
 

@@ -25,9 +25,9 @@ import com.maubis.scarlet.base.note.creation.activity.NoteIntentRouterActivity
 import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.security.controller.PinLockController.needsLockCheck
 import com.maubis.scarlet.base.security.sheets.openUnlockSheet
-import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.sMarkdownEnabledHome
 import com.maubis.scarlet.base.settings.sheet.sInternalShowUUID
 import com.maubis.scarlet.base.settings.sheet.sSecurityAppLockEnabled
+import com.maubis.scarlet.base.settings.sheet.sUIMarkdownEnabledOnHome
 import com.maubis.scarlet.base.support.BitmapHelper
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.utils.sDateFormat
@@ -60,7 +60,7 @@ fun Note.getFullTextForDirectMarkdownRender(): String {
 
 fun Note.getMarkdownForListView(): CharSequence {
   var text = getFullTextForDirectMarkdownRender()
-  if (sMarkdownEnabledHome) {
+  if (sUIMarkdownEnabledOnHome) {
     return markdownFormatForList(text)
   }
   return text
@@ -179,7 +179,7 @@ fun Note.getLockedAwareTextForHomeList(): CharSequence {
   val lockedText = "******************\n***********\n****************"
   return when {
     isNoteLockedButAppUnlocked() || !this.locked -> getMarkdownForListView()
-    !sMarkdownEnabledHome -> "${getTitleForSharing()}\n$lockedText"
+    !sUIMarkdownEnabledOnHome -> "${getTitleForSharing()}\n$lockedText"
     else -> markdownFormatForList("# ${getTitleForSharing()}\n\n```\n$lockedText\n```")
   }
 }

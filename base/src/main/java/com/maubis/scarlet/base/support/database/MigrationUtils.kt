@@ -11,7 +11,7 @@ import com.maubis.scarlet.base.core.note.Reminder
 import com.maubis.scarlet.base.core.note.getReminder
 import com.maubis.scarlet.base.note.reminders.ReminderJob
 import com.maubis.scarlet.base.note.saveWithoutSync
-import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.KEY_LIST_VIEW
+import com.maubis.scarlet.base.settings.sheet.sUIUseGridView
 import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.sAppThemeLabel
@@ -66,7 +66,7 @@ class Migrator(val context: Context) {
       getLastUsedAppVersionCode() == 0,
       KEY_MIGRATE_DEFAULT_VALUES) {
       sAppThemeLabel = Theme.DARK.name
-      sAppPreferences.put(KEY_LIST_VIEW, true)
+      sUIUseGridView = true
     }
 
     runTask(KEY_MIGRATE_TO_GDRIVE_DATABASE) {

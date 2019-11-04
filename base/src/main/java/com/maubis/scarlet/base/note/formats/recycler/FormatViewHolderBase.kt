@@ -17,11 +17,10 @@ import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
 import com.maubis.scarlet.base.settings.sheet.STORE_KEY_TEXT_SIZE
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.TEXT_SIZE_DEFAULT
-import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
+import com.maubis.scarlet.base.settings.sheet.sUIUseNoteColorAsBackground
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import java.lang.reflect.Type
 
 const val KEY_EDITABLE = "KEY_EDITABLE"
 const val KEY_NOTE_COLOR = "KEY_NOTE_COLOR"
@@ -53,7 +52,7 @@ abstract class FormatViewHolderBase(context: Context, view: View) : RecyclerView
     val isLightBackground = ColorUtil.isLightColored(noteColor)
     val linkColor: Int
     when {
-      !useNoteColorAsBackground -> {
+      !sUIUseNoteColorAsBackground -> {
         secondaryTextColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
         tertiaryTextColor = sAppTheme.get(ThemeColorType.TERTIARY_TEXT)
         iconColor = sAppTheme.get(ThemeColorType.TOOLBAR_ICON)

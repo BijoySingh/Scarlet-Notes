@@ -44,8 +44,8 @@ import com.maubis.scarlet.base.note.saveWithoutSync
 import com.maubis.scarlet.base.note.softDelete
 import com.maubis.scarlet.base.settings.sheet.STORE_KEY_TEXT_SIZE
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_ENABLED
-import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.useNoteColorAsBackground
 import com.maubis.scarlet.base.settings.sheet.sEditorTextSize
+import com.maubis.scarlet.base.settings.sheet.sUIUseNoteColorAsBackground
 import com.maubis.scarlet.base.support.specs.ToolbarColorConfig
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.ColorUtil.darkOrDarkerColor
@@ -271,7 +271,7 @@ open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivit
     }
 
     when {
-      !useNoteColorAsBackground -> {
+      !sUIUseNoteColorAsBackground -> {
         colorConfig.backgroundColor = sAppTheme.get(ThemeColorType.BACKGROUND)
         colorConfig.toolbarIconColor = sAppTheme.get(ThemeColorType.TOOLBAR_ICON)
         colorConfig.statusBarColor = colorConfig.backgroundColor

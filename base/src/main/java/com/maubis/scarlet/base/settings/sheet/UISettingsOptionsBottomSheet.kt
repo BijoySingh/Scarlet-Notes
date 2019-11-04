@@ -16,6 +16,19 @@ import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.utils.FlavorUtils
 
+
+var sUIUseGridView: Boolean
+  get() = sAppPreferences.get("KEY_LIST_VIEW", true)
+  set(isGrid) = sAppPreferences.put("KEY_LIST_VIEW", isGrid)
+
+var sUIUseNoteColorAsBackground: Boolean
+  get() = sAppPreferences.get("KEY_NOTE_VIEWER_BG_COLOR", false)
+  set(value) = sAppPreferences.put("KEY_NOTE_VIEWER_BG_COLOR", value)
+
+var sUIMarkdownEnabledOnHome: Boolean
+  get() = sAppPreferences.get("KEY_MARKDOWN_HOME_ENABLED", true)
+  set(value) = sAppPreferences.put("KEY_MARKDOWN_HOME_ENABLED", value)
+
 class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
   override fun title(): Int = R.string.home_option_ui_experience
 
@@ -45,11 +58,11 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_enable_list_view_subtitle,
         icon = R.drawable.ic_action_list,
         listener = {
-          useGridView = false
+          sUIUseGridView = false
           activity.notifyAdapterExtraChanged()
           reset(activity, dialog)
         },
-        visible = !isTablet && useGridView
+        visible = !isTablet && sUIUseGridView
       ))
     options.add(
       LithoOptionsItem(
@@ -57,11 +70,11 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.home_option_enable_grid_view_subtitle,
         icon = R.drawable.ic_action_grid,
         listener = {
-          useGridView = true
+          sUIUseGridView = true
           activity.notifyAdapterExtraChanged()
           reset(activity, dialog)
         },
-        visible = !isTablet && !useGridView
+        visible = !isTablet && !sUIUseGridView
       ))
     options.add(LithoOptionsItem(
       title = R.string.home_option_order_notes,
@@ -99,7 +112,7 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
     options.add(
       LithoOptionsItem(
         title = R.string.ui_options_note_background_color,
-        subtitle = when (useNoteColorAsBackground) {
+        subtitle = when (sUIUseNoteColorAsBackground) {
           true -> R.string.ui_options_note_background_color_settings_note
           false -> R.string.ui_options_note_background_color_settings_theme
         },
@@ -110,7 +123,7 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
             return@LithoOptionsItem
           }
 
-          useNoteColorAsBackground = !useNoteColorAsBackground
+          sUIUseNoteColorAsBackground = !sUIUseNoteColorAsBackground
           reset(activity, dialog)
         },
         actionIcon = if (FlavorUtils.isLite()) R.drawable.ic_rating else 0
@@ -121,36 +134,12 @@ class UISettingsOptionsBottomSheet : LithoOptionBottomSheet() {
         subtitle = R.string.markdown_sheet_home_markdown_support_subtitle,
         icon = R.drawable.ic_markdown_logo,
         listener = {
-          sMarkdownEnabledHome = !sMarkdownEnabledHome
+          sUIMarkdownEnabledOnHome = !sUIMarkdownEnabledOnHome
           reset(activity, dialog)
         },
         isSelectable = true,
-        selected = sMarkdownEnabledHome
+        selected = sUIMarkdownEnabledOnHome
       ))
     return options
-  }
-
-  companion object {
-
-    const val KEY_LIST_VIEW = "KEY_LIST_VIEW"
-    const val KEY_NOTE_VIEWER_BG_COLOR = "KEY_NOTE_VIEWER_BG_COLOR"
-    const val KEY_MARKDOWN_HOME_ENABLED = "KEY_MARKDOWN_HOME_ENABLED"
-
-    fun openSheet(activity: MainActivity) {
-      val sheet = UISettingsOptionsBottomSheet()
-      sheet.show(activity.supportFragmentManager, sheet.tag)
-    }
-
-    var useGridView: Boolean
-      get() = sAppPreferences.get(KEY_LIST_VIEW, true)
-      set(isGrid) = sAppPreferences.put(KEY_LIST_VIEW, isGrid)
-
-    var useNoteColorAsBackground: Boolean
-      get() = sAppPreferences.get(KEY_NOTE_VIEWER_BG_COLOR, false)
-      set(value) = sAppPreferences.put(KEY_NOTE_VIEWER_BG_COLOR, value)
-
-    var sMarkdownEnabledHome: Boolean
-      get() = sAppPreferences.get(KEY_MARKDOWN_HOME_ENABLED, true)
-      set(value) = sAppPreferences.put(KEY_MARKDOWN_HOME_ENABLED, value)
   }
 }

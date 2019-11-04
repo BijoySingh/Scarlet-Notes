@@ -26,6 +26,7 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SortingOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
+import com.maubis.scarlet.base.settings.sheet.sUIUseGridView
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -94,7 +95,6 @@ abstract class SelectableNotesActivityBase : SecuredActivity(), INoteSelectorAct
   open fun getLayoutUI(): Int = R.layout.activity_select_note
 
   fun setupRecyclerView() {
-    val staggeredView = sAppPreferences.get(UISettingsOptionsBottomSheet.KEY_LIST_VIEW, false)
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
     val isMarkdownEnabled = sAppPreferences.get(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, true)
@@ -103,12 +103,12 @@ abstract class SelectableNotesActivityBase : SecuredActivity(), INoteSelectorAct
     adapterExtra.putBoolean(SettingsOptionsBottomSheet.KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
     adapterExtra.putInt(STORE_KEY_LINE_COUNT, sNoteItemLineCount)
 
-    adapter = NoteAppAdapter(this, getSelectableRecyclerItemControllerList(staggeredView, isTablet))
+    adapter = NoteAppAdapter(this, getSelectableRecyclerItemControllerList(sUIUseGridView, isTablet))
     adapter.setExtra(adapterExtra)
     recyclerView = RecyclerViewBuilder(this)
       .setView(this, R.id.recycler_view)
       .setAdapter(adapter)
-      .setLayoutManager(getLayoutManager(staggeredView, isTablet))
+      .setLayoutManager(getLayoutManager(sUIUseGridView, isTablet))
       .build()
   }
 

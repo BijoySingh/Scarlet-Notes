@@ -65,6 +65,7 @@ import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Compani
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet.Companion.KEY_MARKDOWN_HOME_ENABLED
 import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet
 import com.maubis.scarlet.base.settings.sheet.sNoteItemLineCount
+import com.maubis.scarlet.base.settings.sheet.sUIUseGridView
 import com.maubis.scarlet.base.support.SearchConfig
 import com.maubis.scarlet.base.support.database.HouseKeeper
 import com.maubis.scarlet.base.support.database.HouseKeeperJob
@@ -185,7 +186,6 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   }
 
   fun setupRecyclerView() {
-    val staggeredView = UISettingsOptionsBottomSheet.useGridView
     val isTablet = resources.getBoolean(R.bool.is_tablet)
 
     val isMarkdownEnabled = sAppPreferences.get(KEY_MARKDOWN_ENABLED, true)
@@ -194,12 +194,12 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     adapterExtra.putBoolean(KEY_MARKDOWN_ENABLED, isMarkdownEnabled && isMarkdownHomeEnabled)
     adapterExtra.putInt(STORE_KEY_LINE_COUNT, sNoteItemLineCount)
 
-    adapter = NoteAppAdapter(this, staggeredView, isTablet)
+    adapter = NoteAppAdapter(this, sUIUseGridView, isTablet)
     adapter.setExtra(adapterExtra)
     recyclerView = RecyclerViewBuilder(this)
       .setView(this, R.id.recycler_view)
       .setAdapter(adapter)
-      .setLayoutManager(getLayoutManager(staggeredView, isTablet))
+      .setLayoutManager(getLayoutManager(sUIUseGridView, isTablet))
       .build()
 
     vSwipeToRefresh.setOnRefreshListener {
