@@ -2,12 +2,13 @@ package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
 import com.facebook.litho.ComponentContext
-import com.github.ajalt.reprint.core.Reprint
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
+import com.maubis.scarlet.base.security.activity.PinLockMode
+import com.maubis.scarlet.base.security.activity.openUnlockActivity
 import com.maubis.scarlet.base.security.controller.PinLockController.isPinCodeEnabled
-import com.maubis.scarlet.base.security.sheets.openCreateSheet
+import com.maubis.scarlet.base.security.controller.deviceHasBiometricEnabled
 import com.maubis.scarlet.base.security.sheets.openVerifySheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
@@ -23,7 +24,7 @@ const val KEY_ASK_PIN_ALWAYS = "ask_pin_always"
 var sSecurityCode: String
   get() = sAppPreferences.get(KEY_SECURITY_CODE, "")
   set(value) = sAppPreferences.put(KEY_SECURITY_CODE, value)
-var sSecurityFingerprintEnabled: Boolean
+var sSecurityBiometricEnabled: Boolean
   get() = sAppPreferences.get(KEY_FINGERPRINT_ENABLED, true)
   set(value) = sAppPreferences.put(KEY_FINGERPRINT_ENABLED, value)
 var sSecurityAppLockEnabled: Boolean
@@ -77,6 +78,8 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
             else -> openCreatePasswordDialog(dialog)
           }
         },
+        isSelectable = !isLite,
+        selected = sSecurityAppLockEnabled  ,
         actionIcon = when {
           sSecurityAppLockEnabled -> R.drawable.ic_done_white_48dp
           isLite -> R.drawable.ic_rating
@@ -115,52 +118,52 @@ class SecurityOptionsBottomSheet : LithoOptionBottomSheet() {
         }
       ))
 
-    val hasFingerprint = Reprint.hasFingerprintRegistered()
+    val hasFingerprint = deviceHasBiometricEnabled()
     options.add(
       LithoOptionsItem(
-        title = R.string.security_option_fingerprint_enabled,
-        subtitle = R.string.security_option_fingerprint_enabled_subtitle,
+        title = R.string.security_option_biometrics_enabled,
+        subtitle = R.string.security_option_biometrics_enabled_subtitle,
         icon = R.drawable.ic_option_fingerprint,
         listener = {
           when {
             isPinCodeEnabled() -> openVerifySheet(
               activity = activity,
               onVerifySuccess = {
-                sSecurityFingerprintEnabled = false
+                sSecurityBiometricEnabled = false
                 reset(componentContext.androidContext, dialog)
               }
             )
             else -> {
-              sSecurityFingerprintEnabled = false
+              sSecurityBiometricEnabled = false
               reset(componentContext.androidContext, dialog)
             }
           }
         },
-        visible = sSecurityFingerprintEnabled && hasFingerprint,
+        visible = sSecurityBiometricEnabled && hasFingerprint,
         isSelectable = true,
         selected = true
       ))
     options.add(
       LithoOptionsItem(
-        title = R.string.security_option_fingerprint_disabled,
-        subtitle = R.string.security_option_fingerprint_disabled_subtitle,
+        title = R.string.security_option_biometrics_disabled,
+        subtitle = R.string.security_option_biometrics_disabled_subtitle,
         icon = R.drawable.ic_option_fingerprint,
         listener = {
           when {
             isPinCodeEnabled() -> openVerifySheet(
               activity = activity,
               onVerifySuccess = {
-                sSecurityFingerprintEnabled = true
+                sSecurityBiometricEnabled = true
                 reset(componentContext.androidContext, dialog)
               }
             )
             else -> {
-              sSecurityFingerprintEnabled = true
+              sSecurityBiometricEnabled = true
               reset(componentContext.androidContext, dialog)
             }
           }
         },
-        visible = !sSecurityFingerprintEnabled && hasFingerprint
+        visible = !sSecurityBiometricEnabled && hasFingerprint
       ))
     return options
   }

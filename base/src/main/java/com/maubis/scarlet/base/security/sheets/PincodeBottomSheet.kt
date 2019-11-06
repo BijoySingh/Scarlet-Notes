@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.text.InputType
 import android.text.Layout
 import android.view.inputmethod.EditorInfo
+import androidx.appcompat.app.AppCompatActivity
 import com.facebook.litho.ClickEvent
 import com.facebook.litho.Column
 import com.facebook.litho.Component
@@ -20,19 +21,15 @@ import com.facebook.litho.widget.Text
 import com.facebook.litho.widget.TextChangedEvent
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
-import com.github.ajalt.reprint.core.AuthenticationFailureReason
-import com.github.ajalt.reprint.core.AuthenticationListener
-import com.github.ajalt.reprint.core.Reprint
-import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.security.controller.PinLockController
 import com.maubis.scarlet.base.security.controller.PinLockController.isPinCodeEnabled
 import com.maubis.scarlet.base.security.controller.PinLockController.needsLockCheck
-import com.maubis.scarlet.base.settings.sheet.sSecurityAppLockEnabled
+import com.maubis.scarlet.base.security.controller.isBiometricEnabled
+import com.maubis.scarlet.base.security.controller.showBiometricPrompt
 import com.maubis.scarlet.base.settings.sheet.sSecurityCode
-import com.maubis.scarlet.base.settings.sheet.sSecurityFingerprintEnabled
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle
 import com.maubis.scarlet.base.support.sheets.openSheet
@@ -195,24 +192,16 @@ class PincodeBottomSheet : LithoBottomSheet() {
 
   override fun onResume() {
     super.onResume()
-    if (data.isFingerprintEnabled) {
-      Reprint.authenticate(object : AuthenticationListener {
-        override fun onSuccess(moduleTag: Int) {
-          data.onSuccess()
-          dismiss()
-        }
-
-        override fun onFailure(
-          failureReason: AuthenticationFailureReason?, fatal: Boolean, errorMessage: CharSequence?, moduleTag: Int, errorCode: Int) {
-        }
-      })
+    val compatActivity = activity
+    if (compatActivity === null || compatActivity !is AppCompatActivity) {
+      return
     }
-  }
 
-  override fun onPause() {
-    super.onPause()
     if (data.isFingerprintEnabled) {
-      Reprint.cancelAuthentication()
+      showBiometricPrompt(compatActivity, this, {
+        data.onSuccess()
+        dismiss()
+      })
     }
   }
 }
@@ -258,7 +247,7 @@ fun openVerifySheet(
       actionTitle = R.string.security_sheet_button_verify,
       onSuccess = onVerifySuccess,
       onFailure = onVerifyFailure,
-      isFingerprintEnabled = Reprint.hasFingerprintRegistered() && sSecurityFingerprintEnabled
+      isFingerprintEnabled = isBiometricEnabled()
     )
   })
 }
@@ -287,7 +276,7 @@ fun openUnlockSheet(
       actionTitle = R.string.security_sheet_button_unlock,
       onSuccess = onUnlockSuccess,
       onFailure = onUnlockFailure,
-      isFingerprintEnabled = Reprint.hasFingerprintRegistered() && sSecurityFingerprintEnabled
+      isFingerprintEnabled = isBiometricEnabled()
     )
   })
 }

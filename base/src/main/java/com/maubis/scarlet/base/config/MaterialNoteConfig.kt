@@ -21,7 +21,7 @@ import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
 
-open class MaterialNoteConfig(context: Context) : CoreConfig(context) {
+open class MaterialNoteConfig(context: Context) : CoreConfig() {
   val db = AppDatabase.createDatabase(context)
 
   val notesProvider = NotesProvider()

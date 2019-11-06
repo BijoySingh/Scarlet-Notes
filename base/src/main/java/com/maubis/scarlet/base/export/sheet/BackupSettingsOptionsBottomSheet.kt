@@ -9,6 +9,7 @@ import com.maubis.scarlet.base.export.activity.ImportNoteActivity
 import com.maubis.scarlet.base.export.support.PermissionUtils
 import com.maubis.scarlet.base.security.controller.PinLockController.isPinCodeEnabled
 import com.maubis.scarlet.base.security.sheets.openUnlockSheet
+import com.maubis.scarlet.base.security.sheets.openVerifySheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
 import com.maubis.scarlet.base.support.sheets.openSheet
@@ -91,6 +92,7 @@ class BackupSettingsOptionsBottomSheet : LithoOptionBottomSheet() {
       openSheet(activity, ExportNotesBottomSheet())
       return
     }
+
     openUnlockSheet(
       activity = activity as ThemedActivity,
       onUnlockSuccess = { openSheet(activity, ExportNotesBottomSheet()) },

@@ -1,6 +1,7 @@
 package com.maubis.scarlet.base.config
 
 import android.app.Application
+import androidx.biometric.BiometricManager
 import com.evernote.android.job.JobManager
 import com.facebook.soloader.SoLoader
 import com.github.bijoysingh.starter.prefs.Store
@@ -22,6 +23,8 @@ abstract class ApplicationBase : Application() {
 
     // Preferences
     sAppPreferences = VersionedStore.get(this, "USER_PREFERENCES", 1)
+
+    sBiometricManager = BiometricManager.from(this)
 
     sDateFormat = DateFormatUtils(this)
     SoLoader.init(this, false)
@@ -53,6 +56,7 @@ abstract class ApplicationBase : Application() {
 
     lateinit var sAppTheme: ThemeManager
     lateinit var sAppTypeface: TypefaceController
+    lateinit var sBiometricManager: BiometricManager
 
     var folderSync: FolderRemoteDatabase? = null
   }

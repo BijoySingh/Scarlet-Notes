@@ -121,10 +121,16 @@
   <string name="security_option_lock_app_details" translatable="false">Use PIN to unlock the whole application</string>
   <string name="security_option_ask_pin_always" translatable="false">Always ask for PIN</string>
   <string name="security_option_ask_pin_always_details" translatable="false">Enter PIN for all notes, even if previously entered</string>
-  <string name="security_option_fingerprint_enabled">Unlock with Fingerprint</string>
-  <string name="security_option_fingerprint_enabled_subtitle">The notes will unlock with the fingerprint</string>
-  <string name="security_option_fingerprint_disabled">Fingerprint disabled</string>
-  <string name="security_option_fingerprint_disabled_subtitle">The notes will not use a fingerprint</string>
+  <string name="security_option_biometrics_enabled" translatable="false">Unlock with Biometrics</string>
+  <string name="security_option_biometrics_enabled_subtitle" translatable="false">Allow unlock with a fingerprint or other biometrics</string>
+  <string name="security_option_biometrics_disabled" translatable="false">Biometrics disabled</string>
+  <string name="security_option_biometrics_disabled_subtitle" translatable="false">Do not allow unlock with a fingerprint or other biometrics</string>
+
+  <string name="biometric_prompt_unlock_note" translatable="false">Unlock Note</string>
+  <string name="biometric_prompt_unlock_note_details" translatable="false">Use device fingerprint or biometrics to unlock the note and access.</string>
+
+  <string name="biometric_prompt_unlock_app" translatable="false">Unlock App</string>
+  <string name="biometric_prompt_unlock_app_details" translatable="false">Use device fingerprint or biometrics to unlock the app and access all notes.</string>
 
   <string name="security_sheet_enter_new_pin_title">Enter new PIN</string>
   <string name="security_sheet_enter_pin_to_unlock_title">Enter PIN to unlock</string>
@@ -478,7 +484,7 @@
 
   <!-- Start: App Lock Activity -->
   <string name="app_lock_title" translatable="false">Unlock App</string>
-  <string name="app_lock_details" translatable="false">Enter 4 digit PIN or use fingerprint to unlock</string>
+  <string name="app_lock_details" translatable="false">Enter 4 digit PIN or use biometrics to unlock</string>
   <string name="app_lock_details_no_fingerprint" translatable="false">Enter 4 digit PIN to unlock</string>
   <!-- End: App Lock Activity -->
 

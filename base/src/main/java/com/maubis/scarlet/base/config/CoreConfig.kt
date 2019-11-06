@@ -1,8 +1,6 @@
 package com.maubis.scarlet.base.config
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
-import com.github.ajalt.reprint.core.Reprint
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher
@@ -18,11 +16,7 @@ import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
 
-abstract class CoreConfig(context: Context) {
-
-  init {
-    Reprint.initialize(context)
-  }
+abstract class CoreConfig {
 
   abstract fun database(): AppDatabase
 
