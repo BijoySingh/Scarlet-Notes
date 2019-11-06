@@ -3,14 +3,14 @@ package com.maubis.scarlet.base
 import android.content.BroadcastReceiver
 import android.content.res.Configuration
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.View.GONE
 import android.widget.GridLayout.VERTICAL
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewBuilder
@@ -131,7 +131,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     }
   }
 
-  override fun onConfigurationChanged(configuration: Configuration?) {
+  override fun onConfigurationChanged(configuration: Configuration) {
     super.onConfigurationChanged(configuration)
     startActivity(MainActivityActions.NIL.intent(this))
     finish()

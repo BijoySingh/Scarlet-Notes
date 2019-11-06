@@ -5,9 +5,8 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialogFragment
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.facebook.litho.Column
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
@@ -17,6 +16,7 @@ import com.facebook.litho.widget.Text
 import com.facebook.litho.widget.VerticalScroll
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
@@ -75,7 +75,11 @@ abstract class LithoBottomSheet : BottomSheetDialogFragment() {
     reset(localContext, dialog)
   }
 
-  fun reset(localContext: Context, dialog: Dialog) {
+  fun reset(localContext: Context, dialog: Dialog?) {
+    if (dialog === null) {
+      return
+    }
+
     val componentContext = ComponentContext(localContext)
     getFullComponent(componentContext, dialog, getComponent(componentContext, dialog))
   }

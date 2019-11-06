@@ -1,9 +1,9 @@
 package com.maubis.scarlet.base.note.selection.activity
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.github.bijoysingh.starter.util.IntentUtils
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.database.room.note.Note

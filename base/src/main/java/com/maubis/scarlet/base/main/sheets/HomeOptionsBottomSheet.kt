@@ -253,7 +253,9 @@ class HomeOptionsBottomSheet : LithoBottomSheet() {
         isEditable = true,
         isSelected = false,
         editListener = {
-          CreateOrEditTagBottomSheet.openSheet(activity, tag) { _, _ -> reset(activity, dialog) }
+          CreateOrEditTagBottomSheet.openSheet(activity, tag) { _, _ ->
+            reset(activity, dialog)
+          }
         }
       ))
     }

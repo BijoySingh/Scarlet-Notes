@@ -2,9 +2,9 @@ package com.bijoysingh.quicknote.firebase.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.bijoysingh.quicknote.R
 import com.bijoysingh.quicknote.Scarlet.Companion.firebase
 import com.bijoysingh.quicknote.Scarlet.Companion.gDrive

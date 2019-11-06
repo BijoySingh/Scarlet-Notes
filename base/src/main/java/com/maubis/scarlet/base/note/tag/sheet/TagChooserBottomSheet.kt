@@ -2,7 +2,7 @@ package com.maubis.scarlet.base.note.tag.sheet
 
 import android.app.Dialog
 import android.content.DialogInterface
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.facebook.litho.Column
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
@@ -83,7 +83,7 @@ class TagChooserBottomSheet : LithoBottomSheet() {
     return options
   }
 
-  override fun onDismiss(dialog: DialogInterface?) {
+  override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
     dismissListener()
   }

@@ -4,13 +4,12 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.graphics.drawable.Icon
-import android.net.Uri
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.LinearLayout.VERTICAL
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
@@ -93,17 +92,18 @@ class NoteOptionsBottomSheet() : GridBottomSheetBase() {
 
   private fun setupCardViews(note: Note) {
     val activity = context as ThemedActivity
-    if (activity !is INoteOptionSheetActivity) {
+    val dlg = dialog
+    if (activity !is INoteOptionSheetActivity || dlg === null) {
       return
     }
 
-    val groupCardLayout = dialog.findViewById<LinearLayout>(R.id.group_card_layout)
-    val tagCardLayout = dialog.findViewById<View>(R.id.tag_card_layout)
-    val selectCardLayout = dialog.findViewById<View>(R.id.select_notes_layout)
+    val groupCardLayout = dlg.findViewById<LinearLayout>(R.id.group_card_layout)
+    val tagCardLayout = dlg.findViewById<View>(R.id.tag_card_layout)
+    val selectCardLayout = dlg.findViewById<View>(R.id.select_notes_layout)
 
-    val selectCardTitle = dialog.findViewById<TextView>(R.id.select_notes_title)
+    val selectCardTitle = dlg.findViewById<TextView>(R.id.select_notes_title)
     selectCardTitle.typeface = sAppTypeface.title()
-    val selectCardSubtitle = dialog.findViewById<TextView>(R.id.select_notes_subtitle)
+    val selectCardSubtitle = dlg.findViewById<TextView>(R.id.select_notes_subtitle)
     selectCardSubtitle.typeface = sAppTypeface.title()
 
     val tags = tagCardLayout.findViewById<TextView>(R.id.tags_content)

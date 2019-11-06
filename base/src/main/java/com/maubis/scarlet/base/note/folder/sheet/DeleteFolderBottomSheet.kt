@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.note.folder.sheet
 
 import android.app.Dialog
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig

@@ -3,7 +3,7 @@ package com.maubis.scarlet.base.support.ui
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.github.bijoysingh.starter.util.DimensionManager
 import com.maubis.markdown.MarkdownConfig
 import com.maubis.scarlet.base.R
@@ -23,7 +23,6 @@ var sThemeIsAutomatic: Boolean
 var sThemeDarkenNoteColor: Boolean
   get() = sAppPreferences.get("darken_note_color", false)
   set(value) = sAppPreferences.put("darken_note_color", value)
-
 
 fun setThemeFromSystem(context: Context) {
   val configuration = context.resources.configuration

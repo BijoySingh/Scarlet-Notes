@@ -1,8 +1,8 @@
 package com.maubis.scarlet.base.support.utils
 
 import android.os.SystemClock
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.github.bijoysingh.starter.util.DateFormatter
 import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance

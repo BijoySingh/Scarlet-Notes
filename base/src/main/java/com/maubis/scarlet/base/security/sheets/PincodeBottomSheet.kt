@@ -59,10 +59,10 @@ data class PincodeSheetData(
   val isRemoveButtonEnabled: Boolean = false,
   val onRemoveButtonClick: () -> Unit = {})
 
+private var sPincodeSheetPasscodeEntered = ""
+
 @LayoutSpec
 object PincodeSheetViewSpec {
-
-  private var passcodeEntered = ""
 
   @OnCreateLayout
   fun onCreate(
@@ -106,7 +106,7 @@ object PincodeSheetViewSpec {
           .marginDip(YogaEdge.VERTICAL, 8f)
           .imeOptions(EditorInfo.IME_ACTION_DONE)
           .editorActionListener(getEditorActionListener({
-                                                          data.onActionClicked(passcodeEntered)
+                                                          data.onActionClicked(sPincodeSheetPasscodeEntered)
                                                           dismiss()
                                                           true
                                                         }))
@@ -155,7 +155,7 @@ object PincodeSheetViewSpec {
 
   @OnEvent(TextChangedEvent::class)
   fun onTextChangeListener(context: ComponentContext, @FromEvent text: String) {
-    passcodeEntered = text
+    sPincodeSheetPasscodeEntered = text
   }
 
   @OnEvent(ClickEvent::class)
@@ -163,8 +163,8 @@ object PincodeSheetViewSpec {
     context: ComponentContext,
     @Prop data: PincodeSheetData,
     @Prop dismiss: () -> Unit) {
-    data.onActionClicked(passcodeEntered)
-    passcodeEntered = ""
+    data.onActionClicked(sPincodeSheetPasscodeEntered)
+    sPincodeSheetPasscodeEntered = ""
     dismiss()
   }
 
@@ -174,7 +174,7 @@ object PincodeSheetViewSpec {
     @Prop data: PincodeSheetData,
     @Prop dismiss: () -> Unit) {
     data.onRemoveButtonClick()
-    passcodeEntered = ""
+    sPincodeSheetPasscodeEntered = ""
     dismiss()
   }
 }
@@ -186,6 +186,7 @@ class PincodeBottomSheet : LithoBottomSheet() {
     onSuccess = {})
 
   override fun getComponent(componentContext: ComponentContext, dialog: Dialog): Component {
+    sPincodeSheetPasscodeEntered = ""
     return PincodeSheetView.create(componentContext)
       .data(data)
       .dismiss { dismiss() }

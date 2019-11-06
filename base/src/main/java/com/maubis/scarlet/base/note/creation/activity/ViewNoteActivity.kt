@@ -5,8 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
 import com.github.bijoysingh.starter.recyclerview.MultiRecyclerViewControllerItem
@@ -54,7 +54,6 @@ import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
 import com.maubis.scarlet.base.support.ui.SecuredActivity
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.ThemeColorType
-import com.maubis.scarlet.base.support.ui.sThemeDarkenNoteColor
 import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.widget.getPendingIntentWithStack
 import kotlinx.android.synthetic.main.activity_advanced_note.*
@@ -361,11 +360,8 @@ open class ViewAdvancedNoteActivity : SecuredActivity(), INoteOptionSheetActivit
     notifyToolbarColor()
   }
 
-  public override fun onSaveInstanceState(savedInstanceState: Bundle?) {
+  override fun onSaveInstanceState(savedInstanceState: Bundle) {
     super.onSaveInstanceState(savedInstanceState)
-    if (savedInstanceState == null) {
-      return
-    }
     savedInstanceState.putInt(INTENT_KEY_NOTE_ID, if (note == null || note!!.uid == null) 0 else note!!.uid)
   }
 

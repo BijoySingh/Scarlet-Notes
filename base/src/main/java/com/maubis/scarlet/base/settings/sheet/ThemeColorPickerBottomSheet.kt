@@ -2,7 +2,7 @@ package com.maubis.scarlet.base.settings.sheet
 
 import android.app.Dialog
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.facebook.litho.ClickEvent
 import com.facebook.litho.Column
 import com.facebook.litho.Component

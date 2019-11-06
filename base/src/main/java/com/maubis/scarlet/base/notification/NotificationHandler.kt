@@ -8,10 +8,10 @@ import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
-import android.support.v4.app.NotificationCompat
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.RemoteViews
+import androidx.core.app.NotificationCompat
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R

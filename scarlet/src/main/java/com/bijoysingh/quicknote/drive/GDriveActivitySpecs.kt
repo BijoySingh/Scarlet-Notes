@@ -22,7 +22,6 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.specs.color
 import com.maubis.scarlet.base.support.ui.LithoCircleDrawable
 import com.maubis.scarlet.base.support.ui.ThemeColorType
@@ -103,24 +102,28 @@ object GDriveContentViewSpec {
           .textSizeRes(R.dimen.font_size_xxlarge)
           .textRes(R.string.google_drive_page_login_title)
           .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
-          .typeface(sAppTypeface.heading()))
+          .typeface(sAppTypeface.heading())
+          .build())
       .child(
         Text.create(context)
           .textSizeRes(R.dimen.font_size_large)
           .textColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
           .textRes(R.string.google_drive_page_login_details)
-          .typeface(sAppTypeface.title()))
+          .typeface(sAppTypeface.title())
+          .build())
       .child(
         GDriveIconView.create(context)
           .marginDip(YogaEdge.TOP, 24f)
           .bgColorRes(R.color.dark_low_hint_text)
           .iconRes(R.drawable.ic_action_lock)
-          .titleRes(R.string.google_drive_page_login_lock_details))
+          .titleRes(R.string.google_drive_page_login_lock_details)
+          .build())
       .child(
         GDriveIconView.create(context)
           .bgColorRes(R.color.dark_low_hint_text)
           .iconRes(R.drawable.ic_image_gallery)
-          .titleRes(R.string.google_drive_page_photo_details))
+          .titleRes(R.string.google_drive_page_photo_details)
+          .build())
       .build()
   }
 }

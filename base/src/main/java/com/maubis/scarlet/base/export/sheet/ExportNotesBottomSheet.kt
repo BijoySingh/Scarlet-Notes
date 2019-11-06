@@ -3,7 +3,7 @@ package com.maubis.scarlet.base.export.sheet
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Typeface
-import android.support.v4.content.FileProvider
+import androidx.core.content.FileProvider
 import com.facebook.litho.Column
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext

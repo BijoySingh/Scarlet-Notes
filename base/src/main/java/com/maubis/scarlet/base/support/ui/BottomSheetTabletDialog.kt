@@ -2,8 +2,8 @@ package com.maubis.scarlet.base.support.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialog
 import android.view.ViewGroup
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.maubis.scarlet.base.R
 
 class BottomSheetTabletDialog(context: Context, theme: Int) : BottomSheetDialog(context, theme) {

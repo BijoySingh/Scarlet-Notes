@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.note.selection.sheet
 
 import android.app.Dialog
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.facebook.litho.ComponentContext
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils

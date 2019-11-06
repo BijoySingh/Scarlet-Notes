@@ -3,7 +3,7 @@ package com.maubis.scarlet.base.note.folder.sheet
 import android.app.Dialog
 import android.content.DialogInterface
 import android.graphics.Typeface
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.facebook.litho.ClickEvent
 import com.facebook.litho.Column
 import com.facebook.litho.Component
@@ -164,7 +164,7 @@ abstract class FolderChooserBottomSheetBase : LithoBottomSheet() {
     return options
   }
 
-  override fun onDismiss(dialog: DialogInterface?) {
+  override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
     dismissListener()
   }

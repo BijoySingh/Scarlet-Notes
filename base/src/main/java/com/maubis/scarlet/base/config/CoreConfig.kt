@@ -1,14 +1,9 @@
 package com.maubis.scarlet.base.config
 
 import android.content.Context
-import android.graphics.Typeface
-import android.support.v4.content.res.ResourcesCompat
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.github.ajalt.reprint.core.Reprint
-import com.maubis.markdown.MarkdownConfig.Companion.config
-import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher
 import com.maubis.scarlet.base.core.folder.IFolderActor

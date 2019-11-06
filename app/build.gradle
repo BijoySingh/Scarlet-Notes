@@ -14,7 +14,7 @@ android {
         targetSdkVersion 28
         versionCode 151
         versionName '7.4.0'
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {

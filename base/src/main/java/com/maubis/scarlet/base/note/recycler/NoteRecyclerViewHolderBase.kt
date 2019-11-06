@@ -3,12 +3,12 @@ package com.maubis.scarlet.base.note.recycler
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
-import android.support.v7.widget.CardView
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R

@@ -2,9 +2,9 @@ package com.maubis.scarlet.base.note.folder
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.R
@@ -42,7 +42,7 @@ class FolderRecyclerHolder(context: Context, view: View) : RecyclerViewHolder<Re
     timestamp.setTextColor(item.timestampColor)
     timestamp.typeface = sAppTypeface.text()
 
-    val folderColor = when(sThemeDarkenNoteColor) {
+    val folderColor = when (sThemeDarkenNoteColor) {
       true -> darkOrDarkerColor(item.folder.color)
       false -> item.folder.color
     }

@@ -3,9 +3,9 @@ package com.maubis.scarlet.base.support.ui
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.settings.sheet.sInternalEnableFullScreen
 import com.maubis.scarlet.base.support.utils.OsVersionUtils
@@ -34,9 +34,9 @@ abstract class ThemedActivity : AppCompatActivity(), IThemeChangeListener {
     fullScreenView()
   }
 
-  override fun onConfigurationChanged(configuration: Configuration?) {
+  override fun onConfigurationChanged(configuration: Configuration) {
     super.onConfigurationChanged(configuration)
-    if (configuration === null || !sThemeIsAutomatic) {
+    if (!sThemeIsAutomatic) {
       return
     }
     setThemeFromSystem(this)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/root_layout"
   android:layout_width="match_parent"
@@ -23,7 +23,7 @@
       android:textSize="@dimen/font_size_large"
       android:visibility="gone" />
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
       style="@style/BottomSheetCardView"
       app:cardBackgroundColor="@color/material_blue_800">
 
@@ -33,7 +33,7 @@
         android:padding="@dimen/spacing_small">
 
       </GridLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
       android:id="@+id/group_card_layout"
@@ -41,7 +41,7 @@
       android:layout_height="wrap_content"
       android:orientation="horizontal">
 
-      <android.support.v7.widget.CardView
+      <androidx.cardview.widget.CardView
         android:id="@+id/tag_card_layout"
         style="@style/BottomSheetCardView"
         android:layout_width="0dp"
@@ -100,9 +100,9 @@
             android:textSize="@dimen/font_size_large"
             android:visibility="gone" />
         </RelativeLayout>
-      </android.support.v7.widget.CardView>
+      </androidx.cardview.widget.CardView>
 
-      <android.support.v7.widget.CardView
+      <androidx.cardview.widget.CardView
         android:id="@+id/select_notes_layout"
         style="@style/BottomSheetCardView"
         android:layout_width="0dp"
@@ -148,10 +148,10 @@
             android:src="@drawable/ic_action_select" />
 
         </RelativeLayout>
-      </android.support.v7.widget.CardView>
+      </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
       style="@style/BottomSheetCardView"
       app:cardBackgroundColor="@color/material_red_800">
 
@@ -159,9 +159,9 @@
         android:id="@+id/note_properties"
         style="@style/NoteOptionGridLayout"
         android:padding="@dimen/spacing_small" />
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
       android:id="@+id/expanding_note_actions"
       style="@style/BottomSheetCardView"
       app:cardBackgroundColor="@color/material_cyan_900">
@@ -180,6 +180,6 @@
 
       </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
   </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

@@ -5,8 +5,8 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
-import android.support.v4.app.TaskStackBuilder
 import android.widget.RemoteViews
+import androidx.core.app.TaskStackBuilder
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.note.creation.activity.CreateListNoteActivity

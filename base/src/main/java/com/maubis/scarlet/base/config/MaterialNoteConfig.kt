@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.config
 
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.maubis.scarlet.base.config.auth.IAuthenticator
 import com.maubis.scarlet.base.config.auth.NullAuthenticator
 import com.maubis.scarlet.base.config.remote.IRemoteConfigFetcher

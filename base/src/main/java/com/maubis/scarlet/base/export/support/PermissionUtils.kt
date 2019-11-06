@@ -1,7 +1,7 @@
 package com.maubis.scarlet.base.export.support
 
 import android.Manifest
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.github.bijoysingh.starter.util.PermissionManager
 
 class PermissionUtils() {
