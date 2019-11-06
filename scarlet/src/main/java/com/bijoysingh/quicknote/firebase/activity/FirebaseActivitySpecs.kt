@@ -21,7 +21,6 @@ import com.facebook.yoga.YogaEdge
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.support.specs.color
 import com.maubis.scarlet.base.support.ui.LithoCircleDrawable
 import com.maubis.scarlet.base.support.ui.ThemeColorType

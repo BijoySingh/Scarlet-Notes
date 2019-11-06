@@ -90,7 +90,6 @@ object TypefacePickerItemSpec {
       data.alpha(0.4f)
     }
 
-
     val row = Row.create(context)
       .widthPercent(100f)
       .alignItems(YogaAlign.CENTER)

@@ -1,10 +1,8 @@
 package com.maubis.scarlet.base.main.specs
 
-import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.graphics.Color
 import android.graphics.drawable.Icon
-import android.net.Uri
 import android.text.Layout
 import com.facebook.litho.ClickEvent
 import com.facebook.litho.Column

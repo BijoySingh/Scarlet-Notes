@@ -4,7 +4,6 @@ import android.content.Context
 import com.google.gson.Gson
 import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
-import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteMeta
 import com.maubis.scarlet.base.core.note.Reminder
@@ -12,7 +11,6 @@ import com.maubis.scarlet.base.core.note.getReminder
 import com.maubis.scarlet.base.note.reminders.ReminderJob
 import com.maubis.scarlet.base.note.saveWithoutSync
 import com.maubis.scarlet.base.settings.sheet.sUIUseGridView
-import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
 import com.maubis.scarlet.base.support.ui.Theme
 import com.maubis.scarlet.base.support.ui.sThemeLabel
 import com.maubis.scarlet.base.support.utils.getLastUsedAppVersionCode

@@ -26,7 +26,6 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.instance
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
-import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.export.data.getExportableNoteMeta
 import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
