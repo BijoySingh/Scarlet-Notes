@@ -88,10 +88,6 @@
   <string name="security_option_title">安全选项</string>
   <string name="security_option_set_pin_code">密码</string>
   <string name="security_option_set_pin_code_subtitle">设置一个 4 位的 PIN 码来锁定笔记</string>
-  <string name="security_option_fingerprint_enabled">指纹解锁</string>
-  <string name="security_option_fingerprint_enabled_subtitle">笔记可通过指纹解锁</string>
-  <string name="security_option_fingerprint_disabled">指纹解锁已禁用</string>
-  <string name="security_option_fingerprint_disabled_subtitle">笔记不能通过指纹解锁</string>
 
   <string name="security_sheet_enter_new_pin_title">输入新的 PIN 码</string>
   <string name="security_sheet_enter_pin_to_unlock_title">输入 PIN 码解锁</string>
@@ -377,5 +373,65 @@
   <string name="firebase_removal_page_whats_next_details">下一步</string>
   <string name="firebase_removal_page_remove_details">我们会先从Firebase中删除您的备注并注销。</string>
   <string name="firebase_removal_page_next_details">然后，您可以登录Google云端硬盘，我们会将您的数据与图片一起上传。</string>
+
+  <!-- Added for 7.5.0 -->
+  <string name="folder_delete_option_sheet_title">删除选项</string>
+  <string name="folder_delete_option_sheet_remove_folder">移除笔记本</string>
+  <string name="folder_delete_option_sheet_remove_folder_details">仅删除笔记本。便笺移到文件夹之外。</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content">删除笔记本和笔记</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details">删除笔记本。所有笔记都会移至回收站或被删除。</string>
+  <string name="folder_delete_option_sheet_remove_folder_content">删除笔记</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details">保留笔记本，但所有笔记都移至废纸or或被删除。</string>
+  <string name="home_option_typeface">自定义字体</string>
+  <string name="home_option_typeface_subtitle">选择应用程序并记下字体</string>
+  <string name="typeface_page_title">选择字体集</string>
+  <string name="typeface_page_description">注意：字体可能不适用于所有语言</string>
+  <string name="typeface_title_app_default">应用默认</string>
+  <string name="typeface_title_os_default">设备默认</string>
+  <string name="typeface_title_monospace">单声道</string>
+  <string name="typeface_title_serif">衬线</string>
+  <string name="app_lock_title">解锁应用</string>
+  <string name="app_lock_details">输入4位数的PIN或使用生物识别技术解锁</string>
+  <string name="app_lock_details_no_fingerprint">输入4位数PIN码以解锁</string>
+  <string name="theme_use_system_theme">使用系统主题</string>
+  <string name="theme_use_system_theme_details">使用系统中的浅色或深色主题</string>
+  <string name="theme_dark_notes">黑暗笔记</string>
+  <string name="theme_dark_notes_details">自动使笔记和文件夹的颜色变暗</string>
+  <string name="pending_backup_local_state">本地</string>
+  <string name="pending_backup_remote_state">远程</string>
+  <string name="pending_backup_state_unavailable">不可用</string>
+  <string name="pending_backup_state_created">已建立</string>
+  <string name="pending_backup_state_deleted">已删除</string>
+  <string name="pending_backup_state_updated">更新</string>
+  <string name="widget_option_background_color">小部件背景</string>
+  <string name="widget_option_background_color_details">选择多笔记小部件的背景颜色</string>
+  <string name="widget_option_show_toolbar">显示动作工具栏</string>
+  <string name="widget_option_show_toolbar_details">多笔记小部件显示工具栏</string>
+  <string name="editor_option_skip_view_note">跳过笔记查看器</string>
+  <string name="editor_option_skip_view_note_details">跳过便笺查看器，直接跳至便笺编辑器</string>
+  <string name="delete_sheet_delete_selected_notes_permanently">您要永久删除这些注释吗？</string>
+  <string name="install_pro_sheet_latest_updates">更快的更新和请求。</string>
+  <string name="install_pro_sheet_app_lock">应用锁定和单次解锁。</string>
+  <string name="install_pro_sheet_app_themes">更多应用主题。</string>
+  <string name="install_pro_sheet_font_size">注意字体和字体大小。</string>
+  <string name="install_pro_sheet_viewer_bg">查看器背景色。</string>
+  <string name="install_pro_sheet_widget_options">更多小部件选项。</string>
+  <string name="install_pro_sheet_note_options">更多注释动作。</string>
+  <string name="sort_sheet_note_color">音符颜色</string>
+  <string name="sort_sheet_note_tags">注意标签</string>
+  <string name="security_option_lock_app">启用应用锁定</string>
+  <string name="security_option_lock_app_details">使用PIN解锁整个应用程序</string>
+  <string name="security_option_ask_pin_always">总是要求输入PIN</string>
+  <string name="security_option_ask_pin_always_details">输入所有便笺的PIN码，即使之前已输入</string>
+  <string name="security_option_biometrics_enabled">用生物识别技术解锁</string>
+  <string name="security_option_biometrics_enabled_subtitle">允许使用指纹或其他生物特征进行解锁</string>
+  <string name="security_option_biometrics_disabled">生物识别功能已禁用</string>
+  <string name="security_option_biometrics_disabled_subtitle">禁止使用指纹或其他生物特征进行解锁</string>
+  <string name="biometric_prompt_unlock_note">解锁笔记</string>
+  <string name="biometric_prompt_unlock_note_details">使用设备的指纹或生物识别技术来解锁笔记和访问权限。</string>
+  <string name="biometric_prompt_unlock_app">解锁应用</string>
+  <string name="biometric_prompt_unlock_app_details">使用设备指纹或生物识别技术解锁应用程序并访问所有笔记。</string>
+  <string name="pin_to_launcher">启动器快捷方式</string>
+  <string name="share_images">分享照片</string>
 
 </resources>

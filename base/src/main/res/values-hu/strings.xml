@@ -113,10 +113,6 @@
   <string name="security_option_title">Biztonsági beállítások</string>
   <string name="security_option_set_pin_code">Jelkód</string>
   <string name="security_option_set_pin_code_subtitle">Állítson be egy 4 számjegyes PIN-kódot a jegyzetek zárolásához</string>
-  <string name="security_option_fingerprint_enabled">Feloldás ujjlenyomattal</string>
-  <string name="security_option_fingerprint_enabled_subtitle">A jegyzetek ujjlenyomat megadására kerülnek feloldásra</string>
-  <string name="security_option_fingerprint_disabled">Ujjlenyomat letiltva</string>
-  <string name="security_option_fingerprint_disabled_subtitle">A jegyzetek nem használnak ujjlenyomatot</string>
 
   <string name="security_sheet_enter_new_pin_title">Adja meg a PIN-kódot</string>
   <string name="security_sheet_enter_pin_to_unlock_title">A feloldáshoz adja meg a PIN-kódot</string>
@@ -411,5 +407,66 @@
   <string name="firebase_removal_page_whats_next_details">Következő lépések</string>
   <string name="firebase_removal_page_remove_details">Először töröljük a jegyzeteit a Firebase-ből és kijelentkeztetjük.</string>
   <string name="firebase_removal_page_next_details">Aztán bejelentkezhet a Google Drive-ba, és feltöltjük az adatait a képeivel együtt.</string>
+
+  <!-- Added for 7.5.0 -->
+  <string name="folder_delete_option_sheet_title">Távolítsa el az Opciókat</string>
+  <string name="folder_delete_option_sheet_remove_folder">Távolítsa el a Notebookot</string>
+  <string name="folder_delete_option_sheet_remove_folder_details">Csak a Notebook-ot távolítsa el. A jegyzetek a mappán kívülre kerülnek.</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content">Távolítsa el a Notebookot és a Jegyzeteket</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details">Távolítsa el a Notebookot. Minden jegyzet a kukába kerül vagy törlődik.</string>
+  <string name="folder_delete_option_sheet_remove_folder_content">Távolítsa el a megjegyzéseket</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details">Tartsa a Notebookot, de az összes jegyzet a kukába kerül, vagy törlődik.</string>
+  <string name="home_option_typeface">Testreszabhatja a betűkészleteket</string>
+  <string name="home_option_typeface_subtitle">Válassza ki az alkalmazást és a jegyzet betűkészleteit</string>
+  <string name="typeface_page_title">Válasszon egy betűkészletet</string>
+  <string name="typeface_page_description">Megjegyzés: Lehet, hogy a betűtípusok nem működnek megfelelően minden nyelven</string>
+  <string name="typeface_title_app_default">Alapértelmezett alkalmazás</string>
+  <string name="typeface_title_os_default">Device Default</string>
+  <string name="typeface_title_monospace">Monó</string>
+  <string name="typeface_title_serif">betűtalp</string>
+  <string name="app_lock_title">Unlock App</string>
+  <string name="app_lock_details">Írja be a 4 számjegyű PIN kódot, vagy használja a biometrikus adatokat a feloldáshoz</string>
+  <string name="app_lock_details_no_fingerprint">Írja be a 4 számjegyű PIN kódot a feloldáshoz</string>
+  <string name="theme_use_system_theme">Használja a Rendszer témát</string>
+  <string name="theme_use_system_theme_details">Használja a rendszer világos vagy sötét témáját</string>
+  <string name="theme_dark_notes">Sötét jegyzetek</string>
+  <string name="theme_dark_notes_details">A jegyzet és a mappa színei automatikusan elsötétülnek</string>
+  <string name="pending_backup_local_state">Helyi</string>
+  <string name="pending_backup_remote_state">Távoli</string>
+  <string name="pending_backup_state_unavailable">Nem érhető el</string>
+  <string name="pending_backup_state_created">Alkotó</string>
+  <string name="pending_backup_state_deleted">törölve</string>
+  <string name="pending_backup_state_updated">korszerűsített</string>
+  <string name="widget_option_background_color">Widget háttér</string>
+  <string name="widget_option_background_color_details">Válassza ki a multi-notes widget háttérszínét</string>
+  <string name="widget_option_show_toolbar">Mutassa a Művelet eszköztárat</string>
+  <string name="widget_option_show_toolbar_details">A többjegyű widget az eszköztárat mutatja</string>
+  <string name="editor_option_skip_view_note">A Megjegyzés néző átugrása</string>
+  <string name="editor_option_skip_view_note_details">Átugorja a jegyzetnézegetőt, és ugorjon közvetlenül a jegyzetszerkesztőre</string>
+  <string name="delete_sheet_delete_selected_notes_permanently">Véglegesen törli ezeket a megjegyzéseket?</string>
+  <string name="install_pro_sheet_latest_updates">Gyorsabb frissítések és kérések.</string>
+  <string name="install_pro_sheet_app_lock">App Lock és Single Unlock.</string>
+  <string name="install_pro_sheet_app_themes">Több App témák.</string>
+  <string name="install_pro_sheet_font_size">Megjegyzés: Betűtípusok és betűméret.</string>
+  <string name="install_pro_sheet_viewer_bg">Viewer háttér színét.</string>
+  <string name="install_pro_sheet_widget_options">További widget-beállítások.</string>
+  <string name="install_pro_sheet_note_options">További megjegyzésműveletek.</string>
+  <string name="sort_sheet_note_color">Megjegyzés színe</string>
+  <string name="sort_sheet_note_tags">Megjegyzés címkék</string>
+  <string name="import_export_locked_details">A lezárt jegyzeteket is készítsen biztonsági másolatot</string>
+  <string name="security_option_lock_app">Engedélyezze az alkalmazászárat</string>
+  <string name="security_option_lock_app_details">Használja a PIN-kódot a teljes alkalmazás feloldásához</string>
+  <string name="security_option_ask_pin_always">Mindig kérjen PIN-kódot</string>
+  <string name="security_option_ask_pin_always_details">Írja be az összes jegyzet PIN-kódját, még akkor is, ha korábban megadta</string>
+  <string name="security_option_biometrics_enabled">Nyisd ki a biometrikus adatokkal</string>
+  <string name="security_option_biometrics_enabled_subtitle">Engedélyezze az ujjlenyomat vagy más biometrikus elem feloldását</string>
+  <string name="security_option_biometrics_disabled">A biometria le van tiltva</string>
+  <string name="security_option_biometrics_disabled_subtitle">Ne engedje meg ujjlenyomat vagy más biometrikus elem feloldását</string>
+  <string name="biometric_prompt_unlock_note">Megjegyzés feloldása</string>
+  <string name="biometric_prompt_unlock_note_details">Használja az eszköz ujjlenyomatát vagy biometrikus adatait a jegyzet feloldásához és a hozzáféréshez.</string>
+  <string name="biometric_prompt_unlock_app">Unlock App</string>
+  <string name="biometric_prompt_unlock_app_details">Használjon eszköz ujjlenyomatát vagy biometrikus adatait az alkalmazás feloldásához és az összes jegyzet eléréséhez.</string>
+  <string name="pin_to_launcher">Launcher parancsikon</string>
+  <string name="share_images">Fotók megosztása</string>
 
 </resources>

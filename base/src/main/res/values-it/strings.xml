@@ -49,10 +49,6 @@
   <string name="security_option_title">Opzioni di sicurezza</string>
   <string name="security_option_set_pin_code">Codice di accesso</string>
   <string name="security_option_set_pin_code_subtitle">Imposta un PIN di 4 cifre per proteggere le note</string>
-  <string name="security_option_fingerprint_enabled">Sblocca con l\'impronta</string>
-  <string name="security_option_fingerprint_enabled_subtitle">Le note verranno sbloccate con l\'impronta digitale</string>
-  <string name="security_option_fingerprint_disabled">Impronta digitale disabilitata</string>
-  <string name="security_option_fingerprint_disabled_subtitle">Le note non potranno essere sbloccate con l\'impronta digitale</string>
   <string name="security_sheet_enter_new_pin_title">Inserisci il nuovo PIN</string>
   <string name="security_sheet_enter_pin_to_unlock_title">Inserisci il PIN per sbloccare</string>
   <string name="security_sheet_enter_current_pin_title">Inserisci il PIN corrente</string>
@@ -370,5 +366,39 @@
   <string name="widget_option_background_color_details">Scegli il colore di sfondo per il widget multi-nota</string>
   <string name="widget_option_show_toolbar">Mostra barra delle azioni</string>
   <string name="widget_option_show_toolbar_details">Mostra la barra delle azioni nel widget multi-nota</string>
+
+  <!-- Added for 7.5.0 -->
+  <string name="folder_delete_option_sheet_title">Rimuovi opzioni</string>
+  <string name="folder_delete_option_sheet_remove_folder">Rimuovi notebook</string>
+  <string name="folder_delete_option_sheet_remove_folder_details">Rimuovi solo Notebook. Le note si spostano fuori dalla cartella.</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content">Rimuovi Notebook e Note</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details">Rimuovi notebook. Tutte le note vengono spostate nel cestino o vengono eliminate.</string>
+  <string name="folder_delete_option_sheet_remove_folder_content">Rimuovi note</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details">Conserva Notebook ma tutte le note vengono spostate nel cestino o vengono eliminate.</string>
+  <string name="home_option_typeface">Personalizza i caratteri</string>
+  <string name="home_option_typeface_subtitle">Seleziona l\'app e osserva i caratteri</string>
+  <string name="typeface_page_title">Seleziona un set di caratteri</string>
+  <string name="typeface_page_description">Nota: i caratteri potrebbero non funzionare correttamente con tutte le lingue</string>
+  <string name="typeface_title_app_default">App predefinita</string>
+  <string name="typeface_title_os_default">Dispositivo predefinito</string>
+  <string name="typeface_title_monospace">Mono</string>
+  <string name="typeface_title_serif">Serif</string>
+  <string name="theme_use_system_theme">Usa tema di sistema</string>
+  <string name="theme_use_system_theme_details">Usa il tema chiaro o scuro del sistema</string>
+  <string name="theme_dark_notes">Note scure</string>
+  <string name="theme_dark_notes_details">Scurisce automaticamente i colori delle note e delle cartelle</string>
+  <string name="editor_option_skip_view_note">Ignora visualizzatore note</string>
+  <string name="editor_option_skip_view_note_details">Salta il visualizzatore delle note e passa direttamente all\'editor delle note</string>
+  <string name="install_pro_sheet_note_options">Altre azioni note.</string>
+  <string name="security_option_biometrics_enabled">Sblocca con biometria</string>
+  <string name="security_option_biometrics_enabled_subtitle">Consenti lo sblocco con un\'impronta digitale o altri dati biometrici</string>
+  <string name="security_option_biometrics_disabled">Biometria disabilitata</string>
+  <string name="security_option_biometrics_disabled_subtitle">Non consentire lo sblocco con un\'impronta digitale o altri dati biometrici</string>
+  <string name="biometric_prompt_unlock_note">Nota di sblocco</string>
+  <string name="biometric_prompt_unlock_note_details">Usa l\'impronta digitale del dispositivo o la biometria per sbloccare la nota e accedere.</string>
+  <string name="biometric_prompt_unlock_app">Sblocca app</string>
+  <string name="biometric_prompt_unlock_app_details">Usa l\'impronta digitale del dispositivo o la biometria per sbloccare l\'app e accedere a tutte le note.</string>
+  <string name="pin_to_launcher">Collegamento di avvio</string>
+  <string name="share_images">Condividere foto</string>
 
 </resources>

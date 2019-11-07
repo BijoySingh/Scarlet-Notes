@@ -108,10 +108,6 @@
   <string name="security_option_title">Параметры безопасности</string>
   <string name="security_option_set_pin_code">Код прохода</string>
   <string name="security_option_set_pin_code_subtitle">Установите 4-значный PIN-код для блокировки заметок</string>
-  <string name="security_option_fingerprint_enabled">Разблокировка с помощью отпечатка пальца</string>
-  <string name="security_option_fingerprint_enabled_subtitle">Заметки будут разблокированы с помощью отпечатка пальца</string>
-  <string name="security_option_fingerprint_disabled">Отключить отпечаток пальца</string>
-  <string name="security_option_fingerprint_disabled_subtitle">Примечания не будут использовать отпечаток</string>
 
   <string name="security_sheet_enter_new_pin_title">Введите новый PIN-код</string>
   <string name="security_sheet_enter_pin_to_unlock_title">Введите PIN-код для разблокировки</string>
@@ -383,5 +379,65 @@
   <string name="firebase_removal_page_remove_details">Сначала мы удалим ваши заметки из Firebase и выйдем из системы.</string>
   <string name="firebase_removal_page_next_details">Затем вы можете войти в Google Drive, и мы загрузим ваши данные вместе с изображениями.</string>
 
+
+  <!-- Added for 7.5.0 -->
+  <string name="folder_delete_option_sheet_title">Удалить параметры</string>
+  <string name="folder_delete_option_sheet_remove_folder">Удалить блокнот</string>
+  <string name="folder_delete_option_sheet_remove_folder_details">Только удалить ноутбук. Заметки перемещаются за пределы папки.</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content">Удалить блокнот и заметки</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details">Удалить блокнот. Все заметки перемещаются в корзину или удаляются.</string>
+  <string name="folder_delete_option_sheet_remove_folder_content">Удалить заметки</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details">Сохраните записную книжку, но все заметки перемещаются в корзину или удаляются.</string>
+  <string name="home_option_typeface">Настроить шрифты</string>
+  <string name="home_option_typeface_subtitle">Выберите приложение и отметьте шрифты</string>
+  <string name="typeface_page_title">Выберите набор шрифтов</string>
+  <string name="typeface_page_description">Примечание. Шрифты могут работать некорректно со всеми языками.</string>
+  <string name="typeface_title_app_default">Приложение по умолчанию</string>
+  <string name="typeface_title_os_default">Устройство по умолчанию</string>
+  <string name="typeface_title_monospace">Моно</string>
+  <string name="typeface_title_serif">засечка</string>
+  <string name="app_lock_title">Разблокировать приложение</string>
+  <string name="app_lock_details">Введите 4-значный PIN-код или используйте биометрические данные, чтобы разблокировать</string>
+  <string name="app_lock_details_no_fingerprint">Введите 4-значный PIN-код, чтобы разблокировать</string>
+  <string name="theme_use_system_theme">Использовать тему системы</string>
+  <string name="theme_use_system_theme_details">Используйте светлую или темную тему из системы</string>
+  <string name="theme_dark_notes">Темные ноты</string>
+  <string name="theme_dark_notes_details">Автоматически затемнять цвета заметок и папок</string>
+  <string name="pending_backup_local_state">Местный</string>
+  <string name="pending_backup_remote_state">Удаленный</string>
+  <string name="pending_backup_state_unavailable">Недоступен</string>
+  <string name="pending_backup_state_created">созданный</string>
+  <string name="pending_backup_state_deleted">Исключен</string>
+  <string name="pending_backup_state_updated">обновленный</string>
+  <string name="widget_option_background_color">Фон виджета</string>
+  <string name="widget_option_background_color_details">Выберите цвет фона для виджета с несколькими заметками</string>
+  <string name="widget_option_show_toolbar">Показать панель действий</string>
+  <string name="widget_option_show_toolbar_details">Мульти-заметка виджет показывает панель инструментов</string>
+  <string name="editor_option_skip_view_note">Skip Note Viewer</string>
+  <string name="editor_option_skip_view_note_details">Пропустить средство просмотра заметок и перейти непосредственно к редактору заметок</string>
+  <string name="delete_sheet_delete_selected_notes_permanently">Вы хотите навсегда удалить эти заметки?</string>
+  <string name="install_pro_sheet_latest_updates">Более быстрые обновления и запросы.</string>
+  <string name="install_pro_sheet_app_lock">Блокировка приложений и одиночная разблокировка.</string>
+  <string name="install_pro_sheet_app_themes">Больше тем приложения.</string>
+  <string name="install_pro_sheet_font_size">Обратите внимание, шрифты и размеры шрифтов.</string>
+  <string name="install_pro_sheet_viewer_bg">Цвет фона просмотра.</string>
+  <string name="install_pro_sheet_widget_options">Дополнительные параметры виджета.</string>
+  <string name="install_pro_sheet_note_options">Больше действий Примечание.</string>
+  <string name="sort_sheet_note_color">Примечание цвет</string>
+  <string name="sort_sheet_note_tags">Примечание теги</string>
+  <string name="security_option_lock_app">Включить блокировку приложения</string>
+  <string name="security_option_lock_app_details">Используйте PIN-код, чтобы разблокировать все приложение</string>
+  <string name="security_option_ask_pin_always">Всегда спрашивай ПИН</string>
+  <string name="security_option_ask_pin_always_details">Введите PIN-код для всех заметок, даже если они были введены ранее</string>
+  <string name="security_option_biometrics_enabled">Разблокировать с помощью биометрии</string>
+  <string name="security_option_biometrics_enabled_subtitle">Разрешить разблокировку с помощью отпечатка пальца или другой биометрии</string>
+  <string name="security_option_biometrics_disabled">Биометрия отключена</string>
+  <string name="security_option_biometrics_disabled_subtitle">Не позволяйте разблокировать с помощью отпечатка пальца или других биометрических данных</string>
+  <string name="biometric_prompt_unlock_note">Разблокировать примечание</string>
+  <string name="biometric_prompt_unlock_note_details">Используйте отпечаток пальца устройства или биометрические данные, чтобы разблокировать заметку и получить доступ.</string>
+  <string name="biometric_prompt_unlock_app">Разблокировать приложение</string>
+  <string name="biometric_prompt_unlock_app_details">Используйте отпечаток пальца устройства или биометрические данные, чтобы разблокировать приложение и получить доступ ко всем заметкам.</string>
+  <string name="pin_to_launcher">Ярлык запуска</string>
+  <string name="share_images">Обмениваться фотографиями</string>
 
 </resources>

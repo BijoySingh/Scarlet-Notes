@@ -108,10 +108,6 @@
   <string name="security_option_title">خيارات الأمان</string>
   <string name="security_option_set_pin_code">رمز عبور</string>
   <string name="security_option_set_pin_code_subtitle">تعيين رقم التعريف الشخصي المكون من 4 أرقام لقفل الملاحظات</string>
-  <string name="security_option_fingerprint_enabled">فتح مع بصمات الأصابع</string>
-  <string name="security_option_fingerprint_enabled_subtitle">سيتم فتح الملاحظات مع بصمات الأصابع</string>
-  <string name="security_option_fingerprint_disabled">تم تعطيل بصمة الإصبع</string>
-  <string name="security_option_fingerprint_disabled_subtitle">لن تستخدم الملاحظات بصمة الإصبع</string>
 
   <string name="security_sheet_enter_new_pin_title">أدخل رقم تعريف شخصي جديد</string>
   <string name="security_sheet_enter_pin_to_unlock_title">أدخل رقم التعريف الشخصي لإلغاء التأمين</string>
@@ -382,5 +378,65 @@
   <string name="firebase_removal_page_whats_next_details">الخطوات التالية</string>
   <string name="firebase_removal_page_remove_details">سنقوم أولاً بحذف الملاحظات الخاصة بك من Firebase وتسجيل الخروج.</string>
   <string name="firebase_removal_page_next_details">يمكنك بعد ذلك تسجيل الدخول إلى Google Drive ، وسنقوم بتحميل بياناتك مع الصور.</string>
+
+  <!-- Added for 7.5.0 -->
+  <string name="folder_delete_option_sheet_title">إزالة الخيارات</string>
+  <string name="folder_delete_option_sheet_remove_folder">إزالة دفتر الملاحظات</string>
+  <string name="folder_delete_option_sheet_remove_folder_details">فقط إزالة دفتر الملاحظات. نقل الملاحظات خارج المجلد.</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content">إزالة دفتر الملاحظات والملاحظات</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details">إزالة دفتر الملاحظات. جميع الملاحظات تتحرك إلى سلة المهملات أو يتم حذفها.</string>
+  <string name="folder_delete_option_sheet_remove_folder_content">إزالة الملاحظات</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details">حافظ على دفتر الملاحظات ولكن جميع الملاحظات تنتقل إلى المهملات أو يتم حذفها.</string>
+  <string name="home_option_typeface">تخصيص الخطوط</string>
+  <string name="home_option_typeface_subtitle">حدد التطبيق ولاحظ الخطوط</string>
+  <string name="typeface_page_title">حدد مجموعة الخط</string>
+  <string name="typeface_page_description">ملاحظة: قد لا تعمل الخطوط بشكل صحيح مع جميع اللغات</string>
+  <string name="typeface_title_app_default">التطبيق الافتراضي</string>
+  <string name="typeface_title_os_default">الجهاز الافتراضي</string>
+  <string name="typeface_title_monospace">مونو</string>
+  <string name="typeface_title_serif">شريف</string>
+  <string name="app_lock_title">فتح التطبيق</string>
+  <string name="app_lock_details">أدخل رقم التعريف الشخصي المكون من 4 أرقام أو استخدم القياسات الحيوية لإلغاء القفل</string>
+  <string name="app_lock_details_no_fingerprint">أدخل رقم التعريف الشخصي المكون من 4 أرقام لإلغاء القفل</string>
+  <string name="theme_use_system_theme">استخدام سمة النظام</string>
+  <string name="theme_use_system_theme_details">استخدم النسق الخفيف أو المظلم من النظام</string>
+  <string name="theme_dark_notes">ملاحظات الظلام</string>
+  <string name="theme_dark_notes_details">تغميق تلقائيا ملاحظة وألوان المجلد</string>
+  <string name="pending_backup_local_state">محلي</string>
+  <string name="pending_backup_remote_state">التحكم عن بعد</string>
+  <string name="pending_backup_state_unavailable">غير متوفره</string>
+  <string name="pending_backup_state_created">خلقت</string>
+  <string name="pending_backup_state_deleted">تم الحذف</string>
+  <string name="pending_backup_state_updated">محدث</string>
+  <string name="widget_option_background_color">خلفية القطعة</string>
+  <string name="widget_option_background_color_details">اختر لون الخلفية لعنصر واجهة تعامل الملاحظات المتعددة</string>
+  <string name="widget_option_show_toolbar">إظهار شريط أدوات العمل</string>
+  <string name="widget_option_show_toolbar_details">القطعة متعددة الملاحظات يظهر شريط الأدوات</string>
+  <string name="editor_option_skip_view_note">تخطي ملاحظة العارض</string>
+  <string name="editor_option_skip_view_note_details">تخطي عارض الملاحظة والانتقال إلى محرر الملاحظات مباشرة</string>
+  <string name="delete_sheet_delete_selected_notes_permanently">هل ترغب في حذف هذه الملاحظات نهائيًا؟</string>
+  <string name="install_pro_sheet_latest_updates">أسرع التحديثات والطلبات.</string>
+  <string name="install_pro_sheet_app_lock">قفل التطبيق وفتح واحد.</string>
+  <string name="install_pro_sheet_app_themes">المزيد من سمات التطبيق.</string>
+  <string name="install_pro_sheet_font_size">ملاحظة الخطوط وأحجام الخطوط.</string>
+  <string name="install_pro_sheet_viewer_bg">لون خلفية المشاهد.</string>
+  <string name="install_pro_sheet_widget_options">المزيد من خيارات القطعة.</string>
+  <string name="install_pro_sheet_note_options">المزيد من الإجراءات ملاحظة.</string>
+  <string name="sort_sheet_note_color">ملاحظة اللون</string>
+  <string name="sort_sheet_note_tags">ملاحظة العلامات</string>
+  <string name="security_option_lock_app">تمكين قفل التطبيق</string>
+  <string name="security_option_lock_app_details">استخدم رقم التعريف الشخصي لإلغاء قفل التطبيق بالكامل</string>
+  <string name="security_option_ask_pin_always">اسأل دائمًا عن رقم التعريف الشخصي</string>
+  <string name="security_option_ask_pin_always_details">أدخل رقم التعريف الشخصي لجميع الملاحظات ، حتى إذا تم إدخالها مسبقًا</string>
+  <string name="security_option_biometrics_enabled">فتح مع القياسات الحيوية</string>
+  <string name="security_option_biometrics_enabled_subtitle">السماح بفتح مع بصمة أو القياسات الحيوية الأخرى</string>
+  <string name="security_option_biometrics_disabled">القياسات الحيوية معطلة</string>
+  <string name="security_option_biometrics_disabled_subtitle">لا تسمح بفتح مع بصمة أو القياسات الحيوية الأخرى</string>
+  <string name="biometric_prompt_unlock_note">فتح ملاحظة</string>
+  <string name="biometric_prompt_unlock_note_details">استخدم بصمة الجهاز أو القياسات الحيوية لفتح الملاحظة والوصول إليها.</string>
+  <string name="biometric_prompt_unlock_app">فتح التطبيق</string>
+  <string name="biometric_prompt_unlock_app_details">استخدم بصمة الجهاز أو القياسات الحيوية لإلغاء قفل التطبيق والوصول إلى جميع الملاحظات.</string>
+  <string name="pin_to_launcher">قاذفة اختصار</string>
+  <string name="share_images">مشاركة الصور</string>
 
 </resources>

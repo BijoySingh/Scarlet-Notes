@@ -32,6 +32,7 @@ class WhatsNewBottomSheet : LithoBottomSheet() {
       GridSectionOptionItem(R.drawable.icon_languages, R.string.whats_new_sheet_more_languages, {}),
       if (!OsVersionUtils.canAddLauncherShortcuts()) null else GridSectionOptionItem(
         R.drawable.icon_shortcut, R.string.whats_new_sheet_launcher_shortcuts, {}),
+      GridSectionOptionItem(R.drawable.ic_option_fingerprint, R.string.whats_new_sheet_biometric_improvements, {}),
       GridSectionOptionItem(R.drawable.ic_markdown_logo, R.string.whats_new_sheet_markdown_improvements, {}),
       GridSectionOptionItem(R.drawable.icon_widget, R.string.whats_new_sheet_ui_improvements, {}))
 
