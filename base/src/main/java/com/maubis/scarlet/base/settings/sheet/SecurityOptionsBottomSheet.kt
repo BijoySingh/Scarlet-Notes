@@ -5,10 +5,9 @@ import com.facebook.litho.ComponentContext
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.main.sheets.InstallProUpsellBottomSheet
-import com.maubis.scarlet.base.security.activity.PinLockMode
-import com.maubis.scarlet.base.security.activity.openUnlockActivity
 import com.maubis.scarlet.base.security.controller.PinLockController.isPinCodeEnabled
 import com.maubis.scarlet.base.security.controller.deviceHasBiometricEnabled
+import com.maubis.scarlet.base.security.sheets.openCreateSheet
 import com.maubis.scarlet.base.security.sheets.openVerifySheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem

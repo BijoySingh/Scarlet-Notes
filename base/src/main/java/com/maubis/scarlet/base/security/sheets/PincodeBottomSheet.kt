@@ -21,6 +21,7 @@ import com.facebook.litho.widget.Text
 import com.facebook.litho.widget.TextChangedEvent
 import com.facebook.yoga.YogaAlign
 import com.facebook.yoga.YogaEdge
+import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
@@ -29,6 +30,7 @@ import com.maubis.scarlet.base.security.controller.PinLockController.isPinCodeEn
 import com.maubis.scarlet.base.security.controller.PinLockController.needsLockCheck
 import com.maubis.scarlet.base.security.controller.isBiometricEnabled
 import com.maubis.scarlet.base.security.controller.showBiometricPrompt
+import com.maubis.scarlet.base.settings.sheet.sSecurityAppLockEnabled
 import com.maubis.scarlet.base.settings.sheet.sSecurityCode
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.getLithoBottomSheetTitle

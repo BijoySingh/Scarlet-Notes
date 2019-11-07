@@ -5,12 +5,11 @@ import android.os.Bundle
 import com.facebook.litho.Component
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
-import com.github.ajalt.reprint.core.AuthenticationFailureReason
-import com.github.ajalt.reprint.core.AuthenticationListener
-import com.github.ajalt.reprint.core.Reprint
+import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.security.controller.PinLockController
+import com.maubis.scarlet.base.security.controller.isBiometricEnabled
+import com.maubis.scarlet.base.security.controller.showBiometricPrompt
 import com.maubis.scarlet.base.settings.sheet.sSecurityCode
-import com.maubis.scarlet.base.settings.sheet.sSecurityFingerprintEnabled
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 
 class AppLockActivity : ThemedActivity() {
@@ -31,7 +30,7 @@ class AppLockActivity : ThemedActivity() {
 
   private fun setView() {
     component = AppLockView.create(componentContext)
-      .fingerprintEnabled(Reprint.hasFingerprintRegistered() && sSecurityFingerprintEnabled)
+      .fingerprintEnabled(isBiometricEnabled())
       .onTextChange { text ->
         passCodeEntered = text
       }
@@ -48,26 +47,14 @@ class AppLockActivity : ThemedActivity() {
   override fun onResume() {
     super.onResume()
     passCodeEntered = ""
-    Reprint.authenticate(object : AuthenticationListener {
-      override fun onSuccess(moduleTag: Int) {
+
+    if (isBiometricEnabled()) {
+      showBiometricPrompt(this, onSuccess = {
         PinLockController.notifyPinVerified()
         finish()
-      }
+      }, title = R.string.biometric_prompt_unlock_app, subtitle = R.string.biometric_prompt_unlock_app_details)
+    }
 
-      override fun onFailure(
-        failureReason: AuthenticationFailureReason?,
-        fatal: Boolean,
-        errorMessage: CharSequence?,
-        moduleTag: Int,
-        errorCode: Int) {
-        // Ignore
-      }
-    })
-  }
-
-  override fun onPause() {
-    super.onPause()
-    Reprint.cancelAuthentication()
   }
 
   override fun notifyThemeChange() {

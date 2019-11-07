@@ -87,8 +87,6 @@ class OpenSourceBottomSheet : LithoBottomSheet() {
       "**Kotlin Support**\n" +
       "- `'org.jetbrains.kotlin'`\n" +
       "- `'org.jetbrains.kotlinx'`\n\n" +
-      "**Reprint: Fingerprint Library**\n" +
-      "- `'com.github.ajalt.reprint'`\n\n" +
       "**Google Firebase Support Library**\n" +
       "- `'com.google.firebase:firebase-auth'`\n" +
       "- `'com.google.firebase:firebase-database'`\n\n" +
