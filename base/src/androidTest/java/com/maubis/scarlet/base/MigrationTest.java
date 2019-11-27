@@ -20,6 +20,7 @@ import java.io.IOException;
 import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_10_11;
 import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_11_12;
 import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_12_13;
+import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_13_14;
 import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_2_3;
 import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_3_4;
 import static com.maubis.scarlet.base.database.room.AppDatabase.MIGRATION_4_5;
@@ -236,12 +237,53 @@ public class MigrationTest {
   }
 
   @Test
+  public void migrate11To13() throws IOException {
+    SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 11);
+    database.execSQL(NOTE_V9);
+    database.close();
+
+    database = helper.runMigrationsAndValidate(TEST_DB, 13, false, MIGRATION_11_12, MIGRATION_12_13);
+    validate(database, select(TABLE_NOTE, 1));
+
+    database.execSQL(FOLDER_V12);
+    validate(database, select(TABLE_FOLDER, 1));
+  }
+
+  @Test
   public void migrate12To13() throws IOException {
     SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 12);
     database.execSQL(NOTE_V9);
     database.close();
 
     database = helper.runMigrationsAndValidate(TEST_DB, 13, false, MIGRATION_12_13);
+    validate(database, select(TABLE_NOTE, 1));
+
+    database.execSQL(NOTE_V10);
+    validate(database, select(TABLE_NOTE, 2));
+    Assert.assertTrue(getValue(database, select(TABLE_NOTE, 2, "folder")).equals("32123124"));
+  }
+
+  @Test
+  public void migrate11To14() throws IOException {
+    SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 11);
+    database.execSQL(NOTE_V9);
+    database.close();
+
+    database = helper.runMigrationsAndValidate(TEST_DB, 14, false, MIGRATION_11_12, MIGRATION_12_13, MIGRATION_13_14);
+    validate(database, select(TABLE_NOTE, 1));
+
+    database.execSQL(NOTE_V10);
+    validate(database, select(TABLE_NOTE, 2));
+    Assert.assertTrue(getValue(database, select(TABLE_NOTE, 2, "folder")).equals("32123124"));
+  }
+
+  @Test
+  public void migrate13To14() throws IOException {
+    SupportSQLiteDatabase database = helper.createDatabase(TEST_DB, 13);
+    database.execSQL(NOTE_V9);
+    database.close();
+
+    database = helper.runMigrationsAndValidate(TEST_DB, 14, false, MIGRATION_13_14);
     validate(database, select(TABLE_NOTE, 1));
 
     database.execSQL(NOTE_V10);

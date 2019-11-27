@@ -19,3 +19,15 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-dontwarn android.text.StaticLayout
+-dontwarn android.view.DisplayList
+-dontwarn android.view.RenderNode
+-dontwarn android.view.DisplayListCanvas
+-dontwarn android.view.HardwareCanvas
+
+-dontwarn com.facebook.fbui.**
+-dontwarn com.facebook.litho.**
+
+-dontwarn  com.github.bijoysingh.starter.server.**
+-keep class com.facebook.yoga.** { *; }
