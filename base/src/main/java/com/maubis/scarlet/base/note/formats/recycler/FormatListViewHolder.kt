@@ -60,5 +60,8 @@ class FormatListViewHolder(context: Context, view: View) : FormatTextViewHolder(
         activity.setFormatChecked(data, data.formatType != FormatType.CHECKLIST_CHECKED)
       }
     }
+    icon.setOnClickListener {
+      activity.setFormatChecked(data, data.formatType != FormatType.CHECKLIST_CHECKED)
+    }
   }
 }

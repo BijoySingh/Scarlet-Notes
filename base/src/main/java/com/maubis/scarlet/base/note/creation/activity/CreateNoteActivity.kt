@@ -400,10 +400,6 @@ open class CreateNoteActivity : ViewAdvancedNoteActivity() {
     maybeUpdateNoteWithoutSync()
   }
 
-  override fun setFormatChecked(format: Format, checked: Boolean) {
-    // do nothing
-  }
-
   override fun createOrChangeToNextFormat(format: Format) {
     val position = getFormatIndex(format)
     if (position == -1) {
