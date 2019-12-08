@@ -225,7 +225,7 @@ fun openCreateSheet(
         onCreateSuccess()
 
         if (activity is MainActivity) {
-          activity.setupData()
+          activity.loadData()
         }
       },
       onActionClicked = { password: String ->

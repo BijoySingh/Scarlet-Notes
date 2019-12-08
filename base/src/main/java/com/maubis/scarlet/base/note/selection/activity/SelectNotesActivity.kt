@@ -7,7 +7,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.main.HomeNavigationState
+import com.maubis.scarlet.base.main.HomeNavigationMode
 import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.note.selection.sheet.SelectedNotesOptionsBottomSheet
 import com.maubis.scarlet.base.support.sheets.openSheet
@@ -143,12 +143,12 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     return builder.toString()
   }
 
-  fun getMode(navigationState: String): Array<String> {
-    return when (navigationState) {
-      HomeNavigationState.FAVOURITE.name -> arrayOf(HomeNavigationState.FAVOURITE.name)
-      HomeNavigationState.ARCHIVED.name -> arrayOf(HomeNavigationState.ARCHIVED.name)
-      HomeNavigationState.TRASH.name -> arrayOf(HomeNavigationState.TRASH.name)
-      else -> arrayOf(HomeNavigationState.DEFAULT.name, HomeNavigationState.FAVOURITE.name)
+  fun getMode(navigationMode: String): Array<String> {
+    return when (navigationMode) {
+      HomeNavigationMode.FAVOURITE.name -> arrayOf(HomeNavigationMode.FAVOURITE.name)
+      HomeNavigationMode.ARCHIVED.name -> arrayOf(HomeNavigationMode.ARCHIVED.name)
+      HomeNavigationMode.TRASH.name -> arrayOf(HomeNavigationMode.TRASH.name)
+      else -> arrayOf(HomeNavigationMode.DEFAULT.name, HomeNavigationMode.FAVOURITE.name)
     }
   }
 }

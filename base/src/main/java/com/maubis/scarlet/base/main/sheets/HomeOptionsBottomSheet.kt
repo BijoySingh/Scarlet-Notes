@@ -21,10 +21,9 @@ import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.core.tag.TagBuilder
 import com.maubis.scarlet.base.database.room.tag.Tag
-import com.maubis.scarlet.base.main.HomeNavigationState
+import com.maubis.scarlet.base.main.HomeNavigationMode
 import com.maubis.scarlet.base.note.tag.sheet.CreateOrEditTagBottomSheet
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
-import com.maubis.scarlet.base.support.SearchConfig
 import com.maubis.scarlet.base.support.sheets.LithoBottomSheet
 import com.maubis.scarlet.base.support.sheets.LithoLabelOptionsItem
 import com.maubis.scarlet.base.support.sheets.LithoOptionsItem
@@ -191,7 +190,7 @@ class HomeOptionsBottomSheet : LithoBottomSheet() {
       title = R.string.nav_home,
       icon = R.drawable.ic_home_white_48dp,
       listener = {
-        activity.onHomeClick()
+        activity.onModeChange(HomeNavigationMode.DEFAULT)
         dismiss()
       }
     ))
@@ -199,32 +198,32 @@ class HomeOptionsBottomSheet : LithoBottomSheet() {
       title = R.string.nav_favourites,
       icon = R.drawable.ic_favorite_white_48dp,
       listener = {
-        activity.onFavouritesClick();
-        dismiss();
+        activity.onModeChange(HomeNavigationMode.FAVOURITE)
+        dismiss()
       }
     ))
     options.add(LithoLabelOptionsItem(
       title = R.string.nav_archived,
       icon = R.drawable.ic_archive_white_48dp,
       listener = {
-        activity.onArchivedClick();
-        dismiss();
+        activity.onModeChange(HomeNavigationMode.ARCHIVED)
+        dismiss()
       }
     ))
     options.add(LithoLabelOptionsItem(
       title = R.string.nav_locked,
       icon = R.drawable.ic_action_lock,
       listener = {
-        activity.onLockedClick();
-        dismiss();
+        activity.onModeChange(HomeNavigationMode.LOCKED)
+        dismiss()
       }
     ))
     options.add(LithoLabelOptionsItem(
       title = R.string.nav_trash,
       icon = R.drawable.ic_delete_white_48dp,
       listener = {
-        activity.onTrashClick();
-        dismiss();
+        activity.onModeChange(HomeNavigationMode.TRASH)
+        dismiss()
       }
     ))
     options.add(LithoLabelOptionsItem(
@@ -232,7 +231,7 @@ class HomeOptionsBottomSheet : LithoBottomSheet() {
       icon = R.drawable.ic_action_settings,
       listener = {
         SettingsOptionsBottomSheet.openSheet(activity)
-        dismiss();
+        dismiss()
       }
     ))
     return options
@@ -246,7 +245,6 @@ class HomeOptionsBottomSheet : LithoBottomSheet() {
         tag = tag,
         usages = CoreConfig.notesDb.getNoteCountByTag(tag.uuid),
         listener = {
-          activity.config = SearchConfig(mode = HomeNavigationState.DEFAULT)
           activity.openTag(tag)
           dismiss()
         },

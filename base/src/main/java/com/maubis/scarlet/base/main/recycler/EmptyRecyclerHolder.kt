@@ -15,7 +15,7 @@ class EmptyRecyclerHolder(context: Context, itemView: View) : RecyclerViewHolder
     itemView.setOnClickListener {
       val newNoteIntent = CreateNoteActivity.getNewNoteIntent(
         context,
-        folder = (context as MainActivity).config.folders.firstOrNull()?.uuid ?: ""
+        folder = (context as MainActivity).state.currentFolder?.uuid ?: ""
       )
       context.startActivity(newNoteIntent)
     }

@@ -49,7 +49,7 @@ class TagsAndColorPickerViewHolder(
         val tagView = View.inflate(activity, R.layout.layout_flexbox_tag_item, null) as View
         val text = tagView.findViewById<TextView>(R.id.tag_text)
 
-        if (activity.config.tags.filter { it.uuid == tag.uuid }.isNotEmpty()) {
+        if (activity.state.tags.filter { it.uuid == tag.uuid }.isNotEmpty()) {
           text.setBackgroundResource(R.drawable.flexbox_selected_tag_item_bg)
           text.setTextColor(ContextCompat.getColor(activity, R.color.colorAccent))
         }
@@ -70,7 +70,7 @@ class TagsAndColorPickerViewHolder(
       .forEach {
         val color = it
         val colorView = ColorView(activity, R.layout.layout_color_small)
-        colorView.setColor(color, activity.config.colors.contains(color))
+        colorView.setColor(color, activity.state.colors.contains(color))
         colorView.setOnClickListener {
           onColorClick(color)
         }
