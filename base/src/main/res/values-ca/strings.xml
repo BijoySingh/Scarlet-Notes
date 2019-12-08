@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">Títol</string>
+  <string name="description">Contingut</string>
+  <string name="save">Desa</string>
+  <string name="share_using">Compartir utilitzant &#8230;</string>
+  <string name="main_no_notes">No hi ha notes</string>
+  <string name="main_no_notes_hint">Sembla que no has afegit cap nota. Fes clic per afegir-ne una.</string>
+  <string name="main_add_a_note">Agrega una nota&#8230;</string>
+  <string name="main_add_a_quick_note">Afegir una nota ràpida &#8230;</string>
+  <string name="edit_note">Editar nota</string>
+  <string name="open_in_popup">Obre en Popup</string>
+  <string name="delete_note">Eliminar nota</string>
+  <string name="copy_note">Copiar nota</string>
+  <string name="send_note">Enviar nota</string>
+  <string name="choose_action">Escollir Acción &#8230;</string>
+  <string name="format_hint_text">Afegir contingut &#8230;</string>
+  <string name="format_hint_heading">Afegir encabezado &#8230;</string>
+  <string name="format_hint_sub_heading">Afegir subtítol &#8230;</string>
+  <string name="format_hint_quote">Afegir text citat &#8230;</string>
+  <string name="format_hint_list">Afegir article&#8230;</string>
+  <string name="format_hint_code">Afegir codi &#8230;</string>
+  <string name="home_option_enable_list_view">Habilitar el disseny de la llista</string>
+  <string name="home_option_enable_list_view_subtitle">Mostrar notes en una única columna</string>
+  <string name="home_option_enable_grid_view">Habilitar disseny de quadrícula</string>
+  <string name="home_option_enable_grid_view_subtitle">Mostrar notes en una quadrícula escalonada</string>
+  <string name="markdown_sheet_markdown_support">Dona suport a Markdown</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Permitir format compatible amb markdown</string>
+  <string name="markdown_sheet_examples">Exemples</string>
+  <string name="home_option_markdown_settings">Configuració de reducció</string>
+  <string name="home_option_markdown_settings_subtitle">Com utilitzar el descompte en notes</string>
+
+  <string name="lock_note">Nota de bloqueig</string>
+  <string name="unlock_note">Desbloquejar nota</string>
+  <string name="home_option_security">Seguretat</string>
+  <string name="home_option_security_subtitle">Bloqueig de notes y opcions de seguretat</string>
+  <string name="security_option_title">Paràmetres de seguretat</string>
+  <string name="security_option_set_pin_code">Codi PIN</string>
+  <string name="security_option_set_pin_code_subtitle">Estableix un PIN de 4 dígits per bloquejar notes</string>
+  <string name="security_option_fingerprint_enabled">Desbloquejar amb emprenta digital</string>
+  <string name="security_option_fingerprint_enabled_subtitle">Les notes es desbloquejaran amb emprenta digital</string>
+  <string name="security_option_fingerprint_disabled">Emprenta digital deshabil·litada</string>
+  <string name="security_option_fingerprint_disabled_subtitle">Les notes no utilitzaran emprenta digital</string>
+  <string name="security_sheet_enter_new_pin_title">Introudeix nou PIN</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Introudeix PIN per desbloquejar</string>
+  <string name="security_sheet_enter_current_pin_title">Introdueix PIN actual</string>
+  <string name="security_sheet_enter_pin_hint">Introdueix el codi</string>
+  <string name="security_sheet_button_verify">Verificar</string>
+  <string name="security_sheet_button_unlock">Desbloquejar</string>
+  <string name="security_sheet_button_set">Conjunt</string>
+  <string name="security_sheet_button_remove">Retirar</string>
+
+  <string name="home_option_sheet_title">Paràmetres i configuracions</string>
+  <string name="home_option_export">Notes d'exportació</string>
+  <string name="home_option_export_subtitle">Exportar notes a l'enmagatzematge del dispositiu</string>
+  <string name="home_option_import">Notes d'importació</string>
+  <string name="home_option_import_subtitle">Importar notes a l'enmagatzematge del dispositiu</string>
+  <string name="home_option_about_page">Sobre nosaltres</string>
+  <string name="home_option_about_page_subtitle">Coneix més sobre l'aplicación i els desenvolupadors</string>
+  <string name="home_option_rate_and_review">Valorar i comentar</string>
+  <string name="home_option_rate_and_review_subtitle">Conta'ns quant t'agrada l'aplicació!</string>
+  <string name="permission_layout_give_permission">Donar permisos</string>
+  <string name="permission_layout_give_permission_details">Importar i exportar requereixen permisos d'enmagatzematge. Per favor, dona el permís quan el solicitis.</string>
+  <string name="permission_layout_give_permission_ok">Permetre</string>
+  <string name="import_export_import_file_title">Importar còpia de seguretat des d'arxiu</string>
+  <string name="import_export_import_file">Importar arxiu</string>
+  <string name="import_export_layout_exported">Exportat a arxiu</string>
+  <string name="import_export_layout_export_failed">Error d'exportació</string>
+  <string name="import_export_layout_exporting">Exportar a arxiu &#8230;</string>
+  <string name="import_export_layout_exporting_done">Fet</string>
+  <string name="import_export_layout_exporting_share">Compartir</string>
+  <string name="about_page_title">Sobre nosaltres i més</string>
+  <string name="about_page_rate">Valorar en Play Store</string>
+  <string name="about_page_contribute">Contribuir</string>
+  <string name="about_page_app_version">Versió de l'aplicació</string>
+  <string name="about_page_about_app">Sobre l'aplicació</string>
+  <string name="open_note_day_mode">Mode diürn</string>
+  <string name="search_notes">Notes de cerca &#8230;</string>
+  <string name="choose_note_color">Canvia el color</string>
+  <string name="tap_for_action_open_note_day_mode">Toca per veure la nota en mode diürn</string>
+  <string name="tap_for_action_color">Toca per canviar el color de fons de la nota</string>
+  <string name="home_option_enable_night_mode">Habilitar mode nocturn</string>
+  <string name="home_option_enable_night_mode_subtitle">Habilitar tema fosc com a predeterminat</string>
+  <string name="home_option_enable_day_mode">Habilitar mode diürn</string>
+  <string name="home_option_enable_day_mode_subtitle">Habilitar tema clar como a predeterminat</string>
+
+  <string name="open_note_night_mode">Mode nocturn</string>
+  <string name="delete_note_permanently">esborrar permanentment</string>
+  <string name="unarchive_note">Nota de desarxiu</string>
+  <string name="archive_note">Nota d'arxiu</string>
+  <string name="not_favourite_note">Marcar no favorit</string>
+  <string name="favourite_note">Marcar favorit</string>
+  <string name="restore_note">Restaurar nota</string>
+  <string name="trash_note">Moure a la paperera</string>
+  <string name="tap_for_action_open_note_night_mode">Toca per veure la nota en mode nocturn</string>
+  <string name="tap_for_action_edit">Toca per obrir una nota per a editar</string>
+  <string name="tap_for_action_copy">Toca per copiar el contingut de la nota en el portapapers</string>
+  <string name="tap_for_action_share">Toca per compartir contingut de notes en altres aplicacions</string>
+  <string name="tap_for_action_popup">Toca per obrir una nota en finestra emergent flotant</string>
+  <string name="tap_for_action_delete">Toca per a eliminar la nota</string>
+  <string name="tap_for_action_trash">Toca per moure la nota a la paperera</string>
+  <string name="tap_for_action_not_trash">Toca per moure la nota de la paperera</string>
+  <string name="tap_for_action_favourite">Toca per marcar la nota com a favorita</string>
+  <string name="tap_for_action_not_favourite">Toca per desmarcar la nota com a favorita</string>
+  <string name="tap_for_action_archive">Toca per arxivar la nota</string>
+  <string name="tap_for_action_not_archive">Toca para desarxivar la nota</string>
+  <string name="nav_sheet_title">Les teues notes &#8230;</string>
+  <string name="nav_home">Casa</string>
+  <string name="nav_home_details">Totes les teues notes normals i favorites</string>
+  <string name="nav_favourites">Favorites</string>
+  <string name="nav_favourites_details">Totes les teues notes favorites</string>
+  <string name="nav_archived">Arxivat</string>
+  <string name="nav_archived_details">Totes les teues notes arxivades</string>
+  <string name="nav_trash">Brossa</string>
+  <string name="nav_trash_details">Totes les teues notes a la brossa</string>
+  <string name="open_in_notification">Crear notificació</string>
+  <string name="notification_channel_label">Nota Notificacions</string>
+  <string name="nav_locked">Bloquejat</string>
+  <string name="nav_locked_details">Totes les teues notes bloquejades</string>
+  <string name="nav_tags">Etiquetes</string>
+  <string name="nav_tags_details">Totes les etiquetes de les teues notes</string>
+  <string name="tag_sheet_create_title">Afegir nova etiqueta &#8230;</string>
+  <string name="tag_sheet_edit_title">Editar etiqueta &#8230;</string>
+  <string name="tag_sheet_enter_tag_hint">Insertar etiqueta</string>
+  <string name="tag_sheet_new_tag_button">Crear nova etiqueta</string>
+  <string name="tag_sheet_choose_tag">Tria una etiqueta &#8230;</string>
+
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">Importar</string>
+  <string name="markdown_sheet_home_markdown_support">Retard en la llista de notes</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Habilitar formateig Markdown en la llista de notes</string>
+  <string name="home_option_fill_survey">Completar enquesta</string>
+  <string name="home_option_fill_survey_subtitle">Ajuda'ns a millorra l'aplicació diguent el que t'agrada</string>
+
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">Canviar etiquetes</string>
+  <string name="home_option_order_notes">comandes</string>
+  <string name="home_option_open_source_page">Projecte de codi obert</string>
+  <string name="home_option_open_source_page_subtitle">Apren més sobre el projecte de codi obert</string>
+  <string name="osp_page_libraries">Biblioteques</string>
+  <string name="osp_page_about_osp">Projecte de codi obert</string>
+  <string name="osp_page_title">Sobre el Projecte de Codi obert</string>
+  <string name="reminder_sheet_title">Recordatori de nota</string>
+  <string name="reminder_sheet_reminder_date">Data de recordatori</string>
+  <string name="reminder_sheet_reminder_time">Hora de recordatori</string>
+  <string name="reminder_sheet_repeat">Repetir freqüència</string>
+  <string name="sort_sheet_title">Ordenar notes per</string>
+  <string name="sort_sheet_newest_first">El més recente primer</string>
+  <string name="sort_sheet_oldest_first">El més antic primer</string>
+  <string name="sort_sheet_last_modified">Modificat més recentment</string>
+  <string name="reminder">Recordatori</string>
+  <string name="pin_note">Nota del Pin</string>
+  <string name="unpin_note">Desmarcar nota</string>
+
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">Interfície i experiència</string>
+  <string name="home_option_ui_experience_subtitle">Tria com es veu l'aplicació.</string>
+  <string name="home_option_note_settings">Preferències de notes</string>
+  <string name="home_option_note_settings_subtitle">Tria nota i altres configuracions.</string>
+  <string name="home_option_about">Sobre</string>
+  <string name="home_option_about_subtitle">Coneix més sobre nosaltres i la nostra aplicació.</string>
+  <string name="note_option_default_color">Color predeterminat de la nota</string>
+  <string name="note_option_default_color_subtitle">Tria el color predeterminat de les notas</string>
+  <string name="note_option_number_lines">Tinga en consideració el límit de línies</string>
+  <string name="home_option_backup_options">Còpia de seguretat i importació</string>
+  <string name="home_option_backup_options_subtitle">Còpia de seguretat, importació i exportació d'opcions de notes</string>
+
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">Instal·lar des de la tenda</string>
+  <string name="home_option_install_from_store_subtitle">Instal·lar l'aplicació de Google Store per a Cloud Sync</string>
+
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">Sense PIN establert</string>
+  <string name="no_pincode_sheet_details">No ha configurat el PIN. T'agradaria configurar-lo ara?</string>
+  <string name="no_pincode_sheet_not_now">Després</string>
+  <string name="no_pincode_sheet_dont_ask">Mai</string>
+  <string name="no_pincode_sheet_set_up">Preparar</string>
+
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">Duplicar</string>
+  <string name="select">Seleccionar</string>
+  <string name="delete_sheet_are_you_sure">Està segur?</string>
+  <string name="delete_sheet_delete_trash">Vol eliminar permanentment les notes a la paperera?</string>
+  <string name="delete_sheet_delete_note_permanently">Vol eliminar permanentment aquesta nota?</string>
+  <string name="delete_sheet_delete_trash_yes">Eliminar</string>
+  <string name="delete_sheet_delete_trash_no">Cancel·lar</string>
+  <string name="trash_will_delete_automatically">Les notes s'eliminaràn automàticament cada 7 dies</string>
+
+
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">Afegir la nota</string>
+  <string name="shortcut_add_list">Afegir llista de verificació</string>
+  <string name="format_sheet_option_title">Formateig de bloc</string>
+  <string name="format_label_heading">Títol</string>
+  <string name="format_label_sub_heading">Sub encapçalament/string>
+  <string name="format_label_text">Text</string>
+  <string name="format_label_quote">Citar</string>
+  <string name="format_label_code">Codi</string>
+  <string name="format_label_list">Checklist</string>
+  <string name="markdown_sheet_option_title">Format de marcat</string>
+  <string name="markdown_label_bold">Negreta</string>
+  <string name="markdown_label_italics">Cursiva</string>
+  <string name="markdown_label_underline">Subratllar</string>
+  <string name="markdown_label_strikethrough">Vaga</string>
+  <string name="markdown_label_list">Llista</string>
+  <string name="select_a_note_title">Selecciona una nota</string>
+  <string name="select_notes_title">Seleccionar notes</string>
+  <string name="nav_settings">Configuracions</string>
+  <string name="widget_no_valid_note">Nota esborrada o bloquejada</string>
+  <string name="note_option_font_size">Nota mida de font</string>
+  <string name="note_option_font_size_example">Tria la mida de font del text en la pàgina de notes. Pots vore una vista prèvia.</string>
+  <string name="note_option_font_size_subtitle">%d mida del text al visor de notes</string>
+
+
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">Què hi ha nou</string>
+  <string name="whats_new_subtitle">Saber què hi ha nou en les actualitzacions recents de l'aplicació</string>
+  <string name="whats_new_translate">Traduïr</string>
+  <string name="tutorial_create_a_new_note">Fes clic per afegir una nova nota</string>
+  <string name="tutorial_home_menu">Fes clic per vore les opcions d'inici</string>
+  <string name="tutorial_home_menu_subtitle">El menú d'inici té les teues notes favorites i d'arxiu, així com la configuració de l'aplicació. Pots trobar les teues etiquetes ací també.</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">Iniciar sessió en l'aplicació</string>
+  <string name="home_option_login_with_app_subtitle">Iniciar sessión per còpia de seguretat i sincronització en el núvol</string>
+  <string name="home_option_logout_of_app">Desconnectar</string>
+  <string name="home_option_logout_of_app_subtitle">Tancar sessió per detindre la còpia de seguretat en el núvol</string>
+  <string name="login_with_google">Inicia sessió amb Google</string>
+  <string name="logging_into_app">Signant &#8230;</string>
+  <string name="logged_into_app">Vosté ha iniciat sessió</string>
+  <string name="login_to_google_failed">Error d'inici de sessió de Google</string>
+  <string name="material_notes_privacy_policy">Política de privadesa</string>
+  <string name="material_notes_privacy_policy_subtitle">Política de privadesa de l'aplicació per al contingut</string>
+  <string name="install_pro_app">Instal·lar l'aplicación Pro</string>
+  <string name="why_install_pro">Per què instal·lar Pro</string>
+  <string name="why_install_pro_details">Suport al desenvolupador per als costos massius del servidor, per executar la sincronització en el núvol \n\n Obtén les característiques més recents primer \n\n Algunes característiques addicionals estaran disponibles només per usuaris Pro</string>
+  <string name="why_cloud">Per què habil·litar Cloud Sync</string>
+  <string name="why_cloud_details">Carregar i realitzar còpies de seguretat dels canvis al dispositiu \n\n Sincronitzar entre diversos dispositius i obtindre actualitzacions ràpides \n\n Desat de forma segura als servidors de Google Firebase</string>
+  <string name="welcome_page_hello">Hola,</string>
+  <string name="welcome_page_transfer_message">Material Notes ara és Scarlet!</string>
+  <string name="welcome_page_get_started">Comença</string>
+
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">Dupdo</string>
+  <string name="format_action_title">Bloquejar accions de text</string>
+  <string name="format_action_gallery">Galeria</string>
+  <string name="format_action_camera">Càmera</string>
+  <string name="voice_sheet_title">Nota de veu</string>
+  <string name="voice_action_title">Parla en veu alta</string>
+  <string name="image_delete_all_devices">Al eliminar aquest element, s'eliminarà la imatge de tots els dispositius.</string>
+  <string name="image_not_on_current_device">La imatge no está en aquest dispositiu</string>
+  <string name="image_cannot_be_loaded">La imatge no va poder ser carregada</string>
+  <string name="image_not_uploaded">Les imatges no estan sincronitzades</string>
+  <string name="image_not_uploaded_details">Les imatges no es sincronitzen en tots els dispositius. Les teues imatges no es mostraran en altres dispositius mentres visualitzes la nota!</string>
+  <string name="image_not_uploaded_i_understand">Entesos</string>
+  <string name="home_option_auto_export">Exportar automàticament</string>
+  <string name="home_option_auto_export_subtitle">Exportar notes con freqüència a un arxiu de suport</string>
+  <string name="format_label_image">Imatge</string>
+  <string name="format_hint_image">Fes clic per afegir o canviar la imatge</string>
+
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">Només una vegada</string>
+  <string name="reminder_frequency_daily">Diari</string>
+  <string name="reminder_frequency_custom">Personalitzat</string>
+  <string name="reminder_beta_label">Beta</string>
+  <string name="notification_reminder_channel_label">Recordatoris i alarmes</string>
+  <string name="about_page_description_os">%s és de codi obert i qualsevol està disposat a contribuïr per millorar-lo. Actualment està construït i mantingut per %s.</string>
+  <string name="about_page_description">%s és una aplicació per prendre notes. Permet l'entrada ràpida de text enriquit sense fer que l'experiència siga molt difícil d'utilitzar. Fa multitasca en un tres i no res!</string>
+  <string name="about_page_about_us_details">Hola, som una parella de dissenyador i programador, que va crear %s.
+     Ens esforzem per crear aplicacions publicitàries boniques, dissenyats amb cura, gratuïtes, sense publicitat o mínimes que siguen d'utilitat per a tothom!</string>
+  <string name="note_option_number_lines_subtitle">%d línies en la pantalla d'inici</string>
+  <string name="search_toolbar_text">Buscar %s&#8230;</string>
+  <string name="view_distraction_free">Sense distracció</string>
+  <string name="format_label_separator">Separador</string>
+
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">Tema de l'aplicació</string>
+  <string name="home_option_theme_color_subtitle">Selecciona el color de fons per al tema</string>
+  <string name="theme_page_title">Selecciona el tema de l'aplicació</string>
+  <string name="click_to_add_tags">Fes clic per afegir o canviar etiquetes</string>
+  <string name="show_more_actions">Mostrar més accions</string>
+  <string name="select_notes">Selecciona notes</string>
+  <string name="select_notes_details">Selecciona i realitza accions en vàries notes a la vegada.</string>
+  <string name="recent_to_trash_message">La nota va ser moguda a la brossa.</string>
+  <string name="recent_to_delete_message">La nota va ser esborrada</string>
+  <string name="recent_to_trash_undo">Desfés</string>
+  <string name="backup_note_disable">Desactivar còpia de seguretat</string>
+  <string name="backup_note_enable">Habil·litar còpia de seguretat</string>
+  <string name="folder_card_title">Quadern buit</string>
+  <string name="folder_card_title_single_note">1 nota</string>
+  <string name="folder_card_title_notes">%d Notes</string>
+  <string name="folder_sheet_add_note">Crear nou quadern</string>
+  <string name="folder_sheet_edit_note">Editar quadern</string>
+  <string name="folder_sheet_add_note_detail">Afegir quadern</string>
+  <string name="folder_option_add_to_notebook">Afegir al quadern</string>
+  <string name="folder_option_change_notebook">Modificar quadern</string>
+  <string name="recent_notes">Notes recents</string>
+  <string name="information_card_title">Informació</string>
+  <string name="information_new_app_update">Toca per instal·lar l'última versió de l'aplicació</string>
+  <string name="information_install_pro">Toca pet actualizar a Scarlet Pro</string>
+  <string name="home_option_install_pro_app">Instal·lar l'aplicació Pro</string>
+  <string name="home_option_install_pro_app_details">Instal·la l'aplicació Pro per desbloquejar funcions i donar suport al desenvolupador</string>
+  <string name="home_option_migrate_to_pro">Moure notes a Scarlet Pro</string>
+  <string name="home_option_migrate_to_pro_details">Moure totes les teues notes a l'aplicació Pro</string>
+  <string name="home_option_delete_notes_and_more">Eliminar notes i més</string>
+  <string name="home_option_delete_notes_and_more_details">Eliminar notes, etiquetes y altres dades de l'aplicació</string>
+  <string name="home_option_delete_all_notes">Esborrar totes les notes</string>
+  <string name="home_option_delete_all_notes_details">Eliminar totes les notes en l'aplicació.</string>
+  <string name="home_option_delete_all_folders">Eliminar totes les carpetes</string>
+  <string name="home_option_delete_all_folders_details">Eliminar totes les carpetes en l'aplicació</string>
+  <string name="home_option_delete_all_tags">Eliminar totes les etiquetes</string>
+  <string name="home_option_delete_all_tags_details">Eliminar totes les etiquetes en l'aplicació</string>
+  <string name="home_option_delete_everything">Elimina tot</string>
+  <string name="home_option_delete_everything_details">Eliminar notes, etiquetes i carpetes en l'aplicació</string>
+  <string name="ui_options_note_background_color">Fons del visor de notes</string>
+
+</resources>
