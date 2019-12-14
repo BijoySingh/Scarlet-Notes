@@ -16,9 +16,10 @@
 
   <ImageView
     android:id="@+id/icon"
-    android:layout_width="@dimen/icon_size_small"
-    android:layout_height="@dimen/icon_size_small"
-    android:layout_gravity="center_vertical"
+    android:layout_width="8dp"
+    android:layout_height="8dp"
+    android:layout_gravity="top"
+    android:layout_marginTop="@dimen/spacing_normal"
     android:layout_marginStart="@dimen/spacing_large"
     android:src="@drawable/ic_check_box_outline_blank_white_24dp"
     android:tint="@color/material_blue_grey_500" />

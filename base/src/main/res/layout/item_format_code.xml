@@ -8,13 +8,13 @@
     android:id="@+id/text"
     style="@style/FormatText"
     android:padding="@dimen/spacing_normal"
-    android:textColor="@color/transparent"
-    android:textColorHint="@color/transparent" />
+    android:paddingStart="@dimen/spacing_small"
+    android:paddingEnd="@dimen/spacing_small" />
 
   <EditText
     android:id="@+id/edit"
     style="@style/FormatText"
     android:padding="@dimen/spacing_normal"
-    android:textColor="@color/transparent"
-    android:textColorHint="@color/transparent" />
+    android:paddingStart="@dimen/spacing_small"
+    android:paddingEnd="@dimen/spacing_small" />
 </LinearLayout>

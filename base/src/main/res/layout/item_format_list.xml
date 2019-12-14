@@ -16,12 +16,16 @@
   <TextView
     android:id="@+id/text"
     style="@style/FormatEdit"
+    android:paddingStart="@dimen/spacing_xsmall"
+    android:paddingEnd="@dimen/spacing_xsmall"
     android:autoLink="web"
     android:linksClickable="true" />
 
   <EditText
     android:id="@+id/edit"
-    style="@style/FormatText" />
+    style="@style/FormatText"
+    android:paddingStart="@dimen/spacing_xsmall"
+    android:paddingEnd="@dimen/spacing_xsmall" />
 
   <ImageView
     android:id="@+id/close"
