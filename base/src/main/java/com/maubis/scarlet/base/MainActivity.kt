@@ -269,6 +269,8 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   fun onModeChange(mode: HomeNavigationMode) {
     state.mode = mode
+    state.currentFolder = null
+    notifyFolderChange()
     unifiedSearch()
     updateToolbars()
   }
@@ -521,7 +523,6 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
       state.hasFilter() -> {
         state.clear()
         onModeChange(HomeNavigationMode.DEFAULT)
-        notifyFolderChange()
       }
       else -> super.onBackPressed()
     }
