@@ -7,7 +7,6 @@ import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.export.recycler.FileImportViewHolder
 import com.maubis.scarlet.base.main.recycler.EmptyRecyclerHolder
 import com.maubis.scarlet.base.main.recycler.InformationRecyclerHolder
-import com.maubis.scarlet.base.main.recycler.ToolbarMainRecyclerHolder
 import com.maubis.scarlet.base.note.folder.FolderRecyclerHolder
 import com.maubis.scarlet.base.note.folder.SelectorFolderRecyclerHolder
 import com.maubis.scarlet.base.note.selection.recycler.SelectableNoteRecyclerViewHolder
@@ -61,12 +60,6 @@ fun getRecyclerItemControllerList(
       .viewType(RecyclerItem.Type.FOLDER.ordinal)
       .layoutFile(R.layout.item_folder)
       .holderClass(FolderRecyclerHolder::class.java)
-      .build())
-  list.add(
-    MultiRecyclerViewControllerItem.Builder<RecyclerItem>()
-      .viewType(RecyclerItem.Type.TOOLBAR.ordinal)
-      .layoutFile(R.layout.toolbar_main)
-      .holderClass(ToolbarMainRecyclerHolder::class.java)
       .build())
   return list
 }

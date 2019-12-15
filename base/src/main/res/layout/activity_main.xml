@@ -11,6 +11,9 @@
     android:orientation="vertical">
 
     <include
+      layout="@layout/toolbar_main" />
+
+    <include
       layout="@layout/search_toolbar_main"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

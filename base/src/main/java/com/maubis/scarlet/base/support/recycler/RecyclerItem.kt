@@ -9,7 +9,6 @@ abstract class RecyclerItem {
     EMPTY,
     FILE,
     FOLDER,
-    INFORMATION,
-    TOOLBAR
+    INFORMATION
   }
 }

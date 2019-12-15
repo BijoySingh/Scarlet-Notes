@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/action_toolbar"
+  android:id="@+id/mainToolbar"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:gravity="center_vertical"
@@ -11,7 +11,7 @@
   android:paddingBottom="@dimen/main_toolbar_bottom_padding">
 
   <ImageView
-    android:id="@+id/app_icon"
+    android:id="@+id/toolbarLeftIcon"
     android:layout_width="@dimen/main_toolbar_icon_size"
     android:layout_height="@dimen/main_toolbar_icon_size"
     android:padding="@dimen/spacing_xsmall"
@@ -33,21 +33,21 @@
 
 
   <ImageView
-    android:id="@+id/toolbarIconSearch"
+    android:id="@+id/toolbarSearchIcon"
     android:layout_width="@dimen/main_toolbar_icon_size"
     android:layout_height="@dimen/main_toolbar_icon_size"
     android:padding="@dimen/spacing_xsmall"
     android:src="@drawable/icon_search" />
 
   <ImageView
-    android:id="@+id/toolbarIconSettings"
+    android:id="@+id/toolbarSettingsIcon"
     android:layout_width="@dimen/main_toolbar_icon_size"
     android:layout_height="@dimen/main_toolbar_icon_size"
     android:padding="@dimen/spacing_xsmall"
     android:src="@drawable/icon_settings" />
 
   <ImageView
-    android:id="@+id/toolbarIconDebug"
+    android:id="@+id/toolbarDebugIcon"
     android:layout_width="@dimen/main_toolbar_icon_size"
     android:layout_height="@dimen/main_toolbar_icon_size"
     android:padding="@dimen/spacing_xsmall"
