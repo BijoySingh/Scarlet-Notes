@@ -79,11 +79,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import kotlinx.android.synthetic.main.search_toolbar_main.*
 import kotlinx.android.synthetic.main.toolbar_trash_info.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.newSingleThreadContext
+import kotlinx.coroutines.*
 import java.util.concurrent.atomic.AtomicBoolean
 
 class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
@@ -95,8 +91,6 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
     private const val TAGS_UUIDS: String = "TAGS_UUIDS"
     private const val SEARCH_COLORS: String = "SEARCH_COLORS"
   }
-
-  private val singleThreadDispatcher = newSingleThreadContext("singleThreadDispatcher")
 
   private lateinit var recyclerView: RecyclerView
   private lateinit var adapter: NoteAppAdapter
@@ -274,11 +268,9 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   }
 
   fun onModeChange(mode: HomeNavigationMode) {
-    GlobalScope.launch(Dispatchers.Main) {
-      state.mode = mode
-      unifiedSearch()
-      updateToolbars()
-    }
+    state.mode = mode
+    unifiedSearch()
+    updateToolbars()
   }
 
   private fun updateToolbars() {
@@ -300,11 +292,9 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   }
 
   fun onFolderChange(folder: Folder?) {
-    GlobalScope.launch(Dispatchers.Main) {
-      state.currentFolder = folder
-      unifiedSearch()
-      notifyFolderChange()
-    }
+    state.currentFolder = folder
+    unifiedSearch()
+    notifyFolderChange()
   }
 
   private fun notifyFolderChange() {
@@ -495,20 +485,20 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
 
   fun loadData() = onModeChange(state.mode)
 
-  fun enterSearchMode() {
+  private fun enterSearchMode() {
     isInSearchMode = true
     searchBox.setText(state.text)
     mainToolbar.visibility = View.GONE
     searchToolbar.visibility = View.VISIBLE
     tryOpeningTheKeyboard()
     GlobalScope.launch(Dispatchers.Main) {
-      GlobalScope.async(Dispatchers.IO) { tagAndColorPicker.reset() }.await()
+      withContext(Dispatchers.IO) { tagAndColorPicker.reset() }
       tagAndColorPicker.notifyChanged()
     }
     searchBox.requestFocus()
   }
 
-  fun quitSearchMode() {
+  private fun quitSearchMode() {
     isInSearchMode = false
     searchBox.setText("")
     tryClosingTheKeyboard()
@@ -519,13 +509,8 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   }
 
   private fun startSearch(keyword: String) {
-    GlobalScope.launch(singleThreadDispatcher) {
-      state.text = keyword
-      val items = GlobalScope.async(Dispatchers.IO) { unifiedSearchSynchronous() }
-      GlobalScope.launch(Dispatchers.Main) {
-        handleNewItems(items.await())
-      }
-    }
+    state.text = keyword
+    unifiedSearch()
   }
 
   override fun onBackPressed() {
