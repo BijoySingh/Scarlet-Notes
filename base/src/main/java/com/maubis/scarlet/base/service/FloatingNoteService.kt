@@ -27,11 +27,6 @@ import com.maubis.scarlet.base.note.getTitleForSharing
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.utils.maybeThrow
 
-/**
- * The floating not service
- * Created by bijoy on 3/29/17.
- */
-
 class FloatingNoteService : FloatingBubbleService() {
 
   private var note: Note? = null
@@ -50,7 +45,7 @@ class FloatingNoteService : FloatingBubbleService() {
       .removeBubbleIconDp(72)
       .paddingDp(8)
       .borderRadiusDp(4)
-      .physicsEnabled(true)
+      .physicsEnabled(false)
       .expandableColor(sAppTheme.get(ThemeColorType.BACKGROUND))
       .triangleColor(sAppTheme.get(ThemeColorType.BACKGROUND))
       .gravity(Gravity.END)
@@ -117,7 +112,7 @@ class FloatingNoteService : FloatingBubbleService() {
     return rootView
   }
 
-  fun getShareIntent(note: Note) {
+  private fun getShareIntent(note: Note) {
     val sharingIntent = Intent(Intent.ACTION_SEND)
     sharingIntent.type = "text/plain"
     sharingIntent.putExtra(Intent.EXTRA_SUBJECT, note.getTitleForSharing())
@@ -126,7 +121,7 @@ class FloatingNoteService : FloatingBubbleService() {
     context.startActivity(sharingIntent)
   }
 
-  fun setNote(note: Note) {
+  private fun setNote(note: Note) {
     val noteDescription = Markdown.render(note.getFullTextForDirectMarkdownRender(), true)
     description.text = noteDescription
     timestamp.text = note.getDisplayTime()
