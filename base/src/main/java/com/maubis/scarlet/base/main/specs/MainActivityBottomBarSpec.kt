@@ -26,6 +26,7 @@ import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
 import com.maubis.scarlet.base.core.folder.FolderBuilder
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.main.sheets.HomeOptionsBottomSheet
+import com.maubis.scarlet.base.main.sheets.openDeleteTrashSheet
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.NoteIntentRouterActivity
 import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
@@ -49,7 +50,8 @@ object MainActivityBottomBarSpec {
   fun onCreate(
     context: ComponentContext,
     @Prop colorConfig: ToolbarColorConfig,
-    @Prop disableNewFolderButton: Boolean
+    @Prop disableNewFolderButton: Boolean,
+    @Prop isInTrash: Boolean
   ): Component {
     val activity = context.androidContext as MainActivity
     val row = Row.create(context)
@@ -64,46 +66,55 @@ object MainActivityBottomBarSpec {
                 })
     row.child(EmptySpec.create(context).heightDip(1f).flexGrow(1f))
 
-    row.child(bottomBarRoundIcon(context, colorConfig)
-                .iconRes(R.drawable.icon_add_notebook)
-                .alpha(if (disableNewFolderButton) 0.4f else 1.0f)
-                .isClickDisabled(disableNewFolderButton)
-                .onClick {
-                  CreateOrEditFolderBottomSheet.openSheet(
-                      activity,
-                      FolderBuilder().emptyFolder(sNoteDefaultColor),
-                      { _, _ -> activity.loadData() })
-                })
-    row.child(bottomBarRoundIcon(context, colorConfig)
-                .iconRes(R.drawable.icon_add_list)
-                .onClick {
-                  val intent = CreateNoteActivity.getNewChecklistNoteIntent(
-                      activity,
-                      activity.state.currentFolder?.uuid ?: "")
-                  activity.startActivity(intent)
-                })
-    row.child(bottomBarRoundIcon(context, colorConfig)
-                .iconRes(R.drawable.icon_add_note)
-                .isLongClickEnabled(true)
-                .onLongClick {
-                  if (!OsVersionUtils.canAddLauncherShortcuts()) {
-                    return@onLongClick
-                  }
+    if (isInTrash) {
+      row.child(
+        bottomBarRoundIcon(context, colorConfig)
+          .iconRes(R.drawable.ic_delete_permanently)
+          .onClick { openDeleteTrashSheet(activity) }
+      )
+    }
+    else {
+      row.child(bottomBarRoundIcon(context, colorConfig)
+          .iconRes(R.drawable.icon_add_notebook)
+          .alpha(if (disableNewFolderButton) 0.4f else 1.0f)
+          .isClickDisabled(disableNewFolderButton)
+          .onClick {
+            CreateOrEditFolderBottomSheet.openSheet(
+                activity,
+                FolderBuilder().emptyFolder(sNoteDefaultColor),
+                { _, _ -> activity.loadData() })
+          })
+      row.child(bottomBarRoundIcon(context, colorConfig)
+          .iconRes(R.drawable.icon_add_list)
+          .onClick {
+            val intent = CreateNoteActivity.getNewChecklistNoteIntent(
+                activity,
+                activity.state.currentFolder?.uuid ?: "")
+            activity.startActivity(intent)
+          })
+      row.child(bottomBarRoundIcon(context, colorConfig)
+          .iconRes(R.drawable.icon_add_note)
+          .isLongClickEnabled(true)
+          .onLongClick {
+            if (!OsVersionUtils.canAddLauncherShortcuts()) {
+              return@onLongClick
+            }
 
-                  val shortcut = ShortcutInfo.Builder(activity, "scarlet_notes___create_note")
-                    .setShortLabel(activity.getString(R.string.shortcut_add_note))
-                    .setLongLabel(activity.getString(R.string.shortcut_add_note))
-                    .setIcon(Icon.createWithResource(activity, R.mipmap.create_launcher))
-                    .setIntent(NoteIntentRouterActivity.create())
-                    .build()
-                  addShortcut(activity, shortcut)
-                }
-                .onClick {
-                  val intent = CreateNoteActivity.getNewNoteIntent(
-                    activity,
-                    activity.state.currentFolder?.uuid ?: "")
-                  activity.startActivity(intent)
-                })
+            val shortcut = ShortcutInfo.Builder(activity, "scarlet_notes___create_note")
+                .setShortLabel(activity.getString(R.string.shortcut_add_note))
+                .setLongLabel(activity.getString(R.string.shortcut_add_note))
+                .setIcon(Icon.createWithResource(activity, R.mipmap.create_launcher))
+                .setIntent(NoteIntentRouterActivity.create())
+                .build()
+            addShortcut(activity, shortcut)
+          }
+          .onClick {
+            val intent = CreateNoteActivity.getNewNoteIntent(
+                activity,
+                activity.state.currentFolder?.uuid ?: "")
+            activity.startActivity(intent)
+          })
+    }
     return bottomBarCard(context, row.build(), colorConfig).build()
   }
 }

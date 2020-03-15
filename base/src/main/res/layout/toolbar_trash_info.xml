@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/deleteToolbar"
+  android:id="@+id/trashNoticeToolbar"
   style="@style/BorderlessBackgroundView"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
@@ -18,15 +18,5 @@
     android:text="@string/trash_will_delete_automatically"
     android:textColor="@color/material_blue_grey_700"
     android:textSize="@dimen/font_size_small" />
-
-  <ImageView
-    android:id="@+id/deleteTrashIcon"
-    style="@style/BorderlessBackgroundView"
-    android:layout_width="@dimen/icon_size_xlarge"
-    android:layout_height="@dimen/icon_size_xlarge"
-    android:alpha="0.7"
-    android:padding="@dimen/spacing_small"
-    android:src="@drawable/ic_delete_permanently"
-    android:tint="@color/material_blue_grey_700" />
 
 </LinearLayout>
