@@ -264,6 +264,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   private fun notifyModeChange() {
     val isTrash = state.mode === HomeNavigationMode.TRASH
     deleteToolbar.visibility = if (isTrash) View.VISIBLE else GONE
+    setBottomToolbar()
   }
 
   fun onFolderChange(folder: Folder?) {
@@ -277,6 +278,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
   private fun notifyFolderChange() {
     val componentContext = ComponentContext(this)
     lithoPreBottomToolbar.removeAllViews()
+    setBottomToolbar()
 
     val currentFolder = state.currentFolder
     if (currentFolder != null) {
@@ -553,6 +555,7 @@ class MainActivity : SecuredActivity(), INoteOptionSheetActivity {
         componentContext,
         MainActivityBottomBar.create(componentContext)
           .colorConfig(ToolbarColorConfig())
+          .disableNewFolderButton(state.currentFolder != null)
           .build()))
   }
 

@@ -48,7 +48,9 @@ object MainActivityBottomBarSpec {
   @OnCreateLayout
   fun onCreate(
     context: ComponentContext,
-    @Prop colorConfig: ToolbarColorConfig): Component {
+    @Prop colorConfig: ToolbarColorConfig,
+    @Prop disableNewFolderButton: Boolean
+  ): Component {
     val activity = context.androidContext as MainActivity
     val row = Row.create(context)
       .widthPercent(100f)
@@ -64,6 +66,8 @@ object MainActivityBottomBarSpec {
 
     row.child(bottomBarRoundIcon(context, colorConfig)
                 .iconRes(R.drawable.icon_add_notebook)
+                .alpha(if (disableNewFolderButton) 0.4f else 1.0f)
+                .isClickDisabled(disableNewFolderButton)
                 .onClick {
                   CreateOrEditFolderBottomSheet.openSheet(
                       activity,
