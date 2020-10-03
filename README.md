@@ -18,8 +18,9 @@ This app is meant for a simple yet powerful rich text experience. It's still bei
 <a href="https://scarlet.maubis.com/" target="_blank">
 <img src="https://scarlet.maubis.com/assets/scarlet_try_it_icon.png" alt="Try it on Scarlet Web" height="80"/></a>
 
+=========================================================================================
 
-# Highlights of the application features
+# Highlights of the application features --**--
 - Fully Offline: The application doesnot store anything online, no logs, etc.
 - Choice of Grid / List layouts
 - Rich Note Input: Add rich notes - lists, headings, quotes and more.
@@ -33,10 +34,12 @@ This app is meant for a simple yet powerful rich text experience. It's still bei
 - Note-ifications: Notes can be kept in the notifications list of your phone.
 - Floating Heads: Quickly take notes while doing other stuff.
 
-# Google Play Store Beta Program
+==============================================================================================
+
+# Google Play Store Beta Program ------*****------
 The app is improving fast. As we grow, a lot of new features will not be realeased publically till it's tested on alpha/beta channels. If you would like to get the new features faster, join the beta program here:
 https://play.google.com/apps/testing/com.bijoysingh.quicknote
-
+============================================================================================
 # Survey Link
 If you have used the app, here is a survey which helps me understand how to make the app better.
 https://goo.gl/forms/UbE2lARpp89CNIbl2
