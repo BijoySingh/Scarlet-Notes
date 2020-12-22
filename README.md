@@ -1,19 +1,30 @@
-# Material Notes on Android
-This is the code which powers the Material notes app on Android by Maubis Apps. 
+# Material Notes / Scarlet / Scarlet Pro on Android
+This is the code which powers the Material Notes / Scarlet Notes app on Android by Maubis Apps.
+
+Material Notes is the fully offline FDroid version of the applications
+Scarlet / Scarlet Notes is the note apps available on the Play Store
 
 This app is meant for a simple yet powerful rich text experience. It's still being built and improved.
 
 <a href="https://f-droid.org/packages/com.bijoysingh.quicknote/" target="_blank">
 <img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80"/></a>
+
 <a href="https://play.google.com/store/apps/details?id=com.bijoysingh.quicknote" target="_blank">
 <img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="80"/></a>
+
+<a href="https://play.google.com/store/apps/details?id=com.bijoysingh.quicknote.pro" target="_blank">
+<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="80"/></a>
+
+<a href="https://scarlet.maubis.com/" target="_blank">
+<img src="https://scarlet.maubis.com/assets/scarlet_try_it_icon.png" alt="Try it on Scarlet Web" height="80"/></a>
+
 
 # Highlights of the application features
 - Fully Offline: The application doesnot store anything online, no logs, etc.
 - Choice of Grid / List layouts
 - Rich Note Input: Add rich notes - lists, headings, quotes and more.
 - Markdown Support: The text elements have markdown support
-- Simple UX: Simplistic and straight forward UI. 
+- Simple UX: Simplistic and straight forward UI.
 - Archived, Favourites, and more
 - Set color to your notes
 - Night Mode: view notes in night mode, for your eyes and screens

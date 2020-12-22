@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/root_layout"
+  style="@style/BottomSheetCardContainer"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <androidx.cardview.widget.CardView
+    android:id="@+id/grid_card"
+    style="@style/BottomSheetCardView">
+
+    <LinearLayout
+      android:id="@+id/container_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:padding="@dimen/spacing_normal">
+
+      <TextView
+        android:id="@+id/options_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:text="@string/choose_note_color"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_large" />
+
+      <GridLayout
+        android:id="@+id/grid_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:columnOrderPreserved="true"
+        android:rowOrderPreserved="true"
+        android:useDefaultMargins="true">
+
+      </GridLayout>
+    </LinearLayout>
+  </androidx.cardview.widget.CardView>
+</androidx.core.widget.NestedScrollView>

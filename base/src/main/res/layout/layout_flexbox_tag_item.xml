@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:gravity="center"
+  android:orientation="vertical"
+  android:paddingTop="@dimen/spacing_xxsmall"
+  android:paddingBottom="@dimen/spacing_xxsmall"
+  android:paddingStart="@dimen/spacing_xsmall"
+  android:paddingEnd="@dimen/spacing_xsmall">
+
+  <TextView
+    android:id="@+id/tag_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/flexbox_tag_item_bg"
+    android:paddingTop="@dimen/spacing_xxsmall"
+    android:paddingBottom="@dimen/spacing_xxsmall"
+    android:paddingStart="@dimen/spacing_normal"
+    android:paddingEnd="@dimen/spacing_normal"
+    android:textColor="@color/dark_tertiary_text"
+    android:lines="1"
+    android:textSize="@dimen/font_size_small" />
+</LinearLayout>

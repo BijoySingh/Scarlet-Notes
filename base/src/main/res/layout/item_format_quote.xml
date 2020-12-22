@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  style="@style/FormatLayout">
+
+  <include layout="@layout/layout_modify_format" />
+
+  <View
+    android:id="@+id/quoteColorView"
+    android:layout_width="3dp"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/spacing_large"
+    android:layout_marginTop="@dimen/spacing_xxsmall"
+    android:background="@color/light_hint_text"
+    android:layout_marginBottom="@dimen/spacing_xxsmall" />
+
+  <TextView
+    android:id="@+id/text"
+    style="@style/FormatText"
+    android:autoLink="web"
+    android:linksClickable="true"
+    android:paddingStart="@dimen/spacing_xxsmall"
+    android:paddingBottom="@dimen/spacing_small"
+    android:textStyle="italic" />
+
+  <EditText
+    android:id="@+id/edit"
+    style="@style/FormatEdit"
+    android:textStyle="italic" />
+
+</LinearLayout>

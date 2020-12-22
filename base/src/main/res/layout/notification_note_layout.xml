@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/root_layout"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_small">
+
+    <TextView
+      android:id="@+id/title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@android:color/transparent"
+      android:ellipsize="end"
+      android:fontFamily="monospace"
+      android:maxLines="2"
+      android:paddingEnd="@dimen/spacing_xsmall"
+      android:paddingStart="@dimen/spacing_xsmall"
+      android:paddingTop="@dimen/spacing_xsmall"
+      android:textColor="@color/light_primary_text"
+      android:textColorHint="@color/light_tertiary_text"
+      android:textSize="@dimen/font_size_small"
+      android:textStyle="bold" />
+
+    <TextView
+      android:id="@+id/description"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@android:color/transparent"
+      android:ellipsize="end"
+      android:fontFamily="monospace"
+      android:gravity="top"
+      android:lineSpacingExtra="2dp"
+      android:maxLines="4"
+      android:minLines="2"
+      android:padding="@dimen/spacing_xsmall"
+      android:textColor="@color/light_primary_text"
+      android:textColorHint="@color/light_tertiary_text"
+      android:textSize="@dimen/font_size_small" />
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical|end"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacing_xsmall">
+
+    <TextView
+      android:id="@+id/timestamp"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:hint="@string/timestamp"
+      android:padding="@dimen/spacing_xsmall"
+      android:textColor="@color/light_tertiary_text"
+      android:textSize="@dimen/font_size_xsmall" />
+
+    <ImageView
+      android:id="@+id/delete_button"
+      style="@style/NoteNotificationItemActionIcon"
+      android:src="@drawable/ic_delete_white_48dp" />
+
+    <ImageView
+      android:id="@+id/copy_button"
+      style="@style/NoteNotificationItemActionIcon"
+      android:src="@drawable/ic_content_copy_white_48dp" />
+
+    <ImageView
+      android:id="@+id/share_button"
+      style="@style/NoteNotificationItemActionIcon"
+      android:src="@drawable/ic_share_white_48dp" />
+
+    <ImageView
+      android:id="@+id/edit_button"
+      style="@style/NoteNotificationItemActionIcon"
+      android:src="@drawable/ic_edit_white_48dp" />
+
+    <ImageView
+      android:id="@+id/options_button"
+      style="@style/NoteNotificationItemActionIcon"
+      android:src="@drawable/ic_more_horiz_white_48dp" />
+  </LinearLayout>
+</LinearLayout>

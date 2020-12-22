@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  tools:context="com.bijoysingh.quicknote.firebase.activity.DataPolicyActivity">
+
+  <ScrollView
+    android:id="@+id/scroll_bg"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="@dimen/spacing_normal">
+
+      <ImageView
+        android:layout_width="@dimen/icon_size_normal"
+        android:layout_height="@dimen/icon_size_normal"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/spacing_xsmall"
+        android:src="@drawable/ic_favorite_white_48dp"
+        android:tint="@color/material_red_700" />
+
+      <TextView
+        android:id="@+id/page_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:text="@string/data_policy_page_title"
+        android:textColor="@color/dark_primary_text"
+        android:textSize="@dimen/font_size_large"
+        android:textStyle="bold" />
+
+      <TextView
+        android:id="@+id/text_introduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:text="@string/data_policy_introduction"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_normal" />
+
+      <TextView
+        android:id="@+id/heading_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:text="@string/data_policy_what_data_title"
+        android:textColor="@color/dark_secondary_text"
+        android:textSize="@dimen/font_size_normal"
+        android:textStyle="bold" />
+
+      <TextView
+        android:id="@+id/text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:text="@string/data_policy_what_data_text"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_normal" />
+
+      <TextView
+        android:id="@+id/heading_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:text="@string/data_policy_how_store_title"
+        android:textColor="@color/dark_secondary_text"
+        android:textSize="@dimen/font_size_normal"
+        android:textStyle="bold" />
+
+      <TextView
+        android:id="@+id/text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:text="@string/data_policy_how_store_text"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_normal" />
+
+      <TextView
+        android:id="@+id/heading_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:text="@string/data_policy_what_do_title"
+        android:textColor="@color/dark_secondary_text"
+        android:textSize="@dimen/font_size_normal"
+        android:textStyle="bold" />
+
+      <TextView
+        android:id="@+id/text_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:autoLink="web"
+        android:textColorLink="@color/material_grey_700"
+        android:linksClickable="true"
+        android:text="@string/data_policy_what_do_text"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_normal" />
+
+      <TextView
+        android:id="@+id/heading_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:text="@string/data_policy_click_for_privacy"
+        android:textColor="@color/dark_secondary_text"
+        android:textSize="@dimen/font_size_normal"
+        android:textStyle="bold" />
+
+    </LinearLayout>
+  </ScrollView>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/material_grey_50"
+    android:orientation="vertical">
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="0.5dp"
+      android:background="@color/dark_hint_text" />
+
+    <CheckBox
+      android:id="@+id/accept_policy"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/spacing_xsmall"
+      android:layout_marginStart="@dimen/spacing_xsmall"
+      android:padding="@dimen/spacing_xsmall"
+      android:text="@string/data_policy_i_have_read"
+      android:textSize="@dimen/font_size_normal" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+
+      <TextView
+        android:id="@+id/btn_refuse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_normal"
+        android:text="@string/data_policy_refuse"
+        android:textColor="@color/dark_tertiary_text"
+        android:textAllCaps="true" />
+
+      <TextView
+        android:id="@+id/btn_done"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:padding="@dimen/spacing_normal"
+        android:text="@string/data_policy_done"
+        android:textColor="@color/dark_tertiary_text"
+        android:textAllCaps="true" />
+    </LinearLayout>
+  </LinearLayout>
+
+</LinearLayout>

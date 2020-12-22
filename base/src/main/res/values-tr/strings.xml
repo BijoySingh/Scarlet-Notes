@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">Başlık</string>
+  <string name="description">içerik</string>
+  <string name="save">Kayıt etmek</string>
+  <string name="share_using">Kullanarak paylaş &#8230;</string>
+  <string name="main_no_notes">Not Yok</string>
+  <string name="main_no_notes_hint">Hiçbir not eklememişsiniz gibi görünüyor. Not eklemek için tıklayın.</string>
+  <string name="edit_note">Notu Düzenle</string>
+  <string name="open_in_popup">Açılır Pencerede Aç</string>
+  <string name="copy_note">Notu Kopyala</string>
+  <string name="send_note">Not gönder</string>
+  <string name="choose_action">Eylem seçin&#8230;</string>
+  <string name="format_hint_text">İçerik Ekle &#8230;</string>
+  <string name="format_hint_heading">Başlık Ekle &#8230;</string>
+  <string name="format_hint_quote">Alıntı Metni Ekle &#8230;</string>
+  <string name="format_hint_list">Öğe eklemek&#8230;</string>
+  <string name="format_hint_code">Kod Ekle &#8230;</string>
+  <string name="lock_note">Kilitli not</string>
+  <string name="unlock_note">Not kilidini aç</string>
+  <string name="home_option_security">Güvenlik</string>
+  <string name="home_option_security_subtitle">Kilitleme notları ve güvenlik seçenekleri</string>
+  <string name="security_option_title">Güvenlik seçenekleri</string>
+  <string name="security_option_set_pin_code">Şifreyi Gir</string>
+  <string name="security_option_set_pin_code_subtitle">Notları kilitlemek için 4 basamaklı bir PIN belirleyin</string>
+  <string name="security_sheet_enter_new_pin_title">Yeni PIN girin</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Kilidi açmak için PIN girin</string>
+  <string name="security_sheet_enter_current_pin_title">Geçerli PIN\'i gir</string>
+  <string name="security_sheet_button_verify">DOĞRULAYIN</string>
+  <string name="security_sheet_button_unlock">Kilidini aç</string>
+  <string name="security_sheet_button_set">Set</string>
+  <string name="security_sheet_button_remove">Kaldır</string>
+  <string name="home_option_enable_list_view">Liste Düzeni\'ni etkinleştir</string>
+  <string name="home_option_enable_list_view_subtitle">Notları tek bir sütunda göster</string>
+  <string name="home_option_enable_grid_view">Izgara Düzeni\'ni etkinleştir</string>
+  <string name="home_option_enable_grid_view_subtitle">Notları sıralı bir ızgarada göster</string>
+
+  <string name="home_option_sheet_title">Seçenekler ve Ayarlar</string>
+  <string name="home_option_export">Notları Dışa Aktar</string>
+  <string name="home_option_export_subtitle">Paylaşmak için notları cihazın cihazına aktarın</string>
+  <string name="home_option_import">Notları İçe Aktar</string>
+  <string name="home_option_import_subtitle">Cihaz saklama alanından notlar içe aktarma</string>
+  <string name="home_option_about_page">Hakkımızda</string>
+  <string name="home_option_about_page_subtitle">Uygulama ve geliştiriciler hakkında daha fazla bilgi sahibi olun</string>
+  <string name="home_option_rate_and_review">Değerlendir ve İnceleme</string>
+  <string name="home_option_rate_and_review_subtitle">Uygulamayı ne kadar sevdiğinizi bize bildirin</string>
+  <string name="permission_layout_give_permission">İzinleri Ver</string>
+  <string name="permission_layout_give_permission_details">Alma ve verme, depolama izinleri gerektirir. İstenildiğinde lütfen izin verin.</string>
+  <string name="permission_layout_give_permission_ok">İzin vermek</string>
+  <string name="import_export_import_file_title">Dosyadan Yedeklemeyi İçe Aktar</string>
+  <string name="import_export_import_file">Önemli dosya</string>
+  <string name="import_export_layout_exported">Dosyaya verildi</string>
+  <string name="import_export_layout_export_failed">Dışa aktarılamadı</string>
+  <string name="import_export_layout_exporting">Dosyaya dışa aktarma |</string>
+  <string name="import_export_layout_exporting_done">tamam</string>
+  <string name="import_export_layout_exporting_share">Pay</string>
+  <string name="about_page_rate">Play Store\'da Ücretlendirme</string>
+  <string name="about_page_contribute">Katkıda bulunmak</string>
+  <string name="about_page_app_version">Uygulama sürümü</string>
+  <string name="about_page_about_app">App Hakkında</string>
+  <string name="search_notes">Notları Ara &#8230;</string>
+
+  <string name="choose_note_color">Rengi değiştir</string>
+  <string name="tap_for_action_color">Notun arka plan rengini değiştirmek için dokunun</string>
+
+  <string name="delete_note_permanently">kalıcı olarak sil</string>
+  <string name="unarchive_note">Unarchive Not</string>
+  <string name="archive_note">Arşiv Notu</string>
+  <string name="not_favourite_note">Beğenmediğini işaretle</string>
+  <string name="favourite_note">Favoriyi işaretle</string>
+  <string name="restore_note">Notu Geri Yükle</string>
+  <string name="trash_note">Çöp kutusuna taşıyın</string>
+  <string name="tap_for_action_edit">Düzenlemek için notu açmak için dokunun</string>
+  <string name="tap_for_action_copy">Not içeriğini panoya kopyalamak için dokunun</string>
+  <string name="tap_for_action_share">Not içeriğini diğer uygulamalara paylaşmak için dokunun</string>
+  <string name="tap_for_action_popup">Yüzen açılır pencerede notu açmak için hafifçe vurun</string>
+  <string name="tap_for_action_delete">Notu silmek için hafifçe dokunun</string>
+  <string name="tap_for_action_trash">Notu çöp kutusuna taşımak için hafifçe vurun</string>
+  <string name="tap_for_action_not_trash">Notu çöp kutusundan çıkarmak için hafifçe vurun</string>
+  <string name="tap_for_action_favourite">Notu favori olarak işaretlemek için dokunun</string>
+  <string name="tap_for_action_not_favourite">Notu favori olarak işaretlemek için dokunun</string>
+  <string name="tap_for_action_archive">Notu arşivlemek için hafifçe dokunun</string>
+  <string name="tap_for_action_not_archive">Notu arşivden kaldırmak için hafifçe dokunun</string>
+  <string name="nav_home">Ev</string>
+  <string name="nav_favourites">Favoriler</string>
+  <string name="nav_archived">Arşivlenen</string>
+  <string name="nav_trash">Çöp</string>
+  <string name="markdown_sheet_markdown_support">Markdown Destek</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Markdown destekli formatlamaya izin ver</string>
+  <string name="open_in_notification">Bildirim Oluştur</string>
+  <string name="notification_channel_label">Not Bildirimleri</string>
+  <string name="nav_locked">Kilitli</string>
+  <string name="tag_sheet_create_title">Yeni Etiket Ekle |</string>
+  <string name="tag_sheet_edit_title">Etiketi Düzenle |</string>
+  <string name="tag_sheet_enter_tag_hint">etiketi gir</string>
+  <string name="tag_sheet_new_tag_button">Yeni Etiket Oluştur</string>
+  <string name="tag_sheet_choose_tag">Bir Tag Seçin |</string>
+
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">İthalat</string>
+  <string name="markdown_sheet_home_markdown_support">Not Listesindeki İşaretleme</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Not listesinde Markdown biçimlendirmeyi etkinleştirin</string>
+
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">Etiketleri Değiştir</string>
+  <string name="home_option_order_notes">Sipariş Notları</string>
+  <string name="home_option_open_source_page">Açık Kaynak Projesi</string>
+  <string name="home_option_open_source_page_subtitle">Açık kaynak projesi hakkında daha fazla şey öğrenin</string>
+  <string name="osp_page_libraries">Kütüphaneler</string>
+  <string name="osp_page_about_osp">Açık Kaynak Projesi</string>
+  <string name="reminder_sheet_reminder_date">Hatırlatma Tarihi</string>
+  <string name="reminder_sheet_reminder_time">Hatırlatıcı Saati</string>
+  <string name="reminder_sheet_repeat">Sıklığı Tekrarla</string>
+  <string name="sort_sheet_title">Sıralama Notları</string>
+  <string name="sort_sheet_newest_first">En yeni ilk</string>
+  <string name="sort_sheet_oldest_first">En eskiler önce</string>
+  <string name="sort_sheet_last_modified">En Son Değiştirilen</string>
+  <string name="reminder">Hatırlatma</string>
+  <string name="pin_note">Pin Not</string>
+  <string name="unpin_note">Notu Çöz</string>
+
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">Arayüz ve Deneyim</string>
+  <string name="home_option_ui_experience_subtitle">Uygulamanın nasıl göründüğünü ve neler hissettiğini seçin.</string>
+  <string name="home_option_about">hakkında</string>
+  <string name="home_option_about_subtitle">Bizimle uygulama hakkında daha fazla bilgi edinin.</string>
+  <string name="note_option_default_color">Varsayılan Not Renk</string>
+  <string name="note_option_default_color_subtitle">Notların varsayılan rengini seçin</string>
+  <string name="note_option_number_lines">Not Satır Sınırı</string>
+  <string name="home_option_backup_options">Yedekleme ve İçe Aktarma</string>
+  <string name="home_option_backup_options_subtitle">Yedekleme, içe aktarma ve dışa aktarma not seçenekleri</string>
+
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">Mağazadan Yükle</string>
+  <string name="home_option_install_from_store_subtitle">Bulut Senkronizasyonu için Google Store\'dan uygulama yükleyin</string>
+
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">PIN seti yok</string>
+  <string name="no_pincode_sheet_details">PIN\'i kurmadınız. Şimdi kurmak ister misiniz?</string>
+  <string name="no_pincode_sheet_not_now">Sonra</string>
+  <string name="no_pincode_sheet_dont_ask">Asla sorma</string>
+  <string name="no_pincode_sheet_set_up">Kurmak</string>
+
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">Çift</string>
+  <string name="select">seçmek</string>
+  <string name="delete_sheet_are_you_sure">Emin misiniz?</string>
+  <string name="delete_sheet_delete_trash">Çöp kutusunda notları kalıcı olarak silmek istiyor musunuz?</string>
+  <string name="delete_sheet_delete_note_permanently">Bu notu kalıcı olarak silmek ister misiniz?</string>
+  <string name="delete_sheet_delete_trash_yes">silmek</string>
+  <string name="delete_sheet_delete_trash_no">İptal etmek</string>
+  <string name="trash_will_delete_automatically">Notlar son 7 gün sonra silinir</string>
+
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">Not ekle</string>
+  <string name="shortcut_add_list">Kontrol Listesi Ekle</string>
+  <string name="select_a_note_title">Not Seç</string>
+  <string name="select_notes_title">Notlar\'ı seçin</string>
+  <string name="nav_settings">Ayarlar</string>
+  <string name="widget_no_valid_note">Silinmiş veya kilitlenmiş olarak not edin</string>
+  <string name="note_option_font_size">Not Yazı Tipi Boyutu</string>
+  <string name="note_option_font_size_example">Notlar sayfasındaki metnin yazı tipi boyutunu ayarlayın. Bu önizlemede bunun nasıl olacağını görebilirsiniz.</string>
+  <string name="note_option_font_size_subtitle">%d nota görüntüleyicideki metin boyutu</string>
+
+
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">Ne var ne yok</string>
+  <string name="whats_new_subtitle">Uygulamanın son güncellemelerindeki yenilikleri bilin</string>
+  <string name="whats_new_translate">Çevirmek</string>
+
+
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">kopya</string>
+  <string name="format_action_title">Metin Eylemlerini Engelleyin</string>
+  <string name="format_action_gallery">galeri</string>
+  <string name="format_action_camera">Kamera</string>
+  <string name="voice_sheet_title">Uyarıyı Yüksek sesle Konuş</string>
+  <string name="voice_action_title">Yüksek sesli konuşmak</string>
+  <string name="image_delete_all_devices">Bu öğeyi silmek, görüntüyü tüm cihazlardan silecektir.</string>
+  <string name="image_not_on_current_device">Resim bu cihazda değil</string>
+  <string name="image_cannot_be_loaded">Resim yüklenemiyor</string>
+  <string name="image_not_uploaded">Resimler senkronize edilmiyor</string>
+  <string name="image_not_uploaded_details">Resimler cihazlar arasında senkronize edilmez. Notu görüntülerken resimleriniz diğer cihazlarda görünmeyecektir!</string>
+  <string name="image_not_uploaded_i_understand">Anlıyorum</string>
+  <string name="home_option_auto_export">Otomatik Olarak Dışa Aktar</string>
+  <string name="home_option_auto_export_subtitle">Notları sık sık dış dosyaya yedekleme olarak dışa aktarın</string>
+  <string name="format_hint_image">Resmi eklemek veya değiştirmek için tıklayın</string>
+
+
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">Sadece bir kere</string>
+  <string name="reminder_frequency_daily">Günlük</string>
+  <string name="notification_reminder_channel_label">Hatırlatıcılar ve Alarmlar</string>
+  <string name="about_page_description_os">%s açık kaynaklıdır ve herkes daha iyi hale getirmeye katkıda bulunmaya açıktır. Şu anda %s tarafından oluşturulmakta ve sürdürülmektedir.</string>
+  <string name="about_page_description">%s, uygulamayı çeken basit bir nottur. Kullanımı çok zor hale getirmeden hızlı Zengin Metin girişi sağlar. Çok görevli bir esinti yapar.</string>
+  <string name="about_page_about_us_details">Merhaba, biz %s \'ı yaratan bir çift tasarımcı ve programcıyız.
+     Herkese harika bir hizmet sunan güzel, dikkatlice tasarlanmış ücretsiz, reklamsız veya minimum reklam uygulamaları oluşturmaya çalışıyoruz!</string>
+  <string name="note_option_number_lines_subtitle">%d ana ekranda çizgiler</string>
+  <string name="view_distraction_free">Distraksiyon Ücretsiz</string>
+
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">App\'da Giriş Yapın</string>
+  <string name="home_option_login_with_app_subtitle">Bulut yedekleme ve senkronizasyon için oturum açın</string>
+  <string name="home_option_logout_of_app">Oturumu Kapat</string>
+  <string name="home_option_logout_of_app_subtitle">Bulut yedeklemeyi durdurmak için çıkış yapın</string>
+  <string name="login_to_google_failed">Google Giriş Başarısız Oldu</string>
+  <string name="material_notes_privacy_policy">Gizlilik Politikası</string>
+  <string name="material_notes_privacy_policy_subtitle">İçerik için uygulama gizlilik politikası</string>
+  <string name="install_pro_app">Pro Uygulamasını Yükle</string>
+  <string name="why_install_pro">Neden Pro Install</string>
+  <string name="why_install_pro_details">Bulut senkronizasyonunu çalıştırmak için büyük sunucu maliyetleri için geliştiriciyi destekleyin \n\n En yeni özellikleri edinin \n\n Bazı ekstra özellikler yalnızca Pro kullanıcıları tarafından kullanılabilir olacak</string>
+
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">Uygulama Teması</string>
+  <string name="home_option_theme_color_subtitle">Temanın arka plan rengini seçin</string>
+  <string name="theme_page_title">Uygulama Temasını Seç</string>
+  <string name="click_to_add_tags">Etiket eklemek veya değiştirmek için tıklayın</string>
+  <string name="select_notes">Notlar Seç</string>
+  <string name="select_notes_details">Tek seferde birden fazla notta eylemleri seçip gerçekleştirin</string>
+  <string name="recent_to_trash_message">Not çöp kutusuna taşındı</string>
+  <string name="recent_to_delete_message">Not silindi</string>
+  <string name="recent_to_trash_undo">Geri alma</string>
+  <string name="backup_note_disable">Yedeklemeyi Devre Dışı Bırak</string>
+  <string name="backup_note_enable">Yedeklemeyi Etkinleştir</string>
+  <string name="folder_card_title">Boş defter</string>
+  <string name="folder_card_title_single_note">1 Not</string>
+  <string name="folder_card_title_notes">%d Notlar</string>
+  <string name="folder_sheet_add_note">Yeni Not Defteri Oluştur</string>
+  <string name="folder_sheet_edit_note">Defter Düzenle</string>
+  <string name="folder_sheet_add_note_detail">Defter ekle</string>
+  <string name="folder_option_add_to_notebook">Defter\'e ekle</string>
+  <string name="folder_option_change_notebook">Defter Değiştir</string>
+  <string name="recent_notes">Son Notlar</string>
+  <string name="information_card_title">Bilgi</string>
+  <string name="information_new_app_update">En son uygulama sürümünü yüklemek için dokunun</string>
+  <string name="information_install_pro">Scarlet Pro\'ya yükseltmek için dokunun</string>
+  <string name="home_option_install_pro_app">Pro Uygulamasını Yükle</string>
+  <string name="home_option_install_pro_app_details">Özellikleri kilidini açmak ve geliştiriciyi desteklemek için Pro Uygulamasını yükleyin</string>
+  <string name="home_option_migrate_to_pro">Scarlet Pro\'ya Geçiş Notları</string>
+  <string name="home_option_migrate_to_pro_details">Tüm notlarınızı profesyonel uygulamaya geçirin</string>
+  <string name="home_option_delete_notes_and_more">Notları Sil ve Daha Fazlası</string>
+  <string name="home_option_delete_notes_and_more_details">Uygulamadaki notları, etiketleri ve diğer verileri silin</string>
+  <string name="home_option_delete_all_notes">Tüm Notları Sil</string>
+  <string name="home_option_delete_all_notes_details">Uygulamadaki tüm notları sil</string>
+  <string name="home_option_delete_all_folders">Tüm Klasörleri Sil</string>
+  <string name="home_option_delete_all_folders_details">Uygulamadaki tüm klasörleri sil</string>
+  <string name="home_option_delete_all_tags">Tüm Etiketleri Sil</string>
+  <string name="home_option_delete_all_tags_details">Uygulamadaki tüm etiketleri sil</string>
+  <string name="home_option_delete_everything">Hepsini sil</string>
+  <string name="home_option_delete_everything_details">Uygulamadaki notları, etiketleri ve klasörleri silin</string>
+  <string name="ui_options_note_background_color">Not Görüntüleyici Arka Planı</string>
+
+  <!-- Added for 7.0.4 -->
+  <string name="merge_notes">Notları Birleştirme</string>
+  <string name="home_option_export_markdown">Markdown Olarak Dışa Aktar</string>
+  <string name="home_option_export_markdown_subtitle">Notları işaretleme biçiminde dışa aktarın. (Bunları uygulamaya geri alamazsınız)</string>
+  <string name="ui_options_note_background_color_settings_theme">Arka plan için tema rengini kullan</string>
+  <string name="ui_options_note_background_color_settings_note">Arka plan için not rengini kullan</string>
+  <string name="import_export_layout_folder_sync_enable">etkinleştirme</string>
+  <string name="import_export_layout_folder_sync_disable">Devre dışı</string>
+  <string name="import_export_layout_folder_sync">Klasör Eşitlemesini Etkinleştir</string>
+  <string name="import_export_layout_folder_sync_title">Folder Sync</string>
+  <string name="import_export_layout_folder_sync_description">Tüm notlarınızı, etiketlerinizi ve klasörlerinizi harici bir klasöre senkronize edin. Bu, diğer uygulamaları kullanarak cihazları senkronize etmenize yardımcı olur, ayrıca uygulamayı silmeniz gerekebilecek bir kopyası da vardır.</string>
+  <string name="import_export_layout_folder_sync_folder">Klasöre Verme</string>
+  <string name="import_export_layout_folder_sync_details">Tüm notları, etiketleri vb. Harici bir klasöre senkronize edin.</string>
+  <string name="import_export_locked">Kilitli notları dışa aktar</string>
+  <string name="sort_sheet_alphabetical">Alfabetik</string>
+  <string name="available_in_pro_only">Scarlet Pro\'da mevcut</string>
+  <string name="import_export_locked_details">Ayrıca kilitlenmiş notları yedekle</string>
+  <string name="home_option_editor_options_title">Editör Seçenekleri</string>
+  <string name="home_option_editor_options_description">Not düzenleyicinin ayarlarını ve kullanımını değiştirin</string>
+  <string name="editor_option_enable_markdown_mode_default">Varsayılan Olarak İşaretleme Seçenekleri</string>
+  <string name="editor_option_enable_markdown_mode_default_details">Araç çubuğundaki markdown hızlı düğmelerini varsayılan olarak göster</string>
+  <string name="editor_option_enable_live_markdown">Gerçek Zamanlı İşaretleme</string>
+  <string name="editor_option_enable_live_markdown_description">İşaretlemenin türünüz olarak görünmesini isteyip istemediğinizi seçin. Etkinleştirme, büyük notalarda performansı etkileyebilir.</string>
+  <string name="editor_option_move_checked_items">İşaretli Öğeleri Taşı</string>
+  <string name="editor_option_move_checked_items_description">Kontrol edilen öğeler listenin en altına taşınır. Seçimi kaldır konumu sıfırlamaz.</string>
+  <string name="editor_option_enable_move_handle">Hareket Kollarını Göster</string>
+  <string name="editor_option_enable_move_handle_description">Öğeleri yukarı veya aşağı taşımak için tutamacı gösterin. Köşeye dokunarak şeyleri hareket ettirebilirsiniz.</string>
+  <string name="markdown_help_sheet_title">Markdown Örnekleri</string>
+  <string name="home_option_widget_options_title">Widget Ayarları</string>
+  <string name="home_option_widget_options_description">Ana ekran widget\'larının ayarlarını değiştirin</string>
+  <string name="widget_option_enable_formatting">Biçimlendirmeyi Etkinleştir</string>
+  <string name="widget_option_enable_formatting_details">Notlar, ana ekran widget\'larında biçimlendirme ile işlenir</string>
+  <string name="widget_option_show_locked_notes">Kilitli Notları Göster</string>
+  <string name="widget_option_show_locked_notes_details">Kilitli notların ana ekran widget\'larında gösterilmesine izin ver</string>
+  <string name="widget_option_show_archived_notes">Arşivlenmiş Notları Göster</string>
+  <string name="widget_option_show_archived_notes_details">Arşivlenmiş notların ana ekran widget\'larında gösterilmesine izin ver</string>
+  <string name="widget_option_show_trash_notes">Notları Çöp Kutusunda Göster</string>
+  <string name="widget_option_show_trash_notes_details">Çöp kutusundaki notların ana ekran widget\'larında gösterilmesine izin ver</string>
+  <string name="home_option_faq_title">Yardım ve Sıkça Sorulan Sorular</string>
+  <string name="home_option_faq_description">Uygulamadaki özellikleri nasıl kullanacağınız konusunda yardım bulun</string>
+  <string name="home_syncing_top_layout">Senkronizasyon</string>
+  <string name="home_pending_backup_top_layout">Bekleyen Yedekleme</string>
+  <string name="internal_settings_title">Geliştirici Seçenekleri</string>
+  <string name="internal_settings_description">Dahili ayarları hata ayıklama için kullanılan uygulamaya değiştirin</string>
+  <string name="internal_settings_enable_log_exceptions_title">Günlük İstisnaları</string>
+  <string name="internal_settings_enable_log_exceptions_description">Geliştirici\'ye iletime izin vermek için, özel durumları sabit bir nota yakalanan özel durumlar</string>
+  <string name="internal_settings_enable_show_exceptions_title">İstisna Sayfasını Göster</string>
+  <string name="internal_settings_enable_show_exceptions_description">Geliştirici\'ye iletime izin vermek için mümkünse bir sayfada yakalanan istisnaları gösterin</string>
+  <string name="internal_settings_enable_throw_exceptions_title">İstisnaları At</string>
+  <string name="internal_settings_enable_throw_exceptions_description">İstisnalar üzerine uygulamayı at ve çök. 5 çökmeden sonra sıfırlanacak</string>
+  <string name="internal_settings_enable_fullscreen_title">Tam Ekranı Etkinleştir</string>
+  <string name="internal_settings_enable_fullscreen_description">Ekran görüntülerine ve kayıtlara izin vermek için uygulamayı tam ekran yapın</string>
+  <string name="internal_settings_show_uuid_title">Not UUID\'lerini Göster</string>
+  <string name="internal_settings_show_uuid_description">Notların benzersiz kimliklerini giriş ekranı görünümünde gösterme</string>
+  <string name="internal_settings_fake_exceptions_title">Sahte İstisnalar</string>
+  <string name="internal_settings_fake_exceptions_description">İstisna özelliklerini test etmek için sahte bir istisna atın</string>
+  <string name="exception_sheet_title">İstisna Fırlatıldı</string>
+  <string name="exception_sheet_crash_app">Crash Uygulaması</string>
+  <string name="exception_sheet_mail">Posta</string>
+  <string name="google_drive_page_connection_failed">Bağlantı Başarısız</string>
+  <string name="google_drive_page_login_title">Google Drive\'da senkronize et</string>
+  <string name="google_drive_page_login_details">Google Drive, notlarınızı kendi Google Drive hesabınızı kullanarak cihazlar arasında senkronize etmenize olanak sağlar.</string>
+  <string name="google_drive_page_login_firebase_button">Daha önce Google Firebase’e giriş yaptınız mı?</string>
+  <string name="google_drive_page_login_button">Google Drive\'da Oturum Açın</string>
+  <string name="google_drive_page_logging_in_button">Oturum Açma…</string>
+  <string name="google_drive_page_logout_title">Scarlet Çıkış</string>
+  <string name="google_drive_page_logout_details">Notları, etiketleri ve klasörleri senkronize etmeyi durdurun.</string>
+  <string name="google_drive_page_logout_no_sync_details">Notlarınızı, etiketlerinizi ve klasörlerinizi Google Drive\'ınızla senkronize etmeyi bırakın.</string>
+  <string name="google_drive_page_logout_data_persists_details">Uygulamadaki ve Google Drive\'daki verileriniz hala orada olacak.</string>
+  <string name="google_drive_page_logout_button">Drive\'dan Çıkış Yapın</string>
+  <string name="google_drive_page_logging_out_button">Çıkış Yapılıyor</string>
+  <string name="google_drive_page_login_lock_details">Notlar, Etiketler ve Klasörler kendi Google Drive\'ınızda saklanır, böylece bunlara yalnızca siz erişebilirsiniz.</string>
+  <string name="google_drive_page_photo_details">Fotoğraflarınız cihazlar arasında da yüklenir ve senkronize edilir.</string>
+  <string name="firebase_page_login_title">Firebase\'den Veri Geri Yükleme</string>
+  <string name="firebase_page_login_button">Google ile giriş yap</string>
+  <string name="firebase_page_logging_in_button">Oturum Açma…</string>
+  <string name="firebase_page_important_details">Bilgilerinizi Google Firebase’de depolardık. Giriş yaptıktan sonra bunları cihazınıza geri yükleyeceğiz.</string>
+  <string name="firebase_page_not_sync_details">Yeni notlar ve değişiklikler Google Firebase ile senkronize edilmeyecek ve Google Drive\'da oturum açmanız gerekecek</string>
+  <string name="firebase_page_remove_details">Notlarınız kurtarıldıktan sonra, Google Firebase\'den silebilir ve ardından geçiş yapabilirsiniz.</string>
+  <string name="firebase_no_sync_warning">Verileriniz senkronize edilmiyor!</string>
+  <string name="firebase_no_sync_warning_details">Eski oturuma dayalı Veri Senkronizasyonu devre dışı bırakıldı, Google Drive tabanlı senkronizasyona geçmeyi düşünün.</string>
+  <string name="firebase_removal_page_login_title">Firebase\'den Drive\'a Veri Aktarma</string>
+  <string name="firebase_removal_page_clear_button">Verileri Temizle ve Çıkış Yap</string>
+  <string name="firebase_removal_page_clearing_button">Temizleme ve Çıkış Yapma</string>
+  <string name="firebase_removal_page_important_details">Bilgilerinizi Google Firebase’de depolardık. Notlarınızı Google Drive\'ınıza kaydetmeye geçiyoruz.</string>
+  <string name="firebase_removal_page_more_privacy_details">Daha fazla gizlilik.</string>
+  <string name="firebase_removal_page_photo_upload_details">Fotoğraf Senk.</string>
+  <string name="firebase_removal_page_whats_next_details">Sonraki adımlar</string>
+  <string name="firebase_removal_page_remove_details">İlk önce notlarınızı Firebase\'den silip oturumunuzu kapatırız.</string>
+  <string name="firebase_removal_page_next_details">Daha sonra Google Drive’a giriş yapabilirsiniz; verilerinizi resimlerle birlikte yükleriz.</string>
+
+  <!-- Added for 7.5.0 -->
+  <string name="folder_delete_option_sheet_title">Seçenekleri Kaldır</string>
+  <string name="folder_delete_option_sheet_remove_folder">Not defterini kaldır</string>
+  <string name="folder_delete_option_sheet_remove_folder_details">Sadece Not Defterini Çıkarın. Notlar dış klasöre taşınır.</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content">Not Defterini ve Notları Kaldır</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details">Not defterini çıkarın. Tüm notlar çöp kutusuna taşınır veya silinir.</string>
+  <string name="folder_delete_option_sheet_remove_folder_content">Notları Kaldır</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details">Not Defteri\'ni saklayın, ancak tüm notlar çöp kutusuna taşınır veya silinir.</string>
+  <string name="home_option_typeface">Yazı Tiplerini Özelleştir</string>
+  <string name="home_option_typeface_subtitle">Uygulamayı seçin ve yazı tiplerini not edin</string>
+  <string name="typeface_page_title">Bir Yazı Tipi Kümesi Seç</string>
+  <string name="typeface_page_description">Not: Yazı tipleri tüm dillerle düzgün çalışmayabilir</string>
+  <string name="typeface_title_app_default">Uygulama Varsayılanı</string>
+  <string name="typeface_title_os_default">Aygıt Varsayılanı</string>
+  <string name="typeface_title_monospace">Mono</string>
+  <string name="typeface_title_serif">Serif</string>
+  <string name="app_lock_title">Uygulamanın kilidini aç</string>
+  <string name="app_lock_details">Kilidi açmak için 4 basamaklı PIN kodunu girin veya biyometrik kullanın</string>
+  <string name="app_lock_details_no_fingerprint">Kilidi açmak için 4 basamaklı PIN kodunu girin</string>
+  <string name="theme_use_system_theme">Sistem Temasını Kullan</string>
+  <string name="theme_use_system_theme_details">Sistemdeki açık veya koyu temayı kullanın</string>
+  <string name="theme_dark_notes">Karanlık Notlar</string>
+  <string name="theme_dark_notes_details">Not ve klasör renklerini otomatik olarak karart</string>
+  <string name="pending_backup_local_state">Yerel</string>
+  <string name="pending_backup_remote_state">uzak</string>
+  <string name="pending_backup_state_unavailable">Kullanım dışı</string>
+  <string name="pending_backup_state_created">düzenlendi</string>
+  <string name="pending_backup_state_deleted">silindi</string>
+  <string name="pending_backup_state_updated">Güncellenmiş</string>
+  <string name="widget_option_background_color">Widget Arka Planı</string>
+  <string name="widget_option_background_color_details">Çoklu notlar widget\'ı için arka plan rengini seçin</string>
+  <string name="widget_option_show_toolbar">Eylem Araç Çubuğunu Göster</string>
+  <string name="widget_option_show_toolbar_details">Çoklu not widget\'ı araç çubuğunu gösterir</string>
+  <string name="editor_option_skip_view_note">Not Görüntüleyiciyi Atla</string>
+  <string name="editor_option_skip_view_note_details">Not görüntüleyiciyi atla ve doğrudan not düzenleyicisine atla</string>
+  <string name="delete_sheet_delete_selected_notes_permanently">Bu notları kalıcı olarak silmek ister misiniz?</string>
+  <string name="install_pro_sheet_latest_updates">Daha Hızlı Güncellemeler ve İstekler.</string>
+  <string name="install_pro_sheet_app_lock">Uygulama Kilidi ve Tek Kilidi Açma.</string>
+  <string name="install_pro_sheet_app_themes">Diğer Uygulama Temaları.</string>
+  <string name="install_pro_sheet_font_size">Yazı Tipleri ve Yazı Tipi Boyutları.</string>
+  <string name="install_pro_sheet_viewer_bg">Görüntüleyici Arkaplan Rengi.</string>
+  <string name="install_pro_sheet_widget_options">Daha fazla Widget Seçenekleri.</string>
+  <string name="install_pro_sheet_note_options">Diğer Not İşlemleri.</string>
+  <string name="sort_sheet_note_color">Not Rengi</string>
+  <string name="sort_sheet_note_tags">Not Etiketleri</string>
+  <string name="security_option_lock_app">Uygulama Kilidi\'ni etkinleştir</string>
+  <string name="security_option_lock_app_details">Tüm uygulamanın kilidini açmak için PIN kullanın</string>
+  <string name="security_option_ask_pin_always">Her zaman PIN sor</string>
+  <string name="security_option_ask_pin_always_details">Daha önce girmiş olsanız bile, tüm notlar için PIN kodunu girin.</string>
+  <string name="security_option_biometrics_enabled">Biyometri ile aç</string>
+  <string name="security_option_biometrics_enabled_subtitle">Parmak izi veya başka bir biyometri ile kilidi açmaya izin ver</string>
+  <string name="security_option_biometrics_disabled">Biyometri devre dışı</string>
+  <string name="security_option_biometrics_disabled_subtitle">Parmak izi veya başka bir biyometri ile kilidi açmaya izin verme</string>
+  <string name="biometric_prompt_unlock_note">Notun kilidini aç</string>
+  <string name="biometric_prompt_unlock_note_details">Notun kilidini açmak ve erişmek için cihaz parmak izi veya biyometri kullanın.</string>
+  <string name="biometric_prompt_unlock_app">Uygulamanın kilidini aç</string>
+  <string name="biometric_prompt_unlock_app_details">Uygulamanın kilidini açmak ve tüm notlara erişmek için cihaz parmak izini veya biyometriyi kullanın.</string>
+  <string name="pin_to_launcher">Başlatıcı Kısayolu</string>
+  <string name="share_images">Fotoğrafları paylaş</string>
+
+</resources>

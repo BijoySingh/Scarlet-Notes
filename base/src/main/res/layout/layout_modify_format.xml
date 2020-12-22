@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/action_move_icon"
+  style="@style/BorderlessBackgroundView"
+  android:layout_width="@dimen/icon_size_normal"
+  android:layout_height="match_parent"
+  android:alpha="0.7"
+  android:layout_gravity="center_vertical"
+  android:src="@drawable/icon_drag_indicator" />

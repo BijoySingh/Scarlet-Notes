@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">Título</string>
+  <string name="description">Conteúdo</string>
+  <string name="save">Salve </string>
+  <string name="share_using">Compartilhe usando &#8230;</string>
+  <string name="main_no_notes">Sem notas</string>
+  <string name="main_no_notes_hint">Parece que você não adicionou nenhuma nota. Clique para adicionar uma nota.</string>
+  <string name="edit_note">Editar nota</string>
+  <string name="open_in_popup">Abrir em pop-up</string>
+  <string name="copy_note">Copiar nota</string>
+  <string name="send_note">Enviar nota</string>
+  <string name="choose_action">Escolher ação&#8230;</string>
+  <string name="format_hint_text">Adicionar conteúdo&#8230;</string>
+  <string name="format_hint_heading">Adicionar cabeçalho &#8230;</string>
+  <string name="format_hint_quote">Adicionar texto citado &#8230;</string>
+  <string name="format_hint_list">Adicionar Item&#8230;</string>
+  <string name="format_hint_code">Adicionar código &#8230;</string>
+  <string name="markdown_sheet_markdown_support">Suporte Markdown</string>
+  <string name="markdown_sheet_markdown_support_subtitle">Permitir formatação suportada pelo markdown</string>
+  <string name="home_option_sheet_title">Opções e Configurações</string>
+  <string name="home_option_export">Exportar notas</string>
+  <string name="home_option_export_subtitle">Exportar notas para o armazenamento do dispositivo para compartilhar</string>
+  <string name="home_option_import">Notas de importação</string>
+  <string name="home_option_import_subtitle">Importar notas do armazenamento do dispositivo</string>
+  <string name="home_option_about_page">Sobre nós</string>
+  <string name="home_option_about_page_subtitle">Saiba mais sobre o aplicativo e os desenvolvedores</string>
+  <string name="home_option_rate_and_review">Taxa e revisão</string>
+  <string name="home_option_rate_and_review_subtitle">Diga-nos o quanto você gostou do aplicativo</string>
+  <string name="permission_layout_give_permission">Dar permissões</string>
+  <string name="permission_layout_give_permission_details">A importação e a exportação exigem permissões de armazenamento. Dê a permissão quando solicitado.</string>
+  <string name="permission_layout_give_permission_ok">Permitir</string>
+  <string name="import_export_import_file_title">Importar cópia de segurança do arquivo</string>
+  <string name="import_export_import_file">Importar arquivo</string>
+  <string name="import_export_layout_exported">Exportados para arquivo</string>
+  <string name="import_export_layout_export_failed">Falha na exportação</string>
+  <string name="import_export_layout_exporting">Exportando para arquivo &#8230;</string>
+  <string name="import_export_layout_exporting_done">Feito</string>
+  <string name="import_export_layout_exporting_share">Compartilhar</string>
+  <string name="about_page_rate">Avalie na Play Store</string>
+  <string name="about_page_contribute">Contribuir</string>
+  <string name="about_page_app_version">Versão da aplicação</string>
+  <string name="about_page_about_app">Sobre a aplicação</string>
+  <string name="search_notes">Notas de pesquisa &#8230;</string>
+  <string name="home_option_enable_list_view">Ativar layout de lista</string>
+  <string name="home_option_enable_list_view_subtitle">Mostrar notas em uma única coluna</string>
+  <string name="home_option_enable_grid_view">Ativar layout de grade</string>
+  <string name="home_option_enable_grid_view_subtitle">Mostrar notas em uma grade escalonada</string>
+
+  <string name="lock_note">Nota de bloqueio</string>
+  <string name="unlock_note">Desbloquear nota</string>
+  <string name="home_option_security">Segurança</string>
+  <string name="home_option_security_subtitle">Bloqueando notas e opções de segurança</string>
+  <string name="security_option_title">Opções de segurança</string>
+  <string name="security_option_set_pin_code">Código de passagem</string>
+  <string name="security_option_set_pin_code_subtitle">Defina um PIN de 4 dígitos para bloquear notas</string>
+  <string name="security_sheet_enter_new_pin_title">Digite o novo PIN</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">Digite PIN para desbloquear</string>
+  <string name="security_sheet_enter_current_pin_title">Digite o PIN atual</string>
+  <string name="security_sheet_button_verify">Verificar</string>
+  <string name="security_sheet_button_unlock">Desbloquear</string>
+  <string name="security_sheet_button_set">Conjunto</string>
+  <string name="security_sheet_button_remove">Remover</string>
+
+  <string name="choose_note_color">Mudar cor</string>
+  <string name="tap_for_action_color">Toque para alterar a cor de fundo da nota</string>
+
+  <string name="delete_note_permanently">Apagar permanentemente</string>
+  <string name="unarchive_note">Unarchive Note</string>
+  <string name="archive_note">Nota de arquivo</string>
+  <string name="not_favourite_note">Mark Not Favorite</string>
+  <string name="favourite_note">Marcar Favorito</string>
+  <string name="restore_note">Nota de restauração</string>
+  <string name="trash_note">Mover para lixeira</string>
+  <string name="tap_for_action_edit">Toque para abrir a nota para edição</string>
+  <string name="tap_for_action_copy">Toque para copiar o conteúdo da nota para a área de transferência</string>
+  <string name="tap_for_action_share">Toque para compartilhar conteúdo de notas em outras aplicações</string>
+  <string name="tap_for_action_popup">Toque para abrir a nota no popup flutuante</string>
+  <string name="tap_for_action_delete">Toque para excluir a nota</string>
+  <string name="tap_for_action_trash">Toque para mover a nota para o lixo</string>
+  <string name="tap_for_action_not_trash">Toque para mover a nota do lixo</string>
+  <string name="tap_for_action_favourite">Toque para marcar a nota como favorito</string>
+  <string name="tap_for_action_not_favourite">Toque para marcar a nota não como favorito</string>
+  <string name="tap_for_action_archive">Toque para arquivar a nota</string>
+  <string name="tap_for_action_not_archive">Toque para desarchivar a nota</string>
+  <string name="nav_home">Casa</string>
+  <string name="nav_favourites">Favoritos</string>
+  <string name="nav_archived">Arquivado</string>
+  <string name="nav_trash">Lixo</string>
+  <string name="open_in_notification">Criar Notificação</string>
+  <string name="notification_channel_label">Notificações de nota</string>
+  <string name="nav_locked">Bloqueado</string>
+  <string name="tag_sheet_create_title">Adicionar nova etiqueta &#8230;</string>
+  <string name="tag_sheet_edit_title">Editar Tag &#8230;</string>
+  <string name="tag_sheet_enter_tag_hint">digite tag</string>
+  <string name="tag_sheet_new_tag_button">Criar uma nova etiqueta</string>
+  <string name="tag_sheet_choose_tag">Escolha um Tagâ € |</string>
+
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">Importar</string>
+  <string name="markdown_sheet_home_markdown_support">Marcação na lista de notas</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">Habilite a formatação do Markdown na lista de notas</string>
+
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">Alterar Tags</string>
+  <string name="home_option_order_notes">Notas de pedidos</string>
+  <string name="home_option_open_source_page">Projeto de código aberto</string>
+  <string name="home_option_open_source_page_subtitle">Saiba mais sobre o projeto de código aberto</string>
+  <string name="osp_page_libraries">Bibliotecas</string>
+  <string name="osp_page_about_osp">Projeto de código aberto</string>
+  <string name="reminder_sheet_reminder_date">Data de Lembrete</string>
+  <string name="reminder_sheet_reminder_time">Tempo de lembrete</string>
+  <string name="reminder_sheet_repeat">Frequência repetida</string>
+  <string name="sort_sheet_title">Classificar notas por</string>
+  <string name="sort_sheet_newest_first">Os mais novos primeiro</string>
+  <string name="sort_sheet_oldest_first">Mais velhos primeiro</string>
+  <string name="sort_sheet_last_modified">Mais recentemente modificado</string>
+  <string name="reminder">Lembrete</string>
+  <string name="pin_note">Nota do Pin</string>
+  <string name="unpin_note">Desmarcar nota</string>
+
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">Interface e Experiência</string>
+  <string name="home_option_ui_experience_subtitle">Escolha como o aplicativo parece e se sente.</string>
+  <string name="home_option_about">Sobre</string>
+  <string name="home_option_about_subtitle">Saiba mais sobre nós e o aplicativo.</string>
+  <string name="note_option_default_color">Cor da nota padrão</string>
+  <string name="note_option_default_color_subtitle">Escolha a cor padrão das notas</string>
+  <string name="note_option_number_lines">Linha Limite de Linha</string>
+  <string name="home_option_backup_options">Backup e importação</string>
+  <string name="home_option_backup_options_subtitle">Backup, importação e exportação de opções de notas</string>
+
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">Instalar da loja</string>
+  <string name="home_option_install_from_store_subtitle">Instale o aplicativo da Google Store para Cloud Sync</string>
+
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">Nenhum conjunto de PIN</string>
+  <string name="no_pincode_sheet_details">Você não configurou o PIN. Gostaria de configurá-lo agora?</string>
+  <string name="no_pincode_sheet_not_now">Mais tarde</string>
+  <string name="no_pincode_sheet_dont_ask">Nunca pergunte</string>
+  <string name="no_pincode_sheet_set_up">Configuração</string>
+
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">Duplicado</string>
+  <string name="select">Selecione</string>
+  <string name="delete_sheet_are_you_sure">Você tem certeza?</string>
+  <string name="delete_sheet_delete_trash">Gostaria de excluir permanentemente as notas na pasta de lixo?</string>
+  <string name="delete_sheet_delete_note_permanently">Gostaria de excluir definitivamente esta nota?</string>
+  <string name="delete_sheet_delete_trash_yes">Excluir</string>
+  <string name="delete_sheet_delete_trash_no">Cancelar</string>
+  <string name="trash_will_delete_automatically">As notas são apagadas para sempre após 7 dias</string>
+
+
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">Adicionar nota</string>
+  <string name="shortcut_add_list">Adicionar lista de verificação</string>
+  <string name="select_a_note_title">Selecione uma nota</string>
+  <string name="select_notes_title">Selecione notas</string>
+  <string name="nav_settings">Configurações</string>
+  <string name="widget_no_valid_note">Observe que seja excluído ou bloqueado</string>
+  <string name="note_option_font_size">Nota Tamanho da fonte</string>
+  <string name="note_option_font_size_example">Ajuste o tamanho da fonte do texto na página de notas. Você pode ver como isso parece nesta pré-visualização.</string>
+  <string name="note_option_font_size_subtitle">%d tamanho do texto no visualizador de notas</string>
+
+
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">O que há de novo</string>
+  <string name="whats_new_subtitle">Saiba o que há de novo nas atualizações recentes do aplicativo</string>
+  <string name="whats_new_translate">Traduzir</string>
+
+
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">cópia de</string>
+  <string name="format_action_title">Bloquear ações de texto</string>
+  <string name="format_action_gallery">Galeria</string>
+  <string name="format_action_camera">Câmera</string>
+  <string name="voice_sheet_title">Fale Nota em voz alta</string>
+  <string name="voice_action_title">Fale alto</string>
+  <string name="image_delete_all_devices">A exclusão deste item eliminará a imagem de todos os dispositivos.</string>
+  <string name="image_not_on_current_device">Imagem não disponível neste dispositivo</string>
+  <string name="image_cannot_be_loaded">A imagem não pode ser carregada</string>
+  <string name="image_not_uploaded">As imagens não são sincronizadas</string>
+  <string name="image_not_uploaded_details">As imagens não são sincronizadas entre dispositivos. Suas imagens não aparecerão em outros dispositivos enquanto visualiza a nota!</string>
+  <string name="image_not_uploaded_i_understand">Compreendo</string>
+  <string name="home_option_auto_export">Exportar automaticamente</string>
+  <string name="home_option_auto_export_subtitle">Exportar notas com freqüência para arquivos externos como backup</string>
+  <string name="format_hint_image">Clique para adicionar ou alterar a imagem</string>
+
+
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">Apenas uma vez</string>
+  <string name="reminder_frequency_daily">Diariamente</string>
+  <string name="notification_reminder_channel_label">Lembretes e alarmes</string>
+  <string name="about_page_description_os">%s é de código aberto e qualquer pessoa está aberta para contribuir para torná-lo melhor. Atualmente, ele é construído e mantido por %s.</string>
+  <string name="about_page_description">%s é um simples aplicativo de tomada de notas. Ele permite uma entrada rápida de Rich Text sem tornar a experiência muito difícil de usar. Isso torna a multitarefa uma brisa.</string>
+  <string name="about_page_about_us_details">Oi, somos um par de designers e programadores, que criaram %s.
+     Nós nos esforçamos para criar aplicativos de anúncios bonitos, cuidadosamente projetados, gratuitos, gratuitos ou mínimos, que servem uma ótima utilidade para todos!</string>
+  <string name="note_option_number_lines_subtitle">%d linhas na tela inicial</string>
+  <string name="view_distraction_free">Distração grátis</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">Iniciar sessão na aplicação</string>
+  <string name="home_option_login_with_app_subtitle">Faça login para o backup e sincronização da nuvem</string>
+  <string name="home_option_logout_of_app">Sair</string>
+  <string name="home_option_logout_of_app_subtitle">Sair para parar o backup da nuvem</string>
+  <string name="login_to_google_failed">Falha no Login do Google</string>
+  <string name="material_notes_privacy_policy">Política de Privacidade</string>
+  <string name="material_notes_privacy_policy_subtitle">Política de privacidade da aplicação para o conteúdo</string>
+  <string name="install_pro_app">Instale a aplicação Pro</string>
+  <string name="why_install_pro">Por que instalar o Pro</string>
+  <string name="why_install_pro_details">Desenvolvedor de suporte para os custos maciços do servidor, para executar a sincronização da nuvem \n\n Obtenha os recursos mais recentes primeiro \n\n Alguns recursos extras estarão disponíveis apenas para usuários do Pro</string>
+
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">App Theme</string>
+  <string name="home_option_theme_color_subtitle">Selecione a cor de fundo para o tema</string>
+  <string name="theme_page_title">Selecione o tema da aplicação</string>
+  <string name="click_to_add_tags">Clique para adicionar ou alterar tags</string>
+  <string name="select_notes">Selecione Notas</string>
+  <string name="select_notes_details">Selecione e execute ações em várias notas de uma só vez</string>
+  <string name="recent_to_trash_message">A nota foi movida para o lixo</string>
+  <string name="recent_to_delete_message">A nota foi eliminada</string>
+  <string name="recent_to_trash_undo">Desfazer</string>
+  <string name="backup_note_disable">Desativar backup</string>
+  <string name="backup_note_enable">Ativar backup</string>
+  <string name="folder_card_title">Caderno Vazio</string>
+  <string name="folder_card_title_single_note">1 nota</string>
+  <string name="folder_card_title_notes">%d Notas</string>
+  <string name="folder_sheet_add_note">Criar novo caderno</string>
+  <string name="folder_sheet_edit_note">Editar caderno</string>
+  <string name="folder_sheet_add_note_detail">Adicionar caderno</string>
+  <string name="folder_option_add_to_notebook">Adicionar ao bloco de anotações</string>
+  <string name="folder_option_change_notebook">Modifique o Notebook</string>
+  <string name="recent_notes">Notas Recentes</string>
+  <string name="information_card_title">Em formação</string>
+  <string name="information_new_app_update">Toque para instalar a versão mais recente do aplicativo</string>
+  <string name="information_install_pro">Toque para atualizar para o Scarlet Pro</string>
+  <string name="home_option_install_pro_app">Instalar o App Pro</string>
+  <string name="home_option_install_pro_app_details">Instale o Pro App para desbloquear recursos e dar suporte ao desenvolvedor</string>
+  <string name="home_option_migrate_to_pro">Migrar Notes para Scarlet Pro</string>
+  <string name="home_option_migrate_to_pro_details">Migre todas as suas anotações para o aplicativo profissional</string>
+  <string name="home_option_delete_notes_and_more">Excluir notas e mais</string>
+  <string name="home_option_delete_notes_and_more_details">Excluir notas, tags e outros dados no aplicativo</string>
+  <string name="home_option_delete_all_notes">Excluir todas as anotações</string>
+  <string name="home_option_delete_all_notes_details">Excluir todas as notas do aplicativo</string>
+  <string name="home_option_delete_all_folders">Excluir todas as pastas</string>
+  <string name="home_option_delete_all_folders_details">Exclua todas as pastas no aplicativo</string>
+  <string name="home_option_delete_all_tags">Excluir todas as tags</string>
+  <string name="home_option_delete_all_tags_details">Excluir todas as tags no aplicativo</string>
+  <string name="home_option_delete_everything">Excluir tudo</string>
+  <string name="home_option_delete_everything_details">Excluir notas, tags e pastas no aplicativo</string>
+  <string name="ui_options_note_background_color">Fundo do visualizador de nota</string>
+
+  <!-- Added for 7.0.4 -->
+  <string name="merge_notes">Mesclar anotações</string>
+  <string name="home_option_export_markdown">Exportar como Markdown</string>
+  <string name="home_option_export_markdown_subtitle">Exportar notas no formato de marcação. (Você não pode importar de volta para o aplicativo)</string>
+  <string name="ui_options_note_background_color_settings_theme">Use a cor do tema para o fundo</string>
+  <string name="ui_options_note_background_color_settings_note">Use a cor da nota para o fundo</string>
+  <string name="import_export_layout_folder_sync_enable">Habilitar</string>
+  <string name="import_export_layout_folder_sync_disable">Desabilitar</string>
+  <string name="import_export_layout_folder_sync">Ativar sincronização de pastas</string>
+  <string name="import_export_layout_folder_sync_title">Sincronização de pastas</string>
+  <string name="import_export_layout_folder_sync_description">Sincronize todas as suas anotações, tags e pastas em uma pasta externa. Isso ajuda você a sincronizar usando outros aplicativos entre dispositivos, além de ter uma cópia no caso de precisar excluir o aplicativo.</string>
+  <string name="import_export_layout_folder_sync_folder">Exportando para pasta</string>
+  <string name="import_export_layout_folder_sync_details">Sincronize todas as notas, tags, etc para uma pasta externa</string>
+  <string name="import_export_locked">Exportar notas bloqueadas</string>
+  <string name="sort_sheet_alphabetical">Alfabético</string>
+  <string name="available_in_pro_only">Disponível no Scarlet Pro</string>
+  <string name="import_export_locked_details">Também faça backup das notas bloqueadas</string>
+  <string name="home_option_editor_options_title">Opções do editor</string>
+  <string name="home_option_editor_options_description">Alterar as configurações e uso para o editor de notas</string>
+  <string name="editor_option_enable_markdown_mode_default">Opções de marcação como padrão</string>
+  <string name="editor_option_enable_markdown_mode_default_details">Mostrar os botões rápidos de markdown na barra de ferramentas como padrão</string>
+  <string name="editor_option_enable_live_markdown">Markdown em tempo real</string>
+  <string name="editor_option_enable_live_markdown_description">Escolha se você deseja que o markdown seja visível como seu tipo. A ativação pode afetar o desempenho em notas grandes.</string>
+  <string name="editor_option_move_checked_items">Mover itens marcados</string>
+  <string name="editor_option_move_checked_items_description">Os itens marcados passam para o final da lista. Desmarque não redefine a posição.</string>
+  <string name="editor_option_enable_move_handle">Mostrar alças de movimento</string>
+  <string name="editor_option_enable_move_handle_description">Mostrar a alça para mover itens para cima ou para baixo. Você ainda pode mover as coisas tocando no canto.</string>
+  <string name="markdown_help_sheet_title">Exemplos de remarcação</string>
+  <string name="home_option_widget_options_title">Configurações de Widget</string>
+  <string name="home_option_widget_options_description">Alterar as configurações dos widgets da tela principal</string>
+  <string name="widget_option_enable_formatting">Ativar formatação</string>
+  <string name="widget_option_enable_formatting_details">As notas são renderizadas com formatação nos widgets da tela inicial</string>
+  <string name="widget_option_show_locked_notes">Mostrar notas bloqueadas</string>
+  <string name="widget_option_show_locked_notes_details">Permitir que notas bloqueadas sejam exibidas em widgets da tela inicial</string>
+  <string name="widget_option_show_archived_notes">Mostrar notas arquivadas</string>
+  <string name="widget_option_show_archived_notes_details">Permitir que anotações arquivadas sejam mostradas em widgets da tela inicial</string>
+  <string name="widget_option_show_trash_notes">Mostrar notas no lixo</string>
+  <string name="widget_option_show_trash_notes_details">Permitir que notas na lixeira sejam exibidas em widgets da tela inicial</string>
+  <string name="home_option_faq_title">Ajuda e Perguntas Comuns</string>
+  <string name="home_option_faq_description">Encontre ajuda sobre como usar os recursos no aplicativo</string>
+  <string name="home_syncing_top_layout">Sincronizando</string>
+  <string name="home_pending_backup_top_layout">Backup pendente</string>
+  <string name="internal_settings_title">Opções de desenvolvedor</string>
+  <string name="internal_settings_description">Alterar configurações internas para o aplicativo usado para depuração</string>
+  <string name="internal_settings_enable_log_exceptions_title">Exceções de log</string>
+  <string name="internal_settings_enable_log_exceptions_description">Registrar exceções capturadas em uma nota fixa, para permitir o encaminhamento para o desenvolvedor</string>
+  <string name="internal_settings_enable_show_exceptions_title">Mostrar folha de exceção</string>
+  <string name="internal_settings_enable_show_exceptions_description">Mostrar exceções capturadas em uma planilha, se possível, para permitir o encaminhamento para o desenvolvedor</string>
+  <string name="internal_settings_enable_throw_exceptions_title">Lançar exceções</string>
+  <string name="internal_settings_enable_throw_exceptions_description">Jogue e trave o aplicativo em exceções. Será reposto após 5 falhas</string>
+  <string name="internal_settings_enable_fullscreen_title">Ativar tela inteira</string>
+  <string name="internal_settings_enable_fullscreen_description">Torne o aplicativo em tela cheia para permitir capturas de tela e gravações</string>
+  <string name="internal_settings_show_uuid_title">Mostrar UUIDs de notas</string>
+  <string name="internal_settings_show_uuid_description">Mostrar os IDs exclusivos das notas na exibição da tela inicial</string>
+  <string name="internal_settings_fake_exceptions_title">Exceções falsas</string>
+  <string name="internal_settings_fake_exceptions_description">Lance uma exceção falsa para testar os recursos de exceção</string>
+  <string name="exception_sheet_title">Exceção lançada</string>
+  <string name="exception_sheet_crash_app">Bater App</string>
+  <string name="exception_sheet_mail">Enviar</string>
+  <string name="google_drive_page_connection_failed">Conexão falhada</string>
+  <string name="google_drive_page_login_title">Sincronizar no Google Drive</string>
+  <string name="google_drive_page_login_details">O Google Drive permite sincronizar suas notas entre dispositivos usando sua própria conta do Google Drive.</string>
+  <string name="google_drive_page_login_firebase_button">Já fez login no Google Firebase?</string>
+  <string name="google_drive_page_login_button">Faça login no Google Drive</string>
+  <string name="google_drive_page_logging_in_button">Assinando em &#8230;</string>
+  <string name="google_drive_page_logout_title">Sair do Escarlate</string>
+  <string name="google_drive_page_logout_details">Pare de sincronizar notas, tags e pastas.</string>
+  <string name="google_drive_page_logout_no_sync_details">Pare de sincronizar suas notas, tags e pastas com seu Google Drive.</string>
+  <string name="google_drive_page_logout_data_persists_details">Seus dados no aplicativo e no Google Drive ainda estarão lá.</string>
+  <string name="google_drive_page_logout_button">Sair do Drive</string>
+  <string name="google_drive_page_logging_out_button">Sair &#8230;</string>
+  <string name="google_drive_page_login_lock_details">Notas, etiquetas e pastas são armazenados no seu próprio Google Drive, pelo que apenas pode controlar o acesso a eles.</string>
+  <string name="google_drive_page_photo_details">Suas fotos também são carregadas e sincronizadas em todos os dispositivos.</string>
+  <string name="firebase_page_login_title">Restaurar dados do Firebase</string>
+  <string name="firebase_page_login_button">Faça login no Google</string>
+  <string name="firebase_page_logging_in_button">Assinando em &#8230;</string>
+  <string name="firebase_page_important_details">Nós armazenamos suas informações no Google Firebase. Após o login, nós os recuperaremos no seu dispositivo</string>
+  <string name="firebase_page_not_sync_details">Novas notas e alterações NÃO serão sincronizadas no Google Firebase e você precisará fazer login no Google Drive</string>
+  <string name="firebase_page_remove_details">Depois que suas anotações forem recuperadas, você poderá excluí-las do Google Firebase e, em seguida, alternar</string>
+  <string name="firebase_no_sync_warning">Seus dados não estão sendo sincronizados!</string>
+  <string name="firebase_no_sync_warning_details">A Sincronização de dados com base no login herdado está desativada. Considere a possibilidade de alternar para a sincronização baseada no Google Drive.</string>
+  <string name="firebase_removal_page_login_title">Transferir dados do Firebase para o Drive</string>
+  <string name="firebase_removal_page_clear_button">Limpar dados e sair</string>
+  <string name="firebase_removal_page_clearing_button">Limpar e sair</string>
+  <string name="firebase_removal_page_important_details">Nós armazenamos suas informações no Google Firebase. Estamos mudando para armazenar suas anotações no seu Google Drive.</string>
+  <string name="firebase_removal_page_more_privacy_details">Mais privacidade.</string>
+  <string name="firebase_removal_page_photo_upload_details">Sincronização de fotos.</string>
+  <string name="firebase_removal_page_whats_next_details">Próximos passos</string>
+  <string name="firebase_removal_page_remove_details">Primeiramente, excluiremos suas anotações do Firebase e faremos seu logout.</string>
+  <string name="firebase_removal_page_next_details">Você pode fazer login no Google Drive e enviaremos seus dados junto com as imagens.</string>
+
+  <!-- Added for 7.5.0 -->
+  <string name="folder_delete_option_sheet_title">Remover opções</string>
+  <string name="folder_delete_option_sheet_remove_folder">Remover Notebook</string>
+  <string name="folder_delete_option_sheet_remove_folder_details">Remova apenas o notebook. As anotações são movidas para fora da pasta.</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content">Remover bloco de anotações e anotações</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details">Remova o notebook. Todas as notas passam para o lixo ou são excluídas.</string>
+  <string name="folder_delete_option_sheet_remove_folder_content">Remover anotações</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details">Mantenha o Bloco de anotações, mas todas as anotações passam para a lixeira ou são excluídas.</string>
+  <string name="home_option_typeface">Personalizar fontes</string>
+  <string name="home_option_typeface_subtitle">Selecione o aplicativo e observe as fontes</string>
+  <string name="typeface_page_title">Selecione um conjunto de fontes</string>
+  <string name="typeface_page_description">Nota: As fontes podem não funcionar corretamente em todos os idiomas</string>
+  <string name="typeface_title_app_default">Padrão do aplicativo</string>
+  <string name="typeface_title_os_default">Padrão do dispositivo</string>
+  <string name="typeface_title_monospace">Mono</string>
+  <string name="typeface_title_serif">Serif</string>
+  <string name="app_lock_title">Desbloquear aplicativo</string>
+  <string name="app_lock_details">Digite o PIN de 4 dígitos ou use a biometria para desbloquear</string>
+  <string name="app_lock_details_no_fingerprint">Digite o PIN de 4 dígitos para desbloquear</string>
+  <string name="theme_use_system_theme">Usar tema do sistema</string>
+  <string name="theme_use_system_theme_details">Use o tema claro ou escuro do sistema</string>
+  <string name="theme_dark_notes">Notas Sombrias</string>
+  <string name="theme_dark_notes_details">Escurecer automaticamente as cores das notas e pastas</string>
+  <string name="pending_backup_local_state">Local</string>
+  <string name="pending_backup_remote_state">Controlo remoto</string>
+  <string name="pending_backup_state_unavailable">Indisponível</string>
+  <string name="pending_backup_state_created">Criado</string>
+  <string name="pending_backup_state_deleted">Excluído</string>
+  <string name="pending_backup_state_updated">Atualizada</string>
+  <string name="widget_option_background_color">Fundo do widget</string>
+  <string name="widget_option_background_color_details">Escolha a cor de fundo para o widget de várias notas</string>
+  <string name="widget_option_show_toolbar">Mostrar barra de ferramentas de ação</string>
+  <string name="widget_option_show_toolbar_details">O widget de várias notas mostra a barra de ferramentas</string>
+  <string name="editor_option_skip_view_note">Ignorar visualizador de notas</string>
+  <string name="editor_option_skip_view_note_details">Pule o visualizador de notas e vá diretamente para o editor de notas</string>
+  <string name="delete_sheet_delete_selected_notes_permanently">Deseja excluir permanentemente essas notas?</string>
+  <string name="install_pro_sheet_latest_updates">Atualizações e solicitações mais rápidas.</string>
+  <string name="install_pro_sheet_app_lock">Bloqueio de aplicativo e desbloqueio único.</string>
+  <string name="install_pro_sheet_app_themes">Mais temas de aplicativos.</string>
+  <string name="install_pro_sheet_font_size">Observe fontes e tamanhos de fonte.</string>
+  <string name="install_pro_sheet_viewer_bg">Cor de fundo do visualizador.</string>
+  <string name="install_pro_sheet_widget_options">Mais opções de widget.</string>
+  <string name="install_pro_sheet_note_options">Mais ações de anotação.</string>
+  <string name="sort_sheet_note_color">Nota Cor</string>
+  <string name="sort_sheet_note_tags">Tags de nota</string>
+  <string name="security_option_lock_app">Ativar bloqueio de aplicativo</string>
+  <string name="security_option_lock_app_details">Use o PIN para desbloquear o aplicativo inteiro</string>
+  <string name="security_option_ask_pin_always">Sempre solicite o PIN</string>
+  <string name="security_option_ask_pin_always_details">Digite o PIN para todas as notas, mesmo se inserido anteriormente</string>
+  <string name="security_option_biometrics_enabled">Desbloquear com biometria</string>
+  <string name="security_option_biometrics_enabled_subtitle">Permitir desbloqueio com uma impressão digital ou outros dados biométricos</string>
+  <string name="security_option_biometrics_disabled">Biometria desativada</string>
+  <string name="security_option_biometrics_disabled_subtitle">Não permita o desbloqueio com uma impressão digital ou outra biometria</string>
+  <string name="biometric_prompt_unlock_note">Nota de desbloqueio</string>
+  <string name="biometric_prompt_unlock_note_details">Use a impressão digital do dispositivo ou a biometria para desbloquear a nota e o acesso.</string>
+  <string name="biometric_prompt_unlock_app">Desbloquear aplicativo</string>
+  <string name="biometric_prompt_unlock_app_details">Use a impressão digital ou a biometria do dispositivo para desbloquear o aplicativo e acessar todas as notas.</string>
+  <string name="pin_to_launcher">Atalho do iniciador</string>
+  <string name="share_images">Compartilhar fotos</string>
+
+</resources>

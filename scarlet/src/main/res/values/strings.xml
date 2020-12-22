@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Data Policy Strings -->
+
+  <string name="data_policy_page_title" translatable="false">Message about your data safety</string>
+  <string name="data_policy_introduction" translatable="false">We care about keeping your data safe. Here is what, how and why we store your data. You always have an option to opt out.</string>
+  <string name="data_policy_what_data_title" translatable="false">What data do we store?</string>
+  <string name="data_policy_what_data_text" translatable="false">We store your notes, tags and notebooks. Along with the content we store additional information like color, create time, update time, etc. related to the note. This information is used to make the service best for you.\n\nIf you have logged in via any device, we also store your basic Google Profile (Your public profile and your email address)</string>
+  <string name="data_policy_how_store_title" translatable="false">How do we store this data?</string>
+  <string name="data_policy_how_store_text" translatable="false">If you have never logged in, your data is only stored on your device(s).\n\nOnce you log in via Google on the app, your data is synced and stored securely in Google Firebase servers as well as your local device(s).\n\nThe connection to the Google servers is encrypted.</string>
+  <string name="data_policy_what_do_title" translatable="false">What do we do with the data?</string>
+  <string name="data_policy_what_do_text" translatable="false">The data is used for making sure the app works for you. It allows you to see your notes, sync them between devices, or view them online.\n\nWe may use your Google email address, to send you an alert in case of a data loss or breach.\n\nThe data is stored on Google servers under these terms https://firebase.google.com/terms/. Besides that we do not and will not sell or share your data with third party companies.\n\nYou can always remove the data we store by choosing \'Forget Me\' from the app settings.</string>
+  <string name="data_policy_click_for_privacy" translatable="false">Click to view the app privacy policy</string>
+  <string name="data_policy_i_have_read" translatable="false">I am at least 16 years old and I have read this data policy</string>
+  <string name="data_policy_refuse" translatable="false">Don\'t Agree?</string>
+  <string name="data_policy_done" translatable="false">Agree</string>
+
+  <string name="forget_me_page_title" translatable="false">Forget Me</string>
+  <string name="forget_me_page_details" translatable="false">Logout and remove all online data</string>
+  <string name="forget_me_introduction" translatable="false">We are sad you feel the need for us to forget your data. </string>
+
+  <string name="forget_me_what_happens_title" translatable="false">What happens when we forget you?</string>
+  <string name="forget_me_what_happens_text" translatable="false">We will delete all your data stored online. We will log you out and remove your account, user information from our data.\n\nIf you are logged into other devices, once they connect to the internet and open the app they will be logged out.\n\nIf you are unsure, you can always choose this option later in the app settings.</string>
+  <string name="forget_me_cancel" translatable="false">Cancel</string>
+  <string name="forget_me_i_understand" translatable="false">I understand I am about to delete all my data</string>
+
+  <!-- End: Firebase Login Strings -->
+</resources>

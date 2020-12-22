@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+  <shortcut
+    android:shortcutId="create_note"
+    android:enabled="true"
+    android:icon="@drawable/ic_shortcut_note_add"
+    android:shortcutShortLabel="@string/shortcut_add_note"
+    android:shortcutLongLabel="@string/shortcut_add_note"
+    android:shortcutDisabledMessage="@string/main_no_notes">
+    <intent
+      android:action="android.intent.action.VIEW"
+      android:targetClass="com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity" />
+    <categories android:name="android.shortcut.conversation" />
+  </shortcut>
+
+  <shortcut
+    android:shortcutId="create_list"
+    android:enabled="true"
+    android:icon="@drawable/ic_shortcut_format_list_bulleted"
+    android:shortcutShortLabel="@string/shortcut_add_list"
+    android:shortcutLongLabel="@string/shortcut_add_list"
+    android:shortcutDisabledMessage="@string/main_no_notes">
+    <intent
+      android:action="android.intent.action.VIEW"
+      android:targetClass="com.maubis.scarlet.base.note.creation.activity.CreateListNoteActivity" />
+    <categories android:name="android.shortcut.conversation" />
+  </shortcut>
+  <!-- Specify more shortcuts here. -->
+</shortcuts>

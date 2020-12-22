@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="extra_text_line_spacing">4dp</dimen>
+
+  <dimen name="toolbar_size">44dp</dimen>
+  <dimen name="toolbar_round_icon_size">36dp</dimen>
+  <dimen name="toolbar_round_icon_padding">8dp</dimen>
+  <dimen name="toolbar_round_icon_padding_subsize">12dp</dimen>
+  <dimen name="toolbar_round_icon_margin_vertical">4dp</dimen>
+  <dimen name="toolbar_round_icon_margin_horizontal">4dp</dimen>
+  <dimen name="toolbar_round_small_icon_size">28dp</dimen>
+  <dimen name="toolbar_round_small_icon_margin_horizontal">8dp</dimen>
+  <dimen name="toolbar_round_small_icon_padding">4dp</dimen>
+
+  <dimen name="app_name_size">22sp</dimen>
+
+  <dimen name="main_toolbar_top_padding">16dp</dimen>
+  <dimen name="main_toolbar_bottom_padding">6dp</dimen>
+  <dimen name="main_toolbar_icon_size">36dp</dimen>
+
+  <dimen name="ultra_large_round_icon_size">64dp</dimen>
+  <dimen name="primary_round_icon_size">48dp</dimen>
+  <dimen name="primary_round_icon_padding">12dp</dimen>
+
+  <dimen name="icon_size_xlarge">36dp</dimen>
+  <dimen name="icon_size_large">32dp</dimen>
+  <dimen name="icon_size_slarge">32dp</dimen>
+  <dimen name="icon_size_l_normal">24dp</dimen>
+  <dimen name="icon_size_normal">20dp</dimen>
+  <dimen name="icon_size_small">16dp</dimen>
+
+  <dimen name="font_size_xxxlarge">24sp</dimen>
+  <dimen name="font_size_xxlarge">21sp</dimen>
+  <dimen name="font_size_xlarge">18sp</dimen>
+  <dimen name="font_size_large">16sp</dimen>
+  <dimen name="font_size_normal">14sp</dimen>
+  <dimen name="font_size_small">12sp</dimen>
+  <dimen name="font_size_xsmall">12sp</dimen>
+
+  <dimen name="spacing_xxlarge">24dp</dimen>
+  <dimen name="spacing_xlarge">20dp</dimen>
+  <dimen name="spacing_large">16dp</dimen>
+  <dimen name="spacing_normal">12dp</dimen>
+  <dimen name="spacing_small">8dp</dimen>
+  <dimen name="spacing_xsmall">6dp</dimen>
+  <dimen name="spacing_xxsmall">4dp</dimen>
+
+  <dimen name="bottom_sheet_width_for_tablets">480dp</dimen>
+</resources>

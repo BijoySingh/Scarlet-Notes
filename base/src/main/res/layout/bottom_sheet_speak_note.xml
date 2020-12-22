@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/root_layout"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <androidx.cardview.widget.CardView
+    android:id="@+id/speak_note_card"
+    style="@style/BottomSheetCardView">
+
+    <LinearLayout
+      android:id="@+id/container_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:padding="@dimen/spacing_large">
+
+      <TextView
+        android:id="@+id/options_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:text="@string/voice_sheet_title"
+        android:textColor="@color/dark_tertiary_text"
+        android:textSize="@dimen/font_size_large" />
+
+      <ImageView
+        android:id="@+id/speak_play_pause"
+        style="@style/BorderlessBackgroundView"
+        android:layout_width="@dimen/icon_size_xlarge"
+        android:layout_height="@dimen/icon_size_xlarge"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:src="@drawable/ic_action_play_sound"
+        android:tint="@color/dark_tertiary_text" />
+
+    </LinearLayout>
+  </androidx.cardview.widget.CardView>
+</androidx.core.widget.NestedScrollView>

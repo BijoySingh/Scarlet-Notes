@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  style="@style/FormatLayout"
+  android:orientation="vertical">
+
+  <LinearLayout
+    android:id="@+id/image_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <include layout="@layout/layout_modify_format" />
+
+    <TextView
+      android:id="@+id/text"
+      style="@style/FormatText"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:text="@string/format_hint_image" />
+
+    <ImageView
+      android:id="@+id/action_camera"
+      style="@style/FormatActionButtons"
+      android:src="@drawable/ic_image_camera" />
+
+    <ImageView
+      android:id="@+id/action_gallery"
+      style="@style/FormatActionButtons"
+      android:src="@drawable/ic_image_gallery" />
+
+  </LinearLayout>
+
+  <ImageView
+    android:id="@+id/image"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_normal"
+    android:adjustViewBounds="true" />
+
+  <com.github.bijoysingh.uibasics.views.UITextView
+    android:id="@+id/no_image_message"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingBottom="@dimen/spacing_small"
+    android:paddingEnd="@dimen/spacing_normal"
+    android:paddingStart="@dimen/spacing_normal"
+    android:paddingTop="@dimen/spacing_small"
+    android:visibility="gone"
+    app:icon="@drawable/ic_action_no_image"
+    app:iconSize="@dimen/icon_size_normal"
+    app:iconTextGap="@dimen/spacing_normal"
+    app:text="@string/image_not_on_current_device"
+    app:textColor="@color/dark_tertiary_text"
+    app:textSize="@dimen/font_size_normal" />
+</LinearLayout>

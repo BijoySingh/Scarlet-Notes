@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="title">標題</string>
+  <string name="description">內容</string>
+  <string name="save">保存</string>
+  <string name="share_using">分享使用&#8230;</string>
+  <string name="main_no_notes">沒有筆記</string>
+  <string name="main_no_notes_hint">看來你還沒有添加任何筆記。 點擊添加備註。</string>
+  <string name="edit_note">編輯註釋</string>
+  <string name="open_in_popup">在彈出窗口中打開</string>
+  <string name="copy_note">複製說明</string>
+  <string name="send_note">發送注意事項</string>
+  <string name="choose_action">選擇動作&#8230;</string>
+  <string name="format_hint_text">添加內容&#8230;</string>
+  <string name="format_hint_heading">添加標題&#8230;</string>
+  <string name="format_hint_quote">添加引號文本&#8230;</string>
+  <string name="format_hint_list">新增項目&#8230;</string>
+  <string name="format_hint_code">添加代碼&#8230;</string>
+  <string name="home_option_sheet_title">選項和設置</string>
+  <string name="home_option_export">導出註釋</string>
+  <string name="choose_note_color">換顏色</string>
+  <string name="tap_for_action_color">點擊改變音符的背景顏色</string>
+  <string name="search_notes">搜索筆記&#8230;</string>
+  <string name="lock_note">鎖定注意</string>
+  <string name="unlock_note">解鎖注意</string>
+  <string name="home_option_security">安全</string>
+  <string name="home_option_security_subtitle">鎖定註釋和安全選項</string>
+  <string name="security_option_title">安全選項</string>
+  <string name="security_option_set_pin_code">密碼</string>
+  <string name="security_option_set_pin_code_subtitle">設置一個4位數字的PIN碼來鎖定音符</string>
+  <string name="security_sheet_enter_new_pin_title">輸入新的PIN碼</string>
+  <string name="security_sheet_enter_pin_to_unlock_title">輸入PIN碼即可解鎖</string>
+  <string name="security_sheet_enter_current_pin_title">輸入當前的PIN碼</string>
+  <string name="security_sheet_button_verify">校驗</string>
+  <string name="security_sheet_button_unlock">開鎖</string>
+  <string name="security_sheet_button_set">組</string>
+  <string name="security_sheet_button_remove">去掉</string>
+  <string name="home_option_enable_list_view">啟用列表佈局</string>
+  <string name="home_option_enable_list_view_subtitle">在單個欄目中顯示註釋</string>
+  <string name="home_option_enable_grid_view">啟用網格佈局</string>
+  <string name="home_option_enable_grid_view_subtitle">以交錯格子顯示筆記</string>
+
+  <string name="home_option_export_subtitle">將筆記導出到設備存儲以進行共享</string>
+  <string name="home_option_import">導入註釋</string>
+  <string name="home_option_import_subtitle">從設備存儲導入筆記</string>
+  <string name="home_option_about_page">關於我們</string>
+  <string name="home_option_about_page_subtitle">了解更多關於應用程序和開發人員</string>
+  <string name="home_option_rate_and_review">打分和評論</string>
+  <string name="home_option_rate_and_review_subtitle">告訴我們你知道你有多喜歡這個應用程序</string>
+  <string name="permission_layout_give_permission">授予權限</string>
+  <string name="permission_layout_give_permission_details">導入和導出需要存儲權限。 請求時請給予許可。</string>
+  <string name="permission_layout_give_permission_ok">允許</string>
+  <string name="import_export_import_file_title">從文件導入備份</string>
+  <string name="import_export_import_file">導入文件</string>
+  <string name="import_export_layout_exported">導出到文件</string>
+  <string name="import_export_layout_export_failed">導出失敗</string>
+  <string name="import_export_layout_exporting">導出到文件&#8230;</string>
+  <string name="import_export_layout_exporting_done">完成</string>
+  <string name="import_export_layout_exporting_share">分享</string>
+  <string name="about_page_rate">Play商店的價格</string>
+  <string name="about_page_contribute">有助於</string>
+  <string name="about_page_app_version">應用程式版本</string>
+  <string name="about_page_about_app">關於應用</string>
+  <string name="delete_note_permanently">永久刪除</string>
+  <string name="unarchive_note">解除注意</string>
+  <string name="archive_note">存檔注意</string>
+  <string name="not_favourite_note">標記不收藏</string>
+  <string name="favourite_note">標記收藏</string>
+  <string name="restore_note">還原註意</string>
+  <string name="trash_note">移到廢紙簍</string>
+  <string name="tap_for_action_edit">點擊以打開註釋進行編輯</string>
+  <string name="tap_for_action_copy">點擊將音符內容複製到剪貼板</string>
+  <string name="tap_for_action_share">點按即可將筆記內容分享到其他應用</string>
+  <string name="tap_for_action_popup">點擊打開浮動彈出窗口中的註釋</string>
+  <string name="tap_for_action_delete">點擊刪除該筆記</string>
+  <string name="tap_for_action_trash">點擊將註釋移動到垃圾</string>
+  <string name="tap_for_action_not_trash">點擊即可將垃圾郵件移出</string>
+  <string name="tap_for_action_favourite">點擊將筆記標記為收藏夾</string>
+  <string name="tap_for_action_not_favourite">點擊標記註意不是最喜歡的</string>
+  <string name="tap_for_action_archive">點擊歸檔筆記</string>
+  <string name="tap_for_action_not_archive">點擊以取消存檔</string>
+  <string name="nav_home">家</string>
+  <string name="nav_favourites">最愛</string>
+  <string name="nav_archived">存檔</string>
+  <string name="nav_trash">垃圾</string>
+  <string name="markdown_sheet_markdown_support">減價支持</string>
+  <string name="markdown_sheet_markdown_support_subtitle">允許降價支持格式</string>
+  <string name="open_in_notification">創建通知</string>
+  <string name="notification_channel_label">注意通知</string>
+  <string name="nav_locked">鎖定</string>
+  <string name="tag_sheet_create_title">添加新標籤&#8230;</string>
+  <string name="tag_sheet_edit_title">編輯標籤&#8230;</string>
+  <string name="tag_sheet_enter_tag_hint">輸入標籤</string>
+  <string name="tag_sheet_new_tag_button">創建一個新的標籤</string>
+  <string name="tag_sheet_choose_tag">選擇一個標籤&#8230;</string>
+
+  <!-- Added in Release v3.7.9 -->
+  <string name="import_to_app">進口</string>
+  <string name="markdown_sheet_home_markdown_support">註釋列表中的降價</string>
+  <string name="markdown_sheet_home_markdown_support_subtitle">在筆記列表中啟用Markdown格式</string>
+
+  <!-- Added in release v3.8.4 -->
+  <string name="change_tags">更改標籤</string>
+  <string name="home_option_order_notes">訂單註釋</string>
+  <string name="home_option_open_source_page">開源項目</string>
+  <string name="home_option_open_source_page_subtitle">了解更多關於開源項目</string>
+  <string name="osp_page_libraries">圖書館</string>
+  <string name="osp_page_about_osp">開源項目</string>
+  <string name="reminder_sheet_reminder_date">提醒日期</string>
+  <string name="reminder_sheet_reminder_time">提醒時間</string>
+  <string name="reminder_sheet_repeat">重複頻率</string>
+  <string name="sort_sheet_title">按註釋排序</string>
+  <string name="sort_sheet_newest_first">新的先來</string>
+  <string name="sort_sheet_oldest_first">最早的</string>
+  <string name="sort_sheet_last_modified">最近修改</string>
+  <string name="reminder">提醒</string>
+  <string name="pin_note">Pin Note</string>
+  <string name="unpin_note">取消固定注意</string>
+
+  <!-- Added in release v3.9.0 -->
+  <string name="home_option_ui_experience">界面和經驗</string>
+  <string name="home_option_ui_experience_subtitle">選擇應用程序的外觀和感覺。</string>
+  <string name="home_option_about">關於</string>
+  <string name="home_option_about_subtitle">了解更多關於我們和應用程序。</string>
+  <string name="note_option_default_color">默認的注意顏色</string>
+  <string name="note_option_default_color_subtitle">選擇筆記的默認顏色</string>
+  <string name="note_option_number_lines">注線限制</string>
+  <string name="home_option_backup_options">備份和導入</string>
+  <string name="home_option_backup_options_subtitle">備份，導入和導出備註選項</string>
+
+  <!-- Added in release v4.0.0 -->
+  <!-- Cloud Backup Hint -->
+  <string name="home_option_install_from_store">從商店安裝</string>
+  <string name="home_option_install_from_store_subtitle">從Google Store for Cloud Sync安裝應用程序</string>
+
+  <!-- No PinCode Sheet -->
+  <string name="no_pincode_sheet_title">沒有PIN碼設置</string>
+  <string name="no_pincode_sheet_details">您尚未設置PIN碼。 你想現在設置它？</string>
+  <string name="no_pincode_sheet_not_now">後來</string>
+  <string name="no_pincode_sheet_dont_ask">永遠不要問</string>
+  <string name="no_pincode_sheet_set_up">建立</string>
+
+  <!-- Added for 4.1.0 -->
+  <string name="duplicate">重複</string>
+  <string name="select">選擇</string>
+  <string name="delete_sheet_are_you_sure">你確定？</string>
+  <string name="delete_sheet_delete_trash">你想永久刪除垃圾文件夾中的筆記嗎？</string>
+  <string name="delete_sheet_delete_note_permanently">你想永久刪除這個筆記嗎？</string>
+  <string name="delete_sheet_delete_trash_yes">刪除</string>
+  <string name="delete_sheet_delete_trash_no">取消</string>
+  <string name="trash_will_delete_automatically">註釋在7天后被永久刪除</string>
+
+
+  <!-- Added for 4.3.7 -->
+  <string name="shortcut_add_note">添加註釋</string>
+  <string name="shortcut_add_list">添加清單</string>
+  <string name="select_a_note_title">選擇一個註釋</string>
+  <string name="select_notes_title">選擇註釋</string>
+  <string name="nav_settings">設置</string>
+  <string name="widget_no_valid_note">請注意刪除或鎖定</string>
+  <string name="note_option_font_size">注意字體大小</string>
+  <string name="note_option_font_size_example">調整筆記頁面中文字的字體大小。 你可以看到它在這個預覽中的樣子。</string>
+  <string name="note_option_font_size_subtitle">筆記查看器中文本的%d大小</string>
+
+
+  <!-- Added for 4.3.8 -->
+  <string name="whats_new_title">什麼是新的</string>
+  <string name="whats_new_subtitle">了解最近更新的應用程序中的新功能</string>
+  <string name="whats_new_translate">翻譯</string>
+
+
+  <!-- Added for 4.5.3 -->
+  <string name="format_action_copy">複製</string>
+  <string name="format_action_title">阻止文本操作</string>
+  <string name="format_action_gallery">畫廊</string>
+  <string name="format_action_camera">相機</string>
+  <string name="voice_sheet_title">大聲說出音符</string>
+  <string name="voice_action_title">大聲說話</string>
+  <string name="image_delete_all_devices">刪除此項目將從所有設備中刪除圖像。</string>
+  <string name="image_not_on_current_device">圖像不在此設備上</string>
+  <string name="image_cannot_be_loaded">圖像無法加載</string>
+  <string name="image_not_uploaded">圖像未同步</string>
+  <string name="image_not_uploaded_details">圖像不會跨設備同步。 查看筆記時，您的圖像不會顯示在其他設備上！</string>
+  <string name="image_not_uploaded_i_understand">我明白</string>
+  <string name="home_option_auto_export">自動導出</string>
+  <string name="home_option_auto_export_subtitle">頻繁導出筆記到外部文件作為備份</string>
+  <string name="format_hint_image">點擊添加或更改圖像</string>
+
+
+  <!-- Added for 4.7.0 -->
+  <string name="reminder_frequency_once">只有一次</string>
+  <string name="reminder_frequency_daily">日常</string>
+  <string name="notification_reminder_channel_label">提醒和警報</string>
+  <string name="about_page_description_os">%s是開源的，任何人都可以為改善它做出貢獻。 它目前由%s構建和維護。</string>
+  <string name="about_page_description">%s是一個簡單的筆記應用程序。 它允許快速富文本輸入，而不會讓使用體驗變得非常困難。 它使得多任務輕而易舉。</string>
+  <string name="about_page_about_us_details">嗨，我們是一對設計師和程序員，他們創造了%s。
+     我們致力於打造漂亮，精心設計的免費，無廣告或最低限度的廣告應用程序，這些應用程序對每個人都非常實用！</string>
+  <string name="note_option_number_lines_subtitle">主屏幕上的%d行</string>
+  <string name="view_distraction_free">分心免費</string>
+
+  <!-- Login, Welcome Strings -->
+  <string name="home_option_login_with_app">登錄到應用程序</string>
+  <string name="home_option_login_with_app_subtitle">登錄雲備份和同步</string>
+  <string name="home_option_logout_of_app">登出</string>
+  <string name="home_option_logout_of_app_subtitle">註銷以停止雲備份</string>
+  <string name="login_to_google_failed">Google登錄失敗</string>
+  <string name="material_notes_privacy_policy">隱私政策</string>
+  <string name="material_notes_privacy_policy_subtitle">應用程序隱私政策的內容</string>
+  <string name="install_pro_app">安裝Pro App</string>
+  <string name="why_install_pro">為什麼安裝Pro</string>
+  <string name="why_install_pro_details">支持大規模服務器成本的開發人員，運行云同步 \n\n 首先獲取最新功能 \n\n 一些額外功能僅適用於專業用戶</string>
+
+  <!-- Added for 6.6.1 -->
+  <string name="home_option_theme_color">應用主題</string>
+  <string name="home_option_theme_color_subtitle">選擇主題的背景顏色</string>
+  <string name="theme_page_title">選擇應用主題</string>
+  <string name="click_to_add_tags">單擊以添加或更改標籤</string>
+  <string name="select_notes">選擇備註</string>
+  <string name="select_notes_details">一次選擇並對多個音符執行操作</string>
+  <string name="recent_to_trash_message">這張紙條被移到了垃圾桶裡</string>
+  <string name="recent_to_delete_message">該說明已刪除</string>
+  <string name="recent_to_trash_undo">解開</string>
+  <string name="backup_note_disable">禁用備份</string>
+  <string name="backup_note_enable">啟用備份</string>
+  <string name="folder_card_title">空筆記本</string>
+  <string name="folder_card_title_single_note">1注意</string>
+  <string name="folder_card_title_notes">%d備註</string>
+  <string name="folder_sheet_add_note">創建新筆記本</string>
+  <string name="folder_sheet_edit_note">編輯筆記本</string>
+  <string name="folder_sheet_add_note_detail">添加筆記本</string>
+  <string name="folder_option_add_to_notebook">添加到筆記本</string>
+  <string name="folder_option_change_notebook">修改筆記本</string>
+  <string name="recent_notes">最近的筆記</string>
+  <string name="information_card_title">信息</string>
+  <string name="information_new_app_update">點按即可安裝最新的應用版本</string>
+  <string name="information_install_pro">點按即可升級到Scarlet Pro</string>
+  <string name="home_option_install_pro_app">安裝Pro App</string>
+  <string name="home_option_install_pro_app_details">安裝Pro App以解鎖功能並支持開發人員</string>
+  <string name="home_option_migrate_to_pro">將筆記遷移到Scarlet Pro</string>
+  <string name="home_option_migrate_to_pro_details">將所有筆記遷移到專業應用程序</string>
+  <string name="home_option_delete_notes_and_more">刪除備註等</string>
+  <string name="home_option_delete_notes_and_more_details">刪除應用中的註釋，標籤和其他數據</string>
+  <string name="home_option_delete_all_notes">刪除所有筆記</string>
+  <string name="home_option_delete_all_notes_details">刪除應用中的所有備註</string>
+  <string name="home_option_delete_all_folders">刪除所有文件夾</string>
+  <string name="home_option_delete_all_folders_details">刪除應用中的所有文件夾</string>
+  <string name="home_option_delete_all_tags">刪除所有標籤</string>
+  <string name="home_option_delete_all_tags_details">刪除應用中的所有標記</string>
+  <string name="home_option_delete_everything">刪除所有內容</string>
+  <string name="home_option_delete_everything_details">刪除應用中的註釋，標籤和文件夾</string>
+  <string name="ui_options_note_background_color">注意查看器背景</string>
+
+  <!-- Added for 7.0.4 -->
+  <string name="merge_notes">合併備註</string>
+  <string name="home_option_export_markdown">出口為降價</string>
+  <string name="home_option_export_markdown_subtitle">以降價格式導出備註。 （你不能將這些導回到應用程序）</string>
+  <string name="ui_options_note_background_color_settings_theme">使用主題顏色為背景</string>
+  <string name="ui_options_note_background_color_settings_note">使用備註顏色作為背景</string>
+  <string name="import_export_layout_folder_sync_enable">啟用</string>
+  <string name="import_export_layout_folder_sync_disable">禁用</string>
+  <string name="import_export_layout_folder_sync">啟用文件夾同步</string>
+  <string name="import_export_layout_folder_sync_title">文件夾同步</string>
+  <string name="import_export_layout_folder_sync_description">將所有筆記，標籤和文件夾同步到外部文件夾。這有助於您在設備之間使用其他應用進行同步，並且可以在您需要刪除應用時獲得副本。</string>
+  <string name="import_export_layout_folder_sync_folder">導出到文件夾</string>
+  <string name="import_export_layout_folder_sync_details">將所有筆記，標籤等同步到外部文件夾</string>
+  <string name="import_export_locked">導出鎖定的筆記</string>
+  <string name="sort_sheet_alphabetical">按英文字母順序</string>
+  <string name="available_in_pro_only">可在Scarlet Pro上使用</string>
+  <string name="import_export_locked_details">還備份已鎖定的備註</string>
+  <string name="home_option_editor_options_title">編輯器選項</string>
+  <string name="home_option_editor_options_description">更改註釋編輯器的設置和用法</string>
+  <string name="editor_option_enable_markdown_mode_default">Markdown選項為默認值</string>
+  <string name="editor_option_enable_markdown_mode_default_details">默認情況下顯示工具欄上的降價快速按鈕</string>
+  <string name="editor_option_enable_live_markdown">實時降價</string>
+  <string name="editor_option_enable_live_markdown_description">選擇是否要將標記顯示為類型。啟用可以影響大筆記的性能。</string>
+  <string name="editor_option_move_checked_items">移動選中的項目</string>
+  <string name="editor_option_move_checked_items_description">選中的項目移動到列表的底部。取消選中不會重置位置。</string>
+  <string name="editor_option_enable_move_handle">顯示運動手柄</string>
+  <string name="editor_option_enable_move_handle_description">顯示向上或向下移動項目的句柄。你仍然可以通過觸摸角落來移動東西。</string>
+  <string name="markdown_help_sheet_title">降價示例</string>
+  <string name="home_option_widget_options_title">小部件設置</string>
+  <string name="home_option_widget_options_description">更改主屏幕小組件的設置</string>
+  <string name="widget_option_enable_formatting">啟用格式化</string>
+  <string name="widget_option_enable_formatting_details">在主屏幕小部件中使用格式呈現註釋</string>
+  <string name="widget_option_show_locked_notes">顯示鎖定的筆記</string>
+  <string name="widget_option_show_locked_notes_details">允許鎖定的註釋顯示在主屏幕小部件中</string>
+  <string name="widget_option_show_archived_notes">顯示存檔的筆記</string>
+  <string name="widget_option_show_archived_notes_details">允許存檔的註釋顯示在主屏幕小部件中</string>
+  <string name="widget_option_show_trash_notes">在廢紙簍中顯示備註</string>
+  <string name="widget_option_show_trash_notes_details">允許垃圾中的註釋顯示在主屏幕小部件中</string>
+  <string name="home_option_faq_title">幫助和常見問題</string>
+  <string name="home_option_faq_description">查找有關如何使用應用程序中的功能的幫助</string>
+  <string name="home_syncing_top_layout">同步</string>
+  <string name="home_pending_backup_top_layout">待備份</string>
+  <string name="internal_settings_title">開發者選項</string>
+  <string name="internal_settings_description">將內部設置更改為用於調試的應用程序</string>
+  <string name="internal_settings_enable_log_exceptions_title">記錄例外</string>
+  <string name="internal_settings_enable_log_exceptions_description">記錄固定註釋的異常，以允許轉發給Developer</string>
+  <string name="internal_settings_enable_show_exceptions_title">顯示例外表</string>
+  <string name="internal_settings_enable_show_exceptions_description">如果可能，在工作表上顯示捕獲的異常，以允許轉發到Developer</string>
+  <string name="internal_settings_enable_throw_exceptions_title">拋棄異常</string>
+  <string name="internal_settings_enable_throw_exceptions_description">在異常上拋出並崩潰應用程序。 5次崩潰後將重置</string>
+  <string name="internal_settings_enable_fullscreen_title">啟用全屏</string>
+  <string name="internal_settings_enable_fullscreen_description">全屏顯示應用程序以允許截屏和錄製</string>
+  <string name="internal_settings_show_uuid_title">顯示註釋UUID</string>
+  <string name="internal_settings_show_uuid_description">在主屏幕視圖中顯示備註的唯一ID</string>
+  <string name="internal_settings_fake_exceptions_title">假例外</string>
+  <string name="internal_settings_fake_exceptions_description">拋出一個假異常來測試異常功能</string>
+  <string name="exception_sheet_title">拋出異常</string>
+  <string name="exception_sheet_crash_app">崩潰應用程序</string>
+  <string name="exception_sheet_mail">郵件</string>
+  <string name="google_drive_page_connection_failed">連接失敗</string>
+  <string name="google_drive_page_login_title">在Google雲端硬盤上同步</string>
+  <string name="google_drive_page_login_details">Google雲端硬盤可讓您使用自己的Google雲端硬盤帳戶在設備之間同步筆記。</string>
+  <string name="google_drive_page_login_firebase_button">之前登錄過Google Firebase？</string>
+  <string name="google_drive_page_login_button">登錄Google雲端硬盤</string>
+  <string name="google_drive_page_logging_in_button">簽約</string>
+  <string name="google_drive_page_logout_title">退出血色</string>
+  <string name="google_drive_page_logout_details">停止同步筆記，標籤和文件夾。</string>
+  <string name="google_drive_page_logout_no_sync_details">停止將您的筆記，標籤和文件夾同步到Google雲端硬盤。</string>
+  <string name="google_drive_page_logout_data_persists_details">您在應用和Google雲端硬盤上的數據仍然存在。</string>
+  <string name="google_drive_page_logout_button">從雲端硬盤退出</string>
+  <string name="google_drive_page_logging_out_button">簽出 -</string>
+  <string name="google_drive_page_login_lock_details">備註，標籤和文件夾存儲在您自己的Google雲端硬盤中，因此只有您可以控制對它們的訪問權限。</string>
+  <string name="google_drive_page_photo_details">您的照片也會上傳並在設備間同步。</string>
+  <string name="firebase_page_login_title">從Firebase還原數據</string>
+  <string name="firebase_page_login_button">與穀歌簽約</string>
+  <string name="firebase_page_logging_in_button">簽約</string>
+  <string name="firebase_page_important_details">我們過去常常將您的信息存儲在Google Firebase上。登錄後，我們會將這些恢復到您的設備</string>
+  <string name="firebase_page_not_sync_details">新筆記和更改不會同步到Google Firebase，您需要登錄Google雲端硬盤</string>
+  <string name="firebase_page_remove_details">恢復筆記後，您可以將其從Google Firebase中刪除，然後進行切換</string>
+  <string name="firebase_no_sync_warning">您的數據未同步！</string>
+  <string name="firebase_no_sync_warning_details">基於舊版登錄的數據同步已停用，請考慮切換到基於Google雲端硬盤的同步。</string>
+  <string name="firebase_removal_page_login_title">將數據從Firebase傳輸到雲端硬盤</string>
+  <string name="firebase_removal_page_clear_button">清除數據並註銷</string>
+  <string name="firebase_removal_page_clearing_button">清除和簽出</string>
+  <string name="firebase_removal_page_important_details">我們過去常常將您的信息存儲在Google Firebase上。我們正在將您的筆記存儲到您的Google雲端硬盤中。</string>
+  <string name="firebase_removal_page_more_privacy_details">更多隱私。</string>
+  <string name="firebase_removal_page_photo_upload_details">照片同步。</string>
+  <string name="firebase_removal_page_whats_next_details">下一步</string>
+  <string name="firebase_removal_page_remove_details">我們會先從Firebase中刪除您的備註並註銷。</string>
+  <string name="firebase_removal_page_next_details">然後，您可以登錄Google雲端硬盤，我們會將您的數據與圖片一起上傳。</string>
+
+  <!-- Added for 7.5.0 -->
+  <string name="folder_delete_option_sheet_title">刪除選項</string>
+  <string name="folder_delete_option_sheet_remove_folder">移除筆記本</string>
+  <string name="folder_delete_option_sheet_remove_folder_details">僅刪除筆記本。便箋移到文件夾之外。</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content">刪除筆記本和筆記</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details">刪除筆記本。所有筆記都會移至回收站或被刪除。</string>
+  <string name="folder_delete_option_sheet_remove_folder_content">刪除筆記</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details">保留筆記本，但所有筆記都移至廢紙or或被刪除。</string>
+  <string name="home_option_typeface">自定義字體</string>
+  <string name="home_option_typeface_subtitle">選擇應用程序並記下字體</string>
+  <string name="typeface_page_title">選擇字體集</string>
+  <string name="typeface_page_description">注意：字體可能不適用於所有語言</string>
+  <string name="typeface_title_app_default">應用默認</string>
+  <string name="typeface_title_os_default">設備默認</string>
+  <string name="typeface_title_monospace">單聲道</string>
+  <string name="typeface_title_serif">襯線</string>
+  <string name="app_lock_title">解鎖應用</string>
+  <string name="app_lock_details">輸入4位數的PIN或使用生物識別技術解鎖</string>
+  <string name="app_lock_details_no_fingerprint">輸入4位數PIN碼以解鎖</string>
+  <string name="theme_use_system_theme">使用系統主題</string>
+  <string name="theme_use_system_theme_details">使用系統中的淺色或深色主題</string>
+  <string name="theme_dark_notes">黑暗筆記</string>
+  <string name="theme_dark_notes_details">自動使筆記和文件夾的顏色變暗</string>
+  <string name="pending_backup_local_state">本地</string>
+  <string name="pending_backup_remote_state">遠程</string>
+  <string name="pending_backup_state_unavailable">不可用</string>
+  <string name="pending_backup_state_created">已建立</string>
+  <string name="pending_backup_state_deleted">已刪除</string>
+  <string name="pending_backup_state_updated">更新</string>
+  <string name="widget_option_background_color">小部件背景</string>
+  <string name="widget_option_background_color_details">選擇多筆記小部件的背景顏色</string>
+  <string name="widget_option_show_toolbar">顯示動作工具欄</string>
+  <string name="widget_option_show_toolbar_details">多筆記小部件顯示工具欄</string>
+  <string name="editor_option_skip_view_note">跳過筆記查看器</string>
+  <string name="editor_option_skip_view_note_details">跳過便箋查看器，直接跳至便箋編輯器</string>
+  <string name="delete_sheet_delete_selected_notes_permanently">您要永久刪除這些註釋嗎？</string>
+  <string name="install_pro_sheet_latest_updates">更快的更新和請求。</string>
+  <string name="install_pro_sheet_app_lock">應用鎖定和單次解鎖。</string>
+  <string name="install_pro_sheet_app_themes">更多應用主題。</string>
+  <string name="install_pro_sheet_font_size">注意字體和字體大小。</string>
+  <string name="install_pro_sheet_viewer_bg">查看器背景色。</string>
+  <string name="install_pro_sheet_widget_options">更多小部件選項。</string>
+  <string name="install_pro_sheet_note_options">更多註釋動作。</string>
+  <string name="sort_sheet_note_color">音符顏色</string>
+  <string name="sort_sheet_note_tags">注意標籤</string>
+  <string name="security_option_lock_app">啟用應用鎖定</string>
+  <string name="security_option_lock_app_details">使用PIN解鎖整個應用程序</string>
+  <string name="security_option_ask_pin_always">總是要求輸入PIN</string>
+  <string name="security_option_ask_pin_always_details">輸入所有便箋的PIN碼，即使之前已輸入</string>
+  <string name="security_option_biometrics_enabled">用生物識別技術解鎖</string>
+  <string name="security_option_biometrics_enabled_subtitle">允許使用指紋或其他生物特徵進行解鎖</string>
+  <string name="security_option_biometrics_disabled">生物識別功能已禁用</string>
+  <string name="security_option_biometrics_disabled_subtitle">禁止使用指紋或其他生物特徵進行解鎖</string>
+  <string name="biometric_prompt_unlock_note">解鎖筆記</string>
+  <string name="biometric_prompt_unlock_note_details">使用設備的指紋或生物識別技術來解鎖筆記和訪問權限。</string>
+  <string name="biometric_prompt_unlock_app">解鎖應用</string>
+  <string name="biometric_prompt_unlock_app_details">使用設備指紋或生物識別技術解鎖應用程序並訪問所有筆記。</string>
+  <string name="pin_to_launcher">啟動器快捷方式</string>
+  <string name="share_images">分享照片</string>
+
+</resources>

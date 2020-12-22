@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:ui="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:gravity="center_vertical"
+  android:orientation="horizontal"
+  android:padding="@dimen/spacing_small">
+
+  <ImageView
+    android:id="@+id/back_button"
+    android:layout_width="@dimen/icon_size_large"
+    android:layout_height="@dimen/icon_size_large"
+    style="@style/BorderlessBackgroundView"
+    android:padding="@dimen/spacing_xsmall"
+    android:src="@drawable/ic_close_white_48dp"
+    android:tint="@color/material_grey_600" />
+
+  <TextView
+    android:id="@+id/filename"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@android:color/transparent"
+    android:ellipsize="middle"
+    android:singleLine="true"
+    android:textColor="@color/material_teal_700"
+    android:textSize="@dimen/font_size_xlarge"
+    android:textStyle="bold" />
+
+  <com.github.bijoysingh.uibasics.views.UITextView
+    android:id="@+id/import_or_edit_to_app"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="@style/BorderlessBackgroundView"
+    android:gravity="center"
+    ui:iconTextGap="@dimen/spacing_xsmall"
+    ui:icon="@drawable/ic_import"
+    ui:text="@string/import_to_app" />
+</LinearLayout>

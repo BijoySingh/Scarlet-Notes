@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  package="com.bijoysingh.quicknote">
+
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+  <application
+    android:name=".Scarlet"
+    android:allowBackup="true"
+    android:hardwareAccelerated="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme"
+    tools:ignore="GoogleAppIndexingWarning">
+
+    <activity
+      android:name="com.maubis.scarlet.base.MainActivity"
+      android:windowSoftInputMode="stateHidden"
+      android:configChanges="uiMode">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+
+      <meta-data
+        android:name="android.app.shortcuts"
+        android:resource="@xml/shortcuts" />
+    </activity>
+
+    <meta-data
+      android:name="firebase_analytics_collection_enabled"
+      android:value="false" />
+    <meta-data
+      android:name="firebase_analytics_collection_deactivated"
+      android:value="true" />
+
+
+    <activity android:name=".firebase.activity.FirebaseLoginActivity" />
+    <activity android:name=".firebase.activity.FirebaseRemovalActivity" />
+    <activity android:name=".firebase.activity.DataPolicyActivity" />
+    <activity android:name=".firebase.activity.ForgetMeActivity" />
+    <activity android:name=".drive.GDriveLoginActivity" />
+    <activity android:name=".drive.GDriveLogoutActivity" />
+
+  </application>
+
+</manifest>

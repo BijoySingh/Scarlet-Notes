@@ -1,11 +1,17 @@
 package com.bijoysingh.quicknote
 
-import android.app.Application
-import com.github.ajalt.reprint.core.Reprint
+import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.MaterialNoteConfig
+import com.maubis.scarlet.base.export.support.ExternalFolderSync
+import com.maubis.scarlet.base.support.utils.Flavor
 
-class MaterialNotes: Application() {
+class MaterialNotes : ApplicationBase() {
+
   override fun onCreate() {
     super.onCreate()
-    Reprint.initialize(this)
+    sAppFlavor = Flavor.NONE
+
+    ApplicationBase.instance = MaterialNoteConfig(this)
+    ExternalFolderSync.setup(this)
   }
 }

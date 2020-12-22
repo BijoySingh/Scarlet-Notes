@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:layout_marginEnd="@dimen/spacing_xsmall"
+    android:layout_marginStart="@dimen/spacing_xsmall"
+    android:layout_marginTop="4dp"
+    app:cardBackgroundColor="@color/material_blue_grey_700"
+    app:cardCornerRadius="4dp"
+    app:cardUseCompatPadding="true">
+
+  <LinearLayout
+      android:id="@+id/note_panel"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+    style="@style/BorderedBackgroundView"
+      android:orientation="vertical"
+      android:padding="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_xsmall">
+
+      <TextView
+          android:id="@+id/title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/transparent"
+          android:ellipsize="end"
+          android:maxLines="2"
+          android:padding="@dimen/spacing_xsmall"
+          android:text="@string/main_no_notes"
+          android:textColor="@color/light_primary_text"
+          android:textColorHint="@color/light_tertiary_text"
+          android:textSize="@dimen/font_size_large"
+          android:textStyle="bold"/>
+
+      <TextView
+          android:id="@+id/description"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/transparent"
+          android:ellipsize="end"
+          android:gravity="top"
+          android:lineSpacingExtra="4dp"
+          android:maxLines="5"
+          android:padding="@dimen/spacing_xsmall"
+          android:text="@string/main_no_notes_hint"
+          android:textColor="@color/light_primary_text"
+          android:textColorHint="@color/light_tertiary_text"
+          android:textSize="@dimen/font_size_large"/>
+    </LinearLayout>
+  </LinearLayout>
+</androidx.cardview.widget.CardView>

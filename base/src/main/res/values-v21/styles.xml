@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="AppTheme" parent="AppThemeBase">
+    <item name="android:dialogTheme">@style/DialogTheme</item>
+    <item name="android:alertDialogTheme">@style/DialogTheme</item>
+    <item name="android:datePickerDialogTheme">@style/DialogTheme</item>
+    <item name="android:timePickerDialogTheme">@style/DialogTheme</item>
+  </style>
+
+  <style name="BorderlessBackgroundView">
+    <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+  </style>
+
+  <style name="BorderedBackgroundView">
+    <item name="android:background">?android:attr/selectableItemBackground</item>
+  </style>
+
+  <style name="DialogTheme" parent="android:Theme.Material.Light.Dialog">
+    <item name="android:colorAccent">@color/colorAccent</item>
+    <item name="android:colorPrimary">@color/material_grey_800</item>
+    <item name="android:colorPrimaryDark">@color/material_grey_900</item>
+  </style>
+
+</resources>

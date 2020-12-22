@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+  android:id="@+id/root_layout"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:ui="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    style="@style/BottomSheetCardContainer">
+
+    <androidx.cardview.widget.CardView
+      android:id="@+id/content_card"
+      style="@style/BottomSheetCardView"
+      ui:cardBackgroundColor="@color/material_blue_grey_700">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_large">
+
+        <TextView
+          android:id="@+id/options_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/spacing_xsmall"
+          android:text="@string/tag_sheet_create_title"
+          android:textColor="@color/dark_tertiary_text"
+          android:textSize="@dimen/font_size_large" />
+
+        <EditText
+          android:id="@+id/enter_tag"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:background="@color/transparent"
+          android:hint="@string/tag_sheet_enter_tag_hint"
+          android:inputType="text"
+          android:padding="@dimen/spacing_normal"
+          android:textSize="24sp" />
+
+      </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+      style="@style/BottomSheetCardView"
+      ui:cardBackgroundColor="@color/material_red_800">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+          android:id="@+id/action_remove_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:padding="@dimen/spacing_normal"
+          android:text="@string/security_sheet_button_remove"
+          android:textAllCaps="true"
+          android:textColor="@color/light_tertiary_text"
+          android:textSize="@dimen/font_size_small"
+          android:visibility="gone" />
+
+        <TextView
+          android:id="@+id/action_button"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:gravity="end"
+          android:padding="@dimen/spacing_normal"
+          android:text="@string/save"
+          android:textAllCaps="true"
+          android:textColor="@color/light_primary_text"
+          android:textSize="@dimen/font_size_small" />
+      </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+  </LinearLayout>
+</androidx.core.widget.NestedScrollView>
