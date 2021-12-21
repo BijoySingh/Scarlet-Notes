@@ -2,10 +2,9 @@ package com.maubis.scarlet.base.export.support
 
 import android.os.AsyncTask
 import android.os.Environment
-import com.github.bijoysingh.starter.util.DateFormatter
 import com.github.bijoysingh.starter.util.FileManager
 import com.google.gson.Gson
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
@@ -13,11 +12,11 @@ import com.maubis.scarlet.base.export.data.ExportableFileFormat
 import com.maubis.scarlet.base.export.data.ExportableFolder
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.export.data.ExportableTag
+import com.maubis.scarlet.base.export.data.toExportedMarkdown
 import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FILENAME
 import com.maubis.scarlet.base.export.sheet.NOTES_EXPORT_FOLDER
-import com.maubis.scarlet.base.note.getFullText
+import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.io.File
-import java.util.*
 
 const val KEY_NOTE_VERSION = "KEY_NOTE_VERSION"
 const val KEY_BACKUP_LOCATION = "KEY_BACKUP_LOCATION"
@@ -31,18 +30,18 @@ const val AUTO_BACKUP_INTERVAL_MS = 1000 * 60 * 60 * 6 // 6 hours update
 
 const val STORE_KEY_BACKUP_MARKDOWN = "KEY_BACKUP_MARKDOWN"
 var sBackupMarkdown: Boolean
-  get() = CoreConfig.instance.store().get(STORE_KEY_BACKUP_MARKDOWN, false)
-  set(value) = CoreConfig.instance.store().put(STORE_KEY_BACKUP_MARKDOWN, value)
+  get() = sAppPreferences.get(STORE_KEY_BACKUP_MARKDOWN, false)
+  set(value) = sAppPreferences.put(STORE_KEY_BACKUP_MARKDOWN, value)
 
 const val STORE_KEY_BACKUP_LOCKED = "KEY_BACKUP_LOCKED"
 var sBackupLockedNotes: Boolean
-  get() = CoreConfig.instance.store().get(STORE_KEY_BACKUP_LOCKED, true)
-  set(value) = CoreConfig.instance.store().put(STORE_KEY_BACKUP_LOCKED, value)
+  get() = sAppPreferences.get(STORE_KEY_BACKUP_LOCKED, true)
+  set(value) = sAppPreferences.put(STORE_KEY_BACKUP_LOCKED, value)
 
 const val STORE_KEY_AUTO_BACKUP_MODE = "KEY_AUTO_BACKUP_MODE"
 var sAutoBackupMode: Boolean
-  get() = CoreConfig.instance.store().get(STORE_KEY_AUTO_BACKUP_MODE, false)
-  set(value) = CoreConfig.instance.store().put(STORE_KEY_AUTO_BACKUP_MODE, value)
+  get() = sAppPreferences.get(STORE_KEY_AUTO_BACKUP_MODE, false)
+  set(value) = sAppPreferences.put(STORE_KEY_AUTO_BACKUP_MODE, value)
 
 class NoteExporter() {
 
@@ -52,9 +51,9 @@ class NoteExporter() {
     }
 
     val notes = notesDb
-        .getAll()
-        .filter { sBackupLockedNotes || !it.locked }
-        .map { ExportableNote(it) }
+      .getAll()
+      .filter { sBackupLockedNotes || !it.locked }
+      .map { ExportableNote(it) }
     val tags = tagsDb.getAll().map { ExportableTag(it) }
     val folders = foldersDb.getAll().map { ExportableFolder(it) }
     val fileContent = ExportableFileFormat(EXPORT_VERSION, notes, tags, folders)
@@ -64,11 +63,11 @@ class NoteExporter() {
   private fun getMarkdownExportContent(): String {
     var totalText = "$EXPORT_NOTE_SEPARATOR\n\n"
     notesDb.getAll()
-        .map { it.getFullText() }
-        .forEach {
-          totalText += it
-          totalText += "\n\n$EXPORT_NOTE_SEPARATOR\n\n"
-        }
+      .map { it.toExportedMarkdown() }
+      .forEach {
+        totalText += it
+        totalText += "\n\n$EXPORT_NOTE_SEPARATOR\n\n"
+      }
     return totalText
   }
 
@@ -77,23 +76,26 @@ class NoteExporter() {
       if (!sAutoBackupMode) {
         return@execute
       }
-      val lastBackup = CoreConfig.instance.store().get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
+      val lastBackup = sAppPreferences.get(KEY_AUTO_BACKUP_LAST_TIMESTAMP, 0L)
       val lastTimestamp = notesDb.getLastTimestamp()
       if (lastBackup + AUTO_BACKUP_INTERVAL_MS >= lastTimestamp) {
         return@execute
       }
 
-      val exportFile = getOrCreateFileForExport(AUTO_BACKUP_FILENAME + " " + DateFormatter.getDate("dd_MMM_yyyy", Calendar.getInstance()))
+      val exportFile = getOrCreateFileForExport(
+        "$AUTO_BACKUP_FILENAME ${sDateFormat.getDateForBackup()}")
       if (exportFile === null) {
         return@execute
       }
       saveToFile(exportFile, getExportContent())
-      CoreConfig.instance.store().put(KEY_AUTO_BACKUP_LAST_TIMESTAMP, System.currentTimeMillis())
+      sAppPreferences
+        .put(KEY_AUTO_BACKUP_LAST_TIMESTAMP, System.currentTimeMillis())
     }
   }
 
   fun getOrCreateManualExportFile(): File? {
-    return getOrCreateFileForExport(NOTES_EXPORT_FILENAME + " " + DateFormatter.getDate("dd_MMM_yyyy HH_mm", Calendar.getInstance()))
+    return getOrCreateFileForExport(
+      "$NOTES_EXPORT_FILENAME ${sDateFormat.getTimestampForBackup()}")
   }
 
   fun getOrCreateFileForExport(filename: String): File? {

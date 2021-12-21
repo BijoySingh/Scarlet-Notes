@@ -5,17 +5,18 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.CardView
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import com.github.bijoysingh.starter.fragments.SimpleBottomSheetFragment
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 
 abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
+
+  var appContext: Context? = null
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val isTablet = maybeContext()?.resources?.getBoolean(R.bool.is_tablet) ?: false
@@ -31,19 +32,20 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
     if (dialog == null) {
       return
     }
+    appContext = dialog.context.applicationContext
     resetBackground(dialog)
   }
 
   fun themedActivity(): Activity = activity ?: context as AppCompatActivity
 
-  fun themedContext(): Context = context ?: activity!!
+  fun themedContext(): Context = maybeContext()!!
 
-  fun maybeContext(): Context? = context ?: activity
+  fun maybeContext(): Context? = context ?: activity ?: appContext
 
   abstract fun getBackgroundView(): Int
 
   fun resetBackground(dialog: Dialog) {
-    val backgroundColor = CoreConfig.instance.themeController().get(ThemeColorType.BACKGROUND)
+    val backgroundColor = sAppTheme.get(ThemeColorType.BACKGROUND)
     val containerLayout = dialog.findViewById<View>(getBackgroundView())
     containerLayout.setBackgroundColor(backgroundColor)
     for (viewId in getBackgroundCardViewIds()) {
@@ -54,8 +56,8 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
 
   open fun getOptionsTitleColor(selected: Boolean): Int {
     val colorResource = when {
-      CoreConfig.instance.themeController().isNightTheme() && selected -> R.color.material_blue_300
-      CoreConfig.instance.themeController().isNightTheme() -> R.color.light_secondary_text
+      sAppTheme.isNightTheme() && selected -> R.color.material_blue_300
+      sAppTheme.isNightTheme() -> R.color.light_secondary_text
       selected -> R.color.material_blue_700
       else -> R.color.dark_secondary_text
     }
@@ -64,8 +66,8 @@ abstract class ThemedBottomSheetFragment : SimpleBottomSheetFragment() {
 
   open fun getOptionsSubtitleColor(selected: Boolean): Int {
     val colorResource = when {
-      CoreConfig.instance.themeController().isNightTheme() && selected -> R.color.material_blue_200
-      CoreConfig.instance.themeController().isNightTheme() -> R.color.light_tertiary_text
+      sAppTheme.isNightTheme() && selected -> R.color.material_blue_200
+      sAppTheme.isNightTheme() -> R.color.light_tertiary_text
       selected -> R.color.material_blue_500
       else -> R.color.dark_tertiary_text
     }

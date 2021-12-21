@@ -1,12 +1,15 @@
 package com.maubis.scarlet.base.note
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
-import com.github.bijoysingh.starter.util.DateFormatter
 import com.google.gson.Gson
 import com.maubis.markdown.Markdown
-import com.maubis.markdown.segmenter.TextSegmenter
+import com.maubis.markdown.MarkdownConfig
+import com.maubis.markdown.spannable.MarkdownType
+import com.maubis.markdown.spannable.bold
+import com.maubis.markdown.spannable.font
+import com.maubis.markdown.spannable.relativeSize
+import com.maubis.markdown.spannable.strike
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig
 import com.maubis.scarlet.base.config.CoreConfig.Companion.tagsDb
 import com.maubis.scarlet.base.core.format.Format
@@ -15,26 +18,29 @@ import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.core.note.generateUUID
 import com.maubis.scarlet.base.core.note.getFormats
 import com.maubis.scarlet.base.core.note.getTagUUIDs
+import com.maubis.scarlet.base.core.note.isUnsaved
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.tag.Tag
-import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
-import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
-import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_DISTRACTION_FREE
-import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
-import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
-import com.maubis.scarlet.base.settings.sheet.sNoteDefaultColor
+import com.maubis.scarlet.base.note.creation.activity.NoteIntentRouterActivity
+import com.maubis.scarlet.base.note.creation.sheet.sNoteDefaultColor
+import com.maubis.scarlet.base.security.controller.PinLockController.needsLockCheck
+import com.maubis.scarlet.base.security.sheets.openUnlockSheet
+import com.maubis.scarlet.base.settings.sheet.sInternalShowUUID
+import com.maubis.scarlet.base.settings.sheet.sSecurityAppLockEnabled
+import com.maubis.scarlet.base.settings.sheet.sUIMarkdownEnabledOnHome
+import com.maubis.scarlet.base.support.BitmapHelper
+import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.support.ui.ThemedActivity
-import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
+import com.maubis.scarlet.base.support.ui.sThemeDarkenNoteColor
+import com.maubis.scarlet.base.support.utils.sDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-fun Note.log(context: Context): String {
+fun Note.log(): String {
   val log = HashMap<String, Any>()
   log["note"] = this
-  log["_title"] = getTitle()
-  log["_text"] = getText()
+  log["_text"] = getFullText()
   log["_image"] = getImageFile()
-  log["_locked"] = getLockedText(false)
   log["_fullText"] = getFullText()
   log["_displayTime"] = getDisplayTime()
   log["_tag"] = getTagString()
@@ -42,35 +48,72 @@ fun Note.log(context: Context): String {
   return Gson().toJson(log)
 }
 
-fun Note.log(): String {
-  val log = HashMap<String, Any>()
-  log["note"] = this
-  log["_title"] = getTitle()
-  log["_text"] = getText()
-  log["_image"] = getImageFile()
-  log["_fullText"] = getFullText()
-  log["_displayTime"] = getDisplayTime()
-  log["_formats"] = getFormats()
-  return Gson().toJson(log)
-}
-
 /**************************************************************************************
  ************* Content and Display Information Functions Functions ********************
  **************************************************************************************/
-fun Note.getTitle(): String {
+
+fun Note.getFullTextForDirectMarkdownRender(): String {
+  var text = getFullText()
+  text = text.replace("\n[x] ", "\n\u2611 ")
+  text = text.replace("\n[ ] ", "\n\u2610 ")
+  text = text.replace("\n- ", "\n\u2022 ")
+  return text
+}
+
+fun Note.getMarkdownForListView(): CharSequence {
+  var text = getFullTextForDirectMarkdownRender()
+  if (sUIMarkdownEnabledOnHome) {
+    return markdownFormatForList(text)
+  }
+  return text
+}
+
+internal fun markdownFormatForList(text: String): CharSequence {
+  return Markdown.renderWithCustomFormatting(text, true) { spannable, spanInfo ->
+    val s = spanInfo.start
+    val e = spanInfo.end
+    when (spanInfo.markdownType) {
+      MarkdownType.HEADING_1 -> {
+        spannable.relativeSize(1.2f, s, e)
+          .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
+          .bold(s, e)
+        true
+      }
+      MarkdownType.HEADING_2 -> {
+        spannable.relativeSize(1.1f, s, e)
+          .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
+          .bold(s, e)
+        true
+      }
+      MarkdownType.HEADING_3 -> {
+        spannable.relativeSize(1.0f, s, e)
+          .font(MarkdownConfig.config.spanConfig.headingTypeface, s, e)
+          .bold(s, e)
+        true
+      }
+      MarkdownType.CHECKLIST_CHECKED -> {
+        spannable.strike(s, e)
+        true
+      }
+      else -> false
+    }
+  }
+}
+
+fun Note.getTitleForSharing(): String {
   val formats = getFormats()
   if (formats.isEmpty()) {
     return ""
   }
   val format = formats.first()
+  val headingFormats = listOf(FormatType.HEADING, FormatType.SUB_HEADING, FormatType.HEADING_3)
   return when {
-    format.formatType === FormatType.HEADING -> format.text
-    format.formatType === FormatType.SUB_HEADING -> format.text
+    headingFormats.contains(format.formatType) -> format.text
     else -> ""
   }
 }
 
-fun Note.getText(): String {
+fun Note.getTextForSharing(): String {
   val formats = getFormats().toMutableList()
   if (formats.isEmpty()) {
     return ""
@@ -89,7 +132,12 @@ fun Note.getText(): String {
       stringBuilder.append("\n")
     }
   }
-  return stringBuilder.toString().trim()
+
+  val text = stringBuilder.toString().trim()
+  if (sInternalShowUUID) {
+    return "`$uuid`\n\n$text"
+  }
+  return text
 }
 
 fun Note.getSmartFormats(): List<Format> {
@@ -98,7 +146,7 @@ fun Note.getSmartFormats(): List<Format> {
   val smartFormats = ArrayList<Format>()
   formats.forEach {
     if (it.formatType == FormatType.TEXT) {
-      val moreFormats = TextSegmenter(it.text).get().map { it.toFormat() }
+      val moreFormats = it.text.toInternalFormats()
       moreFormats.forEach { format ->
         format.uid = maxIndex
         smartFormats.add(format)
@@ -117,45 +165,24 @@ fun Note.getImageFile(): String {
   return format?.text ?: ""
 }
 
-fun Note.getMarkdownTitle(isMarkdownEnabled: Boolean): CharSequence {
-  val titleString = getTitle()
-  return when {
-    titleString.isBlank() -> ""
-    !isMarkdownEnabled -> Markdown.render(removeMarkdownHeaders(titleString), true)
-    else -> titleString
-  }
-}
-
-fun Note.getMarkdownText(isMarkdownEnabled: Boolean): CharSequence {
-  return when {
-    isMarkdownEnabled -> Markdown.render(removeMarkdownHeaders(getText()), true)
-    else -> getText()
-  }
-}
-
 fun Note.getFullText(): String {
-  val formats = getFormats()
-  return formats.map { it -> it.markdownText }.joinToString(separator = "\n").trim()
-}
-
-fun Note.getAlphabets(): String {
-  val formats = getFormats()
-  return formats.map { it -> it.markdownText }.joinToString(separator = "\n").trim().filter {
-    ((it in 'a'..'z') || (it in 'A'..'Z'))
+  val fullText = getFormats().map { it -> it.markdownText }.joinToString(separator = "\n").trim()
+  if (sInternalShowUUID) {
+    return "`$uuid`\n$fullText"
   }
+  return fullText
 }
 
-fun Note.getUnreliablyStrippedText(context: Context): String {
-  val builder = StringBuilder()
-  builder.append(Markdown.render(removeMarkdownHeaders(getTitle())), true)
-  builder.append(Markdown.render(removeMarkdownHeaders(getText())), true)
-  return builder.toString().trim { it <= ' ' }
+fun Note.isNoteLockedButAppUnlocked(): Boolean {
+  return this.locked && !needsLockCheck() && sSecurityAppLockEnabled
 }
 
-fun Note.getLockedText(isMarkdownEnabled: Boolean): CharSequence {
+fun Note.getLockedAwareTextForHomeList(): CharSequence {
+  val lockedText = "******************\n***********\n****************"
   return when {
-    this.locked -> "******************\n***********\n****************"
-    else -> getMarkdownText(isMarkdownEnabled)
+    isNoteLockedButAppUnlocked() || !this.locked -> getMarkdownForListView()
+    !sUIMarkdownEnabledOnHome -> "${getTitleForSharing()}\n$lockedText"
+    else -> markdownFormatForList("# ${getTitleForSharing()}\n\n```\n$lockedText\n```")
   }
 }
 
@@ -170,12 +197,12 @@ fun Note.getDisplayTime(): String {
     Calendar.getInstance().timeInMillis - time < 1000 * 60 * 60 * 2 -> "hh:mm aa"
     else -> "dd MMMM"
   }
-  return DateFormatter.getDate(format, time)
+  return sDateFormat.readableTime(format, time)
 }
 
 fun Note.getTagString(): String {
   val tags = getTags()
-  return tags.map { it -> '`' + it.title + '`' }.joinToString(separator = " ")
+  return tags.map { it -> "` ${it.title} `" }.joinToString(separator = " ")
 }
 
 fun Note.getTags(): Set<Tag> {
@@ -216,6 +243,13 @@ fun Note.removeTag(tag: Tag) {
   this.tags = tags.joinToString(separator = ",")
 }
 
+fun Note.adjustedColor(): Int {
+  return when (sThemeDarkenNoteColor) {
+    true -> ColorUtil.darkOrDarkerColor(color ?: sNoteDefaultColor)
+    false -> color ?: sNoteDefaultColor
+  }
+}
+
 /**************************************************************************************
  ******************************* Note Action Functions ********************************
  **************************************************************************************/
@@ -229,47 +263,40 @@ fun Note.mark(context: Context, noteState: NoteState) {
 fun Note.edit(context: Context) {
   if (this.locked) {
     if (context is ThemedActivity) {
-      EnterPincodeBottomSheet.openUnlockSheet(context, object : EnterPincodeBottomSheet.PincodeSuccessListener {
-        override fun onFailure() {
-          edit(context)
-        }
-
-        override fun onSuccess() {
-          openEdit(context)
-        }
-      })
+      openUnlockSheet(
+        activity = context,
+        onUnlockSuccess = { context.startActivity(NoteIntentRouterActivity.edit(context, this)) },
+        onUnlockFailure = { edit(context) })
     }
     return
   }
-  openEdit(context)
+  context.startActivity(NoteIntentRouterActivity.edit(context, this))
 }
-
-fun Note.view(context: Context) {
-  val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
-  intent.putExtra(INTENT_KEY_NOTE_ID, this.uid)
-  context.startActivity(intent)
-}
-
-fun Note.viewDistractionFree(context: Context) {
-  val intent = Intent(context, ViewAdvancedNoteActivity::class.java)
-  intent.putExtra(INTENT_KEY_NOTE_ID, this.uid)
-  intent.putExtra(INTENT_KEY_DISTRACTION_FREE, true)
-  context.startActivity(intent)
-}
-
-fun Note.openEdit(context: Context) {
-  val intent = Intent(context, CreateNoteActivity::class.java)
-  intent.putExtra(INTENT_KEY_NOTE_ID, this.uid)
-  context.startActivity(intent)
-}
-
 
 fun Note.share(context: Context) {
-  CoreConfig.instance.noteActions(this).share(context)
+  ApplicationBase.instance.noteActions(this).share(context)
+}
+
+fun Note.hasImages(): Boolean {
+  val imageFormats = getFormats().filter { it.formatType == FormatType.IMAGE }
+  return imageFormats.isNotEmpty()
+}
+
+fun Note.shareImages(context: Context) {
+  val imageFormats = getFormats().filter { it.formatType == FormatType.IMAGE }
+  val bitmaps = imageFormats
+    .map { ApplicationBase.sAppImageStorage.getFile(uuid, it.text) }
+    .filter { it.exists() }
+    .map { BitmapHelper.loadFromFile(it) }
+    .filterNotNull()
+  when {
+    bitmaps.size == 1 -> BitmapHelper.send(context, bitmaps.first())
+    bitmaps.size > 1 -> BitmapHelper.send(context, bitmaps)
+  }
 }
 
 fun Note.copy(context: Context) {
-  CoreConfig.instance.noteActions(this).copy(context)
+  ApplicationBase.instance.noteActions(this).copy(context)
 }
 
 /**************************************************************************************
@@ -292,15 +319,23 @@ fun Note.save(context: Context) {
     saveWithoutSync(context)
     return
   }
-  CoreConfig.instance.noteActions(this).save(context)
+  ApplicationBase.instance.noteActions(this).save(context)
+}
+
+fun Note.unsafeSave_INTERNAL_USE_ONLY() {
+  applySanityChecks()
+
+  val id = CoreConfig.notesDb.database().insertNote(this)
+  uid = if (isUnsaved()) id.toInt() else uid
+  CoreConfig.notesDb.notifyInsertNote(this)
 }
 
 fun Note.saveWithoutSync(context: Context) {
-  CoreConfig.instance.noteActions(this).offlineSave(context)
+  ApplicationBase.instance.noteActions(this).offlineSave(context)
 }
 
 fun Note.saveToSync(context: Context) {
-  CoreConfig.instance.noteActions(this).onlineSave(context)
+  ApplicationBase.instance.noteActions(this).onlineSave(context)
 }
 
 fun Note.delete(context: Context) {
@@ -308,17 +343,17 @@ fun Note.delete(context: Context) {
     deleteWithoutSync(context)
     return
   }
-  CoreConfig.instance.noteActions(this).delete(context)
+  ApplicationBase.instance.noteActions(this).delete(context)
 }
 
 fun Note.deleteWithoutSync(context: Context) {
-  CoreConfig.instance.noteActions(this).offlineDelete(context)
+  ApplicationBase.instance.noteActions(this).offlineDelete(context)
 }
 
 fun Note.deleteToSync(context: Context) {
-  CoreConfig.instance.noteActions(this).onlineDelete(context)
+  ApplicationBase.instance.noteActions(this).onlineDelete(context)
 }
 
 fun Note.softDelete(context: Context) {
-  CoreConfig.instance.noteActions(this).softDelete(context)
+  ApplicationBase.instance.noteActions(this).softDelete(context)
 }

@@ -1,10 +1,10 @@
 package com.maubis.scarlet.base.database.room.note;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Query;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
 
 import java.util.List;
 
@@ -38,8 +38,7 @@ public interface NoteDao {
   @Query("SELECT * FROM note WHERE tags LIKE :uuidRegex ORDER BY pinned DESC, timestamp DESC")
   List<Note> getNoteByTag(String uuidRegex);
 
-  @Query("SELECT COUNT(*) FROM note WHERE tags LIKE :uuidRegex ORDER BY pinned DESC, timestamp "
-      + "DESC")
+  @Query("SELECT COUNT(*) FROM note WHERE tags LIKE :uuidRegex ORDER BY pinned DESC, timestamp " + "DESC")
   int getNoteCountByTag(String uuidRegex);
 
   @Query("SELECT * FROM note WHERE uid = :uid LIMIT 1")

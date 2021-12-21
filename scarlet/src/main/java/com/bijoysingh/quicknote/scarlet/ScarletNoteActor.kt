@@ -1,20 +1,27 @@
 package com.bijoysingh.quicknote.scarlet
 
 import android.content.Context
-import com.bijoysingh.quicknote.Scarlet.Companion.firebase
-import com.bijoysingh.quicknote.firebase.data.getFirebaseNote
-import com.maubis.scarlet.base.database.room.note.Note
+import com.bijoysingh.quicknote.Scarlet.Companion.gDrive
+import com.bijoysingh.quicknote.Scarlet.Companion.remoteDatabaseStateController
 import com.maubis.scarlet.base.core.note.MaterialNoteActor
+import com.maubis.scarlet.base.database.room.note.Note
 
 class ScarletNoteActor(note: Note) : MaterialNoteActor(note) {
 
+  private val notifyChange: () -> Unit = {
+    gDrive?.notifyChange()
+  }
+
   override fun onlineSave(context: Context) {
     super.onlineSave(context)
-    firebase?.insert(note.getFirebaseNote())
+    remoteDatabaseStateController?.notifyInsert(note, notifyChange)
   }
 
   override fun onlineDelete(context: Context) {
     super.onlineDelete(context)
-    firebase?.remove(note.getFirebaseNote())
+    when {
+      gDrive?.isValid() == true -> remoteDatabaseStateController?.notifyRemove(note, notifyChange)
+      else -> remoteDatabaseStateController?.stopTrackingItem(note, notifyChange)
+    }
   }
 }

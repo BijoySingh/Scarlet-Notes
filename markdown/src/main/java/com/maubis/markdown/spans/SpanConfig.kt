@@ -16,4 +16,8 @@ class SpanConfig() {
   var separatorWidth: Int = 0
 
   var headingTypeface: Typeface = Typeface.DEFAULT
+  var heading2Typeface: Typeface = Typeface.DEFAULT
+  var heading3Typeface: Typeface = Typeface.DEFAULT
+  var textTypeface: Typeface = Typeface.DEFAULT
+  var codeTypeface: Typeface = Typeface.MONOSPACE
 }

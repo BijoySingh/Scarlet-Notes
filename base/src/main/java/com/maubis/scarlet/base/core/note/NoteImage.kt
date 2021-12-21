@@ -4,11 +4,12 @@ import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import com.github.bijoysingh.starter.util.RandomHelper
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -38,7 +39,7 @@ class NoteImage(context: Context) {
 
   fun getFile(noteUUID: String, imageFormat: Format): File {
     if (imageFormat.formatType != FormatType.IMAGE) {
-      throw IllegalArgumentException("Format should be an Image")
+      maybeThrow("Format should be an Image")
     }
     return getFile(noteUUID, imageFormat.text)
   }
@@ -66,7 +67,7 @@ class NoteImage(context: Context) {
         return@launch
       }
 
-      val bitmap = CoreConfig.instance.imageCache().loadFromCache(file)
+      val bitmap = ApplicationBase.sAppImageCache.loadFromCache(file)
       if (bitmap === null) {
         deleteIfExist(file)
         GlobalScope.launch(Dispatchers.Main) {
@@ -83,12 +84,13 @@ class NoteImage(context: Context) {
     }
   }
 
-  fun loadThumbnailFileToImageView(noteUUID: String, imageUuid: String,
-                                   image: ImageView,
-                                   callback: ImageLoadCallback? = null) {
+  fun loadThumbnailFileToImageView(
+    noteUUID: String, imageUuid: String,
+    image: ImageView,
+    callback: ImageLoadCallback? = null) {
     GlobalScope.launch {
-      val thumbnailFile = CoreConfig.instance.imageCache().thumbnailFile(noteUUID, imageUuid)
-      val persistentFile = CoreConfig.instance.imageCache().persistentFile(noteUUID, imageUuid)
+      val thumbnailFile = ApplicationBase.sAppImageCache.thumbnailFile(noteUUID, imageUuid)
+      val persistentFile = ApplicationBase.sAppImageCache.persistentFile(noteUUID, imageUuid)
 
       if (!persistentFile.exists()) {
         GlobalScope.launch(Dispatchers.Main) {
@@ -99,7 +101,7 @@ class NoteImage(context: Context) {
       }
 
       if (thumbnailFile.exists()) {
-        val bitmap = CoreConfig.instance.imageCache().loadFromCache(thumbnailFile)
+        val bitmap = ApplicationBase.sAppImageCache.loadFromCache(thumbnailFile)
         if (bitmap === null) {
           deleteIfExist(thumbnailFile)
           GlobalScope.launch(Dispatchers.Main) {
@@ -116,7 +118,7 @@ class NoteImage(context: Context) {
         return@launch
       }
 
-      val persistentBitmap = CoreConfig.instance.imageCache().loadFromCache(persistentFile)
+      val persistentBitmap = ApplicationBase.sAppImageCache.loadFromCache(persistentFile)
       if (persistentBitmap === null) {
         deleteIfExist(persistentFile)
         GlobalScope.launch(Dispatchers.Main) {
@@ -126,7 +128,7 @@ class NoteImage(context: Context) {
         return@launch
       }
 
-      val compressedBitmap = CoreConfig.instance.imageCache().saveThumbnail(thumbnailFile, persistentBitmap)
+      val compressedBitmap = ApplicationBase.sAppImageCache.saveThumbnail(thumbnailFile, persistentBitmap)
       GlobalScope.launch(Dispatchers.Main) {
         image.visibility = View.VISIBLE
         image.setImageBitmap(compressedBitmap)

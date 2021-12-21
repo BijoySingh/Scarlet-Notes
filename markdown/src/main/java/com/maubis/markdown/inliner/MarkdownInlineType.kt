@@ -8,4 +8,5 @@ enum class MarkdownInlineType {
   UNDERLINE,
   INLINE_CODE,
   STRIKE,
+  IGNORE_CHAR,
 }

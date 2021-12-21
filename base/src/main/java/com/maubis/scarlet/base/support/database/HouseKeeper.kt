@@ -1,7 +1,6 @@
 package com.maubis.scarlet.base.support.database
 
 import android.content.Context
-import com.github.bijoysingh.starter.async.SimpleThreadExecutor
 import com.maubis.scarlet.base.config.CoreConfig.Companion.foldersDb
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteImage.Companion.deleteIfExist
@@ -20,11 +19,11 @@ import java.util.concurrent.TimeUnit
 class HouseKeeper(val context: Context) {
 
   private val houseKeeperTasks: Array<() -> Unit> = arrayOf(
-      { removeOlderClips() },
-      { removeDecoupledFolders() },
-      { removeOldReminders() },
-      { deleteRedundantImageFiles() },
-      { migrateZeroUidNotes() }
+    { removeOlderClips() },
+    { removeDecoupledFolders() },
+    { removeOldReminders() },
+    { deleteRedundantImageFiles() },
+    { migrateZeroUidNotes() }
   )
 
   fun execute() {
@@ -33,10 +32,9 @@ class HouseKeeper(val context: Context) {
     }
   }
 
-  private fun removeOlderClips() {
+  fun removeOlderClips(deltaTimeMs: Long = 604800000L) {
     val notes = notesDb.database()
-        .getOldTrashedNotes(
-            Calendar.getInstance().timeInMillis - 1000 * 60 * 60 * 24 * 7)
+      .getOldTrashedNotes(Calendar.getInstance().timeInMillis - deltaTimeMs)
     for (note in notes) {
       note.delete(context)
     }
@@ -45,13 +43,13 @@ class HouseKeeper(val context: Context) {
   private fun removeDecoupledFolders() {
     val folders = foldersDb.getAll().map { it.uuid }
     notesDb.getAll()
-        .filter { it.folder.isNotBlank() }
-        .forEach {
-          if (!folders.contains(it.folder)) {
-            it.folder = ""
-            it.save(context)
-          }
+      .filter { it.folder.isNotBlank() }
+      .forEach {
+        if (!folders.contains(it.folder)) {
+          it.folder = ""
+          it.save(context)
         }
+      }
   }
 
   private fun removeOldReminders() {

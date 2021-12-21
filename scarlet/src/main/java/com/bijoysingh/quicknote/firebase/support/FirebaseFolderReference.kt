@@ -7,17 +7,17 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 /**
  * Functions for Database Reference for Firebase Notes
  */
 fun FirebaseRemoteDatabase.initFolderReference(userId: String) {
   firebaseFolder = FirebaseDatabase
-      .getInstance()
-      .getReference()
-      .child("folders")
-      .child(userId)
+    .getInstance()
+    .getReference()
+    .child("folders")
+    .child(userId)
   setFolderListener()
 }
 
@@ -53,7 +53,7 @@ fun FirebaseRemoteDatabase.setFolderListener() {
         }
         onRemoteInsert(folder)
       } catch (exception: Exception) {
-        // Ignore if exception
+        maybeThrow(exception)
       }
     }
 
@@ -68,7 +68,7 @@ fun FirebaseRemoteDatabase.setFolderListener() {
         }
         onRemoteRemove(folder)
       } catch (exception: Exception) {
-        // Ignore if exception
+        maybeThrow(exception)
       }
     }
   })

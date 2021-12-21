@@ -3,10 +3,10 @@ package com.maubis.scarlet.base.core.note
 import com.github.bijoysingh.starter.util.RandomHelper
 import com.github.bijoysingh.starter.util.TextUtils
 import com.google.gson.Gson
-import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
+import com.maubis.scarlet.base.database.room.note.Note
 import java.util.*
 
 fun generateUUID() = UUID.randomUUID().toString()
@@ -23,6 +23,7 @@ class NoteBuilder {
     note.updateTimestamp = note.timestamp
     note.color = -0xff8695
     note.folder = ""
+    note.description = FormatBuilder().getDescription(emptyList())
     return note
   }
 

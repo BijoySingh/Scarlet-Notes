@@ -1,6 +1,6 @@
 package com.maubis.markdown.inliners
 
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.maubis.markdown.inliner.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -36,5 +36,15 @@ class InlineMultipleTextTests : MarkdownTextInlinerTestBase() {
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE), listOf(NormalInlineMarkdownSegment("t4"))),
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.STRIKE), listOf(NormalInlineMarkdownSegment("t5"))),
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INLINE_CODE), listOf(NormalInlineMarkdownSegment("t6"))))), processed)
+  }
+
+  @Test
+  fun testEscapedText() {
+    val textA = "aaa\\_bb_c"
+    val processedA = TextInliner(textA).get()
+    assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INVALID), listOf(
+        NormalInlineMarkdownSegment("aaa"),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.IGNORE_CHAR), listOf(NormalInlineMarkdownSegment("_"))),
+        NormalInlineMarkdownSegment("bb_c"))), processedA)
   }
 }

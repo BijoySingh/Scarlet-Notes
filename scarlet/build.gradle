@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.github.zellius.shortcut-helper'
+apply plugin: 'kotlin-kapt'
 
 shortcutHelper.filePath = '../shortcuts.xml'
 
@@ -14,7 +15,13 @@ android {
         targetSdkVersion rootProject.ext.appconfig_target_os_version
         versionCode rootProject.ext.appconfig_version_code
         versionName rootProject.ext.appconfig_version
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     flavorDimensions "tier"
     productFlavors {
@@ -39,19 +46,43 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
 }
 
 dependencies {
     api project(':base')
+    kapt 'androidx.room:room-compiler:2.2.1'
 
     implementation 'com.android.volley:volley:1.1.0'
 
-    implementation "com.google.firebase:firebase-core:16.0.7"
-    implementation "com.google.firebase:firebase-auth:16.1.0"
-    implementation "com.google.firebase:firebase-database:16.0.6"
+    implementation "com.google.firebase:firebase-core:17.2.1"
+    implementation "com.google.firebase:firebase-auth:19.1.0"
+    implementation "com.google.firebase:firebase-database:19.2.0"
 
-    implementation "com.google.android.gms:play-services-auth:16.0.1"
-    implementation 'com.google.android.gms:play-services-drive:16.0.0'
+    def litho_version = "0.31.0"
+    compileOnly "com.facebook.litho:litho-annotations:$litho_version"
+    kapt "com.facebook.litho:litho-processor:$litho_version"
+
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'commons-codec:commons-codec:1.10'
+    implementation ('com.google.http-client:google-http-client-gson:1.26.0') {
+       exclude group: 'org.apache.httpcomponents'
+    }
+    implementation ('com.google.api-client:google-api-client-android:1.26.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    implementation('com.google.apis:google-api-services-drive:v3-rev136-1.25.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
 }
 
 apply plugin: 'kotlin-android-extensions'

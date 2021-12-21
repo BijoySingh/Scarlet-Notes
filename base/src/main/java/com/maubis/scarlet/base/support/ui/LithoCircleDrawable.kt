@@ -1,8 +1,13 @@
 package com.maubis.scarlet.base.support.ui
 
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.Paint
+import android.graphics.PixelFormat
+import android.graphics.Rect
 import com.facebook.litho.drawable.ComparableDrawable
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 
 class LithoCircleDrawable(color: Int, alpha: Int = 255, val showBorder: Boolean = false) : ComparableDrawable() {
   private val mPaint: Paint
@@ -14,7 +19,7 @@ class LithoCircleDrawable(color: Int, alpha: Int = 255, val showBorder: Boolean 
     this.mPaint.color = color
     this.mPaint.alpha = alpha
 
-    val isNightTheme = CoreConfig.instance.themeController().isNightTheme()
+    val isNightTheme = sAppTheme.isNightTheme()
     this.mBorderPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     this.mBorderPaint.color = when {
       !showBorder -> Color.TRANSPARENT
@@ -27,10 +32,10 @@ class LithoCircleDrawable(color: Int, alpha: Int = 255, val showBorder: Boolean 
     val bounds = bounds
     canvas.drawCircle(bounds.centerX().toFloat(), bounds.centerY().toFloat(), mRadius.toFloat(), mBorderPaint)
     canvas.drawCircle(
-        bounds.centerX().toFloat(),
-        bounds.centerY().toFloat(),
-        mRadius.toFloat() - (if (showBorder) 2 else 0),
-        mPaint)
+      bounds.centerX().toFloat(),
+      bounds.centerY().toFloat(),
+      mRadius.toFloat() - (if (showBorder) 2 else 0),
+      mPaint)
   }
 
   override fun setAlpha(alpha: Int) {
@@ -52,8 +57,8 @@ class LithoCircleDrawable(color: Int, alpha: Int = 255, val showBorder: Boolean 
 
   override fun isEquivalentTo(other: ComparableDrawable?): Boolean {
     return other is LithoCircleDrawable
-        && other.mRadius == mRadius
-        && other.mPaint.color == mPaint.color
+      && other.mRadius == mRadius
+      && other.mPaint.color == mPaint.color
   }
 
 }

@@ -13,6 +13,8 @@ import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.note.folder.saveIfUnique
 import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.note.tag.saveIfUnique
+import com.maubis.scarlet.base.support.utils.maybeThrow
+import com.maubis.scarlet.base.support.utils.throwOrReturn
 import org.json.JSONArray
 import java.io.BufferedReader
 import java.io.File
@@ -58,19 +60,20 @@ class NoteImporter() {
       }
     } catch (exception: Exception) {
       importNoteFallback(content, context)
+      maybeThrow(exception)
     }
   }
 
   private fun importNoteFallback(content: String, context: Context) {
     content
-        .split(EXPORT_NOTE_SEPARATOR)
-        .map {
-          it.trim()
-        }
-        .filter { it.isNotBlank() }
-        .forEach {
-          NoteBuilder().gen("", it).save(context)
-        }
+      .split(EXPORT_NOTE_SEPARATOR)
+      .map {
+        it.trim()
+      }
+      .filter { it.isNotBlank() }
+      .forEach {
+        NoteBuilder().gen("", it).save(context)
+      }
   }
 
   fun getImportableFiles(): List<File> {
@@ -100,12 +103,11 @@ class NoteImporter() {
         files.addAll(childFile)
       }
     } catch (exception: Exception) {
-      // Failed
+      maybeThrow(exception)
     }
 
     return files
   }
-
 
   fun readFileInputStream(inputStreamReader: InputStreamReader): String {
     lateinit var reader: BufferedReader
@@ -120,7 +122,7 @@ class NoteImporter() {
       return fileContents.toString()
     } catch (exception: IOException) {
       reader.close()
-      return ""
+      return throwOrReturn(exception, "")
     }
   }
 
@@ -131,7 +133,7 @@ class NoteImporter() {
 
   private fun isValidFile(filePath: String, validExtension: String): Boolean {
     return filePath.endsWith("." + validExtension)
-        || filePath.endsWith("." + validExtension.toUpperCase())
+      || filePath.endsWith("." + validExtension.toUpperCase())
   }
 
 }

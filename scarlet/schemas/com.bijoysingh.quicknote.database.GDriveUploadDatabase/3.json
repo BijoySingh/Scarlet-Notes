@@ -1,0 +1,97 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 3,
+    "identityHash": "a64a14da15936f694f2119342656f35e",
+    "entities": [
+      {
+        "tableName": "gdrive_upload",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `uuid` TEXT NOT NULL, `type` TEXT NOT NULL, `fileId` TEXT NOT NULL, `lastUpdateTimestamp` INTEGER NOT NULL, `localStateDeleted` INTEGER NOT NULL, `gDriveUpdateTimestamp` INTEGER NOT NULL, `gDriveStateDeleted` INTEGER NOT NULL, `attempts` INTEGER NOT NULL, `lastAttemptTime` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uuid",
+            "columnName": "uuid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fileId",
+            "columnName": "fileId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastUpdateTimestamp",
+            "columnName": "lastUpdateTimestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localStateDeleted",
+            "columnName": "localStateDeleted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gDriveUpdateTimestamp",
+            "columnName": "gDriveUpdateTimestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gDriveStateDeleted",
+            "columnName": "gDriveStateDeleted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "attempts",
+            "columnName": "attempts",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastAttemptTime",
+            "columnName": "lastAttemptTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_gdrive_upload_uuid_type",
+            "unique": true,
+            "columnNames": [
+              "uuid",
+              "type"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_gdrive_upload_uuid_type` ON `${TABLE_NAME}` (`uuid`, `type`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a64a14da15936f694f2119342656f35e\")"
+    ]
+  }
+}

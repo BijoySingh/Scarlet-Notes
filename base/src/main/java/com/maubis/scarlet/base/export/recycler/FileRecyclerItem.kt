@@ -5,10 +5,11 @@ import com.maubis.scarlet.base.export.support.AUTO_BACKUP_FILENAME
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
 import java.io.File
 
-class FileRecyclerItem(val name: String,
-                       val date: Long,
-                       val path: String,
-                       val file: File) : RecyclerItem(), Comparable<FileRecyclerItem> {
+class FileRecyclerItem(
+  val name: String,
+  val date: Long,
+  val path: String,
+  val file: File) : RecyclerItem(), Comparable<FileRecyclerItem> {
   var selected = false
 
   override val type = Type.FILE

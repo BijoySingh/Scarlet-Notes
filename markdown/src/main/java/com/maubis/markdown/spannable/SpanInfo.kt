@@ -22,6 +22,7 @@ enum class MarkdownType {
   SEPARATOR,
   CHECKLIST_UNCHECKED,
   CHECKLIST_CHECKED,
+  IMAGE,
 }
 
 data class SpanResult(val text: String, val spans: List<SpanInfo>)
@@ -43,6 +44,7 @@ fun map(type: MarkdownSegmentType): MarkdownType {
     MarkdownSegmentType.SEPARATOR -> MarkdownType.SEPARATOR
     MarkdownSegmentType.CHECKLIST_UNCHECKED -> MarkdownType.CHECKLIST_UNCHECKED
     MarkdownSegmentType.CHECKLIST_CHECKED -> MarkdownType.CHECKLIST_CHECKED
+    MarkdownSegmentType.IMAGE -> MarkdownType.IMAGE
   }
 }
 
@@ -55,5 +57,6 @@ fun map(type: MarkdownInlineType): MarkdownType {
     MarkdownInlineType.UNDERLINE -> MarkdownType.UNDERLINE
     MarkdownInlineType.INLINE_CODE -> MarkdownType.INLINE_CODE
     MarkdownInlineType.STRIKE -> MarkdownType.STRIKE
+    MarkdownInlineType.IGNORE_CHAR -> MarkdownType.NORMAL
   }
 }

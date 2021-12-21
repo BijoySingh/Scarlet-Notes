@@ -4,6 +4,7 @@ import com.evernote.android.job.Job
 import com.evernote.android.job.JobManager
 import com.evernote.android.job.JobRequest
 import com.evernote.android.job.util.support.PersistableBundleCompat
+import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.Reminder
 import com.maubis.scarlet.base.core.note.ReminderInterval
 import com.maubis.scarlet.base.core.note.getReminderV2
@@ -12,10 +13,9 @@ import com.maubis.scarlet.base.note.saveWithoutSync
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
 import com.maubis.scarlet.base.notification.REMINDER_NOTIFICATION_CHANNEL_ID
-import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import java.util.*
 import java.util.concurrent.TimeUnit
-
 
 class ReminderJob : Job() {
 
@@ -33,9 +33,9 @@ class ReminderJob : Job() {
       val reminder = note.getReminderV2()
       if (reminder?.interval == ReminderInterval.DAILY) {
         val reminderV2 = Reminder(
-            0,
-            nextJobTimestamp(reminder.timestamp, System.currentTimeMillis()),
-            ReminderInterval.DAILY)
+          0,
+          nextJobTimestamp(reminder.timestamp, System.currentTimeMillis()),
+          ReminderInterval.DAILY)
         reminderV2.uid = scheduleJob(note.uuid, reminderV2)
         note.setReminderV2(reminderV2)
         note.saveWithoutSync(context)
@@ -43,7 +43,8 @@ class ReminderJob : Job() {
         note.meta = ""
         note.saveWithoutSync(context)
       }
-    } catch (e: Exception) {
+    } catch (exception: Exception) {
+      maybeThrow(exception)
     }
 
     return Job.Result.SUCCESS
@@ -63,10 +64,10 @@ class ReminderJob : Job() {
       }
 
       return JobRequest.Builder(ReminderJob.TAG)
-          .setExact(deltaTime)
-          .setExtras(extras)
-          .build()
-          .schedule()
+        .setExact(deltaTime)
+        .setExtras(extras)
+        .build()
+        .schedule()
     }
 
     fun nextJobTimestamp(timestamp: Long, currentTimestamp: Long): Long {

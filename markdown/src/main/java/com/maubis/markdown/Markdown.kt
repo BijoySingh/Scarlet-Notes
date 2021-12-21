@@ -5,16 +5,24 @@ import android.text.SpannableStringBuilder
 import com.maubis.markdown.inliner.TextInliner
 import com.maubis.markdown.segmenter.MarkdownSegmentType
 import com.maubis.markdown.segmenter.TextSegmenter
-import com.maubis.markdown.spannable.SpanInfo
-import com.maubis.markdown.spannable.SpanResult
-import com.maubis.markdown.spannable.map
-import com.maubis.markdown.spannable.setFormats
+import com.maubis.markdown.spannable.*
 
 object Markdown {
   fun render(text: String, strip: Boolean = false): Spannable {
     val spans = getSpanInfo(text, strip)
     val spannable = SpannableStringBuilder(spans.text)
     spannable.setFormats(spans.spans)
+    return spannable
+  }
+
+  fun renderWithCustomFormatting(text: String, strip: Boolean = false, customSpanInfoAction: (Spannable, SpanInfo) -> Boolean): Spannable {
+    val spans = getSpanInfo(text, strip)
+    val spannable = SpannableStringBuilder(spans.text)
+    spans.spans.forEach {
+      if (!customSpanInfoAction(spannable, it)) {
+        spannable.setDefaultFormats(it)
+      }
+    }
     return spannable
   }
 
@@ -28,28 +36,31 @@ object Markdown {
     return spannable
   }
 
-  fun toMarkwonableText(text: String): String {
-    val source = TextInliner(text).get().toMarkwon()
-    source.replace(Regex("(\\S)\n(\\S)"), "$1  \n$2")
-    return source
-  }
-
   fun getSpanInfo(text: String, stripDelimiter: Boolean = false): SpanResult {
     val segments = TextSegmenter(text).get()
     var currentIndex = 0
     val textBuilder = StringBuilder()
     val formats = ArrayList<SpanInfo>()
     segments.forEach {
-      val inliner = TextInliner(if (stripDelimiter) it.strip() else it.text()).get()
-      val strippedText = inliner.contentText(stripDelimiter)
-      val finalIndex = currentIndex + strippedText.length
+      val finalIndex: Int
+      val strippedText: String
+      when {
+        it.type() == MarkdownSegmentType.CODE -> {
+          strippedText = if (stripDelimiter) it.strip() else it.text()
+          finalIndex = currentIndex + strippedText.length
+          formats.add(SpanInfo(map(it.type()), currentIndex, finalIndex))
+        }
+        else -> {
+          val inliner = TextInliner(if (stripDelimiter) it.strip() else it.text()).get()
+          strippedText = inliner.contentText(stripDelimiter)
+          finalIndex = currentIndex + strippedText.length
 
-      formats.add(SpanInfo(map(it.type()), currentIndex, finalIndex))
-      if (it.type() != MarkdownSegmentType.CODE) {
-        formats.addAll(inliner.allContentSpans(stripDelimiter, currentIndex))
+          formats.add(SpanInfo(map(it.type()), currentIndex, finalIndex))
+          formats.addAll(inliner.allContentSpans(stripDelimiter, currentIndex))
+        }
       }
-      currentIndex = finalIndex + 1
 
+      currentIndex = finalIndex + 1
       textBuilder.append(strippedText)
       textBuilder.append("\n")
     }

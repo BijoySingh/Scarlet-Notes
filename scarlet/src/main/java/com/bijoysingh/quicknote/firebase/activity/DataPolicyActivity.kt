@@ -3,20 +3,20 @@ package com.bijoysingh.quicknote.firebase.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bijoysingh.quicknote.R
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.ToastHelper
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.settings.sheet.AboutSettingsOptionsBottomSheet
+import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.settings.sheet.PRIVACY_POLICY_LINK
-import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.visibility
+import com.maubis.scarlet.base.support.utils.bind
 
 const val KEY_DATA_POLICY_REQUEST = "KEY_DATA_POLICY_REQUEST"
 const val KEY_DATA_POLICY_REQUEST_LOGGED_IN = "LOGGED_IN"
@@ -48,8 +48,8 @@ class DataPolicyActivity : ThemedActivity() {
     doneBtn.setOnClickListener {
       if (acceptCheckBox.isChecked) {
         acceptThePolicy()
-        if (startState == "" && !CoreConfig.instance.authenticator().isLoggedIn()) {
-          IntentUtils.startActivity(this, LoginActivity::class.java)
+        if (startState == "" && !ApplicationBase.instance.authenticator().isLegacyLoggedIn()) {
+          IntentUtils.startActivity(this, FirebaseLoginActivity::class.java)
         }
 
         finish()
@@ -62,10 +62,11 @@ class DataPolicyActivity : ThemedActivity() {
     refuseBtn.setOnClickListener {
       IntentUtils.startActivity(this, ForgetMeActivity::class.java)
     }
-    refuseBtn.visibility = visibility(CoreConfig.instance.authenticator().isLoggedIn())
+    refuseBtn.visibility = visibility(ApplicationBase.instance.authenticator().isLegacyLoggedIn())
 
     privacyPolicy.setOnClickListener {
-      startActivity(Intent(
+      startActivity(
+        Intent(
           Intent.ACTION_VIEW,
           Uri.parse(PRIVACY_POLICY_LINK)))
     }
@@ -77,7 +78,7 @@ class DataPolicyActivity : ThemedActivity() {
 
   override fun onResume() {
     super.onResume()
-    if (startState == KEY_DATA_POLICY_REQUEST_LOGGED_IN && !CoreConfig.instance.authenticator().isLoggedIn()) {
+    if (startState == KEY_DATA_POLICY_REQUEST_LOGGED_IN && !ApplicationBase.instance.authenticator().isLegacyLoggedIn()) {
       finish()
     }
   }
@@ -87,12 +88,12 @@ class DataPolicyActivity : ThemedActivity() {
     const val DATA_POLICY_VERSION = 4
     const val DATA_POLICY_ACCEPTED = "DATA_POLICY_ACCEPTED_VERSION"
 
-    fun hasAcceptedThePolicy() = CoreConfig.instance.store().get(DATA_POLICY_ACCEPTED, 0) == DATA_POLICY_VERSION
+    fun hasAcceptedThePolicy() = sAppPreferences.get(DATA_POLICY_ACCEPTED, 0) == DATA_POLICY_VERSION
 
-    fun acceptThePolicy() = CoreConfig.instance.store().put(DATA_POLICY_ACCEPTED, DATA_POLICY_VERSION)
+    fun acceptThePolicy() = sAppPreferences.put(DATA_POLICY_ACCEPTED, DATA_POLICY_VERSION)
 
     fun openIfNeeded(activity: AppCompatActivity) {
-      if (!hasAcceptedThePolicy() && CoreConfig.instance.authenticator().isLoggedIn()) {
+      if (!hasAcceptedThePolicy() && ApplicationBase.instance.authenticator().isLegacyLoggedIn()) {
         val intent = Intent(activity, DataPolicyActivity::class.java)
         intent.putExtra(KEY_DATA_POLICY_REQUEST, KEY_DATA_POLICY_REQUEST_LOGGED_IN)
         activity.startActivity(intent)

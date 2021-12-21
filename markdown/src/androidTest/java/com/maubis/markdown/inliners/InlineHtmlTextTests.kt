@@ -1,6 +1,6 @@
 package com.maubis.markdown.inliners
 
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.maubis.markdown.inliner.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,7 +14,7 @@ class InlineHtmlTextTests : MarkdownTextInlinerTestBase() {
     assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INVALID), listOf(
         NormalInlineMarkdownSegment("Hi"),
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.BOLD), listOf(NormalInlineMarkdownSegment("Hello"),
-            PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE), listOf(NormalInlineMarkdownSegment("World"))))))), processed)
+            PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS), listOf(NormalInlineMarkdownSegment("World"))))))), processed)
   }
 
   @Test
@@ -22,9 +22,9 @@ class InlineHtmlTextTests : MarkdownTextInlinerTestBase() {
     val text = "<u>Hello</u><code>World</code><em>Italics</em><strong>Strong</strong>"
     val processed = TextInliner(text).get()
     assert(PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INVALID), listOf(
-        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS), listOf(NormalInlineMarkdownSegment("Hello"))),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE), listOf(NormalInlineMarkdownSegment("Hello"))),
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.INLINE_CODE), listOf(NormalInlineMarkdownSegment("World"))),
-        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.UNDERLINE), listOf(NormalInlineMarkdownSegment("Italics"))),
+        PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.ITALICS), listOf(NormalInlineMarkdownSegment("Italics"))),
         PhraseDelimiterMarkdownInline(InvalidInline(MarkdownInlineType.BOLD), listOf(NormalInlineMarkdownSegment("Strong"))))), processed)
   }
 

@@ -10,7 +10,7 @@ class HouseKeeperJob : DailyJob() {
 
     fun schedule() {
       val builder = JobRequest.Builder(TAG).setRequiresDeviceIdle(true)
-      DailyJob.schedule(builder, TimeUnit.HOURS.toMillis(1), TimeUnit.HOURS.toMillis(7))
+      schedule(builder, TimeUnit.HOURS.toMillis(1), TimeUnit.HOURS.toMillis(16))
     }
   }
 

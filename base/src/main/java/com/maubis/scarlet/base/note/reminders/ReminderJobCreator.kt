@@ -1,6 +1,6 @@
 package com.maubis.scarlet.base.note.reminders
 
-import android.support.annotation.Nullable
+import androidx.annotation.Nullable
 import com.evernote.android.job.Job
 import com.evernote.android.job.JobCreator
 

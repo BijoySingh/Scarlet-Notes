@@ -4,6 +4,9 @@ enum class FormatType {
   TAG,
   TEXT,
   NUMBERED_LIST,
+  BULLET_1,
+  BULLET_2,
+  BULLET_3,
   IMAGE,
   HEADING,// HEADING_1
   SUB_HEADING, // HEADING_2
@@ -13,5 +16,5 @@ enum class FormatType {
   CODE,
   QUOTE,
   SEPARATOR,
-  EMPTY,
+  EMPTY
 }

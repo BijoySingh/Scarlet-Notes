@@ -2,8 +2,9 @@ package com.maubis.scarlet.base.export.remote
 
 import com.github.bijoysingh.starter.util.FileManager
 import com.google.gson.Gson
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.export.support.KEY_EXTERNAL_FOLDER_SYNC_LAST_SCAN
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -11,18 +12,19 @@ import java.io.File
 
 const val LAST_MODIFIED_ERROR_MARGIN = 7 * 1000 * 60 * 60 * 24L
 
-class RemoteFolder<T>(val folder: File,
-                      val klass: Class<T>,
-                      val onRemoteInsert: (T) -> Unit,
-                      val onRemoteDelete: (String) -> Unit,
-                      val onInitComplete: () -> Unit) {
+class RemoteFolder<T>(
+  val folder: File,
+  val klass: Class<T>,
+  val onRemoteInsert: (T) -> Unit,
+  val onRemoteDelete: (String) -> Unit,
+  val onInitComplete: () -> Unit) {
 
   val deletedFolder = File(folder, "deleted")
   val uuids = HashSet<String>()
   val deletedUuids = HashSet<String>()
 
   val lastScanKey = "${KEY_EXTERNAL_FOLDER_SYNC_LAST_SCAN}_${folder.name}"
-  var lastScan = CoreConfig.instance.store().get(lastScanKey, 0L)
+  var lastScan = sAppPreferences.get(lastScanKey, 0L)
 
   init {
     GlobalScope.launch(Dispatchers.IO) {
@@ -37,6 +39,7 @@ class RemoteFolder<T>(val folder: File,
               onRemoteInsert(item)
             }
           } catch (exception: Exception) {
+            maybeThrow(exception)
           }
         }
       }
@@ -50,7 +53,7 @@ class RemoteFolder<T>(val folder: File,
       }
 
       onInitComplete()
-      CoreConfig.instance.store().put(lastScanKey, System.currentTimeMillis())
+      sAppPreferences.put(lastScanKey, System.currentTimeMillis())
     }
   }
 
@@ -64,6 +67,7 @@ class RemoteFolder<T>(val folder: File,
       val file = file(uuid)
       FileManager.writeToFile(file, data)
     } catch (exception: Exception) {
+      maybeThrow(exception)
     }
   }
 

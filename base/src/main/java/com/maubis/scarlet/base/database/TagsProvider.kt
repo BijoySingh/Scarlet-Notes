@@ -1,6 +1,6 @@
 package com.maubis.scarlet.base.database
 
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.database.room.tag.Tag
 import com.maubis.scarlet.base.database.room.tag.TagDao
 import java.util.concurrent.ConcurrentHashMap
@@ -22,6 +22,11 @@ class TagsProvider {
   fun getCount(): Int {
     maybeLoadFromDB()
     return tags.size
+  }
+
+  fun getUUIDs(): List<String> {
+    maybeLoadFromDB()
+    return tags.values.map { it.uuid }
   }
 
   fun getAll(): List<Tag> {
@@ -47,7 +52,7 @@ class TagsProvider {
   fun search(string: String): List<Tag> {
     maybeLoadFromDB()
     return tags.values
-        .filter { string.isBlank() || it.title.contains(string, true) }
+      .filter { string.isBlank() || it.title.contains(string, true) }
   }
 
   @Synchronized
@@ -65,6 +70,6 @@ class TagsProvider {
   }
 
   fun database(): TagDao {
-    return CoreConfig.instance.database().tags()
+    return ApplicationBase.instance.database().tags()
   }
 }

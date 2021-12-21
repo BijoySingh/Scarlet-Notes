@@ -6,17 +6,13 @@
   <string name="share_using">ਵਰਤਦੇ ਹੋਏ ਸ਼ੇਅਰ ਕਰੋ &#8230;</string>
   <string name="main_no_notes">ਕੋਈ ਨੋਟਸ ਨਹੀਂ</string>
   <string name="main_no_notes_hint">ਇੰਜ ਜਾਪਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕੋਈ ਨੋਟ ਨਹੀਂ ਜੋੜਿਆ ਹੈ ਕੋਈ ਨੋਟ ਜੋੜਨ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
-  <string name="main_add_a_note">ਕੋਈ ਨੋਟ ਜੋੜੋ &#8230;</string>
-  <string name="main_add_a_quick_note">ਇੱਕ ਤੁਰੰਤ ਸੂਚਨਾ ਜੋੜੋ &#8230;</string>
   <string name="edit_note">ਨੋਟ ਸੰਪਾਦਿਤ ਕਰੋ</string>
   <string name="open_in_popup">ਪੋਪਅੱਪ ਵਿੱਚ ਖੋਲ੍ਹੋ</string>
-  <string name="delete_note">ਨੋਟ ਮਿਟਾਓ</string>
   <string name="copy_note">ਨੋਟ ਕਾਪੀ ਕਰੋ</string>
   <string name="send_note">ਸੂਚਨਾ ਭੇਜੋ</string>
   <string name="choose_action">ਕਾਰਵਾਈ ਚੁਣੋ &#8230;</string>
   <string name="format_hint_text">ਸਮੱਗਰੀ ਜੋੜੋ &#8230;</string>
   <string name="format_hint_heading">ਸਿਰਲੇਖ ਸ਼ਾਮਲ ਕਰੋ &#8230;</string>
-  <string name="format_hint_sub_heading">ਸਬ ਸਿਰਲੇਖ ਸ਼ਾਮਲ ਕਰੋ &#8230;</string>
   <string name="format_hint_quote">ਹਵਾਲੇ ਪਾਓ &#8230;</string>
   <string name="format_hint_list">ਆਈਟਮ ਸ਼ਾਮਲ ਕਰੋ &#8230;</string>
   <string name="format_hint_code">ਕੋਡ ਜੋੜੋ &#8230;</string>
@@ -28,14 +24,9 @@
   <string name="security_option_title">ਸੁਰੱਖਿਆ ਵਿਕਲਪ</string>
   <string name="security_option_set_pin_code">ਪਾਸ ਕੋਡ</string>
   <string name="security_option_set_pin_code_subtitle">ਨੋਟਸ ਨੂੰ ਲਾਕ ਕਰਨ ਲਈ ਇੱਕ 4 ਅੰਕ ਦਾ PIN ਸੈਟ ਕਰੋ</string>
-  <string name="security_option_fingerprint_enabled">ਫਿੰਗਰਪ੍ਰਿੰਟ ਨਾਲ ਅਨਲੌਕ ਕਰੋ</string>
-  <string name="security_option_fingerprint_enabled_subtitle">ਨੋਟਸ ਫਿੰਗਰਪ੍ਰਿੰਟ ਨਾਲ ਅਨਲੌਕ ਹੋ ਜਾਣਗੇ</string>
-  <string name="security_option_fingerprint_disabled">ਫਿੰਗਰਪ੍ਰਿੰਟ ਅਸਮਰਥਿਤ</string>
-  <string name="security_option_fingerprint_disabled_subtitle">ਨੋਟਸ ਫਿੰਗਰਪ੍ਰਿੰਟ ਦੀ ਵਰਤੋਂ ਨਹੀਂ ਕਰਨਗੇ</string>
   <string name="security_sheet_enter_new_pin_title">ਨਵਾਂ PIN ਦਰਜ ਕਰੋ</string>
   <string name="security_sheet_enter_pin_to_unlock_title">ਅਨਲੌਕ ਕਰਨ ਲਈ PIN ਦਰਜ ਕਰੋ</string>
   <string name="security_sheet_enter_current_pin_title">ਮੌਜੂਦਾ PIN ਦਰਜ ਕਰੋ</string>
-  <string name="security_sheet_enter_pin_hint">ਕੋਡ ਦਰਜ ਕਰੋ</string>
   <string name="security_sheet_button_verify">ਜਾਂਚ ਕਰੋ</string>
   <string name="security_sheet_button_unlock">ਅਨਲੌਕ</string>
   <string name="security_sheet_button_set">ਸੈੱਟ ਕਰੋ</string>
@@ -46,9 +37,6 @@
   <string name="home_option_enable_grid_view_subtitle">ਥੋੜ੍ਹੇ ਸਮੇਂ ਵਿਚ ਗਰਿੱਡ ਵਿਚ ਨੋਟ ਦਿਖਾਓ</string>
   <string name="markdown_sheet_markdown_support">ਮਾਰਕਡਾਉਨ ਸਹਿਯੋਗ</string>
   <string name="markdown_sheet_markdown_support_subtitle">ਮਾਰਕਡਾਊਨ ਸਮਰਥਿਤ ਫੌਰਮੈਟਿੰਗ ਨੂੰ ਅਨੁਮਤੀ ਦਿਓ</string>
-  <string name="markdown_sheet_examples">ਉਦਾਹਰਨਾਂ</string>
-  <string name="home_option_markdown_settings">ਮਾਰਕੇਡਾਊਨ ਸੈਟਿੰਗਜ਼</string>
-  <string name="home_option_markdown_settings_subtitle">ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਮਾਰਕਡਾਊਨ ਨੂੰ ਕਿਵੇਂ ਵਰਤਿਆ ਜਾਵੇ ਵੇਖੋ</string>
   <string name="home_option_sheet_title">ਚੋਣਾਂ ਅਤੇ ਸੈਟਿੰਗਾਂ</string>
   <string name="home_option_export">ਨੋਟ ਐਕਸਪੋਰਟ</string>
   <string name="home_option_export_subtitle">ਸਾਂਝੇ ਕਰਨ ਲਈ ਡਿਵਾਈਸ ਸਟੋਰੇਜ ਨੂੰ ਨੋਟ ਐਕਸਪੋਰਟ ਕਰੋ</string>
@@ -68,22 +56,14 @@
   <string name="import_export_layout_exporting">ਫਾਈਲ ਨੂੰ ਐਕਸਪੋਰਟ ਕਰ ਰਿਹਾ ਹੈ |</string>
   <string name="import_export_layout_exporting_done">ਹੋ ਗਿਆ</string>
   <string name="import_export_layout_exporting_share">ਸਾਂਝਾ ਕਰੋ</string>
-  <string name="about_page_title">ਸਾਡੇ ਬਾਰੇ ਅਤੇ ਹੋਰ</string>
   <string name="about_page_rate">ਪਲੇ ਸਟੋਰ ਤੇ ਰੇਟ</string>
   <string name="about_page_contribute">ਯੋਗਦਾਨ</string>
   <string name="about_page_app_version">ਐਪ ਵਰਜ਼ਨ</string>
   <string name="about_page_about_app">ਐਪ ਬਾਰੇ</string>
-  <string name="open_note_day_mode">ਦਿਵਸ ਮੋਡ</string>
   <string name="choose_note_color">ਰੰਗ ਬਦਲੋ</string>
-  <string name="tap_for_action_open_note_day_mode">ਦਿਨ ਦੇ ਮੋਡ ਵਿੱਚ ਨੋਟ ਦੇਖਣ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_color">ਨੋਟ ਦੇ ਪਿਛੋਕੜ ਰੰਗ ਨੂੰ ਬਦਲਣ ਲਈ ਟੈਪ ਕਰੋ</string>
-  <string name="home_option_enable_night_mode">ਰਾਤ ਮੋਡ ਸਮਰੱਥ ਬਣਾਓ</string>
-  <string name="home_option_enable_night_mode_subtitle">ਡਿਫੌਲਟ ਦੇ ਤੌਰ ਤੇ ਡੌਕ ਥੀਮ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
-  <string name="home_option_enable_day_mode">ਦਿਨ ਮੋਡ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
-  <string name="home_option_enable_day_mode_subtitle">ਡਿਫਾਲਟ ਤੌਰ ਤੇ ਲਾਈਟ ਥੀਮ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
 
 
-  <string name="open_note_night_mode">ਨਾਈਟ ਮੋਡ</string>
   <string name="delete_note_permanently">ਹਮੇਸ਼ਾ ਲਈ ਹਟਾਓ</string>
   <string name="unarchive_note">ਅਨਾਰਚਾਇਜ਼ ਨੋਟ</string>
   <string name="archive_note">ਆਰਕਾਈਵ ਸੂਚਨਾ</string>
@@ -91,7 +71,6 @@
   <string name="favourite_note">ਮਰਕੁਸ ਪਸੰਦੀਦਾ</string>
   <string name="restore_note">ਨੋਟ ਰੀਸਟੋਰ ਕਰੋ</string>
   <string name="trash_note">ਰੱਦੀ \'ਚ ਭੇਜੋ</string>
-  <string name="tap_for_action_open_note_night_mode">ਰਾਤ ਨੂੰ ਮੋਡ ਵਿੱਚ ਨੋਟ ਦੇਖਣ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_edit">ਸੰਪਾਦਨ ਲਈ ਨੋਟ ਖੋਲ੍ਹਣ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_copy">ਸੂਚਨਾ ਸਮੱਗਰੀ ਦੀ ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_share">ਹੋਰ ਐਪਸ ਤੇ ਨੋਟ ਸਮੱਗਰੀ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
@@ -103,21 +82,13 @@
   <string name="tap_for_action_not_favourite">ਨੋਟ ਨੂੰ ਮਨਪਸੰਦ ਨਾ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_archive">ਨੋਟ ਨੂੰ ਅਕਾਇਵ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="tap_for_action_not_archive">ਨੋਟ ਨੂੰ ਅਨਾਰਿਚ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
-  <string name="nav_sheet_title">ਤੁਹਾਡੇ ਨੋਟਸ |</string>
   <string name="nav_home">ਘਰ</string>
-  <string name="nav_home_details">ਤੁਹਾਡੇ ਸਾਰੇ ਆਮ ਅਤੇ ਮਨਪਸੰਦ ਨੋਟਸ</string>
   <string name="nav_favourites">ਮਨਪਸੰਦ</string>
-  <string name="nav_favourites_details">ਤੁਹਾਡੇ ਸਾਰੇ ਪਸੰਦੀਦਾ ਨੋਟਸ</string>
   <string name="nav_archived">ਆਰਕਾਈਵਡ</string>
-  <string name="nav_archived_details">ਤੁਹਾਡੇ ਸਾਰੇ ਸੰਗ੍ਰਹਿਤ ਨੋਟਸ</string>
   <string name="nav_trash">ਟ੍ਰੈਸ਼</string>
-  <string name="nav_trash_details">ਰੱਦੀ ਵਿੱਚ ਤੁਹਾਡੇ ਸਾਰੇ ਨੋਟਸ</string>
   <string name="open_in_notification">ਸੂਚਨਾ ਬਣਾਓ</string>
   <string name="notification_channel_label">ਸੂਚਨਾ ਨੋਟਿਸ</string>
   <string name="nav_locked">ਬੰਦ</string>
-  <string name="nav_locked_details">ਤੁਹਾਡੇ ਸਾਰੇ ਲਾਕ ਨੋਟਸ</string>
-  <string name="nav_tags">ਟੈਗਸ</string>
-  <string name="nav_tags_details">ਤੁਹਾਡੇ ਸਾਰੇ ਨੋਟ ਟੈਗਸ</string>
   <string name="tag_sheet_create_title">ਨਿਊ ਟੈਗ ਸ਼ਾਮਲ ਕਰੋ |</string>
   <string name="tag_sheet_edit_title">ਟੈਗ ਸੰਪਾਦਨ ਕਰੋ |</string>
   <string name="tag_sheet_enter_tag_hint">ਟੈਗ ਦਿਓ</string>
@@ -128,8 +99,6 @@
   <string name="import_to_app">ਆਯਾਤ ਕਰੋ</string>
   <string name="markdown_sheet_home_markdown_support">ਨੋਟ ਸੂਚੀ ਵਿੱਚ ਮਾਰਕੇਡਾਊਨ</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">ਨੋਟਸ ਦੀ ਸੂਚੀ ਵਿੱਚ ਮਾਰਕੱਡਾਡ ਫਾਰਮੈਟਿੰਗ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
-  <string name="home_option_fill_survey">ਸਰਵੇਖਣ ਭਰੋ</string>
-  <string name="home_option_fill_survey_subtitle">ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕੀ ਪਸੰਦ ਕਰਦੇ ਹੋ, ਐਪ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਸਾਡੀ ਸਹਾਇਤਾ ਕਰੋ</string>
 
   <!-- Added in release v3.8.4 -->
   <string name="change_tags">ਟੈਗ ਬਦਲੋ</string>
@@ -138,8 +107,6 @@
   <string name="home_option_open_source_page_subtitle">ਓਪਨ ਸੋਰਸ ਪ੍ਰੋਜੈਕਟ ਬਾਰੇ ਹੋਰ ਜਾਣੋ</string>
   <string name="osp_page_libraries">ਲਾਇਬ੍ਰੇਰੀਆਂ</string>
   <string name="osp_page_about_osp">ਓਪਨ ਸੋਰਸ ਪ੍ਰੋਜੈਕਟ</string>
-  <string name="osp_page_title">ਓਪਨ ਸੋਰਸ ਪ੍ਰੋਜੈਕਟ ਬਾਰੇ</string>
-  <string name="reminder_sheet_title">ਨੋਟ ਰੀਮਾਈਂਡਰ</string>
   <string name="reminder_sheet_reminder_date">ਰੀਮਾਈਂਡਰ ਤਾਰੀਖ</string>
   <string name="reminder_sheet_reminder_time">ਰੀਮਾਈਂਡਰ ਟਾਈਮ</string>
   <string name="reminder_sheet_repeat">ਬਾਰ ਬਾਰ ਦੁਹਰਾਓ</string>
@@ -154,8 +121,6 @@
   <!-- Added in release v3.9.0 -->
   <string name="home_option_ui_experience">ਇੰਟਰਫੇਸ ਅਤੇ ਅਨੁਭਵ</string>
   <string name="home_option_ui_experience_subtitle">ਚੁਣੋ ਕਿ ਐਪ ਕਿਵੇਂ ਵੇਖਦਾ ਹੈ ਅਤੇ ਕਿਵੇਂ ਮਹਿਸੂਸ ਕਰਦਾ ਹੈ</string>
-  <string name="home_option_note_settings">ਨੋਟ ਪਸੰਦ</string>
-  <string name="home_option_note_settings_subtitle">ਨੋਟ ਅਤੇ ਹੋਰ ਸੈਟਿੰਗਜ਼ ਚੁਣੋ.</string>
   <string name="home_option_about">ਇਸ ਬਾਰੇ</string>
   <string name="home_option_about_subtitle">ਸਾਡੇ ਅਤੇ ਐਪ ਬਾਰੇ ਹੋਰ ਜਾਣੋ</string>
   <string name="note_option_default_color">ਡਿਫੌਲਟ ਨੋਟ ਰੰਗ</string>
@@ -190,19 +155,6 @@
   <!-- Added for 4.3.7 -->
   <string name="shortcut_add_note">ਨੋਟ ਜੋੜੋ</string>
   <string name="shortcut_add_list">ਚੈੱਕਲਿਸਟ ਸ਼ਾਮਲ ਕਰੋ</string>
-  <string name="format_sheet_option_title">ਬਲਾਕ ਫਾਰਮੈਟਿੰਗ</string>
-  <string name="format_label_heading">ਸਿਰਲੇਖ</string>
-  <string name="format_label_sub_heading">ਉਪ ਸਿਰਲੇਖ</string>
-  <string name="format_label_text">ਟੈਕਸਟ</string>
-  <string name="format_label_quote">ਹਵਾਲਾ</string>
-  <string name="format_label_code">ਕੋਡ</string>
-  <string name="format_label_list">ਚੈੱਕਲਿਸਟ</string>
-  <string name="markdown_sheet_option_title">ਮਾਰਕੇਡੋਂ ਫਾਰਮੈਟਿੰਗ</string>
-  <string name="markdown_label_bold">ਬੋਲਡ</string>
-  <string name="markdown_label_italics">ਇਟਾਲਿਕ</string>
-  <string name="markdown_label_underline">ਹੇਠਾਂ ਰੇਖਾ ਖਿੱਚੋ</string>
-  <string name="markdown_label_strikethrough">ਹੜਤਾਲ</string>
-  <string name="markdown_label_list">ਸੂਚੀ</string>
   <string name="select_a_note_title">ਇੱਕ ਨੋਟ ਚੁਣੋ</string>
   <string name="select_notes_title">ਨੋਟਸ ਚੁਣੋ</string>
   <string name="nav_settings">ਸੈਟਿੰਗਾਂ</string>
@@ -216,9 +168,6 @@
   <string name="whats_new_title">ਨਵਾਂ ਕੀ ਹੈ</string>
   <string name="whats_new_subtitle">ਐਪ ਦੇ ਹਾਲ ਹੀ ਦੇ ਅਪਡੇਟਸ ਵਿੱਚ ਨਵਾਂ ਕੀ ਹੈ ਪਤਾ ਕਰੋ</string>
   <string name="whats_new_translate">ਅਨੁਵਾਦ</string>
-  <string name="tutorial_create_a_new_note">ਇੱਕ ਨਵਾਂ ਨੋਟ ਜੋੜਨ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
-  <string name="tutorial_home_menu">ਘਰ ਦੀਆਂ ਚੋਣਾਂ ਦੇਖਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
-  <string name="tutorial_home_menu_subtitle">ਹੋਮ ਮੀਨੂ ਵਿੱਚ ਤੁਹਾਡੀ ਮਨਪਸੰਦ ਅਤੇ ਅਕਾਇਵ ਨੋਟਸ ਦੇ ਨਾਲ ਨਾਲ ਐਪਲੀਕੇਸ਼ਨ ਸੈਟਿੰਗਜ਼ ਵੀ ਹਨ. ਤੁਸੀਂ ਇੱਥੇ ਆਪਣੇ ਟੈਗ ਵੀ ਲੱਭ ਸਕਦੇ ਹੋ</string>
 
 
   <!-- Added for 4.5.3 -->
@@ -236,51 +185,37 @@
   <string name="image_not_uploaded_i_understand">ਮੈਂ ਸੱਮਝਦਾ ਹਾਂ</string>
   <string name="home_option_auto_export">ਆਟੋਮੈਟਿਕ ਤੌਰ ਤੇ ਨਿਰਯਾਤ ਕਰੋ</string>
   <string name="home_option_auto_export_subtitle">ਬੈਕਅਪ ਦੇ ਤੌਰ ਤੇ ਬਾਹਰੀ ਫਾਈਲਾਂ ਤੇ ਅਕਸਰ ਨੋਟ ਐਕਸਪੋਰਟ ਕਰੋ</string>
-  <string name="format_label_image">ਚਿੱਤਰ</string>
   <string name="format_hint_image">ਚਿੱਤਰ ਨੂੰ ਜੋੜਨ ਜਾਂ ਬਦਲਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</string>
 
 
   <!-- Added for 4.7.0 -->
   <string name="reminder_frequency_once">ਸਿਰਫ਼ ਇੱਕ ਵਾਰ</string>
   <string name="reminder_frequency_daily">ਰੋਜ਼ਾਨਾ</string>
-  <string name="reminder_frequency_custom">ਕਸਟਮ</string>
-  <string name="reminder_beta_label">ਬੀਟਾ</string>
   <string name="notification_reminder_channel_label">ਰੀਮਾਈਂਡਰਸ ਅਤੇ ਅਲਾਰਮ</string>
   <string name="about_page_description_os">%s ਓਪਨ ਸੋਰਸ ਹੈ ਅਤੇ ਕੋਈ ਵੀ ਇਸ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਲਈ ਯੋਗਦਾਨ ਪਾਉਣ ਲਈ ਖੁੱਲ੍ਹਾ ਹੈ. ਇਹ ਵਰਤਮਾਨ ਵਿੱਚ %s ਦੁਆਰਾ ਬਣਾਇਆ ਅਤੇ ਪਰਬੰਧਨ ਕੀਤਾ ਗਿਆ ਹੈ.</string>
   <string name="about_page_description">%s ਇੱਕ ਸਧਾਰਨ ਨੋਟ ਲੈਣਾ ਐਪ ਹੈ. ਇਹ ਤਜ਼ਰਬੇ ਨੂੰ ਬਹੁਤ ਮੁਸ਼ਕਲ ਬਣਾਉਣ ਦੇ ਬਿਨਾਂ ਤੁਰੰਤ ਰਿਚ ਟੈਕਸਟ ਇੰਪੁੱਟ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ. ਇਹ ਬਹੁਤਾ ਨਾਲ ਕੰਮ ਕਰਨ ਵਾਲੀ ਇੱਕ ਹਵਾ ਬਣਾਉਂਦਾ ਹੈ</string>
   <string name="about_page_about_us_details">ਹੈਲੋ, ਅਸੀਂ ਡਿਜ਼ਾਇਨਰ ਅਤੇ ਪ੍ਰੋਗਰਾਮਰ ਦਾ ਇੱਕ ਜੋੜਾ ਹਾਂ, ਜਿਸਨੇ %s ਬਣਾਇਆ ਹੈ
      ਅਸੀਂ ਸੁੰਦਰ, ਧਿਆਨ ਨਾਲ ਡਿਜ਼ਾਈਨ ਕੀਤੇ ਗਏ ਮੁਫ਼ਤ, ਵਿਗਿਆਪਨ-ਮੁਕਤ ਜਾਂ ਘੱਟੋ ਘੱਟ ਇਸ਼ਤਿਹਾਰਾਂ ਵਾਲੇ ਐਪਸ ਬਣਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਾਂ ਜੋ ਹਰ ਕਿਸੇ ਲਈ ਮਹਾਨ ਉਪਯੋਗਤਾ ਦੀ ਸੇਵਾ ਕਰਦੇ ਹਨ!</string>
   <string name="note_option_number_lines_subtitle">%d ਹੋਮ ਸਕ੍ਰੀਨ ਤੇ ਲਾਈਨਾਂ</string>
-  <string name="search_toolbar_text">%s ਖੋਜ ਕਰੋ &#8230;</string>
   <string name="view_distraction_free">ਵਿਵਹਾਰ ਮੁਫ਼ਤ</string>
-  <string name="format_label_separator">ਵਿਭਾਜਕ</string>
 
   <!-- Login, Welcome Strings -->
   <string name="home_option_login_with_app">ਐਪ ਵਿੱਚ ਸਾਈਨ ਇਨ ਕਰੋ</string>
   <string name="home_option_login_with_app_subtitle">ਕਲਾਉਡ ਬੈਕਅਪ ਅਤੇ ਸਮਕਾਲੀਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ</string>
   <string name="home_option_logout_of_app">ਸਾਇਨ ਆਉਟ</string>
   <string name="home_option_logout_of_app_subtitle">ਕਲਾਉਡ ਬੈਕਅਪ ਨੂੰ ਰੋਕਣ ਲਈ ਸਾਈਨ ਆਉਟ ਕਰੋ</string>
-  <string name="login_with_google">Google ਦੇ ਨਾਲ ਸਾਈਨ ਇਨ ਕਰੋ</string>
-  <string name="logging_into_app">ਸਾਈਨ ਇੰਨ ਕਰੋ |</string>
-  <string name="logged_into_app">ਤੁਸੀਂ ਲੌਗਇਨ ਹੋ</string>
   <string name="login_to_google_failed">ਗੂਗਲ ਲਾਗਇਨ ਫੇਲ੍ਹ</string>
   <string name="material_notes_privacy_policy">ਪਰਾਈਵੇਟ ਨੀਤੀ</string>
   <string name="material_notes_privacy_policy_subtitle">ਸਮਗਰੀ ਲਈ ਐਪ ਗੋਪਨੀਯਤਾ ਨੀਤੀ</string>
   <string name="install_pro_app">ਪ੍ਰੋ ਐੱਸ ਇੰਸਟਾਲ ਕਰੋ</string>
   <string name="why_install_pro">ਪ੍ਰੋ ਇੰਸਟਾਲ ਕਿਉਂ ਕਰੋ</string>
   <string name="why_install_pro_details">ਕਲਾਉਡ ਸੰਕੁਚਨ ਨੂੰ ਚਲਾਉਣ ਲਈ ਵੱਡੇ ਸਰਵਰ ਲਾਗਤਾਂ ਲਈ ਸਹਿਯੋਗ ਡਿਵੈਲਪਰ \n\n ਪਹਿਲਾਂ ਸਭ ਤੋਂ ਨਵੀਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰੋ \n\n ਕੁਝ ਹੋਰ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਕੇਵਲ ਪ੍ਰੋ ਯੂਜ਼ਰਸ ਲਈ ਉਪਲਬਧ ਹੋਣਗੀਆਂ</string>
-  <string name="why_cloud">ਕਿਉਂ Cloud Sync ਸਮਰਥਿਤ ਕਰੋ</string>
-  <string name="why_cloud_details">ਡਿਵਾਈਸ ਬਦਲਾਅ ਦੇ ਵਿਰੁੱਧ ਅਪਲੋਡ ਅਤੇ ਬੈਕਅੱਪ ਕਰੋ \n\n ਬਹੁਤੇ ਡਿਵਾਈਸਾਂ ਵਿਚਕਾਰ ਸਿੰਕ ਕਰੋ, ਅਤੇ ਤੁਰੰਤ ਅਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰੋ \n\n Google Firebase ਸਰਵਰਾਂ ਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਗਿਆ</string>
-  <string name="welcome_page_hello">ਸਤ ਸ੍ਰੀ ਅਕਾਲ,</string>
-  <string name="welcome_page_transfer_message">ਮੈਟੀਰੀਅਲ ਨੋਟਸ ਹੁਣ ਸਵਾਨੇ ਹਨ!</string>
-  <string name="welcome_page_get_started">ਸ਼ੁਰੂਆਤ ਕਰੋ</string>
 
   <!-- Added for 6.6.1 -->
   <string name="home_option_theme_color">ਐਪ ਥੀਮ</string>
   <string name="home_option_theme_color_subtitle">ਥੀਮ ਲਈ ਬੈਕਗਰਾਊਂਡ ਰੰਗ ਚੁਣੋ</string>
   <string name="theme_page_title">ਐਪ ਥੀਮ ਚੁਣੋ</string>
   <string name="click_to_add_tags">ਟੈਗਸ ਨੂੰ ਜੋੜਨ ਜਾਂ ਬਦਲਣ ਲਈ ਕਲਿਕ ਕਰੋ</string>
-  <string name="show_more_actions">ਹੋਰ ਕਾਰਵਾਈਆਂ ਦਿਖਾਓ</string>
   <string name="select_notes">ਨੋਟਸ ਚੁਣੋ</string>
   <string name="select_notes_details">ਇੱਕ ਵਾਰ ਵਿੱਚ ਕਈ ਨੋਟਿਸਾਂ ਉੱਤੇ ਕਾਰਵਾਈ ਚੁਣੋ ਅਤੇ ਕਾਰਵਾਈ ਕਰੋ</string>
   <string name="recent_to_trash_message">ਨੋਟ ਨੂੰ ਰੱਦੀ \'ਚ ਭੇਜਿਆ ਗਿਆ ਸੀ</string>
@@ -315,5 +250,156 @@
   <string name="home_option_delete_everything">ਹਰ ਚੀਜ਼ ਮਿਟਾਓ</string>
   <string name="home_option_delete_everything_details">ਐਪ ਵਿੱਚ ਨੋਟਸ, ਟੈਗਸ ਅਤੇ ਫੋਲਡਰ ਮਿਟਾਓ</string>
   <string name="ui_options_note_background_color">ਨੋਟ ਵਿਊਅਰ ਬੈਕਗਰਾਊਂਡ</string>
+
+  <!-- Added for 7.0.4 -->
+  <string name="merge_notes">ਨੋਟਸ ਮਿਲਾਓ</string>
+  <string name="home_option_export_markdown">ਮਾਰਕਡਾਉਨ ਦੇ ਤੌਰ ਤੇ ਨਿਰਯਾਤ ਕਰੋ</string>
+  <string name="home_option_export_markdown_subtitle">ਮਾਰਕੇਡਾਊਨ ਫਾਰਮੈਟ ਵਿੱਚ ਨੋਟ ਨਿਰਯਾਤ ਕਰੋ. (ਤੁਸੀਂ ਇਹ ਵਾਪਸ ਐਪ ਤੇ ਆਯਾਤ ਨਹੀਂ ਕਰ ਸਕਦੇ)</string>
+  <string name="ui_options_note_background_color_settings_theme">ਪਿਛੋਕੜ ਲਈ ਥੀਮ ਕਲੰਡ ਵਰਤੋਂ</string>
+  <string name="ui_options_note_background_color_settings_note">ਪਿਛੋਕੜ ਲਈ ਨੋਟ ਰੰਗ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
+  <string name="import_export_layout_folder_sync_enable">ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="import_export_layout_folder_sync_disable">ਅਸਮਰੱਥ ਕਰੋ</string>
+  <string name="import_export_layout_folder_sync">ਫੋਲਡਰ ਸਿੰਕ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="import_export_layout_folder_sync_title">ਫੋਲਡਰ ਸਿੰਕ ਕਰੋ</string>
+  <string name="import_export_layout_folder_sync_description">ਆਪਣੇ ਸਾਰੇ ਨੋਟਸ, ਟੈਗਸ ਅਤੇ ਫੋਲਡਰ ਨੂੰ ਇੱਕ ਬਾਹਰੀ ਫੋਲਡਰ ਵਿੱਚ ਸਿੰਕ ਕਰੋ. ਇਹ ਡਿਵਾਈਸਾਂ ਦੇ ਵਿੱਚਕਾਰ ਦੂਜੀਆਂ ਐਪਲੀਕੇਸ਼ਾਂ ਦਾ ਉਪਯੋਗ ਕਰਕੇ ਸਿੰਕ ਕਰਨ ਵਿੱਚ ਤੁਹਾਡੀ ਸਹਾਇਤਾ ਕਰਦਾ ਹੈ, ਨਾਲ ਹੀ ਤੁਹਾਡੇ ਕੋਲ ਐਪ ਨੂੰ ਮਿਟਾਉਣ ਦੀ ਜ਼ਰੂਰਤ ਦੇ ਨਾਲ ਇੱਕ ਕਾਪੀ ਹੈ</string>
+  <string name="import_export_layout_folder_sync_folder">ਫੋਲਡਰ ਵਿੱਚ ਐਕਸਪੋਰਟ ਕਰ ਰਿਹਾ ਹੈ</string>
+  <string name="import_export_layout_folder_sync_details">ਸਾਰੇ ਨੋਟਸ, ਟੈਗਾਂ ਆਦਿ ਨੂੰ ਇੱਕ ਬਾਹਰੀ ਫੋਲਡਰ ਵਿੱਚ ਸਿੰਕ ਕਰੋ</string>
+  <string name="import_export_locked">ਤਾਲਾਬੰਦ ਨੋਟ ਐਕਸਪੋਰਟ</string>
+  <string name="sort_sheet_alphabetical">ਵਰਣਮਾਲਾ ਦੇ ਅਨੁਸਾਰ</string>
+  <string name="available_in_pro_only">ਸਕਾਰਲੈਟ ਪ੍ਰੋ ਤੇ ਉਪਲਬਧ</string>
+  <string name="import_export_locked_details">ਲੌਕ ਹੋਏ ਨੋਟਸ ਨੂੰ ਵੀ ਬੈਕਅਪ ਕਰੋ</string>
+  <string name="home_option_editor_options_title">ਸੰਪਾਦਕ ਵਿਕਲਪ</string>
+  <string name="home_option_editor_options_description">ਨੋਟ ਸੰਪਾਦਕ ਲਈ ਸੈਟਿੰਗਾਂ ਅਤੇ ਵਰਤੋਂ ਬਦਲੋ</string>
+  <string name="editor_option_enable_markdown_mode_default">Markdown ਚੋਣਾਂ ਨੂੰ ਡਿਫਾਲਟ ਦੇ ਤੌਰ ਤੇ</string>
+  <string name="editor_option_enable_markdown_mode_default_details">ਡਿਫੌਲਟ ਵਜੋਂ ਟੂਲਬਾਰ ਤੇ ਮਾਰਕਡਾਊਨ ਤੇਜ਼ ਬਟਨ ਦਿਖਾਓ</string>
+  <string name="editor_option_enable_live_markdown">ਰੀਅਲਟਾਈਮ ਮਾਰਕਾਡਾਊਨ</string>
+  <string name="editor_option_enable_live_markdown_description">ਚੁਣੋ ਕਿ ਕੀ ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਕਿ ਮਾਰਕਡਾਊਨ ਤੁਹਾਡੀ ਕਿਸਮ ਦੇ ਤੌਰ ਤੇ ਦਿਖਾਈ ਦੇਵੇ ਯੋਗ ਕਰਨਾ ਵੱਡੇ ਨੋਟਸ ਤੇ ਪ੍ਰਦਰਸ਼ਨ ਨੂੰ ਪ੍ਰਭਾਵਤ ਕਰ ਸਕਦਾ ਹੈ.</string>
+  <string name="editor_option_move_checked_items">ਚੈਕਡ ਆਈਟਮਾਂ ਨੂੰ ਮੂਵ ਕਰੋ</string>
+  <string name="editor_option_move_checked_items_description">ਚੈੱਕ ਕੀਤੀਆਂ ਆਈਟਮਾਂ ਸੂਚੀ ਦੇ ਹੇਠਾਂ ਚਲੀਆਂ ਗਈਆਂ ਹਨ ਅਨਚੈਕ ਪੁਜ਼ੀਸ਼ਨ ਨੂੰ ਰੀਸੈਟ ਨਹੀਂ ਕਰਦਾ.</string>
+  <string name="editor_option_enable_move_handle">ਅੰਦੋਲਨ ਹੈਂਡਲ ਵੇਖੋ</string>
+  <string name="editor_option_enable_move_handle_description">ਆਈਟਮਾਂ ਨੂੰ ਉੱਪਰ ਜਾਂ ਹੇਠਾਂ ਵੱਲ ਹਿਲਾਉਣ ਲਈ ਹੈਂਡਲ ਦਿਖਾਓ ਤੁਸੀਂ ਅਜੇ ਵੀ ਕੋਨੇ ਨੂੰ ਛੂਹ ਕੇ ਆਲੇ ਦੁਆਲੇ ਦੀਆਂ ਚੀਜਾਂ ਨੂੰ ਪ੍ਰਭਾਵਿਤ ਕਰ ਸਕਦੇ ਹੋ</string>
+  <string name="markdown_help_sheet_title">ਮਾਰਕੇਡਾਉਨ ਦੀਆਂ ਉਦਾਹਰਨਾਂ</string>
+  <string name="home_option_widget_options_title">ਵਿਜੇਟ ਸੈਟਿੰਗਜ਼</string>
+  <string name="home_option_widget_options_description">ਹੋਮ ਸਕ੍ਰੀਨ ਵਿਜੇਟਸ ਲਈ ਸੈਟਿੰਗਾਂ ਬਦਲੋ</string>
+  <string name="widget_option_enable_formatting">ਫਾਰਮੈਟਿੰਗ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="widget_option_enable_formatting_details">ਹੋਮ ਸਕ੍ਰੀਨ ਵਿਡਜਿਟ ਵਿੱਚ ਫੌਰਮੈਟਿੰਗ ਦੇ ਨਾਲ ਨੋਟਸ ਰੈਂਡਰ ਕੀਤੇ ਜਾਂਦੇ ਹਨ</string>
+  <string name="widget_option_show_locked_notes">ਲੌਕਡ ਨੋਟਸ ਦਿਖਾਓ</string>
+  <string name="widget_option_show_locked_notes_details">ਲੌਕ ਕੀਤੀਆਂ ਨੋਟਾਂ ਨੂੰ ਹੋਮ ਸਕ੍ਰੀਨ ਵਿਜੇਟਾਂ ਵਿੱਚ ਦਿਖਾਉਣ ਦੀ ਆਗਿਆ ਦਿਓ</string>
+  <string name="widget_option_show_archived_notes">ਆਰਕਾਈਵਡ ਨੋਟਸ ਵੇਖੋ</string>
+  <string name="widget_option_show_archived_notes_details">ਆਰਕਾਈਵ ਕੀਤੀਆਂ ਸੂਚਨਾਵਾਂ ਨੂੰ ਹੋਮ ਸਕ੍ਰੀਨ ਵਿਜੇਟਾਂ ਵਿੱਚ ਦਿਖਾਉਣ ਦੀ ਆਗਿਆ ਦਿਓ</string>
+  <string name="widget_option_show_trash_notes">ਰੱਦੀ ਵਿੱਚ ਨੋਟ ਵੇਖੋ</string>
+  <string name="widget_option_show_trash_notes_details">ਘਰਾਂ ਦੀਆਂ ਸਕ੍ਰੀਨ ਵਿਜੇਟਾਂ ਵਿੱਚ ਰੱਦੀ ਵਿੱਚ ਨੋਟਸ ਦਿਖਾਉਣ ਦੀ ਆਗਿਆ ਦਿਓ</string>
+  <string name="home_option_faq_title">ਮਦਦ ਅਤੇ ਆਮ ਸਵਾਲ</string>
+  <string name="home_option_faq_description">ਐਪ ਵਿੱਚ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਦਾ ਉਪਯੋਗ ਕਿਵੇਂ ਕਰਨਾ ਹੈ ਬਾਰੇ ਮਦਦ ਲੱਭੋ</string>
+  <string name="home_syncing_top_layout">ਸਿੰਕ ਕਰਨਾ</string>
+  <string name="home_pending_backup_top_layout">ਬਕਾਇਆ ਬੈਕਅਪ</string>
+  <string name="internal_settings_title">ਵਿਕਾਸਕਾਰ ਵਿਕਲਪ</string>
+  <string name="internal_settings_description">ਡੀਬੱਗਿੰਗ ਲਈ ਵਰਤੀ ਜਾਂਦੀ ਐਪਲੀਕੇਸ਼ਨ ਵਿੱਚ ਅੰਦਰੂਨੀ ਸੈਟਿੰਗ ਬਦਲੋ</string>
+  <string name="internal_settings_enable_log_exceptions_title">ਲਾਗ ਅਪਵਾਦ</string>
+  <string name="internal_settings_enable_log_exceptions_description">ਡਿਵੈਲਪਰ ਨੂੰ ਫਾਰਵਰਡਿੰਗ ਦੀ ਆਗਿਆ ਦੇਣ ਲਈ ਇੱਕ ਨਿਸ਼ਚਿਤ ਨੋਟ ਦੇ ਫਰਕ ਅਪਵਾਦ</string>
+  <string name="internal_settings_enable_show_exceptions_title">ਅਪਵਾਦ ਸ਼ੀਟ ਦਿਖਾਓ</string>
+  <string name="internal_settings_enable_show_exceptions_description">ਜੇ ਹੋ ਸਕੇ ਤਾਂ ਇੱਕ ਸ਼ੀਟ \'ਤੇ ਫੜੇ ਅਪਵਾਦ ਦਿਖਾਓ, ਤਾਂ ਕਿ ਡਿਵੈਲਪਰ ਨੂੰ ਫਾਰਵਰਡਿੰਗ ਦੀ ਆਗਿਆ ਦਿੱਤੀ ਜਾ ਸਕੇ</string>
+  <string name="internal_settings_enable_throw_exceptions_title">ਅਪਵਾਦ ਤੇ ਸੁੱਟੋ</string>
+  <string name="internal_settings_enable_throw_exceptions_description">ਅਪਵਾਦ ਤੇ ਅਰਜ਼ੀ ਨੂੰ ਸੁੱਟ ਅਤੇ ਕਰੈਸ਼ ਕਰੋ. 5 ਕ੍ਰੈਸ਼ਾਂ ਦੇ ਬਾਅਦ ਰੀਸੈਟ ਕੀਤਾ ਜਾਏਗਾ</string>
+  <string name="internal_settings_enable_fullscreen_title">ਫੁਲਸਕ੍ਰੀਨ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="internal_settings_enable_fullscreen_description">ਸਕ੍ਰੀਨਸ਼ਾਟ ਅਤੇ ਰਿਕਾਰਡਿੰਗਾਂ ਦੀ ਆਗਿਆ ਦੇਣ ਲਈ ਐਪ ਨੂੰ ਫੁਲਸਕ੍ਰੀਨ ਬਣਾਉ</string>
+  <string name="internal_settings_show_uuid_title">ਨੋਟ ਵੇਖੋ UUID</string>
+  <string name="internal_settings_show_uuid_description">ਹੋਮ ਸਕ੍ਰੀਨ ਵਿਯੂ ਵਿੱਚ ਨੋਟਸ ਦੀਆਂ ਵਿਲੱਖਣ ਆਈਡੀਆਂ ਦਿਖਾਓ</string>
+  <string name="internal_settings_fake_exceptions_title">ਨਕਲੀ ਅਪਵਾਦ</string>
+  <string name="internal_settings_fake_exceptions_description">ਅਪਵਾਦ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਦੀ ਜਾਂਚ ਕਰਨ ਲਈ ਇੱਕ ਨਕਲੀ ਅਪਵਾਦ ਨੂੰ ਸੁੱਟੋ</string>
+  <string name="exception_sheet_title">ਅਪਵਾਦ ਸੁੱਟਿਆ</string>
+  <string name="exception_sheet_crash_app">ਕ੍ਰੈਸ਼ ਐਪ</string>
+  <string name="exception_sheet_mail">ਮੇਲ</string>
+  <string name="google_drive_page_connection_failed">ਕੁਨੈਕਸ਼ਨ ਫੇਲ੍ਹ ਹੈ</string>
+  <string name="google_drive_page_login_title">Google Drive ਤੇ ਸਿੰਕ ਕਰੋ</string>
+  <string name="google_drive_page_login_details">Google ਡ੍ਰਾਇਵ ਤੁਹਾਨੂੰ ਤੁਹਾਡੀਆਂ ਖੁਦ ਦੀ Google ਡ੍ਰਾਈਵ ਖਾਤੇ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ ਡਿਵਾਈਸਾਂ ਦੇ ਵਿਚਕਾਰ ਆਪਣੇ ਨੋਟਸ ਨੂੰ ਸਿੰਕ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ.</string>
+  <string name="google_drive_page_login_firebase_button">Google Firebase ਵਿੱਚ ਪਹਿਲਾਂ ਲੌਗਇਨ ਕੀਤਾ?</string>
+  <string name="google_drive_page_login_button">Google Drive ਵਿੱਚ ਸਾਈਨ ਇਨ ਕਰੋ</string>
+  <string name="google_drive_page_logging_in_button">ਸਾਈਨ ਇਨ ਕਰੋ |</string>
+  <string name="google_drive_page_logout_title">ਸਕਾਰਲੇਟ ਦੇ ਸਾਈਨ ਆਊਟ</string>
+  <string name="google_drive_page_logout_details">ਨੋਟਸ, ਟੈਗਸ ਅਤੇ ਫੋਲਡਰਸਿੰਗ ਸਿੰਕਿੰਗ ਬੰਦ ਕਰੋ</string>
+  <string name="google_drive_page_logout_no_sync_details">ਆਪਣੇ Google Drive ਤੇ ਤੁਹਾਡੇ ਨੋਟਸ, ਟੈਗਸ ਅਤੇ ਫੋਲਡਰਸ ਨੂੰ ਸਿੰਕ ਕਰਨਾ ਬੰਦ ਕਰੋ</string>
+  <string name="google_drive_page_logout_data_persists_details">ਐਪ ਅਤੇ Google ਡਰਾਇਵ \'ਤੇ ਤੁਹਾਡਾ ਡੇਟਾ ਅਜੇ ਵੀ ਉੱਥੇ ਹੋਵੇਗਾ</string>
+  <string name="google_drive_page_logout_button">ਡ੍ਰਾਈਵ ਤੋਂ ਸਾਈਨ ਆਉਟ ਕਰੋ</string>
+  <string name="google_drive_page_logging_out_button">ਸਾਈਨ ਆਉਟ \'|</string>
+  <string name="google_drive_page_login_lock_details">ਨੋਟਸ, ਟੈਗਸ ਅਤੇ ਫੋਲਡਰ ਤੁਹਾਡੀ ਆਪਣੀ ਗੂਗਲ ਡ੍ਰਾਇਵ ਉੱਤੇ ਸਟੋਰ ਕੀਤੇ ਜਾਂਦੇ ਹਨ, ਇਸ ਲਈ ਸਿਰਫ ਤੁਸੀਂ ਉਹਨਾਂ ਤੱਕ ਪਹੁੰਚ ਨੂੰ ਕੰਟਰੋਲ ਕਰ ਸਕਦੇ ਹੋ.</string>
+  <string name="google_drive_page_photo_details">ਤੁਹਾਡੀਆਂ ਫੋਟੋਆਂ ਨੂੰ ਵੀ ਡਿਵਾਈਸ ਉੱਤੇ ਅਪਲੋਡ ਅਤੇ ਸਿੰਕ ਕੀਤਾ ਗਿਆ ਹੈ</string>
+  <string name="firebase_page_login_title">ਫਾਇਰਬੇਸ ਤੋਂ ਡਾਟਾ ਰੀਸਟੋਰ ਕਰੋ</string>
+  <string name="firebase_page_login_button">Google ਦੇ ਨਾਲ ਸਾਈਨ ਇਨ ਕਰੋ</string>
+  <string name="firebase_page_logging_in_button">ਸਾਈਨ ਇਨ ਕਰੋ |</string>
+  <string name="firebase_page_important_details">ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ Google Firebase ਤੇ ਸਟੋਰ ਕਰਨ ਲਈ ਵਰਤਿਆ ਸੀ ਲੌਗਇਨ ਕਰਨ ਦੇ ਬਾਅਦ ਅਸੀਂ ਇਸਨੂੰ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਤੇ ਵਾਪਸ ਪ੍ਰਾਪਤ ਕਰਾਂਗੇ</string>
+  <string name="firebase_page_not_sync_details">ਨਵੇਂ ਨੋਟਸ ਅਤੇ ਬਦਲਾਵ Google Firebase ਤੇ ਸਿੰਕ ਨਹੀਂ ਕੀਤੇ ਜਾਣਗੇ, ਅਤੇ ਤੁਹਾਨੂੰ Google Drive ਤੇ ਲਾਗਇਨ ਕਰਨ ਦੀ ਲੋੜ ਹੈ</string>
+  <string name="firebase_page_remove_details">ਇੱਕ ਵਾਰ ਜਦੋਂ ਤੁਹਾਡੇ ਨੋਟਸ ਰਿਕਵਰ ਕੀਤੇ ਜਾਂਦੇ ਹਨ, ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ Google Firebase ਤੋਂ ਮਿਟਾ ਸਕਦੇ ਹੋ, ਅਤੇ ਫਿਰ ਇਸਦੇ ਬਦਲੀ ਕਰ ਸਕਦੇ ਹੋ</string>
+  <string name="firebase_no_sync_warning">ਤੁਹਾਡੇ ਡੇਟਾ ਨੂੰ ਸਿੰਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ!</string>
+  <string name="firebase_no_sync_warning_details">ਲੇਗਸੀ ਲੌਗਿਨ ਦੇ ਅਧਾਰ \'ਤੇ ਡੇਟਾ ਸਿੰਕ ਅਸਮਰੱਥ ਹੈ, Google ਡ੍ਰਾਇਵ ਆਧਾਰਿਤ ਸਿੰਕ ਤੇ ਸਵਿਚ ਕਰਨ ਦਾ ਵਿਚਾਰ ਕਰੋ.</string>
+  <string name="firebase_removal_page_login_title">ਫਾਇਰਬੇਸ ਤੋਂ ਡਰਾਇਵ ਤੱਕ ਡੇਟਾ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
+  <string name="firebase_removal_page_clear_button">ਡਾਟਾ ਸਾਫ਼ ਕਰੋ ਅਤੇ ਸਾਈਨ ਆਉਟ ਕਰੋ</string>
+  <string name="firebase_removal_page_clearing_button">ਕਲੀਅਰਿੰਗ ਅਤੇ ਸਾਈਨ ਆਉਟ</string>
+  <string name="firebase_removal_page_important_details">ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ Google Firebase ਤੇ ਸਟੋਰ ਕਰਨ ਲਈ ਵਰਤਿਆ ਸੀ ਅਸੀਂ ਤੁਹਾਡੇ Google ਡਰਾਈਵ ਵਿੱਚ ਆਪਣੇ ਨੋਟਸ ਨੂੰ ਸਟੋਰ ਕਰਨ ਲਈ ਅੱਗੇ ਵਧ ਰਹੇ ਹਾਂ.</string>
+  <string name="firebase_removal_page_more_privacy_details">ਹੋਰ ਗੋਪਨੀਯਤਾ</string>
+  <string name="firebase_removal_page_photo_upload_details">ਫੋਟੋ ਸਮਕਾਲੀ</string>
+  <string name="firebase_removal_page_whats_next_details">ਅਗਲਾ ਕਦਮ</string>
+  <string name="firebase_removal_page_remove_details">ਅਸੀਂ ਪਹਿਲਾਂ ਫਾਇਰਬੇਜ ਤੋਂ ਤੁਹਾਡੇ ਨੋਟਸ ਮਿਟਾ ਸਕਦੇ ਹਾਂ ਅਤੇ ਤੁਹਾਨੂੰ ਆਉਟ ਕਰ ਸਕਦੇ ਹਾਂ.</string>
+  <string name="firebase_removal_page_next_details">ਤੁਸੀਂ ਫਿਰ Google Drive ਤੇ ਲੌਗ ਇਨ ਕਰ ਸਕਦੇ ਹੋ, ਅਤੇ ਅਸੀਂ ਚਿੱਤਰਾਂ ਦੇ ਨਾਲ ਤੁਹਾਡੇ ਡੇਟਾ ਨੂੰ ਅਪਲੋਡ ਕਰਾਂਗੇ.</string>
+
+  <!-- Added for 7.5.0 -->
+  <string name="folder_delete_option_sheet_title">ਵਿਕਲਪ ਹਟਾਓ</string>
+  <string name="folder_delete_option_sheet_remove_folder">ਨੋਟਬੁੱਕ ਹਟਾਓ</string>
+  <string name="folder_delete_option_sheet_remove_folder_details">ਸਿਰਫ ਨੋਟਬੁੱਕ ਹਟਾਓ. ਨੋਟ ਫੋਲਡਰ ਦੇ ਬਾਹਰ ਚਲੇ ਜਾਂਦੇ ਹਨ.</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content">ਨੋਟਬੁੱਕ ਅਤੇ ਨੋਟ ਹਟਾਓ</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details">ਨੋਟਬੁੱਕ ਹਟਾਓ. ਸਾਰੇ ਨੋਟ ਰੱਦੀ ਵਿੱਚ ਚਲੇ ਜਾਂਦੇ ਹਨ ਜਾਂ ਮਿਟਾ ਦਿੱਤੇ ਗਏ ਹਨ.</string>
+  <string name="folder_delete_option_sheet_remove_folder_content">ਨੋਟ ਹਟਾਓ</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details">ਨੋਟਬੁੱਕ ਰੱਖੋ ਪਰ ਸਾਰੇ ਨੋਟ ਰੱਦੀ ਵਿੱਚ ਭੇਜਦੇ ਹਨ ਜਾਂ ਮਿਟਾ ਦਿੱਤੇ ਜਾਂਦੇ ਹਨ.</string>
+  <string name="home_option_typeface">ਫੋਂਟ ਅਨੁਕੂਲਿਤ ਕਰੋ</string>
+  <string name="home_option_typeface_subtitle">ਐਪ ਅਤੇ ਨੋਟ ਫੋਂਟ ਦੀ ਚੋਣ ਕਰੋ</string>
+  <string name="typeface_page_title">ਇੱਕ ਫੋਂਟ ਸੈਟ ਚੁਣੋ</string>
+  <string name="typeface_page_description">ਨੋਟ: ਫੋਂਟ ਸਾਰੀਆਂ ਭਾਸ਼ਾਵਾਂ ਦੇ ਨਾਲ ਕੰਮ ਨਹੀਂ ਕਰ ਸਕਦੇ</string>
+  <string name="typeface_title_app_default">ਐਪ ਡਿਫੌਲਟ</string>
+  <string name="typeface_title_os_default">ਡਿਵਾਈਸ ਡਿਫੌਲਟ</string>
+  <string name="typeface_title_monospace">ਮੋਨੋ</string>
+  <string name="typeface_title_serif">ਸੀਰੀਫ</string>
+  <string name="app_lock_title">ਅਨਲੌਕ ਐਪ</string>
+  <string name="app_lock_details">4 ਅੰਕਾਂ ਦਾ ਪਿੰਨ ਦਰਜ ਕਰੋ ਜਾਂ ਅਨਲੌਕ ਕਰਨ ਲਈ ਬਾਇਓਮੈਟ੍ਰਿਕਸ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
+  <string name="app_lock_details_no_fingerprint">ਅਨਲੌਕ ਕਰਨ ਲਈ 4 ਅੰਕਾਂ ਦਾ ਪਿੰਨ ਦਰਜ ਕਰੋ</string>
+  <string name="theme_use_system_theme">ਸਿਸਟਮ ਥੀਮ ਵਰਤੋਂ</string>
+  <string name="theme_use_system_theme_details">ਸਿਸਟਮ ਤੋਂ ਲਾਈਟ ਜਾਂ ਡਾਰਕ ਥੀਮ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
+  <string name="theme_dark_notes">ਗੂੜ੍ਹੇ ਨੋਟ</string>
+  <string name="theme_dark_notes_details">ਨੋਟ ਅਤੇ ਫੋਲਡਰ ਦੇ ਰੰਗ ਆਪਣੇ ਆਪ ਗੂੜ੍ਹੇ ਕਰੋ</string>
+  <string name="pending_backup_local_state">ਸਥਾਨਕ</string>
+  <string name="pending_backup_remote_state">ਰਿਮੋਟ</string>
+  <string name="pending_backup_state_unavailable">ਅਣਉਪਲਬਧ</string>
+  <string name="pending_backup_state_created">ਬਣਾਇਆ</string>
+  <string name="pending_backup_state_deleted">ਮਿਟਾਇਆ ਗਿਆ</string>
+  <string name="pending_backup_state_updated">ਅੱਪਡੇਟ ਕੀਤਾ</string>
+  <string name="widget_option_background_color">ਵਿਜੇਟ ਪਿਛੋਕੜ</string>
+  <string name="widget_option_background_color_details">ਮਲਟੀ-ਨੋਟ ਵਿਜੇਟ ਲਈ ਪਿਛੋਕੜ ਦਾ ਰੰਗ ਚੁਣੋ</string>
+  <string name="widget_option_show_toolbar">ਐਕਸ਼ਨ ਟੂਲਬਾਰ ਵੇਖੋ</string>
+  <string name="widget_option_show_toolbar_details">ਮਲਟੀ-ਨੋਟ ਵਿਡਜਿਟ ਟੂਲਬਾਰ ਦਿਖਾਉਂਦਾ ਹੈ</string>
+  <string name="editor_option_skip_view_note">ਨੋਟ ਦਰਸ਼ਕ ਛੱਡੋ</string>
+  <string name="editor_option_skip_view_note_details">ਨੋਟ ਦੇਖਣ ਵਾਲੇ ਨੂੰ ਛੱਡੋ ਅਤੇ ਸਿੱਧੇ ਤੌਰ \'ਤੇ ਨੋਟ ਐਡੀਟਰ\' ਤੇ ਜਾਓ</string>
+  <string name="delete_sheet_delete_selected_notes_permanently">ਕੀ ਤੁਸੀਂ ਇਹਨਾਂ ਨੋਟਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ \'ਤੇ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+  <string name="install_pro_sheet_latest_updates">ਤੇਜ਼ ਅਪਡੇਟਾਂ ਅਤੇ ਬੇਨਤੀਆਂ.</string>
+  <string name="install_pro_sheet_app_lock">ਐਪ ਲੌਕ ਅਤੇ ਸਿੰਗਲ ਅਨਲੌਕ.</string>
+  <string name="install_pro_sheet_app_themes">ਵਧੇਰੇ ਐਪ ਥੀਮ.</string>
+  <string name="install_pro_sheet_font_size">ਨੋਟ ਫੋਂਟ ਅਤੇ ਫੋਂਟ ਅਕਾਰ.</string>
+  <string name="install_pro_sheet_viewer_bg">ਦਰਸ਼ਕ ਪਿਛੋਕੜ ਦਾ ਰੰਗ.</string>
+  <string name="install_pro_sheet_widget_options">ਹੋਰ ਵਿਜੇਟ ਵਿਕਲਪ.</string>
+  <string name="install_pro_sheet_note_options">ਵਧੇਰੇ ਨੋਟਿਸ ਕਾਰਵਾਈਆਂ.</string>
+  <string name="sort_sheet_note_color">ਨੋਟ ਰੰਗ</string>
+  <string name="sort_sheet_note_tags">ਨੋਟ ਟੈਗਸ</string>
+  <string name="security_option_lock_app">ਐਪ ਲੌਕ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
+  <string name="security_option_lock_app_details">ਪੂਰੀ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਅਨਲੌਕ ਕਰਨ ਲਈ ਪਿੰਨ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
+  <string name="security_option_ask_pin_always">ਹਮੇਸ਼ਾਂ ਪਿੰਨ ਪੁੱਛੋ</string>
+  <string name="security_option_ask_pin_always_details">ਸਾਰੇ ਨੋਟਸ ਲਈ ਪਿੰਨ ਦਰਜ ਕਰੋ, ਭਾਵੇਂ ਪਹਿਲਾਂ ਦਰਜ ਕੀਤਾ ਗਿਆ ਹੋਵੇ</string>
+  <string name="security_option_biometrics_enabled">ਬਾਇਓਮੈਟ੍ਰਿਕਸ ਨਾਲ ਅਨਲੌਕ ਕਰੋ</string>
+  <string name="security_option_biometrics_enabled_subtitle">ਫਿੰਗਰਪ੍ਰਿੰਟ ਜਾਂ ਹੋਰ ਬਾਇਓਮੈਟ੍ਰਿਕਸ ਨਾਲ ਅਨਲੌਕ ਦੀ ਆਗਿਆ ਦਿਓ</string>
+  <string name="security_option_biometrics_disabled">ਬਾਇਓਮੈਟ੍ਰਿਕਸ ਅਸਮਰਥਿਤ</string>
+  <string name="security_option_biometrics_disabled_subtitle">ਫਿੰਗਰਪ੍ਰਿੰਟ ਜਾਂ ਹੋਰ ਬਾਇਓਮੈਟ੍ਰਿਕਸ ਨਾਲ ਅਨਲੌਕ ਦੀ ਆਗਿਆ ਨਾ ਦਿਓ</string>
+  <string name="biometric_prompt_unlock_note">ਅਨਲੌਕ ਨੋਟ</string>
+  <string name="biometric_prompt_unlock_note_details">ਨੋਟ ਅਤੇ ਐਕਸੈਸ ਨੂੰ ਅਨਲੌਕ ਕਰਨ ਲਈ ਡਿਵਾਈਸ ਫਿੰਗਰਪ੍ਰਿੰਟ ਜਾਂ ਬਾਇਓਮੈਟ੍ਰਿਕਸ ਦੀ ਵਰਤੋਂ ਕਰੋ.</string>
+  <string name="biometric_prompt_unlock_app">ਅਨਲੌਕ ਐਪ</string>
+  <string name="biometric_prompt_unlock_app_details">ਐਪ ਨੂੰ ਅਨਲੌਕ ਕਰਨ ਅਤੇ ਸਾਰੇ ਨੋਟਸ ਨੂੰ ਐਕਸੈਸ ਕਰਨ ਲਈ ਡਿਵਾਈਸ ਫਿੰਗਰਪ੍ਰਿੰਟ ਜਾਂ ਬਾਇਓਮੈਟ੍ਰਿਕਸ ਦੀ ਵਰਤੋਂ ਕਰੋ.</string>
+  <string name="pin_to_launcher">ਲਾਂਚਰ ਸ਼ੌਰਟਕਟ</string>
+  <string name="share_images">ਫੋਟੋਆਂ ਸਾਂਝੀਆਂ ਕਰੋ</string>
 
 </resources>

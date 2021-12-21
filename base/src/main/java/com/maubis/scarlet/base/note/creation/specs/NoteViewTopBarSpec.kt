@@ -5,9 +5,7 @@ import com.facebook.litho.ComponentContext
 import com.facebook.litho.Row
 import com.facebook.litho.annotations.LayoutSpec
 import com.facebook.litho.annotations.OnCreateLayout
-import com.facebook.litho.annotations.Prop
 import com.facebook.yoga.YogaAlign
-import com.maubis.scarlet.base.note.creation.activity.NoteViewColorConfig
 import com.maubis.scarlet.base.support.specs.EmptySpec
 
 @LayoutSpec
@@ -15,8 +13,8 @@ object NoteViewTopBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext): Component {
     val row = Row.create(context)
-        .widthPercent(100f)
-        .alignItems(YogaAlign.CENTER)
+      .widthPercent(100f)
+      .alignItems(YogaAlign.CENTER)
     row.child(EmptySpec.create(context).heightDip(10f))
     return row.build()
   }
@@ -27,8 +25,8 @@ object NoteCreationTopBarSpec {
   @OnCreateLayout
   fun onCreate(context: ComponentContext): Component {
     val row = Row.create(context)
-        .widthPercent(100f)
-        .alignItems(YogaAlign.CENTER)
+      .widthPercent(100f)
+      .alignItems(YogaAlign.CENTER)
     row.child(EmptySpec.create(context).heightDip(10f))
     return row.build()
   }

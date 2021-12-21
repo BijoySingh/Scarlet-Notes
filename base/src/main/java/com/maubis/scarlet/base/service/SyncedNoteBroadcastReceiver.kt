@@ -23,13 +23,15 @@ fun getNoteIntentFilter(): IntentFilter {
   filter.addAction(NoteBroadcast.NOTE_DELETED.name)
   filter.addAction(NoteBroadcast.TAG_CHANGED.name)
   filter.addAction(NoteBroadcast.TAG_DELETED.name)
+  filter.addAction(NoteBroadcast.FOLDER_CHANGED.name)
+  filter.addAction(NoteBroadcast.FOLDER_DELETED.name)
   return filter
 }
 
 fun sendNoteBroadcast(
-    context: Context,
-    broadcast: NoteBroadcast,
-    uuid: String) {
+  context: Context,
+  broadcast: NoteBroadcast,
+  uuid: String) {
   val intent = Intent()
   intent.action = broadcast.name
   intent.putExtra(KEY_UUID, uuid)
@@ -53,6 +55,8 @@ class SyncedNoteBroadcastReceiver(val listener: () -> Unit) : BroadcastReceiver(
       NoteBroadcast.NOTE_DELETED.name -> listener()
       NoteBroadcast.TAG_CHANGED.name -> listener()
       NoteBroadcast.TAG_DELETED.name -> listener()
+      NoteBroadcast.FOLDER_CHANGED.name -> listener()
+      NoteBroadcast.FOLDER_DELETED.name -> listener()
     }
   }
 }

@@ -4,24 +4,17 @@
   <string name="save">Сохранить</string>
   <string name="import_to_app">Импортировать</string>
   <string name="search_notes">Поиск заметок</string>
-  <string name="search_toolbar_text">Поиск %s …</string>
   <string name="share_using">Отправить через …</string>
 
   <string name="main_no_notes">Нет заметок</string>
   <string name="main_no_notes_hint">Похоже, у вас нет ни одной заметки. Нажмите, чтобы добавить.</string>
 
-  <string name="main_add_a_note">Добавить заметку…</string>
-  <string name="main_add_a_quick_note">Добавить быструю заметку…</string>
-
   <string name="shortcut_add_note">Добавить заметку</string>
   <string name="shortcut_add_list">Добавить контрольный список</string>
 
-  <string name="open_note_night_mode">Ночной режим</string>
-  <string name="open_note_day_mode">Дневной режим</string>
   <string name="edit_note">Редактировать</string>
   <string name="open_in_notification">Создать уведомление</string>
   <string name="open_in_popup">Открыть всплывающее окно</string>
-  <string name="delete_note">Удалить</string>
   <string name="delete_note_permanently">Удалить совсем</string>
   <string name="copy_note">Копировать</string>
   <string name="send_note">Поделиться</string>
@@ -43,8 +36,6 @@
   <string name="view_distraction_free">Отвлечение бесплатно</string>
   <string name="choose_action">Выберите действие…</string>
 
-  <string name="tap_for_action_open_note_night_mode">Нажмите, чтобы просмотреть заметку в ночном режиме</string>
-  <string name="tap_for_action_open_note_day_mode">Нажмите, чтобы просмотреть заметку в дневном режиме</string>
   <string name="tap_for_action_edit">Нажмите, чтобы открыть заметку для редактирования</string>
   <string name="tap_for_action_copy">Нажмите, чтобы скопировать содержимое заметки в буфер обмена</string>
   <string name="tap_for_action_share">Нажмите, чтобы поделиться содержимым заметки с другим приложением</string>
@@ -58,60 +49,26 @@
   <string name="tap_for_action_color">Нажмите, чтобы сменить цвет фона заметки</string>
   <string name="tap_for_action_not_archive">Нажмите, чтобы разархивировать заметку</string>
 
-  <string name="nav_sheet_title">Ваши заметки…</string>
   <string name="nav_home">Главное</string>
-  <string name="nav_home_details">Все ваши обычные и избранные заметки</string>
   <string name="nav_favourites">Избранное</string>
-  <string name="nav_favourites_details">Все ваши избранные заметки</string>
   <string name="nav_archived">Архив</string>
-  <string name="nav_archived_details">Все ваши архивные заметки</string>
   <string name="nav_locked">Заблокированные</string>
-  <string name="nav_locked_details">Все ваши заблокированные заметки</string>
-  <string name="nav_tags">Теги</string>
-  <string name="nav_tags_details">Все ваши заметки</string>
   <string name="nav_trash">Корзина</string>
-  <string name="nav_trash_details">Все ваши удалённые заметки</string>
 
   <string name="format_hint_text">Добавить содержимое…</string>
   <string name="format_hint_heading">Добавить заголовок…</string>
-  <string name="format_hint_sub_heading">Добавить подзаголовок…</string>
   <string name="format_hint_quote">Добавить цитируемый текст…</string>
   <string name="format_hint_list">Добавить пункт…</string>
   <string name="format_hint_code">Добавить код…</string>
   <string name="format_hint_image">Нажмите, чтобы добавить или изменить изображение</string>
 
-  <string name="format_sheet_option_title">Блокирование форматирования</string>
-  <string name="format_label_heading">заголовок</string>
-  <string name="format_label_sub_heading">Sub Heading</string>
-  <string name="format_label_text">Текст</string>
-  <string name="format_label_quote">котировка</string>
-  <string name="format_label_code">Код</string>
-  <string name="format_label_list">контрольный список</string>
-  <string name="format_label_image">Образ</string>
-  <string name="format_label_separator">Разделитель</string>
-
-  <string name="markdown_sheet_option_title">Форматирование Markdown</string>
-  <string name="markdown_label_bold">Жирный</string>
-  <string name="markdown_label_italics">Курсив</string>
-  <string name="markdown_label_underline">подчеркивание</string>
-  <string name="markdown_label_strikethrough">удар</string>
-  <string name="markdown_label_list">Список</string>
-
   <string name="home_option_sheet_title">Параметры и настройки</string>
   <string name="home_option_ui_experience">Интерфейс и опыт</string>
   <string name="home_option_ui_experience_subtitle">Выберите, как приложение выглядит и чувствует.</string>
-  <string name="home_option_note_settings">Примечание.</string>
-  <string name="home_option_note_settings_subtitle">Выберите примечание и другие настройки.</string>
   <string name="home_option_about">О программе</string>
   <string name="home_option_about_subtitle">Узнайте больше о нас и приложении.</string>
   <string name="home_option_security">Безопасность</string>
   <string name="home_option_security_subtitle">Блокировка заметок и параметров безопасности</string>
-  <string name="home_option_enable_night_mode">Ночной режим</string>
-  <string name="home_option_enable_night_mode_subtitle">Включить темную тему по умолчанию</string>
-  <string name="home_option_enable_day_mode">Дневной режим</string>
-  <string name="home_option_enable_day_mode_subtitle">Включить светлую тему по умолчанию</string>
-  <string name="home_option_markdown_settings">Настройки разметки</string>
-  <string name="home_option_markdown_settings_subtitle">Посмотрите, как использовать уценку в заметках</string>
   <string name="home_option_enable_list_view">Включить макет списка</string>
   <string name="home_option_enable_list_view_subtitle">Показывать заметки в одном столбце</string>
   <string name="home_option_enable_grid_view">Включить компоновку сетки</string>
@@ -131,8 +88,6 @@
   <string name="home_option_open_source_page_subtitle">Узнайте больше о проекте с открытым исходным кодом</string>
   <string name="home_option_rate_and_review">Оценка и отзыв</string>
   <string name="home_option_rate_and_review_subtitle">Расскажите нам насколько вам нравится приложение</string>
-  <string name="home_option_fill_survey">Заполнение опроса</string>
-  <string name="home_option_fill_survey_subtitle">Помогите нам улучшить приложение, сообщив нам, что вам нравится</string>
   <string name="home_option_install_pro_app">Установить Pro App</string>
   <string name="home_option_install_pro_app_details">Установите приложение Pro для разблокировки функций и поддержки разработчика</string>
   <string name="home_option_migrate_to_pro">Перенос заметок в Scarlet Pro</string>
@@ -153,15 +108,10 @@
   <string name="security_option_title">Параметры безопасности</string>
   <string name="security_option_set_pin_code">Код прохода</string>
   <string name="security_option_set_pin_code_subtitle">Установите 4-значный PIN-код для блокировки заметок</string>
-  <string name="security_option_fingerprint_enabled">Разблокировка с помощью отпечатка пальца</string>
-  <string name="security_option_fingerprint_enabled_subtitle">Заметки будут разблокированы с помощью отпечатка пальца</string>
-  <string name="security_option_fingerprint_disabled">Отключить отпечаток пальца</string>
-  <string name="security_option_fingerprint_disabled_subtitle">Примечания не будут использовать отпечаток</string>
 
   <string name="security_sheet_enter_new_pin_title">Введите новый PIN-код</string>
   <string name="security_sheet_enter_pin_to_unlock_title">Введите PIN-код для разблокировки</string>
   <string name="security_sheet_enter_current_pin_title">Введите текущий PIN-код</string>
-  <string name="security_sheet_enter_pin_hint">введите код</string>
   <string name="security_sheet_button_verify">проверить</string>
   <string name="security_sheet_button_unlock">отпереть</string>
   <string name="security_sheet_button_set">Задавать</string>
@@ -176,7 +126,6 @@
   <string name="markdown_sheet_markdown_support_subtitle">Разрешить форматирование поддерживаемых меток</string>
   <string name="markdown_sheet_home_markdown_support">Отметка в списке заметок</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">Включить форматирование Markdown в списке заметок</string>
-  <string name="markdown_sheet_examples">Примеры</string>
 
   <string name="permission_layout_give_permission">Дать разрешение</string>
   <string name="permission_layout_give_permission_details">Импорт и экспорт требуют разрешения на доступ к файловой системе. Пожалуйста, дайте разрешение по запросу.</string>
@@ -191,7 +140,6 @@
   <string name="import_export_layout_exporting_share">Поделиться</string>
 
 
-  <string name="about_page_title">О нас и многое другое</string>
   <string name="about_page_rate">Оценить в Play Маркет</string>
   <string name="about_page_contribute">Сделать вклад</string>
   <string name="about_page_app_version">Версия приложения</string>
@@ -199,16 +147,12 @@
 
   <string name="osp_page_libraries">Библиотеки</string>
   <string name="osp_page_about_osp">Проект с открытым исходным кодом</string>
-  <string name="osp_page_title">О проекте с открытым исходным кодом</string>
 
-  <string name="reminder_sheet_title">Примечание Напоминание</string>
   <string name="reminder_sheet_reminder_date">Дата напоминания</string>
   <string name="reminder_sheet_reminder_time">Время напоминания</string>
   <string name="reminder_sheet_repeat">Частота повторения</string>
   <string name="reminder_frequency_once">Только один раз</string>
   <string name="reminder_frequency_daily">Ежедневно</string>
-  <string name="reminder_frequency_custom">изготовленный на заказ</string>
-  <string name="reminder_beta_label">Бета</string>
 
   <string name="notification_channel_label">Уведомления об уведомлениях</string>
   <string name="notification_reminder_channel_label">Напоминания и сигналы тревоги</string>
@@ -240,10 +184,6 @@
   <string name="whats_new_title">Что нового</string>
   <string name="whats_new_subtitle">Узнайте, что нового в последних обновлениях приложения</string>
   <string name="whats_new_translate">Переведите</string>
-
-  <string name="tutorial_create_a_new_note">Нажмите, чтобы добавить новую заметку</string>
-  <string name="tutorial_home_menu">Нажмите, чтобы увидеть домашние параметры</string>
-  <string name="tutorial_home_menu_subtitle">В главном меню есть ваши любимые и архивные заметки, а также настройки приложения. Здесь вы можете найти свои теги.</string>
 
   <string name="format_action_copy">копия</string>
   <string name="format_action_title">Блокировать текстовые действия</string>
@@ -299,9 +239,6 @@
   <string name="home_option_login_with_app_subtitle">Вход для резервного копирования и синхронизации облаков</string>
   <string name="home_option_logout_of_app">Выход</string>
   <string name="home_option_logout_of_app_subtitle">Выйти, чтобы остановить резервное копирование облаков</string>
-  <string name="login_with_google">Войти с помощью Google</string>
-  <string name="logging_into_app">Вход в систему |</string>
-  <string name="logged_into_app">Вы вошли в систему</string>
   <string name="login_to_google_failed">Ошибка входа в Google</string>
 
   <string name="material_notes_privacy_policy">политика конфиденциальности</string>
@@ -315,19 +252,10 @@
       Сначала получить самые последние функции \n
      \n
       Некоторые дополнительные функции будут доступны только пользователям Pro</string>
-  <string name="why_cloud">Зачем использовать Cloud Sync</string>
-  <string name="why_cloud_details">Загрузка и резервное копирование от изменений устройства \n
-     \n
-      Синхронизация между несколькими устройствами и быстрое обновление \n
-     \n
-      Безопасное сохранение на серверах Google Firebase</string>
   <!-- End: Firebase Login Strings -->
 
 
   <!-- Start Welcome Page -->
-  <string name="welcome_page_hello">Здравствуйте,</string>
-  <string name="welcome_page_transfer_message">Материал Notes теперь Scarlet!</string>
-  <string name="welcome_page_get_started">Начать</string>
   <!-- End Welcome Page -->
 
   <!-- Start Theme Color -->
@@ -338,7 +266,6 @@
 
   <string name="click_to_add_tags">Нажмите, чтобы добавить или изменить теги</string>
 
-  <string name="show_more_actions">Показать другие действия</string>
   <string name="select_notes">Выберите заметки</string>
   <string name="select_notes_details">Выбирайте и выполняйте действия сразу по нескольким нотам</string>
 
@@ -360,5 +287,157 @@
   <string name="folder_option_change_notebook">Изменить блокнот</string>
 
   <string name="recent_notes">Последние примечания</string>
+
+  <!-- Added for 7.0.4 -->
+  <string name="merge_notes">Объединить заметки</string>
+  <string name="home_option_export_markdown">Экспортировать как уценку</string>
+  <string name="home_option_export_markdown_subtitle">Экспорт заметок в формате уценки. (Вы не можете импортировать их обратно в приложение)</string>
+  <string name="ui_options_note_background_color_settings_theme">Используйте цвет темы для фона</string>
+  <string name="ui_options_note_background_color_settings_note">Используйте цвет заметки для фона</string>
+  <string name="import_export_layout_folder_sync_enable">включить</string>
+  <string name="import_export_layout_folder_sync_disable">запрещать</string>
+  <string name="import_export_layout_folder_sync">Включить синхронизацию папок</string>
+  <string name="import_export_layout_folder_sync_title">Синхронизация папок</string>
+  <string name="import_export_layout_folder_sync_description">Синхронизируйте все свои заметки, теги и папки с внешней папкой. Это поможет вам синхронизировать использование других приложений между устройствами, а также иметь копию на случай, если вам нужно удалить приложение.</string>
+  <string name="import_export_layout_folder_sync_folder">Экспорт в папку</string>
+  <string name="import_export_layout_folder_sync_details">Синхронизировать все заметки, теги и т. Д. Во внешней папке</string>
+  <string name="import_export_locked">Экспорт заблокированных заметок</string>
+  <string name="sort_sheet_alphabetical">По алфавиту</string>
+  <string name="available_in_pro_only">Доступно на Скарлет Про</string>
+  <string name="import_export_locked_details">Также сделайте резервную копию заметок, которые заблокированы</string>
+  <string name="home_option_editor_options_title">Параметры редактора</string>
+  <string name="home_option_editor_options_description">Изменить настройки и использование для редактора заметок</string>
+  <string name="editor_option_enable_markdown_mode_default">Параметры уценки по умолчанию</string>
+  <string name="editor_option_enable_markdown_mode_default_details">Показывать быстрые кнопки уценки на панели инструментов по умолчанию</string>
+  <string name="editor_option_enable_live_markdown">Уценка в реальном времени</string>
+  <string name="editor_option_enable_live_markdown_description">Выберите, если вы хотите, чтобы уценка была видна как ваш тип. Включение может повлиять на производительность на больших заметках.</string>
+  <string name="editor_option_move_checked_items">Переместить отмеченные элементы</string>
+  <string name="editor_option_move_checked_items_description">Проверенные элементы перемещаются в конец списка. Снять отметку не сбрасывает положение.</string>
+  <string name="editor_option_enable_move_handle">Показать ручки движения</string>
+  <string name="editor_option_enable_move_handle_description">Показать ручку для перемещения предметов вверх или вниз. Вы все еще можете перемещать вещи, касаясь угла.</string>
+  <string name="markdown_help_sheet_title">Примеры уценок</string>
+  <string name="home_option_widget_options_title">Настройки виджета</string>
+  <string name="home_option_widget_options_description">Изменить настройки виджетов на главном экране</string>
+  <string name="widget_option_enable_formatting">Включить форматирование</string>
+  <string name="widget_option_enable_formatting_details">Заметки отображаются с форматированием в виджетах главного экрана</string>
+  <string name="widget_option_show_locked_notes">Показать заблокированные заметки</string>
+  <string name="widget_option_show_locked_notes_details">Разрешить показ заблокированных заметок в виджетах главного экрана</string>
+  <string name="widget_option_show_archived_notes">Показать архивные заметки</string>
+  <string name="widget_option_show_archived_notes_details">Разрешить отображение архивных заметок в виджетах главного экрана</string>
+  <string name="widget_option_show_trash_notes">Показать заметки в корзине</string>
+  <string name="widget_option_show_trash_notes_details">Разрешить отображение заметок в корзине на виджетах главного экрана</string>
+  <string name="home_option_faq_title">Помощь и общие вопросы</string>
+  <string name="home_option_faq_description">Найти справку о том, как использовать функции в приложении</string>
+  <string name="home_syncing_top_layout">Синхронизации</string>
+  <string name="home_pending_backup_top_layout">Ожидание резервного копирования</string>
+  <string name="internal_settings_title">Параметры разработчика</string>
+  <string name="internal_settings_description">Изменить внутренние настройки для приложения, используемого для отладки</string>
+  <string name="internal_settings_enable_log_exceptions_title">Исключения журнала</string>
+  <string name="internal_settings_enable_log_exceptions_description">Записывать перехваченные исключения в фиксированную заметку, чтобы разрешить пересылку разработчику</string>
+  <string name="internal_settings_enable_show_exceptions_title">Показать лист исключений</string>
+  <string name="internal_settings_enable_show_exceptions_description">По возможности отображать перехваченные исключения на листе, чтобы разрешить пересылку разработчику</string>
+  <string name="internal_settings_enable_throw_exceptions_title">Бросить на исключения</string>
+  <string name="internal_settings_enable_throw_exceptions_description">Выкинь и вылети приложение на исключения. Будет сброшен после 5 сбоев</string>
+  <string name="internal_settings_enable_fullscreen_title">Включить полноэкранный режим</string>
+  <string name="internal_settings_enable_fullscreen_description">Сделайте приложение в полноэкранном режиме, чтобы разрешить скриншоты и записи</string>
+  <string name="internal_settings_show_uuid_title">Показать примечания UUID</string>
+  <string name="internal_settings_show_uuid_description">Показать уникальные идентификаторы заметок на главном экране</string>
+  <string name="internal_settings_fake_exceptions_title">Поддельные исключения</string>
+  <string name="internal_settings_fake_exceptions_description">Создайте ложное исключение, чтобы проверить возможности исключения</string>
+  <string name="exception_sheet_title">Исключение брошено</string>
+  <string name="exception_sheet_crash_app">Crash App</string>
+  <string name="exception_sheet_mail">почта</string>
+  <string name="google_drive_page_connection_failed">Ошибка подключения</string>
+  <string name="google_drive_page_login_title">Синхронизация на Google Диске</string>
+  <string name="google_drive_page_login_details">Google Диск позволяет синхронизировать ваши заметки между устройствами, используя вашу собственную учетную запись Google Drive.</string>
+  <string name="google_drive_page_login_firebase_button">Входили в Google Firebase раньше?</string>
+  <string name="google_drive_page_login_button">Войдите в Google Drive</string>
+  <string name="google_drive_page_logging_in_button">Вход в систему…</string>
+  <string name="google_drive_page_logout_title">Выйти из Алого ордена</string>
+  <string name="google_drive_page_logout_details">Прекратите синхронизировать заметки, теги и папки.</string>
+  <string name="google_drive_page_logout_no_sync_details">Прекратите синхронизировать свои заметки, теги и папки с вашим Google Диском.</string>
+  <string name="google_drive_page_logout_data_persists_details">Ваши данные в приложении и на Google Диске все еще будут там.</string>
+  <string name="google_drive_page_logout_button">Выйти из Drive</string>
+  <string name="google_drive_page_logging_out_button">Выход &#8230;</string>
+  <string name="google_drive_page_login_lock_details">Заметки, теги и папки хранятся на вашем собственном Google Диске, поэтому только вы можете контролировать доступ к ним.</string>
+  <string name="google_drive_page_photo_details">Ваши фотографии также загружаются и синхронизируются между устройствами.</string>
+  <string name="firebase_page_login_title">Восстановить данные из Firebase</string>
+  <string name="firebase_page_login_button">Войти через Google</string>
+  <string name="firebase_page_logging_in_button">Вход в систему…</string>
+  <string name="firebase_page_important_details">Мы использовали для хранения вашей информации в Google Firebase. После входа мы восстановим их на вашем устройстве.</string>
+  <string name="firebase_page_not_sync_details">Новые заметки и изменения НЕ будут синхронизироваться с Google Firebase, и вам необходимо войти на Google Диск</string>
+  <string name="firebase_page_remove_details">Как только ваши заметки будут восстановлены, вы можете удалить их из Google Firebase, а затем переключиться</string>
+  <string name="firebase_no_sync_warning">Ваши данные не синхронизируются!</string>
+  <string name="firebase_no_sync_warning_details">Синхронизация данных на основе устаревшего входа отключена, рассмотрите возможность перехода на синхронизацию на Google Диске.</string>
+  <string name="firebase_removal_page_login_title">Перенос данных с Firebase на диск</string>
+  <string name="firebase_removal_page_clear_button">Очистить данные и выйти</string>
+  <string name="firebase_removal_page_clearing_button">Очистка и выход</string>
+  <string name="firebase_removal_page_important_details">Мы использовали для хранения вашей информации в Google Firebase. Мы переходим к хранению ваших заметок на вашем Google Диске.</string>
+  <string name="firebase_removal_page_more_privacy_details">Больше конфиденциальности.</string>
+  <string name="firebase_removal_page_photo_upload_details">Синхронизация фотографий.</string>
+  <string name="firebase_removal_page_whats_next_details">Следующие шаги</string>
+  <string name="firebase_removal_page_remove_details">Сначала мы удалим ваши заметки из Firebase и выйдем из системы.</string>
+  <string name="firebase_removal_page_next_details">Затем вы можете войти в Google Drive, и мы загрузим ваши данные вместе с изображениями.</string>
+
+
+  <!-- Added for 7.5.0 -->
+  <string name="folder_delete_option_sheet_title">Удалить параметры</string>
+  <string name="folder_delete_option_sheet_remove_folder">Удалить блокнот</string>
+  <string name="folder_delete_option_sheet_remove_folder_details">Только удалить ноутбук. Заметки перемещаются за пределы папки.</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content">Удалить блокнот и заметки</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details">Удалить блокнот. Все заметки перемещаются в корзину или удаляются.</string>
+  <string name="folder_delete_option_sheet_remove_folder_content">Удалить заметки</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details">Сохраните записную книжку, но все заметки перемещаются в корзину или удаляются.</string>
+  <string name="home_option_typeface">Настроить шрифты</string>
+  <string name="home_option_typeface_subtitle">Выберите приложение и отметьте шрифты</string>
+  <string name="typeface_page_title">Выберите набор шрифтов</string>
+  <string name="typeface_page_description">Примечание. Шрифты могут работать некорректно со всеми языками.</string>
+  <string name="typeface_title_app_default">Приложение по умолчанию</string>
+  <string name="typeface_title_os_default">Устройство по умолчанию</string>
+  <string name="typeface_title_monospace">Моно</string>
+  <string name="typeface_title_serif">засечка</string>
+  <string name="app_lock_title">Разблокировать приложение</string>
+  <string name="app_lock_details">Введите 4-значный PIN-код или используйте биометрические данные, чтобы разблокировать</string>
+  <string name="app_lock_details_no_fingerprint">Введите 4-значный PIN-код, чтобы разблокировать</string>
+  <string name="theme_use_system_theme">Использовать тему системы</string>
+  <string name="theme_use_system_theme_details">Используйте светлую или темную тему из системы</string>
+  <string name="theme_dark_notes">Темные ноты</string>
+  <string name="theme_dark_notes_details">Автоматически затемнять цвета заметок и папок</string>
+  <string name="pending_backup_local_state">Местный</string>
+  <string name="pending_backup_remote_state">Удаленный</string>
+  <string name="pending_backup_state_unavailable">Недоступен</string>
+  <string name="pending_backup_state_created">созданный</string>
+  <string name="pending_backup_state_deleted">Исключен</string>
+  <string name="pending_backup_state_updated">обновленный</string>
+  <string name="widget_option_background_color">Фон виджета</string>
+  <string name="widget_option_background_color_details">Выберите цвет фона для виджета с несколькими заметками</string>
+  <string name="widget_option_show_toolbar">Показать панель действий</string>
+  <string name="widget_option_show_toolbar_details">Мульти-заметка виджет показывает панель инструментов</string>
+  <string name="editor_option_skip_view_note">Skip Note Viewer</string>
+  <string name="editor_option_skip_view_note_details">Пропустить средство просмотра заметок и перейти непосредственно к редактору заметок</string>
+  <string name="delete_sheet_delete_selected_notes_permanently">Вы хотите навсегда удалить эти заметки?</string>
+  <string name="install_pro_sheet_latest_updates">Более быстрые обновления и запросы.</string>
+  <string name="install_pro_sheet_app_lock">Блокировка приложений и одиночная разблокировка.</string>
+  <string name="install_pro_sheet_app_themes">Больше тем приложения.</string>
+  <string name="install_pro_sheet_font_size">Обратите внимание, шрифты и размеры шрифтов.</string>
+  <string name="install_pro_sheet_viewer_bg">Цвет фона просмотра.</string>
+  <string name="install_pro_sheet_widget_options">Дополнительные параметры виджета.</string>
+  <string name="install_pro_sheet_note_options">Больше действий Примечание.</string>
+  <string name="sort_sheet_note_color">Примечание цвет</string>
+  <string name="sort_sheet_note_tags">Примечание теги</string>
+  <string name="security_option_lock_app">Включить блокировку приложения</string>
+  <string name="security_option_lock_app_details">Используйте PIN-код, чтобы разблокировать все приложение</string>
+  <string name="security_option_ask_pin_always">Всегда спрашивай ПИН</string>
+  <string name="security_option_ask_pin_always_details">Введите PIN-код для всех заметок, даже если они были введены ранее</string>
+  <string name="security_option_biometrics_enabled">Разблокировать с помощью биометрии</string>
+  <string name="security_option_biometrics_enabled_subtitle">Разрешить разблокировку с помощью отпечатка пальца или другой биометрии</string>
+  <string name="security_option_biometrics_disabled">Биометрия отключена</string>
+  <string name="security_option_biometrics_disabled_subtitle">Не позволяйте разблокировать с помощью отпечатка пальца или других биометрических данных</string>
+  <string name="biometric_prompt_unlock_note">Разблокировать примечание</string>
+  <string name="biometric_prompt_unlock_note_details">Используйте отпечаток пальца устройства или биометрические данные, чтобы разблокировать заметку и получить доступ.</string>
+  <string name="biometric_prompt_unlock_app">Разблокировать приложение</string>
+  <string name="biometric_prompt_unlock_app_details">Используйте отпечаток пальца устройства или биометрические данные, чтобы разблокировать приложение и получить доступ ко всем заметкам.</string>
+  <string name="pin_to_launcher">Ярлык запуска</string>
+  <string name="share_images">Обмениваться фотографиями</string>
 
 </resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/folder_panel"
+  style="@style/BorderlessBackgroundView"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal"
+  android:paddingStart="@dimen/spacing_normal"
+  android:paddingEnd="@dimen/spacing_normal"
+  android:paddingBottom="@dimen/spacing_xsmall"
+  android:paddingTop="@dimen/spacing_large">
+
+  <ImageView
+    android:id="@+id/folder_icon"
+    android:layout_width="@dimen/icon_size_large"
+    android:layout_height="@dimen/icon_size_large"
+    android:layout_gravity="center_vertical"
+    android:padding="@dimen/spacing_small"
+    android:src="@drawable/ic_folder" />
+
+  <TextView
+    android:id="@+id/folder_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:gravity="bottom"
+    android:minLines="1"
+    android:padding="@dimen/spacing_small"
+    android:textColor="@color/light_primary_text"
+    android:textColorHint="@color/light_tertiary_text"
+    android:textSize="@dimen/font_size_normal"
+    android:textStyle="bold" />
+</LinearLayout>

@@ -3,24 +3,29 @@ package com.maubis.scarlet.base.service
 import android.app.Activity
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
-import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.bsk.floatingbubblelib.FloatingBubbleConfig
 import com.bsk.floatingbubblelib.FloatingBubblePermissions
 import com.bsk.floatingbubblelib.FloatingBubbleService
-import com.github.bijoysingh.starter.util.TextUtils
+import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteBuilder
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.note.*
+import com.maubis.scarlet.base.note.copy
 import com.maubis.scarlet.base.note.creation.activity.CreateNoteActivity
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
+import com.maubis.scarlet.base.note.getDisplayTime
+import com.maubis.scarlet.base.note.getFullTextForDirectMarkdownRender
+import com.maubis.scarlet.base.note.getTextForSharing
+import com.maubis.scarlet.base.note.getTitleForSharing
 import com.maubis.scarlet.base.support.ui.ThemeColorType
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 /**
  * The floating not service
@@ -30,29 +35,28 @@ import com.maubis.scarlet.base.support.ui.ThemeColorType
 class FloatingNoteService : FloatingBubbleService() {
 
   private var note: Note? = null
-  private lateinit var title: TextView
   private lateinit var description: TextView
   private lateinit var timestamp: TextView
   private lateinit var panel: View
 
   override fun getConfig(): FloatingBubbleConfig {
-    val theme = CoreConfig.instance.themeController()
     return FloatingBubbleConfig.Builder()
-        .bubbleIcon(ContextCompat.getDrawable(context, R.drawable.app_icon))
-        .removeBubbleIcon(ContextCompat.getDrawable(
-            context,
-            com.bsk.floatingbubblelib.R.drawable.close_default_icon))
-        .bubbleIconDp(72)
-        .removeBubbleIconDp(72)
-        .paddingDp(8)
-        .borderRadiusDp(4)
-        .physicsEnabled(true)
-        .expandableColor(theme.get(ThemeColorType.BACKGROUND))
-        .triangleColor(theme.get(ThemeColorType.BACKGROUND))
-        .gravity(Gravity.END)
-        .expandableView(loadView())
-        .removeBubbleAlpha(0.7f)
-        .build()
+      .bubbleIcon(ContextCompat.getDrawable(context, R.drawable.app_icon))
+      .removeBubbleIcon(
+        ContextCompat.getDrawable(
+          context,
+          com.bsk.floatingbubblelib.R.drawable.close_default_icon))
+      .bubbleIconDp(72)
+      .removeBubbleIconDp(72)
+      .paddingDp(8)
+      .borderRadiusDp(4)
+      .physicsEnabled(true)
+      .expandableColor(sAppTheme.get(ThemeColorType.BACKGROUND))
+      .triangleColor(sAppTheme.get(ThemeColorType.BACKGROUND))
+      .gravity(Gravity.END)
+      .expandableView(loadView())
+      .removeBubbleAlpha(0.7f)
+      .build()
   }
 
   override fun onGetIntent(intent: Intent): Boolean {
@@ -69,15 +73,12 @@ class FloatingNoteService : FloatingBubbleService() {
       stopSelf()
     }
 
-    val theme = CoreConfig.instance.themeController()
     val rootView = getInflater().inflate(R.layout.layout_add_note_overlay, null)
 
-    title = rootView.findViewById<View>(R.id.title) as TextView
     description = rootView.findViewById<View>(R.id.description) as TextView
     timestamp = rootView.findViewById<View>(R.id.timestamp) as TextView
 
-    title.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
-    description.setTextColor(theme.get(ThemeColorType.SECONDARY_TEXT))
+    description.setTextColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
 
     val noteItem = note!!
 
@@ -90,7 +91,7 @@ class FloatingNoteService : FloatingBubbleService() {
         intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
       } catch (exception: Exception) {
-        // Some issue
+        maybeThrow(exception)
       }
       stopSelf()
     }
@@ -110,29 +111,25 @@ class FloatingNoteService : FloatingBubbleService() {
     }
 
     panel = rootView.findViewById(R.id.panel_layout)
-    panel.setBackgroundColor(theme.get(ThemeColorType.BACKGROUND))
+    panel.setBackgroundColor(sAppTheme.get(ThemeColorType.BACKGROUND))
 
     setNote(noteItem)
     return rootView
   }
 
   fun getShareIntent(note: Note) {
-    val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
+    val sharingIntent = Intent(Intent.ACTION_SEND)
     sharingIntent.type = "text/plain"
-    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, note.getTitle())
-    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, note.getText())
+    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, note.getTitleForSharing())
+    sharingIntent.putExtra(Intent.EXTRA_TEXT, note.getTextForSharing())
     sharingIntent.addFlags(FLAG_ACTIVITY_NEW_TASK)
     context.startActivity(sharingIntent)
   }
 
   fun setNote(note: Note) {
-    val noteTitle = note.getTitle()
-    val noteDescription = note.getMarkdownText(true)
-    title.text = noteTitle
+    val noteDescription = Markdown.render(note.getFullTextForDirectMarkdownRender(), true)
     description.text = noteDescription
     timestamp.text = note.getDisplayTime()
-
-    title.visibility = if (TextUtils.isNullOrEmpty(noteTitle)) View.GONE else View.VISIBLE
   }
 
   companion object {

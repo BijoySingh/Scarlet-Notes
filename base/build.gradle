@@ -17,7 +17,13 @@ android {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas")
+            }
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resValue "string", "file_provider_name", "com.maubis.scarlet.pro.base.support.GenericFileProvider"
     }
 
     buildTypes {
@@ -35,50 +41,48 @@ android {
 dependencies {
     api project(':markdown')
 
-    api "com.android.support:recyclerview-v7:$android_support_version"
-    api "com.android.support:cardview-v7:$android_support_version"
-    api "com.android.support:support-v4:$android_support_version"
-    api "com.android.support:design:$android_support_version"
-    api "com.android.support:appcompat-v7:$android_support_version"
-    api 'com.android.support.constraint:constraint-layout:1.1.3'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
+    api 'androidx.cardview:cardview:1.0.0'
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    api 'com.google.android.material:material:1.0.0'
 
     api 'com.google.code.gson:gson:2.8.5'
-    api 'com.github.ajalt.reprint:core:3.2.0@aar'
 
-    api "com.github.bijoysingh:android-basics:5.0.0"
-    api "com.github.bijoysingh:ui-basics:0.7.0"
+    api "com.github.bijoysingh:android-basics:5.1.0-x"
+    api "com.github.bijoysingh:ui-basics:1.0.0-x"
     api 'com.github.bijoysingh:floating-bubble:3.0.0'
 
     api 'com.evernote:android-job:1.2.6'
 
     implementation 'com.google.android:flexbox:0.3.2'
 
-    def room_version = "1.1.1"
-    implementation "android.arch.persistence.room:runtime:$room_version"
-    implementation "android.arch.persistence.room:testing:$room_version"
-    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
-    kapt "android.arch.persistence.room:compiler:$room_version"
+    api 'androidx.room:room-runtime:2.2.2'
+    api 'androidx.room:room-testing:2.2.2'
+    kapt 'androidx.room:room-compiler:2.2.2'
 
-    implementation 'com.github.ajalt.reprint:core:3.2.0@aar'
+    def biometric_version = "1.0.0"
+    implementation "androidx.biometric:biometric:$biometric_version"
+
     implementation 'com.github.jkwiecien:EasyImage:1.3.1'
 
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
 
-    def litho_version = "0.21.0"
-    implementation "com.facebook.litho:litho-core:$litho_version"
-    implementation "com.facebook.litho:litho-widget:$litho_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    def litho_version = "0.31.0"
+    api "com.facebook.litho:litho-core:$litho_version"
+    api "com.facebook.litho:litho-widget:$litho_version"
     compileOnly "com.facebook.litho:litho-annotations:$litho_version"
     kapt "com.facebook.litho:litho-processor:$litho_version"
+    api 'com.facebook.soloader:soloader:0.5.1'
 
-    implementation 'com.facebook.soloader:soloader:0.5.1'
-
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 }
 
 apply plugin: 'kotlin-android-extensions'

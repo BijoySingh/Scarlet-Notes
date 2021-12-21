@@ -5,6 +5,7 @@ import com.maubis.scarlet.base.core.format.FormatBuilder
 import com.maubis.scarlet.base.core.format.FormatType
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.support.utils.ImageCache
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -75,7 +76,6 @@ class RemoteImagesFolder(context: Context, val folder: File) {
       val imageFiles = noteFolder.listFiles() ?: emptyArray()
       imageFiles.filter { it.isFile }
 
-
       val imagesKnown = internalCache.imagesForNote(note.uuid()).map { it.name }
       imageFiles.forEach {
         if (!imagesKnown.contains(it.name)) {
@@ -107,6 +107,7 @@ class RemoteImagesFolder(context: Context, val folder: File) {
       inStream.close()
       outStream.close()
     } catch (exception: Exception) {
+      maybeThrow(exception)
     }
   }
 }

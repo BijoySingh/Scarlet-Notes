@@ -29,7 +29,6 @@ class ImageCache(context: Context) {
     }
   }
 
-
   fun imagesForNote(noteUUID: String): Array<File> {
     val folder = File(persistentFolder, noteUUID)
     return folder.listFiles() ?: emptyArray<File>()
@@ -75,12 +74,18 @@ class ImageCache(context: Context) {
       thumbnailCacheSize.addAndGet(-cacheFile.length())
     }
 
-    val fOut = FileOutputStream(cacheFile)
-    val compressedBitmap = sampleBitmap(bitmap)
-    compressedBitmap.compress(Bitmap.CompressFormat.PNG, 75, fOut)
-    fOut.flush()
-    fOut.close()
+    val compressedBitmap: Bitmap = sampleBitmap(bitmap)
 
+    try {
+      val fOut = FileOutputStream(cacheFile)
+      compressedBitmap.compress(Bitmap.CompressFormat.PNG, 75, fOut)
+      fOut.flush()
+      fOut.close()
+    } catch (exception: Exception) {
+      return throwOrReturn(exception, compressedBitmap)
+    }
+
+    thumbnailCacheSize.addAndGet(cacheFile.length())
     performEviction()
     return compressedBitmap
   }

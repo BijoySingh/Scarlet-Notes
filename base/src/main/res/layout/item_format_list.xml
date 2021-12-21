@@ -8,8 +8,8 @@
     android:id="@+id/icon"
     android:layout_width="@dimen/icon_size_normal"
     android:layout_height="@dimen/icon_size_normal"
-    android:layout_marginStart="@dimen/spacing_large"
     android:layout_gravity="center_vertical"
+    android:layout_marginStart="@dimen/spacing_large"
     android:src="@drawable/ic_check_box_outline_blank_white_24dp"
     android:tint="@color/material_blue_grey_500" />
 
@@ -17,11 +17,21 @@
     android:id="@+id/text"
     style="@style/FormatEdit"
     android:autoLink="web"
-    android:hint="@string/format_hint_list"
     android:linksClickable="true" />
 
   <EditText
     android:id="@+id/edit"
-    style="@style/FormatText"
-    android:hint="@string/format_hint_list" />
+    style="@style/FormatText" />
+
+  <ImageView
+    android:id="@+id/close"
+    android:layout_width="@dimen/icon_size_normal"
+    android:layout_height="@dimen/icon_size_normal"
+    android:padding="@dimen/spacing_xxsmall"
+    android:layout_gravity="center_vertical"
+    android:layout_marginEnd="@dimen/spacing_large"
+    android:src="@drawable/ic_close_white_48dp"
+    android:tint="@color/material_blue_grey_500"
+    android:visibility="gone" />
+
 </LinearLayout>

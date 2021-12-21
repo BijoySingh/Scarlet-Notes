@@ -1,8 +1,13 @@
 package com.maubis.scarlet.base.support.ui
 
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.Paint
+import android.graphics.PixelFormat
+import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 
 class CircleDrawable(color: Int, showBorder: Boolean = true) : Drawable() {
   private val paint: Paint
@@ -13,7 +18,7 @@ class CircleDrawable(color: Int, showBorder: Boolean = true) : Drawable() {
     this.paint = Paint(Paint.ANTI_ALIAS_FLAG)
     this.paint.color = color
 
-    val isNightTheme = CoreConfig.instance.themeController().isNightTheme()
+    val isNightTheme = sAppTheme.isNightTheme()
     this.borderPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     this.borderPaint.color = when {
       !showBorder -> Color.TRANSPARENT

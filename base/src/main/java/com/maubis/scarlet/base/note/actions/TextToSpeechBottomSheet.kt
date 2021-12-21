@@ -1,17 +1,24 @@
 package com.maubis.scarlet.base.note.actions
 
 import android.app.Dialog
-import android.os.Build
 import android.speech.tts.TextToSpeech
 import android.widget.ImageView
 import android.widget.TextView
+import com.maubis.markdown.Markdown
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.note.getUnreliablyStrippedText
+import com.maubis.scarlet.base.note.getFullText
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
+import com.maubis.scarlet.base.support.utils.removeMarkdownHeaders
+
+fun Note.getTextToSpeechText(): String {
+  val builder = StringBuilder()
+  builder.append(Markdown.render(removeMarkdownHeaders(getFullText())), true)
+  return builder.toString().trim { it <= ' ' }
+}
 
 class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
 
@@ -26,10 +33,10 @@ class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
 
     val nonNullNote = note!!
     val title = dialog.findViewById<TextView>(R.id.options_title)
-    title.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
+    title.setTextColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
 
     val speakPlayPause = dialog.findViewById<ImageView>(R.id.speak_play_pause)
-    speakPlayPause.setColorFilter(CoreConfig.instance.themeController().get(ThemeColorType.TOOLBAR_ICON))
+    speakPlayPause.setColorFilter(sAppTheme.get(ThemeColorType.TOOLBAR_ICON))
     speakPlayPause.setOnClickListener {
       val tts = textToSpeech
       if (tts === null) {
@@ -55,12 +62,8 @@ class TextToSpeechBottomSheet : ThemedBottomSheetFragment() {
     makeBackgroundTransparent(dialog, R.id.root_layout)
   }
 
-  fun speak(note: Note) {
-    if (Build.VERSION.SDK_INT >= 21) {
-      textToSpeech?.speak(note.getUnreliablyStrippedText(themedContext()), TextToSpeech.QUEUE_FLUSH, null, "NOTE")
-    } else {
-      textToSpeech?.speak(note.getUnreliablyStrippedText(themedContext()), TextToSpeech.QUEUE_FLUSH, null)
-    }
+  private fun speak(note: Note) {
+    textToSpeech?.speak(note.getTextToSpeechText(), TextToSpeech.QUEUE_FLUSH, null, "NOTE")
   }
 
   override fun getBackgroundView(): Int = R.id.container_layout

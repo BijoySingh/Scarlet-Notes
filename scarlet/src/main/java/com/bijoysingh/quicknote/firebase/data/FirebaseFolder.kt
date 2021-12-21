@@ -4,12 +4,13 @@ import com.google.firebase.database.Exclude
 import com.maubis.scarlet.base.core.folder.IFolderContainer
 import java.util.*
 
+// TODO: Remove this on Firebase deprecation
 class FirebaseFolder(
-    val uuid: String,
-    val title: String,
-    val timestamp: Long,
-    val updateTimestamp: Long,
-    val color: Int) : IFolderContainer {
+  val uuid: String,
+  val title: String,
+  val timestamp: Long,
+  val updateTimestamp: Long,
+  val color: Int) : IFolderContainer {
 
   @Exclude
   override fun uuid(): String = uuid
@@ -27,9 +28,9 @@ class FirebaseFolder(
   override fun color(): Int = color
 
   constructor() : this(
-      "invalid",
-      "",
-      Calendar.getInstance().timeInMillis,
-      Calendar.getInstance().timeInMillis,
-      -0xff8695)
+    "invalid",
+    "",
+    Calendar.getInstance().timeInMillis,
+    Calendar.getInstance().timeInMillis,
+    -0xff8695)
 }

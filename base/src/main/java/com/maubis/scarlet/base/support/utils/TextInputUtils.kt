@@ -5,8 +5,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 
 fun getEditorActionListener(
-    runnable: () -> Boolean,
-    preConditions: () -> Boolean = { false }): TextView.OnEditorActionListener {
+  runnable: () -> Boolean,
+  preConditions: () -> Boolean = { false }): TextView.OnEditorActionListener {
   return TextView.OnEditorActionListener { _: TextView, actionId: Int, event: KeyEvent? ->
     if (preConditions()) {
       return@OnEditorActionListener false

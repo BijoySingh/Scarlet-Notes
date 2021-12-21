@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  style="@style/FormatLayout">
+
+  <include layout="@layout/layout_modify_format" />
+
+  <View
+    android:id="@+id/first_margin"
+    android:layout_width="24dp"
+    android:layout_height="24dp" />
+
+  <View
+    android:id="@+id/second_margin"
+    android:layout_width="24dp"
+    android:layout_height="24dp" />
+
+  <ImageView
+    android:id="@+id/icon"
+    android:layout_width="@dimen/icon_size_small"
+    android:layout_height="@dimen/icon_size_small"
+    android:layout_gravity="center_vertical"
+    android:layout_marginStart="@dimen/spacing_large"
+    android:src="@drawable/ic_check_box_outline_blank_white_24dp"
+    android:tint="@color/material_blue_grey_500" />
+
+  <TextView
+    android:id="@+id/text"
+    style="@style/FormatEdit"
+    android:autoLink="web"
+    android:linksClickable="true"
+    android:paddingStart="@dimen/spacing_xxsmall"
+    android:paddingEnd="@dimen/spacing_xxsmall"
+    android:paddingTop="@dimen/spacing_xsmall"
+    android:paddingBottom="@dimen/spacing_xsmall" />
+
+  <EditText
+    android:id="@+id/edit"
+    style="@style/FormatText" />
+</LinearLayout>

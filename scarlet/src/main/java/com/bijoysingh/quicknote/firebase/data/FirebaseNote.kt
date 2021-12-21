@@ -5,17 +5,18 @@ import com.maubis.scarlet.base.core.note.INoteContainer
 import com.maubis.scarlet.base.core.note.NoteState
 import java.util.*
 
+// TODO: Remove this on Firebase deprecation
 class FirebaseNote(
-    val uuid: String,
-    val description: String,
-    val timestamp: Long,
-    val updateTimestamp: Long,
-    val color: Int,
-    val state: String,
-    val tags: String,
-    val locked: Boolean,
-    val pinned: Boolean,
-    val folder: String) : INoteContainer {
+  val uuid: String,
+  val description: String,
+  val timestamp: Long,
+  val updateTimestamp: Long,
+  val color: Int,
+  val state: String,
+  val tags: String,
+  val locked: Boolean,
+  val pinned: Boolean,
+  val folder: String) : INoteContainer {
 
   @Exclude
   override fun uuid(): String = uuid
@@ -51,14 +52,14 @@ class FirebaseNote(
   override fun folder(): String = folder
 
   constructor() : this(
-      "invalid",
-      "",
-      Calendar.getInstance().timeInMillis,
-      Calendar.getInstance().timeInMillis,
-      -0xff8695,
-      NoteState.DEFAULT.name,
-      "",
-      false,
-      false,
-      "")
+    "invalid",
+    "",
+    Calendar.getInstance().timeInMillis,
+    Calendar.getInstance().timeInMillis,
+    -0xff8695,
+    NoteState.DEFAULT.name,
+    "",
+    false,
+    false,
+    "")
 }

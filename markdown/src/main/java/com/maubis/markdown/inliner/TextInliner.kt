@@ -1,6 +1,5 @@
 package com.maubis.markdown.inliner
 
-import android.util.Log
 import com.maubis.markdown.MarkdownConfig.Companion.config
 
 class TextInliner(val text: String) {
@@ -31,11 +30,19 @@ class TextInliner(val text: String) {
     while (index < text.length) {
       val char = text.get(index)
 
-
       if (currentInline.config.type() == MarkdownInlineType.INLINE_CODE
           && !currentInline.config.isEnd(text, index)) {
         textSegment.builder.append(char)
         index += 1
+        continue
+      }
+
+      if (currentInline.config.type() == MarkdownInlineType.IGNORE_CHAR) {
+        textSegment.builder.append(char)
+        addTextComponent()
+        currentInline.paired = true
+        index += 1
+        unshelveSegment()
         continue
       }
 
@@ -143,7 +150,7 @@ class TextInliner(val text: String) {
     processedSegments.forEach {
       val inlineConfig = it.config
       if (inlineConfig is PhraseDelimiterInline && !it.paired) {
-        it.children.add(NormalInlineMarkdownSegment(inlineConfig.startDelimiter))
+        it.children.add(0, NormalInlineMarkdownSegment(inlineConfig.startDelimiter))
       }
 
       if (!it.paired || it.config.type() == MarkdownInlineType.INVALID) {

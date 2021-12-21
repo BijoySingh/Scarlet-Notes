@@ -3,23 +3,29 @@ package com.maubis.scarlet.base.core.note
 import android.app.NotificationManager
 import android.content.Context
 import android.os.AsyncTask
-import android.os.Build
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.github.bijoysingh.starter.util.IntentUtils
 import com.github.bijoysingh.starter.util.TextUtils
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.folderSync
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppImageStorage
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
-import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.format.FormatBuilder
+import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.export.data.ExportableNote
 import com.maubis.scarlet.base.main.activity.WidgetConfigureActivity
-import com.maubis.scarlet.base.note.*
+import com.maubis.scarlet.base.note.deleteToSync
+import com.maubis.scarlet.base.note.getFullText
+import com.maubis.scarlet.base.note.getTitleForSharing
+import com.maubis.scarlet.base.note.mark
+import com.maubis.scarlet.base.note.save
+import com.maubis.scarlet.base.note.saveWithoutSync
 import com.maubis.scarlet.base.notification.NotificationConfig
 import com.maubis.scarlet.base.notification.NotificationHandler
-import com.maubis.scarlet.base.widget.AllNotesWidgetProvider.Companion.notifyAllChanged
 import com.maubis.scarlet.base.service.FloatingNoteService
-import com.maubis.scarlet.base.support.utils.ImageCache
+import com.maubis.scarlet.base.support.utils.OsVersionUtils
+import com.maubis.scarlet.base.widget.AllNotesWidgetProvider.Companion.notifyAllChanged
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -31,10 +37,10 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
 
   override fun share(context: Context) {
     IntentUtils.ShareBuilder(context)
-        .setSubject(note.getTitle())
-        .setText(note.getText())
-        .setChooserText(context.getString(R.string.share_using))
-        .share()
+      .setSubject(note.getTitleForSharing())
+      .setText(note.getFullText())
+      .setChooserText(context.getString(R.string.share_using))
+      .share()
   }
 
   override fun popup(activity: AppCompatActivity) {
@@ -51,7 +57,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
   }
 
   override fun onlineSave(context: Context) {
-    CoreConfig.instance.externalFolderSync().insert(ExportableNote(note))
+    folderSync?.insert(ExportableNote(note))
   }
 
   override fun save(context: Context) {
@@ -68,7 +74,7 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
   }
 
   override fun offlineDelete(context: Context) {
-    NoteImage(context).deleteAllFiles(note)
+    sAppImageStorage.deleteAllFiles(note)
     if (note.isUnsaved()) {
       return
     }
@@ -92,9 +98,8 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     note.save(activity)
   }
 
-
   override fun onlineDelete(context: Context) {
-    CoreConfig.instance.externalFolderSync().remove(ExportableNote(note))
+    folderSync?.remove(ExportableNote(note))
   }
 
   override fun delete(context: Context) {
@@ -107,14 +112,14 @@ open class MaterialNoteActor(val note: Note) : INoteActor {
     notifyAllChanged(context)
     val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
     notificationManager?.cancel(note.uid)
-    CoreConfig.instance.imageCache().deleteNote(note.uuid)
+    ApplicationBase.sAppImageCache.deleteNote(note.uuid)
   }
 
   protected fun onNoteUpdated(context: Context) {
     WidgetConfigureActivity.notifyNoteChange(context, note)
     notifyAllChanged(context)
     val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
-    if (Build.VERSION.SDK_INT >= 23 && notificationManager != null) {
+    if (OsVersionUtils.canExtractActiveNotifications() && notificationManager != null) {
       for (notification in notificationManager.activeNotifications) {
         if (notification.id == note.uid) {
           val handler = NotificationHandler(context)

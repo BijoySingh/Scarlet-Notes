@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.maubis.markdown.Markdown
 import com.maubis.markdown.spannable.clearMarkdownSpans
 import com.maubis.markdown.spannable.setFormats
@@ -19,7 +20,9 @@ import com.maubis.scarlet.base.core.format.MarkdownType
 import com.maubis.scarlet.base.note.creation.sheet.FormatActionBottomSheet
 import com.maubis.scarlet.base.note.creation.sheet.sEditorLiveMarkdown
 import com.maubis.scarlet.base.note.creation.sheet.sEditorMoveHandles
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.visibility
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolderBase(context, view), TextWatcher {
 
@@ -27,16 +30,16 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
   protected val edit: EditText = root.findViewById(R.id.edit)
   protected val actionMove: ImageView = root.findViewById(R.id.action_move_icon)
 
-  protected var format: Format? = null
+  protected lateinit var format: Format
 
   init {
     edit.addTextChangedListener(this)
     edit.onFocusChangeListener = View.OnFocusChangeListener { _, _ -> activity.focusedFormat = format }
     edit.setRawInputType(
-        InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
-            or InputType.TYPE_TEXT_FLAG_MULTI_LINE
-            or InputType.TYPE_CLASS_TEXT
-            or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE
+      InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        or InputType.TYPE_TEXT_FLAG_MULTI_LINE
+        or InputType.TYPE_CLASS_TEXT
+        or InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE
     )
   }
 
@@ -55,15 +58,17 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     text.setBackgroundColor(config.backgroundColor)
     text.setLinkTextColor(config.accentColor)
     text.setTextIsSelectable(true)
+    text.setTypeface(config.typeface, config.typefaceStyle)
     text.visibility = visibility(!config.editable)
 
     edit.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize)
     edit.setTextColor(config.secondaryTextColor)
     edit.setHintTextColor(config.hintTextColor)
     edit.setBackgroundColor(config.backgroundColor)
+    edit.setTypeface(config.typeface, config.typefaceStyle)
     edit.visibility = visibility(config.editable)
     edit.isEnabled = config.editable
-
+    showHintWhenTextIsEmpty()
 
     when {
       config.editable -> edit.setText(data.text)
@@ -74,29 +79,43 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     actionMove.setColorFilter(config.iconColor)
     actionMove.visibility = visibility(config.editable)
     actionMove.setOnClickListener {
-      FormatActionBottomSheet.openSheet(activity, config.noteUUID, data)
+      openSheet(activity, FormatActionBottomSheet().apply {
+        noteUUID = config.noteUUID
+        format = data
+      })
     }
     if (config.editable && !sEditorMoveHandles) {
       actionMove.visibility = View.INVISIBLE
     }
   }
 
-  override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+  override fun beforeTextChanged(text: CharSequence, start: Int, count: Int, after: Int) {
 
   }
 
-  override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-    if (format === null || !edit.isFocused) {
+  override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
+    if (!edit.isFocused) {
       return
     }
-    format!!.text = s.toString()
-    activity.setFormat(format!!)
+
+    format.text = text.toString()
+    activity.setFormat(format)
+    showHintWhenTextIsEmpty()
+  }
+
+  // Workaround to avoid this holder being higher than the text contained in it when hint text
+  // occupies more lines than the text inserted by the user
+  private fun showHintWhenTextIsEmpty() {
+    edit.hint = when {
+      format.text.isEmpty() -> format.getHint()
+      else -> ""
+    }
   }
 
   override fun afterTextChanged(text: Editable) {
     text.clearMarkdownSpans()
     if (sEditorLiveMarkdown) {
-      text.setFormats(Markdown.getSpanInfo(format!!.text).spans)
+      text.setFormats(Markdown.getSpanInfo(format.text).spans)
     }
   }
 
@@ -126,8 +145,25 @@ open class FormatTextViewHolder(context: Context, view: View) : FormatViewHolder
     try {
       val additionTokenLength = (if (markdownType.requiresNewLine) 1 else 0) + markdownType.startToken.length
       edit.setSelection(Math.min(startString.length + additionTokenLength, edit.text.length))
-    } catch (_: Exception) {
-      // Ignore the exception
+    } catch (exception: Exception) {
+      maybeThrow(context as AppCompatActivity, exception)
+    }
+  }
+
+  private fun Format.getHint(): String {
+    return when (formatType) {
+      FormatType.TEXT, FormatType.TAG -> context.getString(R.string.format_hint_text)
+      FormatType.HEADING,
+      FormatType.SUB_HEADING,
+      FormatType.HEADING_3
+      -> context.getString(R.string.format_hint_heading)
+      FormatType.NUMBERED_LIST,
+      FormatType.CHECKLIST_UNCHECKED,
+      FormatType.CHECKLIST_CHECKED
+      -> context.getString(R.string.format_hint_list)
+      FormatType.CODE -> context.getString(R.string.format_hint_code)
+      FormatType.QUOTE -> context.getString(R.string.format_hint_quote)
+      else -> ""
     }
   }
 }

@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.View
 import com.maubis.scarlet.base.MainActivity
 import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.main.sheets.EnterPincodeBottomSheet
 import com.maubis.scarlet.base.note.actions.NoteOptionsBottomSheet
 import com.maubis.scarlet.base.note.copy
+import com.maubis.scarlet.base.note.creation.activity.NoteIntentRouterActivity
 import com.maubis.scarlet.base.note.edit
 import com.maubis.scarlet.base.note.share
-import com.maubis.scarlet.base.note.view
+import com.maubis.scarlet.base.security.sheets.openUnlockSheet
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 
 class NoteRecyclerHolder(context: Context, view: View) : NoteRecyclerViewHolderBase(context, view) {
@@ -47,17 +47,10 @@ class NoteRecyclerHolder(context: Context, view: View) : NoteRecyclerViewHolderB
 
   private fun actionOrUnlockNote(data: Note, runnable: Runnable) {
     if (context is ThemedActivity && data.locked) {
-      EnterPincodeBottomSheet.openUnlockSheet(
-          context as ThemedActivity,
-          object : EnterPincodeBottomSheet.PincodeSuccessListener {
-            override fun onFailure() {
-              actionOrUnlockNote(data, runnable)
-            }
-
-            override fun onSuccess() {
-              runnable.run()
-            }
-          })
+      openUnlockSheet(
+        activity = context as ThemedActivity,
+        onUnlockSuccess = { runnable.run() },
+        onUnlockFailure = { actionOrUnlockNote(data, runnable) })
       return
     } else if (data.locked) {
       return
@@ -66,6 +59,6 @@ class NoteRecyclerHolder(context: Context, view: View) : NoteRecyclerViewHolderB
   }
 
   private fun openNote(data: Note) {
-    data.view(context)
+    context.startActivity(NoteIntentRouterActivity.view(context, data))
   }
 }

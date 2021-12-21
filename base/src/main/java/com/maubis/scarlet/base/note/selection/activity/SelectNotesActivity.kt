@@ -1,16 +1,17 @@
 package com.maubis.scarlet.base.note.selection.activity
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.github.bijoysingh.starter.util.IntentUtils
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.database.room.note.Note
-import com.maubis.scarlet.base.main.HomeNavigationState
-import com.maubis.scarlet.base.note.getFullText
-import com.maubis.scarlet.base.note.selection.sheet.SelectedNoteOptionsBottomSheet
-import com.maubis.scarlet.base.support.utils.bind
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.main.HomeNavigationMode
+import com.maubis.scarlet.base.note.getFullText
+import com.maubis.scarlet.base.note.selection.sheet.SelectedNotesOptionsBottomSheet
+import com.maubis.scarlet.base.support.sheets.openSheet
+import com.maubis.scarlet.base.support.utils.bind
 
 const val KEY_SELECT_EXTRA_MODE = "KEY_SELECT_EXTRA_MODE"
 const val KEY_SELECT_EXTRA_NOTE_ID = "KEY_SELECT_EXTRA_NOTE_ID"
@@ -48,13 +49,13 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     primaryFab.setOnClickListener {
       runTextFunction { text ->
         IntentUtils.ShareBuilder(this)
-            .setChooserText(getString(R.string.share_using))
-            .setText(text)
-            .share()
+          .setChooserText(getString(R.string.share_using))
+          .setText(text)
+          .share()
       }
     }
     secondaryFab.setOnClickListener {
-      SelectedNoteOptionsBottomSheet.openSheet(this)
+      openSheet(this, SelectedNotesOptionsBottomSheet())
     }
     recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
       override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -142,12 +143,12 @@ class SelectNotesActivity : SelectableNotesActivityBase() {
     return builder.toString()
   }
 
-  fun getMode(navigationState: String): Array<String> {
-    return when (navigationState) {
-      HomeNavigationState.FAVOURITE.name -> arrayOf(HomeNavigationState.FAVOURITE.name)
-      HomeNavigationState.ARCHIVED.name -> arrayOf(HomeNavigationState.ARCHIVED.name)
-      HomeNavigationState.TRASH.name -> arrayOf(HomeNavigationState.TRASH.name)
-      else -> arrayOf(HomeNavigationState.DEFAULT.name, HomeNavigationState.FAVOURITE.name)
+  fun getMode(navigationMode: String): Array<String> {
+    return when (navigationMode) {
+      HomeNavigationMode.FAVOURITE.name -> arrayOf(HomeNavigationMode.FAVOURITE.name)
+      HomeNavigationMode.ARCHIVED.name -> arrayOf(HomeNavigationMode.ARCHIVED.name)
+      HomeNavigationMode.TRASH.name -> arrayOf(HomeNavigationMode.TRASH.name)
+      else -> arrayOf(HomeNavigationMode.DEFAULT.name, HomeNavigationMode.FAVOURITE.name)
     }
   }
 }

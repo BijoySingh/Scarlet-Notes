@@ -1,21 +1,22 @@
 package com.maubis.scarlet.base.note.formats.recycler
 
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.github.bijoysingh.starter.util.ToastHelper
 import com.github.bijoysingh.uibasics.views.UITextView
 import com.maubis.scarlet.base.R
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppImageStorage
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.note.ImageLoadCallback
-import com.maubis.scarlet.base.core.note.NoteImage
-import com.maubis.scarlet.base.main.sheets.AlertBottomSheet
 import com.maubis.scarlet.base.main.sheets.openDeleteFormatDialog
 import com.maubis.scarlet.base.note.creation.sheet.FormatActionBottomSheet
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.visibility
+import com.maubis.scarlet.base.support.utils.maybeThrow
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
 
@@ -54,20 +55,25 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
     actionCamera.setOnClickListener {
       try {
         EasyImage.openCamera(context as AppCompatActivity, data.uid)
-      } catch (e: Exception) {
+      } catch (exception: Exception) {
         ToastHelper.show(context, "No camera app installed")
+        maybeThrow(context as AppCompatActivity, exception)
       }
     }
     actionGallery.setOnClickListener {
       try {
         EasyImage.openGallery(context as AppCompatActivity, data.uid)
-      } catch (e: Exception) {
+      } catch (exception: Exception) {
         ToastHelper.show(context, "No photo picker app installed")
+        maybeThrow(context as AppCompatActivity, exception)
       }
     }
     actionMove.setColorFilter(config.iconColor)
     actionMove.setOnClickListener {
-      FormatActionBottomSheet.openSheet(activity, config.noteUUID, data)
+      openSheet(activity, FormatActionBottomSheet().apply {
+        noteUUID = config.noteUUID
+        format = data
+      })
     }
     imageToolbar.visibility = visibility(config.editable)
 
@@ -76,22 +82,25 @@ class FormatImageViewHolder(context: Context, view: View) : FormatViewHolderBase
     noImageMessage.setBackgroundColor(imageToolbarBg)
 
     val fileName = data.text
-    if (!fileName.isBlank()) {
-      val file = NoteImage(context).getFile(config.noteUUID, data)
-      when (file.exists()) {
-        true -> populateFile(file)
-        false -> {
-          noImageMessage.setText(R.string.image_not_on_current_device)
-          noImageMessage.visibility = visibility(config.editable)
-          image.visibility = View.GONE
-          imageToolbar.visibility = View.GONE
+    when {
+      fileName.isBlank() -> image.visibility = View.GONE
+      else -> {
+        val file = sAppImageStorage.getFile(config.noteUUID, data)
+        when (file.exists()) {
+          true -> populateFile(file)
+          false -> {
+            noImageMessage.setText(R.string.image_not_on_current_device)
+            noImageMessage.visibility = visibility(config.editable)
+            image.visibility = View.GONE
+            imageToolbar.visibility = View.GONE
+          }
         }
       }
     }
   }
 
   fun populateFile(file: File) {
-    NoteImage(context).loadPersistentFileToImageView(image, file, object : ImageLoadCallback {
+    sAppImageStorage.loadPersistentFileToImageView(image, file, object : ImageLoadCallback {
       override fun onSuccess() {
         noImageMessage.visibility = View.GONE
       }

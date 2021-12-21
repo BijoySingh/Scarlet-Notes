@@ -1,8 +1,8 @@
 package com.maubis.scarlet.base.database.room.folder;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 /**
  * Underlying Database, difficult to migrate to Kotlin without breaking the Database.

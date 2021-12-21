@@ -33,23 +33,23 @@ class FolderRemoteDatabase(val weakContext: WeakReference<Context>) : IRemoteDat
     rootFolder = File(Environment.getExternalStorageDirectory(), sFolderSyncPath)
     val notesFolder = File(rootFolder, "notes")
     notesRemoteFolder = RemoteFolder(
-        notesFolder,
-        ExportableNote::class.java,
-        { it -> onRemoteInsert(it) },
-        { it -> onRemoteRemove(ExportableNote(it, "", 0L, 0L, 0, NoteState.DEFAULT.name, "", emptyMap(), "")) },
-        onNotesInit)
+      notesFolder,
+      ExportableNote::class.java,
+      { it -> onRemoteInsert(it) },
+      { it -> onRemoteRemove(ExportableNote(it, "", 0L, 0L, 0, NoteState.DEFAULT.name, "", emptyMap(), "")) },
+      onNotesInit)
     tagsRemoteFolder = RemoteFolder(
-        File(rootFolder, "tags"),
-        ExportableTag::class.java,
-        { it -> onRemoteInsert(it) },
-        { it -> onRemoteRemove(ExportableTag(it, "")) },
-        onTagsInit)
+      File(rootFolder, "tags"),
+      ExportableTag::class.java,
+      { it -> onRemoteInsert(it) },
+      { it -> onRemoteRemove(ExportableTag(it, "")) },
+      onTagsInit)
     foldersRemoteFolder = RemoteFolder(
-        File(rootFolder, "folders"),
-        ExportableFolder::class.java,
-        { it -> onRemoteInsert(it) },
-        { it -> onRemoteRemove(ExportableFolder(it, "", 0L, 0L, 0)) },
-        onFoldersInit)
+      File(rootFolder, "folders"),
+      ExportableFolder::class.java,
+      { it -> onRemoteInsert(it) },
+      { it -> onRemoteRemove(ExportableFolder(it, "", 0L, 0L, 0)) },
+      onFoldersInit)
 
     val context = weakContext.get()
     if (context !== null) {

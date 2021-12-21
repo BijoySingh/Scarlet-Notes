@@ -30,8 +30,9 @@ class QuoteSegmentSpan : LeadingMarginSpan, ICustomSpan {
       first: Boolean,
       layout: Layout) {
     paint.set(p)
-    paint.style = Paint.Style.FILL;
-    paint.color = config.spanConfig.quoteColor;
+    paint.style = Paint.Style.FILL
+    paint.color = config.spanConfig.quoteColor
+    paint.typeface = config.spanConfig.textTypeface
 
     val startPosition = x + dir * config.spanConfig.quoteWidth
     val endPosition = startPosition + dir * config.spanConfig.quoteWidth

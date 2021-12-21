@@ -3,18 +3,16 @@ package com.maubis.scarlet.base.widget
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.widget.AdapterView
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
+import androidx.core.content.ContextCompat
 import com.maubis.scarlet.base.R
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.note.creation.activity.INTENT_KEY_NOTE_ID
-import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
 import com.maubis.scarlet.base.support.ui.ColorUtil
 import com.maubis.scarlet.base.widget.sheet.getWidgetNoteText
 import com.maubis.scarlet.base.widget.sheet.getWidgetNotes
-
 
 class AllNotesWidgetService : RemoteViewsService() {
   override fun onGetViewFactory(intent: Intent?): RemoteViewsFactory {
@@ -34,7 +32,7 @@ class AllNotesRemoteViewsFactory(val context: Context) : RemoteViewsService.Remo
   }
 
   override fun getItemId(position: Int): Long {
-    return notes[position].uid.toLong()
+    return if (position < notes.size) notes[position].uid.toLong() else 0
   }
 
   override fun onDataSetChanged() {
@@ -46,13 +44,12 @@ class AllNotesRemoteViewsFactory(val context: Context) : RemoteViewsService.Remo
   }
 
   override fun getViewAt(position: Int): RemoteViews? {
-    if (position == AdapterView.INVALID_POSITION) {
+    if (position == AdapterView.INVALID_POSITION || position >= notes.size) {
       return null
     }
 
     val note = notes[position]
 
-    val intent = ViewAdvancedNoteActivity.getIntent(context, note)
     val views = RemoteViews(context.getPackageName(), R.layout.item_widget_note)
 
     views.setTextViewText(R.id.description, getWidgetNoteText(note))

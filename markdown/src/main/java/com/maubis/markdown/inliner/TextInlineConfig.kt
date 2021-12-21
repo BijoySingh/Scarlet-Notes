@@ -13,6 +13,23 @@ class InvalidInline(val type: MarkdownInlineType) : IInlineConfig {
   override fun type() = type
 }
 
+class StartMarkerInline(
+    val type: MarkdownInlineType, val startDelimiter: String) : IInlineConfig {
+  override fun type() = type
+
+  override fun isStart(segment: String, index: Int): Boolean {
+    if (index + startDelimiter.length > segment.length) {
+      return false
+    }
+    return segment.regionMatches(index, startDelimiter, 0, startDelimiter.length, true)
+  }
+
+  override fun isEnd(segment: String, index: Int): Boolean = true
+
+  override fun startIncrement(): Int = startDelimiter.length
+  override fun identifier(): String = "${type().name}($startDelimiter)"
+}
+
 class PhraseDelimiterInline(
     val type: MarkdownInlineType,
     val startDelimiter: String,
@@ -98,6 +115,9 @@ class TextInlineConfig(builder: Builder) {
             PhraseDelimiterInline(MarkdownInlineType.STRIKE, "~", "~"),
             PhraseDelimiterInline(MarkdownInlineType.STRIKE, "~~", "~~"),
             PhraseDelimiterInline(MarkdownInlineType.STRIKE, "~", "~"))
+        MarkdownInlineType.IGNORE_CHAR -> arrayOf(
+            StartMarkerInline(MarkdownInlineType.IGNORE_CHAR, "\\")
+        )
       }
     }
 
@@ -110,6 +130,7 @@ class TextInlineConfig(builder: Builder) {
         MarkdownInlineType.UNDERLINE -> PhraseDelimiterInline(MarkdownInlineType.UNDERLINE, "<u>", "</u>")
         MarkdownInlineType.INLINE_CODE -> PhraseDelimiterInline(MarkdownInlineType.INLINE_CODE, "`", "`")
         MarkdownInlineType.STRIKE -> PhraseDelimiterInline(MarkdownInlineType.STRIKE, "~~", "~~")
+        MarkdownInlineType.IGNORE_CHAR -> StartMarkerInline(MarkdownInlineType.IGNORE_CHAR, "\\")
       }
     }
   }

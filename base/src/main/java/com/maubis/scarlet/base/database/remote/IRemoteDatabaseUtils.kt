@@ -44,7 +44,7 @@ object IRemoteDatabaseUtils {
     val notifiedTag = TagBuilder().copy(tag)
     val existingTag = CoreConfig.tagsDb.getByUUID(tag.uuid())
     var isSameAsExisting = existingTag !== null
-        && TextUtils.areEqualNullIsEmpty(notifiedTag.title, existingTag.title)
+      && TextUtils.areEqualNullIsEmpty(notifiedTag.title, existingTag.title)
 
     if (existingTag === null) {
       notifiedTag.saveWithoutSync()
@@ -62,10 +62,10 @@ object IRemoteDatabaseUtils {
     val notifiedFolder = FolderBuilder().copy(folder)
     val existingFolder = CoreConfig.foldersDb.getByUUID(folder.uuid())
     var isSameAsExisting = existingFolder !== null
-        && TextUtils.areEqualNullIsEmpty(notifiedFolder.title, existingFolder.title)
-        && (notifiedFolder.color == existingFolder.color)
-        && (notifiedFolder.timestamp == existingFolder.timestamp)
-        && (notifiedFolder.updateTimestamp == existingFolder.updateTimestamp)
+      && TextUtils.areEqualNullIsEmpty(notifiedFolder.title, existingFolder.title)
+      && (notifiedFolder.color == existingFolder.color)
+      && (notifiedFolder.timestamp == existingFolder.timestamp)
+      && (notifiedFolder.updateTimestamp == existingFolder.updateTimestamp)
 
     if (existingFolder === null) {
       notifiedFolder.saveWithoutSync()
@@ -90,8 +90,20 @@ object IRemoteDatabaseUtils {
     }
   }
 
+  fun onRemoteRemoveNote(context: Context, noteUUID: String) {
+    val existingNote = CoreConfig.notesDb.getByUUID(noteUUID)
+    if (existingNote !== null && !existingNote.disableBackup) {
+      existingNote.deleteWithoutSync(context)
+      sendNoteBroadcast(context, NoteBroadcast.NOTE_DELETED, existingNote.uuid)
+    }
+  }
+
   fun onRemoteRemove(context: Context, tag: ITagContainer) {
-    val existingTag = CoreConfig.tagsDb.getByUUID(tag.uuid())
+    onRemoteRemoveTag(context, tag.uuid())
+  }
+
+  fun onRemoteRemoveTag(context: Context, tagUUID: String) {
+    val existingTag = CoreConfig.tagsDb.getByUUID(tagUUID)
     if (existingTag !== null) {
       existingTag.deleteWithoutSync()
       sendNoteBroadcast(context, NoteBroadcast.TAG_DELETED, existingTag.uuid)
@@ -99,7 +111,11 @@ object IRemoteDatabaseUtils {
   }
 
   fun onRemoteRemove(context: Context, folder: IFolderContainer) {
-    val existingFolder = CoreConfig.foldersDb.getByUUID(folder.uuid())
+    onRemoteRemoveFolder(context, folder.uuid())
+  }
+
+  fun onRemoteRemoveFolder(context: Context, folderUUID: String) {
+    val existingFolder = CoreConfig.foldersDb.getByUUID(folderUUID)
     if (existingFolder !== null) {
       existingFolder.deleteWithoutSync()
       CoreConfig.notesDb.getAll().filter { it.folder == existingFolder.uuid }.forEach {

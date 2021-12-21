@@ -2,34 +2,32 @@ package com.maubis.scarlet.base.support.database
 
 import android.content.Context
 import com.google.gson.Gson
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppPreferences
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
 import com.maubis.scarlet.base.core.note.NoteMeta
 import com.maubis.scarlet.base.core.note.Reminder
 import com.maubis.scarlet.base.core.note.getReminder
 import com.maubis.scarlet.base.note.reminders.ReminderJob
 import com.maubis.scarlet.base.note.saveWithoutSync
-import com.maubis.scarlet.base.settings.sheet.UISettingsOptionsBottomSheet.Companion.KEY_LIST_VIEW
-import com.maubis.scarlet.base.support.ui.KEY_APP_THEME
-import com.maubis.scarlet.base.support.ui.KEY_NIGHT_THEME
+import com.maubis.scarlet.base.settings.sheet.sUIUseGridView
 import com.maubis.scarlet.base.support.ui.Theme
+import com.maubis.scarlet.base.support.ui.sThemeLabel
 import com.maubis.scarlet.base.support.utils.getLastUsedAppVersionCode
+import com.maubis.scarlet.base.support.utils.maybeThrow
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.File
 import java.util.*
 
-const val KEY_MIGRATE_THEME = "KEY_MIGRATE_THEME"
 const val KEY_MIGRATE_DEFAULT_VALUES = "KEY_MIGRATE_DEFAULT_VALUES"
 const val KEY_MIGRATE_REMINDERS = "KEY_MIGRATE_REMINDERS"
 const val KEY_MIGRATE_IMAGES = "KEY_MIGRATE_IMAGES"
+const val KEY_MIGRATE_TO_GDRIVE_DATABASE = "KEY_MIGRATE_TO_GDRIVE_DATABASE_v2"
 
 class Migrator(val context: Context) {
 
   fun start() {
-    runTask(KEY_MIGRATE_THEME) {
-      val isNightMode = CoreConfig.instance.store().get(KEY_NIGHT_THEME, true)
-      CoreConfig.instance.store().put(KEY_APP_THEME, if (isNightMode) Theme.DARK.name else Theme.LIGHT.name)
-      CoreConfig.instance.themeController().notifyChange(context)
-    }
     runTask(key = KEY_MIGRATE_REMINDERS) {
       val notes = notesDb.getAll()
       for (note in notes) {
@@ -57,23 +55,39 @@ class Migrator(val context: Context) {
       File(context.cacheDir, "images").renameTo(File(context.filesDir, "images"))
     }
     runTaskIf(
-        getLastUsedAppVersionCode() == 0,
-        KEY_MIGRATE_DEFAULT_VALUES) {
-      CoreConfig.instance.store().put(KEY_APP_THEME, Theme.DARK.name)
-      CoreConfig.instance.store().put(KEY_LIST_VIEW, true)
+      getLastUsedAppVersionCode() == 0,
+      KEY_MIGRATE_DEFAULT_VALUES) {
+      sThemeLabel = Theme.DARK.name
+      sUIUseGridView = true
+    }
+
+    runTask(KEY_MIGRATE_TO_GDRIVE_DATABASE) {
+      GlobalScope.launch {
+        val remoteDatabaseState = ApplicationBase.instance.remoteDatabaseState()
+        ApplicationBase.instance.notesDatabase().getAll().forEach {
+          remoteDatabaseState.notifyInsert(it) {}
+        }
+        ApplicationBase.instance.tagsDatabase().getAll().forEach {
+          remoteDatabaseState.notifyInsert(it) {}
+        }
+        ApplicationBase.instance.foldersDatabase().getAll().forEach {
+          remoteDatabaseState.notifyInsert(it) {}
+        }
+      }
     }
   }
 
   private fun runTask(key: String, task: () -> Unit) {
-    if (CoreConfig.instance.store().get(key, false)) {
+    if (sAppPreferences.get(key, false)) {
       return
     }
 
     try {
       task()
-    } catch (_: Exception) {
+    } catch (exception: Exception) {
+      maybeThrow(exception)
     }
-    CoreConfig.instance.store().put(key, true)
+    sAppPreferences.put(key, true)
   }
 
   private fun runTaskIf(condition: Boolean, key: String, task: () -> Unit) {

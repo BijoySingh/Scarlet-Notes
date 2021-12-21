@@ -4,24 +4,17 @@
   <string name="save">حفظ</string>
   <string name="import_to_app">استيراد</string>
   <string name="search_notes">بحث ملاحظات | |</string>
-  <string name="search_toolbar_text">البحث %s…</string>
   <string name="share_using">جار المشاركة باستخدام …</string>
 
   <string name="main_no_notes">لا ملاحظات</string>
   <string name="main_no_notes_hint">يبدو أنك لم تضف أي ملاحظات. انقر لإضافة ملاحظة.</string>
 
-  <string name="main_add_a_note">إضافة ملاحظة …</string>
-  <string name="main_add_a_quick_note">إضافة ملاحظة سريعة …</string>
-
   <string name="shortcut_add_note">اضف ملاحظة</string>
   <string name="shortcut_add_list">إضافة قائمة التحقق</string>
 
-  <string name="open_note_night_mode">الوضع الليلي</string>
-  <string name="open_note_day_mode">وضع اليوم</string>
   <string name="edit_note">تحرير مذكرة</string>
   <string name="open_in_notification">إنشاء إعلام</string>
   <string name="open_in_popup">فتح في نافذة منبثقة</string>
-  <string name="delete_note">حذف ملاحظة</string>
   <string name="delete_note_permanently">الحذف بشكل نهائي</string>
   <string name="copy_note">نسخ ملاحظة</string>
   <string name="send_note">إرسال ملاحظة</string>
@@ -43,8 +36,6 @@
   <string name="view_distraction_free">الهاء الحرة</string>
   <string name="choose_action">اختر الإجراء…</string>
 
-  <string name="tap_for_action_open_note_night_mode">انقر لعرض الملاحظة في الوضع الليلي</string>
-  <string name="tap_for_action_open_note_day_mode">انقر لعرض الملاحظة في وضع اليوم</string>
   <string name="tap_for_action_edit">انقر لفتح ملاحظة للتحرير</string>
   <string name="tap_for_action_copy">انقر لنسخ محتوى الملاحظة إلى الحافظة</string>
   <string name="tap_for_action_share">انقر لمشاركة محتوى المذكرة مع تطبيقات أخرى</string>
@@ -58,60 +49,26 @@
   <string name="tap_for_action_color">انقر لتغيير لون خلفية الملاحظة</string>
   <string name="tap_for_action_not_archive">انقر على إلغاء أرشفة الملاحظة</string>
 
-  <string name="nav_sheet_title">ملاحظاتك | |</string>
   <string name="nav_home">الصفحة الرئيسية</string>
-  <string name="nav_home_details">كل من الملاحظات العادية والمفضلة لديك</string>
   <string name="nav_favourites">المفضلة</string>
-  <string name="nav_favourites_details">جميع الملاحظات المفضلة لديك</string>
   <string name="nav_archived">أرشفة</string>
-  <string name="nav_archived_details">جميع الملاحظات المؤرشفة</string>
   <string name="nav_locked">مقفل</string>
-  <string name="nav_locked_details">كل من الملاحظات الخاصة بك مؤمن</string>
-  <string name="nav_tags">الكلمات</string>
-  <string name="nav_tags_details">كل علامات الملاحظة الخاصة بك</string>
   <string name="nav_trash">قمامة، يدمر، يهدم</string>
-  <string name="nav_trash_details">جميع الملاحظات في المهملات</string>
 
   <string name="format_hint_text">إضافة محتوى…</string>
   <string name="format_hint_heading">إضافة العنوان …</string>
-  <string name="format_hint_sub_heading">إضافة عنوان فرعي …</string>
   <string name="format_hint_quote">إضافة نص مقتبس …</string>
   <string name="format_hint_list">اضافة عنصر…</string>
   <string name="format_hint_code">إضافة شفرة …</string>
   <string name="format_hint_image">انقر لإضافة صورة أو تغييرها</string>
 
-  <string name="format_sheet_option_title">كتلة التنسيق</string>
-  <string name="format_label_heading">عنوان</string>
-  <string name="format_label_sub_heading">عنوان فرعي</string>
-  <string name="format_label_text">نص</string>
-  <string name="format_label_quote">اقتبس</string>
-  <string name="format_label_code">الشفرة</string>
-  <string name="format_label_list">قائمة تدقيق</string>
-  <string name="format_label_image">صورة</string>
-  <string name="format_label_separator">الفاصل</string>
-
-  <string name="markdown_sheet_option_title">تنسيق تحديد السعر</string>
-  <string name="markdown_label_bold">بالخط العريض</string>
-  <string name="markdown_label_italics">المائل</string>
-  <string name="markdown_label_underline">أكد</string>
-  <string name="markdown_label_strikethrough">إضراب</string>
-  <string name="markdown_label_list">قائمة</string>
-
   <string name="home_option_sheet_title">خيارات والإعدادات</string>
   <string name="home_option_ui_experience">واجهة والخبرة</string>
   <string name="home_option_ui_experience_subtitle">اختيار كيف يبدو التطبيق ويشعر.</string>
-  <string name="home_option_note_settings">ملاحظة التفضيلات</string>
-  <string name="home_option_note_settings_subtitle">اختر ملاحظة وإعدادات أخرى.</string>
   <string name="home_option_about">حول</string>
   <string name="home_option_about_subtitle">معرفة المزيد عنا والتطبيق.</string>
   <string name="home_option_security">الأمان</string>
   <string name="home_option_security_subtitle">تأمين الملاحظات وخيارات الأمان</string>
-  <string name="home_option_enable_night_mode">تمكين الوضع الليلي</string>
-  <string name="home_option_enable_night_mode_subtitle">تمكين المظهر المظلم كخيار افتراضي</string>
-  <string name="home_option_enable_day_mode">تمكين وضع اليوم</string>
-  <string name="home_option_enable_day_mode_subtitle">تمكين موضوع الضوء بشكل افتراضي</string>
-  <string name="home_option_markdown_settings">إعدادات تخفيض السعر</string>
-  <string name="home_option_markdown_settings_subtitle">اطلع على كيفية استخدام تخفيض السعر في الملاحظات</string>
   <string name="home_option_enable_list_view">تمكين تخطيط القائمة</string>
   <string name="home_option_enable_list_view_subtitle">إظهار الملاحظات في عمود واحد</string>
   <string name="home_option_enable_grid_view">تمكين تخطيط الشبكة</string>
@@ -131,8 +88,6 @@
   <string name="home_option_open_source_page_subtitle">معرفة المزيد عن مشروع مفتوح المصدر</string>
   <string name="home_option_rate_and_review">معدل ومراجعة</string>
   <string name="home_option_rate_and_review_subtitle">أخبرنا أعرف كم كنت أحب التطبيق</string>
-  <string name="home_option_fill_survey">ملء المسح</string>
-  <string name="home_option_fill_survey_subtitle">مساعدتنا على تحسين التطبيق من خلال إخبارنا ما تريد</string>
   <string name="home_option_install_pro_app">تثبيت برو التطبيق</string>
   <string name="home_option_install_pro_app_details">ثبِّت Pro Pro لإلغاء قفل الميزات ومطور الدعم</string>
   <string name="home_option_migrate_to_pro">تهاجر ملاحظات على القرمزي برو</string>
@@ -153,15 +108,10 @@
   <string name="security_option_title">خيارات الأمان</string>
   <string name="security_option_set_pin_code">رمز عبور</string>
   <string name="security_option_set_pin_code_subtitle">تعيين رقم التعريف الشخصي المكون من 4 أرقام لقفل الملاحظات</string>
-  <string name="security_option_fingerprint_enabled">فتح مع بصمات الأصابع</string>
-  <string name="security_option_fingerprint_enabled_subtitle">سيتم فتح الملاحظات مع بصمات الأصابع</string>
-  <string name="security_option_fingerprint_disabled">تم تعطيل بصمة الإصبع</string>
-  <string name="security_option_fingerprint_disabled_subtitle">لن تستخدم الملاحظات بصمة الإصبع</string>
 
   <string name="security_sheet_enter_new_pin_title">أدخل رقم تعريف شخصي جديد</string>
   <string name="security_sheet_enter_pin_to_unlock_title">أدخل رقم التعريف الشخصي لإلغاء التأمين</string>
   <string name="security_sheet_enter_current_pin_title">أدخل رقم التعريف الشخصي الحالي</string>
-  <string name="security_sheet_enter_pin_hint">ادخل الرمز</string>
   <string name="security_sheet_button_verify">التحقق</string>
   <string name="security_sheet_button_unlock">فتح</string>
   <string name="security_sheet_button_set">جلس</string>
@@ -176,7 +126,6 @@
   <string name="markdown_sheet_markdown_support_subtitle">السماح بتنسيق التضمين المنسق</string>
   <string name="markdown_sheet_home_markdown_support">تخفيض السعر في قائمة الملاحظات</string>
   <string name="markdown_sheet_home_markdown_support_subtitle">تمكين تنسيق علامة التبويب في قائمة الملاحظات</string>
-  <string name="markdown_sheet_examples">أمثلة</string>
 
   <string name="permission_layout_give_permission">إعطاء الأذونات</string>
   <string name="permission_layout_give_permission_details">استيراد وتصدير تتطلب أذونات التخزين. يرجى إعطاء الإذن عند الطلب.</string>
@@ -191,7 +140,6 @@
   <string name="import_export_layout_exporting_share">شارك</string>
 
 
-  <string name="about_page_title">معلومات عنا وأكثر</string>
   <string name="about_page_rate">معدل على اللعب المتجر</string>
   <string name="about_page_contribute">تساهم</string>
   <string name="about_page_app_version">نسخة التطبيق</string>
@@ -199,16 +147,12 @@
 
   <string name="osp_page_libraries">المكتبات</string>
   <string name="osp_page_about_osp">مشروع المصدر المفتوح</string>
-  <string name="osp_page_title">حول مشروع المصدر المفتوح</string>
 
-  <string name="reminder_sheet_title">ملاحظة تذكير</string>
   <string name="reminder_sheet_reminder_date">تاريخ التذكير</string>
   <string name="reminder_sheet_reminder_time">تذكير الوقت</string>
   <string name="reminder_sheet_repeat">تكرار تكرار</string>
   <string name="reminder_frequency_once">مرة واحدة فقط</string>
   <string name="reminder_frequency_daily">اليومي</string>
-  <string name="reminder_frequency_custom">العادة</string>
-  <string name="reminder_beta_label">بيتا</string>
 
   <string name="notification_channel_label">ملاحظة الإخطارات</string>
   <string name="notification_reminder_channel_label">تذكير وإنذارات</string>
@@ -240,10 +184,6 @@
   <string name="whats_new_title">ما هو الجديد</string>
   <string name="whats_new_subtitle">تعرف ما هو الجديد في التحديثات الأخيرة من التطبيق</string>
   <string name="whats_new_translate">ترجمه</string>
-
-  <string name="tutorial_create_a_new_note">انقر لإضافة ملاحظة جديدة</string>
-  <string name="tutorial_home_menu">انقر لرؤية خيارات المنزل</string>
-  <string name="tutorial_home_menu_subtitle">القائمة الرئيسية لديها الملاحظات المفضلة لديك والأرشيف، وكذلك إعدادات التطبيق. يمكنك العثور على العلامات هنا أيضا.</string>
 
   <string name="format_action_copy">نسخ</string>
   <string name="format_action_title">حظر الإجراءات النصية</string>
@@ -299,9 +239,6 @@
   <string name="home_option_login_with_app_subtitle">تسجيل الدخول للحصول على النسخ الاحتياطي سحابة والمزامنة</string>
   <string name="home_option_logout_of_app">خروج</string>
   <string name="home_option_logout_of_app_subtitle">تسجيل الخروج لإيقاف النسخ الاحتياطي سحابة</string>
-  <string name="login_with_google">الدخول مع جوجل</string>
-  <string name="logging_into_app">تسجيل الدخول |</string>
-  <string name="logged_into_app">لقد سجلت الدخول</string>
   <string name="login_to_google_failed">فشل تسجيل الدخول إلى غوغل</string>
 
   <string name="material_notes_privacy_policy">سياسة الخصوصية</string>
@@ -315,19 +252,10 @@
    احصل على أحدث الميزات أولا \n
   \n
    ستتوفر بعض الميزات الإضافية فقط لمستخدمي برو</string>
-  <string name="why_cloud">سبب تمكين مزامنة السحاب</string>
-  <string name="why_cloud_details">التحميل والنسخ الاحتياطي من تغييرات الجهاز \n
-  \n
-   المزامنة بين أجهزة متعددة، والحصول على تحديثات سريعة \n
-  \n
-   حفظها بشكل آمن على خوادم غوغل فيريباس</string>
   <!-- End: Firebase Login Strings -->
 
 
   <!-- Start Welcome Page -->
-  <string name="welcome_page_hello">مرحبا،</string>
-  <string name="welcome_page_transfer_message">ملاحظات المادة الآن القرمزي!</string>
-  <string name="welcome_page_get_started">البدء</string>
   <!-- End Welcome Page -->
 
   <!-- Start Theme Color -->
@@ -338,7 +266,6 @@
 
   <string name="click_to_add_tags">انقر لإضافة أو تغيير العلامات</string>
 
-  <string name="show_more_actions">عرض المزيد من الإجراءات</string>
   <string name="select_notes">حدد ملاحظات</string>
   <string name="select_notes_details">حدد إجراءات وتنفيذها على ملاحظات متعددة في وقت واحد</string>
 
@@ -360,5 +287,156 @@
   <string name="folder_option_change_notebook">تعديل نوت بوك</string>
 
   <string name="recent_notes">ملاحظات حديثة</string>
+
+  <!-- Added for 7.0.4 -->
+  <string name="merge_notes">دمج الملاحظات</string>
+  <string name="home_option_export_markdown">تصدير كما تخفيض السعر</string>
+  <string name="home_option_export_markdown_subtitle">تصدير الملاحظات في شكل تخفيض السعر. (لا يمكنك استيراد هذه العودة إلى التطبيق)</string>
+  <string name="ui_options_note_background_color_settings_theme">استخدام لون موضوع للخلفية</string>
+  <string name="ui_options_note_background_color_settings_note">استخدام لون المذكرة للخلفية</string>
+  <string name="import_export_layout_folder_sync_enable">مكن</string>
+  <string name="import_export_layout_folder_sync_disable">تعطيل</string>
+  <string name="import_export_layout_folder_sync">تمكين مزامنة المجلد</string>
+  <string name="import_export_layout_folder_sync_title">مجلد مزامنة</string>
+  <string name="import_export_layout_folder_sync_description">مزامنة جميع الملاحظات والعلامات والمجلدات الخاصة بك إلى مجلد خارجي. يساعدك هذا في مزامنة استخدام تطبيقات أخرى بين الأجهزة ، وكذلك الحصول على نسخة في حال كنت بحاجة إلى حذف التطبيق.</string>
+  <string name="import_export_layout_folder_sync_folder">تصدير إلى مجلد</string>
+  <string name="import_export_layout_folder_sync_details">مزامنة جميع الملاحظات والعلامات وغيرها إلى مجلد خارجي</string>
+  <string name="import_export_locked">تصدير الملاحظات المقفلة</string>
+  <string name="sort_sheet_alphabetical">مرتب حسب الحروف الأبجدية</string>
+  <string name="available_in_pro_only">متوفر على Scarlet Pro</string>
+  <string name="import_export_locked_details">النسخ الاحتياطي أيضا الملاحظات التي يتم تأمين</string>
+  <string name="home_option_editor_options_title">خيارات المحرر</string>
+  <string name="home_option_editor_options_description">تغيير الإعدادات والاستخدام لمحرر الملاحظات</string>
+  <string name="editor_option_enable_markdown_mode_default">خيارات تخفيض السعر الافتراضية</string>
+  <string name="editor_option_enable_markdown_mode_default_details">أظهر الأزرار السريعة للتخفيض على شريط الأدوات كإعداد افتراضي</string>
+  <string name="editor_option_enable_live_markdown">تخفيض السعر الفعلي</string>
+  <string name="editor_option_enable_live_markdown_description">اختر ما إذا كنت تريد أن يكون تخفيض السعر مرئيًا كنوعك. التمكين يمكن أن يؤثر على الأداء على الملاحظات الكبيرة.</string>
+  <string name="editor_option_move_checked_items">نقل العناصر المحددة</string>
+  <string name="editor_option_move_checked_items_description">تنتقل العناصر المحددة إلى أسفل القائمة. إلغاء تحديد لا إعادة تعيين الموقف.</string>
+  <string name="editor_option_enable_move_handle">إظهار مقابض الحركة</string>
+  <string name="editor_option_enable_move_handle_description">أظهر المقبض لتحريك العناصر لأعلى أو لأسفل. لا يزال بإمكانك تحريك الأشياء عن طريق لمس الزاوية.</string>
+  <string name="markdown_help_sheet_title">أمثلة تخفيض السعر</string>
+  <string name="home_option_widget_options_title">إعدادات القطعة</string>
+  <string name="home_option_widget_options_description">تغيير الإعدادات لعناصر واجهة مستخدم الشاشة الرئيسية</string>
+  <string name="widget_option_enable_formatting">تمكين التنسيق</string>
+  <string name="widget_option_enable_formatting_details">يتم تقديم الملاحظات مع التنسيق في عناصر واجهة تعامل الشاشة الرئيسية</string>
+  <string name="widget_option_show_locked_notes">إظهار الملاحظات المقفلة</string>
+  <string name="widget_option_show_locked_notes_details">السماح بإظهار الملاحظات المقفلة في عناصر واجهة تعامل الشاشة الرئيسية</string>
+  <string name="widget_option_show_archived_notes">إظهار الملاحظات المؤرشفة</string>
+  <string name="widget_option_show_archived_notes_details">السماح بعرض الملاحظات المؤرشفة في عناصر واجهة تعامل الشاشة الرئيسية</string>
+  <string name="widget_option_show_trash_notes">إظهار الملاحظات في المهملات</string>
+  <string name="widget_option_show_trash_notes_details">السماح بإظهار الملاحظات في المهملات في عناصر واجهة تعامل الشاشة الرئيسية</string>
+  <string name="home_option_faq_title">مساعدة والأسئلة الشائعة</string>
+  <string name="home_option_faq_description">ابحث عن مساعدة حول كيفية استخدام الميزات الموجودة في التطبيق</string>
+  <string name="home_syncing_top_layout">المزامنة</string>
+  <string name="home_pending_backup_top_layout">في انتظار النسخ الاحتياطي</string>
+  <string name="internal_settings_title">خيارات للمطور</string>
+  <string name="internal_settings_description">تغيير الإعدادات الداخلية إلى التطبيق المستخدم للتصحيح</string>
+  <string name="internal_settings_enable_log_exceptions_title">استثناءات السجل</string>
+  <string name="internal_settings_enable_log_exceptions_description">سجل اشتعلت استثناءات إلى ملاحظة ثابتة ، للسماح لإعادة توجيه إلى المطور</string>
+  <string name="internal_settings_enable_show_exceptions_title">إظهار ورقة الاستثناء</string>
+  <string name="internal_settings_enable_show_exceptions_description">إظهار الاستثناءات التي تم اكتشافها على ورقة إن أمكن ، للسماح بإعادة التوجيه إلى Developer</string>
+  <string name="internal_settings_enable_throw_exceptions_title">رمي على استثناءات</string>
+  <string name="internal_settings_enable_throw_exceptions_description">رمي وتعطل التطبيق على استثناءات. سيتم إعادة تعيين بعد 5 حوادث</string>
+  <string name="internal_settings_enable_fullscreen_title">تمكين ملء الشاشة</string>
+  <string name="internal_settings_enable_fullscreen_description">اجعل التطبيق بملء الشاشة للسماح بلقطات وتسجيلات</string>
+  <string name="internal_settings_show_uuid_title">إظهار ملاحظة UUIDs</string>
+  <string name="internal_settings_show_uuid_description">عرض معرفات فريدة من الملاحظات في عرض الشاشة الرئيسية</string>
+  <string name="internal_settings_fake_exceptions_title">استثناءات وهمية</string>
+  <string name="internal_settings_fake_exceptions_description">رمي استثناء وهمية لاختبار ميزات الاستثناء</string>
+  <string name="exception_sheet_title">استثناء الرمية</string>
+  <string name="exception_sheet_crash_app">تحطم التطبيقات</string>
+  <string name="exception_sheet_mail">بريد</string>
+  <string name="google_drive_page_connection_failed">فشل الاتصال</string>
+  <string name="google_drive_page_login_title">المزامنة على Google Drive</string>
+  <string name="google_drive_page_login_details">يتيح لك Google Drive مزامنة ملاحظاتك بين الأجهزة باستخدام حساب Google Drive الخاص بك.</string>
+  <string name="google_drive_page_login_firebase_button">تسجيل الدخول إلى جوجل Firebase من قبل؟</string>
+  <string name="google_drive_page_login_button">تسجيل الدخول إلى Google Drive</string>
+  <string name="google_drive_page_logging_in_button">تسجيل الدخول</string>
+  <string name="google_drive_page_logout_title">تسجيل الخروج من القرمزي</string>
+  <string name="google_drive_page_logout_details">توقف عن مزامنة الملاحظات والعلامات والمجلدات.</string>
+  <string name="google_drive_page_logout_no_sync_details">توقف عن مزامنة الملاحظات والعلامات والمجلدات مع Google Drive.</string>
+  <string name="google_drive_page_logout_data_persists_details">ستظل بياناتك على التطبيق وعلى Google Drive موجودة.</string>
+  <string name="google_drive_page_logout_button">تسجيل الخروج من Drive</string>
+  <string name="google_drive_page_logging_out_button">تسجيل الخروج</string>
+  <string name="google_drive_page_login_lock_details">يتم تخزين الملاحظات والعلامات والمجلدات على Google Drive ، بحيث يمكنك التحكم في الوصول إليها فقط.</string>
+  <string name="google_drive_page_photo_details">يتم تحميل صورك ومزامنتها عبر الأجهزة أيضًا.</string>
+  <string name="firebase_page_login_title">استعادة البيانات من Firebase</string>
+  <string name="firebase_page_login_button">الدخول مع جوجل</string>
+  <string name="firebase_page_logging_in_button">تسجيل الدخول</string>
+  <string name="firebase_page_important_details">اعتدنا على تخزين معلوماتك على Google Firebase. بعد تسجيل الدخول سنقوم باسترداد هذه إلى جهازك</string>
+  <string name="firebase_page_not_sync_details">لن تتم مزامنة الملاحظات والتغييرات الجديدة مع Google Firebase ، وستحتاج إلى تسجيل الدخول إلى Google Drive</string>
+  <string name="firebase_page_remove_details">بمجرد استرداد ملاحظاتك ، يمكنك حذفها من Google Firebase ، ثم التبديل</string>
+  <string name="firebase_no_sync_warning">لا تتم مزامنة بياناتك!</string>
+  <string name="firebase_no_sync_warning_details">تم تعطيل مزامنة البيانات استنادًا إلى تسجيل الدخول القديم ، فكّر في التبديل إلى المزامنة القائمة على Google Drive.</string>
+  <string name="firebase_removal_page_login_title">نقل البيانات من Firebase إلى Drive</string>
+  <string name="firebase_removal_page_clear_button">مسح البيانات وتسجيل الخروج</string>
+  <string name="firebase_removal_page_clearing_button">المقاصة وتسجيل الخروج</string>
+  <string name="firebase_removal_page_important_details">اعتدنا على تخزين معلوماتك على Google Firebase. نحن ننتقل إلى تخزين ملاحظاتك في Google Drive.</string>
+  <string name="firebase_removal_page_more_privacy_details">مزيد من الخصوصية.</string>
+  <string name="firebase_removal_page_photo_upload_details">مزامنة الصور.</string>
+  <string name="firebase_removal_page_whats_next_details">الخطوات التالية</string>
+  <string name="firebase_removal_page_remove_details">سنقوم أولاً بحذف الملاحظات الخاصة بك من Firebase وتسجيل الخروج.</string>
+  <string name="firebase_removal_page_next_details">يمكنك بعد ذلك تسجيل الدخول إلى Google Drive ، وسنقوم بتحميل بياناتك مع الصور.</string>
+
+  <!-- Added for 7.5.0 -->
+  <string name="folder_delete_option_sheet_title">إزالة الخيارات</string>
+  <string name="folder_delete_option_sheet_remove_folder">إزالة دفتر الملاحظات</string>
+  <string name="folder_delete_option_sheet_remove_folder_details">فقط إزالة دفتر الملاحظات. نقل الملاحظات خارج المجلد.</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content">إزالة دفتر الملاحظات والملاحظات</string>
+  <string name="folder_delete_option_sheet_remove_folder_and_content_details">إزالة دفتر الملاحظات. جميع الملاحظات تتحرك إلى سلة المهملات أو يتم حذفها.</string>
+  <string name="folder_delete_option_sheet_remove_folder_content">إزالة الملاحظات</string>
+  <string name="folder_delete_option_sheet_remove_folder_content_details">حافظ على دفتر الملاحظات ولكن جميع الملاحظات تنتقل إلى المهملات أو يتم حذفها.</string>
+  <string name="home_option_typeface">تخصيص الخطوط</string>
+  <string name="home_option_typeface_subtitle">حدد التطبيق ولاحظ الخطوط</string>
+  <string name="typeface_page_title">حدد مجموعة الخط</string>
+  <string name="typeface_page_description">ملاحظة: قد لا تعمل الخطوط بشكل صحيح مع جميع اللغات</string>
+  <string name="typeface_title_app_default">التطبيق الافتراضي</string>
+  <string name="typeface_title_os_default">الجهاز الافتراضي</string>
+  <string name="typeface_title_monospace">مونو</string>
+  <string name="typeface_title_serif">شريف</string>
+  <string name="app_lock_title">فتح التطبيق</string>
+  <string name="app_lock_details">أدخل رقم التعريف الشخصي المكون من 4 أرقام أو استخدم القياسات الحيوية لإلغاء القفل</string>
+  <string name="app_lock_details_no_fingerprint">أدخل رقم التعريف الشخصي المكون من 4 أرقام لإلغاء القفل</string>
+  <string name="theme_use_system_theme">استخدام سمة النظام</string>
+  <string name="theme_use_system_theme_details">استخدم النسق الخفيف أو المظلم من النظام</string>
+  <string name="theme_dark_notes">ملاحظات الظلام</string>
+  <string name="theme_dark_notes_details">تغميق تلقائيا ملاحظة وألوان المجلد</string>
+  <string name="pending_backup_local_state">محلي</string>
+  <string name="pending_backup_remote_state">التحكم عن بعد</string>
+  <string name="pending_backup_state_unavailable">غير متوفره</string>
+  <string name="pending_backup_state_created">خلقت</string>
+  <string name="pending_backup_state_deleted">تم الحذف</string>
+  <string name="pending_backup_state_updated">محدث</string>
+  <string name="widget_option_background_color">خلفية القطعة</string>
+  <string name="widget_option_background_color_details">اختر لون الخلفية لعنصر واجهة تعامل الملاحظات المتعددة</string>
+  <string name="widget_option_show_toolbar">إظهار شريط أدوات العمل</string>
+  <string name="widget_option_show_toolbar_details">القطعة متعددة الملاحظات يظهر شريط الأدوات</string>
+  <string name="editor_option_skip_view_note">تخطي ملاحظة العارض</string>
+  <string name="editor_option_skip_view_note_details">تخطي عارض الملاحظة والانتقال إلى محرر الملاحظات مباشرة</string>
+  <string name="delete_sheet_delete_selected_notes_permanently">هل ترغب في حذف هذه الملاحظات نهائيًا؟</string>
+  <string name="install_pro_sheet_latest_updates">أسرع التحديثات والطلبات.</string>
+  <string name="install_pro_sheet_app_lock">قفل التطبيق وفتح واحد.</string>
+  <string name="install_pro_sheet_app_themes">المزيد من سمات التطبيق.</string>
+  <string name="install_pro_sheet_font_size">ملاحظة الخطوط وأحجام الخطوط.</string>
+  <string name="install_pro_sheet_viewer_bg">لون خلفية المشاهد.</string>
+  <string name="install_pro_sheet_widget_options">المزيد من خيارات القطعة.</string>
+  <string name="install_pro_sheet_note_options">المزيد من الإجراءات ملاحظة.</string>
+  <string name="sort_sheet_note_color">ملاحظة اللون</string>
+  <string name="sort_sheet_note_tags">ملاحظة العلامات</string>
+  <string name="security_option_lock_app">تمكين قفل التطبيق</string>
+  <string name="security_option_lock_app_details">استخدم رقم التعريف الشخصي لإلغاء قفل التطبيق بالكامل</string>
+  <string name="security_option_ask_pin_always">اسأل دائمًا عن رقم التعريف الشخصي</string>
+  <string name="security_option_ask_pin_always_details">أدخل رقم التعريف الشخصي لجميع الملاحظات ، حتى إذا تم إدخالها مسبقًا</string>
+  <string name="security_option_biometrics_enabled">فتح مع القياسات الحيوية</string>
+  <string name="security_option_biometrics_enabled_subtitle">السماح بفتح مع بصمة أو القياسات الحيوية الأخرى</string>
+  <string name="security_option_biometrics_disabled">القياسات الحيوية معطلة</string>
+  <string name="security_option_biometrics_disabled_subtitle">لا تسمح بفتح مع بصمة أو القياسات الحيوية الأخرى</string>
+  <string name="biometric_prompt_unlock_note">فتح ملاحظة</string>
+  <string name="biometric_prompt_unlock_note_details">استخدم بصمة الجهاز أو القياسات الحيوية لفتح الملاحظة والوصول إليها.</string>
+  <string name="biometric_prompt_unlock_app">فتح التطبيق</string>
+  <string name="biometric_prompt_unlock_app_details">استخدم بصمة الجهاز أو القياسات الحيوية لإلغاء قفل التطبيق والوصول إلى جميع الملاحظات.</string>
+  <string name="pin_to_launcher">قاذفة اختصار</string>
+  <string name="share_images">مشاركة الصور</string>
 
 </resources>

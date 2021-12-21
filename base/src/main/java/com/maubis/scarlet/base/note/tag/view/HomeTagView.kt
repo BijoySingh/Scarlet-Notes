@@ -19,5 +19,4 @@ class HomeTagView(val rootView: View) {
     action = rootView.findViewById(R.id.action)
   }
 
-
 }

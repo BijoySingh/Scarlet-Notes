@@ -1,8 +1,8 @@
 package com.maubis.scarlet.base.database.room.note;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 /**
  * Underlying Database, difficult to migrate to Kotlin without breaking the Database.
@@ -29,7 +29,7 @@ public class Note {
 
   public boolean locked;
 
-  public String tags;
+  public String tags = "";
 
   public long updateTimestamp;
 

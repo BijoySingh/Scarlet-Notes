@@ -1,8 +1,7 @@
 package com.maubis.scarlet.base.database
 
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.core.note.INoteContainer
-import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.note.NoteDao
 import com.maubis.scarlet.base.note.applySanityChecks
@@ -25,6 +24,11 @@ class NotesProvider {
   fun getCount(): Int {
     maybeLoadFromDB()
     return notes.size
+  }
+
+  fun getUUIDs(): List<String> {
+    maybeLoadFromDB()
+    return notes.values.map { it.uuid }
   }
 
   fun getAll(): List<Note> {
@@ -107,6 +111,6 @@ class NotesProvider {
   }
 
   fun database(): NoteDao {
-    return CoreConfig.instance.database().notes()
+    return ApplicationBase.instance.database().notes()
   }
 }

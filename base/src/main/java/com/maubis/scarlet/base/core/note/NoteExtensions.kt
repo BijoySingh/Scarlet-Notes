@@ -2,11 +2,10 @@ package com.maubis.scarlet.base.core.note
 
 import com.github.bijoysingh.starter.util.TextUtils
 import com.google.gson.Gson
-import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.core.format.Format
 import com.maubis.scarlet.base.core.format.FormatBuilder
-import com.maubis.scarlet.base.note.saveWithoutSync
-import java.util.*
+import com.maubis.scarlet.base.database.room.note.Note
+import com.maubis.scarlet.base.support.utils.throwOrReturn
 
 fun Note.isUnsaved(): Boolean {
   return this.uid === null || this.uid == 0
@@ -14,13 +13,14 @@ fun Note.isUnsaved(): Boolean {
 
 fun Note.isEqual(note: Note): Boolean {
   return TextUtils.areEqualNullIsEmpty(this.state, note.state)
-      && TextUtils.areEqualNullIsEmpty(this.description, note.description)
-      && TextUtils.areEqualNullIsEmpty(this.uuid, note.uuid)
-      && TextUtils.areEqualNullIsEmpty(this.tags, note.tags)
-      && this.timestamp.toLong() == note.timestamp.toLong()
-      && this.color.toInt() == note.color.toInt()
-      && this.locked == note.locked
-      && this.pinned == note.pinned
+    && TextUtils.areEqualNullIsEmpty(this.description, note.description)
+    && TextUtils.areEqualNullIsEmpty(this.uuid, note.uuid)
+    && TextUtils.areEqualNullIsEmpty(this.tags, note.tags)
+    && this.timestamp.toLong() == note.timestamp.toLong()
+    && this.color.toInt() == note.color.toInt()
+    && this.locked == note.locked
+    && this.pinned == note.pinned
+    && this.folder == note.folder
 }
 
 /**************************************************************************************
@@ -35,15 +35,15 @@ fun Note.getNoteState(): NoteState {
   try {
     return NoteState.valueOf(this.state)
   } catch (exception: Exception) {
-    return NoteState.DEFAULT
+    return throwOrReturn(exception, NoteState.DEFAULT)
   }
 }
 
 fun Note.getMeta(): NoteMeta {
   try {
     return Gson().fromJson<NoteMeta>(this.meta, NoteMeta::class.java) ?: NoteMeta()
-  } catch (e: Exception) {
-    return NoteMeta()
+  } catch (exception: Exception) {
+    return throwOrReturn(exception, NoteMeta())
   }
 }
 
@@ -63,6 +63,5 @@ fun Note.setReminderV2(reminder: Reminder) {
 
 fun Note.getTagUUIDs(): MutableSet<String> {
   val tags = if (this.tags == null) "" else this.tags
-  val split = tags.split(",")
-  return HashSet<String>(split)
+  return tags.split(",").filter { it.isNotBlank() }.toMutableSet()
 }

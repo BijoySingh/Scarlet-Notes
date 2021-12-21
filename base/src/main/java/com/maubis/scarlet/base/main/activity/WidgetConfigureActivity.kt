@@ -2,18 +2,16 @@ package com.maubis.scarlet.base.main.activity
 
 import android.app.Activity
 import android.app.Application
-import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.widget.RemoteViews
+import androidx.core.content.ContextCompat
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
+import com.maubis.scarlet.base.config.ApplicationBase
 import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
-import com.maubis.scarlet.base.core.note.NoteState
 import com.maubis.scarlet.base.database.room.note.Note
 import com.maubis.scarlet.base.database.room.widget.Widget
 import com.maubis.scarlet.base.note.creation.activity.ViewAdvancedNoteActivity
@@ -37,8 +35,8 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
     val extras = intent.extras
     if (extras != null) {
       appWidgetId = extras.getInt(
-          AppWidgetManager.EXTRA_APPWIDGET_ID,
-          AppWidgetManager.INVALID_APPWIDGET_ID)
+        AppWidgetManager.EXTRA_APPWIDGET_ID,
+        AppWidgetManager.INVALID_APPWIDGET_ID)
     }
 
     if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
@@ -55,7 +53,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
 
   override fun onNoteClicked(note: Note) {
     val widget = Widget(appWidgetId, note.uuid)
-    CoreConfig.instance.database().widgets().insert(widget)
+    ApplicationBase.instance.database().widgets().insert(widget)
     createWidget(widget)
   }
 
@@ -82,8 +80,7 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
         return
       }
 
-      val intent = ViewAdvancedNoteActivity.getIntent(context, note)
-      val pendingIntent = PendingIntent.getActivity(context, 5000 + note.uid, intent, 0)
+      val pendingIntent = ViewAdvancedNoteActivity.getIntentWithStack(context, note)
       val views = RemoteViews(context.getPackageName(), R.layout.widget_layout)
 
       views.setTextViewText(R.id.description, getWidgetNoteText(note))
@@ -103,8 +100,8 @@ class WidgetConfigureActivity : SelectableNotesActivityBase(), INoteSelectorActi
     private fun notifyNoteChangeBroadcast(context: Context, note: Note): Intent? {
       val application: Application = context.applicationContext as Application
       val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(
-          ComponentName(application, NoteWidgetProvider::class.java))
-      val widgets = CoreConfig.instance.database().widgets().getByNote(note.uuid)
+        ComponentName(application, NoteWidgetProvider::class.java))
+      val widgets = ApplicationBase.instance.database().widgets().getByNote(note.uuid)
 
       val widgetIds = ArrayList<Int>()
       for (widget in widgets) {

@@ -1,8 +1,8 @@
 package com.maubis.scarlet.base.database.room.tag;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "tag", indices = {@Index("uid")})
 public class Tag {

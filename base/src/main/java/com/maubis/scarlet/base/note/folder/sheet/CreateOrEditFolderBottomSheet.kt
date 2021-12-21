@@ -2,26 +2,24 @@ package com.maubis.scarlet.base.note.folder.sheet
 
 import android.app.Dialog
 import android.content.Context
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.flexbox.FlexboxLayout
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.config.CoreConfig.Companion.notesDb
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
 import com.maubis.scarlet.base.core.folder.isUnsaved
 import com.maubis.scarlet.base.database.room.folder.Folder
 import com.maubis.scarlet.base.note.folder.delete
 import com.maubis.scarlet.base.note.folder.save
-import com.maubis.scarlet.base.note.save
 import com.maubis.scarlet.base.settings.view.ColorView
+import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.ThemedActivity
 import com.maubis.scarlet.base.support.ui.ThemedBottomSheetFragment
 import com.maubis.scarlet.base.support.utils.getEditorActionListener
-
 
 class CreateOrEditFolderBottomSheet : ThemedBottomSheetFragment() {
 
@@ -49,11 +47,10 @@ class CreateOrEditFolderBottomSheet : ThemedBottomSheetFragment() {
     val enterFolder = dialog.findViewById<EditText>(R.id.enter_folder)
     val removeBtn = dialog.findViewById<TextView>(R.id.action_remove_button)
     val colorFlexbox = dialog.findViewById<FlexboxLayout>(R.id.color_flexbox)
-    val colorCard = dialog.findViewById<View>(R.id.core_color_card)
 
-    title.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-    enterFolder.setTextColor(CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT))
-    enterFolder.setHintTextColor(CoreConfig.instance.themeController().get(ThemeColorType.HINT_TEXT))
+    title.setTextColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
+    enterFolder.setTextColor(sAppTheme.get(ThemeColorType.SECONDARY_TEXT))
+    enterFolder.setHintTextColor(sAppTheme.get(ThemeColorType.HINT_TEXT))
 
     title.setText(if (folder.isUnsaved()) R.string.folder_sheet_add_note else R.string.folder_sheet_edit_note)
     action.setOnClickListener {
@@ -61,25 +58,24 @@ class CreateOrEditFolderBottomSheet : ThemedBottomSheetFragment() {
       sheetOnFolderListener(folder, !updated)
       dismiss()
     }
+
+    val folderDeleteListener = sheetOnFolderListener
     removeBtn.visibility = if (folder.isUnsaved()) GONE else VISIBLE
     removeBtn.setOnClickListener {
-      folder.delete()
-      notesDb.getAll().filter { it.folder == folder.uuid }.forEach {
-        it.folder = ""
-        it.save(themedContext())
-      }
-
-      sheetOnFolderListener(folder, true)
+      openSheet(context as AppCompatActivity, DeleteFolderBottomSheet().apply {
+        selectedFolder = folder
+        sheetOnFolderListener = folderDeleteListener
+      })
       dismiss()
     }
     enterFolder.setText(folder.title)
     enterFolder.setOnEditorActionListener(getEditorActionListener(
-        runnable = {
-          val updated = onActionClick(folder, enterFolder.text.toString())
-          sheetOnFolderListener(folder, !updated)
-          dismiss()
-          return@getEditorActionListener true
-        }))
+      runnable = {
+        val updated = onActionClick(folder, enterFolder.text.toString())
+        sheetOnFolderListener(folder, !updated)
+        dismiss()
+        return@getEditorActionListener true
+      }))
 
     setColorsList(dialog.context, folder, colorFlexbox)
     makeBackgroundTransparent(dialog, R.id.root_layout)

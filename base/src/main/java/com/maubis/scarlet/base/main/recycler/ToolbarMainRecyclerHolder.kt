@@ -2,22 +2,24 @@ package com.maubis.scarlet.base.main.recycler
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.github.bijoysingh.starter.recyclerview.RecyclerViewHolder
 import com.maubis.scarlet.base.BuildConfig
 import com.maubis.scarlet.base.MainActivity
+import com.maubis.scarlet.base.MainActivityActions
 import com.maubis.scarlet.base.R
-import com.maubis.scarlet.base.config.CoreConfig
-import com.maubis.scarlet.base.export.sheet.BackupSettingsOptionsBottomSheet
-import com.maubis.scarlet.base.settings.sheet.DeleteAndMoreOptionsBottomSheet
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTheme
+import com.maubis.scarlet.base.config.ApplicationBase.Companion.sAppTypeface
+import com.maubis.scarlet.base.performAction
 import com.maubis.scarlet.base.settings.sheet.SettingsOptionsBottomSheet
 import com.maubis.scarlet.base.support.recycler.RecyclerItem
-import com.maubis.scarlet.base.support.sheets.openSheet
 import com.maubis.scarlet.base.support.ui.ThemeColorType
 import com.maubis.scarlet.base.support.ui.visibility
+import com.maubis.scarlet.base.support.utils.maybeThrow
 
 class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerViewHolder<RecyclerItem>(context, itemView) {
 
@@ -29,24 +31,25 @@ class ToolbarMainRecyclerHolder(context: Context, itemView: View) : RecyclerView
   override fun populate(data: RecyclerItem, extra: Bundle) {
     setFullSpan()
     toolbarIconSearch.setOnClickListener {
-      (context as MainActivity).setSearchMode(true)
+      (context as MainActivity).enterSearchMode()
     }
 
     toolbarIconSettings.setOnClickListener {
       SettingsOptionsBottomSheet.openSheet((context as MainActivity))
     }
 
-    val titleColor = CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
+    val titleColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     toolbarTitle.setTextColor(titleColor)
+    toolbarTitle.typeface = sAppTypeface.heading()
 
-    val toolbarIconColor = CoreConfig.instance.themeController().get(ThemeColorType.SECONDARY_TEXT)
+    val toolbarIconColor = sAppTheme.get(ThemeColorType.SECONDARY_TEXT)
     toolbarIconSearch.setColorFilter(toolbarIconColor)
     toolbarIconSettings.setColorFilter(toolbarIconColor)
 
     toolbarIconDebug.visibility = visibility(BuildConfig.DEBUG)
     toolbarIconDebug.setColorFilter(toolbarIconColor)
     toolbarIconDebug.setOnClickListener {
-      openSheet((context as MainActivity), DeleteAndMoreOptionsBottomSheet())
+      (context as MainActivity).performAction(MainActivityActions.TYPEFACE_PICKER)
     }
   }
 }
@@ -55,6 +58,7 @@ fun RecyclerViewHolder<RecyclerItem>.setFullSpan() {
   try {
     val layoutParams = itemView.getLayoutParams() as StaggeredGridLayoutManager.LayoutParams
     layoutParams.isFullSpan = true
-  } catch (e: Exception) {
+  } catch (exception: Exception) {
+    maybeThrow(itemView.context as AppCompatActivity, exception)
   }
 }

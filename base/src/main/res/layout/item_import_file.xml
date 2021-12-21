@@ -52,7 +52,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:fontFamily="@style/FontText"
         android:text="12 Aug 2017, 11:00 PM"
         android:textColor="@color/dark_hint_text"
         android:textSize="@dimen/font_size_small" />
@@ -61,7 +60,6 @@
         android:id="@+id/file_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@style/FontText"
         android:text="2.0MB"
         android:textColor="@color/dark_hint_text"
         android:textSize="@dimen/font_size_small" />
